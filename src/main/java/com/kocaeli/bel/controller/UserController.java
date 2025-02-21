@@ -3,28 +3,54 @@ package com.kocaeli.bel.controller;
 import com.kocaeli.bel.model.User;
 import com.kocaeli.bel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/register")
+@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174"}) // Allow CORS for multiple origins
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    // Display the registration form
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User());
-        return "register"; // Thymeleaf template name
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    // Process registration form submission
-    @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") User user, Model model) {
-        userService.saveUser(user);
-        model.addAttribute("message", "User registered successfully!");
-        return "register"; // Stay on registration page to show message
+    @GetMapping
+    public ResponseEntity<List<User>> getUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users); // Return the list with OK HTTP status
+    }
+
+    @PostMapping
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        User createdUser = userService.saveUser(user);
+        return ResponseEntity.ok(createdUser); // Return the created user with OK status
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
+        return userService.getUserById(id)
+                .map(existingUser -> {
+                    // Update the existing user
+                    existingUser.setName(userDetails.getName());
+                    existingUser.setEmail(userDetails.getEmail());
+                    User updatedUser = userService.saveUser(existingUser); // Save the updated user
+                    return ResponseEntity.ok(updatedUser);
+                })
+                .orElse(ResponseEntity.notFound().build()); // If user not found, return 404
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        if (userService.existsById(id)) {
+            userService.deleteUser(id); // Delete the user
+            return ResponseEntity.noContent().build(); // Return 204 No Content
+        }
+        return ResponseEntity.notFound().build(); // Return 404 if user does not exist
     }
 }
