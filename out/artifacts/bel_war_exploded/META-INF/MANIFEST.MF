@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Created-By: IntelliJ IDEA
-Built-By: hero-
-Build-Jdk: Oracle OpenJDK 23.0.2
-Implementation-Title: bel
-Implementation-Version: 0.0.1-SNAPSHOT
-Implementation-Vendor-Id: com.kocaeli
-Main-Class: ${start-class}
-
