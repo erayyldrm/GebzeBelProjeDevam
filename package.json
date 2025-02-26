@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "font-awesome": "^4.7.0",
+    "icofont": "^1.0.0",
+    "react-login-page": "^1.0.4",
+    "themify-icons": "^1.0.0"
+  }
+}
