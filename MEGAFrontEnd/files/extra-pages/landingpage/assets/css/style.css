@@ -70,6 +70,21 @@ h1 {
 }
 
 /*----- Helper Classes -----*/
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+
+.dropdown-submenu:hover .dropdown-menu {
+    display: block;
+}
 
 .navbar-fixed-top {
     top: 0;
@@ -1715,8 +1730,62 @@ label {
     }
 }
 
-/* ------ Features Split Section Media Queries Ends  ----- */
+#vergiAltMenu {
+    display: none;
+}
+#vergiIslemleri {
+    margin-right: 1rem; /* Sağ tarafına 2rem boşluk ekler */
+    /* Ok simgesinin boyutunu ayarlayın */
+     /* Bağlantı ile ikon arasına boşluk ekleyin */
+    position: relative;
+     /* Ok işaretini biraz sağa kaydırır */
+     
+}
 
+#vergiAltMenu {
+    display: none;
+    margin-left: 1rem; /* Sol tarafına 2rem boşluk ekler */
+}
+/* ------ Features Split Section Media Queries Ends  ----- */
+#vergiAltMenu, #iletmer {
+    display: none; /* Alt menüleri gizle */
+    margin-left: 1rem; /* Alt menüyü 1 sütun sağa kaydır */
+}
+#vergiIslemleri:hover + #vergiAltMenu, #başvuru:hover + #iletmer {
+    display: block; /* Alt menüyü göster */
+}
+#vergiIslemleri i, #başvuru i {
+    font-size: 1rem; /* Ok simgesinin boyutunu küçültüyoruz */
+    margin-left: 1rem; /* Bağlantı ile ikon arasına 1rem boşluk ekliyoruz */
+    position: relative;
+    left: 5px; /* Ok işaretini sağa kaydırıyoruz */
+}
+
+
+#vergiIslemleri:hover + #vergiAltMenu, #başvuru:hover + #iletmer {
+    display: block; /* Alt menüyü göster */
+}
+#vergiIslemleri i, #başvuru i {
+    font-size: 1rem; /* Ok simgesinin boyutunu küçültüyoruz */
+    margin-left: 0.5rem; /* Bağlantı ile ikon arasına boşluk ekliyoruz */
+    position: relative;
+    left: 5px; /* Ok işaretini sağa kaydırıyoruz */
+}
+#interaktifHizmetler {
+    display: none; /* Alt menüyü gizle */
+    margin-left: 1rem; /* Alt menüyü sağa kaydır */
+}
+
+#interaktifHizmetlerDropdown:hover + #interaktifHizmetler {
+    display: block; /* Alt menüyü göster */
+}
+
+#interaktifHizmetlerDropdown i {
+    font-size: 1rem; /* Ok simgesinin boyutunu küçültüyoruz */
+    margin-left: 1rem; /* Ok simgesi ile bağlantı arasına 1rem boşluk ekliyoruz */
+    position: relative;
+    left: 5px; /* Ok işaretini sağa kaydırıyoruz */
+}
 @media only screen and (max-width: 766px) {
     .features-section .f-right {
         flex: 1 0 50%;

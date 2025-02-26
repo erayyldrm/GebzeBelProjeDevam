@@ -20,6 +20,25 @@ jQuery(document).ready(function($){
 			$('body').toggleClass('overflow-hidden');
 		}
 	});
+	document.getElementById("vergiIslemleri").addEventListener("mouseover", function() {
+		document.getElementById("vergiAltMenu").style.display = "block";
+	});
+	
+	document.getElementById("vergiIslemleri").addEventListener("mouseout", function() {
+		document.getElementById("vergiAltMenu").style.display = "none";
+	});
+document.addEventListener("DOMContentLoaded", function () {
+    let vergiIslemleri = document.getElementById("vergiIslemleri");
+    let vergiAltMenu = document.getElementById("vergiAltMenu");
+
+    vergiIslemleri.addEventListener("mouseenter", function () {
+        vergiAltMenu.style.display = "block";
+    });
+
+    vergiAltMenu.addEventListener("mouseleave", function () {
+        vergiAltMenu.style.display = "none";
+    });
+});
 
 	//close lateral menu clicking outside the menu itself
 	$content_wrapper.on('mouseover', function(event){
