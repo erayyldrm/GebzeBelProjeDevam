@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Loader from './components/loader';
-import LoginForm from './components/LoginForm';
+import LoginForm from './components/Login_v3/LoginForm.tsx';
 import '../src/files/bower_components/bootstrap/css/bootstrap.min.css';
 import './files/assets/icon/font-awesome/css/font-awesome.min.css';
 import './files/assets/icon/icofont/css/icofont.css';
