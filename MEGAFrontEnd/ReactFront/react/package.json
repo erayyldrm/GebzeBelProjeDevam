@@ -10,14 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@react-login-page/page10": "^1.0.4",
+    "animate.css": "^4.1.1",
+    "animsition": "^4.0.2",
     "bootstrap": "^5.3.3",
+    "daterangepicker": "^3.1.0",
     "font-awesome": "^4.7.0",
+    "hamburgers": "^1.2.1",
     "icofont": "^1.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-login-page": "^1.0.4",
     "react-router-dom": "^7.2.0",
+    "select2": "^4.1.0-rc.0",
     "themify-icons": "^1.0.0"
   },
   "devDependencies": {
