@@ -1,106 +1,107 @@
-import React, { useRef, useState } from 'react';
-// Import the CSS files from the node_modules directory
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
-import 'animate.css/animate.min.css';
-import 'hamburgers/dist/hamburgers.min.css';
-import 'animsition/dist/css/animsition.min.css';
-import 'select2/dist/css/select2.min.css';
-import 'daterangepicker/daterangepicker.css';
-import './css/util.css';
-import './css/main.css';
+import React from "react";
+import { TEInput, TERipple } from "tw-elements-react";
+import "tw-elements-react/dist/css/tw-elements-react.min.css";
 
 
-const Login: React.FC = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleLogin = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        const loginData = {
-            username,
-            password,
-        };
-
-        console.log('loginData:', loginData); // Log the data to check
-
-        try {
-            const response = await fetch('http://localhost:8080/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(loginData),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                console.log('Login successful:', data);
-                // Handle successful login (e.g., redirect to dashboard)
-            } else {
-                console.error('Login failed:', response.statusText);
-                // Handle login failure (e.g., show error message)
-            }
-        } catch (error) {
-            console.error('Error during login:', error);
-        }
-    };
-
+export default function ExampleV2(): JSX.Element {
     return (
-        <div className="limiter">
-            <div className="container-login100" style={{ backgroundImage: "url('/images/arkaplangirisyap.jpg')" }}>
-                <div className="wrap-login100">
-                    <form className="login100-form validate-form" onSubmit={handleLogin}>
-                        <span className="login100-form-logo">
-                            <img
-                                src="/images/icons/BelediyeLogo.webp"
-                                alt="Logo"
-                                style={{ width: '150px', height: 'auto' }}
-                            />
-                        </span>
-                        <span className="login100-form-title p-b-34 p-t-27">Giriş Yap</span>
+        <section className="h-full bg-neutral-200 dark:bg-neutral-700">
+            <div className="container h-full p-10">
+                <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
+                    <div className="w-full">
+                        <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
+                            <div className="g-0 lg:flex lg:flex-wrap">
+                                {/* <!-- Left column container--> */}
+                                <div className="px-4 md:px-0 lg:w-6/12">
+                                    <div className="md:mx-6 md:p-12">
+                                        {/* <!--Logo--> */}
+                                        <div className="text-center">
+                                            <img
+                                                className="mx-auto w-48"
+                                                src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                                                alt="logo"
+                                            />
+                                            <h4 className="mb-12 mt-1 pb-1 text-xl font-semibold">
+                                                We are The Lotus Team
+                                            </h4>
+                                        </div>
 
-                        <div className="wrap-input100 validate-input" data-validate="Lütfen Bir Kullanıcı Adı Giriniz">
-                            <input
-                                className="input100"
-                                type="text"
-                                name="username"
-                                placeholder="Kullanıcı Adı"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                            />
-                            <span className="focus-input100" data-placeholder="&#xf207;"></span>
-                        </div>
+                                        <form>
+                                            <p className="mb-4">Please login to your account</p>
+                                            {/* <!--Username input--> */}
+                                            <TEInput
+                                                type="text"
+                                                label="Username"
+                                                className="mb-4"
+                                            ></TEInput>
 
-                        <div className="wrap-input100 validate-input" data-validate="Lütfen Bir Parola Giriniz">
-                            <input
-                                className="input100"
-                                type="password"
-                                name="password"
-                                placeholder="Parola"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
+                                            {/* <!--Password input--> */}
+                                            <TEInput
+                                                type="password"
+                                                label="Password"
+                                                className="mb-4"
+                                            ></TEInput>
 
-                        <div className="contact100-form-checkbox">
-                            <input className="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" />
-                            <label className="label-checkbox100" htmlFor="ckb1">Beni Hatırla</label>
-                        </div>
+                                            {/* <!--Submit button--> */}
+                                            <div className="mb-12 pb-1 pt-1 text-center">
+                                                <TERipple rippleColor="light" className="w-full">
+                                                    <button
+                                                        className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+                                                        type="button"
+                                                        style={{
+                                                            background:
+                                                                "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                                                        }}
+                                                    >
+                                                        Log in
+                                                    </button>
+                                                </TERipple>
 
-                        <div className="container-login100-form-btn">
-                            <button className="login100-form-btn" type="submit">Giriş Yap</button>
-                        </div>
+                                                {/* <!--Forgot password link--> */}
+                                                <a href="#!">Forgot password?</a>
+                                            </div>
 
-                        <div className="text-center p-t-90">
-                            <a className="txt1" href="#">Şifremi Unuttum ?</a>
+                                            {/* <!--Register button--> */}
+                                            <div className="flex items-center justify-between pb-6">
+                                                <p className="mb-0 mr-2">Don't have an account?</p>
+                                                <TERipple rippleColor="light">
+                                                    <button
+                                                        type="button"
+                                                        className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                                                    >
+                                                        Register
+                                                    </button>
+                                                </TERipple>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                {/* <!-- Right column container with background and description--> */}
+                                <div
+                                    className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
+                                    style={{
+                                        background:
+                                            "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                                    }}
+                                >
+                                    <div className="px-4 py-6 text-white md:mx-6 md:p-12">
+                                        <h4 className="mb-6 text-xl font-semibold">
+                                            We are more than just a company
+                                        </h4>
+                                        <p className="text-sm">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                            sed do eiusmod tempor incididunt ut labore et dolore magna
+                                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                            ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
-};
-
-export default Login;
+}
