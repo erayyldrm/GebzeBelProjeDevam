@@ -253,6 +253,7 @@ const NavBar = () => {
                         </nav>
                     </header>
                 </div>
+
             </div>
         </>
     );
