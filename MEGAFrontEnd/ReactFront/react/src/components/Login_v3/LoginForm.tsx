@@ -1,6 +1,7 @@
-import React from "react";
+
 import { TEInput, TERipple } from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
+import {JSX} from "react";
 
 
 export default function ExampleV2(): JSX.Element {
@@ -17,12 +18,12 @@ export default function ExampleV2(): JSX.Element {
                                         {/* <!--Logo--> */}
                                         <div className="text-center">
                                             <img
-                                                className="mx-auto w-48"
-                                                src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                                                className="mx-auto w-50"
+                                                src="images/logo.png"
                                                 alt="logo"
                                             />
                                             <h4 className="mb-12 mt-1 pb-1 text-xl font-semibold">
-                                                We are The Lotus Team
+                                                Personel Giriş Sayfası
                                             </h4>
                                         </div>
 
