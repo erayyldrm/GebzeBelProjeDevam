@@ -1374,7 +1374,7 @@ html #header.header-transparent .header-nav-main nav {
   border-radius: 0px;
   border-top: 8px solid rgba(255, 255, 255, 0);
   background-clip: content-box;
-  _background-color: #e6e6e6;
+  background-color: #e6e6e6;
   background-color: #e6e6e6;
 }
 .hscroll-menu::-webkit-scrollbar-thumb:hover {
