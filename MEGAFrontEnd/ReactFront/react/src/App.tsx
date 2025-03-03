@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Loader from './components/loader';
 import LoginForm from './components/Login_v3/LoginForm.tsx';
 import NavBar from './components/MainMenu/NavBar.tsx'
+import NavBar2 from './components/NavBar/NavBar2.tsx'
 import '../src/files/bower_components/bootstrap/css/bootstrap.min.css';
 import './files/assets/icon/font-awesome/css/font-awesome.min.css';
 import './files/assets/icon/icofont/css/icofont.css';
@@ -24,7 +25,7 @@ const App: React.FC = () => {
         return <Loader />;
     }
     return<>
-        <NavBar/>
+        <NavBar2/>
         <LoginForm/>
     </>
 };
