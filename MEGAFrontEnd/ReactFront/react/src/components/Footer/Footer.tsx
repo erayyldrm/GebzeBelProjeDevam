@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer: React.FC = () => {
     return (
-        <footer className="bg-[#01111c] text-white py-20 mt-20 rounded-t-[16px]">
+        <footer className="bg-[#01111c] text-white py-20 rounded-t-[16px]">
             <div className="container mx-auto flex justify-between">
                 <div className="w-1/3 px-4">
                     <img src="2logoyatay.png" alt="Logo" className="w-[150px] h-auto" />
