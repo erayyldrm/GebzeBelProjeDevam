@@ -392,113 +392,113 @@
             </div>
 
     </div>
-    </div>
+</div>
 
 
-    <script src="../code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-            crossorigin="anonymous"></script>
-    <script src="theme/kbb/js/imgLiquid-min.js"></script>
-    <script src="theme/kbb/js/plugins.js"></script>
-    <script src="theme/kbb/js/theme7dd3.js?ver=4"></script>
-    <script src="theme/kbb/js/calendar_bundle.min.js"></script>
-    <script src="theme/kbb/js/customa0cf.js?ver=1740503568"></script>
-    <link href="../cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
-    <script src="../cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="../kit.fontawesome.com/80e6694cf0.html" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="theme/kbb/fancybox/jquery.fancybox.min.css">
-    <script src="theme/kbb/fancybox/jquery.fancybox.min.js"></script>
-    <script type="text/javascript" src="theme/kbb/js/clipboard.min.js"></script>
-    <script>
+<script src="../code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+<script src="theme/kbb/js/imgLiquid-min.js"></script>
+<script src="theme/kbb/js/plugins.js"></script>
+<script src="theme/kbb/js/theme7dd3.js?ver=4"></script>
+<script src="theme/kbb/js/calendar_bundle.min.js"></script>
+<script src="theme/kbb/js/customa0cf.js?ver=1740503568"></script>
+<link href="../cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+<script src="../cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="../kit.fontawesome.com/80e6694cf0.html" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="theme/kbb/fancybox/jquery.fancybox.min.css">
+<script src="theme/kbb/fancybox/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="theme/kbb/js/clipboard.min.js"></script>
+<script>
 
 
-        const swiper = new Swiper('.testsp', {
-            speed: 400,
-            spaceBetween: 15,
-            autoHeight: false,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false
+    const swiper = new Swiper('.testsp', {
+        speed: 400,
+        spaceBetween: 15,
+        autoHeight: false,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+        },
+        pagination: {
+            el: $('.testsp .swiper-pagination'),
+            clickable: true
+        },
+        breakpoints: {
+            0: {
+                slidesPerView: 1
             },
-            pagination: {
-                el: $('.testsp .swiper-pagination'),
-                clickable: true
+            576: {
+                slidesPerView: 1
             },
-            breakpoints: {
-                0: {
-                    slidesPerView: 1
-                },
-                576: {
-                    slidesPerView: 1
-                },
-                768: {
-                    slidesPerView: 2
-                },
-                992: {
-                    slidesPerView: 2
-                },
-                1200: {
-                    slidesPerView: 4
-                },
-                1400: {
-                    slidesPerView: 4
-                }
-            }
-        });
-
-        $(document).ready(function () {
-            $('.js-example-basic-single').select2();
-        });
-
-
-        $(function () {
-            $(".imgLiquidFill").imgLiquid({
-                fill: true,
-                horizontalAlign: "center",
-                verticalAlign: "center"
-            });
-
-            $(".imgLiquidNoFill").imgLiquid({
-                fill: false,
-                horizontalAlign: "center",
-                verticalAlign: "50%"
-            });
-        });
-    </script>
-
-    <script>
-        document.getElementById("submitButton").addEventListener("click", function () {
-            document.getElementById("KBBSearchForm").submit();
-        });
-    </script>
-
-
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "url": "https://www.kocaeli.bel.tr/",
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://www.kocaeli.bel.tr/search/~query={search}",
-                "query-input": "required name=search"
+            768: {
+                slidesPerView: 2
+            },
+            992: {
+                slidesPerView: 2
+            },
+            1200: {
+                slidesPerView: 4
+            },
+            1400: {
+                slidesPerView: 4
             }
         }
-    </script>
+    });
+
+    $(document).ready(function () {
+        $('.js-example-basic-single').select2();
+    });
 
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZM9PTZ458"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+    $(function () {
+        $(".imgLiquidFill").imgLiquid({
+            fill: true,
+            horizontalAlign: "center",
+            verticalAlign: "center"
+        });
 
-        function gtag() {
-            dataLayer.push(arguments);
+        $(".imgLiquidNoFill").imgLiquid({
+            fill: false,
+            horizontalAlign: "center",
+            verticalAlign: "50%"
+        });
+    });
+</script>
+
+<script>
+    document.getElementById("submitButton").addEventListener("click", function () {
+        document.getElementById("KBBSearchForm").submit();
+    });
+</script>
+
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://www.kocaeli.bel.tr/",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.kocaeli.bel.tr/search/~query={search}",
+            "query-input": "required name=search"
         }
+    }
+</script>
 
-        gtag('js', new Date());
 
-        gtag('config', 'G-2ZM9PTZ458');
-    </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZM9PTZ458"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-2ZM9PTZ458');
+</script>
 
 
 </body>

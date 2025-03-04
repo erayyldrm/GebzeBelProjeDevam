@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import {
+    FiAward,
+    FiChevronDown,
+    FiChevronUp,
+    FiClipboard,
+    FiEye,
+    FiLayout,
+    FiTarget,
+    FiUser,
+    FiUserCheck
+} from 'react-icons/fi';
 import {
     FiCode,
     FiSmartphone,
@@ -11,7 +21,7 @@ import {
     FiFileText
 } from 'react-icons/fi';
 import { BsMoonFill } from 'react-icons/bs';
-
+import './NavBar.css';
 // Define types for dropdown items
 interface DropdownItem {
     icon: React.ReactNode;
@@ -39,12 +49,25 @@ const Navbar: React.FC<NavbarProps> = () => {
     };
 
     // Dropdown content grouped by category
-    const solutions: DropdownItem[] = [
-        { icon: <FiCode className="text-gray-800" />, title: 'API (EN)', description: 'Genel API\'miz ile kendi entegrasyonlarınızı oluşturun', isEN: true },
-        { icon: <FiSmartphone className="text-gray-800" />, title: 'App Store (EN)', description: 'Favori uygulamalarınızla entegre edin', isEN: true },
-        { icon: <FiUsers className="text-gray-800" />, title: 'Kolektif Etkinlikler', description: 'Birden çok katılımcıyla etkinlik planlayın' },
-        { icon: <FiCode className="text-gray-800" />, title: 'Geliştiriciler (EN)', description: 'Genel API\'miz ile kendi entegrasyonlarınızı oluşturun', isEN: true },
+    const kurumsal: DropdownItem[] = [
+        { icon: <FiUsers className="text-gray-800" />, title: 'BAŞKAN', description: 'Başkan hakkında bilgi' },
+        { icon: <FiEye className="text-gray-800" />, title: 'VİZYONUMUZ', description: 'Vizyonumuz hakkında bilgi' },
+        { icon: <FiTarget className="text-gray-800" />, title: 'MİSYONUMUZ', description: 'Misyonumuz hakkında bilgi' },
+        { icon: <FiAward className="text-gray-800" />, title: 'İLKELERİMİZ', description: 'İlkelerimiz hakkında bilgi' },
+        { icon: <FiUsers className="text-gray-800" />, title: 'BELEDİYE MECLİSİ', description: 'Belediye Meclisi hakkında bilgi' },
+        { icon: <FiLayout className="text-gray-800" />, title: 'YÖNETİM ŞEMASI', description: 'Yönetim Şeması hakkında bilgi' },
+        { icon: <FiUsers className="text-gray-800" />, title: 'BAŞKAN YARDIMCILARI', description: 'Başkan Yardımcıları hakkında bilgi' },
+        { icon: <FiUser className="text-gray-800" />, title: 'BAŞKAN DANIŞMANLARI', description: 'Başkan Danışmanları hakkında bilgi' },
+        { icon: <FiFileText className="text-gray-800" />, title: 'MÜDÜRLÜKLER', description: 'Müdürlükler hakkında bilgi' },
+        { icon: <FiUsers className="text-gray-800" />, title: 'ESKİ BAŞKANLAR', description: 'Eski Başkanlar hakkında bilgi' },
+        { icon: <FiUserCheck className="text-gray-800" />, title: 'ARABULUCULUK KOMİSYONU', description: 'Arabuluculuk Komisyonu hakkında bilgi' },
+        { icon: <FiUserCheck className="text-gray-800" />, title: 'ETİK KOMİSYONU', description: 'Etik Komisyonu hakkında bilgi' },
+        { icon: <FiClipboard className="text-gray-800" />, title: 'MECLİS KARALARI', description: 'Meclis Kararları hakkında bilgi' },
+        { icon: <FiFileText className="text-gray-800" />, title: 'KURUMSAL KİMLİK', description: 'Kurumsal Kimlik hakkında bilgi' },
+        { icon: <FiFileText className="text-gray-800" />, title: 'KURUMSAL RAPORLAR', description: 'Kurumsal Raporlar hakkında bilgi' },
+        { icon: <FiFileText className="text-gray-800" />, title: 'KURUMSAL DÖKÜMANLAR', description: 'Kurumsal Dökümanlar hakkında bilgi' },
     ];
+
 
     const resources: DropdownItem[] = [
         { icon: <FiCode className="text-gray-800" />, title: 'Gömülü', description: 'Cal.com\'u web sitenize yerleştirin' },
@@ -63,9 +86,9 @@ const Navbar: React.FC<NavbarProps> = () => {
     // Render dropdown menu items
     const renderDropdownItems = (items: DropdownItem[]) => {
         return (
-            <div className="absolute mt-2 w-96 bg-white rounded-md shadow-lg z-10 py-2 grid grid-cols-2 gap-2">
+            <div id={'zawardo'} className="absolute container mx-auto mt-12 bg-white rounded-md shadow-lg z-10 py-2 grid grid-cols-4 gap-2">
                 {items.map((item, index) => (
-                    <div key={index} className="p-3 flex items-start hover:bg-gray-50 rounded-md cursor-pointer">
+                    <div key={index} className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer">
                         <div className="p-2 bg-gray-100 rounded-md mr-3">
                             {item.icon}
                         </div>
@@ -89,22 +112,23 @@ const Navbar: React.FC<NavbarProps> = () => {
                     <div className="flex items-center">
                         {/* Logo */}
                         <div className="flex-shrink-0 flex items-center">
-                            <span className="text-2xl font-bold">Cal.com</span>
-                            <span className="text-xs align-top">®</span>
+                            <span className="text-2xl font-bold">                    <img src={"./images/logoyatay.png"} id={"logo"} alt="Gebze Belediyesi" />
+ </span>
+                            {/*  <span className="text-xs align-top">®</span> */}
                         </div>
 
                         {/* Main navbar items */}
-                        <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                            {/* Solutions Dropdown */}
-                            <div className="relative">
+                        <div className=" hidden sm:ml-6 sm:flex sm:space-x-8">
+                            {/* kurumsal Dropdown */}
+                            <div className="relative flex justify-center flex-1">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900"
-                                    onClick={() => toggleDropdown('solutions')}
+                                    className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
+                                    onClick={() => toggleDropdown('kurumsal')}
                                 >
-                                    Çözümler
-                                    {openDropdown === 'solutions' ? <FiChevronUp className="ml-1" /> : <FiChevronDown className="ml-1" />}
+                                    Kurumsal
+                                    {openDropdown === 'kurumsal' ? <FiChevronUp className="ml-1" /> : <FiChevronDown className="ml-1" />}
                                 </button>
-                                {openDropdown === 'solutions' && renderDropdownItems(solutions)}
+                                {openDropdown === 'kurumsal' && renderDropdownItems(kurumsal)}
                             </div>
 
                             {/* Enterprise link */}
@@ -113,7 +137,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                             </a>
 
                             {/* Developers Dropdown */}
-                            <div className="relative">
+                            <div className="relative flex justify-center flex-1">
                                 <button
                                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900"
                                     onClick={() => toggleDropdown('developers')}
@@ -125,7 +149,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                             </div>
 
                             {/* Resources Dropdown */}
-                            <div className="relative">
+                            <div className="relative flex justify-center flex-1">
                                 <button
                                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900"
                                     onClick={() => toggleDropdown('resources')}
@@ -152,6 +176,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                             Başlayın
                         </a>
                     </div>
+
                 </div>
             </div>
         </nav>

@@ -19,7 +19,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import "./NavBar2.css";
+import "./NavBar.css";
 const menuItems = [
     { title: "Ürünler", items: ["Laptop", "Telefon", "Aksesuarlar"] },
     { title: "Hizmetler", items: ["Garanti", "Teknik Servis", "Sigorta"] },
@@ -66,7 +66,7 @@ const Navbar: React.FC = () => {
         <AppBar position="static" color="primary">
             <Toolbar sx={{ justifyContent: "space-between" }}>
                 <Typography variant="h6">
-                    My Website
+                    <img src={"./images/logo.png"} id={"logo"} alt="logo" />
                 </Typography>
 
                 {isMobile ? (

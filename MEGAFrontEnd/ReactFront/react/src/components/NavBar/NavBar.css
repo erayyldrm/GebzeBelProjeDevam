@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+#logo{
+    height:80px;
+    margin-left:20px;
+}
+#zawardo{
+    width:900px;
+}
