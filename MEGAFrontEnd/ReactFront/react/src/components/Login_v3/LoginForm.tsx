@@ -20,12 +20,9 @@ export default function ExampleV2(): JSX.Element {
                                     <h4 className="mb-4 text-lg font-semibold text-center">
                                         Personel Giriş Sayfası
                                     </h4>
-
                                     <form>
                                         <TEInput type="text" label="Kullanıcı Adı" className="mb-3"></TEInput>
                                         <TEInput type="password" label="Parola" className="mb-3"></TEInput>
-
-                                        {/* ✅ Giriş Butonu */}
                                         <div className="text-center mb-4">
                                             <TERipple rippleColor="light" className="w-full">
                                                 <button
@@ -41,8 +38,6 @@ export default function ExampleV2(): JSX.Element {
                                             </TERipple>
                                             <a href="#!" className="block mt-2 text-sm">Parolanızı Mı Unuttunuz?</a>
                                         </div>
-
-                                        {/* ✅ Kayıt Ol */}
                                         <div className="flex items-center justify-between">
                                             <p className="mb-0 text-sm">Hesabınız Yok Mu?</p>
                                             <TERipple rippleColor="light">
@@ -56,13 +51,9 @@ export default function ExampleV2(): JSX.Element {
                                         </div>
                                     </form>
                                 </div>
-
-                                {/* ✅ Sol Sütun: Başkan Fotoğrafı Küçültüldü */}
                                 <div className="w-full lg:w-6/12 flex justify-center items-center bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 p-0 m-0">
                                     <img className="w-auto h-auto max-w-[400px] max-h-[500px] object-contain" src="/images/zinnur-buyukgoz.png" alt="Başkan" />
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
