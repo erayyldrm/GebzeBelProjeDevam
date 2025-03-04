@@ -6,6 +6,7 @@
     "git": "^0.1.5",
     "icofont": "^1.0.0",
     "react-login-page": "^1.0.4",
+    "swiper": "^11.2.5",
     "themify-icons": "^1.0.0",
     "tw-elements-react": "^1.0.0-alpha-end"
   },
