@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Loader from './components/loader';
@@ -7,9 +7,10 @@ import Footer from './components/Footer/Footer'
 import CoolNavbar from './components/NavBar/CoolNavbar'
 
 const queryClient = new QueryClient();
-
+const queryClient = new QueryClient();
 const App: React.FC = () => {
     const [loading, setLoading] = useState(true);
+    const [isLogin, setIsLogin] = useState(true); // Sayfa kontrolü
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -20,8 +21,21 @@ const App: React.FC = () => {
     }, []);
 
     if (loading) {
-        return <Loader/>;
+        return <Loader />;
     }
+
+    return (
+        <QueryClientProvider client={queryClient}>
+            <CoolNavbar/>
+            <Routes>
+
+                <Route path="/login" element={<LoginForm />} />
+                {/* Other routes */}
+
+            </Routes>
+            <Footer/>
+        </QueryClientProvider>
+    );
 
     return (
         <QueryClientProvider client={queryClient}>
@@ -35,6 +49,5 @@ const App: React.FC = () => {
             <Footer/>
         </QueryClientProvider>
     );
-};
 
 export default App;

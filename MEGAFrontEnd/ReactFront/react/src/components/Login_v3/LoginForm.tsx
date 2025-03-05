@@ -131,7 +131,6 @@ const LoginPage: React.FC = () => {
                                         </div>
                                     </form>
                                 </div>
-
                                 <div className="w-full lg:w-6/12 flex justify-center items-center bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 p-0 m-0">
                                     <img
                                         className="w-auto h-auto max-w-[400px] max-h-[500px] object-contain"
