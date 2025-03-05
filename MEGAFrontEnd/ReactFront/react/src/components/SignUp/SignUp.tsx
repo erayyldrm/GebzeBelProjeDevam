@@ -29,7 +29,7 @@ const SignUP: React.FC<SignUpProps> = ({ onSwitchToLoginForm }) => {
                                     />
                                 </div>
                                 <h4 className="mb-4 text-lg font-semibold text-center">
-                                    Personel Giriş Sayfası
+                                    Personel Kayıt Ol Sayfası
                                 </h4>
                                 <form>
                                     {["Kullanıcı Adı", "Ad", "Soyad", "Parola"].map(
