@@ -1,8 +1,12 @@
 import React from 'react';
-import { TEInput, TERipple } from "tw-elements-react";
+import { TERipple } from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
 
-const ExampleV2: React.FC = () => {
+interface LoginFormProps {
+    onSwitchToSignUp: () => void;
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToSignUp }) => {
     return (
         <section className="h-full bg-neutral-200 dark:bg-neutral-700">
             <div className="container h-full p-10">
@@ -58,6 +62,7 @@ const ExampleV2: React.FC = () => {
                                                 <button
                                                     type="button"
                                                     className="inline-block rounded border-2 border-danger px-4 pb-[4px] pt-1 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out"
+                                                    onClick={onSwitchToSignUp}
                                                 >
                                                     KAYIT OL
                                                 </button>
@@ -65,7 +70,6 @@ const ExampleV2: React.FC = () => {
                                         </div>
                                     </form>
                                 </div>
-
                                 <div className="w-full lg:w-6/12 flex justify-center items-center bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 p-0 m-0">
                                     <img
                                         className="w-auto h-auto max-w-[400px] max-h-[500px] object-contain"
@@ -82,4 +86,4 @@ const ExampleV2: React.FC = () => {
     );
 };
 
-export default ExampleV2;
+export default LoginForm;
