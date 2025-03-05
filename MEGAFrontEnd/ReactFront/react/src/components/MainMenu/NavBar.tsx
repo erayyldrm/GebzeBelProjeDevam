@@ -1,3 +1,5 @@
+
+{/*
 import React from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import {
@@ -108,13 +110,13 @@ const Navbar: React.FC<NavbarProps> = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex items-center">
-                        {/* Logo */}
+
                         <div className="flex-shrink-0 flex items-center">
                             <span className="text-2xl font-bold">Cal.com</span>
                             <span className="text-xs align-top">®</span>
                         </div>
 
-                        {/* Main navbar items */}
+
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                             {menuItems.map((item, index) => (
                                 <div key={index} className="relative dropdown">
@@ -125,7 +127,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                                         {item.subMenuItems && <FiChevronDown className="ml-1" />}
                                     </button>
 
-                                    {/* Dropdown menu that appears on hover */}
+
                                     {item.subMenuItems && (
                                         <div className="dropdown-menu absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg z-10 py-2">
                                             {item.subMenuItems.map((subItem, subIndex) => (
@@ -144,7 +146,6 @@ const Navbar: React.FC<NavbarProps> = () => {
                         </div>
                     </div>
 
-                    {/* Right side items */}
                     <div className="flex items-center">
                         <a href="#" className="ml-8 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900">
                             Giriş yap
@@ -156,12 +157,11 @@ const Navbar: React.FC<NavbarProps> = () => {
                 </div>
             </div>
 
-            {/* Add custom CSS for hover functionality */}
             <style jsx>{`
         .dropdown-menu {
           display: none;
         }
-        
+
         .dropdown:hover .dropdown-menu {
           display: block;
         }
@@ -171,3 +171,4 @@ const Navbar: React.FC<NavbarProps> = () => {
 };
 
 export default Navbar;
+*/}

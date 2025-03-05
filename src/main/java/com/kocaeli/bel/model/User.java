@@ -2,59 +2,42 @@ package com.kocaeli.bel.model;
 
 import jakarta.persistence.*;
 
+// User Entity (Updated)
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+@Data
 @Entity
-@Table(name="UZER") // Specify schema if necessary
+@Table(name = "KULLANICILAR")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq_gen")
-    @SequenceGenerator(
-            name = "user_seq_gen",
-            sequenceName = "USER_SEQ",          // Name of the sequence
-            allocationSize = 1,                // Allocate IDs one by one to match the Oracle default
-            schema = "C##MUSA"                 // Specify schema
-    )
-    @Column()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false) // Mark non-null fields
-    private String name;
-
-    @Column(unique = true, nullable = false) // Ensure unique and non-null for email
-    private String email;
-    @Column(nullable = false)
+    @Column(unique = true)
+    private String username;
+    @Column(unique = false)
     private String password;
-    // Getters and setters
+    @Column(unique = true)
+    private String email;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    public User(Long id, String username, String password, String email) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
+        this.username = username;
+        this.password = password;
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public User(String password, String username) {
+        this.password = password;
+        this.username = username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public User() {
+
     }
+
 }

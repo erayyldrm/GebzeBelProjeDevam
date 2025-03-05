@@ -14,13 +14,8 @@ import {
     FiUserCheck, FiDollarSign, FiEdit, FiPhone, FiInfo
 } from 'react-icons/fi';
 import {
-    FiCode,
-    FiSmartphone,
     FiUsers,
     FiCreditCard,
-    FiCalendar,
-    FiZap,
-    FiMaximize,
     FiFileText
 } from 'react-icons/fi';
 import './NavBar.css';

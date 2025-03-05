@@ -25,14 +25,14 @@ const App: React.FC = () => {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <Router>
-                <CoolNavbar/>
-                <Routes>
+            <CoolNavbar/>
+            <Routes>
+
                     <Route path="/login" element={<LoginForm />} />
                     {/* Other routes */}
-                </Routes>
-                <Footer/>
-            </Router>
+
+            </Routes>
+            <Footer/>
         </QueryClientProvider>
     );
 };
