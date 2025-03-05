@@ -254,7 +254,7 @@ const Navbar: React.FC<NavbarProps> = () => {
     return (
         <nav className="bg-white border-b border-gray-200">
             <div className="max-w-7xl mx-auto px-2 sm:px-2 lg:px-8">
-                <div className="flex justify-between h-16">
+                <div className="flex justify-between h-30">
                     <div className="flex items-center">
                         {/* Logo */}
                         <div className="flex-shrink-1 flex items-center">
@@ -357,7 +357,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                     <div className="flex items-center">
                         <a href="#"
                            className="ml-4 inline-flex items-center px-4 py-2 text-xs font-medium text-white bg-[#3b71ca] rounded-md hover:bg-gray-800">
-                            Giriş yap
+                            Giriş Yap
                         </a>
                         <a href="#"
                            className="ml-4 inline-flex items-center px-4 py-2 text-xs font-medium text-white bg-black rounded-md hover:bg-gray-800">

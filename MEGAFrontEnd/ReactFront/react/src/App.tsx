@@ -11,6 +11,7 @@ import './files/assets/icon/themify-icons/themify-icons.css';
 import './files/assets/pages/waves/css/waves.min.css';
 import './files/assets/css/style.css';
 import Sidebar from "./components/SideMenu/Side.tsx";
+import SignUp from "./components/SignUp/SignUp.tsx";
 
 const App: React.FC = () => {
     const [loading, setLoading] = useState(true);
@@ -29,9 +30,9 @@ const App: React.FC = () => {
     }
     return <>
         <CoolNavbar/>
-        <LoginForm/>
+        <SignUp/>
         <Footer/>
-        <Sidebar/>
+
     </>
 };
 

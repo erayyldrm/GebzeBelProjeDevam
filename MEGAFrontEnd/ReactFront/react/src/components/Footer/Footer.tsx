@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
         <footer className="bg-[#01111c] text-white py-20 rounded-t-[16px]">
             <div className="container mx-auto flex justify-between">
                 <div className="w-1/3 px-4">
-                    <img src="2logoyatay.png" alt="Logo" className="w-[150px] h-auto" />
+                    <img src="images/abc.png" alt="Logo" className="w-[150px] h-auto" />
                 </div>
                 <div className="w-1/3 px-4">
                     <h3 className="text-xl mb-4">Hakkımızda</h3>
