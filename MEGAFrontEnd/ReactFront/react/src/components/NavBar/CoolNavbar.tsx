@@ -350,7 +350,7 @@ const Navbar: React.FC<NavbarProps> = () => {
 
                     {/* Right side items */}
                     <div className="flex items-center">
-                        <a href="#"
+                        <a href="/login"
                            className="ml-4 inline-flex items-center px-4 py-2 text-xs font-medium text-white bg-[#3b71ca] rounded-md hover:bg-gray-800">
                             Giriş Yap
                         </a>
