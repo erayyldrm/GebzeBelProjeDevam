@@ -7,10 +7,8 @@ import Footer from './components/Footer/Footer'
 import CoolNavbar from './components/NavBar/CoolNavbar'
 
 const queryClient = new QueryClient();
-const queryClient = new QueryClient();
 const App: React.FC = () => {
     const [loading, setLoading] = useState(true);
-    const [isLogin, setIsLogin] = useState(true); // Sayfa kontrolü
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -21,7 +19,7 @@ const App: React.FC = () => {
     }, []);
 
     if (loading) {
-        return <Loader />;
+        return <Loader/>;
     }
 
     return (
@@ -29,25 +27,12 @@ const App: React.FC = () => {
             <CoolNavbar/>
             <Routes>
 
-                <Route path="/login" element={<LoginForm />} />
+                <Route path="/login" element={<LoginForm/>}/>
                 {/* Other routes */}
 
             </Routes>
             <Footer/>
         </QueryClientProvider>
     );
-
-    return (
-        <QueryClientProvider client={queryClient}>
-            <CoolNavbar/>
-            <Routes>
-
-                    <Route path="/login" element={<LoginForm />} />
-                    {/* Other routes */}
-
-            </Routes>
-            <Footer/>
-        </QueryClientProvider>
-    );
-
+}
 export default App;

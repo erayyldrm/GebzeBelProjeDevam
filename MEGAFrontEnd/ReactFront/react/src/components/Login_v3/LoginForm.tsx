@@ -40,7 +40,7 @@ const LoginPage: React.FC = () => {
             // Handle login error
             setError(
                 error.response?.data?.message ||
-                'Giriş başarısız. Lütfen tekrar deneyin.'
+                'Giriş başarısız. Lütfen tekrar deneyin. Backend açık mı?'
             );
         }
     });
