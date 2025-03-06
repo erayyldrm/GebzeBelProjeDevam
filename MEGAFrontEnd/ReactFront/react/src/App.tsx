@@ -3,12 +3,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Loader from './components/loader';
 import LoginForm from './components/Login_v3/LoginForm';
-import Footer from './components/Footer/Footer'
-import CoolNavbar from './components/NavBar/CoolNavbar'
+import Footer from './components/Footer/Footer';
+import CoolNavbar from './components/NavBar/CoolNavbar';
+import SignUp from './components/SignUp/SignUp';
 
 const queryClient = new QueryClient();
+
 const App: React.FC = () => {
     const [loading, setLoading] = useState(true);
+    const [isLogin, setIsLogin] = useState(true); // Sayfa kontrolü
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -19,20 +22,31 @@ const App: React.FC = () => {
     }, []);
 
     if (loading) {
-        return <Loader/>;
+        return <Loader />;
     }
 
     return (
         <QueryClientProvider client={queryClient}>
-            <CoolNavbar/>
+            <CoolNavbar />
             <Routes>
-
-                <Route path="/login" element={<LoginForm/>}/>
-                {/* Other routes */}
-
+                {/* Login ve SignUp sayfa kontrolü */}
+                <Route
+                    path="/login"
+                    element={
+                        isLogin ? (
+                            <LoginForm onSwitchToSignUp={() => setIsLogin(false)} />
+                        ) : (
+                            <SignUp onSwitchToLoginForm={() => setIsLogin(true)} />
+                        )
+                    }
+                />
+                {/* Diğer rotalar */}
+                {/* Örnek bir rota */}
+                <Route path="/signup" element={<SignUp onSwitchToLoginForm={() => setIsLogin(true)} />} />
             </Routes>
-            <Footer/>
+            <Footer />
         </QueryClientProvider>
     );
-}
+};
+
 export default App;

@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import {TERipple } from "tw-elements-react";
+import { TERipple } from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
 
 // Login Credentials Interface
 interface LoginCredentials {
     username: string;
     password: string;
+}
+
+// Login Form Props Interface
+interface LoginFormProps {
+    onSwitchToSignUp: () => void;
 }
 
 // Authentication Service
@@ -20,7 +25,7 @@ const authService = {
     }
 };
 
-const LoginPage: React.FC = () => {
+const LoginPage: React.FC<LoginFormProps> = ({ onSwitchToSignUp }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
@@ -29,15 +34,10 @@ const LoginPage: React.FC = () => {
     const loginMutation = useMutation({
         mutationFn: authService.login,
         onSuccess: (data) => {
-            // Handle successful login
             console.log('Login successful', data);
-            // TODO: Implement navigation or state management
-            // For example:
-            // navigate('/dashboard');
-            // or update global auth state
+            // Geçiş yapılacak diğer sayfayı yönlendirme ekleyebilirsiniz
         },
         onError: (error: any) => {
-            // Handle login error
             setError(
                 error.response?.data?.message ||
                 'Giriş başarısız. Lütfen tekrar deneyin. Backend açık mı?'
@@ -124,6 +124,7 @@ const LoginPage: React.FC = () => {
                                                 <button
                                                     type="button"
                                                     className="inline-block rounded border-2 border-danger px-4 pb-[4px] pt-1 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out"
+                                                    onClick={onSwitchToSignUp} // Sayfa geçişi için kullanılan fonksiyon
                                                 >
                                                     KAYIT OL
                                                 </button>
