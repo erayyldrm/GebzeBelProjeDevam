@@ -1,49 +1,40 @@
-
-// Authentication Controller
+// Put this in src/main/java/com/kocaeli/bel/controller/AuthController.java
 package com.kocaeli.bel.controller;
 
-import com.kocaeli.bel.model.User;
-import com.kocaeli.bel.repository.UserRepository;
 import com.kocaeli.bel.service.UserService;
+import com.kocaeli.bel.DTO.LoginRequest;
+import com.kocaeli.bel.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 @RequestMapping("/api/auth")
 public class AuthController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService; // Inject UserService
 
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody User user) {
-        // Check if user already exists
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("Kullanıcı adı zaten kullanımda");
-        }
-
-        // Encode password
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        // Save user
-        userRepository.save(user);
-
-        return ResponseEntity.ok("Kullanıcı başarıyla kaydedildi");
-    }
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@RequestBody User user) {
-        userService.authenticateUser(user.getUsername(), user.getPassword());
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        try {
+            User user = userService.authenticateUserRaw(loginRequest.getUsername(), loginRequest.getPassword());
 
-        return ResponseEntity.ok("Giriş galiba oldu");
+            return ResponseEntity.ok()
+                    .body(Map.of("status", "success", "username", user.getUsername()));
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("status", "error", "message", "Geçersiz kullanıcı adı veya şifre"));
+        }
     }
+
 }

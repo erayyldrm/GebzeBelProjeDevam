@@ -62,6 +62,10 @@ public class UserService {
                 .filter(user -> passwordEncoder.matches(rawPassword, user.getPassword()))
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
     }
-
+    public User authenticateUserRaw(String username, String rawPassword) {
+        return userRepository.findByUsername(username)
+                .filter(user -> rawPassword.equals(user.getPassword()))
+                .orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
+    }
 
 }
