@@ -30,19 +30,8 @@ const App: React.FC = () => {
             <CoolNavbar />
             <Routes>
                 {/* Login ve SignUp sayfa kontrolü */}
-                <Route
-                    path="/login"
-                    element={
-                        isLogin ? (
-                            <LoginForm onSwitchToSignUp={() => setIsLogin(false)} />
-                        ) : (
-                            <SignUp onSwitchToLoginForm={() => setIsLogin(true)} />
-                        )
-                    }
-                />
-                {/* Diğer rotalar */}
-                {/* Örnek bir rota */}
-                <Route path="/signup" element={<SignUp onSwitchToLoginForm={() => setIsLogin(true)} />} />
+                <Route path="/login" element={<LoginForm/>}/>
+                <Route path="/signup" element={<SignUp/>} />
             </Routes>
             <Footer />
         </QueryClientProvider>

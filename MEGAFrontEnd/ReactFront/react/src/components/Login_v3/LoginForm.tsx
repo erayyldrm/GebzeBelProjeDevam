@@ -3,6 +3,8 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { TERipple } from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
+import { Link } from 'react-router-dom';
+
 
 // Login Credentials Interface
 interface LoginCredentials {
@@ -10,10 +12,7 @@ interface LoginCredentials {
     password: string;
 }
 
-// Login Form Props Interface
-interface LoginFormProps {
-    onSwitchToSignUp: () => void;
-}
+
 
 // Authentication Service
 const authService = {
@@ -25,7 +24,7 @@ const authService = {
     }
 };
 
-const LoginPage: React.FC<LoginFormProps> = ({ onSwitchToSignUp }) => {
+const LoginPage: React.FC<LoginFormProps> = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
@@ -121,13 +120,14 @@ const LoginPage: React.FC<LoginFormProps> = ({ onSwitchToSignUp }) => {
                                         <div className="flex items-center justify-between">
                                             <p className="mb-0 text-sm">Hesabınız Yok Mu?</p>
                                             <TERipple rippleColor="light">
-                                                <button
+                                                <Link to="/signup">
+                                                    <button
                                                     type="button"
                                                     className="inline-block rounded border-2 border-danger px-4 pb-[4px] pt-1 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out"
-                                                    onClick={onSwitchToSignUp} // Sayfa geçişi için kullanılan fonksiyon
                                                 >
                                                     KAYIT OL
                                                 </button>
+                                                </Link>
                                             </TERipple>
                                         </div>
                                     </form>

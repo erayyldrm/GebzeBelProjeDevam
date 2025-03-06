@@ -2,7 +2,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TERipple } from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
-
+import { Link } from 'react-router-dom';
 interface SignUpProps {
     onSwitchToLoginForm: () => void;
 }
@@ -71,6 +71,7 @@ const SignUP: React.FC<SignUpProps> = ({ onSwitchToLoginForm }) => {
                                         <p className="mb-2 text-sm text-gray-700 dark:text-gray-300">
                                             Hesabınız Var mı?
                                         </p>
+                                        <Link to="/login">
                                         <button
                                             type="button"
                                             className="inline-block rounded border-2 border-danger px-4 pb-[4px] pt-1 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out"
@@ -78,6 +79,7 @@ const SignUP: React.FC<SignUpProps> = ({ onSwitchToLoginForm }) => {
                                         >
                                             Giriş Yap
                                         </button>
+                                        </Link>
                                     </div>
                                 </form>
                             </div>
