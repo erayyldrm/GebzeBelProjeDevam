@@ -19,10 +19,7 @@ interface LoginFormProps {
 const authService = {
     login: async (credentials: LoginCredentials) => {
         const { data } = await axios.post('http://localhost:8080/api/auth/login', credentials, {
-            withCredentials: true,
-            headers:{
-                'Content-Type': 'application/json'
-            }
+            withCredentials: true
         });
         return data;
     }
