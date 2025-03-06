@@ -253,10 +253,17 @@ const Navbar: React.FC<NavbarProps> = () => {
                     <div className="flex items-center">
                         {/* Logo */}
                         <div className="flex-shrink-1 flex items-center">
-                            <span className="text-2xl font-bold">                    <img src={"./images/logoyatay.png"}
-                                                                                          id={"logo"}
-                                                                                          alt="Gebze Belediyesi"/>
- </span>
+                            <span className="text-2xl font-bold">
+                             <a href="http://localhost:5173">
+                               <img
+                               src={"./images/logoyatay.png"}
+                                id={"logo"}
+                                alt="Gebze Belediyesi"
+                                className="cursor-pointer"  // Add cursor pointer to indicate it's clickable
+                               />
+                             </a>
+                            </span>
+
                             {/*  <span className="text-xs align-top">®</span> */}
                         </div>
 
@@ -350,7 +357,7 @@ const Navbar: React.FC<NavbarProps> = () => {
 
                     {/* Right side items */}
                     <div className="flex items-center">
-                        <a href="#"
+                        <a href="/login"
                            className="ml-4 inline-flex items-center px-4 py-2 text-xs font-medium text-white bg-[#3b71ca] rounded-md hover:bg-gray-800">
                             Giriş Yap
                         </a>
