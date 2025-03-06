@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css"; // Ensure you include Swiper styles
 
@@ -10,27 +10,19 @@ const DynamicSlider: React.FC = () => {
         "https://www.w3schools.com/w3images/nature.jpg",
     ];
 
-    const [swiper, setSwiper] = useState<any>(null);
-
     useEffect(() => {
-        const swiperInstance = new Swiper(".swiper-container", {
+        new Swiper(".swiper-container", {
             spaceBetween: 10,
-            navigation: true, // Optional: Add navigation buttons (next/prev)
+            loop: true, // Infinite loop
+            autoplay: {
+                delay: 1000, // Auto slide every 1 seconds
+                disableOnInteraction: false, // Ensure autoplay continues even after user interaction
+            },
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
             },
-            loop: true, // Optional: Make it loop infinitely
-            autoplay: {
-                delay: 3000, // Automatic slide every 3 seconds
-            },
         });
-
-        setSwiper(swiperInstance);
-
-        return () => {
-            swiperInstance.destroy(); // Clean up on component unmount
-        };
     }, []);
 
     return (
@@ -60,6 +52,14 @@ const DynamicSlider: React.FC = () => {
 
                 {/* Main Content with 3 Columns */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    {/* Left Sidebar Column */}
+                    <div className="col-span-1 bg-[#064169] p-5 rounded-lg text-white">
+                        <h3 className="text-xl mb-4">Hakkımızda</h3>
+                        <p>
+                            Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime
+                            geçin.
+                        </p>
+                    </div>
                     {/* 3 Other Columns */}
                     <div className="col-span-3 grid grid-cols-3 gap-6">
                         {/* Column 1 */}
