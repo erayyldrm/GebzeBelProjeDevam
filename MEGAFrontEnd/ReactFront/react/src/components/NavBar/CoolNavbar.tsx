@@ -253,10 +253,17 @@ const Navbar: React.FC<NavbarProps> = () => {
                     <div className="flex items-center">
                         {/* Logo */}
                         <div className="flex-shrink-1 flex items-center">
-                            <span className="text-2xl font-bold">                    <img src={"./images/logoyatay.png"}
-                                                                                          id={"logo"}
-                                                                                          alt="Gebze Belediyesi"/>
- </span>
+                            <span className="text-2xl font-bold">
+                             <a href="http://localhost:5173">
+                               <img
+                               src={"./images/logoyatay.png"}
+                                id={"logo"}
+                                alt="Gebze Belediyesi"
+                                className="cursor-pointer"  // Add cursor pointer to indicate it's clickable
+                               />
+                             </a>
+                            </span>
+
                             {/*  <span className="text-xs align-top">®</span> */}
                         </div>
 
