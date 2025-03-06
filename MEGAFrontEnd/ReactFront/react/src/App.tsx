@@ -6,7 +6,7 @@ import LoginForm from './components/Login_v3/LoginForm';
 import Footer from './components/Footer/Footer';
 import CoolNavbar from './components/NavBar/CoolNavbar';
 import SignUp from './components/SignUp/SignUp';
-
+import ContentArea from "./components/Slide/Slide.tsx";
 const queryClient = new QueryClient();
 
 const App: React.FC = () => {
@@ -44,6 +44,7 @@ const App: React.FC = () => {
                 {/* Örnek bir rota */}
                 <Route path="/signup" element={<SignUp onSwitchToLoginForm={() => setIsLogin(true)} />} />
             </Routes>
+            <ContentArea/>
             <Footer />
         </QueryClientProvider>
     );
