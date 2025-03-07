@@ -11,7 +11,7 @@ import {
     FiTarget,
     FiTool,
     FiUser,
-    FiUserCheck, FiDollarSign, FiEdit, FiPhone, FiInfo
+    FiUserCheck, FiDollarSign, FiEdit, FiPhone, FiInfo, FiX, FiMenu
 } from 'react-icons/fi';
 import {
     FiUsers,
@@ -20,32 +20,7 @@ import {
 } from 'react-icons/fi';
 import './NavBar.css';
 
-// Define types for dropdown items
-interface DropdownItem {
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-    isEN?: boolean;
-}
 
-// Types for our props
-interface NavbarProps {
-    // You can add any props needed
-}
-
-
-const Navbar: React.FC<NavbarProps> = () => {
-    // State to track which dropdown is open
-    const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-
-    // Toggle dropdown function
-    const toggleDropdown = (name: string) => {
-        if (openDropdown === name) {
-            setOpenDropdown(null);
-        } else {
-            setOpenDropdown(name);
-        }
-    };
 
     // Dropdown content grouped by category
     const kurumsal: DropdownItem[] = [
@@ -221,7 +196,31 @@ const Navbar: React.FC<NavbarProps> = () => {
             description: 'Bilgi edinme işlemleri (CİMER)'
         },
     ];
+// Define types for dropdown items
+interface DropdownItem {
+    icon: React.ReactNode;
+    title: string;
+    description: string;
+    isEN?: boolean;
+}
 
+
+
+
+const Navbar = () => {
+    // State to track which dropdown is open
+    const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    // Toggle dropdown function
+    const toggleDropdown = (name:string) => {
+        setOpenDropdown(openDropdown === name ? null : name);
+    };
+
+    // Toggle mobile menu function
+    const toggleMobileMenu = () => {
+        setMobileMenuOpen(!mobileMenuOpen);
+    };
 
     // Render dropdown menu items
     const renderDropdownItems = (items: DropdownItem[]) => {
@@ -248,127 +247,239 @@ const Navbar: React.FC<NavbarProps> = () => {
 
     return (
         <nav className="bg-white border-b border-gray-200">
-            <div className="max-w-7xl mx-auto px-2 sm:px-2 lg:px-8">
-                <div className="flex justify-between h-30">
-                    <div className="flex items-center">
+            <div className="max-w-full mx-auto px-4">
+                <div className="flex justify-between h-16">
+                    {/* Logo and mobile menu button */}
+                    <div className="flex justify-between w-full md:w-auto">
                         {/* Logo */}
-                        <div className="flex-shrink-1 flex items-center">
-                            <span className="text-2xl font-bold">
-                             <a href="http://localhost:5173">
-                               <img
-                               src={"./images/logoyatay.png"}
-                                id={"logo"}
-                                alt="Gebze Belediyesi"
-                                className="cursor-pointer"  // Add cursor pointer to indicate it's clickable
-                               />
-                             </a>
-                            </span>
-
-                            {/*  <span className="text-xs align-top">®</span> */}
+                        <div className="flex-shrink-0 flex items-center">
+                            <a href="http://localhost:5173">
+                                <img
+                                    src={"./images/logoyatay.png"}
+                                    id={"logo"}
+                                    alt="Gebze Belediyesi"
+                                    className="cursor-pointer h-10"
+                                />
+                            </a>
                         </div>
 
+
+                        {/* Mobile menu button */}
+
+                            <button
+                                type="button"
+                                aria-controls="mobile-menu"
+                                className="lg:hidden items-center justify-center"
+                                aria-expanded="false"
+                                onClick={toggleMobileMenu}
+                            >
+                                {mobileMenuOpen ? <FiX className="h-6 w-6" /> : <FiMenu className="h-6 w-6" />}
+                            </button>
+
+
+                    </div>
+
+                    {/* Desktop menu items - hidden on mobile */}
+                    <div className="hidden md:flex md:items-center md:justify-between">
                         {/* Main navbar items */}
-                        <div className=" hidden sm:ml-6 sm:flex sm:space-x-8">
-                            {/* kurumsal Dropdown */}
-                            <div className="relative flex justify-center flex-1">
+                        <div className="flex space-x-8">
+                            {/* Kurumsal Dropdown */}
+                            <div className="relative flex justify-center">
                                 <button
                                     className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
                                     onClick={() => toggleDropdown('kurumsal')}
                                 >
                                     Kurumsal
-                                    {openDropdown === 'kurumsal' ? <FiChevronUp className="ml-1"/> :
-                                        <FiChevronDown className="ml-1"/>}
+                                    {openDropdown === 'kurumsal' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
                                 </button>
                                 {openDropdown === 'kurumsal' && renderDropdownItems(kurumsal)}
                             </div>
 
                             {/* Gebze link */}
-                            <div className="relative flex justify-center flex-1">
+                            <div className="relative flex justify-center">
                                 <button
                                     className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
                                     onClick={() => toggleDropdown('gebze')}
                                 >
                                     Gebze
-                                    {openDropdown === 'gebze' ? <FiChevronUp className="ml-1"/> :
-                                        <FiChevronDown className="ml-1"/>}
+                                    {openDropdown === 'gebze' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
                                 </button>
                                 {openDropdown === 'gebze' && renderDropdownItems(gebze)}
                             </div>
 
-                            {/* Developers Dropdown
-                            <div className="relative flex justify-center flex-1">
-                                <button
-                                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900"
-                                    onClick={() => toggleDropdown('developers')}
-                                >
-                                    Geliştirici
-                                    {openDropdown === 'developers' ? <FiChevronUp className="ml-1" /> : <FiChevronDown className="ml-1" />}
-                                </button>
-                                {openDropdown === 'developers' && renderDropdownItems(additionalItems.slice(0, 4))}
-                            </div>
-                            */}
-                            {/* Pricing link
-                            <a href="#" className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900">
-                                Fiyatlandırma
-                            </a>
-                            */}
-
-                            {/* hizmetler Dropdown */}
-                            <div className="relative flex justify-center flex-1">
+                            {/* Hizmetler Dropdown */}
+                            <div className="relative flex justify-center">
                                 <button
                                     className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
                                     onClick={() => toggleDropdown('hizmetler')}
                                 >
                                     Kaynaklar
-                                    {openDropdown === 'hizmetler' ? <FiChevronUp className="ml-1"/> :
-                                        <FiChevronDown className="ml-1"/>}
+                                    {openDropdown === 'hizmetler' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
                                 </button>
                                 {openDropdown === 'hizmetler' && renderDropdownItems(hizmetler)}
                             </div>
 
                             {/* E-Belediye link */}
-                            <div className="relative flex justify-center flex-1">
+                            <div className="relative flex justify-center">
                                 <button
                                     className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
                                     onClick={() => toggleDropdown('eBelediye')}
                                 >
                                     eBelediye
-                                    {openDropdown === 'eBelediye' ? <FiChevronUp className="ml-1"/> :
-                                        <FiChevronDown className="ml-1"/>}
+                                    {openDropdown === 'eBelediye' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
                                 </button>
                                 {openDropdown === 'eBelediye' && renderDropdownItems(eBelediye)}
                             </div>
 
-                            {/* Etkinlikler link  */}
+                            {/* Other links */}
                             <a href="#" className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900">
                                 Etkinlikler
                             </a>
-                            {/* Haberler link  */}
                             <a href="#" className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900">
                                 Haberler
                             </a>
-                            {/* İletişim link  */}
                             <a href="#" className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900">
                                 İletişim
                             </a>
-
                         </div>
                     </div>
-
-                    {/* Right side items */}
-                    <div className="flex items-center">
-                        <a href="/login"
-                           className="ml-4 inline-flex items-center px-4 py-2 text-xs font-medium text-white bg-[#3b71ca] rounded-md hover:bg-gray-800">
-                            Giriş Yap
-                        </a>
-                        <a href="#"
-                           className="ml-4 inline-flex items-center px-4 py-2 text-xs font-medium text-white bg-black rounded-md hover:bg-gray-800">
-                            Başlayın
-                        </a>
-                    </div>
-
                 </div>
             </div>
+
+            {/* Mobile menu, show/hide based on menu state */}
+            {mobileMenuOpen && (
+                <div className="lg:hidden" id="mobile-menu">
+                    <div className="pt-2 pb-4 space-y-1">
+                        {/* Kurumsal Dropdown */}
+                        <div className="w-full">
+                            <button
+                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                onClick={() => toggleDropdown('kurumsal-mobile')}
+                            >
+                                Kurumsal
+                                {openDropdown === 'kurumsal-mobile' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
+                            </button>
+                            {openDropdown === 'kurumsal-mobile' && (
+                                <div className="pl-6 pr-4 py-2 space-y-2">
+                                    {kurumsal.map((item, index) => (
+                                        <div key={index} className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer">
+                                            <div className="p-2 bg-gray-100 rounded-md mr-3">
+                                                {item.icon}
+                                            </div>
+                                            <div>
+                                                <div className="font-medium text-sm">
+                                                    {item.title}
+                                                    {item.isEN && <span className="text-gray-500 text-xs ml-1">(EN)</span>}
+                                                </div>
+                                                <div className="text-gray-500 text-sm">{item.description}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Gebze Dropdown */}
+                        <div className="w-full">
+                            <button
+                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                onClick={() => toggleDropdown('gebze-mobile')}
+                            >
+                                Gebze
+                                {openDropdown === 'gebze-mobile' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
+                            </button>
+                            {openDropdown === 'gebze-mobile' && (
+                                <div className="pl-6 pr-4 py-2 space-y-2">
+                                    {gebze.map((item, index) => (
+                                        <div key={index} className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer">
+                                            <div className="p-2 bg-gray-100 rounded-md mr-3">
+                                                {item.icon}
+                                            </div>
+                                            <div>
+                                                <div className="font-medium text-sm">
+                                                    {item.title}
+                                                    {item.isEN && <span className="text-gray-500 text-xs ml-1">(EN)</span>}
+                                                </div>
+                                                <div className="text-gray-500 text-sm">{item.description}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Kaynaklar Dropdown */}
+                        <div className="w-full">
+                            <button
+                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                onClick={() => toggleDropdown('hizmetler-mobile')}
+                            >
+                                Kaynaklar
+                                {openDropdown === 'hizmetler-mobile' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
+                            </button>
+                            {openDropdown === 'hizmetler-mobile' && (
+                                <div className="pl-6 pr-4 py-2 space-y-2">
+                                    {hizmetler.map((item, index) => (
+                                        <div key={index} className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer">
+                                            <div className="p-2 bg-gray-100 rounded-md mr-3">
+                                                {item.icon}
+                                            </div>
+                                            <div>
+                                                <div className="font-medium text-sm">
+                                                    {item.title}
+                                                    {item.isEN && <span className="text-gray-500 text-xs ml-1">(EN)</span>}
+                                                </div>
+                                                <div className="text-gray-500 text-sm">{item.description}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* eBelediye Dropdown */}
+                        <div className="w-full">
+                            <button
+                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                onClick={() => toggleDropdown('eBelediye-mobile')}
+                            >
+                                eBelediye
+                                {openDropdown === 'eBelediye-mobile' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
+                            </button>
+                            {openDropdown === 'eBelediye-mobile' && (
+                                <div className="pl-6 pr-4 py-2 space-y-2">
+                                    {eBelediye.map((item, index) => (
+                                        <div key={index} className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer">
+                                            <div className="p-2 bg-gray-100 rounded-md mr-3">
+                                                {item.icon}
+                                            </div>
+                                            <div>
+                                                <div className="font-medium text-sm">
+                                                    {item.title}
+                                                    {item.isEN && <span className="text-gray-500 text-xs ml-1">(EN)</span>}
+                                                </div>
+                                                <div className="text-gray-500 text-sm">{item.description}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Other links */}
+                        <a href="#" className="block py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100">
+                            Etkinlikler
+                        </a>
+                        <a href="#" className="block py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100">
+                            Haberler
+                        </a>
+                        <a href="#" className="block py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100">
+                            İletişim
+                        </a>
+
+                    </div>
+                </div>
+            )}
         </nav>
     );
 };

@@ -12,8 +12,6 @@ const queryClient = new QueryClient();
 
 const App: React.FC = () => {
     const [loading, setLoading] = useState(true);
-    const [isLogin, setIsLogin] = useState(true); // Sayfa kontrolü
-    const location = useLocation(); // Hook to get the current route
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -28,7 +26,6 @@ const App: React.FC = () => {
     }
 
     // Determine if the current route is the login page
-    const isLoginPage = location.pathname === '/login';
 
     return (
         <QueryClientProvider client={queryClient}>
@@ -37,11 +34,8 @@ const App: React.FC = () => {
                 {/* Login ve SignUp sayfa kontrolü */}
                 <Route path="/login" element={<LoginForm/>}/>
                 <Route path="/signup" element={<SignUp/>} />
+                <Route path="/" element={<ContentArea/>} />
             </Routes>
-
-            {/* Conditionally render ContentArea */}
-            {!isLoginPage && <ContentArea />}
-
             <Footer />
         </QueryClientProvider>
     );
