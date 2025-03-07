@@ -252,7 +252,7 @@ const Navbar = () => {
                     {/* Logo and mobile menu button */}
                     <div className="flex justify-between w-full md:w-auto">
                         {/* Logo */}
-                        <div className="flex-shrink-0 flex items-center">
+                        <div className="flex-shrink-0 flex items-center md:invisible lg:visible">
                             <a href="http://localhost:5173">
                                 <img
                                     src={"./images/logoyatay.png"}
@@ -269,7 +269,7 @@ const Navbar = () => {
                             <button
                                 type="button"
                                 aria-controls="mobile-menu"
-                                className="lg:hidden items-center justify-center"
+                                className="md:invisible items-center justify-center"
                                 aria-expanded="false"
                                 onClick={toggleMobileMenu}
                             >
@@ -348,7 +348,7 @@ const Navbar = () => {
 
             {/* Mobile menu, show/hide based on menu state */}
             {mobileMenuOpen && (
-                <div className="lg:hidden" id="mobile-menu">
+                <div className="lg:invisible" id="mobile-menu">
                     <div className="pt-2 pb-4 space-y-1">
                         {/* Kurumsal Dropdown */}
                         <div className="w-full">
