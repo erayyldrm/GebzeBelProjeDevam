@@ -1,6 +1,7 @@
 // Put this in src/main/java/com/kocaeli/bel/controller/AuthController.java
 package com.kocaeli.bel.controller;
 
+import com.kocaeli.bel.DTO.LoginResponse;
 import com.kocaeli.bel.service.UserService;
 import com.kocaeli.bel.DTO.LoginRequest;
 import com.kocaeli.bel.model.User;
@@ -29,12 +30,17 @@ public class AuthController {
         try {
             User user = userService.authenticateUserRaw(loginRequest.getUsername(), loginRequest.getPassword());
 
+            // Generate token (dummy token for example purposes)
+            String token = "dummyToken123";
+
+            // Create login response
+            LoginResponse loginResponse = new LoginResponse(token, user.getUsername());
+
             return ResponseEntity.ok()
-                    .body(Map.of("status", "success", "username", user.getUsername()));
+                    .body(Map.of("status", "success", "data", loginResponse));
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Map.of("status", "error", "message", "Geçersiz kullanıcı adı veya şifre"));
         }
     }
-
 }

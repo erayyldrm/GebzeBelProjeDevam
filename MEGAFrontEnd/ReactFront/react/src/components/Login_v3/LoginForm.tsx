@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import React, {useState} from 'react';
+import {useMutation} from '@tanstack/react-query';
 import axios from 'axios';
-import { TERipple } from "tw-elements-react";
+import {TERipple} from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 // Login Credentials Interface
@@ -28,12 +28,13 @@ const LoginPage: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
-
+    const [message, setMessage] = useState<string | null>(null);
     // Login Mutation
     const loginMutation = useMutation({
         mutationFn: authService.login,
         onSuccess: (data) => {
-            console.log('Login successful', data);
+            //console.log('Login successful', data);
+            setMessage(data.response?.data?.message || 'Giriş Başaşrılı');
             // Geçiş yapılacak diğer sayfayı yönlendirme ekleyebilirsiniz
         },
         onError: (error: any) => {
@@ -77,6 +78,12 @@ const LoginPage: React.FC = () => {
                                         <div className="text-red-500 text-center mb-4">
                                             {error}
                                         </div>
+                                    )}
+                                    {message && (
+                                        <div className="text-blue-500 text-center mb-4">
+                                            {message}
+                                        </div>
+
                                     )}
 
                                     <form onSubmit={handleSubmit}>

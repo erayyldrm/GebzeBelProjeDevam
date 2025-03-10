@@ -1,5 +1,6 @@
 package com.kocaeli.bel.service;
 
+import com.kocaeli.bel.DTO.LoginResponse;
 import com.kocaeli.bel.model.User;
 import com.kocaeli.bel.repository.UserRepository;
 import com.kocaeli.bel.exception.UserAlreadyExistsException;
@@ -62,10 +63,21 @@ public class UserService {
                 .filter(user -> passwordEncoder.matches(rawPassword, user.getPassword()))
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
     }
+    public LoginResponse login(String username, String rawPassword) {
+        User user = authenticateUserRaw(username, rawPassword);
+
+        // Generate token (dummy token for example purposes)
+        String token = "dummyToken123";
+
+        // Return login response
+        return new LoginResponse(token, user.getUsername());
+    }
+
     public User authenticateUserRaw(String username, String rawPassword) {
         return userRepository.findByUsername(username)
                 .filter(user -> rawPassword.equals(user.getPassword()))
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
     }
-
 }
+
+
