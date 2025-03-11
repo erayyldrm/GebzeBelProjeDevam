@@ -4,7 +4,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RegisterRequest {
+public class RegisterHandler {
     public String TCNo;
     public String Password;
 }

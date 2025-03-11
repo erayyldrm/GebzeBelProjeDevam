@@ -4,7 +4,7 @@ package com.kocaeli.bel.controller;
 import com.kocaeli.bel.DTO.LoginResponse;
 import com.kocaeli.bel.service.UserService;
 import com.kocaeli.bel.DTO.LoginRequest;
-import com.kocaeli.bel.DTO.RegisterRequest;
+import com.kocaeli.bel.DTO.RegisterHandler;
 import com.kocaeli.bel.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,16 +41,17 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<?> register(@RequestBody RegisterHandler registerRequest) {
         try {
-            User user = userService.authenticateUserRaw(registerRequest.getTCNo(), registerRequest.getPassword());
-            // Check if user already exists
-            if (userService.existsByTCNo(registerRequest.getTCNo())) {
-                return ResponseEntity.badRequest()
-                        .body(Map.of("status", "error", "message", "Bu TC Kimlik Numarası zaten kayıtlı"));
-            }
-
+            // Create new user object from request data
+            User user = new User();
+            user.setTCNo(registerRequest.getTCNo());
+            user.setPassword(registerRequest.getPassword());
             // Create new user through service
+
+            // For debugging
+            System.out.println("TCNo: " + registerRequest.getTCNo());
+
             User newUser = userService.registerUser(user);
 
 

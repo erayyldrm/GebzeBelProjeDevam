@@ -1,13 +1,13 @@
 import React, {useState} from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { TERipple } from "tw-elements-react";
+import {AnimatePresence, motion} from "framer-motion";
+import {TERipple} from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from "axios";
 import {useMutation} from "@tanstack/react-query";
 
 interface RegisterCredentials {
-    TCNO:string;
+    TCNo:string;
     password:string;
 }
 
@@ -22,7 +22,7 @@ const authService = {
 };
 
 const SignUP: React.FC = () =>{
-    const [TCNO, setTCNO] = useState('');
+    const [TCNo, setTCNo] = useState('');
     const [password, setPassword] = useState('');
     const [regismessage, setregisMessage] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
@@ -44,7 +44,7 @@ const SignUP: React.FC = () =>{
         setError(null);
 
         registermutation.mutate({
-            TCNO,
+            TCNo: TCNo,
             password
         });
     };
@@ -88,7 +88,7 @@ const SignUP: React.FC = () =>{
                                         (placeholder, index) => (
                                             <div key={index} className="mb-3">
                                                 <input
-                                                    value={placeholder === "Parola" ? password : TCNO}                                                    placeholder={placeholder}
+                                                    value={placeholder === "Parola" ? password : TCNo} placeholder={placeholder}
                                                     type={
                                                         placeholder === "Parola"
                                                             ? "password"
@@ -100,7 +100,7 @@ const SignUP: React.FC = () =>{
                                                     placeholder === "Parola"
                                                         ?(e) => setPassword(e.target.value)
                                                         :placeholder ==="TC Kimlik No"
-                                                        ?(e)=>setTCNO(e.target.value)
+                                                        ?(e)=>setTCNo(e.target.value)
                                                         : undefined
                                                 }
                                                     required
