@@ -42,12 +42,15 @@ public class UserService {
     public boolean existsById(Long id) {
         return userRepository.existsById(id);
     }
+    public boolean existsByTCNo(String TCNo) {
+        return userRepository.existsByTCNo(TCNo);
+    }
 
     public Optional<User> authenticate(String email) {
         return userRepository.findByTCNo(email);
     }
     public User registerUser(User user) {
-        // Ensure email is unique
+        // Ensure TCNO is unique
         if (userRepository.findByTCNo(user.getTCNo()).isPresent()) {
             throw new UserAlreadyExistsException("TCNO is already in use");
         }
