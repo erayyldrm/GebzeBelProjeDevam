@@ -18,22 +18,19 @@ public class User {
     private Long id;
 
     @Column(unique = true)
-    private String username;
+    private String TCNo;
     @Column()
     private String password;
-    @Column(unique = true)
-    private String email;
 
-    public User(Long id, String username, String password, String email) {
+    public User(Long id, String TCNo, String password) {
         this.id = id;
-        this.username = username;
+        this.TCNo = TCNo;
         this.password = password;
-        this.email = email;
     }
 
-    public User(String password, String username) {
+    public User(String password, String TCNo) {
         this.password = password;
-        this.username = username;
+        this.TCNo = TCNo;
     }
 
     public User() {

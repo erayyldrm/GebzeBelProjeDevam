@@ -3,15 +3,10 @@ package com.kocaeli.bel.service;
 import com.kocaeli.bel.model.User;
 import com.kocaeli.bel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -46,12 +41,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 */
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // Find your user entity
-        User user = userRepository.findByUsername(username)
+        User user = userRepository.findByTCNo(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
         // Create a UserDetails object with basic authorities
         return org.springframework.security.core.userdetails.User
-                .withUsername(user.getUsername())
+                .withUsername(user.getTCNo())
                 .password(user.getPassword())
                 .authorities("USER") // Basic authority, no roles
                 .build();

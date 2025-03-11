@@ -5,7 +5,6 @@ import com.kocaeli.bel.model.User;
 import com.kocaeli.bel.repository.UserRepository;
 import com.kocaeli.bel.exception.UserAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -45,12 +44,12 @@ public class UserService {
     }
 
     public Optional<User> authenticate(String email) {
-        return userRepository.findByEmail(email);
+        return userRepository.findByTCNo(email);
     }
     public User registerUser(User user) {
         // Ensure email is unique
-        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-            throw new UserAlreadyExistsException("Email is already in use");
+        if (userRepository.findByTCNo(user.getTCNo()).isPresent()) {
+            throw new UserAlreadyExistsException("TCNO is already in use");
         }
 
         // Encode password before saving
@@ -59,7 +58,7 @@ public class UserService {
     }
 
     public User authenticateUser(String username, String rawPassword) {
-        return userRepository.findByUsername(username)
+        return userRepository.findByTCNo(username)
                 .filter(user -> passwordEncoder.matches(rawPassword, user.getPassword()))
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
     }
@@ -70,11 +69,11 @@ public class UserService {
         String token = "dummyToken123";
 
         // Return login response
-        return new LoginResponse(token, user.getUsername());
+        return new LoginResponse(token, user.getTCNo());
     }
 
     public User authenticateUserRaw(String username, String rawPassword) {
-        return userRepository.findByUsername(username)
+        return userRepository.findByTCNo(username)
                 .filter(user -> rawPassword.equals(user.getPassword()))
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
     }

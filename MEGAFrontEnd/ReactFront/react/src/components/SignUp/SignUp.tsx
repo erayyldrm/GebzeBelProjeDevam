@@ -1,11 +1,54 @@
-import React from "react";
+import React, {useState} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TERipple } from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import {useMutation} from "@tanstack/react-query";
 
+interface RegisterCredentials {
+    TCNO:string;
+    password:string;
+}
 
-const SignUP: React.FC = () => {
+// Authentication Service
+const authService = {
+    register: async (credentials: RegisterCredentials) => {
+        const { data } = await axios.post('http://localhost:8080/api/auth/register', credentials, {
+            withCredentials: true
+        });
+        return data;
+    }
+};
+
+const SignUP: React.FC = () =>{
+    const [TCNO, setTCNO] = useState('');
+    const [password, setPassword] = useState('');
+    const [regismessage, setregisMessage] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const registermutation = useMutation({
+        mutationFn: authService.register,
+        onSuccess: (data) => {
+            setregisMessage(data.response?.data?.message || 'Kaydolma başarılı');
+        },
+        onError: (error: any) => {
+            setError(
+                error.response?.data?.message ||
+                'Kaydolma başarısız. Backend açık mı?'
+            );
+        }
+    })
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setError(null);
+
+        registermutation.mutate({
+            TCNO,
+            password
+        });
+    };
+
     return (
         <AnimatePresence mode="wait">
             <motion.section
@@ -29,17 +72,38 @@ const SignUP: React.FC = () => {
                                 <h4 className="mb-4 text-lg font-semibold text-center">
                                     Personel Kayıt Ol Sayfası
                                 </h4>
-                                <form>
-                                    {["Kullanıcı Adı", "Ad", "Soyad", "Parola"].map(
+                                {error && (
+                                    <div className="text-red-500 text-center mb-4">
+                                        {error}
+                                    </div>
+                                )}
+                                {regismessage && (
+                                    <div className="text-blue-500 text-center mb-4">
+                                        {regismessage}
+                                    </div>
+
+                                )}
+                                <form onSubmit={handleSubmit}>
+                                    {["TC Kimlik No", "Parola"].map(
                                         (placeholder, index) => (
                                             <div key={index} className="mb-3">
                                                 <input
+                                                    value={placeholder === "Parola" ? password : TCNO}                                                    placeholder={placeholder}
                                                     type={
                                                         placeholder === "Parola"
                                                             ? "password"
+                                                            : placeholder ==="TC Kimlik No"
+                                                            ? "number"
                                                             : "text"
                                                     }
-                                                    placeholder={placeholder}
+                                                    onChange={
+                                                    placeholder === "Parola"
+                                                        ?(e) => setPassword(e.target.value)
+                                                        :placeholder ==="TC Kimlik No"
+                                                        ?(e)=>setTCNO(e.target.value)
+                                                        : undefined
+                                                }
+                                                    required
                                                     className="w-full px-3 py-2 border-b border-gray-300 focus:outline-none focus:border-blue-500 transition-colors duration-300"
                                                 />
                                             </div>
@@ -49,17 +113,18 @@ const SignUP: React.FC = () => {
                                         <TERipple rippleColor="light" className="w-full">
                                             <button
                                                 className="inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out bg-gradient-to-r from-orange-500 to-blue-900"
-                                                type="button"
+                                                type="submit"
                                                 style={{
                                                     background: "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
                                                 }}
-
+                                                disabled={registermutation.isPending}
                                             >
-                                                Kayıt Ol
+                                                {registermutation.isPending ? 'Kayıt Yapılıyor...' : 'Kayıt Ol'}
+
                                             </button>
                                         </TERipple>
                                         <a
-                                            href="#!"
+                                            href="#"
                                             className="block mt-2 text-sm text-blue-600 dark:text-blue-400"
                                         >
                                             Parolanızı Mı Unuttunuz?
