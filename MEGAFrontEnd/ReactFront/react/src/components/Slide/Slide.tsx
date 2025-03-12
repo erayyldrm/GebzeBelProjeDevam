@@ -15,7 +15,7 @@ const DynamicSlider: React.FC = () => {
             spaceBetween: 10,
             loop: true, // Infinite loop
             autoplay: {
-                delay: 1000, // Auto slide every 1 seconds
+                delay: 1000, // Auto slide every 1 second
                 disableOnInteraction: false, // Ensure autoplay continues even after user interaction
             },
             pagination: {
@@ -50,7 +50,7 @@ const DynamicSlider: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Main Content with 3 Columns */}
+                {/* Main Content with Responsive Columns */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     {/* Left Sidebar Column */}
                     <div className="col-span-1 bg-[#064169] p-5 rounded-lg text-white">
@@ -61,7 +61,7 @@ const DynamicSlider: React.FC = () => {
                         </p>
                     </div>
                     {/* 3 Other Columns */}
-                    <div className="col-span-3 grid grid-cols-3 gap-6">
+                    <div className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                         {/* Column 1 */}
                         <div className="bg-white p-5 rounded-lg shadow-lg">
                             <h3 className="text-xl mb-4">Column 1</h3>
