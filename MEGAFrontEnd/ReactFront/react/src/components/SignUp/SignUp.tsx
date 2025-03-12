@@ -138,8 +138,10 @@ const SignUP: React.FC = () =>{
                                         <Link to="/login">
                                         <button
                                             type="button"
-                                            className="inline-block rounded border-2 border-danger px-4 pb-[4px] pt-1 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out"
-                                        >
+                                            className="inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out"
+                                            style={{
+                                                background: "#9c8e45",
+                                            }}  >
                                             Giriş Yap
                                         </button>
                                         </Link>

@@ -43,9 +43,9 @@ const Footer: React.FC = () => {
                         ))}
                     </ul>
                 </div>
-            </div>
+            </div><br/>
             <div className="text-center mt-8 text-sm text-gray-400">
-                © {new Date().getFullYear()} Şirket Adı. Tüm Hakları Saklıdır.
+                © {new Date().getFullYear()} Gebze Belediye Başkamlığı
             </div>
         </footer>
     );

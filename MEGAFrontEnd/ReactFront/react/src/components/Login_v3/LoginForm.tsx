@@ -124,19 +124,23 @@ const LoginPage: React.FC = () => {
                                                 Parolanızı Mı Unuttunuz?
                                             </a>
                                         </div>
-                                        <div className="flex items-center justify-between">
-                                            <p className="mb-0 text-sm">Hesabınız Yok Mu?</p>
+                                        <div className="text-center mt-6">
+                                            <p className="mb-4 text-sm">Hesabınız Yok Mu?</p>
                                             <TERipple rippleColor="light">
                                                 <Link to="/signup">
                                                     <button
-                                                    type="button"
-                                                    className="inline-block rounded border-2 border-danger px-4 pb-[4px] pt-1 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out"
-                                                >
-                                                    KAYIT OL
-                                                </button>
+                                                        type="button"
+                                                        className="inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out"
+                                                        style={{
+                                                            background: "#ff0000",
+                                                        }}
+                                                    >
+                                                        KAYIT OL
+                                                    </button>
                                                 </Link>
                                             </TERipple>
                                         </div>
+
                                     </form>
                                 </div>
                                 <div className="w-full lg:w-6/12 flex justify-center items-center bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 p-0 m-0">
