@@ -52,7 +52,8 @@ const SignUP: React.FC = () =>{
     return (
         <AnimatePresence mode="wait">
             <motion.section
-                className="h-screen bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center"
+                className="h-screen bg-[url('white.jpg')] bg-cover bg-center flex items-center justify-center"
+
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -50 }}

@@ -56,7 +56,7 @@ const LoginPage: React.FC = () => {
     };
 
     return (
-        <section className="h-full bg-neutral-200 dark:bg-neutral-700">
+        <section className="h-screen bg-[url('white.jpg')] bg-cover bg-center flex items-center justify-center">
             <div className="container h-full p-10">
                 <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
                     <div className="w-full">
@@ -150,7 +150,7 @@ const LoginPage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
         </section>
     );
 };
