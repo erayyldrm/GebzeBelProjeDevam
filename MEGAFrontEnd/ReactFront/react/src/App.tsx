@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import {Outlet, Route, Routes} from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Loader from './components/loader';
 import LoginForm from './components/Login_v3/LoginForm';
@@ -29,14 +29,26 @@ const App: React.FC = () => {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <CoolNavbar />
             <Routes>
-                {/* Login ve SignUp sayfa kontrolü */}
-                <Route path="/login" element={<LoginForm/>}/>
+                {/* Routes WITH navbar and footer */}
+                <Route
+                    element={
+                        <>
+                            <CoolNavbar />
+                            <Outlet /> {/* This is important! */}
+                            <Footer />
+                        </>
+                    }
+                >
+                    {/* Navbar ve Footerli elemanlar burada olacak */}
+                    <Route path="/" element={<ContentArea/>} />
+                    {/* Add other routes that need navbar/footer here */}
+                </Route>
+
+                {/* Routes WITHOUT navbar and footer */}
+                <Route path="/login" element={<LoginForm/>} />
                 <Route path="/signup" element={<SignUp/>} />
-                <Route path="/" element={<ContentArea/>} />
             </Routes>
-            <Footer />
         </QueryClientProvider>
     );
 };
