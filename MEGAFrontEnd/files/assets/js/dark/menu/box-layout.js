@@ -9,9 +9,7 @@ $(document).ready(function () {
         activeMenuClass: 'active',
         ThemeBackgroundPattern: 'theme6',  // pattern1, pattern2, pattern3, pattern4, pattern5, pattern6
         HeaderBackground: 'theme6',  // theme1, theme2, theme3, theme4, theme5  header color
-        LHeaderBackground: 'theme1', // theme1, theme2, theme3, theme4, theme5, theme6   brand color
-        NavbarBackground: 'theme1', // themelight1, theme1  // light  and dark sidebar
-        ActiveItemBackground: 'theme1', // theme1, theme2, theme3, theme4, theme5, theme6, theme7, theme8, theme9, theme10, theme11, theme12  mennu active item color
+         // theme1, theme2, theme3, theme4, theme5, theme6, theme7, theme8, theme9, theme10, theme11, theme12  mennu active item color
         SubItemBackground: 'theme2',
         ActiveItemStyle: 'style0',
         ItemBorder: true,

@@ -23,8 +23,13 @@ import './NavBar.css';
 
 
     // Dropdown content grouped by category
-    const kurumsal: DropdownItem[] = [
-        {icon: <FiUsers className="text-gray-800"/>, title: 'BAŞKAN', description: 'Başkan hakkında bilgi'},
+const kurumsal: DropdownItem[] = [
+    {
+        icon: <FiUsers className="text-gray-800"/>,
+        title: 'BAŞKAN',
+        description: 'Başkan hakkında bilgi',
+        onClick: () => window.location.href = '/kurumsal/baskan' // veya router.push('/kurumsal/baskan') kullanabilirsiniz
+    },
         {icon: <FiEye className="text-gray-800"/>, title: 'VİZYONUMUZ', description: 'Vizyonumuz hakkında bilgi'},
         {icon: <FiTarget className="text-gray-800"/>, title: 'MİSYONUMUZ', description: 'Misyonumuz hakkında bilgi'},
         {icon: <FiAward className="text-gray-800"/>, title: 'İLKELERİMİZ', description: 'İlkelerimiz hakkında bilgi'},
@@ -202,6 +207,7 @@ interface DropdownItem {
     title: string;
     description: string;
     isEN?: boolean;
+    onClick?: () => void; // Tıklama fonksiyonu için opsiyonel prop ekleyin
 }
 
 
@@ -228,7 +234,11 @@ const Navbar = () => {
             <div id={'zawardo'}
                  className="absolute container mx-auto mt-12 bg-white rounded-md shadow-lg z-10 py-2 grid grid-cols-4 gap-2">
                 {items.map((item, index) => (
-                    <div key={index} className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer">
+                    <div
+                        key={index}
+                        className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer"
+                        onClick={item.onClick} // Tıklama olayını ekleyin
+                    >
                         <div className="p-2 bg-gray-100 rounded-md mr-3">
                             {item.icon}
                         </div>

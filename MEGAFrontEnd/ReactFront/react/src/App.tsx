@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer';
 import CoolNavbar from './components/NavBar/CoolNavbar';
 import SignUp from './components/SignUp/SignUp';
 import ContentArea from "./components/Slide/Slide.tsx";
+import Baskan from "./components/kurumsal/baskan.tsx";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,8 @@ const App: React.FC = () => {
                 >
                     {/* Navbar ve Footerli elemanlar burada olacak */}
                     <Route path="/" element={<ContentArea/>} />
+                    <Route path="/kurumsal/baskan" element={<Baskan/>} />
+
                     {/* Add other routes that need navbar/footer here */}
                 </Route>
 
