@@ -232,8 +232,8 @@ const Navbar = () => {
     const renderDropdownItems = (items: DropdownItem[]) => {
         return (
             <>
-            <div onClick={() => toggleDropdown(null)}
-                 className="fixed right-0 container w-[2000px] h-full px-50"/>
+            <div onClick={() => toggleDropdown("any")}
+                 className="fixed inset-0 w-full h-full px-[50px]"/>
 
                 <div id={'zawardo'}
                      className="fixed start-2 right-2 top-20
