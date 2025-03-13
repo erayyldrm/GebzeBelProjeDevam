@@ -232,7 +232,9 @@ const Navbar = () => {
     const renderDropdownItems = (items: DropdownItem[]) => {
         return (
             <div id={'zawardo'}
-                 className="absolute container mx-auto mt-12 bg-white rounded-md shadow-lg z-10 py-2 grid grid-cols-4 gap-2">
+                 className="fixed start-2 right-2 top-20
+                        bg-white rounded-md shadow-lg z-10 py-2 grid grid-cols-4 gap-2
+                        max-w-4xl w-full mx-auto">
                 {items.map((item, index) => (
                     <div
                         key={index}
