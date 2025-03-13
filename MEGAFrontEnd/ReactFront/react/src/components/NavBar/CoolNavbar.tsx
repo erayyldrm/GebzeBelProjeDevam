@@ -19,16 +19,19 @@ import {
     FiFileText
 } from 'react-icons/fi';
 import './NavBar.css';
+import { useNavigate } from 'react-router-dom';
 
 
-
+const Navbar = () => {
     // Dropdown content grouped by category
 const kurumsal: DropdownItem[] = [
+
     {
         icon: <FiUsers className="text-gray-800"/>,
         title: 'BAŞKAN',
         description: 'Başkan hakkında bilgi',
-        onClick: () => window.location.href = '/kurumsal/baskan' // veya router.push('/kurumsal/baskan') kullanabilirsiniz
+        path: '/kurumsal/baskan'  // onClick yerine pathname kullanın
+
     },
         {icon: <FiEye className="text-gray-800"/>, title: 'VİZYONUMUZ', description: 'Vizyonumuz hakkında bilgi'},
         {icon: <FiTarget className="text-gray-800"/>, title: 'MİSYONUMUZ', description: 'Misyonumuz hakkında bilgi'},
@@ -207,13 +210,17 @@ interface DropdownItem {
     title: string;
     description: string;
     isEN?: boolean;
-    onClick?: () => void; // Tıklama fonksiyonu için opsiyonel prop ekleyin
+    path?: string; // Tıklama fonksiyonu için opsiyonel prop ekleyin
 }
+const navigate = useNavigate();
+const handleNavigation = (path: string) => {
+
+        navigate(path);
+
+};
 
 
 
-
-const Navbar = () => {
     // State to track which dropdown is open
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -242,7 +249,7 @@ const Navbar = () => {
 
                     {items.map((item, index) => (
                         <div key={index} className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer"
-                             onClick={item.onClick} // Tıklama olayını ekleyin
+                             onClick={() => handleNavigation(item.path || '/')} // Path yoksa anasayfaya yönlendir
                         >
                             <div className="p-2 bg-gray-100 rounded-md mr-3">
                                 {item.icon}
