@@ -231,28 +231,27 @@ const Navbar = () => {
     // Render dropdown menu items
     const renderDropdownItems = (items: DropdownItem[]) => {
         return (
-            <div id={'zawardo'}
-                 className="fixed start-2 right-2 top-20
+            <div onClick={() => toggleDropdown(null)}
+                 className="fixed right-0 container w-[1300px] h-full bg-red px-50">
+                <div id={'zawardo'}
+                     className="fixed start-2 right-2 top-20
                         bg-white rounded-md shadow-lg z-10 py-2 grid grid-cols-4 gap-2
                         max-w-4xl w-full mx-auto">
-                {items.map((item, index) => (
-                    <div
-                        key={index}
-                        className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer"
-                        onClick={item.onClick} // Tıklama olayını ekleyin
-                    >
-                        <div className="p-2 bg-gray-100 rounded-md mr-3">
-                            {item.icon}
-                        </div>
-                        <div>
-                            <div className="font-medium text-sm">
-                                {item.title}
-                                {item.isEN && <span className="text-gray-500 text-xs ml-1">(EN)</span>}
+                    {items.map((item, index) => (
+                        <div key={index} className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer">
+                            <div className="p-2 bg-gray-100 rounded-md mr-3">
+                                {item.icon}
                             </div>
-                            <div className="text-gray-500 text-sm">{item.description}</div>
+                            <div>
+                                <div className="font-medium text-sm">
+                                    {item.title}
+                                    {item.isEN && <span className="text-gray-500 text-xs ml-1">(EN)</span>}
+                                </div>
+                                <div className="text-gray-500 text-sm">{item.description}</div>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         );
     };
