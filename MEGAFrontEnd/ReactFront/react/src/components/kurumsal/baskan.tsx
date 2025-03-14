@@ -1,26 +1,22 @@
 import React from 'react';
-
 const BaskanPage: React.FC = () => {
     return (
         <div id="pcoded" className="pcoded">
-            <div className="pcoded-overlay-box"></div>
+            <div className="pcoded-overlay-box">
             <div className="pcoded-container navbar-wrapper">
-
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
-
                         <div className="pcoded-content">
-
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
                                     <div className="page-wrapper">
-                                        <div className="row">
-                                            <div className="col-lg-8 ms-auto">
+                                        <div className="flex justify-end">
+                                            <div className="lg:w-8/12 ml-auto">
                                                 <div className="card">
-                                                    <div className="card-block">
-                                                        <img src="/images/kurumsal/baskansayfasi.jpg" style={{ width: '100%', height: '100%' }} alt="Zinnur Büyükgöz" className="baskan-resim" /><br />
-                                                        <h3><b>Zinnur BÜYÜKGÖZ</b></h3><br />
-                                                        <div style={{ textAlign: 'justify' }}>
+                                                    <div className="card-block p-4">
+                                                        <img src="/images/kurumsal/baskansayfasi.jpg" className="w-full h-auto" alt="Zinnur Büyükgöz" /><br />
+                                                        <h3 className="font-bold"><b>Zinnur BÜYÜKGÖZ</b></h3><br />
+                                                        <div className="text-justify">
                                                             <p>
                                                                 1964 yılında Erzurum'da doğdu. İlköğretim tahsilini 1975'te Bakırköy Koca Sinan İlkokulu'nda ve 1978'de Kadıköy İmam Hatip Ortaokulu'nda tamamladı. 1983'te ise Gebze İmam Hatip Lisesi'nden mezun oldu.
                                                                 1987'de Yıldız Teknik Üniversitesi Mimarlık Fakültesi'nden Şehir ve Bölge Plancısı unvanıyla mezun oldu. 1987-1989 yılları arasında aynı üniversitede Şehir ve Bölge Planlaması dalında yüksek lisansını tamamladı.
@@ -33,7 +29,7 @@ const BaskanPage: React.FC = () => {
                                                                 31 Mart 2019 Mahalli İdareler Seçimi'nde halkımızın teveccühü ile Gebze Belediye Başkanı seçilmiştir ve halen bu görevi yürütmeye devam etmektedir.
                                                             </p>
                                                         </div>
-                                                        <img src="/images/kurumsal/imza.png" style={{ width: '200px', height: '200px',float:'right' }} alt="imza" className="imza" />
+                                                        <img src="/images/kurumsal/imza.png" className="w-52 h-52 float-right" alt="imza" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -44,13 +40,10 @@ const BaskanPage: React.FC = () => {
                         </div>
                     </div>
                 </div>
+              </div>
             </div>
         </div>
     );
 };
-
-// Custom CSS that was in <style> tag
-// You'd typically put this in a separate CSS file or use a CSS-in-JS solution
-// For this example, you could add it to your global CSS or use styled-components
 
 export default BaskanPage;
