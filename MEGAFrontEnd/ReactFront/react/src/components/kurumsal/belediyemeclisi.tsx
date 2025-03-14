@@ -1,11 +1,9 @@
 import React from 'react';
-
 interface CouncilMember {
     name: string;
     imageUrl: string;
     role: string;
 }
-
 const MunicipalityCouncil: React.FC = () => {
     // Mayor data
     const mayor: CouncilMember = {
@@ -13,7 +11,6 @@ const MunicipalityCouncil: React.FC = () => {
         imageUrl: "/images/kurumsal/belediyemeclisi/zinnurbuyukgoz.jpg",
         role: "Başkan"
     };
-
     // Council members data
     const councilMembers: CouncilMember[] = [
         { name: "Hasan SOBA", imageUrl: "/images/kurumsal/belediyemeclisi/hasansoba.jpg", role: "Meclis Üyesi" },
@@ -52,14 +49,11 @@ const MunicipalityCouncil: React.FC = () => {
         { name: "Birol Elüstü", imageUrl: "/images/kurumsal/belediyemeclisi/birolelustu.jpg", role: "Meclis Üyesi" },
         { name: "Zeynep Aslan ÇAPÇI", imageUrl: "/images/kurumsal/belediyemeclisi/zeynepaslancapı.png", role: "Meclis Üyesi" },
         { name: "Yunus Umut AYDOĞDU", imageUrl: "/images/kurumsal/belediyemeclisi/yunusumutaydogdu.png", role: "Meclis Üyesi" },
-        { name: "Hakan KAHRAMAN", imageUrl: "/images/kurumsal/belediyemeclisi/hakankahraman.jpg", role: "Meclis Üyesi" }
-    ];
-
+        { name: "Hakan KAHRAMAN", imageUrl: "/images/kurumsal/belediyemeclisi/hakankahraman.jpg", role: "Meclis Üyesi" }];
     // Person card component for reusability
     const PersonCard: React.FC<{ person: CouncilMember; isPresident?: boolean }> = ({ person, isPresident = false }) => {
         const cardClasses = isPresident ? "max-w-md mb-10" : "max-w-xs mb-5";
-        const imgClasses = isPresident ? "h-[20px] w-[300px] object-cover" : "h-36 w-full object-cover";
-
+        const imgClasses = isPresident ? "h-[50px] w-[300px] object-cover" : "h-36 w-full object-cover";
         return (
             <div className={`bg-white rounded-lg shadow-md overflow-hidden ${cardClasses}`}>
                 <div className="text-center">
@@ -84,7 +78,6 @@ const MunicipalityCouncil: React.FC = () => {
             </div>
         );
     };
-
     return (
         <div className="container mx-auto px-4 py-8">
             {/* Header */}
@@ -124,7 +117,6 @@ const MunicipalityCouncil: React.FC = () => {
                     </div>
                 </div>
             </div>
-
             {/* Mayor Section */}
             <div className="flex justify-center mb-8">
                 <PersonCard person={mayor} isPresident={true} />
@@ -139,5 +131,4 @@ const MunicipalityCouncil: React.FC = () => {
         </div>
     );
 };
-
 export default MunicipalityCouncil;

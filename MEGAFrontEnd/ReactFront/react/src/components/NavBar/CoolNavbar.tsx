@@ -30,7 +30,7 @@ const kurumsal: DropdownItem[] = [
         icon: <FiUsers className="text-gray-800"/>,
         title: 'BAŞKAN',
         description: 'Başkan hakkında bilgi',
-        path: '/kurumsal/baskan'  // onClick yerine pathname kullanın
+        path: '/kurumsal/baskan'// onClick yerine pathname kullanın
 
     },
         {icon: <FiEye className="text-gray-800"/>, title: 'VİZYONUMUZ', description: 'Vizyonumuz hakkında bilgi'},
@@ -39,7 +39,8 @@ const kurumsal: DropdownItem[] = [
         {
             icon: <FiUsers className="text-gray-800"/>,
             title: 'BELEDİYE MECLİSİ',
-            description: 'Belediye Meclisi hakkında bilgi'
+            description: 'Belediye Meclisi hakkında bilgi',
+            path:'/kurumsal/belediyemeclisi'
         },
         {
             icon: <FiLayout className="text-gray-800"/>,
