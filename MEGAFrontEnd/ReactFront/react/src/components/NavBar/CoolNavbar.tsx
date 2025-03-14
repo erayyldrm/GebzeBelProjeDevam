@@ -280,7 +280,7 @@ const handleNavigation = (path: string) => {
                         <div className="flex-shrink-0 flex items-center md:invisible lg:visible">
                             <a href="http://localhost:5173">
                                 <img
-                                    src={"./images/logoyatay.png"}
+                                    src={"/images/logoyatay.png"}
                                     id={"logo"}
                                     alt="Gebze Belediyesi"
                                     className="cursor-pointer h-10"
