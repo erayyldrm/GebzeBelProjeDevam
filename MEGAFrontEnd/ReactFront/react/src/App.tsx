@@ -1,5 +1,7 @@
+import React, { useState, useEffect } from 'react';
 import {Outlet, Route, Routes} from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Loader from './components/loader';
 import LoginForm from './components/Login_v3/LoginForm2.tsx';
 import Footer from './components/Footer/Footer';
 import CoolNavbar from './components/NavBar/CoolNavbar';
@@ -12,7 +14,19 @@ import BelediyeMeclisi from "./components/kurumsal/belediyemeclisi.tsx";
 const queryClient = new QueryClient();
 
 const App: React.FC = () => {
+    const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (loading) {
+        return <Loader />;
+    }
 
     // Determine if the current route is the login page
 
