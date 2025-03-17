@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     FiActivity,
     FiAward, FiBook, FiBookOpen, FiCamera,
@@ -215,9 +215,7 @@ interface DropdownItem {
 }
 const navigate = useNavigate();
 const handleNavigation = (path: string) => {
-
         navigate(path);
-
 };
 
 
@@ -225,7 +223,18 @@ const handleNavigation = (path: string) => {
     // State to track which dropdown is open
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [scrollPosition, setScrollPosition] = useState(0);
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollPosition(window.scrollY);
+        };
 
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
     // Toggle dropdown function
     const toggleDropdown = (name:string) => {
         setOpenDropdown(openDropdown === name ? null : name);
@@ -243,10 +252,14 @@ const handleNavigation = (path: string) => {
             <div onClick={() => toggleDropdown("any")}
                  className="fixed inset-0 w-full h-full px-[50px]"/>
 
+
                 <div id={'zawardo'}
                      className="fixed start-2 right-2 top-20
-                        bg-white rounded-md shadow-lg z-10 py-2 grid grid-cols-4 gap-2
-                        max-w-4xl w-full mx-auto">
+        bg-white rounded-md shadow-lg z-10 py-2 grid grid-cols-4 gap-2
+        max-w-4xl w-full mx-auto"
+                 style={{
+                     top: scrollPosition > 100 ? '-1000px' : '5rem'
+                 }}>
 
                     {items.map((item, index) => (
                         <div key={index} className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer"
@@ -264,7 +277,6 @@ const handleNavigation = (path: string) => {
                             </div>
                         </div>
                     ))}
-
                 </div>
             </>
         );

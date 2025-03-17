@@ -1,0 +1,21 @@
+HTTrack3.49-2+htsswf+htsjava launched on Fri, 14 Mar 2025 11:02:58 at https://html.tonatheme.com/2021/Governlia/index.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "tr, en, *" https://html.tonatheme.com/2021/Governlia/index.html -O1 "D:\track\belediye" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+11:04:12	Error: 	"Not Found" (404) at link https://html.tonatheme.com/2021/Governlia/assets/fonts/Stroke-Gap-Icons.eot (from https://html.tonatheme.com/2021/Governlia/assets/css/stroke-gap.css)
+11:04:12	Error: 	"Not Found" (404) at link https://html.tonatheme.com/2021/Governlia/assets/css/owl.video.play.png (from https://html.tonatheme.com/2021/Governlia/assets/css/owl.css)
+11:04:12	Error: 	"Not Found" (404) at link https://html.tonatheme.com/2021/Governlia/assets/css/images/ui-icons_777620_256x240.png (from https://html.tonatheme.com/2021/Governlia/assets/css/jquery-ui.css)
+11:04:12	Error: 	"Not Found" (404) at link https://html.tonatheme.com/2021/Governlia/assets/css/images/ui-icons_cc0000_256x240.png (from https://html.tonatheme.com/2021/Governlia/assets/css/jquery-ui.css)
+11:04:12	Error: 	"Not Found" (404) at link https://html.tonatheme.com/2021/Governlia/assets/css/mCSB_buttons.html (from https://html.tonatheme.com/2021/Governlia/assets/css/scrollbar.css)
+11:04:12	Error: 	"Not Found" (404) at link https://html.tonatheme.com/2021/Governlia/assets/images/resource/flags/gb.png (from https://html.tonatheme.com/2021/Governlia/assets/css/polyglot-language-switcher.css)
+11:04:12	Error: 	"Not Found" (404) at link https://html.tonatheme.com/2021/Governlia/assets/images/resource/flags/fr.png (from https://html.tonatheme.com/2021/Governlia/assets/css/polyglot-language-switcher.css)
+11:04:12	Error: 	"Not Found" (404) at link https://html.tonatheme.com/2021/Governlia/assets/images/resource/flags/de.png (from https://html.tonatheme.com/2021/Governlia/assets/css/polyglot-language-switcher.css)
+11:04:12	Error: 	"Not Found" (404) at link https://html.tonatheme.com/2021/Governlia/assets/images/resource/flags/it.png (from https://html.tonatheme.com/2021/Governlia/assets/css/polyglot-language-switcher.css)
+11:04:12	Error: 	"Not Found" (404) at link https://html.tonatheme.com/2021/Governlia/assets/images/resource/flags/es.png (from https://html.tonatheme.com/2021/Governlia/assets/css/polyglot-language-switcher.css)
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 14 seconds : 229 links scanned, 218 files written (19379186 bytes overall) [11716224 bytes received at 158327 bytes/sec], 12194149 bytes transferred using HTTP compression in 79 files, ratio 36%, 22.9 requests per connection
+(10 errors, 0 warnings, 0 messages)
