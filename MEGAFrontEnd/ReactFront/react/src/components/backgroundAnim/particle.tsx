@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+// @ts-ignore
 import { Particles } from "react-particles";
 import { loadSlim } from "tsparticles-slim";
 
@@ -29,7 +30,7 @@ const ParticleBackground = () => {
                 options={{
                     background: {
                         color: {
-                            value: "#434343", // Black background
+                            value: "rgba(5,51,103,0.64)", // Black background
                         },
                     },
                     fpsLimit: 120,
