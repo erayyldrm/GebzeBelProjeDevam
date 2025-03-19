@@ -56,7 +56,7 @@ const LoginPage: React.FC = () => {
 
     return (
         <section
-            className="h-screen bg-[url('images/BackgroundForm.jpeg')] bg-cover bg-center flex items-center justify-center">
+            className="h-screen bg-[url('/white2.jpg')] bg-cover bg-center flex items-center justify-center">
             <div className="w-full max-w-md px-4 mx-auto">
                 <div className="rounded-lg bg-white shadow-lg dark:bg-neutral-800">
                     <div className="p-4 sm:p-6 flex flex-col justify-center">

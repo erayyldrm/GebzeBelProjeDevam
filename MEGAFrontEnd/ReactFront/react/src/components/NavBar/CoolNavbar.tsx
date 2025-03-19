@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     FiActivity,
     FiAward, FiBook, FiBookOpen, FiCamera,
@@ -215,9 +215,7 @@ interface DropdownItem {
 }
 const navigate = useNavigate();
 const handleNavigation = (path: string) => {
-
         navigate(path);
-
 };
 
 
@@ -225,7 +223,18 @@ const handleNavigation = (path: string) => {
     // State to track which dropdown is open
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [scrollPosition, setScrollPosition] = useState(0);
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollPosition(window.scrollY);
+        };
 
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
     // Toggle dropdown function
     const toggleDropdown = (name:string) => {
         setOpenDropdown(openDropdown === name ? null : name);
@@ -237,20 +246,31 @@ const handleNavigation = (path: string) => {
     };
 
     // Render dropdown menu items
+    // Render dropdown menu items
     const renderDropdownItems = (items: DropdownItem[]) => {
         return (
             <>
-            <div onClick={() => toggleDropdown("any")}
-                 className="fixed inset-0 w-full h-full px-[50px]"/>
+                <div
+                    onClick={() => toggleDropdown("any")}
+                    className="fixed inset-0 w-full h-full px-[20px]"
+                />
 
-                <div id={'zawardo'}
-                     className="fixed start-2 right-2 top-20
-                        bg-white rounded-md shadow-lg z-10 py-2 grid grid-cols-4 gap-2
-                        max-w-4xl w-full mx-auto">
-
+                <div
+                    id={'zawardo'}
+                    className="fixed left-0 right-0 top-0
+                    bg-white rounded-md shadow-lg z-50 py-2 grid grid-cols-4 gap-2
+                    max-w-[90%] w-full mx-auto"
+                    style={{
+                        top: scrollPosition > 100 ? '-1000px' : '50px', // Using pixels for more precise control
+                        transform: 'translateZ(0)', // Force GPU acceleration
+                        transition: 'top 0.7s ease' // Smooth transition
+                    }}
+                >
                     {items.map((item, index) => (
-                        <div key={index} className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer"
-                             onClick={() => handleNavigation(item.path || '/')} // Path yoksa anasayfaya yönlendir
+                        <div
+                            key={index}
+                            className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer"
+                            onClick={() => handleNavigation(item.path || '/')}
                         >
                             <div className="p-2 bg-gray-100 rounded-md mr-3">
                                 {item.icon}
@@ -264,14 +284,13 @@ const handleNavigation = (path: string) => {
                             </div>
                         </div>
                     ))}
-
                 </div>
             </>
         );
     };
 
     return (
-        <nav className="bg-white border-b border-gray-200">
+        <nav className="bg-blue-300 border-b border-gray-200">
             <div className="max-w-full mx-auto px-4">
                 <div className="flex justify-between h-16">
                     {/* Logo and mobile menu button */}
@@ -280,7 +299,7 @@ const handleNavigation = (path: string) => {
                         <div className="flex-shrink-0 flex items-center md:invisible lg:visible">
                             <a href="http://localhost:5173">
                                 <img
-                                    src={"./images/logoyatay.png"}
+                                    src={"/images/logoyatay.png"}
                                     id={"logo"}
                                     alt="Gebze Belediyesi"
                                     className="cursor-pointer h-10"
