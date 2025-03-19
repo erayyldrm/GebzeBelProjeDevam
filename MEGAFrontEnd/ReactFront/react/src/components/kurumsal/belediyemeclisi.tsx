@@ -33,7 +33,7 @@ const MunicipalityCouncil: React.FC = () => {
         { name: "Vasfiye AYDIN", imageUrl: "/images/kurumsal/belediyemeclisi/vasfiyeaydin.jpg", role: "Meclis Üyesi" },
         { name: "Şener AKIN", imageUrl: "/images/kurumsal/belediyemeclisi/senerakin.jpg", role: "Meclis Üyesi" },
         { name: "Mehmet DİNÇ", imageUrl: "/images/kurumsal/belediyemeclisi/mehmetdinc.jpg", role: "Meclis Üyesi" },
-        { name: "Okan ŞEN", imageUrl: "/images/kurumsal/belediyemeclisi/mehmetdinc.jpg", role: "Meclis Üyesi" },
+        { name: "Okan ŞEN", imageUrl: "/images/kurumsal/belediyemeclisi/okansen.jpg", role: "Meclis Üyesi" },
         { name: "Halil AYTAÇ", imageUrl: "/images/kurumsal/belediyemeclisi/halilaytac.jpg", role: "Meclis Üyesi" },
         { name: "Osman SEZER", imageUrl: "/images/kurumsal/belediyemeclisi/osmansezer.jpg", role: "Meclis Üyesi" },
         { name: "Mustafa ATEŞ", imageUrl: "/images/kurumsal/belediyemeclisi/mustafaates.jpg", role: "Meclis Üyesi" },
