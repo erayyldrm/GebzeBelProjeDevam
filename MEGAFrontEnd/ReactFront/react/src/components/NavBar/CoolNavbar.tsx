@@ -45,7 +45,8 @@ const kurumsal: DropdownItem[] = [
         {
             icon: <FiLayout className="text-gray-800"/>,
             title: 'YÖNETİM ŞEMASI',
-            description: 'Yönetim Şeması hakkında bilgi'
+            description: 'Yönetim Şeması hakkında bilgi',
+            path:'/kurumsal/yonetimseması'
         },
         {
             icon: <FiUsers className="text-gray-800"/>,
