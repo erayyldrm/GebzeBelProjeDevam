@@ -9,7 +9,7 @@ import SignUp from './components/SignUp/SignUp';
 import ContentArea from "./components/Slide/Slide.tsx";
 import Baskan from "./components/kurumsal/baskan.tsx";
 import BelediyeMeclisi from "./components/kurumsal/belediyemeclisi.tsx";
-
+import TEST from "./components/sablon/testsablon.tsx"
 
 const queryClient = new QueryClient();
 
@@ -47,7 +47,7 @@ const App: React.FC = () => {
                     <Route path="/" element={<ContentArea/>} />
                     <Route path="/kurumsal/baskan" element={<Baskan/>} />
                     <Route path="/kurumsal/belediyemeclisi" element={<BelediyeMeclisi/>}/>
-
+                    <Route path="/test" element={<TEST/>}></Route>
 
                     {/* Add other routes that need navbar/footer here */}
                 </Route>

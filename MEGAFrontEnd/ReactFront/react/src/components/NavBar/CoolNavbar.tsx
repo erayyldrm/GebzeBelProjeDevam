@@ -246,24 +246,31 @@ const handleNavigation = (path: string) => {
     };
 
     // Render dropdown menu items
+    // Render dropdown menu items
     const renderDropdownItems = (items: DropdownItem[]) => {
         return (
             <>
-            <div onClick={() => toggleDropdown("any")}
-                 className="fixed inset-0 w-full h-full px-[50px]"/>
+                <div
+                    onClick={() => toggleDropdown("any")}
+                    className="fixed inset-0 w-full h-full px-[20px]"
+                />
 
-
-                <div id={'zawardo'}
-                     className="fixed start-2 right-2 top-20
-        bg-white rounded-md shadow-lg z-10 py-2 grid grid-cols-4 gap-2
-        max-w-4xl w-full mx-auto"
-                 style={{
-                     top: scrollPosition > 100 ? '-1000px' : '5rem'
-                 }}>
-
+                <div
+                    id={'zawardo'}
+                    className="fixed left-0 right-0 top-0
+                    bg-white rounded-md shadow-lg z-50 py-2 grid grid-cols-4 gap-2
+                    max-w-[90%] w-full mx-auto"
+                    style={{
+                        top: scrollPosition > 100 ? '-1000px' : '50px', // Using pixels for more precise control
+                        transform: 'translateZ(0)', // Force GPU acceleration
+                        transition: 'top 0.7s ease' // Smooth transition
+                    }}
+                >
                     {items.map((item, index) => (
-                        <div key={index} className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer"
-                             onClick={() => handleNavigation(item.path || '/')} // Path yoksa anasayfaya yönlendir
+                        <div
+                            key={index}
+                            className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer"
+                            onClick={() => handleNavigation(item.path || '/')}
                         >
                             <div className="p-2 bg-gray-100 rounded-md mr-3">
                                 {item.icon}
@@ -283,7 +290,7 @@ const handleNavigation = (path: string) => {
     };
 
     return (
-        <nav className="bg-white border-b border-gray-200">
+        <nav className="bg-blue-300 border-b border-gray-200">
             <div className="max-w-full mx-auto px-4">
                 <div className="flex justify-between h-16">
                     {/* Logo and mobile menu button */}
