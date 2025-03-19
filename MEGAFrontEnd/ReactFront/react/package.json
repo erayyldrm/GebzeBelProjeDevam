@@ -22,6 +22,7 @@
     "@react-login-page/page10": "^1.0.4",
     "@tailwindcss/vite": "^4.0.9",
     "@tanstack/react-query": "^5.67.1",
+    "@tsparticles/react": "^3.0.0",
     "animate.css": "^4.1.1",
     "autoprefixer": "^10.4.20",
     "axios": "^1.8.1",
@@ -32,7 +33,12 @@
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-login-page": "^1.0.4",
+    "react-particles": "^2.12.2",
     "react-router-dom": "^7.2.0",
+    "react-tsparticles": "^2.12.2",
+    "tsparticles": "^3.8.1",
+    "tsparticles-engine": "^2.12.0",
+    "tsparticles-slim": "^2.12.0",
     "tw-elements-react": "^1.0.0-alpha-end"
   },
   "devDependencies": {
