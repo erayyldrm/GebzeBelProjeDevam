@@ -45,7 +45,8 @@ const kurumsal: DropdownItem[] = [
         {
             icon: <FiLayout className="text-gray-800"/>,
             title: 'YÖNETİM ŞEMASI',
-            description: 'Yönetim Şeması hakkında bilgi'
+            description: 'Yönetim Şeması hakkında bilgi',
+            path:'/kurumsal/yonetimseması'
         },
         {
             icon: <FiUsers className="text-gray-800"/>,
@@ -292,7 +293,7 @@ const handleNavigation = (path: string) => {
     return (
         <nav className="bg-blue-300 border-b border-gray-200">
             <div className="max-w-full mx-auto px-4">
-                <div className="flex justify-between h-16">
+                <div className="flex justify-between h-30">
                     {/* Logo and mobile menu button */}
                     <div className="flex justify-between w-full md:w-auto">
                         {/* Logo */}
