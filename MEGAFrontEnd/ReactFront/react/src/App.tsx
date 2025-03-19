@@ -10,6 +10,7 @@ import ContentArea from "./components/Slide/Slide.tsx";
 import Baskan from "./components/kurumsal/baskan.tsx";
 import BelediyeMeclisi from "./components/kurumsal/belediyemeclisi.tsx";
 import TEST from "./components/sablon/testsablon.tsx"
+import ManagementChart from "./components/kurumsal/yonetimsemasi.tsx";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,8 @@ const App: React.FC = () => {
                             <CoolNavbar />
                             <Outlet /> {/* This is important! */}
                             <Footer />
+
+
                         </>
                     }
                 >
@@ -48,6 +51,7 @@ const App: React.FC = () => {
                     <Route path="/kurumsal/baskan" element={<Baskan/>} />
                     <Route path="/kurumsal/belediyemeclisi" element={<BelediyeMeclisi/>}/>
                     <Route path="/test" element={<TEST/>}></Route>
+                    <Route path="/kurumsal/yonetimseması" element={<ManagementChart/>}></Route>
 
                     {/* Add other routes that need navbar/footer here */}
                 </Route>
