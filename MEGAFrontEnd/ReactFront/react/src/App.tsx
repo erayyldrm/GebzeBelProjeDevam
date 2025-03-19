@@ -9,7 +9,9 @@ import SignUp from './components/SignUp/SignUp';
 import ContentArea from "./components/Slide/Slide.tsx";
 import Baskan from "./components/kurumsal/baskan.tsx";
 import BelediyeMeclisi from "./components/kurumsal/belediyemeclisi.tsx";
+import Tarihce from "./components/gebze/tarihce.tsx";
 import TEST from "./components/sablon/testsablon.tsx"
+import Sidebar from './components/SideBar/sidebar';
 
 const queryClient = new QueryClient();
 
@@ -38,8 +40,11 @@ const App: React.FC = () => {
                     element={
                         <>
                             <CoolNavbar />
-                            <Outlet /> {/* This is important! */}
+                            <Sidebar /><Outlet /> {/* This is important! */}
+
                             <Footer />
+
+
                         </>
                     }
                 >
@@ -47,6 +52,8 @@ const App: React.FC = () => {
                     <Route path="/" element={<ContentArea/>} />
                     <Route path="/kurumsal/baskan" element={<Baskan/>} />
                     <Route path="/kurumsal/belediyemeclisi" element={<BelediyeMeclisi/>}/>
+
+                    <Route path="/gebze/tarihce" element={<Tarihce/>}/>
                     <Route path="/test" element={<TEST/>}></Route>
 
                     {/* Add other routes that need navbar/footer here */}
