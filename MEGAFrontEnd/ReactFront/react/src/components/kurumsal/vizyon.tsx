@@ -2,40 +2,34 @@ import React from 'react';
 
 const BaskanPage: React.FC = () => {
     return (
-        <div id="pcoded" className="pcoded">
+        <div id="pcoded" className="pcoded" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
             <div className="pcoded-overlay-box"></div>
             <div className="pcoded-container navbar-wrapper">
-
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
-
                         <div className="pcoded-content">
-
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
                                     <div className="page-wrapper">
-                                        <div className="row">
-                                            <div className="col-lg-8 ms-auto">
-                                                <div className="card">
+                                        <div className="row d-flex justify-content-center">
+                                            <div className="col-lg-8">
+                                                <div className="card text-left">
                                                     <div className="card-block">
-                                                        <div style={{ textAlign: 'justify', fontSize: '20px' }}>
-                                                            <p style={{ fontSize: '20px' }}><strong>Vizyonumuz :</strong></p>
-                                                            <p style={{ fontSize: '20px' }}>Gebze'yi sadece bir yaşam alanı değil, aynı zamanda kültürü, tarihi ve modern dokusuyla yaşayan ve yaşatan bir kent haline getirmek; halkımızın ihtiyaçlarına duyarlı, sürdürülebilir ve yenilikçi belediyecilik anlayışıyla geleceğe taşımaktır.</p>
-
-                                                            <p style={{ fontSize: '20px' }}><strong>Misyonumuz :</strong></p>
-                                                            <p style={{ fontSize: '20px' }}>Gebze’de yaşam kalitesini yükseltmek amacıyla, halkımızın ihtiyaçlarına duyarlı, katılımcı ve yenilikçi bir anlayışla, yerel hizmetleri adil, etkin ve sürdürülebilir bir şekilde sunmak; kentin sosyal, kültürel ve ekonomik gelişimine katkı sağlayarak daha yaşanabilir bir Gebze inşa etmektir.</p>
-
-                                                            <p style={{ fontSize: '20px' }}><strong>İlkelerimiz :</strong></p>
-                                                            <ul style={{ listStyleType: 'disc', paddingLeft: '20px', fontSize: '20px' }}>
-                                                                <li>Belediye hizmetlerinde kalite, etkinlik ve verimlilik sağlamak görevimizdir.</li>
-                                                                <li>Belediye karar ve uygulamalarında şeffaflık ve hesap verebilirlik esastır.</li>
-                                                                <li>Belediye hizmetlerinde insan ve vatandaş odaklılık esastır.</li>
-                                                                <li>Gebze’yi katılımcı anlayışla yönetmek temel prensiptir.</li>
-                                                                <li>Belediye hizmetlerinin üretim ve sunumunda bilgi teknolojilerinden azami derecede yararlanmak esastır.</li>
-                                                                <li>Belediye karar ve uygulamalarında yasalara uymak zorunluluktur.</li>
-                                                                <li>Belediye hizmetlerinin ihtiyaçlara ve önceliklere göre adil dağıtımı esastır.</li>
-                                                                <li>Çalışanlarımızın memnuniyeti temel önceliklerimizdendir.</li>
-                                                            </ul>
+                                                        <h3 style={{ fontWeight: 'bold', textAlign:"center" }}>Vizyonumuz</h3>
+                                                        <br />
+                                                        <div>
+                                                            <p style={{ textAlign: 'justify', padding: '22px', fontSize: '16px', lineHeight: '2.0', fontWeight: 'bold' }}>
+                                                                Gebze'yi sadece bir yaşam alanı olarak değil, geçmişten gelen zengin kültürel mirasını koruyan,
+                                                                tarihi dokusunu yaşatan ve aynı zamanda modern şehircilik anlayışıyla geleceğe taşıyan örnek bir
+                                                                kent haline getirmek temel hedefimizdir. Bu doğrultuda, şehircilik anlayışımızı sürdürülebilirlik,
+                                                                çevreye duyarlılık, sosyal bütünleşme ve katılımcı yönetişim ilkeleri üzerine inşa ederek, her yaştan
+                                                                ve her kesimden vatandaşımızın yaşam kalitesini artırmayı amaçlıyoruz. Teknolojik altyapıyı güçlendirerek
+                                                                akıllı şehir uygulamalarını hayata geçirmek, yeşil alanları artırarak doğayla iç içe bir yaşam sunmak ve
+                                                                modern ulaşım ağlarıyla kent içi hareketliliği kolaylaştırmak en büyük önceliklerimiz arasındadır.
+                                                                Gebze’yi ekonomik, sosyal ve kültürel olarak daha yaşanabilir bir kent haline getirmek için yenilikçi
+                                                                belediyecilik anlayışıyla çalışmalarımızı sürdürerek, sadece bugünün değil, geleceğin de şehir modelini
+                                                                inşa etmeye devam edeceğiz.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>

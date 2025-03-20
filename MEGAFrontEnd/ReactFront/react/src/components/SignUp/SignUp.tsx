@@ -1,14 +1,15 @@
-import React, {useState} from "react";
-import {AnimatePresence, motion} from "framer-motion";
-import {TERipple} from "tw-elements-react";
+import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { TERipple } from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from "axios";
-import {useMutation} from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import ParticleBackground from "../backgroundAnim/particle.tsx";
 
 interface RegisterCredentials {
-    TCNo:string;
-    password:string;
+    TCNo: string;
+    password: string;
 }
 
 // Authentication Service
@@ -21,7 +22,7 @@ const authService = {
     }
 };
 
-const SignUP: React.FC = () =>{
+const SignUP: React.FC = () => {
     const [TCNo, setTCNo] = useState('');
     const [password, setPassword] = useState('');
     const [regismessage, setregisMessage] = useState<string | null>(null);
@@ -37,7 +38,7 @@ const SignUP: React.FC = () =>{
                 'Kaydolma başarısız. Backend açık mı?'
             );
         }
-    })
+    });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -52,14 +53,14 @@ const SignUP: React.FC = () =>{
     return (
         <AnimatePresence mode="wait">
             <motion.section
-                className="h-screen bg-[url('images/BackgroundForm.jpeg')] bg-cover bg-center flex items-center justify-center"
-
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -50 }}
                 transition={{ duration: 0.6 }}
+                className="relative flex items-center justify-center h-screen"
             >
-                <div className="w-full max-w-md">
+                <ParticleBackground />
+                <div className="w-full max-w-md z-10">
                     <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
                         <div className="g-0 flex flex-wrap flex-row-reverse">
                             <div className="w-full p-6">
@@ -82,7 +83,6 @@ const SignUP: React.FC = () =>{
                                     <div className="text-blue-500 text-center mb-4">
                                         {regismessage}
                                     </div>
-
                                 )}
                                 <form onSubmit={handleSubmit}>
                                     {["TC Kimlik No", "Parola"].map(
@@ -93,17 +93,17 @@ const SignUP: React.FC = () =>{
                                                     type={
                                                         placeholder === "Parola"
                                                             ? "password"
-                                                            : placeholder ==="TC Kimlik No"
-                                                            ? "number"
-                                                            : "text"
+                                                            : placeholder === "TC Kimlik No"
+                                                                ? "number"
+                                                                : "text"
                                                     }
                                                     onChange={
-                                                    placeholder === "Parola"
-                                                        ?(e) => setPassword(e.target.value)
-                                                        :placeholder ==="TC Kimlik No"
-                                                        ?(e)=>setTCNo(e.target.value)
-                                                        : undefined
-                                                }
+                                                        placeholder === "Parola"
+                                                            ? (e) => setPassword(e.target.value)
+                                                            : placeholder === "TC Kimlik No"
+                                                                ? (e) => setTCNo(e.target.value)
+                                                                : undefined
+                                                    }
                                                     required
                                                     className="w-full px-3 py-2 border-b border-gray-300 focus:outline-none focus:border-blue-500 transition-colors duration-300"
                                                 />
@@ -136,14 +136,14 @@ const SignUP: React.FC = () =>{
                                             Hesabınız Var mı?
                                         </p>
                                         <Link to="/login">
-                                        <button
-                                            type="button"
-                                            className="inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out"
-                                            style={{
-                                                background: "#9c8e45",
-                                            }}  >
-                                            Giriş Yap
-                                        </button>
+                                            <button
+                                                type="button"
+                                                className="inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out"
+                                                style={{
+                                                    background: "#9c8e45",
+                                                }}>
+                                                Giriş Yap
+                                            </button>
                                         </Link>
                                     </div>
                                 </form>

@@ -33,9 +33,22 @@ const kurumsal: DropdownItem[] = [
         path: '/kurumsal/baskan'// onClick yerine pathname kullanın
 
     },
-        {icon: <FiEye className="text-gray-800"/>, title: 'VİZYONUMUZ', description: 'Vizyonumuz hakkında bilgi'},
-        {icon: <FiTarget className="text-gray-800"/>, title: 'MİSYONUMUZ', description: 'Misyonumuz hakkında bilgi'},
-        {icon: <FiAward className="text-gray-800"/>, title: 'İLKELERİMİZ', description: 'İlkelerimiz hakkında bilgi'},
+        {icon: <FiEye className="text-gray-800"/>,
+            title: 'VİZYONUMUZ',
+            description: 'Vizyonumuz hakkında bilgi',
+            path: '/kurumsal/vizyon'
+
+        },
+        {icon: <FiTarget className="text-gray-800"/>,
+            title: 'MİSYONUMUZ',
+            description: 'Misyonumuz hakkında bilgi',
+            path: '/kurumsal/misyon'
+        },
+        {icon: <FiAward className="text-gray-800"/>,
+            title: 'İLKELERİMİZ',
+            description: 'İlkelerimiz hakkında bilgi',
+            path: 'kurumsal/ilkelerimiz'
+        },
         {
             icon: <FiUsers className="text-gray-800"/>,
             title: 'BELEDİYE MECLİSİ',
