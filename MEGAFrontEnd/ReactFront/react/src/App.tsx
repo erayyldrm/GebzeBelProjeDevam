@@ -14,6 +14,8 @@ import ManagementChart from "./components/kurumsal/yonetimsemasi.tsx";
 import BaskanPage from "./components/kurumsal/vizyon.tsx";
 import Misyon from "./components/kurumsal/misyon.tsx";
 import İlkelerimiz from "./components/kurumsal/ilkelerimiz.tsx";
+import Eskibaskanlar from "./components/kurumsal/eskibaskanlar.tsx";
+
 
 
 
@@ -60,6 +62,8 @@ const App: React.FC = () => {
                     <Route path="/kurumsal/ilkelerimiz" element={<İlkelerimiz/>}/>
                     <Route path="/test" element={<TEST/>}></Route>
                     <Route path="/kurumsal/yonetimseması" element={<ManagementChart/>}></Route>
+                    <Route path="/kurumsal/eskibaskanlar" element={<Eskibaskanlar />}></Route>
+
 
                     {/* Add other routes that need navbar/footer here */}
                 </Route>
