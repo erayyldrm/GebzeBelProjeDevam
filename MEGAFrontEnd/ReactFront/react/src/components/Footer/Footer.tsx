@@ -12,13 +12,13 @@ const Footer: React.FC = () => {
 
                 {/* About Section */}
                 <div className="px-4">
-                    <h3 className="text-xl font-bold mb-4">Hakkımızda</h3>
+                    <h3 className="text-xl font-bold mb-4 text-white">Hakkımızda</h3>
                     <p>Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime geçin.</p>
                 </div>
 
                 {/* Contact Section */}
                 <div className="px-4">
-                    <h3 className="text-xl font-bold mb-4">İletişim</h3>
+                    <h3 className="text-xl font-bold mb-4 text-white">İletişim</h3>
                     <ul className="list-unstyled">
                         <li className="d-flex align-items-center mb-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" className="bi bi-geo-fill" viewBox="0 0 16 16">
@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
 
                 {/* Social Media Section */}
                 <div className="px-4">
-                    <h3 className="text-xl font-bold mb-4">Sosyal Medya</h3>
+                    <h3 className="text-xl font-bold mb-4 text-white">Sosyal Medya</h3>
                     <ul className="d-flex gap-3 list-unstyled">
                         <li>
                             <a href="https://api.whatsapp.com/send?phone=902626420430" target="_blank" rel="noopener noreferrer" className="text-white">

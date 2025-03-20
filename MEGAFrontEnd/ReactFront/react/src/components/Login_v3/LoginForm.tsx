@@ -5,7 +5,7 @@ import {TERipple} from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
 import {Link} from 'react-router-dom';
 
-
+// ESKI------------------------------------------------------------------------------------------------
 // Login Credentials Interface
 interface LoginCredentials {
     username: string;
@@ -13,6 +13,7 @@ interface LoginCredentials {
 }
 
 
+// ESKI------------------------------------------------------------------------------------------------
 
 // Authentication Service
 const authService = {
