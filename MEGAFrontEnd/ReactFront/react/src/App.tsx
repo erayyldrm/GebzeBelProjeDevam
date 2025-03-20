@@ -12,6 +12,8 @@ import BelediyeMeclisi from "./components/kurumsal/belediyemeclisi.tsx";
 import TEST from "./components/sablon/testsablon.tsx"
 import ManagementChart from "./components/kurumsal/yonetimsemasi.tsx";
 
+
+
 const queryClient = new QueryClient();
 
 const App: React.FC = () => {

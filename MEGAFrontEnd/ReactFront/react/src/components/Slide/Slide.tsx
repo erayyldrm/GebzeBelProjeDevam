@@ -28,17 +28,26 @@ const DynamicSlider: React.FC = () => {
     return (
         <>
             {/* Page Title Section */}
-            <section
-                className="page-title"
-                style={{ backgroundImage: 'url(assets/images/background/bg-9.jpg)', marginTop: '0' }}
-            >
-                <div className="auto-container">
+            <section className="page-title relative h-[600px] overflow-hidden" style={{ marginTop: '0' }}>
+                {/* Arka Plan Videosu */}
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                >
+                    <source src="/movide_banner.mp4" type="video/mp4" />
+                    Tarayıcınız video etiketini desteklemiyor.
+                </video>
+
+                {/* İçerik */}
+                <div className="auto-container relative z-10 h-full flex items-center justify-center">
                     <div className="content-box">
-                        <div className="content-wrapper">
+                        <div className="content-wrapper text-center">
                             <div className="title">
-                                <h1>Business & Taxation</h1>
+                                <h1 className="text-white text-6xl font-bold opacity-50">Gebze Belediyesi</h1>
                             </div>
-                            <ul className="bread-crumb">
+                            <ul className="bread-crumb text-white mt-4">
                                 <li><a href="http://localhost:5173/">Home</a></li>
                                 <li>our Departments</li>
                                 <li>Business & Taxation</li>
