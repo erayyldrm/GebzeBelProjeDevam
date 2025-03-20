@@ -260,7 +260,6 @@ const handleNavigation = (path: string) => {
     };
 
     // Render dropdown menu items
-    // Render dropdown menu items
     const renderDropdownItems = (items: DropdownItem[]) => {
         return (
             <>
@@ -272,7 +271,7 @@ const handleNavigation = (path: string) => {
                 <div
                     id={'zawardo'}
                     className="fixed left-0 right-0 top-0
-                    bg-white rounded-md shadow-lg z-50 py-2 grid grid-cols-4 gap-2
+                    bg-white rounded-md shadow-lg z-30 py-2 grid grid-cols-4 gap-2
                     max-w-[90%] w-full mx-auto"
                     style={{
                         top: scrollPosition > 100 ? '-1000px' : '50px', // Using pixels for more precise control
@@ -304,7 +303,7 @@ const handleNavigation = (path: string) => {
     };
 
     return (
-        <nav className="bg-blue-300 border-b border-gray-200">
+        <nav className="bg-blue-300 border-b border-gray-200 z-[100] relative">
             <div className="max-w-full mx-auto px-4">
                 <div className="flex justify-between h-30">
                     {/* Logo and mobile menu button */}
