@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css"; // Ensure you include Swiper styles
 
@@ -26,61 +26,85 @@ const DynamicSlider: React.FC = () => {
     }, []);
 
     return (
-        <div className="flex-grow ml-5">
-            <div className="container mx-auto px-4 py-5">
-                <div className="w-full max-w-[800px] mx-auto p-5 bg-white rounded-lg shadow-lg mb-10">
-                    {/* Slider Section */}
-                    <div className="swiper-container overflow-hidden relative">
-                        <div className="swiper-wrapper">
-                            {images.map((image, index) => (
-                                <div className="swiper-slide relative" key={index}>
-                                    <img
-                                        src={image}
-                                        alt={`Slider ${index + 1}`}
-                                        className="w-full h-auto object-cover rounded-lg"
-                                    />
-                                    <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3 text-center">
-                                        Başlık {index + 1}
-                                    </div>
-                                </div>
-                            ))}
+        <>
+            {/* Page Title Section */}
+            <section
+                className="page-title"
+                style={{ backgroundImage: 'url(assets/images/background/bg-9.jpg)', marginTop: '0' }}
+            >
+                <div className="auto-container">
+                    <div className="content-box">
+                        <div className="content-wrapper">
+                            <div className="title">
+                                <h1>Business & Taxation</h1>
+                            </div>
+                            <ul className="bread-crumb">
+                                <li><a href="http://localhost:5173/">Home</a></li>
+                                <li>our Departments</li>
+                                <li>Business & Taxation</li>
+                            </ul>
                         </div>
-                        {/* Pagination */}
-                        <div className="swiper-pagination absolute bottom-4 w-full text-center" />
                     </div>
                 </div>
+            </section>
 
-                {/* Main Content with Responsive Columns */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    {/* Left Sidebar Column */}
-                    <div className="col-span-1 bg-[#064169] p-5 rounded-lg text-white">
-                        <h3 className="text-xl mb-4">Hakkımızda</h3>
-                        <p>
-                            Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime
-                            geçin.
-                        </p>
+            {/* Main Content Section */}
+            <div className="flex-grow ml-5" style={{ marginTop: '0' }}>
+                <div className="container mx-auto px-4 py-5">
+                    <div className="w-full max-w-[800px] mx-auto p-5 bg-white rounded-lg shadow-lg mb-10">
+                        {/* Slider Section */}
+                        <div className="swiper-container overflow-hidden relative">
+                            <div className="swiper-wrapper">
+                                {images.map((image, index) => (
+                                    <div className="swiper-slide relative" key={index}>
+                                        <img
+                                            src={image}
+                                            alt={`Slider ${index + 1}`}
+                                            className="w-full h-auto object-cover rounded-lg"
+                                        />
+                                        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3 text-center">
+                                            Başlık {index + 1}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            {/* Pagination */}
+                            <div className="swiper-pagination absolute bottom-4 w-full text-center" />
+                        </div>
                     </div>
-                    {/* 3 Other Columns */}
-                    <div className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        {/* Column 1 */}
-                        <div className="bg-white p-5 rounded-lg shadow-lg">
-                            <h3 className="text-xl mb-4">Column 1</h3>
-                            <p>İçerik 1</p>
+
+                    {/* Main Content with Responsive Columns */}
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        {/* Left Sidebar Column */}
+                        <div className="col-span-1 bg-[#064169] p-5 rounded-lg text-white">
+                            <h3 className="text-xl mb-4">Hakkımızda</h3>
+                            <p>
+                                Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime
+                                geçin.
+                            </p>
                         </div>
-                        {/* Column 2 */}
-                        <div className="bg-white p-5 rounded-lg shadow-lg">
-                            <h3 className="text-xl mb-4">Column 2</h3>
-                            <p>İçerik 2</p>
-                        </div>
-                        {/* Column 3 */}
-                        <div className="bg-white p-5 rounded-lg shadow-lg">
-                            <h3 className="text-xl mb-4">Column 3</h3>
-                            <p>İçerik 3</p>
+                        {/* 3 Other Columns */}
+                        <div className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                            {/* Column 1 */}
+                            <div className="bg-white p-5 rounded-lg shadow-lg">
+                                <h3 className="text-xl mb-4">Column 1</h3>
+                                <p>İçerik 1</p>
+                            </div>
+                            {/* Column 2 */}
+                            <div className="bg-white p-5 rounded-lg shadow-lg">
+                                <h3 className="text-xl mb-4">Column 2</h3>
+                                <p>İçerik 2</p>
+                            </div>
+                            {/* Column 3 */}
+                            <div className="bg-white p-5 rounded-lg shadow-lg">
+                                <h3 className="text-xl mb-4">Column 3</h3>
+                                <p>İçerik 3</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
