@@ -17,7 +17,7 @@ import {
 
 export const gebze: DropdownItem[] = [
     {
-        icon: <FiBookOpen className="text-gray-800"/>,
+        icon: <FiBookOpen className="text-gray-800" size={24}/>,
         title: 'TARİHÇE',
         description: 'Gebze Tarihçesi hakkında bilgi'
     },
@@ -48,90 +48,90 @@ export const gebze: DropdownItem[] = [
 export const kurumsal: DropdownItem[] = [
 
     {
-        icon: <FiUsers className="text-gray-800"/>,
+        icon: <FiUsers className="text-gray-800" size={20}/>,
         title: 'BAŞKAN',
         description: 'Başkan hakkında bilgi',
         path: '/kurumsal/baskan'// onClick yerine pathname kullanın
 
     },
     {
-        icon: <FiEye className="text-gray-800"/>,
+        icon: <FiEye className="text-gray-800" size={20}/>,
         title: 'VİZYONUMUZ',
         description: 'Vizyonumuz hakkında bilgi',
         path: '/kurumsal/vizyon'
 
     },
     {
-        icon: <FiTarget className="text-gray-800"/>,
+        icon: <FiTarget className="text-gray-800" size={20}/>,
         title: 'MİSYONUMUZ',
         description: 'Misyonumuz hakkında bilgi',
         path: '/kurumsal/misyon'
     },
     {
-        icon: <FiAward className="text-gray-800"/>,
+        icon: <FiAward className="text-gray-800" size={20}/>,
         title: 'İLKELERİMİZ',
         description: 'İlkelerimiz hakkında bilgi',
         path: 'kurumsal/ilkelerimiz'
     },
     {
-        icon: <FiUsers className="text-gray-800"/>,
+        icon: <FiUsers className="text-gray-800" size={20}/>,
         title: 'BELEDİYE MECLİSİ',
         description: 'Belediye Meclisi hakkında bilgi',
         path: '/kurumsal/belediyemeclisi'
     },
     {
-        icon: <FiLayout className="text-gray-800"/>,
+        icon: <FiLayout className="text-gray-800" size={20}/>,
         title: 'YÖNETİM ŞEMASI',
         description: 'Yönetim Şeması hakkında bilgi',
         path: '/kurumsal/yonetimseması'
     },
     {
-        icon: <FiUsers className="text-gray-800"/>,
+        icon: <FiUsers className="text-gray-800" size={20}/>,
         title: 'BAŞKAN YARDIMCILARI',
         description: 'Başkan Yardımcıları hakkında bilgi'
     },
     {
-        icon: <FiUser className="text-gray-800"/>,
+        icon: <FiUser className="text-gray-800" size={20}/>,
         title: 'BAŞKAN DANIŞMANLARI',
         description: 'Başkan Danışmanları hakkında bilgi'
     },
     {
-        icon: <FiFileText className="text-gray-800"/>,
+        icon: <FiFileText className="text-gray-800" size={20}/>,
         title: 'MÜDÜRLÜKLER',
         description: 'Müdürlükler hakkında bilgi'
     },
     {
-        icon: <FiUsers className="text-gray-800"/>,
+        icon: <FiUsers className="text-gray-800" size={20}/>,
         title: 'ESKİ BAŞKANLAR',
         description: 'Eski Başkanlar hakkında bilgi'
     },
     {
-        icon: <FiUserCheck className="text-gray-800"/>,
+        icon: <FiUserCheck className="text-gray-800" size={20}/>,
         title: 'ARABULUCULUK KOMİSYONU',
         description: 'Arabuluculuk Komisyonu hakkında bilgi'
     },
     {
-        icon: <FiUserCheck className="text-gray-800"/>,
+        icon: <FiUserCheck className="text-gray-800" size={20}/>,
         title: 'ETİK KOMİSYONU',
         description: 'Etik Komisyonu hakkında bilgi'
     },
     {
-        icon: <FiClipboard className="text-gray-800"/>,
+        icon: <FiClipboard className="text-gray-800" size={20}/>,
         title: 'MECLİS KARALARI',
         description: 'Meclis Kararları hakkında bilgi'
     },
     {
-        icon: <FiFileText className="text-gray-800"/>,
+        icon: <FiFileText className="text-gray-800" size={20}/>,
         title: 'KURUMSAL KİMLİK',
         description: 'Kurumsal Kimlik hakkında bilgi'
     },
     {
-        icon: <FiFileText className="text-gray-800"/>,
+        icon: <FiFileText className="text-gray-800" size={20}/>,
         title: 'KURUMSAL RAPORLAR',
         description: 'Kurumsal Raporlar hakkında bilgi'
     },
     {
-        icon: <FiFileText className="text-gray-800"/>,
+        icon: <FiFileText className="text-gray-800" size={20}/>,
         title: 'KURUMSAL DÖKÜMANLAR',
         description: 'Kurumsal Dökümanlar hakkında bilgi'
     },

@@ -1,4 +1,6 @@
 import React from 'react';
+import Sidebar from "../SideBar/sidebar.tsx";
+import {kurumsal} from "../_SayfaBilgileri/Sayfalar.tsx";
 
 const BaskanPage: React.FC = () => {
     return (
@@ -12,6 +14,8 @@ const BaskanPage: React.FC = () => {
                                 <div className="main-body">
                                     <div className="page-wrapper">
                                         <div className="row d-flex justify-content-center">
+                                            <Sidebar items={kurumsal} title={"Gebze"} />
+
                                             <div className="col-lg-8">
                                                 <div className="card text-left">
                                                     <div className="card-block">

@@ -102,7 +102,7 @@ const Layout: React.FC = () => {
                         </div>
                         <div className="col-lg-4">
                             <aside className="sidebar sidebar-style-two">
-                                    <Sidebar items={gebze} />
+                                    <Sidebar items={kurumsal} title={"Gebze"} />
 
 
                                 <div className="widget contact-widget-two" style={{ backgroundImage: 'url(assets/images/resource/image-51.jpg)' }}>
