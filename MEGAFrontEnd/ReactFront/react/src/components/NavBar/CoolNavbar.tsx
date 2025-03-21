@@ -84,7 +84,7 @@ const handleNavigation = (path: string) => {
     };
 
     return (
-        <nav className="bg-blue-300 border-b border-gray-200 z-[100] relative">
+        <nav className="bg-[#fff] border-b border-gray-200 z-[100] relative">
             <div className="max-w-full mx-auto px-4">
                 <div className="flex justify-between h-30">
                     {/* Logo and mobile menu button */}
@@ -124,7 +124,7 @@ const handleNavigation = (path: string) => {
                             {/* Kurumsal Dropdown */}
                             <div className="relative flex justify-center">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
+                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-black"
                                     onClick={() => toggleDropdown('kurumsal')}
                                 >
                                     Kurumsal
@@ -136,7 +136,7 @@ const handleNavigation = (path: string) => {
                             {/* Gebze link */}
                             <div className="relative flex justify-center">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
+                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-black"
                                     onClick={() => toggleDropdown('gebze')}
                                 >
                                     Gebze
@@ -148,7 +148,7 @@ const handleNavigation = (path: string) => {
                             {/* Hizmetler Dropdown */}
                             <div className="relative flex justify-center">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
+                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-black"
                                     onClick={() => toggleDropdown('hizmetler')}
                                 >
                                     Kaynaklar
@@ -160,7 +160,7 @@ const handleNavigation = (path: string) => {
                             {/* E-Belediye link */}
                             <div className="relative flex justify-center">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
+                                    className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-black"
                                     onClick={() => toggleDropdown('eBelediye')}
                                 >
                                     eBelediye
@@ -170,13 +170,13 @@ const handleNavigation = (path: string) => {
                             </div>
 
                             {/* Other links */}
-                            <a href="/etkinlikler" className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900">
+                            <a href="/etkinlikler" className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-black">
                                 Etkinlikler
                             </a>
-                            <a href="#" className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900">
+                            <a href="#" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-black">
                                 Haberler
                             </a>
-                            <a href="#" className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900">
+                            <a href="#" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-black">
                                 İletişim
                             </a>
                         </div>
@@ -191,7 +191,7 @@ const handleNavigation = (path: string) => {
                         {/* Kurumsal Dropdown */}
                         <div className="w-full">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-100"
                                 onClick={() => toggleDropdown('kurumsal-mobile')}
                             >
                                 Kurumsal
@@ -220,7 +220,7 @@ const handleNavigation = (path: string) => {
                         {/* Gebze Dropdown */}
                         <div className="w-full">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-100"
                                 onClick={() => toggleDropdown('gebze-mobile')}
                             >
                                 Gebze
@@ -249,7 +249,7 @@ const handleNavigation = (path: string) => {
                         {/* Kaynaklar Dropdown */}
                         <div className="w-full">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-100"
                                 onClick={() => toggleDropdown('hizmetler-mobile')}
                             >
                                 Kaynaklar
@@ -278,7 +278,7 @@ const handleNavigation = (path: string) => {
                         {/* eBelediye Dropdown */}
                         <div className="w-full">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-100"
                                 onClick={() => toggleDropdown('eBelediye-mobile')}
                             >
                                 eBelediye
@@ -305,13 +305,13 @@ const handleNavigation = (path: string) => {
                         </div>
 
                         {/* Other links */}
-                        <a href="#" className="block py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100">
+                        <a href="#" className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-100">
                             Etkinlikler
                         </a>
-                        <a href="#" className="block py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100">
+                        <a href="#" className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-100">
                             Haberler
                         </a>
-                        <a href="#" className="block py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100">
+                        <a href="#" className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-100">
                             İletişim
                         </a>
 
