@@ -84,16 +84,16 @@ const handleNavigation = (path: string) => {
     };
 
     return (
-        <nav className="bg-[#bfd3f0] border-b border-gray-200 z-[100] relative">
+        <nav className="bg-[#022842] border-b border-gray-200 z-[100] relative">
             <div className="max-w-full mx-auto px-4">
-                <div className="flex justify-between h-30">
+                <div className="flex justify-between h-35">
                     {/* Logo and mobile menu button */}
                     <div className="flex justify-between w-full md:w-auto">
                         {/* Logo */}
                         <div className="flex-shrink-0 flex items-center md:invisible lg:visible">
                             <a href="http://localhost:5173">
                                 <img
-                                    src={"/images/logoyatay.png"}
+                                    src={"/2logoyatay.png"}
                                     id={"logo"}
                                     alt="Gebze Belediyesi"
                                     className="cursor-pointer h-10"
@@ -124,7 +124,7 @@ const handleNavigation = (path: string) => {
                             {/* Kurumsal Dropdown */}
                             <div className="relative flex justify-center">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-black"
+                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
                                     onClick={() => toggleDropdown('kurumsal')}
                                 >
                                     Kurumsal
@@ -136,7 +136,7 @@ const handleNavigation = (path: string) => {
                             {/* Gebze link */}
                             <div className="relative flex justify-center">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-black"
+                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
                                     onClick={() => toggleDropdown('gebze')}
                                 >
                                     Gebze
@@ -148,7 +148,7 @@ const handleNavigation = (path: string) => {
                             {/* Hizmetler Dropdown */}
                             <div className="relative flex justify-center">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-black"
+                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
                                     onClick={() => toggleDropdown('hizmetler')}
                                 >
                                     Kaynaklar
@@ -160,7 +160,7 @@ const handleNavigation = (path: string) => {
                             {/* E-Belediye link */}
                             <div className="relative flex justify-center">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-black"
+                                    className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white"
                                     onClick={() => toggleDropdown('eBelediye')}
                                 >
                                     eBelediye
@@ -170,13 +170,13 @@ const handleNavigation = (path: string) => {
                             </div>
 
                             {/* Other links */}
-                            <a href="/etkinlikler" className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-black">
+                            <a href="/etkinlikler" className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white">
                                 Etkinlikler
                             </a>
-                            <a href="#" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-black">
+                            <a href="#" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white">
                                 Haberler
                             </a>
-                            <a href="#" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-black">
+                            <a href="#" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white">
                                 İletişim
                             </a>
                         </div>
