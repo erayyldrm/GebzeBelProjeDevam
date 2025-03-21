@@ -1,4 +1,6 @@
 import React from 'react';
+import Sidebar from "../SideBar/sidebar.tsx";
+import {kurumsal} from "../_SayfaBilgileri/Sayfalar.tsx";
 
 const BaskanPage: React.FC = () => {
     return (
@@ -14,8 +16,12 @@ const BaskanPage: React.FC = () => {
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
                                     <div className="page-wrapper">
+
                                         <div className="row">
+
                                             <div className="col-lg-8 ms-auto">
+                                                <Sidebar items={kurumsal} title={"Gebze"} />
+
                                                 <div className="card">
                                                     <div className="card-block">
                                                         <img src="/images/kurumsal/baskansayfasi.jpg" style={{ width: '100%', height: '100%' }} alt="Zinnur Büyükgöz" className="baskan-resim" /><br />

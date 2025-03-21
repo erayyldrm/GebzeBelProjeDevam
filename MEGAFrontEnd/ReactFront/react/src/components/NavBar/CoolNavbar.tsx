@@ -1,219 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {
-    FiActivity,
-    FiAward, FiBook, FiBookOpen, FiCamera,
-    FiChevronDown,
-    FiCoffee,
-    FiChevronUp,
-    FiClipboard,
-    FiEye, FiGlobe, FiHeart, FiHome,
-    FiLayout, FiMap, FiMapPin, FiRefreshCw,
-    FiTarget,
-    FiTool,
-    FiUser,
-    FiUserCheck, FiDollarSign, FiEdit, FiPhone, FiInfo, FiX, FiMenu
-} from 'react-icons/fi';
-import {
-    FiUsers,
-    FiCreditCard,
-    FiFileText
-} from 'react-icons/fi';
+import {useEffect, useState} from 'react';
+import {kurumsal,gebze,hizmetler,eBelediye} from '../_SayfaBilgileri/Sayfalar.tsx';
+
 import './NavBar.css';
 import { useNavigate } from 'react-router-dom';
-
+import {DropdownItem} from '../_SayfaBilgileri/types.tsx';
+import {FiChevronDown, FiChevronUp, FiMenu, FiX } from 'react-icons/fi';
 
 const Navbar = () => {
-    // Dropdown content grouped by category
-const kurumsal: DropdownItem[] = [
 
-    {
-        icon: <FiUsers className="text-gray-800"/>,
-        title: 'BAŞKAN',
-        description: 'Başkan hakkında bilgi',
-        path: '/kurumsal/baskan'// onClick yerine pathname kullanın
-
-    },
-        {icon: <FiEye className="text-gray-800"/>, title: 'VİZYONUMUZ', description: 'Vizyonumuz hakkında bilgi'},
-        {icon: <FiTarget className="text-gray-800"/>, title: 'MİSYONUMUZ', description: 'Misyonumuz hakkında bilgi'},
-        {icon: <FiAward className="text-gray-800"/>, title: 'İLKELERİMİZ', description: 'İlkelerimiz hakkında bilgi'},
-        {
-            icon: <FiUsers className="text-gray-800"/>,
-            title: 'BELEDİYE MECLİSİ',
-            description: 'Belediye Meclisi hakkında bilgi',
-            path:'/kurumsal/belediyemeclisi'
-        },
-        {
-            icon: <FiLayout className="text-gray-800"/>,
-            title: 'YÖNETİM ŞEMASI',
-            description: 'Yönetim Şeması hakkında bilgi',
-            path:'/kurumsal/yonetimseması'
-        },
-        {
-            icon: <FiUsers className="text-gray-800"/>,
-            title: 'BAŞKAN YARDIMCILARI',
-            description: 'Başkan Yardımcıları hakkında bilgi'
-        },
-        {
-            icon: <FiUser className="text-gray-800"/>,
-            title: 'BAŞKAN DANIŞMANLARI',
-            description: 'Başkan Danışmanları hakkında bilgi'
-        },
-        {
-            icon: <FiFileText className="text-gray-800"/>,
-            title: 'MÜDÜRLÜKLER',
-            description: 'Müdürlükler hakkında bilgi'
-        },
-        {
-            icon: <FiUsers className="text-gray-800"/>,
-            title: 'ESKİ BAŞKANLAR',
-            description: 'Eski Başkanlar hakkında bilgi'
-        },
-        {
-            icon: <FiUserCheck className="text-gray-800"/>,
-            title: 'ARABULUCULUK KOMİSYONU',
-            description: 'Arabuluculuk Komisyonu hakkında bilgi'
-        },
-        {
-            icon: <FiUserCheck className="text-gray-800"/>,
-            title: 'ETİK KOMİSYONU',
-            description: 'Etik Komisyonu hakkında bilgi'
-        },
-        {
-            icon: <FiClipboard className="text-gray-800"/>,
-            title: 'MECLİS KARALARI',
-            description: 'Meclis Kararları hakkında bilgi'
-        },
-        {
-            icon: <FiFileText className="text-gray-800"/>,
-            title: 'KURUMSAL KİMLİK',
-            description: 'Kurumsal Kimlik hakkında bilgi'
-        },
-        {
-            icon: <FiFileText className="text-gray-800"/>,
-            title: 'KURUMSAL RAPORLAR',
-            description: 'Kurumsal Raporlar hakkında bilgi'
-        },
-        {
-            icon: <FiFileText className="text-gray-800"/>,
-            title: 'KURUMSAL DÖKÜMANLAR',
-            description: 'Kurumsal Dökümanlar hakkında bilgi'
-        },
-    ];
-    const gebze: DropdownItem[] = [
-        {
-            icon: <FiBookOpen className="text-gray-800"/>,
-            title: 'TARİHÇE',
-            description: 'Gebze Tarihçesi hakkında bilgi'
-        },
-        {icon: <FiMap className="text-gray-800"/>, title: 'BUGÜNKÜ GEBZE', description: 'Bugünkü Gebze hakkında bilgi'},
-        {
-            icon: <FiMapPin className="text-gray-800"/>,
-            title: 'MAHALLE MUHTARLARI',
-            description: 'Mahalle Muhtarları hakkında bilgi'
-        },
-        {icon: <FiMap className="text-gray-800"/>, title: 'TARİHİ YERLER', description: 'Tarihi Yerler hakkında bilgi'},
-        {
-            icon: <FiCamera className="text-gray-800"/>,
-            title: 'FOTOĞRAFLARLA GEBZE',
-            description: 'Gebze Fotoğrafları hakkında bilgi'
-        },
-        {
-            icon: <FiGlobe className="text-gray-800"/>,
-            title: 'KARDEŞ ŞEHİRLER',
-            description: 'Kardeş Şehirler hakkında bilgi'
-        },
-        {
-            icon: <FiUsers className="text-gray-800"/>,
-            title: 'ÜYE OLDUĞUMUZ BİRLİKLER',
-            description: 'Üye Olduğumuz Birlikler hakkında bilgi'
-        },
-        {icon: <FiMap className="text-gray-800"/>, title: '360 SANAL TUR', description: 'Gebze 360 Sanal Tur'},
-    ];
-
-
-    const hizmetler: DropdownItem[] = [
-        {
-            icon: <FiTool className="text-gray-800"/>,
-            title: 'ATÖLYELER',
-            description: 'Atölye çalışmaları hakkında bilgi'
-        },
-        {
-            icon: <FiHome className="text-gray-800"/>,
-            title: 'BEBEK VE ÇOCUK BAKIM EVİ',
-            description: 'Bebek ve çocuk bakımı hakkında bilgi'
-        },
-        {
-            icon: <FiBook className="text-gray-800"/>,
-            title: 'EĞİTİMLER',
-            description: 'Eğitim programları hakkında bilgi'
-        },
-        {
-            icon: <FiHeart className="text-gray-800"/>,
-            title: 'EVLENDİRME',
-            description: 'Evlendirme işlemleri hakkında bilgi'
-        },
-        {
-            icon: <FiRefreshCw className="text-gray-800"/>,
-            title: 'GERİ DÖNÜŞÜM',
-            description: 'Geri dönüşüm hizmetleri hakkında bilgi'
-        },
-        {
-            icon: <FiActivity className="text-gray-800"/>,
-            title: 'GÜREŞ',
-            description: 'Güreş etkinlikleri hakkında bilgi'
-        },
-        {
-            icon: <FiBookOpen className="text-gray-800"/>,
-            title: 'KÜTÜPHANE',
-            description: 'Kütüphane hizmetleri hakkında bilgi'
-        },
-        {icon: <FiMapPin className="text-gray-800"/>, title: 'MERKEZLER', description: 'Merkezler hakkında bilgi'},
-        {
-            icon: <FiCoffee className="text-gray-800"/>,
-            title: 'MESİRE ALANI',
-            description: 'Mesire alanları hakkında bilgi'
-        },
-    ];
-
-
-    const eBelediye: DropdownItem[] = [
-        {
-            icon: <FiDollarSign className="text-gray-800"/>,
-            title: 'VERGİ İŞLEMLERİ',
-            description: 'Vergi işlemleri hakkında bilgi'
-        },
-        {
-            icon: <FiCreditCard className="text-gray-800"/>,
-            title: 'VERGİ & BORÇ ÖDEME',
-            description: 'Vergi ve borç ödeme işlemleri'
-        },
-        {icon: <FiEdit className="text-gray-800"/>, title: 'E-BEYAN', description: 'E-Beyan işlemleri'},
-        {
-            icon: <FiClipboard className="text-gray-800"/>,
-            title: 'E-BEYAN BİLDİRİM TAKİP',
-            description: 'E-Beyan bildirim takip işlemleri'
-        },
-        {
-            icon: <FiPhone className="text-gray-800"/>,
-            title: 'GEBZE İLETİŞİM MERKEZİ',
-            description: 'Gebze iletişim merkezi hakkında bilgi'
-        },
-        {icon: <FiFileText className="text-gray-800"/>, title: 'BAŞVURU FORMU', description: 'Başvuru formu işlemleri'},
-        {icon: <FiFileText className="text-gray-800"/>, title: 'BAŞVURU TAKİP', description: 'Başvuru takip işlemleri'},
-        {
-            icon: <FiInfo className="text-gray-800"/>,
-            title: 'BİLGİ EDİNME (CİMER)',
-            description: 'Bilgi edinme işlemleri (CİMER)'
-        },
-    ];
-// Define types for dropdown items
-interface DropdownItem {
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-    isEN?: boolean;
-    path?: string; // Tıklama fonksiyonu için opsiyonel prop ekleyin
-}
 const navigate = useNavigate();
 const handleNavigation = (path: string) => {
         navigate(path);
@@ -247,7 +41,6 @@ const handleNavigation = (path: string) => {
     };
 
     // Render dropdown menu items
-    // Render dropdown menu items
     const renderDropdownItems = (items: DropdownItem[]) => {
         return (
             <>
@@ -259,7 +52,7 @@ const handleNavigation = (path: string) => {
                 <div
                     id={'zawardo'}
                     className="fixed left-0 right-0 top-0
-                    bg-white rounded-md shadow-lg z-50 py-2 grid grid-cols-4 gap-2
+                    bg-white rounded-md shadow-lg z-30 py-2 grid grid-cols-4 gap-2
                     max-w-[90%] w-full mx-auto"
                     style={{
                         top: scrollPosition > 100 ? '-1000px' : '50px', // Using pixels for more precise control
@@ -291,16 +84,16 @@ const handleNavigation = (path: string) => {
     };
 
     return (
-        <nav className="bg-blue-300 border-b border-gray-200">
+        <nav className="bg-[#022842] border-b border-gray-200 z-[100] relative">
             <div className="max-w-full mx-auto px-4">
-                <div className="flex justify-between h-30">
+                <div className="flex justify-between h-35">
                     {/* Logo and mobile menu button */}
                     <div className="flex justify-between w-full md:w-auto">
                         {/* Logo */}
                         <div className="flex-shrink-0 flex items-center md:invisible lg:visible">
                             <a href="http://localhost:5173">
                                 <img
-                                    src={"/images/logoyatay.png"}
+                                    src={"/2logoyatay.png"}
                                     id={"logo"}
                                     alt="Gebze Belediyesi"
                                     className="cursor-pointer h-10"
@@ -331,7 +124,7 @@ const handleNavigation = (path: string) => {
                             {/* Kurumsal Dropdown */}
                             <div className="relative flex justify-center">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
+                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
                                     onClick={() => toggleDropdown('kurumsal')}
                                 >
                                     Kurumsal
@@ -343,7 +136,7 @@ const handleNavigation = (path: string) => {
                             {/* Gebze link */}
                             <div className="relative flex justify-center">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
+                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
                                     onClick={() => toggleDropdown('gebze')}
                                 >
                                     Gebze
@@ -355,7 +148,7 @@ const handleNavigation = (path: string) => {
                             {/* Hizmetler Dropdown */}
                             <div className="relative flex justify-center">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
+                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
                                     onClick={() => toggleDropdown('hizmetler')}
                                 >
                                     Kaynaklar
@@ -367,7 +160,7 @@ const handleNavigation = (path: string) => {
                             {/* E-Belediye link */}
                             <div className="relative flex justify-center">
                                 <button
-                                    className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900"
+                                    className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white"
                                     onClick={() => toggleDropdown('eBelediye')}
                                 >
                                     eBelediye
@@ -377,13 +170,13 @@ const handleNavigation = (path: string) => {
                             </div>
 
                             {/* Other links */}
-                            <a href="#" className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900">
+                            <a href="/etkinlikler" className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white">
                                 Etkinlikler
                             </a>
-                            <a href="#" className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900">
+                            <a href="#" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white">
                                 Haberler
                             </a>
-                            <a href="#" className="inline-flex items-center px-1 pt-1 text-m font-medium text-gray-900">
+                            <a href="#" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white">
                                 İletişim
                             </a>
                         </div>
@@ -398,7 +191,7 @@ const handleNavigation = (path: string) => {
                         {/* Kurumsal Dropdown */}
                         <div className="w-full">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-100"
                                 onClick={() => toggleDropdown('kurumsal-mobile')}
                             >
                                 Kurumsal
@@ -427,7 +220,7 @@ const handleNavigation = (path: string) => {
                         {/* Gebze Dropdown */}
                         <div className="w-full">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-100"
                                 onClick={() => toggleDropdown('gebze-mobile')}
                             >
                                 Gebze
@@ -456,7 +249,7 @@ const handleNavigation = (path: string) => {
                         {/* Kaynaklar Dropdown */}
                         <div className="w-full">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-100"
                                 onClick={() => toggleDropdown('hizmetler-mobile')}
                             >
                                 Kaynaklar
@@ -485,7 +278,7 @@ const handleNavigation = (path: string) => {
                         {/* eBelediye Dropdown */}
                         <div className="w-full">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100"
+                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-100"
                                 onClick={() => toggleDropdown('eBelediye-mobile')}
                             >
                                 eBelediye
@@ -512,13 +305,13 @@ const handleNavigation = (path: string) => {
                         </div>
 
                         {/* Other links */}
-                        <a href="#" className="block py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100">
+                        <a href="#" className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-100">
                             Etkinlikler
                         </a>
-                        <a href="#" className="block py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100">
+                        <a href="#" className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-100">
                             Haberler
                         </a>
-                        <a href="#" className="block py-2 px-4 text-base font-medium text-gray-900 hover:bg-gray-100">
+                        <a href="#" className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-100">
                             İletişim
                         </a>
 

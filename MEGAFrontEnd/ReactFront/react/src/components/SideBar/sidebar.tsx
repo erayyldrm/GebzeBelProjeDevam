@@ -1,31 +1,50 @@
 import React from 'react';
+import { DropdownItem } from '../_SayfaBilgileri/types.tsx';
+import { Link, useLocation } from 'react-router-dom';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+    items: DropdownItem[];
+    title?: string;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
+    const location = useLocation();
+
     return (
-        <aside className="sidebar sidebar-style-two" style={{ width: '400px', padding: '10px' }}>
-            <div className="widget widget_categories">
-                <h3 className="widget-title" style={{ fontSize: '16px' }}>KURUMSAL</h3>
-                <div className="widget-content">
-                    <ul className="categories-list" style={{ fontSize: '14px' }}>
-                        <li className="current"><a href="business-taxation.html"><i className="icon-line-chart"></i>Başkan</a></li>
-                        <li><a href="law-justice.html"><i className="icon-shield"></i>Vizyonumuz / Misyonumuz / İlkelerimiz</a></li>
-                        <li><a href="government-election.html"><i className="icon-election"></i>Belediye Meclisi</a></li>
-                        <li><a href="pets-area.html"><i className="icon-pets"></i>Başkan Yardımcıları</a></li>
-                        <li><a href="employment-jo.html"><i className="icon-suitcase"></i>Başkan Danışmanları</a></li>
-                        <li><a href="real-estate-building.html"><i className="icon-building"></i>Müdürlükler</a></li>
-                        <li><a href="sideways.html"><i className="icon-building"></i>Eski Başkanlar</a></li>
-                        <li><a href="sideways.html"><i className="icon-building"></i>Arabuluculuk Komisyonları</a></li>
-                        <li><a href="sideways.html"><i className="icon-building"></i>Etik Komisyonu</a></li>
-                        <li><a href="sideways.html"><i className="icon-parking"></i>Meclis Kararları</a></li>
-                        <li><a href="sideways.html"><i className="icon-parking"></i>Kurumsal Kimlik</a></li>
-                        <li><a href="sideways.html"><i className="icon-parking"></i>Kurumsal Raporlar</a></li>
-                        <li><a href="sideways.html"><i className="icon-parking"></i>Kurumsal Dökümanalr</a></li>
-                    </ul>
-                </div>
+        <div className="w-64 bg-white shadow-md rounded-lg">
+            {/* Sidebar Title */}
+            <div className="p-5 border-b border-gray-300">
+                <h2 className="text-xl font-bold text-gray-800">{title}</h2>
             </div>
-        </aside>
+
+            {/* Sidebar Menu Items */}
+            <ul className="mt-2">
+                {items.length > 0 ? (
+                    items.map((item, index) => {
+                        const isActive = location.pathname === item.path;
+
+                        return (
+                            <li key={index}>
+                                <Link
+                                    to={item.path || "#"}
+                                    className={`flex items-center gap-3 p-4 transition-colors border-b border-gray-200 
+                                    ${isActive ? "bg-gray-100 text-blue-600 font-semibold" : "text-gray-700 hover:bg-gray-200"} 
+                                    ${index === items.length - 1 ? 'border-b-0' : ''}`}
+                                >
+                                    <span className={`text-xl ${isActive ? 'text-blue-600' : 'text-gray-500'}`}>
+                                        {item.icon}
+                                    </span>
+                                    <span>{item.title}</span>
+                                </Link>
+                            </li>
+                        );
+                    })
+                ) : (
+                    <li className="p-4 text-gray-500">No items available</li>
+                )}
+            </ul>
+        </div>
     );
 };
 
 export default Sidebar;
-

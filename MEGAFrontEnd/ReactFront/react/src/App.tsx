@@ -11,17 +11,16 @@ import Baskan from "./components/kurumsal/baskan.tsx";
 import BelediyeMeclisi from "./components/kurumsal/belediyemeclisi.tsx";
 import TEST from "./components/sablon/testsablon.tsx"
 import ManagementChart from "./components/kurumsal/yonetimsemasi.tsx";
-import Tumayaksan from "./components/kurumsal/mudurlukler/tumayaksan.tsx";
-import Sonerbılır from "./components/kurumsal/mudurlukler/sonerbılır.tsx";
-import Bırsenvurdem from "./components/kurumsal/mudurlukler/bırsenvurdem.tsx";
-import Carullaher from "./components/kurumsal/mudurlukler/carullaher.tsx";
-import SabansarAy from "./components/kurumsal/mudurlukler/sabansarıay.tsx";
-import Omersahın from "./components/kurumsal/mudurlukler/omersahın.tsx";
-import Hafızaltıntaş from "./components/kurumsal/mudurlukler/hafızaltıntaş.tsx";
-import Burhanettındemırcı from "./components/kurumsal/mudurlukler/burhanettındemırcı.tsx";
-import Muratanca from "./components/kurumsal/mudurlukler/muratanca.tsx";
-import Senayaltıntas from "./components/kurumsal/mudurlukler/senayaltntas.tsx";
-import Mucahıtkoksal from "./components/kurumsal/mudurlukler/mucahıtkoksal.tsx";
+import BaskanPage from "./components/kurumsal/vizyon.tsx";
+import Misyon from "./components/kurumsal/misyon.tsx";
+import İlkelerimiz from "./components/kurumsal/ilkelerimiz.tsx";
+import Eskibaskanlar from "./components/kurumsal/eskibaskanlar.tsx";
+import KardesSehirler from "./components/gebze/kardessehirler.tsx";
+import Muhtarlar from "./components/gebze/muhtarlar.tsx";
+import Tarihce from "./components/gebze/tarihce.tsx";
+import Fotoğraflarla from "./components/gebze/fotolarla.tsx";
+import BugunkuGebze from "./components/gebze/bugunkugebze.tsx";
+import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
 
 
 
@@ -64,19 +63,18 @@ const App: React.FC = () => {
                     <Route path="/" element={<ContentArea/>} />
                     <Route path="/kurumsal/baskan" element={<Baskan/>} />
                     <Route path="/kurumsal/belediyemeclisi" element={<BelediyeMeclisi/>}/>
+                    <Route path="/kurumsal/vizyon" element={<BaskanPage/>}/>
+                    <Route path="/kurumsal/misyon" element={<Misyon/>}/>
+                    <Route path="/kurumsal/ilkelerimiz" element={<İlkelerimiz/>}/>
                     <Route path="/test" element={<TEST/>}></Route>
                     <Route path="/kurumsal/yonetimseması" element={<ManagementChart/>}></Route>
-                    <Route path="/kurumsal/mudurlukler/tumayaksan" element={<Tumayaksan/>}></Route>
-                    <Route path="/kurumsal/mudurlukler/sonerbılır" element={<Sonerbılır/>}></Route>
-                    <Route path="/kurumsal/mudurlukler/bırsenvurdem" element={<Bırsenvurdem/>}></Route>
-                    <Route path="/kurumsal/mudurlukler/carullaher" element={<Carullaher/>}></Route>
-                    <Route path="/kurumsal/mudurlukler/sabansarıay" element={<SabansarAy/>}></Route>
-                    <Route path="/kurumsal/mudurlukler/omersahın" element={<Omersahın/>}></Route>
-                    <Route path="/kurumsal/mudurlukler/hafızaltıntaş" element={<Hafızaltıntaş/>}></Route>
-                    <Route path="/kurumsal/mudurlukler/burhanettındemırcı" element={<Burhanettındemırcı/>}></Route>
-                    <Route path="/kurumsal/mudurlukler/muratanca" element={<Muratanca/>}></Route>
-                    <Route path="/kurumsal/mudurlukler/senayaltıntas" element={<Senayaltıntas/>}></Route>
-                    <Route path="/kurumsal/mudurlukler/mucahıtkoksal" element={<Mucahıtkoksal/>}></Route>
+                    <Route path="/kurumsal/eskibaskanlar" element={<Eskibaskanlar />}></Route>
+                    <Route path="/gebze/kardessehirler" element={<KardesSehirler/>}/>
+                    <Route path="/gebze/muhtarlar" element={<Muhtarlar/>}/>
+                    <Route path="/gebze/tarihce" element={<Tarihce/>}/>
+                    <Route path="/gebze/fotoğraflarlagebze" element={<Fotoğraflarla/>}/>
+                    <Route path="/gebze/bugunkugebze" element={<BugunkuGebze/>}/>
+                    <Route path="/etkinlikler" element={<EventsSection/>}/>
 
 
                     {/* Add other routes that need navbar/footer here */}
