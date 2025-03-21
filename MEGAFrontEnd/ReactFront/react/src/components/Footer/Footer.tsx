@@ -13,7 +13,12 @@ const Footer: React.FC = () => {
                 {/* About Section */}
                 <div className="px-4">
                     <h3 className="text-xl font-bold mb-4 text-white">Hakkımızda</h3>
-                    <p>Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime geçin.</p>
+                    <p>Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime geçin.
+                        Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime geçin.
+                        Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime geçin.
+                        Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime geçin.
+                        Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime geçin.
+                        </p>
                 </div>
 
                 {/* Contact Section */}
