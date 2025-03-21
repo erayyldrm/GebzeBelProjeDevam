@@ -84,7 +84,7 @@ const handleNavigation = (path: string) => {
     };
 
     return (
-        <nav className="bg-[#fff] border-b border-gray-200 z-[100] relative">
+        <nav className="bg-[#bfd3f0] border-b border-gray-200 z-[100] relative">
             <div className="max-w-full mx-auto px-4">
                 <div className="flex justify-between h-30">
                     {/* Logo and mobile menu button */}
