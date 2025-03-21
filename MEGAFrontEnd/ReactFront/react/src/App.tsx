@@ -20,6 +20,7 @@ import Muhtarlar from "./components/gebze/muhtarlar.tsx";
 import Tarihce from "./components/gebze/tarihce.tsx";
 import Fotoğraflarla from "./components/gebze/fotolarla.tsx";
 import BugunkuGebze from "./components/gebze/bugunkugebze.tsx";
+import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
 
 
 
@@ -73,6 +74,7 @@ const App: React.FC = () => {
                     <Route path="/gebze/tarihce" element={<Tarihce/>}/>
                     <Route path="/gebze/fotoğraflarlagebze" element={<Fotoğraflarla/>}/>
                     <Route path="/gebze/bugunkugebze" element={<BugunkuGebze/>}/>
+                    <Route path="/etkinlikler" element={<EventsSection/>}/>
 
 
                     {/* Add other routes that need navbar/footer here */}

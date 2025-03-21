@@ -1,6 +1,6 @@
 import React from 'react';
 import { DropdownItem } from '../_SayfaBilgileri/types.tsx';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 interface SidebarProps {
     items: DropdownItem[];
@@ -11,35 +11,36 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
     const location = useLocation();
 
     return (
-        <div className="sidebar-container w-80 bg-gradient-to-b from-[#022842] to-[#03465d] text-white rounded-lg shadow-lg">
-            {title && (
-                <div className="p-6 border-b border-gray-200">
-                    <h2 className="font-bold text-2xl">{title}</h2>
-                </div>
-            )}
-            <ul className="sidebar-menu">
+        <div className="w-64 bg-white shadow-md rounded-lg">
+            {/* Sidebar Title */}
+            <div className="p-5 border-b border-gray-300">
+                <h2 className="text-xl font-bold text-gray-800">{title}</h2>
+            </div>
+
+            {/* Sidebar Menu Items */}
+            <ul className="mt-2">
                 {items.length > 0 ? (
                     items.map((item, index) => {
                         const isActive = location.pathname === item.path;
 
                         return (
-                            <li key={index} className={`transition-all duration-300 ${isActive ? 'bg-[#1a3e5f]' : ''}`}>
-                                <a
-                                    href={item.path || '#'}
-                                    className={`flex items-center p-4 hover:bg-[#1a3e5f] transition-all duration-300 border-b border-gray-200 ${isActive ? 'bg-[#1a3e5f]' : ''}`}
+                            <li key={index}>
+                                <Link
+                                    to={item.path || "#"}
+                                    className={`flex items-center gap-3 p-4 transition-colors border-b border-gray-200 
+                                    ${isActive ? "bg-gray-100 text-blue-600 font-semibold" : "text-gray-700 hover:bg-gray-200"} 
+                                    ${index === items.length - 1 ? 'border-b-0' : ''}`}
                                 >
-                                    <span className={`mr-4 ${isActive ? 'text-yellow-400' : 'text-gray-300'}`}>
+                                    <span className={`text-xl ${isActive ? 'text-blue-600' : 'text-gray-500'}`}>
                                         {item.icon}
                                     </span>
-                                    <span className={`font-medium ${isActive ? 'text-yellow-400' : 'text-gray-200'}`}>
-                                        {item.title}
-                                    </span>
-                                </a>
+                                    <span>{item.title}</span>
+                                </Link>
                             </li>
                         );
                     })
                 ) : (
-                    <li className="p-4 text-white">No items available</li>
+                    <li className="p-4 text-gray-500">No items available</li>
                 )}
             </ul>
         </div>
