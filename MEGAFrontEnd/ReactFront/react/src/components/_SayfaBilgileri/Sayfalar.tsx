@@ -19,24 +19,28 @@ export const gebze: DropdownItem[] = [
     {
         icon: <FiBookOpen className="text-gray-800" size={24}/>,
         title: 'TARİHÇE',
-        description: 'Gebze Tarihçesi hakkında bilgi'
+        description: 'Gebze Tarihçesi hakkında bilgi',
+        path:'/gebze/tarihce'
     },
-    {icon: <FiMap className="text-gray-800"/>, title: 'BUGÜNKÜ GEBZE', description: 'Bugünkü Gebze hakkında bilgi'},
+    {icon: <FiMap className="text-gray-800"/>, title: 'BUGÜNKÜ GEBZE', description: 'Bugünkü Gebze hakkında bilgi', path:'/gebze/bugunkugebze'},
     {
         icon: <FiMapPin className="text-gray-800"/>,
         title: 'MAHALLE MUHTARLARI',
-        description: 'Mahalle Muhtarları hakkında bilgi'
+        description: 'Mahalle Muhtarları hakkında bilgi',
+        path:'/gebze/muhtarlar'
     },
     {icon: <FiMap className="text-gray-800"/>, title: 'TARİHİ YERLER', description: 'Tarihi Yerler hakkında bilgi'},
     {
         icon: <FiCamera className="text-gray-800"/>,
         title: 'FOTOĞRAFLARLA GEBZE',
-        description: 'Gebze Fotoğrafları hakkında bilgi'
+        description: 'Gebze Fotoğrafları hakkında bilgi',
+        path:'/gebze/fotoğraflarlagebze'
     },
     {
         icon: <FiGlobe className="text-gray-800"/>,
         title: 'KARDEŞ ŞEHİRLER',
-        description: 'Kardeş Şehirler hakkında bilgi'
+        description: 'Kardeş Şehirler hakkında bilgi',
+        path:'/gebze/kardessehirler'
     },
     {
         icon: <FiUsers className="text-gray-800"/>,
@@ -44,6 +48,7 @@ export const gebze: DropdownItem[] = [
         description: 'Üye Olduğumuz Birlikler hakkında bilgi'
     },
     {icon: <FiMap className="text-gray-800"/>, title: '360 SANAL TUR', description: 'Gebze 360 Sanal Tur'},
+
 ];
 export const kurumsal: DropdownItem[] = [
 
@@ -103,7 +108,8 @@ export const kurumsal: DropdownItem[] = [
     {
         icon: <FiUsers className="text-gray-800" size={20}/>,
         title: 'ESKİ BAŞKANLAR',
-        description: 'Eski Başkanlar hakkında bilgi'
+        description: 'Eski Başkanlar hakkında bilgi',
+        path:'/kurumsal/eskibaskanlar'
     },
     {
         icon: <FiUserCheck className="text-gray-800" size={20}/>,
@@ -135,6 +141,7 @@ export const kurumsal: DropdownItem[] = [
         title: 'KURUMSAL DÖKÜMANLAR',
         description: 'Kurumsal Dökümanlar hakkında bilgi'
     },
+
 ];
 
 export const hizmetler: DropdownItem[] = [
