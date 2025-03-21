@@ -1,65 +1,18 @@
 import React from 'react';
+import {DropdownItem} from '../_SayfaBilgileri/types.tsx'
+import {kurumsal,gebze,hizmetler,eBelediye} from '../_SayfaBilgileri/Sayfalar.tsx';
+import Sidebar from '../SideBar/sidebar.tsx'
 
-const BusinessTaxation: React.FC = () => {
+
+const Layout: React.FC = () => {
     return (
         <div className="page-wrapper">
 
 
-            {/* Main Header */}
-            <header className="main-header header-style-one">
-                {/* Mobile Menu */}
-                <div className="mobile-menu">
-                    <div className="menu-backdrop"></div>
-                    <div className="close-btn"><span className="icon far fa-times-circle"></span></div>
 
-                    <nav className="menu-box">
-                        <div className="nav-logo">
-                            <a href="index.html">
-                                <img src="assets/images/logo.png" alt="" title="" />
-                            </a>
-                        </div>
-                        <div className="menu-outer">{/* Menu will come automatically via Javascript */}</div>
-                        {/* Social Links */}
-                        <div className="social-links">
-                            <ul className="clearfix">
-                                <li><a href="#"><span className="fab fa-twitter"></span></a></li>
-                                <li><a href="#"><span className="fab fa-facebook-square"></span></a></li>
-                                <li><a href="#"><span className="fab fa-pinterest-p"></span></a></li>
-                                <li><a href="#"><span className="fab fa-instagram"></span></a></li>
-                                <li><a href="#"><span className="fab fa-youtube"></span></a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-                {/* End Mobile Menu */}
-
-                <div className="nav-overlay">
-                    <div className="cursor"></div>
-                    <div className="cursor-follower"></div>
-                </div>
-            </header>
-            {/* End Main Header */}
-
-            {/* Search Popup */}
-            <div id="search-popup" className="search-popup">
-                <div className="close-search theme-btn"><span className="far fa-times-circle"></span></div>
-                <div className="popup-inner">
-                    <div className="overlay-layer"></div>
-                    <div className="search-form">
-                        <form method="post" action="https://html.tonatheme.com/2021/Governlia/index.html">
-                            <div className="form-group">
-                                <fieldset>
-                                    <input type="search" className="form-control" name="search-input" value="" placeholder="Search Here" required />
-                                    <input type="submit" value="Search Now!" className="theme-btn" />
-                                </fieldset>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
 
             {/* Page Title */}
-            <section className="page-title" style={{ backgroundImage: 'url(assets/images/background/bg-9.jpg)' }}>
+            <section className="page-title m-0" style={{ backgroundImage: 'url(assets/images/background/bg-9.jpg)' }}>
                 <div className="auto-container">
                     <div className="content-box">
                         <div className="content-wrapper">
@@ -149,20 +102,9 @@ const BusinessTaxation: React.FC = () => {
                         </div>
                         <div className="col-lg-4">
                             <aside className="sidebar sidebar-style-two">
-                                <div className="widget widget_categories">
-                                    <h3 className="widget-title">SIDEBAR</h3>
-                                    <div className="widget-content">
-                                        <ul className="categories-list">
-                                            <li className="current"><a href="business-taxation.html"><i className="icon-line-chart"></i> Business & Taxation</a></li>
-                                            <li><a href="law-justice.html"><i className="icon-shield"></i> Law, Justice & Police</a></li>
-                                            <li><a href="government-election.html"><i className="icon-election"></i> Government & Elections</a></li>
-                                            <li><a href="pets-area.html"><i className="icon-pets"></i> Pets & Wildlife Area</a></li>
-                                            <li><a href="employment-jo.html"><i className="icon-suitcase"></i> Employment & Jobs</a></li>
-                                            <li><a href="real-estate-building.html"><i className="icon-building"></i> Real Estate & Buildings</a></li>
-                                            <li><a href="sideways.html"><i className="icon-parking"></i> Sideways & Parking</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                    <Sidebar items={gebze} />
+
+
                                 <div className="widget contact-widget-two" style={{ backgroundImage: 'url(assets/images/resource/image-51.jpg)' }}>
                                     <h3 className="widget-title">Municipal Complaints</h3>
                                     <div className="widget-content">
@@ -214,7 +156,7 @@ const BusinessTaxation: React.FC = () => {
     );
 };
 
-export default BusinessTaxation;
+export default Layout;
 
 // To add to your main component where you want to include the head content
 export const GovernliaHeadContent: React.FC = () => {
