@@ -11,9 +11,9 @@ import Baskan from "./components/kurumsal/baskan.tsx";
 import BelediyeMeclisi from "./components/kurumsal/belediyemeclisi.tsx";
 import TEST from "./components/sablon/testsablon.tsx"
 import ManagementChart from "./components/kurumsal/yonetimsemasi.tsx";
-import BaskanPage from "./components/kurumsal/vizyon.tsx";
-import Misyon from "./components/kurumsal/misyon.tsx";
-import İlkelerimiz from "./components/kurumsal/ilkelerimiz.tsx";
+import BaskanPage from "./components/kurumsal/vizyon_2.tsx";
+import Misyon from "./components/kurumsal/misyon_2.tsx";
+import İlkelerimiz from "./components/kurumsal/ilkelerimiz_2.tsx";
 import Eskibaskanlar from "./components/kurumsal/eskibaskanlar.tsx";
 import KardesSehirler from "./components/gebze/kardessehirler.tsx";
 import Muhtarlar from "./components/gebze/muhtarlar.tsx";
@@ -63,9 +63,9 @@ const App: React.FC = () => {
                     <Route path="/" element={<ContentArea/>} />
                     <Route path="/kurumsal/baskan" element={<Baskan/>} />
                     <Route path="/kurumsal/belediyemeclisi" element={<BelediyeMeclisi/>}/>
-                    <Route path="/kurumsal/vizyon" element={<BaskanPage/>}/>
-                    <Route path="/kurumsal/misyon" element={<Misyon/>}/>
-                    <Route path="/kurumsal/ilkelerimiz" element={<İlkelerimiz/>}/>
+                    <Route path="/kurumsal/vizyon_2" element={<BaskanPage/>}/>
+                    <Route path="/kurumsal/misyon_2" element={<Misyon/>}/>
+                    <Route path="/kurumsal/ilkelerimiz_2" element={<İlkelerimiz/>}/>
                     <Route path="/test" element={<TEST/>}></Route>
                     <Route path="/kurumsal/yonetimseması" element={<ManagementChart/>}></Route>
                     <Route path="/kurumsal/eskibaskanlar" element={<Eskibaskanlar />}></Route>
