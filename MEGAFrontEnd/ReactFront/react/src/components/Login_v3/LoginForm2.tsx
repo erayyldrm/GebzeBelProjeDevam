@@ -112,7 +112,7 @@ const LoginPage: React.FC = () => {
                                         type="submit"
                                         disabled={loginMutation.isPending}
                                         style={{
-                                            background: "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                                            background: "linear-gradient(to right, #022842, #222222)",
                                         }}
                                     >
                                         {loginMutation.isPending ? 'Giriş Yapılıyor...' : 'GİRİŞ YAP'}
@@ -122,18 +122,20 @@ const LoginPage: React.FC = () => {
                                     Parolanızı Mı Unuttunuz?
                                 </a>
                             </div>
-                            <div className="flex items-center justify-between mb-6">
-                                <p className="mb-0 text-sm">Hesabınız Yok Mu?</p>
-                                <TERipple rippleColor="light">
-                                    <Link to="/signup">
-                                        <button
-                                            type="button"
-                                            className="inline-block rounded border-2 border-danger px-4 pb-[4px] pt-1 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out"
-                                        >
-                                            KAYIT OL
-                                        </button>
-                                    </Link>
-                                </TERipple>
+                            <div className="flex flex-col items-center justify-center mt-4">
+                                <p className="mb-2 text-sm text-gray-700 dark:text-gray-300">
+                                    Hesabınız yok mu?
+                                </p>
+                                <Link to="/signup">
+                                    <button
+                                        type="button"
+                                        className="inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out"
+                                        style={{
+                                            background: "#9c8e45",
+                                        }}>
+                                        KAYIT OL
+                                    </button>
+                                </Link>
                             </div>
                         </form>
                     </div>

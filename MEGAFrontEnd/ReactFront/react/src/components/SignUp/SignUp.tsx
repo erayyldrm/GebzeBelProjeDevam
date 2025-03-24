@@ -116,7 +116,7 @@ const SignUP: React.FC = () => {
                                                 className="inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out bg-gradient-to-r from-orange-500 to-blue-900"
                                                 type="submit"
                                                 style={{
-                                                    background: "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                                                    background: "linear-gradient(to right, #022842, #222222)",
                                                 }}
                                                 disabled={registermutation.isPending}
                                             >
