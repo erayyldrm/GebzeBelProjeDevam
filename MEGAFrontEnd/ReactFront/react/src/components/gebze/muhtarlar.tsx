@@ -1,11 +1,10 @@
 import React from 'react';
 interface CouncilMember {
     name: string;
-
     imageUrl: string;
     role: string;
 }
-const MunicipalityCouncil: React.FC = () => {
+
     // Mayor data
     // Council members data
     const councilMembers: CouncilMember[] = [
@@ -50,82 +49,33 @@ const MunicipalityCouncil: React.FC = () => {
         { name: "Şükriye KAVRAN", imageUrl: "/images/gebze/muhtarlar/Sukriye-KAVRAN.jpg", role: "Yavuz Selim Mahallesi Muhtarı" },
         { name: "Esengül AKTAŞ", imageUrl: "/images/gebze/muhtarlar/Esengul-AKTAS.jpg", role: "Yenikent Mahallesi Muhtarı" },];
     // Person card component for reusability
-    const PersonCard: React.FC<{ person: CouncilMember; isPresident?: boolean }> = ({ person, isPresident = false }) => {
-        const cardClasses = isPresident ? "max-w-md mb-10" : "max-w-xs mb-5";
-        const imgClasses = isPresident ? "h-[50px] w-[300px] object-cover" : "h-36 w-full object-cover";
+    const PersonCard: React.FC<{ person: CouncilMember }> = ({ person }) => (
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-xs mb-5 text-center">
+            <img
+                src={person.imageUrl}
+                alt={person.name}
+                className="h-36 w-full object-cover"
+                onError={(e) => (e.currentTarget.src = "/api/placeholder/250/230")}
+            />
+            <div className="p-4">
+                <h4 className="text-lg font-medium text-gray-800">{person.name}</h4>
+                <span className="text-gray-600 font-medium">{person.role}</span>
+            </div>
+        </div>
+    );
+
+    const MunicipalityCouncil: React.FC = () => {
         return (
-            <div className={`bg-white rounded-lg shadow-md overflow-hidden ${cardClasses}`}>
-                <div className="text-center">
-                    <div className="relative">
-                        <img
-                            src={person.imageUrl}
-                            alt={person.name}
-                            className={imgClasses}
-                            onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.src = "/api/placeholder/250/230";
-                            }}
-                        />
-                    </div>
-                    <div className="p-4">
-                        <h4 className="text-lg font-medium text-gray-800">{person.name}</h4>
-                        <div className="mt-2">
-                            <span className="text-gray-600 font-medium">{person.role}</span>
-                        </div>
-                    </div>
+            <div className="container mx-auto px-4 py-8">
+                <br/><br/><br/><br/><br/><br/><br/>
+                <h1 className="text-2xl font-bold text-center mb-8">MAHALLE MUHTARLARI</h1><br/>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {councilMembers.map((member, index) => (
+                        <PersonCard key={index} person={member} />
+                    ))}
                 </div>
             </div>
         );
     };
-    return (
-        <div className="container mx-auto px-4 py-8">
-            {/* Header */}
-            <div className="mb-8">
-                <div className="flex flex-col md:flex-row justify-between items-center">
-                    <div className="mb-4 md:mb-0">
-                        <br/><h1 className="text-2xl font-bold">MAHALLE MUHTARLARI</h1>
-                    </div>
-                    <div>
-                        <nav className="flex" aria-label="Breadcrumb">
-                            <ol className="inline-flex items-center space-x-1 md:space-x-3">
-                                <li className="inline-flex items-center">
-                                    <a href="index.html" className="text-gray-700 hover:text-blue-600">
-                                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div className="flex items-center">
-                                        <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
-                                        </svg>
-                                        <a href="#" className="ml-1 text-gray-700 hover:text-blue-600 md:ml-2">Gebze</a>
-                                    </div>
-                                </li>
-                                <li aria-current="page">
-                                    <div className="flex items-center">
-                                        <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
-                                        </svg>
-                                        <span className="ml-1 text-gray-500 md:ml-2">Mahalle Muhtarları</span>
-                                    </div>
-                                </li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            {/* Mayor Section */}
 
-
-            {/* Council Members Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {councilMembers.map((member, index) => (
-                    <PersonCard key={index} person={member} />
-                ))}
-            </div>
-        </div>
-    );
-};
-export default MunicipalityCouncil;
+    export default MunicipalityCouncil;

@@ -30,7 +30,7 @@ const BugunkuGebzePage: React.FC = () => {
     const goToSlide = (index: number) => setCurrentSlide(index);
 
     return (
-        <div id="pcoded" className="pcoded">
+        <div id="pcoded" className="pcoded"><br/><br/><br/><br/><br/><br/>
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
@@ -42,7 +42,7 @@ const BugunkuGebzePage: React.FC = () => {
                                             <div style={{ width: '20%', minWidth: '200px' }}>
                                                 <Sidebar items={gebze} title={"GEBZE"} />
                                             </div>
-                                            <div style={{ flex: 1, marginLeft: '10px' }}>
+                                            <div className="col-lg-9 ms-auto">
                                                 <div className="card">
                                                     <div className="card-block">
                                                         <div className="slider-container" style={{ position: 'relative', width: '100%', height: '500px', overflow: 'hidden' }}>
