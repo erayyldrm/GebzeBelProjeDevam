@@ -29,6 +29,8 @@ import Cevataltintas from "./components/kurumsal/mudurlukler/cevataltintas.tsx";
 import Leventsargin from "./components/kurumsal/mudurlukler/leventsargin.tsx";
 import Baharozalp from "./components/kurumsal/mudurlukler/baharozalp.tsx";
 import Burhankandemir from "./components/kurumsal/mudurlukler/burhankandemir.tsx";
+import MudurTest from "./components/kurumsal/mudurlukler/_Mudurler.tsx";
+
 
 
 
@@ -92,6 +94,7 @@ const App: React.FC = () => {
                     <Route path="/kurumsal/mudurlukler/leventsargin" element={<Leventsargin/>}/>
                     <Route path="/kurumsal/mudurlukler/baharozalp" element={<Baharozalp/>}/>
                     <Route path="/kurumsal/mudurlukler/burhankandemir" element={<Burhankandemir/>}/>
+                    <Route path="/kurumsal/mudurlukler/test" element={<MudurTest/>}/>
 
 
 

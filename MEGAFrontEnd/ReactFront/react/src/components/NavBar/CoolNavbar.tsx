@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import {kurumsal,gebze,hizmetler,eBelediye} from '../_SayfaBilgileri/Sayfalar.tsx';
-
+import {motion, AnimatePresence, useAnimation} from 'framer-motion';
 import './NavBar.css';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {DropdownItem} from '../_SayfaBilgileri/types.tsx';
 import {FiChevronDown, FiChevronUp, FiMenu, FiX } from 'react-icons/fi';
 
@@ -19,86 +19,142 @@ const handleNavigation = (path: string) => {
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
+    const [isNavbarFixed] = useState(false);
+    const [lastScrollPosition, setLastScrollPosition] = useState(0);
+    const navbarControls = useAnimation();
+
     useEffect(() => {
         const handleScroll = () => {
-            setScrollPosition(window.scrollY);
+            const currentScrollPos = window.scrollY;
+
+            // Determine scroll direction
+            if (currentScrollPos > 100) {
+                if (currentScrollPos > lastScrollPosition) {
+                    // Scrolling down
+                    navbarControls.start({
+                        y: -100,
+                        opacity: 0.7,
+                        transition: { duration: 0.3 }
+                    });
+
+                    // Close all dropdowns when scrolling down
+                    setOpenDropdown(null);
+                } else {
+                    // Scrolling up
+                    navbarControls.start({
+                        y: 0,
+                        opacity: 1,
+                        transition: { duration: 0.3 }
+                    });
+                }
+            }
+
+            setLastScrollPosition(currentScrollPos);
+            setScrollPosition(currentScrollPos);
         };
 
         window.addEventListener('scroll', handleScroll);
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
-    // Toggle dropdown function
-    const toggleDropdown = (name:string) => {
+    }, [lastScrollPosition, navbarControls]);
+
+
+    // Render dropdown menu items
+    const toggleDropdown = (name: string) => {
         setOpenDropdown(openDropdown === name ? null : name);
     };
 
-    // Toggle mobile menu function
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
     };
 
-    // Render dropdown menu items
+
+
     const renderDropdownItems = (items: DropdownItem[]) => {
         return (
-            <>
-                <div
-                    onClick={() => toggleDropdown("any")}
-                    className="fixed inset-0 w-full h-full px-[20px]"
-                />
 
-                <div
-                    id={'zawardo'}
-                    className="fixed left-0 right-0 top-0
-                    bg-white rounded-md shadow-lg z-30 py-2 grid grid-cols-4 gap-2
-                    max-w-[90%] w-full mx-auto"
-                    style={{
-                        top: scrollPosition > 100 ? '-1000px' : '50px', // Using pixels for more precise control
-                        transform: 'translateZ(0)', // Force GPU acceleration
-                        transition: 'top 0.7s ease' // Smooth transition
-                    }}
-                >
-                    {items.map((item, index) => (
-                        <div
-                            key={index}
-                            className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer"
-                            onClick={() => handleNavigation(item.path || '/')}
+
+            <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="fixed left-0 right-0 top-0 bg-white rounded-md shadow-lg z-30
+                py-2 grid grid-cols-4 gap-2 max-w-[90%] w-full mx-auto"
+                style={{
+                    top: scrollPosition > 100 ? '8rem' : '10rem',
+                    transformOrigin: 'top center'
+                }}
+            >
+
+                {items.map((item, index) => (
+                    <motion.div
+                        key={index}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer"
+                        onClick={() => {
+                            handleNavigation(item.path || '/');
+                            setOpenDropdown(null);
+                        }}
+                    >
+                        <motion.div
+                            className="p-2 bg-gray-100 rounded-md mr-3"
+                            whileHover={{ rotate: 5 }}
                         >
-                            <div className="p-2 bg-gray-100 rounded-md mr-3">
-                                {item.icon}
+                            {item.icon}
+                        </motion.div>
+                        <div>
+                            <div className="font-medium text-sm">
+                                {item.title}
+                                {item.isEN && <span className="text-gray-500 text-xs ml-1">(EN)</span>}
                             </div>
-                            <div>
-                                <div className="font-medium text-sm">
-                                    {item.title}
-                                    {item.isEN && <span className="text-gray-500 text-xs ml-1">(EN)</span>}
-                                </div>
-                                <div className="text-gray-500 text-sm">{item.description}</div>
-                            </div>
+                            <div className="text-gray-500 text-sm">{item.description}</div>
                         </div>
-                    ))}
-                </div>
-            </>
+                    </motion.div>
+                ))}
+            </motion.div>
+
         );
     };
 
+
     return (
-        <nav className="bg-[#022842] border-b border-gray-200 z-[100] relative">
+        <motion.nav
+            animate={navbarControls}
+            initial={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                zIndex: 100
+            }}
+            className={`
+                bg-[#022842] border-b border-gray-200 z-[100]
+                ${scrollPosition > 100 ? 'shadow-md' : ''}
+            `}
+        >
             <div className="max-w-full mx-auto px-4">
                 <div className="flex justify-between h-35">
                     {/* Logo and mobile menu button */}
                     <div className="flex justify-between w-full md:w-auto">
                         {/* Logo */}
                         <div className="flex-shrink-0 flex items-center md:invisible lg:visible">
-                            <a href="http://localhost:5173">
-                                <img
+                            <Link to={"/"}>
+                                <motion.img
+                                    initial={{ opacity: 1 }}
+                                    animate={{
+                                        y: isNavbarFixed ? -15 : 0,
+                                        opacity: isNavbarFixed ? 0.8 : 1
+                                    }}
+                                    transition={{ duration: 0.3 }}
                                     src={"/2logoyatay.png"}
                                     id={"logo"}
                                     alt="Gebze Belediyesi"
                                     className="cursor-pointer h-10"
                                 />
-                            </a>
+                            </Link>
                         </div>
 
 
@@ -111,7 +167,7 @@ const handleNavigation = (path: string) => {
                                 aria-expanded="false"
                                 onClick={toggleMobileMenu}
                             >
-                                {mobileMenuOpen ? <FiX className="h-6 w-6" /> : <FiMenu className="h-6 w-6" />}
+                                {mobileMenuOpen ? <FiX className="h-6 w-6 text-white" /> : <FiMenu className="h-6 w-6 text-white" />}
                             </button>
 
 
@@ -123,50 +179,65 @@ const handleNavigation = (path: string) => {
                         <div className="flex space-x-8">
                             {/* Kurumsal Dropdown */}
                             <div className="relative flex justify-center">
-                                <button
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
                                     className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
                                     onClick={() => toggleDropdown('kurumsal')}
                                 >
                                     Kurumsal
                                     {openDropdown === 'kurumsal' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
-                                </button>
-                                {openDropdown === 'kurumsal' && renderDropdownItems(kurumsal)}
-                            </div>
+                                </motion.button>
+                                <AnimatePresence>
+                                    {openDropdown === 'kurumsal' && renderDropdownItems(kurumsal)}
+                                </AnimatePresence>                            </div>
 
                             {/* Gebze link */}
                             <div className="relative flex justify-center">
-                                <button
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
                                     className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
                                     onClick={() => toggleDropdown('gebze')}
                                 >
                                     Gebze
                                     {openDropdown === 'gebze' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
-                                </button>
-                                {openDropdown === 'gebze' && renderDropdownItems(gebze)}
+                                </motion.button>
+                                <AnimatePresence>
+                                    {openDropdown === 'gebze' && renderDropdownItems(gebze)}
+                                </AnimatePresence>
                             </div>
 
                             {/* Hizmetler Dropdown */}
                             <div className="relative flex justify-center">
-                                <button
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
                                     className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
                                     onClick={() => toggleDropdown('hizmetler')}
                                 >
                                     Kaynaklar
                                     {openDropdown === 'hizmetler' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
-                                </button>
-                                {openDropdown === 'hizmetler' && renderDropdownItems(hizmetler)}
+                                </motion.button>
+                                <AnimatePresence>
+                                    {openDropdown === 'hizmetler' && renderDropdownItems(hizmetler)}
+                                </AnimatePresence>
                             </div>
 
                             {/* E-Belediye link */}
                             <div className="relative flex justify-center">
-                                <button
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
                                     className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white"
                                     onClick={() => toggleDropdown('eBelediye')}
                                 >
                                     eBelediye
                                     {openDropdown === 'eBelediye' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
-                                </button>
-                                {openDropdown === 'eBelediye' && renderDropdownItems(eBelediye)}
+                                </motion.button>
+                                <AnimatePresence>
+                                    {openDropdown === 'eBelediye' && renderDropdownItems(eBelediye)}
+                                </AnimatePresence>
                             </div>
 
                             {/* Other links */}
@@ -318,7 +389,7 @@ const handleNavigation = (path: string) => {
                     </div>
                 </div>
             )}
-        </nav>
+        </motion.nav>
     );
 };
 
