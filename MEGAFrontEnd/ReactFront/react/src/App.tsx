@@ -78,7 +78,6 @@ const App: React.FC = () => {
                     <Route path="/gebze/fotoğraflarlagebze" element={<Fotoğraflarla/>}/>
                     <Route path="/gebze/bugunkugebze" element={<BugunkuGebze/>}/>
                     <Route path="/etkinlikler" element={<EventsSection/>}/>
-
                     <Route path="/gebze/tarihiyerler" element={<Gallarytest/>}/>
 
 
