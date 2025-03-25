@@ -15,9 +15,7 @@ const Footer: React.FC = () => {
                     <h3 className="text-xl font-bold mb-4 text-white">Hakkımızda</h3>
                     <p>Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime geçin.
                         Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime geçin.
-                        Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime geçin.
-                        Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime geçin.
-                        Şirketimiz hakkında daha fazla bilgi edinmek için bizimle iletişime geçin.
+
                         </p>
                 </div>
 

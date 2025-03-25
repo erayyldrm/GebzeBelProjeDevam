@@ -11,8 +11,11 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
     const location = useLocation();
 
     return (
-        <div className="w-64 bg-white shadow-md rounded-lg">
-            {/* Sidebar Title */}
+        <div className="w-64 bg-white shadow-md rounded-lg sticky top-0 ">
+
+
+
+        {/* Sidebar Title */}
             <div className="p-5 border-b border-gray-300">
                 <h2 className="text-xl font-bold text-gray-800">{title}</h2>
             </div>
