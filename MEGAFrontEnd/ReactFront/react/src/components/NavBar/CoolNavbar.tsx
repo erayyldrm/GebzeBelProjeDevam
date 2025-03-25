@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {kurumsal,gebze,hizmetler,eBelediye} from '../_SayfaBilgileri/Sayfalar.tsx';
 import {motion, AnimatePresence, useAnimation} from 'framer-motion';
 import './NavBar.css';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {DropdownItem} from '../_SayfaBilgileri/types.tsx';
 import {FiChevronDown, FiChevronUp, FiMenu, FiX } from 'react-icons/fi';
 
@@ -83,7 +83,7 @@ const handleNavigation = (path: string) => {
                 className="fixed left-0 right-0 top-0 bg-white rounded-md shadow-lg z-30
                 py-2 grid grid-cols-4 gap-2 max-w-[90%] w-full mx-auto"
                 style={{
-                    top: scrollPosition > 100 ? '12rem' : '10rem',
+                    top: scrollPosition > 100 ? '8rem' : '10rem',
                     transformOrigin: 'top center'
                 }}
             >
@@ -141,11 +141,11 @@ const handleNavigation = (path: string) => {
                     <div className="flex justify-between w-full md:w-auto">
                         {/* Logo */}
                         <div className="flex-shrink-0 flex items-center md:invisible lg:visible">
-                            <a href="http://localhost:5173">
+                            <Link to={"/"}>
                                 <motion.img
                                     initial={{ opacity: 1 }}
                                     animate={{
-                                        y: isNavbarFixed ? -10 : 0,
+                                        y: isNavbarFixed ? -15 : 0,
                                         opacity: isNavbarFixed ? 0.8 : 1
                                     }}
                                     transition={{ duration: 0.3 }}
@@ -154,7 +154,7 @@ const handleNavigation = (path: string) => {
                                     alt="Gebze Belediyesi"
                                     className="cursor-pointer h-10"
                                 />
-                            </a>
+                            </Link>
                         </div>
 
 
