@@ -19,7 +19,7 @@ const handleNavigation = (path: string) => {
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
-    const [isNavbarFixed, setIsNavbarFixed] = useState(false);
+    const [isNavbarFixed] = useState(false);
     const [lastScrollPosition, setLastScrollPosition] = useState(0);
     const navbarControls = useAnimation();
 
