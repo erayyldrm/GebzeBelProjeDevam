@@ -22,7 +22,7 @@ const BaskanPage: React.FC = () => {
 
                                                 {/* Sidebar */}
                                                 <div className="w-25" style={{ height: '100%' }}>
-                                                    <Sidebar items={kurumsal} title={"Gebze"} />
+                                                    <Sidebar items={kurumsal} title={"KURUMSAL"} />
                                                 </div>
 
                                                 {/* Main Content */}
@@ -44,7 +44,7 @@ const BaskanPage: React.FC = () => {
                                                                     Türkiye geneli İdare Mahkemeleri'nde Bilirkişi unvanıyla adaletin tecellisine yardımcı olmaya gayret etmiştir. 2014-2016 yılları arasında İstanbul Ticaret Odası Proje Danışma Kurul Üyesi olarak çalışmıştır.
                                                                     2014'ten bu yana ise Teknopark İstanbul Teknoloji Bölgesi'nde Proje Danışma Kurulu Üyeliği yapmaktadır. Ocak 2019 itibarıyla Kültür Varlıklarını Koruma Bölge Kurulu Üyeliği'nden ayrılmıştır.
                                                                     31 Mart 2019 Mahalli İdareler Seçimi'nde halkımızın teveccühü ile Gebze Belediye Başkanı seçilmiştir ve halen bu görevi yürütmeye devam etmektedir.
-                                                                </p><br/><br/><br/><br/><br/><br/>
+                                                                </p><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                                                             </div>
                                                             <img
                                                                 src="/images/kurumsal/imza.png"

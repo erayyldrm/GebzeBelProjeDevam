@@ -46,8 +46,8 @@ const MunicipalityCouncil: React.FC = () => {
         { name: "Mehmet AYDIN", imageUrl: "/images/gebze/muhtarlar/Mehmet-AYDIN.jpg", role: "Tavşanlı Mahallesi Muhtarı" },
         { name: "Sami BULDUR", imageUrl: "/images/gebze/muhtarlar/Sami-BULDUR.jpg", role: "Tepemanayır Mahallesi Muhtarı" },
         { name: "Hüseyin AKIN", imageUrl: "/images/gebze/muhtarlar/Huseyin-AKIN.jpg", role: "Ulus Mahallesi Muhtarı" },
-        { name: "Ersun ÇEVİK", imageUrl: "/images/gebze/muhtarlar/Ersun-CEVIK.jpg", role: "Yağcılar MahallesiMuhtarı" },
-        { name: "Şükriye KAVRAN", imageUrl: "/images/gebze/muhtarlar/Sukriye-KAVRAN.jpg", role: "Yavuz Selim MahallesiMuhtarı" },
+        { name: "Ersun ÇEVİK", imageUrl: "/images/gebze/muhtarlar/Ersun-CEVIK.jpg", role: "Yağcılar Mahallesi Muhtarı" },
+        { name: "Şükriye KAVRAN", imageUrl: "/images/gebze/muhtarlar/Sukriye-KAVRAN.jpg", role: "Yavuz Selim Mahallesi Muhtarı" },
         { name: "Esengül AKTAŞ", imageUrl: "/images/gebze/muhtarlar/Esengul-AKTAS.jpg", role: "Yenikent Mahallesi Muhtarı" },];
     // Person card component for reusability
     const PersonCard: React.FC<{ person: CouncilMember; isPresident?: boolean }> = ({ person, isPresident = false }) => {
