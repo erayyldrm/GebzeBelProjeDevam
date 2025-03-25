@@ -22,6 +22,13 @@ import Fotoğraflarla from "./components/gebze/fotolarla.tsx";
 import BugunkuGebze from "./components/gebze/bugunkugebze.tsx";
 import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
 import Hacikey from "./components/kurumsal/mudurlukler/hacikey.tsx";
+import Mecitkeskinoglu from "./components/kurumsal/mudurlukler/mecitkeskinoglu.tsx";
+import Kemaltetik from "./components/kurumsal/mudurlukler/kemaltetik.tsx";
+import Senayaltintas from "./components/kurumsal/mudurlukler/senayaltıntas.tsx";
+import Cevataltintas from "./components/kurumsal/mudurlukler/cevataltintas.tsx";
+import Leventsargin from "./components/kurumsal/mudurlukler/leventsargin.tsx";
+import Baharozalp from "./components/kurumsal/mudurlukler/baharozalp.tsx";
+import Burhankandemir from "./components/kurumsal/mudurlukler/burhankandemir.tsx";
 
 
 
@@ -78,6 +85,13 @@ const App: React.FC = () => {
                     <Route path="/gebze/bugunkugebze" element={<BugunkuGebze/>}/>
                     <Route path="/etkinlikler" element={<EventsSection/>}/>
                     <Route path="/kurumsal/mudurlukler/hacikey" element={<Hacikey/>}/>
+                    <Route path="/kurumsal/mudurlukler/mecitkeskinoglu" element={<Mecitkeskinoglu/>}/>
+                    <Route path="/kurumsal/mudurlukler/kemaltetik" element={<Kemaltetik/>}/>
+                    <Route path="/kurumsal/mudurlukler/senayaltıntas" element={<Senayaltintas/>}/>
+                    <Route path="/kurumsal/mudurlukler/cevataltintas" element={<Cevataltintas/>}/>
+                    <Route path="/kurumsal/mudurlukler/leventsargin" element={<Leventsargin/>}/>
+                    <Route path="/kurumsal/mudurlukler/baharozalp" element={<Baharozalp/>}/>
+                    <Route path="/kurumsal/mudurlukler/burhankandemir" element={<Burhankandemir/>}/>
 
 
 
