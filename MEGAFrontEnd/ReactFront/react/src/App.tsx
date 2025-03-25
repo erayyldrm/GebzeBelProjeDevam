@@ -21,8 +21,6 @@ import Tarihce from "./components/gebze/tarihce.tsx";
 import Fotoğraflarla from "./components/gebze/fotolarla.tsx";
 import BugunkuGebze from "./components/gebze/bugunkugebze.tsx";
 import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
-import Hacikey from "./components/kurumsal/mudurlukler/hacikey.tsx";
-
 
 
 
@@ -78,8 +76,6 @@ const App: React.FC = () => {
                     <Route path="/gebze/fotoğraflarlagebze" element={<Fotoğraflarla/>}/>
                     <Route path="/gebze/bugunkugebze" element={<BugunkuGebze/>}/>
                     <Route path="/etkinlikler" element={<EventsSection/>}/>
-                    <Route path="/kurumsal/mudurlukler/hacikey" element={<Hacikey/>}/>
-
 
 
 
