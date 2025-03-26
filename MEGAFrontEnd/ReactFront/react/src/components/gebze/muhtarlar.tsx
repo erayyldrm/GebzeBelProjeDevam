@@ -100,4 +100,5 @@ const GebzePage: React.FC = () => {
     );
 };
 
+
 export default GebzePage;
