@@ -1,8 +1,12 @@
 import React from "react";
+import Sidebar from "../SideBar/sidebar.tsx";
+import {kurumsal} from "../_SayfaBilgileri/Sayfalar.tsx";
 
-const arabuluculık = () => {
+const Arabuluculuk: React.FC = () => {
     return (
-        <div className="p-6 bg-gray-100 min-h-screen flex items-center justify-center">
+        <div className="p-6 bg-gray-100 min-h-screen flex items-center justify-center"><div className="w-25" style={{ height: '100%' }}>
+            <Sidebar items={kurumsal} title={"KURUMSAL"} />
+        </div>
             <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-4xl">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Arabuluculuk Komisyonu</h2>
 
@@ -62,4 +66,4 @@ const arabuluculık = () => {
     );
 };
 
-export default arabuluculık();
+export default Arabuluculuk;

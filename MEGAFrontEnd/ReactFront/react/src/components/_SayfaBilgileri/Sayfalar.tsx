@@ -119,7 +119,8 @@ export const kurumsal: DropdownItem[] = [
     {
         icon: <FiUserCheck className="text-gray-800" size={20}/>,
         title: 'ARABULUCULUK KOMİSYONU',
-        description: 'Arabuluculuk Komisyonu hakkında bilgi'
+        description: 'Arabuluculuk Komisyonu hakkında bilgi',
+        path:'/kurumsal/arabuluculuk'
     },
     {
         icon: <FiUserCheck className="text-gray-800" size={20}/>,

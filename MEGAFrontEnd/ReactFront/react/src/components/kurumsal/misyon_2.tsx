@@ -1,4 +1,6 @@
 import React from 'react';
+import Sidebar from "../SideBar/sidebar.tsx";
+import {kurumsal} from "../_SayfaBilgileri/Sayfalar.tsx";
 
 const BusinessTaxation: React.FC = () => {
     return (
@@ -109,22 +111,7 @@ const BusinessTaxation: React.FC = () => {
 
                             </div>
                         </div>
-                        <div className="col-lg-4">
-                            <aside className="sidebar sidebar-style-two">
-                                <div className="widget widget_categories">
-                                    <h3 className="widget-title">Bütün Projeler</h3>
-                                    <div className="widget-content">
-                                        <ul className="categories-list">
-                                            <li className="current"><a href="business-taxation.html"><i className="icon-line-chart"></i> İşletme ve Vergilendirme</a></li>
-                                            <li><a href="law-justice.html"><i className="icon-shield"></i> Hukuk, Adalet ve Polis</a></li>
-                                            <li><a href="government-election.html"><i className="icon-election"></i> Hükümet ve Seçimler</a></li>
-                                            <li><a href="pets-area.html"><i className="icon-pets"></i> Evcil Hayvanlar ve Yaban Hayatı</a></li>
-                                            <li><a href="employment-jo.html"><i className="icon-suitcase"></i> İstihdam ve İşler</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </aside>
-                        </div>
+                        <Sidebar items={kurumsal} title={"KURUMSAL"} />
                     </div>
                 </div>
             </section>

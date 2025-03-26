@@ -355,9 +355,8 @@ const Muratanca: React.FC = () => {
             2012 yılı Ocak ayında Gebze Belediyesi bünyesinde avukat olarak göreve başlamış olup 2014 yılı Aralık ayından itibaren Hukuk İşleri Müdürü olarak görev yapmıştır.
             <br/>
             Temmuz 2019 tarihinden itibaren ise Yazı İşleri Müdürlüğü görevini yürütmektedir.
-<br/>
-            Evli ve iki çocuk babasıdır.
-
+            <br/>
+            Evli ve iki çocuk babasıdır
         </p>
     </section>
             </div>
