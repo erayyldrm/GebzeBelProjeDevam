@@ -107,7 +107,7 @@ export const kurumsal: DropdownItem[] = [
     {
         icon: <FiFileText className="text-gray-800" size={20}/>,
         title: 'MÜDÜRLÜKLER',
-        description: 'Müdürlükler hakkında bilgi'
+        description: 'Müdürlükler hakkında bilgi',
         path:'/kurumsal/mudurlukler'
     },
     {
