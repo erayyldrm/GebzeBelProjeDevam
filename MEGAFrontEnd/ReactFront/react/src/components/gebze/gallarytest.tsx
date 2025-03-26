@@ -1,150 +1,60 @@
 import React from "react";
-import "./set2.css";
+import { Info, MapPin } from "lucide-react";
 
 const GalleryTest: React.FC = () => {
     return (
-        <div id="pcoded" className="pcoded"><br/><br/><br/><br/><br/>
-            <div className="pcoded-overlay-box"></div>
-            <div className="pcoded-container navbar-wrapper">
-                <div className="pcoded-inner-content">
-                    <div className="main-body">
-                        <div className="page-wrapper">
-                            <div className="page-body gallery-page">
-                                <div className="row">
-                                    <div className="col-sm-12">
-                                        <div className="card">
-                                            <div className="card-block">
-                                                <div className="row">
-                                                    <div className="col-sm-12">
-                                                        <div className="hover-effect-grid">
-                                                            <figure className="hover-effect-apollo">
-                                                                <img src="/images/gebze/fotoğraflarlagebze/2.JPG" alt="img18"/>
-                                                                <figcaption>
-                                                                    <h2>Strong <span>Apollo</span></h2>
-                                                                    <p>Apollo's last game of pool was so strange.</p>
-                                                                    <a href="#">View more</a>
-                                                                </figcaption>
-                                                            </figure>
-                                                            <figure className="hover-effect-apollo">
-                                                                <img src="/images/gebze/fotoğraflarlagebze/2.JPG" alt="img22"/>
-                                                                <figcaption>
-                                                                    <h2>Strong <span>Apollo</span></h2>
-                                                                    <p>Apollo's last game of pool was so strange.</p>
-                                                                    <a href="#">View more</a>
-                                                                </figcaption>
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-sm-12">
-                                                        <div className="hover-effect-grid">
-                                                            <figure className="hover-effect-apollo">
-                                                                <img src="/images/gebze/fotoğraflarlagebze/2.JPG" alt="img18"/>
-                                                                <figcaption>
-                                                                    <h2>Strong <span>Apollo</span></h2>
-                                                                    <p>Apollo's last game of pool was so strange.</p>
-                                                                    <a href="#">View more</a>
-                                                                </figcaption>
-                                                            </figure>
-                                                            <figure className="hover-effect-apollo">
-                                                                <img src="/images/gebze/fotoğraflarlagebze/2.JPG" alt="img22"/>
-                                                                <figcaption>
-                                                                    <h2>Strong <span>Apollo</span></h2>
-                                                                    <p>Apollo's last game of pool was so strange.</p>
-                                                                    <a href="#">View more</a>
-                                                                </figcaption>
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-sm-12">
-                                                        <div className="hover-effect-grid">
-                                                            <figure className="hover-effect-apollo">
-                                                                <img src="/images/gebze/fotoğraflarlagebze/2.JPG" alt="img18"/>
-                                                                <figcaption>
-                                                                    <h2>Strong <span>Apollo</span></h2>
-                                                                    <p>Apollo's last game of pool was so strange.</p>
-                                                                    <a href="#">View more</a>
-                                                                </figcaption>
-                                                            </figure>
-                                                            <figure className="hover-effect-apollo">
-                                                                <img src="/images/gebze/fotoğraflarlagebze/2.JPG" alt="img22"/>
-                                                                <figcaption>
-                                                                    <h2>Strong <span>Apollo</span></h2>
-                                                                    <p>Apollo's last game of pool was so strange.</p>
-                                                                    <a href="#">View more</a>
-                                                                </figcaption>
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-sm-12">
-                                                        <div className="hover-effect-grid">
-                                                            <figure className="hover-effect-apollo">
-                                                                <img src="/images/gebze/fotoğraflarlagebze/2.JPG" alt="img18"/>
-                                                                <figcaption>
-                                                                    <h2>Strong <span>Apollo</span></h2>
-                                                                    <p>Apollo's last game of pool was so strange.</p>
-                                                                    <a href="#">View more</a>
-                                                                </figcaption>
-                                                            </figure>
-                                                            <figure className="hover-effect-apollo">
-                                                                <img src="/images/gebze/fotoğraflarlagebze/2.JPG" alt="img22"/>
-                                                                <figcaption>
-                                                                    <h2>Strong <span>Apollo</span></h2>
-                                                                    <p>Apollo's last game of pool was so strange.</p>
-                                                                    <a href="#">View more</a>
-                                                                </figcaption>
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-sm-12">
-                                                        <div className="hover-effect-grid">
-                                                            <figure className="hover-effect-apollo">
-                                                                <img src="/images/gebze/fotoğraflarlagebze/2.JPG" alt="img18"/>
-                                                                <figcaption>
-                                                                    <h2>Strong <span>Apollo</span></h2>
-                                                                    <p>Apollo's last game of pool was so strange.</p>
-                                                                    <a href="#">View more</a>
-                                                                </figcaption>
-                                                            </figure>
-                                                            <figure className="hover-effect-apollo">
-                                                                <img src="/images/gebze/fotoğraflarlagebze/2.JPG" alt="img22"/>
-                                                                <figcaption>
-                                                                    <h2>Strong <span>Apollo</span></h2>
-                                                                    <p>Apollo's last game of pool was so strange.</p>
-                                                                    <a href="#">View more</a>
-                                                                </figcaption>
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-sm-12">
-                                                        <div className="hover-effect-grid">
-                                                            <figure className="hover-effect-apollo">
-                                                                <img src="/images/gebze/fotoğraflarlagebze/2.JPG" alt="img18"/>
-                                                                <figcaption>
-                                                                    <h2>Strong <span>Apollo</span></h2>
-                                                                    <p>Apollo's last game of pool was so strange.</p>
-                                                                    <a href="#">View more</a>
-                                                                </figcaption>
-                                                            </figure>
-                                                            <figure className="hover-effect-apollo">
-                                                                <img src="/images/gebze/fotoğraflarlagebze/2.JPG" alt="img22"/>
-                                                                <figcaption>
-                                                                    <h2>Strong <span>Apollo</span></h2>
-                                                                    <p>Apollo's last game of pool was so strange.</p>
-                                                                    <a href="#">View more</a>
-                                                                </figcaption>
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+        <div className="bg-gray-50 min-h-screen p-8"><br/><br/><br/><br/><br/><br/><br/>
+            <div className="container mx-auto">
+                <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Gebze Tarihi Yerler</h1><br/>
+                <div className="grid grid-cols-3 gap-8">
+                    {[
+                        { img: "/images/gebze/tarihiyerler/1.JPG", title: "ANİBALIN MEZARI" },
+                        { img: "/images/gebze/tarihiyerler/2.jpg", title: "BALLIKAYALAR" },
+                        { img: "/images/gebze/tarihiyerler/3.JPG", title: "ÇOBAN MUSTAFA PAŞA KÜLLİYESİ" },
+                        { img: "/images/gebze/tarihiyerler/4.JPG", title: "ÇOBAN MUSTAFA PAŞA HAMAMI" },
+                        { img: "/images/gebze/tarihiyerler/5.JPG", title: "ÇOBAN MUSTAFA PAŞA ŞADIRVANI" },
+                        { img: "/images/gebze/tarihiyerler/6.jpg", title: "ESKİHİSAR ÇEŞMESİ" },
+                        { img: "/images/gebze/tarihiyerler/7.JPG", title: "ESKİHİSAR KALESİ" },
+                        { img: "/images/gebze/tarihiyerler/8.JPG", title: "HÜNKAR ÇAYIRI" },
+                        { img: "/images/gebze/tarihiyerler/DJI_0600.JPG", title: "İBRAHİM PAŞA ÇEŞMESİ" },
+                        { img: "/images/gebze/tarihiyerler/9.JPG", title: "İLYAS BEY CAMİİ" },
+                        { img: "/images/gebze/tarihiyerler/11.JPG", title: "OSMAN HAMDİ BEY YALISI" },
+                        { img: "/images/gebze/tarihiyerler/12.jpg", title: "SULTAN ORHAN CAMİİ" }
+                    ].map((item, index) => (
+                        <div
+                            key={index}
+                            className="relative rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl group"
+                        >
+                            <div className="w-full h-70 overflow-hidden">
+                                <img
+                                    src={item.img}
+                                    alt={item.title}
+                                    className="w-full h-full object-cover transition-transform duration-300 "
+                                />
+                            </div>
+                            <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
+                                <h2 className="text-white text-base font-semibold truncate">&nbsp;&nbsp;{item.title}</h2>
+                                <div className="flex space-x-2 mt-1">
+                                    <a
+                                        href="#"
+                                        className="flex items-center bg-[#4FC3F7] text-white text-xs px-2 py-1 rounded-md hover:bg-[#4FC3F7]/80 transition-colors"
+                                    >
+                                        <Info className="w-4 h-4 mr-1" />
+                                        Detaylı Bilgi
+                                    </a>
+                                    <a
+                                        href="#"
+                                        className="flex items-center bg-[#4FC3F7] text-white text-xs px-2 py-1 rounded-md hover:bg-[#4FC3F7]/80 transition-colors"
+                                    >
+                                        <MapPin className="w-4 h-4 mr-1" />
+                                        Konum
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
-            </div>
+            </div><br/>
         </div>
     );
 };
