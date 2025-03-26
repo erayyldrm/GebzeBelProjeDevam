@@ -30,7 +30,7 @@ const BugunkuGebzePage: React.FC = () => {
     const goToSlide = (index: number) => setCurrentSlide(index);
 
     return (
-        <div id="pcoded" className="pcoded">
+        <div id="pcoded" className="pcoded"><br/><br/><br/><br/><br/><br/>
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
@@ -42,7 +42,7 @@ const BugunkuGebzePage: React.FC = () => {
                                             <div style={{ width: '20%', minWidth: '200px' }}>
                                                 <Sidebar items={gebze} title={"GEBZE"} />
                                             </div>
-                                            <div style={{ flex: 1, marginLeft: '10px' }}>
+                                            <div className="col-lg-9 ms-auto">
                                                 <div className="card">
                                                     <div className="card-block">
                                                         <div className="slider-container" style={{ position: 'relative', width: '100%', height: '500px', overflow: 'hidden' }}>
@@ -79,7 +79,7 @@ const BugunkuGebzePage: React.FC = () => {
                                                             Gebze'nin Körfez şeridi üzerindeki yerleşim yerlerinde, tabiatın oluşturduğu birbirinden güzel koyları ve tabii plajları ile çekici düzeydedir. Yörenin ekilebilir topraklarında tarım, meyvecilik, sebzecilik ileri bir durumdadır. Marmara kıyısında ilçe toprakları genellikle ovalıktır.
 
                                                             <br/><br/>Yoğun sanayi yapılanması ile dikkat çeken Gebze, her ne kadar idari olarak Kocaeli'ye bağlıysa da, İstanbul iline daha yakın olduğu için, bu ille hem ticari hem de sosyal ilişkileri gelişmiştir. Uzun yıllar il olması için mücadele edilmiş olsa da hali hazırda Kocaeli Büyükşehir Belediyesi sınırları içindedir. İstanbul Büyükşehir Belediyesi, yıllar boyu Gebze'yi kendisine bağlamak istemiş ancak buna izin verilmemiştir.
-                                                            <br/><br/>Sürekli yükselen bir nüfus grafiği çizen Gebze, 2008 yılında çıkarılan kanunla birlikte kendisine bağlı olan Çayırova, Darıca ve Dilovası'nın birer ilçe olması sonucu nüfusunun bir bölümünü bu yeni ilçelere vermiştir.
+                                                            Sürekli yükselen bir nüfus grafiği çizen Gebze, 2008 yılında çıkarılan kanunla birlikte kendisine bağlı olan Çayırova, Darıca ve Dilovası'nın birer ilçe olması sonucu nüfusunun bir bölümünü bu yeni ilçelere vermiştir.
                                                             <br/><br/>&nbsp;&nbsp;Yıl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nüfus
 
                                                             <br/><br/>1973&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;27.000

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-
+import Sidebar from "../SideBar/sidebar.tsx";
+import {gebze} from "../_SayfaBilgileri/Sayfalar.tsx";
 type ImageType = {
     url: string;
 };
-
 const Gallery: React.FC = () => {
     const [images, setImages] = useState<ImageType[]>([]);
     const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
-
     useEffect(() => {
         const data: ImageType[] = [
             { url: "/images/gebze/fotoğraflarlagebze/_86F3564.JPG"},
@@ -60,45 +59,52 @@ const Gallery: React.FC = () => {
     };
 
     return (
-        <div className="p-4 flex flex-col items-center">
-            <div className="bg-[#891737] shadow-lg rounded-2xl p-6 mb-6">
-                <h1 className="text-3xl font-bold text-white">FOTOĞRAFLARLA GEBZE</h1>
+        <div className="flex">
+            <div style={{ width: '20%', minWidth: '200px' }}>
+                <Sidebar items={gebze} title={"GEBZE"} />
             </div>
-            <div className="grid grid-cols-3 gap-4 max-w-[1200px]">
-                {images.map((image, index) => (
-                    <img
-                        key={index}
-                        src={image.url}
-                        alt={`Image ${index}`}
-                        className="w-full h-[200px] object-cover border border-gray-300 rounded-2xl shadow-sm transition-all duration-300 hover:brightness-110 hover:scale-105"
-                        onClick={() => setSelectedImageIndex(index)}
-                    />
-                ))}
-            </div>
-            {selectedImageIndex !== null && (
-                <div
-                    className="fixed inset-0 flex items-center justify-center z-50"
-                    onClick={() => setSelectedImageIndex(null)}
-                >
-                    <div className="relative flex items-center" onClick={(e) => e.stopPropagation()}>
-                        <button
-                            className="absolute left-0 ml-4 text-white text-3xl"
-                            onClick={handlePrev}
-                            disabled={selectedImageIndex === 0}
-                        >
-                            ◀
-                        </button>
-                        <img src={images[selectedImageIndex].url} alt="Selected" className="max-h-[90vh] rounded-2xl" />
-                        <button
-                            className="absolute right-0 mr-4 text-white text-3xl"
-                            onClick={handleNext}
-                            disabled={selectedImageIndex === images.length - 1}
-                        >
-                            ▶
-                        </button>
-                    </div>
+
+            <div className="p-4 flex flex-col items-center w-[80%]">
+                <div className="bg-[#891737] shadow-lg rounded-2xl p-6 mb-6">
+                    <h1 className="text-3xl font-bold text-white">FOTOĞRAFLARLA GEBZE</h1>
                 </div>
-            )}
+
+                <div className="grid grid-cols-3 gap-4 max-w-[1200px]">
+                    {images.map((image, index) => (
+                        <img
+                            key={index}
+                            src={image.url}
+                            alt={`Image ${index}`}
+                            className="w-full h-[200px] object-cover border border-gray-300 rounded-2xl shadow-sm transition-all duration-300 hover:brightness-110 hover:scale-105"
+                            onClick={() => setSelectedImageIndex(index)}
+                        />
+                    ))}
+                </div>
+                {selectedImageIndex !== null && (
+                    <div
+                        className="fixed inset-0 flex items-center justify-center z-50"
+                        onClick={() => setSelectedImageIndex(null)}
+                    >
+                        <div className="relative flex items-center" onClick={(e) => e.stopPropagation()}>
+                            <button
+                                className="absolute left-0 ml-4 text-white text-3xl"
+                                onClick={handlePrev}
+                                disabled={selectedImageIndex === 0}
+                            >
+                                ◀
+                            </button>
+                            <img src={images[selectedImageIndex].url} alt="Selected" className="max-h-[90vh] rounded-2xl" />
+                            <button
+                                className="absolute right-0 mr-4 text-white text-3xl"
+                                onClick={handleNext}
+                                disabled={selectedImageIndex === images.length - 1}
+                            >
+                                ▶
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

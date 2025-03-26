@@ -37,6 +37,7 @@ const CityCard = ({ city }: { city: { name: string; city: string; country: strin
 
 export default function SisterCities() {
     return (
+        <div>
         <div className="container mx-auto px-4 py-8">
             <br/><h1 className="text-3xl font-bold text-center mb-6">Kardeş Şehirler</h1>
 
@@ -58,6 +59,7 @@ export default function SisterCities() {
 
             {/* Garowe sonrası boşluk */}
             <br />
+        </div>
         </div>
     );
 }
