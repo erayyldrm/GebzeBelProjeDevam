@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../SideBar/sidebar.tsx";
 import {gebze} from "../_SayfaBilgileri/Sayfalar.tsx";
-
 type ImageType = {
     url: string;
 };
-
 const Gallery: React.FC = () => {
     const [images, setImages] = useState<ImageType[]>([]);
     const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
-
     useEffect(() => {
         const data: ImageType[] = [
             { url: "/images/gebze/fotoğraflarlagebze/_86F3564.JPG"},
