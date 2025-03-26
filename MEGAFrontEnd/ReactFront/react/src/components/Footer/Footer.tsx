@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
             </div>
             <br/>
             <div className="text-center mt-8 text-sm text-gray-400">
-                © {new Date().getFullYear()} Gebze Belediye Başkamlığı
+                © {new Date().getFullYear()} Gebze Belediye Başkanlığı
             </div>
         </footer>
     );
