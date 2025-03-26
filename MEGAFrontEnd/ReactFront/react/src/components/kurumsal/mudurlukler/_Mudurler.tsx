@@ -82,67 +82,11 @@ const Layout: React.FC = () => {
                                         ))}
                                     </div>
                                 </div>
-                                <div className="row mb-30">
-
-                                    <div className="col-md-6">
-                                        <div className="group-title"><h4>Bilgilendirme</h4></div>
-                                        <ul className="list">
-                                            <li>Listealt1</li>
-                                            <li>Listleak2</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6 feature-block">
-                                        <div className="inner-box">
-                                            <div className="icon"><span className="icon-train"></span></div>
-                                            <div className="content">
-                                                <div className="category"><a href="#">Link4</a></div>
-                                                <h3>Link yazı</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6 feature-block">
-                                        <div className="inner-box">
-                                            <div className="icon"><span className="icon-pets-2"></span></div>
-                                            <div className="content">
-                                                <div className="category"><a href="#">Link3</a></div>
-                                                <h3>Link yazı</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6 feature-block">
-                                        <div className="inner-box">
-                                            <div className="icon"><span className="icon-laptop"></span></div>
-                                            <div className="content">
-                                                <div className="category"><a href="#">LİNK2</a></div>
-                                                <h3>Link yazı</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6 feature-block">
-                                        <div className="inner-box">
-                                            <div className="icon"><span className="icon-report"></span></div>
-                                            <div className="content">
-                                                <div className="category"><a href="#">Link1</a></div>
-                                                <h3>link yazı</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="text">
-
-                                    ALT YAZI  ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI ALT YAZI
-                                </div>
-                                <ul className="page-pagination mt-5">
-                                    <li className="prev-page"><a href="#"><i className="icon-arrow"></i>Prev</a></li>
-                                    <li className="next-page"><a href="#">Next<i className="icon-arrow"></i></a></li>
-                                </ul>
                             </div>
                         </div>
                         <div className="col-lg-4">
                             <aside className="sidebar sidebar-style-two">
-                                <Sidebar items={kurumsal} title={"Gebze"} />
+                                <Sidebar items={kurumsal} title={"Kurumsal"} />
 
                             </aside>
                         </div>
