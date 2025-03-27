@@ -24,6 +24,7 @@ import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
 import MudurTest from "./components/kurumsal/mudurlukler/_Mudurler.tsx";
 import Gallarytest from "./components/gebze/gallarytest.tsx";
 import Arabuluculuk from "./components/kurumsal/arabuluculuk.tsx";
+import UyeOldugumuzBirlikler from "./components/gebze/uyeoldugumuzbirlikler.tsx";
 
 
 
@@ -83,6 +84,7 @@ const App: React.FC = () => {
                     <Route path="/kurumsal/mudurlukler" element={<MudurTest/>}/>
                     <Route path="/gebze/tarihiyerler" element={<Gallarytest/>}/>
                     <Route path="/kurumsal/arabuluculuk" element={<Arabuluculuk/>}/>
+                    <Route path="/gebze/uyeoldugumuzbirlikler" element={<UyeOldugumuzBirlikler/>}/>
 
 
 
