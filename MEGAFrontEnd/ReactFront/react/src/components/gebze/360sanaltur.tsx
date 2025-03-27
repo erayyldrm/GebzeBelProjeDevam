@@ -1,169 +1,79 @@
-import React, { useState, useEffect } from 'react';
-import Sidebar from "../SideBar/sidebar.tsx";
-import {gebze} from "../_SayfaBilgileri/Sayfalar.tsx";
+import React from 'react';
+import { MapPin } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const TarihcePage: React.FC = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const slides = [
-        "/images/gebze/tarihce/slide1.jpg",
-        "/images/gebze/tarihce/slide4.jpg",
-        "/images/gebze/tarihce/slide3.jpg"
-    ];
+interface Location {
+    id: number;
+    name: string;
+    imageUrl: string;
+    tourUrl: string;
+    mapUrl: string;
+}
 
-    // Auto-slide functionality
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-        }, 5000); // Change slide every 5 seconds
+const locations: Location[] = [
+    { id: 1, name: "ANİBALIN MEZARI", imageUrl: "/images/gebze/360sanaltur/1.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/anibal-mezari_9.html", mapUrl: "https://www.google.com/maps/place/Hannibalin+Mezar%C4%B1/@40.782282,29.4417079,15z/data=!4m5!3m4!1s0x0:0xd11c044aa3d2711!8m2!3d40.782282!4d29.4417079?shorturl=1" },
+    { id: 2, name: "BALLIKAYALAR", imageUrl: "/images/gebze/360sanaltur/2.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/ballikayalar_5.html", mapUrl: "https://www.google.com/maps/place/Ball%C4%B1kayalar+Tabiat+Park%C4%B1/@40.8330952,29.516802,15z/data=!4m6!3m5!1s0x14cb242bfea49fbf:0x8a949c7858da831d!8m2!3d40.8332309!4d29.5168155!16s%2Fg%2F1thm0p0_?entry=ttu&g_ep=EgoyMDI1MDMyNC4wIKXMDSoASAFQAw%3D%3D" },
+    { id: 3, name: "ÇOBAN MUSTAFA PAŞA CAMİİ", imageUrl: "/images/gebze/360sanaltur/3.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/coban-mustafa-pasa-cami_6.html", mapUrl: "https://www.google.com/maps/place/Hac%C4%B1halil,+%C3%87oban+Mustafa+Pa%C5%9Fa+Cami,+41400+Gebze%2FKocaeli/@40.7998871,29.4293468,17z/data=!3m1!4b1!4m5!3m4!1s0x14cb208f33d5f6db:0xb8012998823d4822!8m2!3d40.7998831!4d29.4315355?shorturl=1" },
+    { id: 4, name: "ESKİHİSAR KALESİ", imageUrl: "/images/gebze/360sanaltur/4.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/eskihisar-kalesi_7.html", mapUrl: "https://www.google.com/maps/place/Eskihisar+Kalesi/@40.7718998,29.4302579,17z/data=!4m5!3m4!1s0x14cb2011812179d9:0xca32cd56ebba0ea1!8m2!3d40.771275!4d29.4321578?shorturl=1" },
+    { id: 5, name: "GEBZE TARİHİ SU DOLABI", imageUrl: "/images/gebze/360sanaltur/5.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/gebze-tarihi-su-dolabi_15.html", mapUrl: "https://www.google.com/maps/place/Tarihi+Su+Dolab%C4%B1/@40.8037724,29.4377811,15z/data=!4m5!3m4!1s0x0:0x9ddfa92da82047b2!8m2!3d40.8037627!4d29.4377932?sa=X&hl=tr&ved=2ahUKEwjEhPu10LfyAhVNm6QKHXDeBTsQ_BIwHXoECEsQBQ&shorturl=1" },
+    { id: 6, name: "HÜNKAR ÇAYIRI", imageUrl: "/images/gebze/360sanaltur/6.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/hunkar-cayiri_8.html", mapUrl: "https://www.google.com/maps/place/H%C3%BCnkar+%C3%87ay%C4%B1r%C4%B1/@40.813967,29.343185,15z/data=!4m5!3m4!1s0x0:0x563611efabd51aa!8m2!3d40.813967!4d29.343185?sa=X&ved=2ahUKEwj0xqr-v7fyAhXJ16QKHSivBHgQ_BIwG3oECFAQBQ&shorturl=1" },
+    { id: 7, name: "İBRAHİM PAŞA ÇEŞMESİ", imageUrl: "/images/gebze/360sanaltur/7.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/ibrahim-pasa-cesmesi-carsi-cesmesi_10.html", mapUrl: "https://www.google.com/maps/place/%C4%B0brahim+Pa%C5%9Fa+%C3%87e%C5%9Fmesi+(Eski+%C3%87ar%C5%9F%C4%B1+%C3%87e%C5%9Fmesi)/@40.7984023,29.4316467,17z/data=!3m1!4b1!4m5!3m4!1s0x14cb2159ac7bdb4d:0x1128fdc4b678c96d!8m2!3d40.7983983!4d29.4338354?shorturl=1" },
+    { id: 8, name: "İLYAS BEY CAMİİ", imageUrl: "/images/gebze/360sanaltur/8.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/ilyas-bey-cami_11.html", mapUrl: "https://www.google.com/maps/place/%C4%B0lyas+Bey+Cami/@40.7995368,29.4403006,15z/data=!4m5!3m4!1s0x0:0x648c4ebb83eead8a!8m2!3d40.7995368!4d29.4403006?sa=X&hl=tr&ved=2ahUKEwjGyoC-yrfyAhWtgf0HHcuGBU0Q_BIwE3oECEIQBQ&shorturl=1" },
+    { id: 9, name: "OSMAN HAMDİ BEY MÜZESİ", imageUrl: "/images/gebze/360sanaltur/9.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/osman-hamdi-bey-muzesi_12.html", mapUrl: "https://www.google.com/maps/place/Osman+Hamdi+Bey+Evi+ve+M%C3%BCzesi/@40.769348,29.4179773,15z/data=!4m6!3m5!1s0x14cb200fa27728bf:0xb8320b5bebc2a90a!8m2!3d40.769348!4d29.426732!15sCg9vc21hbiBoYW1kaSBiZXlaESIPb3NtYW4gaGFtZGkgYmV5kgEGbXVzZXVt?hl=tr&shorturl=1" },
+    { id: 10, name: "SULTAN ORHAN CAMİİ", imageUrl: "/images/gebze/360sanaltur/10.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/sultan-orhan-camii_13.html", mapUrl: "https://www.google.com/maps/place/Sultan+Orhan+Cami/@40.769348,29.4179773,15z/data=!4m5!3m4!1s0x14cb208c7bb7f3d5:0x805bf82146b0c733!8m2!3d40.7980824!4d29.4378397?hl=tr&shorturl=1" },
+    { id: 11, name: "TARİHİ ÇARŞI HAMAMI", imageUrl: "/images/gebze/360sanaltur/11.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/tarihi-carsi-hamami_14.html", mapUrl: "https://www.google.com/maps/place/Tarihi+%C3%87ar%C5%9F%C4%B1+Hamam%C4%B1/@40.7985035,29.4318198,17z/data=!3m2!4b1!5s0x14cb20894a58a5d1:0xad3f6edee650f091!4m5!3m4!1s0x14cb20894af6630f:0xda82440ad30b8594!8m2!3d40.7984637!4d29.4339573?shorturl=1" }
+];
 
-        return () => clearInterval(timer);
-    }, []);
+const VrGogglesIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="white" className="bi bi-headset-vr" viewBox="0 0 16 16">
+        <path d="M8 1.248c1.857 0 3.526.641 4.65 1.794a5 5 0 0 1 2.518 1.09C13.907 1.482 11.295 0 8 0 4.75 0 2.12 1.48.844 4.122a5 5 0 0 1 2.289-1.047C4.236 1.872 5.974 1.248 8 1.248"/>
+        <path d="M12 12a4 4 0 0 1-2.786-1.13l-.002-.002a1.6 1.6 0 0 0-.276-.167A2.2 2.2 0 0 0 8 10.5c-.414 0-.729.103-.935.201a1.6 1.6 0 0 0-.277.167l-.002.002A4 4 0 1 1 4 4h8a4 4 0 0 1 0 8"/>
+    </svg>
+);
 
-    // Manual navigation functions
-    const goToNextSlide = () => {
-        setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    };
-
-    const goToPrevSlide = () => {
-        setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length);
-    };
-
-    const goToSlide = (index: number) => {
-        setCurrentSlide(index);
-    };
-
+const VirtualTourGallery: React.FC = () => {
     return (
-        <div id="pcoded" className="pcoded"><br/><br/><br/><br/><br/><br/>
-            <div className="pcoded-overlay-box"></div>
-            <div className="pcoded-container navbar-wrapper">
-
-                <div className="pcoded-main-container">
-                    <div className="pcoded-wrapper">
-
-                        <div className="pcoded-content">
-
-                            <div className="pcoded-inner-content">
-                                <div className="main-body">
-                                    <div className="page-wrapper">
-                                        <div className="row">
-                                            <div style={{ width: '20%', minWidth: '200px' }}>
-                                                <Sidebar items={gebze} title={"GEBZE"} />
-                                            </div>
-                                            <div className="col-lg-9 ms-auto">
-                                                <div className="card">
-                                                    <div className="card-block">
-                                                        {/* Image slider */}
-                                                        <div className="slider-container" style={{ position: 'relative', width: '100%', height: '500px', overflow: 'hidden' }}>
-                                                            {/* Slides */}
-                                                            <div className="slides" style={{ display: 'flex', transition: 'transform 0.5s ease', transform: `translateX(-${currentSlide * 100}%)`, width: '100%', height: '100%' }}>
-                                                                {slides.map((slide, index) => (
-                                                                    <div key={index} style={{ minWidth: '100%', height: '100%' }}>
-                                                                        <img
-                                                                            src={slide}
-                                                                            alt={`Gebze Tarihçe Slide ${index + 1}`}
-                                                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                                                        />
-                                                                    </div>
-                                                                ))}
-                                                            </div>
-
-                                                            {/* Navigation arrows */}
-                                                            <button
-                                                                onClick={goToPrevSlide}
-                                                                style={{
-                                                                    position: 'absolute',
-                                                                    left: '10px',
-                                                                    top: '50%',
-                                                                    transform: 'translateY(-50%)',
-                                                                    background: 'rgba(0,0,0,0.5)',
-                                                                    color: 'white',
-                                                                    border: 'none',
-                                                                    borderRadius: '50%',
-                                                                    width: '40px',
-                                                                    height: '40px',
-                                                                    fontSize: '20px',
-                                                                    cursor: 'pointer'
-                                                                }}
-                                                            >
-                                                                &lt;
-                                                            </button>
-
-                                                            <button
-                                                                onClick={goToNextSlide}
-                                                                style={{
-                                                                    position: 'absolute',
-                                                                    right: '10px',
-                                                                    top: '50%',
-                                                                    transform: 'translateY(-50%)',
-                                                                    background: 'rgba(0,0,0,0.5)',
-                                                                    color: 'white',
-                                                                    border: 'none',
-                                                                    borderRadius: '50%',
-                                                                    width: '40px',
-                                                                    height: '40px',
-                                                                    fontSize: '20px',
-                                                                    cursor: 'pointer'
-                                                                }}
-                                                            >
-                                                                &gt;
-                                                            </button>
-
-                                                            {/* Indicators */}
-                                                            <div style={{ position: 'absolute', bottom: '10px', width: '100%', display: 'flex', justifyContent: 'center', gap: '8px' }}>
-                                                                {slides.map((_, index) => (
-                                                                    <button
-                                                                        key={index}
-                                                                        onClick={() => goToSlide(index)}
-                                                                        style={{
-                                                                            width: '12px',
-                                                                            height: '12px',
-                                                                            borderRadius: '50%',
-                                                                            background: currentSlide === index ? 'white' : 'rgba(255,255,255,0.5)',
-                                                                            border: 'none',
-                                                                            cursor: 'pointer'
-                                                                        }}
-                                                                    />
-                                                                ))}
-                                                            </div>
-                                                        </div>
-
-                                                        <br />
-                                                        <h3><b>TARİHÇE</b></h3><br />
-                                                        <div style={{ textAlign: 'justify' }}>
-
-                                                            <p>
-                                                                Gebze'nin de içinde bulunduğu, eski Yunanlılar ve Romalılar tarafından Bitinya (Bithynie) olarak bilinen coğrafi bölgenin bilinen en eski tarihi M.Ö. XII. yüzyıla kadar uzanır. Bölge, özellikle Kocaeli Yarımadası, coğrafi konumunun stratejik önemi nedeniyle tarihin hemen her döneminde pek çok ulusa ev sahipliği yapmıştır. Asya ile Avrupa kıtaları arasındaki önemli geçiş yolu olan Kocaeli Yarımadası, farklı medeniyetlerin izlerini bıraktığı bir bölge olmuştur.
-                                                                <br /><br />İlk bilinen ulus göçü M.Ö. XII. yüzyılın başlarına dayanır. Bu göç, Yunan kökenli Frikler tarafından gerçekleştirilmiştir. Boğaz (Bosforos) yoluyla Anadolu'ya inen Frikler, Trakya'dan İzmit dolaylarına kadar göç etmeye devam etmişlerdir. Ancak, bu dönemde eski Gebze'nin yeri hakkında kesin bir bilgi bulunmamaktadır. Antik çağda Gebze'nin yerinin nerede olduğu net olarak bilinmemektedir.
-                                                                <br /><br />Bugünkü Gebze'nin bulunduğu bölgede, M.Ö. 281-246 yılları arasında Kral I. Nicomedes'in egemenliğindeki Bitinya Krallığı döneminde Dakibyza ve Libyssa adında yerleşim yerleri vardır. Bu dönemde eski Gebze'nin yerine dair ortaya çıkan bilgiler bu yerleşimlere aittir. Daha eski döneme ait bilgiler ise çelişkilidir.
-                                                                <br /><br />Libyssa, ünlü Kartacalı komutan Hannibal'ın yaşamış olduğu yerdir. Zama savaşındaki yenilgisinin ardından, Hannibal, ülkesinde itibar görmemiş ve Bitinya Krallığı'na sığınmıştır. Bitinya Kralları I. ve II. Prusias'ın savaş danışmanlıklarını yapmıştır. II. Prusias'ın ihanetinin ardından Hannibal, düşmanın eline geçmemek için intihar etmiş ve Libyssa'ya gömülmüştür. Bu yüzden, eski Gebze'nin yerinin araştırılması, tarihçiler ve araştırmacılar için önemlidir. Hannibal'ın burayı seçmesinin çeşitli sebepleri vardır. Bu sebepler arasında izlenme kuşkusu, Nicomedia'nın başkent olması nedeniyle tanınma ihtimalinin fazla olması ve yönetime güvenmemesi yer alır. Hannibal, güvenli bir yer olarak denizle bağlantılı ve kaçışı kolay olan Libyssa'yı tercih etmiştir. Libyssa, denize ve kara yoluna hâkim bir tepe üzerindeydi ve körfezin en dar noktasında bulunuyordu.
-                                                                <br /><br />Gebze, 1330 yılında Osmanlılarla Bizans arasında yapılan savaşın ardından Osmanlı idaresine katılmıştır. Bugünkü Gebze'nin kurucusu Orhan Gazi'dir. Orhan Gazi, Gebze'de kendi adına cami yaptırmış ve bölgenin imarı için büyük çaba göstermiştir. Ayrıca, bölgedeki vakıfları desteklemiş ve işletmeler kurmuştur. Gebze, Osmanlı İmparatorluğu döneminde zaman zaman İstanbul'a, daha çok ise Kocaeli'ye bağlı bir kaza olarak önemli bir yer olmuştur.
-                                                                <br /><br />I. Dünya Savaşı'nda Osmanlı İmparatorluğu'nun yenilmesinin ardından, Gebze de düşman kuvvetleri tarafından işgal edilmiştir. 1920 yılında İngilizler bölgeyi işgal etmiş, 1921 yılının başlarında ise Yunanlılar da bölgeye gelmiştir. Ancak, Anadolu'da yenilgiye uğrayan Yunan kuvvetleri, geri çekilmişlerdir. Bu dönemde Gebze, Anadolu'nun dikkat çeken yerlerinden biri olmuştur.
-                                                                Cumhuriyet'in ilanına kadar Gebze, zaman zaman İstanbul'a, zaman zaman da Kocaeli'ye bağlı bir kaza olmuştur. Cumhuriyet'in ilanından sonra, Gebze İzmit iline bağlanmıştır.
-                                                                <br /><br /><b>Libyssa'dan Gebze'ye</b><br />
-                                                                Gebze adı, eski yerleşimlerin isimlerinden türemiştir. Birçok araştırmacı, Gebze isminin eski Libyssa ve Dakibyza isimlerine dayandığını öne sürmektedir. Roma ve Bizans dönemlerinde bu isimler kullanılmıştır. Gebze ismi, Roma ve Bizans dönemindeki Libyssa ve Dakibyza isimleriyle benzerlik göstermektedir. Bazı araştırmacılar ise "Gebze"nin zaman içinde halk diline "Gelbize" olarak dönüşen bir isim olduğunu iddia etmektedir. Evliya Çelebi, Seyahatnamesi'nde Gebze'nin "Gelbize"den türediğini belirtmiştir.
-                                                                <br /><br /><b>Yöresel Gelenekler ve Yemekler</b><br />
-                                                                Düğün: Gebze'de düğünler, köylerde ateş yakılıp yemekler pişirilerek yapılır. Düğün yemekleri arasında düğün çorbası, etli yemek, pilav ve zerde tatlısı bulunur. Düğünler Cuma günü başlar ve gelin hamamı yapılır. Düğünlerde genç kızlar şalvar, yeldirme ve bürme giyerler. Gelin başında ekmek kırılır ve bir parçası geline yedirilir. Düğünlerde nişanlılar, her düğünde takı takar.
-                                                                Cenaze: Cenaze, hoca tarafından yıkandıktan sonra üzerine çarşaf örtülür. Erkek cenazesi için çarşafın üstüne bıçak ve sabun, kadın cenazesi için ise makas ve sabun konulur. Cenaze, başı kıbleye gelecek şekilde yatırılır.
-                                                                Bayramlar: Bayramlar, camilerde kutlanır ve köylerde pilav pişirilir. Bayramlaşma camilerde başlar ve köy halkı birbirini ziyaret eder.
-                                                                Hıdırellez: Hıdırellez, 5-6 Mayıs tarihlerinde kutlanır. Genç kızlar, küplere yüzük ve bilezik gibi eşyalarını koyarak onları gül diplerine gömerler. Bu dönemde, dilekler tutulur ve inançlar yaşatılır.
-                                                                Yöresel Yemekler: Çarşır Mancarı, Kazayağı Mancarı, Ebegümeci Mancarı, Efelik Mancarı, Mantı, Yamayuka Böreği, Tava Tutuşturması, Bulgurlu Börek, Kabak Tatlısı gibi yöresel yemekler bulunur.
-                                                                <br /><br /><b>Giysiler</b><br />
-                                                                Gebze'nin dağ köylerinde, halk genellikle kendi el örmesi elbiselerini giyer. Kadınlar, şalvar, yelek ve hırka giyer, başlarına işlemeli yazmalar takarlar ve boyunlarına gerdanlıklar takarlar.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+        <div className="container mx-auto px-4 py-8"><br/><br/><br/><br/><br/><br/><br/>
+            <div className="bg-blue-900 rounded-2xl p-2 flex justify-center items-center max-w-[466px] mx-auto">
+                <img
+                    src="/images/gebze/360sanaltur/gebze-belediyesi-sanal-tur.png"
+                    alt="Gebze Belediyesi"
+                    className="h-24 object-contain"
+                />
+            </div>
+            <br />
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {locations.map((location) => (
+                    <motion.div
+                        key={location.id}
+                        className="relative group cursor-pointer"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                    >
+                        <img
+                            src={location.imageUrl}
+                            alt={location.name}
+                            className="w-full h-60 md:h-64 object-cover rounded-lg"
+                        />
+                        <div className="absolute bottom-2 left-2 bg-black/60 text-white px-3 py-1 rounded-lg text-sm">
+                            {location.name}
+                        </div>
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 rounded-lg flex items-center justify-center">
+                            <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity flex space-x-4">
+                                <a href={location.tourUrl} target="_blank" rel="noopener noreferrer">
+                                    <VrGogglesIcon />
+                                </a>
+                                <a href={location.mapUrl} target="_blank" rel="noopener noreferrer">
+                                    <MapPin size={32} className="cursor-pointer text-white hover:text-green-400" />
+                                </a>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </motion.div>
+                ))}
+            </div><br/>
         </div>
     );
 };
 
-export default TarihcePage;
+export default VirtualTourGallery;
+
