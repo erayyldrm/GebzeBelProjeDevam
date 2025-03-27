@@ -49,9 +49,14 @@ export const gebze: DropdownItem[] = [
     {
         icon: <FiUsers className="text-gray-800"/>,
         title: 'ÜYE OLDUĞUMUZ BİRLİKLER',
-        description: 'Üye Olduğumuz Birlikler hakkında bilgi'
+        description: 'Üye Olduğumuz Birlikler hakkında bilgi',
+        path:'/gebze/uyeoldugumuzbirlikler'
     },
-    {icon: <FiMap className="text-gray-800"/>, title: '360 SANAL TUR', description: 'Gebze 360 Sanal Tur'},
+    {icon: <FiMap className="text-gray-800"/>,
+        title: '360 SANAL TUR',
+        description: 'Gebze 360 Sanal Tur',
+        path:'/gebze/360sanaltur'
+    },
 
 ];
 export const kurumsal: DropdownItem[] = [

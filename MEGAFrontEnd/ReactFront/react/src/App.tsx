@@ -25,6 +25,7 @@ import MudurTest from "./components/kurumsal/mudurlukler/_Mudurler.tsx";
 import Gallarytest from "./components/gebze/gallarytest.tsx";
 import Arabuluculuk from "./components/kurumsal/arabuluculuk.tsx";
 import UyeOldugumuzBirlikler from "./components/gebze/uyeoldugumuzbirlikler.tsx";
+import SanalTur from "./components/gebze/360sanaltur.tsx";
 
 
 
@@ -85,6 +86,7 @@ const App: React.FC = () => {
                     <Route path="/gebze/tarihiyerler" element={<Gallarytest/>}/>
                     <Route path="/kurumsal/arabuluculuk" element={<Arabuluculuk/>}/>
                     <Route path="/gebze/uyeoldugumuzbirlikler" element={<UyeOldugumuzBirlikler/>}/>
+                    <Route path="/gebze/360sanaltur" element={<SanalTur/>}/>
 
 
 
