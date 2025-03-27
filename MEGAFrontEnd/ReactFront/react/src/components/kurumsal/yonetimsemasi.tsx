@@ -405,7 +405,6 @@ const ManagementChart: React.FC = () => {
                                                                         </div>
                                                                     </div>
                                                                 </li>
-
                                                             </ul>
                                                         </div>
                                                     </div>
