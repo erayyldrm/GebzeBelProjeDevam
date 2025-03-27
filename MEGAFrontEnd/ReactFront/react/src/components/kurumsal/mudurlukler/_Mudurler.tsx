@@ -51,33 +51,30 @@ const Layout: React.FC = () => {
                     </div>
                 </div>
             </section>
-            <div className="col-span-1">
-                <aside className="sidebar sidebar-style-two">
-                    <Sidebar items={kurumsal} title={"Kurumsal"} />
-                </aside>
-            </div>
-            {/* Sayfa İçeriği */}
+
             <section className="sidebar-page-container">
                 <div className="auto-container">
                     <div className="grid grid-cols-4 gap-6">
-                        {/* Sidebar - Olduğu Yerde Kalacak */}
+                        {/* Sidebar */}
+                        <div className="col-span-1">
+                            <aside className="sidebar sidebar-style-two">
+                                <Sidebar items={kurumsal} title={"Kurumsal"} />
+                            </aside>
+                        </div>
 
-
-                        {/* Resimler 3 satır olarak yan tarafa gelecek */}
+                        {/* Müdürler Listesi */}
                         <div className="col-span-3">
-                            <div className="grid grid-cols-3 gap-6">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                                 {departments.map((dept, index) => (
-                                    <div
-                                        key={dept.id || index}
-                                        className="bg-white shadow-md rounded-lg p-4"
-                                    >
+                                    <div key={dept.id || index} className="bg-white shadow-md rounded-lg p-4 text-center">
                                         <img
                                             src={dept.imageUrl}
                                             alt={dept.managerName}
-                                            className="w-full h-80 object-cover rounded-md mb-3"
+                                            className="w-full h-64 object-cover rounded-md mb-3 mx-auto"
+                                            onError={(e) => (e.currentTarget.src = "/api/placeholder/250/230")}
                                         />
                                         <h2 className="text-lg font-bold">{dept.name}</h2>
-                                        <p className="text-gray-600">Yönetici: {dept.managerName}</p>
+                                        <p className="text-gray-600 font-medium">Yönetici: {dept.managerName}</p>
                                         <p className="text-blue-500">{dept.email}</p>
                                     </div>
                                 ))}
