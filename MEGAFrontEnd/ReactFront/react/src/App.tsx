@@ -86,6 +86,7 @@ const App: React.FC = () => {
 
 
 
+
                     {/* Add other routes that need navbar/footer here */}
                 </Route>
 
