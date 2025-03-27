@@ -176,7 +176,7 @@ const handleNavigation = (path: string) => {
                     {/* Desktop menu items - hidden on mobile */}
                     <div className="hidden md:flex md:items-center md:justify-between">
                         {/* Main navbar items */}
-                        <div className="flex space-x-8">
+                        <div className="flex gap-8 ">
                             {/* Kurumsal Dropdown */}
                             <div className="relative flex justify-center">
                                 <motion.button

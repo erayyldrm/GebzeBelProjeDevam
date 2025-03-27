@@ -23,7 +23,8 @@ import BugunkuGebze from "./components/gebze/bugunkugebze.tsx";
 import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
 import MudurTest from "./components/kurumsal/mudurlukler/_Mudurler.tsx";
 import Gallarytest from "./components/gebze/gallarytest.tsx";
-import UyeOldugumuzBirlikler from "./components/gebze/uyeoldugumuzbirlikler.tsx";
+import Arabuluculuk from "./components/kurumsal/arabuluculuk.tsx";
+
 
 
 
@@ -81,8 +82,7 @@ const App: React.FC = () => {
                     <Route path="/etkinlikler" element={<EventsSection/>}/>
                     <Route path="/kurumsal/mudurlukler" element={<MudurTest/>}/>
                     <Route path="/gebze/tarihiyerler" element={<Gallarytest/>}/>
-                    
-
+                    <Route path="/kurumsal/arabuluculuk" element={<Arabuluculuk/>}/>
 
 
 

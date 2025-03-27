@@ -864,7 +864,7 @@ const   Hafızaltıntaş: React.FC = () => {
                         <br/>
 
                         Bu madde dahil 38 maddeden ibaret iş bu  Yönetmelik Hükümlerini Belediye Başkanı yürütür.
-<br/>
+                        <br/>
 
                     </p>
                 </section>

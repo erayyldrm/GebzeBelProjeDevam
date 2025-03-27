@@ -12,7 +12,7 @@ const Sonerbılır: React.FC = () => {
             <div className="bg-white shadow-lg rounded-2xl p-6 max-w-3xl w-full relative z-10">
                 <div className="flex flex-col md:flex-row items-center md:items-start">
                     <img
-                        src="/images/kurumsal/mudurlukler/avatar-1.jpg"
+                        src="s"
                         alt="Tümay Aksan"
                         className="w-48 h-60 object-cover rounded-lg shadow-md"
                     />

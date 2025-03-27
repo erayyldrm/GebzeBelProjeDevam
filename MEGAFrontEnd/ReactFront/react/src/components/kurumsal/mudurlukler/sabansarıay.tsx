@@ -46,7 +46,7 @@ const Sabansarıay: React.FC = () => {
                 <section id="bolum1" className="p-4 bg-gray-50 rounded-lg shadow-md">
                     <h3 className="text-lg font-bold text-left"></h3>
                     <p className="text-gray-700 text-left">BİRİNCİ BÖLÜM
-<br/>
+                        <br/>
                         Genel Hükümler
                         <br/>
 
@@ -961,7 +961,7 @@ const Sabansarıay: React.FC = () => {
                         -İş takipçiliği yapılmasına müsamaha gösterilmez.
                         <br/>
                         -Normal iş temasları dışında müracaat edenlerin büroları işgal etmesine izin verilmez,müsamaha-
-<br/>
+                        <br/>
                         kar davranılmaz, özel işlemlere tabi tutulmaz.
                         <br/>
                         d)İlk kademelerden başlamak üzere denetim yapacak kademeler aşağıdadır:
@@ -1010,7 +1010,7 @@ const Sabansarıay: React.FC = () => {
                 <section id="bolum2" className="p-4 bg-gray-50 rounded-lg shadow-md mt-4">
                     <h3 className="text-lg font-bold text-center"></h3>
                     <p className="text-gray-700 text-left">1965 yılında Aksaray da doğan Şaban SARIAY lise öğremini İzmit Endüstri Meslek Lisesinde tamamladı.
-<br/>
+                        <br/>
                         1991 yılında Selçuk Üniversitesi Mimarlık Mühendislik Fakültesinden mezun oldu.
                         <br/>
                         Özel sektörde 2 yıl çalıştıktan sonra 1993 yılında Karamürsel Belediyesinde Harita Mühendisi olarak, 1995 yılında İhsaniye Belediyesinde Fen İşleri amiri olarak, 1996 yılından itibaren Gebze Belediyesinde 4 Yıl Harita – Emlak ve İstimlak Müdürlüğü – 1 Yıl İmar Müdürlüğü – 11 Yıl Fen İşleri Müdürlüğü ve son olarak 2016 yılından bu yana Emlak ve İstimlak Müdürlüğü görevini yürütmektedir.<br/>
