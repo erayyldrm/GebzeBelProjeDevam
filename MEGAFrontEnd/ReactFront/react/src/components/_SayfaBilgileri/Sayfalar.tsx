@@ -80,7 +80,7 @@ export const kurumsal: DropdownItem[] = [
         icon: <FiAward className="text-gray-800" size={20}/>,
         title: 'İLKELERİMİZ',
         description: 'İlkelerimiz hakkında bilgi',
-        path: 'kurumsal/ilkelerimiz_2'
+        path: '/kurumsal/ilkelerimiz_2'
     },
     {
         icon: <FiUsers className="text-gray-800" size={20}/>,
