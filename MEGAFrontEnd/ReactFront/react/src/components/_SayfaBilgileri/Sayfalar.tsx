@@ -85,7 +85,7 @@ export const kurumsal: DropdownItem[] = [
         icon: <FiAward className="text-gray-800" size={20}/>,
         title: 'İLKELERİMİZ',
         description: 'İlkelerimiz hakkında bilgi',
-        path: 'kurumsal/ilkelerimiz_2'
+        path: '/kurumsal/ilkelerimiz_2'
     },
     {
         icon: <FiUsers className="text-gray-800" size={20}/>,
@@ -227,4 +227,20 @@ export const eBelediye: DropdownItem[] = [
         title: 'BİLGİ EDİNME (CİMER)',
         description: 'Bilgi edinme işlemleri (CİMER)'
     },
+];
+
+export const yayınlarımız: DropdownItem[] = [
+    {
+        icon: <FiDollarSign className="text-gray-800"/>,
+        title: 'GEBZE BELEDİYESİ PROJELERİ',
+        description: 'Gerçekleştirilen projeler'
+    },
+    {
+        icon: <FiCreditCard className="text-gray-800"/>,
+        title: 'GEBZE MANŞET',
+        description: 'Vergi ve borç ödeme işlemleri'
+    },
+    {   icon: <FiEdit className="text-gray-800"/>,
+        title: 'KÜLTÜR YAYINLARI',
+        description: 'Kültürel yayınlanan belgeler '}
 ];

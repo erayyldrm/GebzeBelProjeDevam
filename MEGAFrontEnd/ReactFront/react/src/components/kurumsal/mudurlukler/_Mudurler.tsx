@@ -1,8 +1,6 @@
-import {kurumsal} from '../../_SayfaBilgileri/Sayfalar.tsx';
-import Sidebar from '../../SideBar/sidebar.tsx'
+import { kurumsal } from "../../_SayfaBilgileri/Sayfalar.tsx";
+import Sidebar from "../../SideBar/sidebar.tsx";
 import React, { useEffect, useState } from "react";
-
-
 
 interface Department {
     id: number;
@@ -11,7 +9,6 @@ interface Department {
     email: string;
     imageUrl: string;
 }
-
 
 const Layout: React.FC = () => {
     const [departments, setDepartments] = useState<Department[]>([]);
@@ -22,11 +19,11 @@ const Layout: React.FC = () => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                return response.text(); // Read as text first
+                return response.text();
             })
             .then((text) => {
                 try {
-                    const data = JSON.parse(text); // Parse manually
+                    const data = JSON.parse(text);
                     setDepartments(data);
                 } catch (error) {
                     console.error("Error parsing JSON:", error, "Response text:", text);
@@ -34,16 +31,10 @@ const Layout: React.FC = () => {
             })
             .catch((error) => console.error("Error fetching departments:", error));
     }, []);
-    console.log(departments);
-
-
 
     return (
         <div className="page-wrapper">
-
-
-
-            {/* Page Title */}
+            {/* Sayfa Başlığı */}
             <section className="page-title m-0 bg-[#3b71ca]">
                 <div className="auto-container">
                     <div className="content-box">
@@ -61,42 +52,39 @@ const Layout: React.FC = () => {
                 </div>
             </section>
 
-            {/* Sidebar Page Container */}
             <section className="sidebar-page-container">
                 <div className="auto-container">
-                    <div className="row">
-                        <div className="col-lg-8 order-lg-2">
-                            <div className="depertment-details pl-5">
-
-
-                                {/* Display Departments as Cards */}
-                                <div className="auto-container my-10">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {departments.map((dept,index) => (
-                                            <div key={dept.id || index} className="bg-white shadow-md rounded-lg p-4">
-                                                <img src={dept.imageUrl} alt={dept.managerName} className="w-full h-40 object-cover rounded-md mb-3"/>
-                                                <h2 className="text-lg font-bold">{dept.name}</h2>
-                                                <p className="text-gray-600">Yönetici: {dept.managerName}</p>
-                                                <p className="text-blue-500">{dept.email}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4">
+                    <div className="grid grid-cols-4 gap-6">
+                        {/* Sidebar */}
+                        <div className="col-span-1">
                             <aside className="sidebar sidebar-style-two">
                                 <Sidebar items={kurumsal} title={"Kurumsal"} />
-
                             </aside>
+                        </div>
+
+                        {/* Müdürler Listesi */}
+                        <div className="col-span-3">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                                {departments.map((dept, index) => (
+                                    <div key={dept.id || index} className="bg-white shadow-md rounded-lg p-4 text-center">
+                                        <img
+                                            src={dept.imageUrl}
+                                            alt={dept.managerName}
+                                            className="w-full h-64 object-cover rounded-md mb-3 mx-auto"
+                                            onError={(e) => (e.currentTarget.src = "/api/placeholder/250/230")}
+                                        />
+                                        <h2 className="text-lg font-bold">{dept.name}</h2>
+                                        <p className="text-gray-600 font-medium">Yönetici: {dept.managerName}</p>
+                                        <p className="text-blue-500">{dept.email}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-
         </div>
     );
 };
 
 export default Layout;
-
