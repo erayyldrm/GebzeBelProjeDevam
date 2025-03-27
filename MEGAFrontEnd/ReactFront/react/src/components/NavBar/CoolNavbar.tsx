@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {kurumsal,gebze,hizmetler,eBelediye} from '../_SayfaBilgileri/Sayfalar.tsx';
+import {kurumsal,gebze,hizmetler,eBelediye,yayınlarımız} from '../_SayfaBilgileri/Sayfalar.tsx';
 import {motion, AnimatePresence, useAnimation} from 'framer-motion';
 import './NavBar.css';
 import {Link, useNavigate} from 'react-router-dom';
@@ -190,7 +190,8 @@ const handleNavigation = (path: string) => {
                                 </motion.button>
                                 <AnimatePresence>
                                     {openDropdown === 'kurumsal' && renderDropdownItems(kurumsal)}
-                                </AnimatePresence>                            </div>
+                                </AnimatePresence>
+                            </div>
 
                             {/* Gebze link */}
                             <div className="relative flex justify-center">
@@ -216,7 +217,7 @@ const handleNavigation = (path: string) => {
                                     className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
                                     onClick={() => toggleDropdown('hizmetler')}
                                 >
-                                    Kaynaklar
+                                    Hizmetler
                                     {openDropdown === 'hizmetler' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
                                 </motion.button>
                                 <AnimatePresence>
@@ -237,6 +238,22 @@ const handleNavigation = (path: string) => {
                                 </motion.button>
                                 <AnimatePresence>
                                     {openDropdown === 'eBelediye' && renderDropdownItems(eBelediye)}
+                                </AnimatePresence>
+                            </div>
+
+                            {/* YAYINLARIMIZ link */}
+                            <div className="relative flex justify-center">
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white"
+                                    onClick={() => toggleDropdown('Yayınlarımız')}
+                                >
+                                    Yayınlarımız
+                                    {openDropdown === 'Yayınlarımız' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
+                                </motion.button>
+                                <AnimatePresence>
+                                    {openDropdown === 'Yayınlarımız' && renderDropdownItems(yayınlarımız)}
                                 </AnimatePresence>
                             </div>
 
@@ -323,7 +340,7 @@ const handleNavigation = (path: string) => {
                                 className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-100"
                                 onClick={() => toggleDropdown('hizmetler-mobile')}
                             >
-                                Kaynaklar
+                                Hizmetler
                                 {openDropdown === 'hizmetler-mobile' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
                             </button>
                             {openDropdown === 'hizmetler-mobile' && (
