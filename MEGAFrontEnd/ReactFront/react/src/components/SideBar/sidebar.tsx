@@ -11,7 +11,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
     const location = useLocation();
 
     return (
-        <div className="w-64 bg-white shadow-md rounded-lg sticky top-0 ">
+        <div className="hidden md:block w-64 bg-white shadow-md rounded-lg sticky top-0 ">
 
 
 

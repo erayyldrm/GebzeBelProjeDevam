@@ -21,9 +21,7 @@ const BaskanPage: React.FC = () => {
                                             <div className="d-flex w-full" style={{ minHeight: '100vh' }}>
 
                                                 {/* Sidebar */}
-                                                <div className="w-25" style={{ height: '100%' }}>
                                                     <Sidebar items={kurumsal} title={"KURUMSAL"} />
-                                                </div>
 
                                                 {/* Main Content */}
                                                 <div className="col-lg-8 ms-auto" style={{ paddingTop: '20px', height: '120%' }}>
