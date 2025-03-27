@@ -102,12 +102,14 @@ export const kurumsal: DropdownItem[] = [
     {
         icon: <FiUsers className="text-gray-800" size={20}/>,
         title: 'BAŞKAN YARDIMCILARI',
-        description: 'Başkan Yardımcıları hakkında bilgi'
+        description: 'Başkan Yardımcıları hakkında bilgi',
+        path:'/kurumsal/baskanyardimcilari'
     },
     {
         icon: <FiUser className="text-gray-800" size={20}/>,
         title: 'BAŞKAN DANIŞMANLARI',
-        description: 'Başkan Danışmanları hakkında bilgi'
+        description: 'Başkan Danışmanları hakkında bilgi',
+        path: '/kurumsal/baskandanismanlari'
     },
     {
         icon: <FiFileText className="text-gray-800" size={20}/>,
@@ -136,22 +138,26 @@ export const kurumsal: DropdownItem[] = [
     {
         icon: <FiClipboard className="text-gray-800" size={20}/>,
         title: 'MECLİS KARALARI',
-        description: 'Meclis Kararları hakkında bilgi'
+        description: 'Meclis Kararları hakkında bilgi',
+        path: '/kurumsal/mecliskararlari'
     },
     {
         icon: <FiFileText className="text-gray-800" size={20}/>,
         title: 'KURUMSAL KİMLİK',
-        description: 'Kurumsal Kimlik hakkında bilgi'
+        description: 'Kurumsal Kimlik hakkında bilgi',
+        path: '/kurumsal/kurumsalkimlik'
     },
     {
         icon: <FiFileText className="text-gray-800" size={20}/>,
         title: 'KURUMSAL RAPORLAR',
-        description: 'Kurumsal Raporlar hakkında bilgi'
+        description: 'Kurumsal Raporlar hakkında bilgi',
+        path: '/kurumsal/kurumsalraporlar'
     },
     {
         icon: <FiFileText className="text-gray-800" size={20}/>,
         title: 'KURUMSAL DÖKÜMANLAR',
-        description: 'Kurumsal Dökümanlar hakkında bilgi'
+        description: 'Kurumsal Dökümanlar hakkında bilgi',
+        path: '/kurumsal/kurumsaldokumanlar'
     },
 
 ];

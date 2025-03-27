@@ -27,6 +27,9 @@ import Arabuluculuk from "./components/kurumsal/arabuluculuk.tsx";
 import EtikKomisyonu from './components/kurumsal/etikkomisyonu.tsx';
 import UyeOldugumuzBirlikler from "./components/gebze/uyeoldugumuzbirlikler.tsx";
 import SanalTur from "./components/gebze/360sanaltur.tsx";
+import Baskanyardimcilari from "./components/kurumsal/baskanyardimcilari.tsx";
+import Baskandanismanlari from "./components/kurumsal/baskandanismanlari.tsx";
+
 
 
 const queryClient = new QueryClient();
@@ -82,6 +85,8 @@ const App: React.FC = () => {
                     <Route path="/kurumsal/mudurlukler" element={<MudurTest/>}/>
                     <Route path="/gebze/tarihiyerler" element={<Gallarytest/>}/>
                     <Route path="/kurumsal/arabuluculuk" element={<Arabuluculuk/>}/>
+                    <Route path="/kurumsal/baskanyardimcilari" element={<Baskanyardimcilari/>}/>
+                    <Route path="/kurumsal/baskandanismanlari" element={<Baskandanismanlari/>}/>
                     <Route path="/kurumsal/etikkomisyonu" element={<EtikKomisyonu/>}/>
                     <Route path="/gebze/uyeoldugumuzbirlikler" element={<UyeOldugumuzBirlikler/>}/>
                     <Route path="/gebze/360sanaltur" element={<SanalTur/>}/>
