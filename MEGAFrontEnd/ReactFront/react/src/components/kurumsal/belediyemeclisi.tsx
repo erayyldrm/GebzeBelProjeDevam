@@ -1,9 +1,13 @@
 import React from 'react';
+import Sidebar from "../SideBar/sidebar.tsx";
+import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
+
 interface CouncilMember {
     name: string;
     imageUrl: string;
     role: string;
 }
+
 const MunicipalityCouncil: React.FC = () => {
     // Mayor data
     const mayor: CouncilMember = {
@@ -11,6 +15,7 @@ const MunicipalityCouncil: React.FC = () => {
         imageUrl: "/images/kurumsal/belediyemeclisi/zinnurbuyukgoz.jpg",
         role: "Başkan"
     };
+
     // Council members data
     const councilMembers: CouncilMember[] = [
         { name: "Hasan SOBA", imageUrl: "/images/kurumsal/belediyemeclisi/hasansoba.jpg", role: "Meclis Üyesi" },
@@ -50,7 +55,8 @@ const MunicipalityCouncil: React.FC = () => {
         { name: "Zeynep Aslan ÇAPÇI", imageUrl: "/images/kurumsal/belediyemeclisi/zeynepaslancapı.png", role: "Meclis Üyesi" },
         { name: "Yunus Umut AYDOĞDU", imageUrl: "/images/kurumsal/belediyemeclisi/yunusumutaydogdu.png", role: "Meclis Üyesi" },
         { name: "Hakan KAHRAMAN", imageUrl: "/images/kurumsal/belediyemeclisi/hakankahraman.jpg", role: "Meclis Üyesi" }];
-    // Person card component for reusability
+
+    // Person card component
     const PersonCard: React.FC<{ person: CouncilMember; isPresident?: boolean }> = ({ person, isPresident = false }) => {
         const cardClasses = isPresident ? "max-w-md mb-10" : "max-w-xs mb-5";
         const imgClasses = isPresident ? "h-[50px] w-[300px] object-cover" : "h-36 w-full object-cover";
@@ -78,57 +84,79 @@ const MunicipalityCouncil: React.FC = () => {
             </div>
         );
     };
+
     return (
-        <div className="container mx-auto px-4 py-8">
-            {/* Header */}
-            <div className="mb-8">
-                <div className="flex flex-col md:flex-row justify-between items-center">
-                    <div className="mb-4 md:mb-0">
-                        <h1 className="text-2xl font-bold">BELEDİYE MECLİSİ</h1>
-                    </div>
-                    <div>
-                        <nav className="flex" aria-label="Breadcrumb">
-                            <ol className="inline-flex items-center space-x-1 md:space-x-3">
-                                <li className="inline-flex items-center">
-                                    <a href="index.html" className="text-gray-700 hover:text-blue-600">
-                                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div className="flex items-center">
-                                        <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
-                                        </svg>
-                                        <a href="#" className="ml-1 text-gray-700 hover:text-blue-600 md:ml-2">Kurumsal</a>
+        <div id="pcoded" className="pcoded">
+            <br /><br /><br /><br /><br /><br />
+            <div className="pcoded-container navbar-wrapper">
+                <div className="pcoded-main-container">
+                    <div className="pcoded-wrapper">
+                        <div className="pcoded-content">
+                            <div className="pcoded-inner-content">
+                                <div className="main-body">
+                                    <div className="page-wrapper">
+                                        <div className="flex flex-row gap-4">
+                                            {/* Sidebar - %20 genişlikte ve sabit */}
+                                            <div style={{ width: '20%', minWidth: '200px' }}>
+                                                <Sidebar items={kurumsal} title={"KURUMSAL"} />
+                                            </div>
+
+                                            {/* Ana İçerik Alanı */}
+                                            <div className="flex-1 p-4">
+                                                {/* Header */}
+                                                <div className="mb-8">
+                                                    <div className="flex flex-col md:flex-row justify-between items-center">
+                                                        <div className="mb-4 md:mb-0">
+                                                            <h1 className="text-2xl font-bold">BELEDİYE MECLİSİ</h1>
+                                                        </div>
+                                                        <div>
+                                                            <nav className="flex" aria-label="Breadcrumb">
+                                                                <ol className="inline-flex items-center space-x-1 md:space-x-3">
+                                                                    <li className="inline-flex items-center">
+                                                                        <a href="index.html" className="text-gray-700 hover:text-blue-600">
+                                                                            Ana Sayfa
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div className="flex items-center">
+                                                                            <span className="mx-2">/</span>
+                                                                            <a href="#" className="text-gray-700 hover:text-blue-600">Kurumsal</a>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li aria-current="page">
+                                                                        <div className="flex items-center">
+                                                                            <span className="mx-2">/</span>
+                                                                            <span className="text-gray-500">Belediye Meclisi</span>
+                                                                        </div>
+                                                                    </li>
+                                                                </ol>
+                                                            </nav>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Mayor Section */}
+                                                <div className="flex justify-center mb-8">
+                                                    <PersonCard person={mayor} isPresident={true} />
+                                                </div>
+
+                                                {/* Council Members Grid */}
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                                                    {councilMembers.map((member, index) => (
+                                                        <PersonCard key={index} person={member} />
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </li>
-                                <li aria-current="page">
-                                    <div className="flex items-center">
-                                        <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
-                                        </svg>
-                                        <span className="ml-1 text-gray-500 md:ml-2">Belediye Meclisi</span>
-                                    </div>
-                                </li>
-                            </ol>
-                        </nav>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {/* Mayor Section */}
-            <div className="flex justify-center mb-8">
-                <PersonCard person={mayor} isPresident={true} />
-            </div>
-
-            {/* Council Members Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {councilMembers.map((member, index) => (
-                    <PersonCard key={index} person={member} />
-                ))}
             </div>
         </div>
     );
 };
+
 export default MunicipalityCouncil;
