@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {Outlet, Route, Routes} from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import Loader from './components/loader';
 import LoginForm from './components/Login_v3/LoginForm2.tsx';
 import Footer from './components/Footer/Footer';
@@ -24,12 +24,9 @@ import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
 import MudurTest from "./components/kurumsal/mudurlukler/_Mudurler.tsx";
 import Gallarytest from "./components/gebze/gallarytest.tsx";
 import Arabuluculuk from "./components/kurumsal/arabuluculuk.tsx";
+import EtikKomisyonu from './components/kurumsal/etikkomisyonu.tsx';
 import UyeOldugumuzBirlikler from "./components/gebze/uyeoldugumuzbirlikler.tsx";
 import SanalTur from "./components/gebze/360sanaltur.tsx";
-
-
-
-
 
 
 const queryClient = new QueryClient();
@@ -46,7 +43,7 @@ const App: React.FC = () => {
     }, []);
 
     if (loading) {
-        return <Loader />;
+        return <Loader/>;
     }
 
     // Determine if the current route is the login page
@@ -58,24 +55,24 @@ const App: React.FC = () => {
                 <Route
                     element={
                         <>
-                            <CoolNavbar />
-                            <Outlet /> {/* This is important! */}
-                            <Footer />
+                            <CoolNavbar/>
+                            <Outlet/> {/* This is important! */}
+                            <Footer/>
 
 
                         </>
                     }
                 >
                     {/* Navbar ve Footerli elemanlar burada olacak */}
-                    <Route path="/" element={<ContentArea/>} />
-                    <Route path="/kurumsal/baskan" element={<Baskan/>} />
+                    <Route path="/" element={<ContentArea/>}/>
+                    <Route path="/kurumsal/baskan" element={<Baskan/>}/>
                     <Route path="/kurumsal/belediyemeclisi" element={<BelediyeMeclisi/>}/>
                     <Route path="/kurumsal/vizyon_2" element={<BaskanPage/>}/>
                     <Route path="/kurumsal/misyon_2" element={<Misyon/>}/>
                     <Route path="/kurumsal/ilkelerimiz_2" element={<İlkelerimiz/>}/>
                     <Route path="/test" element={<TEST/>}></Route>
                     <Route path="/kurumsal/yonetimseması" element={<ManagementChart/>}></Route>
-                    <Route path="/kurumsal/eskibaskanlar" element={<Eskibaskanlar />}></Route>
+                    <Route path="/kurumsal/eskibaskanlar" element={<Eskibaskanlar/>}></Route>
                     <Route path="/gebze/kardessehirler" element={<KardesSehirler/>}/>
                     <Route path="/gebze/muhtarlar" element={<Muhtarlar/>}/>
                     <Route path="/gebze/tarihce" element={<Tarihce/>}/>
@@ -85,18 +82,17 @@ const App: React.FC = () => {
                     <Route path="/kurumsal/mudurlukler" element={<MudurTest/>}/>
                     <Route path="/gebze/tarihiyerler" element={<Gallarytest/>}/>
                     <Route path="/kurumsal/arabuluculuk" element={<Arabuluculuk/>}/>
+                    <Route path="/kurumsal/etikkomisyonu" element={<EtikKomisyonu/>}/>
                     <Route path="/gebze/uyeoldugumuzbirlikler" element={<UyeOldugumuzBirlikler/>}/>
                     <Route path="/gebze/360sanaltur" element={<SanalTur/>}/>
-
-
 
 
                     {/* Add other routes that need navbar/footer here */}
                 </Route>
 
                 {/* Routes WITHOUT navbar and footer */}
-                <Route path="/login" element={<LoginForm/>} />
-                <Route path="/signup" element={<SignUp/>} />
+                <Route path="/login" element={<LoginForm/>}/>
+                <Route path="/signup" element={<SignUp/>}/>
             </Routes>
         </QueryClientProvider>
     );

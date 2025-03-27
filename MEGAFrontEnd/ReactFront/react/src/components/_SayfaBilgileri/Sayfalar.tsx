@@ -130,7 +130,8 @@ export const kurumsal: DropdownItem[] = [
     {
         icon: <FiUserCheck className="text-gray-800" size={20}/>,
         title: 'ETİK KOMİSYONU',
-        description: 'Etik Komisyonu hakkında bilgi'
+        description: 'Etik Komisyonu hakkında bilgi',
+        path: '/kurumsal/etikkomisyonu'
     },
     {
         icon: <FiClipboard className="text-gray-800" size={20}/>,
