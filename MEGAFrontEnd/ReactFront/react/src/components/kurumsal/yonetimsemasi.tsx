@@ -148,8 +148,263 @@ const ManagementChart: React.FC = () => {
                                                                     </div>
                                                                 </li>
 
-                                                                {/* Diğer Başkan Yardımcıları için aynı yapıyı koruyun */}
-                                                                {/* ... */}
+                                                                {/* Diğer Başkan Yardımcıları */}
+                                                                {/* Ahmet Hüseyin ÇELEBİ */}
+                                                                <li>
+                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="media flex items-start">
+                                                                            <a className="media-left" href="#">
+                                                                                <img
+                                                                                    className="rounded-lg"
+                                                                                    src="/images/yonetimsemasi/ahmet hüseyin.jpg"
+                                                                                    width="270"
+                                                                                    height="350"
+                                                                                    alt="Ahmet Hüseyin ÇELEBİ"
+                                                                                />
+                                                                            </a>
+                                                                            <div className="media-body ml-4">
+                                                                                <div>
+                                                                                    <h4 className="inline-block text-blue-900 text-xl font-bold">
+                                                                                        Ahmet Hüseyin ÇELEBİ
+                                                                                    </h4>
+                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
+                                                                                    <hr className="my-2 border-t border-gray-300" />
+                                                                                </div>
+
+                                                                                <div className="space-y-2">
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Mali Hizmetler Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Bilgin ALTAY</h5>
+                                                                                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        İnsan Kaynakları ve Eğitim Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">İmran AYYILDIZ</h5>
+                                                                                    </button><br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Ruhsat Denetim Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Erhan HORUZ</h5>
+                                                                                    </button>&nbsp;&nbsp;<br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Destek Hizmetleri Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Carullah Recai ER</h5>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+
+                                                                <li>
+                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="media flex items-start">
+                                                                            <a className="media-left" href="#">
+                                                                                <img
+                                                                                    className="rounded-lg"
+                                                                                    src="/images/yonetimsemasi/şerif canpolat.jpg"
+                                                                                    width="270"
+                                                                                    height="350"
+                                                                                    alt="Şerif Canpolat"
+                                                                                />
+                                                                            </a>
+                                                                            <div className="media-body ml-4">
+                                                                                <div>
+                                                                                    <h4 className="inline-block text-blue-900 text-xl font-bold">
+                                                                                        Şerif Canpolat
+                                                                                    </h4>
+                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
+                                                                                    <hr className="my-2 border-t border-gray-300" />
+                                                                                </div>
+
+                                                                                <div className="space-y-2">
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Fen İşleri Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Hafız ALTINTAŞ</h5>
+                                                                                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Park Ve Bahçeler Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Tunacy TÜRETKEN</h5>
+                                                                                    </button><br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Etüt Ve Proje Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Ömer ŞAHİN</h5>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+
+                                                                <li>
+                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="media flex items-start">
+                                                                            <a className="media-left" href="#">
+                                                                                <img
+                                                                                    className="rounded-lg"
+                                                                                    src="/images/yonetimsemasi/muharrem baltacıoğlu.jpg"
+                                                                                    width="270"
+                                                                                    height="350"
+                                                                                    alt="Muharrem BALTACIOGLU"
+                                                                                />
+                                                                            </a>
+                                                                            <div className="media-body ml-4">
+                                                                                <div>
+                                                                                    <h4 className="inline-block text-blue-900 text-xl font-bold">
+                                                                                        Muharrem BALTACIOGLU
+                                                                                    </h4>
+                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
+                                                                                    <hr className="my-2 border-t border-gray-300" />
+                                                                                </div>
+
+                                                                                <div className="space-y-2">
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Emlak Ve İstimlak Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Şaban SARIAY</h5>
+                                                                                    </button>&nbsp;&nbsp;<br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Plan Ve Proje Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Asker ÇOBAN</h5>
+                                                                                    </button><br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Bilgi İşlem Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Tümay AKSAN</h5>
+                                                                                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        İmar Ve Şehircilik Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Mücahit KOKSAL</h5>
+                                                                                    </button><br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Yapı Ve Kontrol Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Mücahit KOKSAL</h5>
+                                                                                    </button><br/>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+
+                                                                <li>
+                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="media flex items-start">
+                                                                            <a className="media-left" href="#">
+                                                                                <img
+                                                                                    className="rounded-lg"
+                                                                                    src="/images/yonetimsemasi/mahmut yandık.jpg"
+                                                                                    width="270"
+                                                                                    height="350"
+                                                                                    alt="Mahmut YANDIK"
+                                                                                />
+                                                                            </a>
+                                                                            <div className="media-body ml-4">
+                                                                                <div>
+                                                                                    <h4 className="inline-block text-blue-900 text-xl font-bold">
+                                                                                        Mahmut YANDIK
+                                                                                    </h4>
+                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
+                                                                                    <hr className="my-2 border-t border-gray-300" />
+                                                                                </div>
+
+                                                                                <div className="space-y-2">
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Makina İkmal, Bakım Ve Onarım Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Dursun Ali Yayla</h5>
+                                                                                    </button>&nbsp;<br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Mezarlıklar Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">İslam ÖZDAĞ</h5>
+                                                                                    </button>&nbsp;&nbsp;<br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        İşletme Ve İştirakler Müdürlüğü<br />
+                                                                                        <h5 className="text-sm">Hacı KEY</h5>
+                                                                                    </button><br/>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+
+                                                                <li>
+                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="media flex items-start">
+                                                                            <a className="media-left" href="#">
+                                                                                <img
+                                                                                    className="rounded-lg"
+                                                                                    src="/images/yonetimsemasi/şener akın.jpg"
+                                                                                    width="270"
+                                                                                    height="350"
+                                                                                    alt="Şener AKIN"
+                                                                                />
+                                                                            </a>
+                                                                            <div className="media-body ml-4">
+                                                                                <div>
+                                                                                    <h4 className="inline-block text-blue-900 text-xl font-bold">
+                                                                                        Şener AKIN
+                                                                                    </h4>
+                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
+                                                                                    <hr className="my-2 border-t border-gray-300" />
+                                                                                </div>
+
+                                                                                <div className="space-y-2">
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Veteriner İşleri Müdürlüğü<br />
+                                                                                        <h5 className="text-sm">Cevat ALTINTAŞ</h5>
+                                                                                    </button>&nbsp;&nbsp;<br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Afet İşleri Müdürlüğü<br />
+                                                                                        <h5 className="text-sm">Soner BİLİR</h5>
+                                                                                    </button><br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Yazı İşleri Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Bahar ÖZALP</h5>
+                                                                                    </button><br/>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+
+                                                                <li>
+                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="media flex items-start">
+                                                                            <a className="media-left" href="#">
+                                                                                <img
+                                                                                    className="rounded-lg"
+                                                                                    src="/images/yonetimsemasi/mücahit birben.jpg"
+                                                                                    width="270"
+                                                                                    height="350"
+                                                                                    alt="Mücahit BİRBEN"
+                                                                                />
+                                                                            </a>
+                                                                            <div className="media-body ml-4">
+                                                                                <div>
+                                                                                    <h4 className="inline-block text-blue-900 text-xl font-bold">
+                                                                                        Mücahit BİRBEN
+                                                                                    </h4>
+                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
+                                                                                    <hr className="my-2 border-t border-gray-300" />
+                                                                                </div>
+
+                                                                                <div className="space-y-2">
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Gençlik Ve Spor Hizmetleri Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Burhannettin DEMİRCİ</h5>
+                                                                                    </button><br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Basın Yayın Ve Halkla İlişkiler Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Birsen VURDEM</h5>
+                                                                                    </button><br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Kültür İşleri Müdürlüğü<br />
+                                                                                        <h5 className="text-sm">Hasan GÜLER</h5>
+                                                                                    </button>&nbsp;&nbsp;<br/>
+                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
+                                                                                        Kadın Ve Aile Hizmetleri Müdürlüğü <br />
+                                                                                        <h5 className="text-sm">Zeynep YILDIRIM</h5>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
 
                                                             </ul>
                                                         </div>
