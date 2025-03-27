@@ -216,7 +216,7 @@ const handleNavigation = (path: string) => {
                                     className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
                                     onClick={() => toggleDropdown('hizmetler')}
                                 >
-                                    Kaynaklar
+                                    Hizmetler
                                     {openDropdown === 'hizmetler' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
                                 </motion.button>
                                 <AnimatePresence>
@@ -323,7 +323,7 @@ const handleNavigation = (path: string) => {
                                 className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-100"
                                 onClick={() => toggleDropdown('hizmetler-mobile')}
                             >
-                                Kaynaklar
+                                Hizmetler
                                 {openDropdown === 'hizmetler-mobile' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
                             </button>
                             {openDropdown === 'hizmetler-mobile' && (
