@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Sidebar from "../SideBar/sidebar.tsx";
 import { gebze } from "../_SayfaBilgileri/Sayfalar.tsx";
-import React from "react";
+
 
 const domesticMunicipalities = [
     { name: "Acıgöl Belediyesi", city: "Nevşehir", country: "Türkiye", flag: "https://flagcdn.com/w320/tr.png" },
