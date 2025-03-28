@@ -70,27 +70,6 @@ const BaskanPage: React.FC = () => {
                 </div>
             </div>
 
-            {/* Responsive CSS */}
-            <style jsx>{`
-                @media (max-width: 767.98px) {
-                    .sidebar-wrapper {
-                        margin-bottom: 2rem;
-                    }
-                    .card-block {
-                        padding: 1.5rem !important;
-                    }
-                }
-                @media (min-width: 768px) and (max-width: 991.98px) {
-                    .col-md-4 {
-                        flex: 0 0 35%;
-                        max-width: 35%;
-                    }
-                    .col-md-8 {
-                        flex: 0 0 65%;
-                        max-width: 65%;
-                    }
-                }
-            `}</style>
         </div>
     );
 };
