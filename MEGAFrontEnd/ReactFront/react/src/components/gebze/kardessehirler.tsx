@@ -1,4 +1,7 @@
 import { motion } from "framer-motion";
+import Sidebar from "../SideBar/sidebar.tsx";
+import { gebze } from "../_SayfaBilgileri/Sayfalar.tsx";
+
 
 const domesticMunicipalities = [
     { name: "Acıgöl Belediyesi", city: "Nevşehir", country: "Türkiye", flag: "https://flagcdn.com/w320/tr.png" },
@@ -37,29 +40,57 @@ const CityCard = ({ city }: { city: { name: string; city: string; country: strin
 
 export default function SisterCities() {
     return (
-        <div>
-        <div className="container mx-auto px-4 py-8">
-            <br/><h1 className="text-3xl font-bold text-center mb-6">Kardeş Şehirler</h1>
+        <div id="pcoded" className="pcoded">
+            <br /><br /><br /><br /><br /><br />
+            <div className="pcoded-container navbar-wrapper">
+                <div className="pcoded-main-container">
+                    <div className="pcoded-wrapper">
+                        <div className="pcoded-content">
+                            <div className="pcoded-inner-content">
+                                <div className="main-body">
+                                    <div className="page-wrapper">
+                                        <div className="flex flex-row gap-4">
+                                            {/* Sidebar - %20 genişlikte ve sabit */}
+                                            <div style={{ width: '20%', minWidth: '200px' }}>
+                                                <Sidebar items={gebze} title={"ULUSLARARASI"} />
+                                            </div>
 
-            {/* Yurt İçi Şehirler */}
-            <h2 className="text-2xl font-semibold mt-8 mb-4">🏠 Yurt İçi Kardeş Şehirler</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {domesticMunicipalities.map((city, index) => (
-                    <CityCard key={index} city={city} />
-                ))}
+                                            {/* Ana İçerik Alanı */}
+                                            <div className="flex-1 p-4">
+                                                <h1 className="text-3xl font-bold text-center mb-8">Kardeş Şehirler</h1>
+
+                                                {/* Yurt İçi Şehirler */}
+                                                <section className="mb-12">
+                                                    <h2 className="text-2xl font-semibold mb-6 flex items-center">
+                                                        <span className="mr-2">🏠</span> Yurt İçi Kardeş Şehirler
+                                                    </h2>
+                                                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                                        {domesticMunicipalities.map((city, index) => (
+                                                            <CityCard key={`domestic-${index}`} city={city} />
+                                                        ))}
+                                                    </div>
+                                                </section>
+
+                                                {/* Yurt Dışı Şehirler */}
+                                                <section>
+                                                    <h2 className="text-2xl font-semibold mb-6 flex items-center">
+                                                        <span className="mr-2">🌍</span> Yurt Dışı Kardeş Şehirler
+                                                    </h2>
+                                                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                                        {internationalMunicipalities.map((city, index) => (
+                                                            <CityCard key={`international-${index}`} city={city} />
+                                                        ))}
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            {/* Yurt Dışı Şehirler */}
-            <h2 className="text-2xl font-semibold mt-12 mb-4">🌍 Yurt Dışı Kardeş Şehirler</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {internationalMunicipalities.map((city, index) => (
-                    <CityCard key={index} city={city} />
-                ))}
-            </div>
-
-            {/* Garowe sonrası boşluk */}
-            <br />
-        </div>
         </div>
     );
 }
