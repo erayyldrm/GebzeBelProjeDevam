@@ -8,19 +8,11 @@ import CoolNavbar from './components/NavBar/CoolNavbar';
 import SignUp from './components/SignUp/SignUp';
 import ContentArea from "./components/Slide/Slide.tsx";
 import TEST from "./components/sablon/testsablon.tsx"
-import Kurumsal from "./KurumsalApp.tsx"
-import KardesSehirler from "./components/gebze/kardessehirler.tsx";
-import Muhtarlar from "./components/gebze/muhtarlar.tsx";
-import Tarihce from "./components/gebze/tarihce.tsx";
-import Fotoğraflarla from "./components/gebze/fotolarla.tsx";
-import BugunkuGebze from "./components/gebze/bugunkugebze.tsx";
+import Kurumsal from "./KurumsalApp.tsx";
+import Gebze from "./GebzeApp.tsx";
 import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
-import Gallarytest from "./components/gebze/gallarytest.tsx";
-import UyeOldugumuzBirlikler from "./components/gebze/uyeoldugumuzbirlikler.tsx";
-import SanalTur from "./components/gebze/360sanaltur.tsx";
-import Baskanyardimcilari from "./components/kurumsal/baskanyardimcilari.tsx";
-import Baskandanismanlari from "./components/kurumsal/baskandanismanlari.tsx";
-import Kurumsaldokuman from "./components/kurumsal/kurumsaldokuman.tsx";
+
+
 
 
 
@@ -61,22 +53,10 @@ const App: React.FC = () => {
                     {/* Navbar ve Footerli elemanlar burada olacak */}
                     <Route path="/" element={<ContentArea/>}/>
                     <Route path="/test" element={<TEST/>}></Route>
-                    <Route path="/gebze/kardessehirler" element={<KardesSehirler/>}/>
-                    <Route path="/gebze/muhtarlar" element={<Muhtarlar/>}/>
-                    <Route path="/gebze/tarihce" element={<Tarihce/>}/>
-                    <Route path="/gebze/fotoğraflarlagebze" element={<Fotoğraflarla/>}/>
-                    <Route path="/gebze/bugunkugebze" element={<BugunkuGebze/>}/>
-                    <Route path="/etkinlikler" element={<EventsSection/>}/>
-                    <Route path="/gebze/tarihiyerler" element={<Gallarytest/>}/>
-                    <Route path="/kurumsal/arabuluculuk" element={<Arabuluculuk/>}/>
-                    <Route path="/kurumsal/baskanyardimcilari" element={<Baskanyardimcilari/>}/>
-                    <Route path="/kurumsal/baskandanismanlari" element={<Baskandanismanlari/>}/>
-                    <Route path="/kurumsal/etikkomisyonu" element={<EtikKomisyonu/>}/>
-                    <Route path="/kurumsal/kurumsaldokuman" element={<Kurumsaldokuman/>}/>
-                    <Route path="/gebze/uyeoldugumuzbirlikler" element={<UyeOldugumuzBirlikler/>}/>
-                    <Route path="/gebze/360sanaltur" element={<SanalTur/>}/>
-                    <Route path="/kurumsal/*" element={<Kurumsal />} />
 
+                    <Route path="/etkinlikler" element={<EventsSection/>}/>
+                    <Route path="/kurumsal/*" element={<Kurumsal />} />
+                    <Route path="/gebze/*" element={<Gebze/>}/>
 
 
                     {/* Add other routes that need navbar/footer here */}
