@@ -7,29 +7,17 @@ import Footer from './components/Footer/Footer';
 import CoolNavbar from './components/NavBar/CoolNavbar';
 import SignUp from './components/SignUp/SignUp';
 import ContentArea from "./components/Slide/Slide.tsx";
-import Baskan from "./components/kurumsal/baskan.tsx";
-import BelediyeMeclisi from "./components/kurumsal/belediyemeclisi.tsx";
 import TEST from "./components/sablon/testsablon.tsx"
-import ManagementChart from "./components/kurumsal/yonetimsemasi.tsx";
-import BaskanPage from "./components/kurumsal/vizyon_2.tsx";
-import Misyon from "./components/kurumsal/misyon_2.tsx";
-import İlkelerimiz from "./components/kurumsal/ilkelerimiz_2.tsx";
-import Eskibaskanlar from "./components/kurumsal/eskibaskanlar.tsx";
+import Kurumsal from "./KurumsalApp.tsx"
 import KardesSehirler from "./components/gebze/kardessehirler.tsx";
 import Muhtarlar from "./components/gebze/muhtarlar.tsx";
 import Tarihce from "./components/gebze/tarihce.tsx";
 import Fotoğraflarla from "./components/gebze/fotolarla.tsx";
 import BugunkuGebze from "./components/gebze/bugunkugebze.tsx";
 import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
-import MudurTest from "./components/kurumsal/mudurlukler/_Mudurler.tsx";
 import Gallarytest from "./components/gebze/gallarytest.tsx";
-import Arabuluculuk from "./components/kurumsal/arabuluculuk.tsx";
-import EtikKomisyonu from './components/kurumsal/etikkomisyonu.tsx';
 import UyeOldugumuzBirlikler from "./components/gebze/uyeoldugumuzbirlikler.tsx";
 import SanalTur from "./components/gebze/360sanaltur.tsx";
-import Baskanyardimcilari from "./components/kurumsal/baskanyardimcilari.tsx";
-import Baskandanismanlari from "./components/kurumsal/baskandanismanlari.tsx";
-
 
 
 const queryClient = new QueryClient();
@@ -68,28 +56,18 @@ const App: React.FC = () => {
                 >
                     {/* Navbar ve Footerli elemanlar burada olacak */}
                     <Route path="/" element={<ContentArea/>}/>
-                    <Route path="/kurumsal/baskan" element={<Baskan/>}/>
-                    <Route path="/kurumsal/belediyemeclisi" element={<BelediyeMeclisi/>}/>
-                    <Route path="/kurumsal/vizyon_2" element={<BaskanPage/>}/>
-                    <Route path="/kurumsal/misyon_2" element={<Misyon/>}/>
-                    <Route path="/kurumsal/ilkelerimiz_2" element={<İlkelerimiz/>}/>
                     <Route path="/test" element={<TEST/>}></Route>
-                    <Route path="/kurumsal/yonetimseması" element={<ManagementChart/>}></Route>
-                    <Route path="/kurumsal/eskibaskanlar" element={<Eskibaskanlar/>}></Route>
                     <Route path="/gebze/kardessehirler" element={<KardesSehirler/>}/>
                     <Route path="/gebze/muhtarlar" element={<Muhtarlar/>}/>
                     <Route path="/gebze/tarihce" element={<Tarihce/>}/>
                     <Route path="/gebze/fotoğraflarlagebze" element={<Fotoğraflarla/>}/>
                     <Route path="/gebze/bugunkugebze" element={<BugunkuGebze/>}/>
                     <Route path="/etkinlikler" element={<EventsSection/>}/>
-                    <Route path="/kurumsal/mudurlukler" element={<MudurTest/>}/>
                     <Route path="/gebze/tarihiyerler" element={<Gallarytest/>}/>
-                    <Route path="/kurumsal/arabuluculuk" element={<Arabuluculuk/>}/>
-                    <Route path="/kurumsal/baskanyardimcilari" element={<Baskanyardimcilari/>}/>
-                    <Route path="/kurumsal/baskandanismanlari" element={<Baskandanismanlari/>}/>
-                    <Route path="/kurumsal/etikkomisyonu" element={<EtikKomisyonu/>}/>
                     <Route path="/gebze/uyeoldugumuzbirlikler" element={<UyeOldugumuzBirlikler/>}/>
                     <Route path="/gebze/360sanaltur" element={<SanalTur/>}/>
+                    <Route path="/kurumsal/*" element={<Kurumsal />} />
+
 
 
                     {/* Add other routes that need navbar/footer here */}
