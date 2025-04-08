@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-
 type Event = {
     id: number;
     title: string;
@@ -30,85 +29,127 @@ const events: Event[] = [
     { id: 18, title: "Bayram Kesesi", date: "2025-03-28", imageUrl: "/images/etkinlikler/etkinlik18.jpg", description: "Yer: Arapçeşme Bilim Sanat Merkezi" }
 ];
 
-
 const EventsSection: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [isTransitioning, setIsTransitioning] = useState(false);
 
-    // Auto-play effect
+    const goToSlide = (index: number) => {
+        if (index === currentSlide || isTransitioning) return;
+        setIsTransitioning(true);
+        setCurrentSlide(index);
+    };
+
+    const nextSlide = () => {
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setCurrentSlide((prev) => (prev === events.length - 1 ? 0 : prev + 1));
+    };
+
+    const prevSlide = () => {
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setCurrentSlide((prev) => (prev === 0 ? events.length - 1 : prev - 1));
+    };
+
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentSlide(prev => (prev === events.length - 1 ? 0 : prev + 1));
-        }, 5000); // 3 saniyede bir değişir
-        return () => clearInterval(interval); // component destroy olunca temizle
+        const transitionEnd = () => setIsTransitioning(false);
+        const slider = document.querySelector('.slider-container');
+        slider?.addEventListener('transitionend', transitionEnd);
+
+        return () => {
+            slider?.removeEventListener('transitionend', transitionEnd);
+        };
     }, []);
 
-    const nextSlide = () => setCurrentSlide((prev) => (prev === events.length - 1 ? 0 : prev + 1));
-    const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? events.length - 1 : prev - 1));
+    useEffect(() => {
+        const interval = setInterval(() => {
+            nextSlide();
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [currentSlide, isTransitioning]);
 
     return (
-        <div className="container mx-auto py-10"><br/><br/><br/><br/><br/>
-            {/* Page Title */}
+        <div className="container mx-auto py-10"> <br/><br/><br/><br/><br/><br/><br/>
             <h2 className="text-3xl font-bold mb-6 text-center">Etkinlikler</h2>
 
-            {/* Slider */}
-            <div className="relative w-full mb-10 overflow-hidden">
-                <div className="relative h-[400px] w-full">
-                    {events.map((event, index) => (
-                        <div
-                            key={event.id}
-                            className={`absolute top-0 left-0 w-full h-full transition-all duration-500 ease-in-out ${
-                                index === currentSlide
-                                    ? 'opacity-100 scale-100'
-                                    : 'opacity-0 scale-95'
-                            }`}
-                        >
-                            <div className="relative w-full h-full flex justify-center items-center">
+            {/* Slider Container */}
+            <div className="relative mb-16 px-16">
+                {/* Card-like Container */}
+                <div className="bg-white rounded-xl shadow-xl p-1">
+                    {/* Slider with Animation */}
+                    <div className="slider-container relative h-[500px] w-full rounded-lg overflow-hidden">
+                        {events.map((event, index) => (
+                            <div
+                                key={event.id}
+                                className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                                    index === currentSlide
+                                        ? 'opacity-100 translate-x-0'
+                                        : index < currentSlide
+                                            ? '-translate-x-full opacity-0'
+                                            : 'translate-x-full opacity-0'
+                                }`}
+                            >
                                 <img
                                     src={event.imageUrl}
                                     alt={event.title}
-                                    className="max-w-full max-h-full object-contain"
+                                    className="w-full h-full object-contain"
                                 />
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
 
-                {/* Manual buttons (isteğe bağlı, kaldırabilirsin) */}
+                {/* Navigation Arrows */}
                 <button
                     onClick={prevSlide}
-                    className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/50 p-1 rounded-full z-10 text-sm"
+                    className="absolute left-0 top-1/2 -translate-y-1/2 p-4 rounded-full z-20 text-white text-2xl transition-all duration-300 shadow-xl"
+                    aria-label="Önceki slide"
+                    style={{
+                        backgroundColor: '#022842',
+                        transform: 'translateY(-50%) translateX(-50%)',
+                    }}
+                    disabled={isTransitioning}
                 >
                     ❮
                 </button>
                 <button
                     onClick={nextSlide}
-                    className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/50 p-1 rounded-full z-10 text-sm"
+                    className="absolute right-0 top-1/2 -translate-y-1/2 p-4 rounded-full z-20 text-white text-2xl transition-all duration-300 shadow-xl"
+                    aria-label="Sonraki slide"
+                    style={{
+                        backgroundColor: '#022842',
+                        transform: 'translateY(-50%) translateX(50%)',
+                    }}
+                    disabled={isTransitioning}
                 >
                     ❯
                 </button>
 
-                {/* Dots (senin görsele uygun) */}
-                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
-                    {events.map((_, index) => (
-                        <button
-                            key={index}
-                            onClick={() => setCurrentSlide(index)}
-                            className={`w-4 h-4 rounded-full ${
-                                index === currentSlide ? 'bg-red-600' : 'bg-gray-300'
-                            }`}
-                        />
-                    ))}
-                </div>
+            </div>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center -mt-8 mb-10">
+                {events.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => goToSlide(index)}
+                        className={`w-3 h-3 mx-1.5 rounded-full transition-all duration-300 ${
+                            index === currentSlide ? 'bg-black' : 'bg-gray-400'
+                        } ${isTransitioning && index === currentSlide ? 'scale-125' : ''}`}
+                        aria-label={`Slide ${index + 1}`}
+                        disabled={isTransitioning}
+                    />
+                ))}
             </div>
 
             {/* Events Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
                 {events.map((event) => (
-                    <div key={event.id} className="border rounded-lg overflow-hidden shadow-md">
+                    <div key={event.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
                         <img src={event.imageUrl} alt={event.title} className="w-full h-48 object-cover" />
-                        <div className="p-4">
+                        <div className="p-5">
                             <h3 className="text-lg font-semibold mb-2">{event.title}</h3>
-                            <p className="text-sm text-gray-600">Tarih: {event.date}</p>
+                            <p className="text-sm text-gray-600 mb-1">Tarih: {event.date}</p>
                             <p className="text-sm text-gray-600 mt-2">{event.description}</p>
                         </div>
                     </div>
