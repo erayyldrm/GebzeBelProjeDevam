@@ -12,7 +12,8 @@ import Kurumsal from "./KurumsalApp.tsx";
 import Gebze from "./GebzeApp.tsx";
 import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
 import KurumsalLayout from './components/Layouts/kurumsalLayout.tsx';
-
+import Yayin from "./YayinApp.tsx";
+import Yayinpdf from "./components/Yayin/yayinpdf.tsx";
 
 
 
@@ -66,7 +67,8 @@ const App: React.FC = () => {
 
 
                     <Route path="/gebze/*" element={<Gebze/>}/>
-                    <Route path="/gebze/*" element={<Gebze/>}/>
+                    <Route path="/yayin/*" element={<Yayin/>}/>
+                    <Route path="/yayinpdf/*" element={<Yayinpdf/>}/>
 
 
                     {/* Add other routes that need navbar/footer here */}
