@@ -56,6 +56,7 @@ const App: React.FC = () => {
                     <Route path="/test" element={<TEST/>}></Route>
 
                     <Route path="/etkinlikler" element={<EventsSection/>}/>
+                    {/* Kurumsal gibi gebzede olması lazım */}
                     <Route
                         path="/kurumsal/*"
                         element={<KurumsalLayout />}
