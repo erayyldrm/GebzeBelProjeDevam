@@ -30,7 +30,6 @@ public class DepartmentController {
         return departmentService.getAllDepartments();
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<Department> getMudurById(@PathVariable Long id) {
 

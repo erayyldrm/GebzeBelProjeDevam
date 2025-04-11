@@ -20,6 +20,7 @@ public class Department {
     @Getter
     @Column(name = "MUDURLUKISIM", nullable = false) // Department name
     private String name;
+
     @Getter
     @Column(name = "AD") // Manager name
     private String managerName;
