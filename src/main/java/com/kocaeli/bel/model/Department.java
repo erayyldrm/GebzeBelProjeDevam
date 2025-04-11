@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Id;
 @Table(name="MUDURLUKLER")
 public class Department {
 
+    @Getter
     @jakarta.persistence.Id
     @Setter
     @Id

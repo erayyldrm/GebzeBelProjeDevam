@@ -1,6 +1,5 @@
 // @ts-ignore
 import Sidebar from "../SideBar/sidebar.tsx";
-import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
 import { FileText } from "lucide-react";
 
 const documents = [
@@ -29,12 +28,6 @@ const DocumentList = () => {
                                             {/* Main container */}
                                             <div className="container-fluid px-0">
                                                 <div className="row gx-lg-4">
-                                                    {/* Sidebar - becomes full width on mobile */}
-                                                    <div className="col-lg-3 col-md-4 mb-4 mb-md-0">
-                                                        <div className="sidebar-wrapper">
-                                                            <Sidebar items={kurumsal} title={"KURUMSAL"} />
-                                                        </div>
-                                                    </div>
 
                                                     {/* Main Content */}
                                                     <div className="col-lg-9 col-md-8">

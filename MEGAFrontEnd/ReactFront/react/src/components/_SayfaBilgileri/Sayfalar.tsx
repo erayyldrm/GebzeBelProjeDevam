@@ -102,7 +102,7 @@ export const kurumsal: DropdownItem[] = [
         icon: <FiLayout className="text-gray-800" size={20}/>,
         title: 'YÖNETİM ŞEMASI',
         description: 'Yönetim Şeması hakkında bilgi',
-        path: '/kurumsal/yonetimseması'
+        path: '/kurumsal/yonetimsemasi'
     },
     {
         icon: <FiUsers className="text-gray-800" size={20}/>,

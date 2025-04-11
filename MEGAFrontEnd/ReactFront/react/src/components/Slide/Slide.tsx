@@ -36,7 +36,7 @@ const DynamicSlider: React.FC = () => {
                     muted
                     className="absolute top-0 left-0 w-full h-full object-cover z-0"
                 >
-                    <source src="/gebze_tanıtım.mp4" type="video/mp4" />
+                    <source src="/video.mp5" type="video/mp4" />
                     Tarayıcınız video etiketini desteklemiyor.
                 </video>
 

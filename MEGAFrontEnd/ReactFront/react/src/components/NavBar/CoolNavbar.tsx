@@ -124,7 +124,7 @@ const handleNavigation = (path: string) => {
         <motion.nav
             animate={navbarControls}
             initial={{
-                position: 'fixed',
+
                 top: 0,
                 left: 0,
                 right: 0,
@@ -140,7 +140,7 @@ const handleNavigation = (path: string) => {
                     {/* Logo and mobile menu button */}
                     <div className="flex justify-between w-full md:w-auto">
                         {/* Logo */}
-                        <div className="flex-shrink-0 flex items-center md:invisible lg:visible">
+                        <div className="flex-shrink-2 flex items-center md:invisible lg:visible">
                             <Link to={"/"}>
                                 <motion.img
                                     initial={{ opacity: 1 }}

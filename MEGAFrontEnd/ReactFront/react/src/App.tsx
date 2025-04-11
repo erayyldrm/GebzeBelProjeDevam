@@ -11,6 +11,7 @@ import TEST from "./components/sablon/testsablon.tsx"
 import Kurumsal from "./KurumsalApp.tsx";
 import Gebze from "./GebzeApp.tsx";
 import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
+import KurumsalLayout from './components/Layouts/kurumsalLayout.tsx';
 
 
 
@@ -55,7 +56,14 @@ const App: React.FC = () => {
                     <Route path="/test" element={<TEST/>}></Route>
 
                     <Route path="/etkinlikler" element={<EventsSection/>}/>
-                    <Route path="/kurumsal/*" element={<Kurumsal />} />
+                    <Route
+                        path="/kurumsal/*"
+                        element={<KurumsalLayout />}
+                    >
+                        <Route path="*" element={<Kurumsal />} />
+                    </Route>
+
+
                     <Route path="/gebze/*" element={<Gebze/>}/>
 
 

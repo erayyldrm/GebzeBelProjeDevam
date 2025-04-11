@@ -14,10 +14,7 @@ const Arabuluculuk: React.FC = () => {
                                 <div className="main-body">
                                     <div className="page-wrapper">
                                         <div className="flex flex-row gap-4">
-                                            {/* Sidebar - Örnekteki gibi sabit genişlikte */}
-                                            <div style={{ width: '20%', minWidth: '200px' }}>
-                                                <Sidebar items={kurumsal} title={"KURUMSAL"} />
-                                            </div>
+
 
                                             {/* İçerik Alanı */}
                                             <div className="flex-1 p-4">

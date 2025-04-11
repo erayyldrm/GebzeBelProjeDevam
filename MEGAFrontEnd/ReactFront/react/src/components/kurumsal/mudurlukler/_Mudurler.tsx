@@ -1,5 +1,4 @@
-import { kurumsal } from "../../_SayfaBilgileri/Sayfalar.tsx";
-import Sidebar from "../../SideBar/sidebar.tsx";
+import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 
 interface Department {
@@ -12,7 +11,7 @@ interface Department {
 
 const Layout: React.FC = () => {
     const [departments, setDepartments] = useState<Department[]>([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
         fetch("http://localhost:8080/api/mudurluk")
             .then((response) => {
@@ -55,18 +54,12 @@ const Layout: React.FC = () => {
             <section className="sidebar-page-container">
                 <div className="auto-container">
                     <div className="grid grid-cols-4 gap-6">
-                        {/* Sidebar */}
-                        <div className="col-span-1">
-                            <aside className="sidebar sidebar-style-two">
-                                <Sidebar items={kurumsal} title={"Kurumsal"} />
-                            </aside>
-                        </div>
 
                         {/* Müdürler Listesi */}
                         <div className="col-span-3">
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                                 {departments.map((dept, index) => (
-                                    <div key={dept.id || index} className="bg-white shadow-md rounded-lg p-4 text-center">
+                                    <div key={dept.id || index} className="bg-white shadow-md rounded-lg p-4 text-center" onClick={() => navigate(`${dept.id}`)}>
                                         <img
                                             src={dept.imageUrl}
                                             alt={dept.managerName}

@@ -5,7 +5,6 @@ import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
 const ManagementChart: React.FC = () => {
     return (
         <div id="pcoded" className="pcoded">
-            <br /><br /><br /><br /><br /><br />
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
@@ -14,10 +13,7 @@ const ManagementChart: React.FC = () => {
                                 <div className="main-body">
                                     <div className="page-wrapper">
                                         <div className="flex flex-row gap-4">
-                                            {/* Sidebar - %20 genişlikte ve sabit */}
-                                            <div style={{ width: '20%', minWidth: '200px' }}>
-                                                <Sidebar items={kurumsal} title={"KURUMSAL"} />
-                                            </div>
+
 
                                             {/* Ana İçerik Alanı */}
                                             <div className="flex-1 p-4">

@@ -111,7 +111,6 @@ const BusinessTaxation: React.FC = () => {
 
                             </div>
                         </div>
-                        <Sidebar items={kurumsal} title={"KURUMSAL"} />
                     </div>
                 </div>
             </section>

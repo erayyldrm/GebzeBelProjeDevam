@@ -1,11 +1,9 @@
 import React from 'react';
-import Sidebar from "../SideBar/sidebar.tsx";
-import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
+
 
 const BaskanPage: React.FC = () => {
     return (
         <div id="pcoded" className="pcoded">
-            <br /><br /><br /><br /><br /><br />
             <div className="pcoded-overlay-box"></div>
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
@@ -18,13 +16,6 @@ const BaskanPage: React.FC = () => {
                                             {/* Main container */}
                                             <div className="container-fluid px-0">
                                                 <div className="row gx-lg-4">
-                                                    {/* Sidebar - becomes full width on mobile */}
-                                                    <div className="col-lg-3 col-md-4 mb-4 mb-md-0">
-                                                        <div className="sidebar-wrapper">
-                                                            <Sidebar items={kurumsal} title={"KURUMSAL"} />
-                                                        </div>
-                                                    </div>
-
                                                     {/* Main Content */}
                                                     <div className="col-lg-9 col-md-8">
                                                         <div className="card">

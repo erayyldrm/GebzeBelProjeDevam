@@ -1,19 +1,25 @@
 package com.kocaeli.bel.controller;
 
 import com.kocaeli.bel.model.Department;
+import com.kocaeli.bel.repository.DepartmentRepository;
 import com.kocaeli.bel.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/mudurluk")
 public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
+    @Autowired
+    private DepartmentRepository mudurRepository;
 
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
@@ -23,4 +29,16 @@ public class DepartmentController {
     public List<Department> getAllDepartments() {
         return departmentService.getAllDepartments();
     }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Department> getMudurById(@PathVariable Long id) {
+
+
+        Optional<Department> mudur = mudurRepository.findById(id);
+        return mudur.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
 }
+

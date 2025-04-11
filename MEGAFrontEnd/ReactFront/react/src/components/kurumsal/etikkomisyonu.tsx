@@ -103,11 +103,7 @@ const EtikKomisyonu: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4">
-                            <aside className="sidebar sidebar-style-two">
-                                <Sidebar items={kurumsal} title={"KURUMSAL"} />
-                            </aside>
-                        </div>
+
                     </div>
                 </div>
             </section>
