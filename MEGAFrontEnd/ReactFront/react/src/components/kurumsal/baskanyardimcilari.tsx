@@ -57,31 +57,6 @@ const BaskanYardimcilari: React.FC = () => {
                                                         <div className="col-md-12">
                                                             <ul className="space-y-4">
                                                                 {/* Başkan */}
-                                                                <li>
-                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
-                                                                        <div className="media flex items-start">
-                                                                            <a className="media-left" href="#">
-                                                                                <img
-                                                                                    className="rounded-lg"
-                                                                                    src="/images/kurumsal/belediyemeclisi/zinnurbuyukgoz.jpg"
-                                                                                    width="270"
-                                                                                    height="350"
-                                                                                    alt="Zinnur BÜYÜKGÖZ"
-                                                                                />
-                                                                            </a>
-                                                                            <div className="media-body ml-4">
-                                                                                <div>
-                                                                                    <h4 className="inline-block text-blue-900 text-xl font-bold">
-                                                                                        Zinnur BÜYÜKGÖZ
-                                                                                    </h4>
-                                                                                    <h6 className="text-gray-600">Başkan</h6>
-                                                                                    <hr className="my-2 border-t border-gray-300" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-
                                                                 {/* Başkan Yardımcıları */}
                                                                 {/* Dursun Ali ARSLAN */}
                                                                 <li>

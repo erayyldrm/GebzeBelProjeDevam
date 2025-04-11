@@ -245,14 +245,18 @@ export const yayınlarımız: DropdownItem[] = [
     {
         icon: <FiDollarSign className="text-gray-800"/>,
         title: 'GEBZE BELEDİYESİ PROJELERİ',
-        description: 'Gerçekleştirilen projeler'
+        description: 'Gerçekleştirilen projeler',
+        path: '/yayin/projeler'
     },
     {
         icon: <FiCreditCard className="text-gray-800"/>,
         title: 'GEBZE MANŞET',
-        description: 'Vergi ve borç ödeme işlemleri'
+        description: 'Vergi ve borç ödeme işlemleri',
+        path: '/yayin/manset'
     },
     {   icon: <FiEdit className="text-gray-800"/>,
         title: 'KÜLTÜR YAYINLARI',
-        description: 'Kültürel yayınlanan belgeler '}
+        description: 'Kültürel yayınlanan belgeler ',
+        path: '/yayin/kultur'
+    }
 ];

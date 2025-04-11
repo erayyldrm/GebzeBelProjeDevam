@@ -81,7 +81,7 @@ const BusinessTaxation: React.FC = () => {
                             <div className="depertment-details pl-5">
 
                                 <div className="text mb-40">
-                                    <ul style={{ fontSize: '20px' }}>
+                                    <p style={{ fontSize: '20px' }}>
                                         <li>Tüm hizmetlerimizde Gebze halkının ihtiyaç ve beklentilerini merkeze koyarız.</li>
                                         <li>Gebzelilerin karar alma süreçlerine aktif katılımını destekler, birlikte yönetim anlayışını uygularız.</li>
                                         <li>Belediye hizmetlerinde en son bilgi teknolojilerini kullanarak modern ve sürdürülebilir çözümler sunarız.</li>
@@ -96,7 +96,7 @@ const BusinessTaxation: React.FC = () => {
                                         <li>Olası afet ve kriz durumlarına karşı hızlı ve etkin çözümler üreterek, vatandaşlarımızın güvenliğini sağlarız.</li>
                                         <li>Gebze’de sürdürülebilir ve akıcı bir ulaşım ağı kurarak, trafik sorunlarını minimize etmeyi hedefleriz.</li>
                                         <li>Gebze’nin tarihi ve kültürel dokusunu koruyarak, gelecek nesillere aktarmak için projeler üretiriz.</li>
-                                    </ul>
+                                    </p>
                                 </div>
                             </div>
                         </div>

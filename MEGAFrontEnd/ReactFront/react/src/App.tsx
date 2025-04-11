@@ -66,6 +66,7 @@ const App: React.FC = () => {
 
 
                     <Route path="/gebze/*" element={<Gebze/>}/>
+                    <Route path="/gebze/*" element={<Gebze/>}/>
 
 
                     {/* Add other routes that need navbar/footer here */}

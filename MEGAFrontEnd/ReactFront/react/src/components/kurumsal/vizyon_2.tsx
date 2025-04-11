@@ -72,7 +72,6 @@ const BusinessTaxation: React.FC = () => {
                     </div>
                 </div>
             </section>
-
             {/* Sidebar Page Container */}
             <section className="sidebar-page-container">
                 <div className="auto-container">
