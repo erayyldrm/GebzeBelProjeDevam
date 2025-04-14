@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const BaskanDanismanlari: React.FC = () => {
     return (
         <div id="pcoded" className="pcoded">
@@ -17,39 +16,16 @@ const BaskanDanismanlari: React.FC = () => {
                                             <div className="flex-1 p-4">
                                                 {/* Header */}
                                                 <div className="mb-8">
-                                                    <div className="flex flex-col md:flex-row justify-between items-center">
+                                                    <div className="flex flex-col md:flex-row justify-center items-center">
                                                         <div className="mb-4 md:mb-0">
-                                                            <h1 className="text-2xl font-bold">BAŞKAN ADIŞMANLRI</h1>
-                                                        </div>
-                                                        <div>
-                                                            <nav className="flex" aria-label="Breadcrumb">
-                                                                <ol className="inline-flex items-center space-x-1 md:space-x-3">
-                                                                    <li className="inline-flex items-center">
-                                                                        <a href="index.html" className="text-gray-700 hover:text-blue-600">
-                                                                            Ana Sayfa
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div className="flex items-center">
-                                                                            <span className="mx-2">/</span>
-                                                                            <a href="#" className="text-gray-700 hover:text-blue-600">Kurumsal</a>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li aria-current="page">
-                                                                        <div className="flex items-center">
-                                                                            <span className="mx-2">/</span>
-                                                                            <span className="text-gray-500">BAŞKAN DANIŞMANLARI</span>
-                                                                        </div>
-                                                                    </li>
-                                                                </ol>
-                                                            </nav>
+                                                            <h1 className="text-2xl font-bold text-center">BAŞKAN DANIŞMANLARI</h1>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 {/* Main Content */}
                                                 <div className="card shadow-lg rounded-lg">
                                                     <div className="card-header bg-blue-900 p-4">
-                                                        <h4 className="text-2xl font-bold text-white">BAŞKAN DANIŞMANLARI</h4>
+                                                        <h4 className="text-2xl font-bold text-white text-center ">BAŞKAN DANIŞMANLARI</h4>
                                                     </div>
                                                     <div className="card-block p-4">
                                                         <div className="col-md-12">
@@ -72,7 +48,7 @@ const BaskanDanismanlari: React.FC = () => {
                                                                                     <h4 className="inline-block text-blue-900 text-xl font-bold">
                                                                                         Remzi ŞEKER
                                                                                     </h4>
-                                                                                    <h6 className="text-gray-600">Başkan Dnışmanı</h6>
+                                                                                    <h6 className="text-gray-600">Başkan Danışmanı</h6>
                                                                                     <hr className="my-2 border-t border-gray-300" />
                                                                                 </div>
                                                                             </div>

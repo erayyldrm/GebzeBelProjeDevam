@@ -36,7 +36,9 @@ const documents = [
     {
         department: "Mali Durum ve Beklentiler Raporu",
         docs: [
-            { name: "2023 Mali Durum Ve Bekel", url: "/performans2025.pdf" },
+            { name: "2023 Mali Durum Ve Beklentiler", url: "/2023beklenti.pdf" },
+            { name: "2023 Mali Durum Ve Beklentiler", url: "/2023beklenti.pdf" },
+            { name: "2023 Mali Durum Ve Beklentiler", url: "/2023beklenti.pdf" },
         ],
     },
     {
@@ -93,7 +95,7 @@ const Kararlar = () => {
                                 key={i}
                                 className="bg-blue-50 p-6 rounded-lg hover:bg-blue-100 transition shadow-md flex flex-col items-center mb-6"
                             >
-                                <FileText className="text-orange-500 mb-4" size={50} />
+                                <FileText className="text-orange-500 mb-4" size={75} />
                                 <a
                                     href={doc.url}
                                     target="_blank"
