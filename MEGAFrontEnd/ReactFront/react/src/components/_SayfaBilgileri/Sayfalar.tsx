@@ -171,17 +171,20 @@ export const hizmetler: DropdownItem[] = [
     {
         icon: <FiTool className="text-gray-800"/>,
         title: 'ATÖLYELER',
-        description: 'Atölye çalışmaları hakkında bilgi'
+        description: 'Atölye çalışmaları hakkında bilgi',
+        path: '/hizmetler/atolyeler'
     },
     {
         icon: <FiHome className="text-gray-800"/>,
         title: 'BEBEK VE ÇOCUK BAKIM EVİ',
         description: 'Bebek ve çocuk bakımı hakkında bilgi'
+
     },
     {
         icon: <FiBook className="text-gray-800"/>,
         title: 'EĞİTİMLER',
         description: 'Eğitim programları hakkında bilgi'
+
     },
     {
         icon: <FiHeart className="text-gray-800"/>,
