@@ -4,9 +4,9 @@ import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
 import { FileText } from "lucide-react";
 
 const documents = [
-    { name: "Gebze Çoban Mustafa Paşa Külliyesi 1", url: "docs/vektorel.pdf" },
-    { name: "Gebze Çoban Mustafa Paşa Külliyesi 2", url: "docs/dikey.pdf" },
-    { name: "Fatih Sultan Mehmed Dönemi Ferman ve Arşiv Belgeleri", url: "docs/yatay.pdf" },
+    { name: "Gebze Çoban Mustafa Paşa Külliyesi 1", url: "/kulliye1.pdf" },
+    { name: "Gebze Çoban Mustafa Paşa Külliyesi 2", url: "/kullıye2.pdf" },
+    { name: "Fatih Sultan Mehmed Dönemi Ferman ve Arşiv Belgeleri", url: "/fatih.pdf" },
 
 ];
 
@@ -36,7 +36,7 @@ const Cultur = () => {
                                                 <div className="card mx-auto w-100">
                                                     <div className="card-block p-5">
                                                         <h1 className="text-left text-2xl font-bold text-gray-800 mb-4">
-                                                            Kurumsal Kimlik
+                                                            Kültür Yayınları
                                                         </h1>
                                                         {/* Grid Layout */}
                                                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

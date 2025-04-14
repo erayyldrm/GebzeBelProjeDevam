@@ -11,7 +11,7 @@ const documents = [
 ];
 
 
-const DocumentList = () => {
+const Kimlik = () => {
     return (
         <div id="pcoded" className="pcoded">
             <br /><br /><br /><br /><br /><br />
@@ -25,11 +25,7 @@ const DocumentList = () => {
                                     <div className="page-wrapper">
                                         <div className="row">
                                             {/* Sidebar */}
-                                            <div className="col-lg-3 col-md-4 mb-4 mb-md-0">
-                                                <div className="sidebar-wrapper">
-                                                    <Sidebar items={kurumsal} title={"KURUMSAL"} />
-                                                </div>
-                                            </div>
+
 
                                             {/* Main Content */}
                                             <div className="col-lg-9 col-md-8">
@@ -72,4 +68,4 @@ const DocumentList = () => {
     );
 };
 
-export default DocumentList;
+export default Kimlik;

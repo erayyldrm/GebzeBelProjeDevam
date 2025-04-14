@@ -1,5 +1,4 @@
-import Sidebar from "../SideBar/sidebar.tsx";
-import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
+import React, { useState } from "react";
 import { FileText } from "lucide-react";
 
 // PDFs grouped by their departments
@@ -7,24 +6,24 @@ const documents = [
     {
         department: "Faaliyet Raporu",
         docs: [
-            { name: "Ruhsat ve Denetim Müdürlüğü", url: "docs/ruhsat.pdf" },
-            { name: "Zabıta Müdürlüğü", url: "docs/zabita.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "docs/veteriner.pdf" },
+            { name: "2023 Mali İdare Yılı Faaliyet Raporu", url: "/2023mali.pdf" },
+            { name: "2022 Mali İdare Yılı Faaliyet Raporu", url: "/2022mali.pdf" },
+            { name: "2021 Mali İdare Yılı Faaliyet Raporu", url: "/2021mali.pdf" },
+            { name: "2020 Faaliyet Raporu", url: "/2020faaliyet.pdf" },
+            { name: "2019 Faaliyet Raporu", url: "/2019faaliyet.pdf" },
+            { name: "2018 Faaliyet Raporu", url: "/.pdf" },
+            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
+            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
+            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
+            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
+            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
+            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
+            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
+            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
+            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
+            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
+            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
+            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
         ],
     },
     {
@@ -81,7 +80,7 @@ const documents = [
     },
 ];
 
-const DocumentList = () => {
+const Kraporlar = () => {
     return (
         <div id="pcoded" className="pcoded">
             <br /><br /><br /><br /><br /><br />
@@ -95,11 +94,6 @@ const DocumentList = () => {
                                     <div className="page-wrapper">
                                         <div className="row">
                                             {/* Sidebar */}
-                                            <div className="col-lg-3 col-md-4 mb-4 mb-md-0">
-                                                <div className="sidebar-wrapper">
-                                                    <Sidebar items={kurumsal} title={"KURUMSAL"} />
-                                                </div>
-                                            </div>
 
                                             {/* Main Content */}
                                             <div className="col-lg-9 col-md-8">
@@ -149,4 +143,4 @@ const DocumentList = () => {
     );
 };
 
-export default DocumentList;
+export default Kraporlar;

@@ -4,7 +4,7 @@ import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
 import { FileText } from "lucide-react";
 
 const documents = [
-    { name: "Gebze Belediyesi Projeler", url: "docs/vektorel.pdf" },
+    { name: "Gebze Belediyesi Projeler", url: "/proje.pdf" },
 
 ];
 
@@ -34,7 +34,7 @@ const Projeler = () => {
                                                 <div className="card mx-auto w-100">
                                                     <div className="card-block p-5">
                                                         <h1 className="text-left text-2xl font-bold text-gray-800 mb-4">
-                                                            Kurumsal Kimlik
+                                                            Gebze Belediyesi Projeleri
                                                         </h1>
                                                         {/* Grid Layout */}
                                                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

@@ -12,7 +12,7 @@ const documents = [
     { name: "Mali Hizmetler Müdürlüğü", url: "docs/mali.pdf" }
 ];
 
-const DocumentList = () => {
+const KurumsalDoc = () => {
     return (
         <div id="pcoded" className="pcoded">
             <br /><br /><br /><br /><br /><br />
@@ -71,4 +71,4 @@ const DocumentList = () => {
     );
 };
 
-export default DocumentList;
+export default KurumsalDoc;

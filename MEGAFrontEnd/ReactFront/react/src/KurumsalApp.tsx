@@ -12,8 +12,16 @@ import Baskanyardimcilari from "./components/kurumsal/baskanyardimcilari.tsx";
 import Baskandanismanlari from "./components/kurumsal/baskandanismanlari.tsx";
 import Baskan from "./components/kurumsal/baskan.tsx";
 import BelediyeMeclisi from "./components/kurumsal/belediyemeclisi.tsx";
-import Kurumsaldokuman from "./components/kurumsal/kurumsaldokuman.tsx";
+import KurumsalDoc from "./components/kurumsal/kurumsaldoc.tsx";
 import MudurDetay from "./components/kurumsal/mudurlukler/_MudurDetay.tsx"
+import Kimlik from "./components/kurumsal/kurumsalkimlik.tsx";
+import Kraporlar from "./components/kurumsal/kurumsalr.tsx";
+import Kararlar from "./components/kurumsal/mecliskararlari.tsx";
+
+
+
+
+
 
 const Kurumsal: React.FC = () => {
 
@@ -36,8 +44,11 @@ const Kurumsal: React.FC = () => {
             <Route path="baskanyardimcilari" element={<Baskanyardimcilari/>}/>
             <Route path="baskandanismanlari" element={<Baskandanismanlari/>}/>
             <Route path="etikkomisyonu" element={<EtikKomisyonu/>}/>
-            <Route path="kurumsaldokuman" element={<Kurumsaldokuman/>}/>
             <Route path="mudurlukler/:id" element={<MudurDetay/>}/>
+            <Route path="kurumsaldoc/" element={<KurumsalDoc/>}/>
+            <Route path="kurumsalkimlik/" element={<Kimlik/>}/>
+            <Route path="raporlar/" element={<Kraporlar/>}/>
+            <Route path="mecliskararlari/" element={<Kararlar/>}/>
 
 
 

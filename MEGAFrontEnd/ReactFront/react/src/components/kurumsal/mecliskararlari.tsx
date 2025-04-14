@@ -4,12 +4,12 @@ import Sidebar from "../SideBar/sidebar.tsx";
 import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
 
 const meclisDocuments = [
-    { name: "3 Nisan 2025 Meclis Kararları", url: "docs/3nisan.pdf" },
-    { name: "4 Mart 2025 Meclis Kararları", url: "docs/4mart.pdf" },
+    { name: "3 Nisan 2025 Meclis Kararları", url: "/3nisan.pdf" },
+    { name: "4 Mart 2025 Meclis Kararları", url: "/4mart.pdf" },
     // diğerleri...
 ];
 
-const DocumentList = () => {
+const Kararlar = () => {
     const [activeTab, setActiveTab] = useState("meclis"); // meclis | encumen
 
     return (
@@ -24,11 +24,6 @@ const DocumentList = () => {
                                 <div className="main-body">
                                     <div className="page-wrapper">
                                         <div className="row">
-                                            {/* Sidebar */}
-                                            <div className="col-lg-3 col-md-4 mb-4 mb-md-0">
-                                                <Sidebar items={kurumsal} title="KURUMSAL" />
-                                            </div>
-
                                             {/* Main Content */}
                                             <div className="col-lg-9 col-md-8">
                                                 <div className="card mx-auto w-100">
@@ -98,4 +93,4 @@ const DocumentList = () => {
     );
 };
 
-export default DocumentList;
+export default Kararlar;

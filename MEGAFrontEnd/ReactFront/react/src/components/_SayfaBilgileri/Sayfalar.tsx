@@ -156,13 +156,13 @@ export const kurumsal: DropdownItem[] = [
         icon: <FiFileText className="text-gray-800" size={20}/>,
         title: 'KURUMSAL RAPORLAR',
         description: 'Kurumsal Raporlar hakkında bilgi',
-        path: '/kurumsal/kurumsalraporlar'
+        path: '/kurumsal/raporlar'
     },
     {
         icon: <FiFileText className="text-gray-800" size={20}/>,
         title: 'KURUMSAL DÖKÜMANLAR',
         description: 'Kurumsal Dökümanlar hakkında bilgi',
-        path: '/kurumsal/kurumsaldokuman'
+        path: '/kurumsal/kurumsaldoc'
     },
 
 ];
