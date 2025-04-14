@@ -12,7 +12,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
 
 
     return (
-        <div className="hidden md:block w-64 bg-[#08c3ef] shadow-md rounded-2xl sticky left-13 z-10">
+        <div className="hidden md:block w-64 bg-[#08c3ef] shadow-md rounded-2xl sticky top-0 h-screen overflow-y-auto left-13 z-10">
 
 
 
