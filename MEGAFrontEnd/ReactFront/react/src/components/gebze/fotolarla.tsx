@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../SideBar/sidebar.tsx";
-import {gebze} from "../_SayfaBilgileri/Sayfalar.tsx";
+
 type ImageType = {
     url: string;
 };
@@ -60,11 +59,7 @@ const Gallery: React.FC = () => {
 
     return (
         <div className="flex">
-            <div style={{ width: '20%', minWidth: '200px' }}>
-                <Sidebar items={gebze} title={"GEBZE"} />
-            </div>
-
-            <div className="p-4 flex flex-col items-center w-[80%]"><br/><br/><br/><br/><br/><br/>
+            <div className="p-4 flex flex-col items-center w-[100%]">
                 <div className="bg-[#891737] shadow-lg rounded-2xl p-6 mb-6">
                     <h1 className="text-3xl font-bold text-white">FOTOĞRAFLARLA GEBZE</h1>
                 </div>

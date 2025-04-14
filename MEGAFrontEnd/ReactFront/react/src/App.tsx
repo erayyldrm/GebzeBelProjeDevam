@@ -12,6 +12,7 @@ import Kurumsal from "./KurumsalApp.tsx";
 import Gebze from "./GebzeApp.tsx";
 import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
 import KurumsalLayout from './components/Layouts/kurumsalLayout.tsx';
+import GebzeLayout from './components/Layouts/gebzeLayout.tsx';
 import Yayin from "./YayinApp.tsx";
 import Yayinpdf from "./components/Yayin/yayinpdf.tsx";
 
@@ -66,7 +67,13 @@ const App: React.FC = () => {
                     </Route>
 
 
-                    <Route path="/gebze/*" element={<Gebze/>}/>
+                    <Route
+                        path="/gebze/*"
+                        element={<GebzeLayout />}
+                    >
+                        <Route path="*" element={<Gebze />} />
+                    </Route>
+
                     <Route path="/yayin/*" element={<Yayin/>}/>
                     <Route path="/yayinpdf/*" element={<Yayinpdf/>}/>
 

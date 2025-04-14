@@ -43,7 +43,7 @@ export const gebze: DropdownItem[] = [
         icon: <FiCamera className="text-gray-800"/>,
         title: 'FOTOĞRAFLARLA GEBZE',
         description: 'Gebze Fotoğrafları hakkında bilgi',
-        path:'/gebze/fotoğraflarlagebze'
+        path:'/gebze/fotograflarlaGebze'
     },
     {
         icon: <FiGlobe className="text-gray-800"/>,

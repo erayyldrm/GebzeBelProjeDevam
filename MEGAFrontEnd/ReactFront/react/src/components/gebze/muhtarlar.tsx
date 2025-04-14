@@ -68,7 +68,6 @@ const PersonCard: React.FC<{ person: CouncilMember }> = ({ person }) => (
 const GebzePage: React.FC = () => {
     return (
         <div id="pcoded" className="pcoded">
-            <br /><br /><br /><br /><br /><br />
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
@@ -77,10 +76,7 @@ const GebzePage: React.FC = () => {
                                 <div className="main-body">
                                     <div className="page-wrapper">
                                         <div className="flex flex-row gap-4">
-                                            {/* Sidebar */}
-                                            <div style={{ width: '20%', minWidth: '200px' }}>
-                                                <Sidebar items={gebze} title={"GEBZE"} />
-                                            </div>
+
 
                                             {/* Council Members Section */}
                                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">

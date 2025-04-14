@@ -22,12 +22,7 @@ const Projeler = () => {
                                 <div className="main-body">
                                     <div className="page-wrapper">
                                         <div className="row">
-                                            {/* Sidebar */}
-                                            <div className="col-lg-3 col-md-4 mb-4 mb-md-0">
-                                                <div className="sidebar-wrapper">
-                                                    <Sidebar items={kurumsal} title={"KURUMSAL"} />
-                                                </div>
-                                            </div>
+
 
                                             {/* Main Content */}
                                             <div className="col-lg-9 col-md-8">
