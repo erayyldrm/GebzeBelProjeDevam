@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Sidebar from "../SideBar/sidebar.tsx";
 import { gebze } from "../_SayfaBilgileri/Sayfalar.tsx";
 import { MapPin, Phone, Info, X } from 'lucide-react';
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Atölye merkezi verileri
@@ -59,24 +59,30 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
         }
     };
 
+
+
     return (
         <motion.div
-            whileHover={{ scale: 1.01 }}
-            className="bg-white shadow-lg rounded-lg overflow-hidden transition-all relative flex flex-col h-auto"
+            whileHover={{ scale: 1.03, y: -4 }}
+            className="bg-white border border-orange-300 shadow-xl rounded-2xl overflow-hidden transition-all relative flex flex-col h-auto hover:shadow-2xl"
         >
-            {/* Resim */}
-            <div className="h-60 w-full flex items-center justify-center">
+
+        {/* Resim */}
+            <div className="h-90 w-full flex items-center justify-center">
                 <img
                     src={center.image}
                     alt={center.name}
                     className="object-cover w-full h-full"
                 />
             </div>
+            {/* Ayırıcı çizgi */}
+            <div className="h-2 w-full bg-gradient-to-r from-transparent via-gray-500 to-transparent shadow-md" />
 
             {/* İçerik */}
-            <div className="p-4 flex flex-col flex-1">
-                <h2 className="text-lg font-bold text-blue-800 mb-3">{center.name}</h2>
-
+            <div className="p-6 flex flex-col flex-1">
+                <div className="text-2xl font-bold text-blue-500 mb-4 text-center">{center.name}</div>
+                <hr className="my-2 border-t border-gray-300" />
+                <br/>
                 <div className="space-y-3 mb-4 text-sm">
                     <div className="flex items-start">
                         <MapPin className="w-4 h-4 text-blue-600 mr-2 mt-1 flex-shrink-0" />
@@ -91,22 +97,30 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
 
                 {/* Butonlar */}
                 <div className="flex space-x-3 mt-auto">
+                    {/* KONUM Butonu */}
                     <a
                         href={center.mapLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-black rounded-md hover:from-blue-600 hover:to-blue-800 transition-all shadow-sm font-medium text-sm flex-1"
+                        className="flex items-center justify-center px-4 py-2
+               bg-gradient-to-r from-sky-500 to-sky-700
+               text-blue-800 rounded-md
+               hover:from-sky-600 hover:to-sky-800
+               transition-all shadow-md font-medium text-sm flex-1"
                     >
                         <MapPin className="w-4 h-4 mr-2" />
                         Konum
                     </a>
 
+                    {/* DETAYLI BİLGİ / GİZLE Butonu */}
+                    {/* Örnek: Mor tonlarında geçişli detay butonu */}
                     <button
                         onClick={handleDetailsClick}
-                        className={`flex items-center justify-center px-4 py-2 rounded-md transition-all shadow-sm font-medium text-sm flex-1 ${
+                        className={`flex items-center justify-center px-4 py-2 
+              rounded-md transition-all shadow-md font-medium text-sm flex-1 ${
                             showDetails
-                                ? "bg-gradient-to-r from-gray-400 to-gray-500 text-black hover:from-gray-500 hover:to-gray-600"
-                                : "bg-gradient-to-r from-green-500 to-green-700 text-black hover:from-green-600 hover:to-green-800"
+                                ? "bg-gradient-to-r from-rose-400 to-pink-500 text-blue-800 hover:from-rose-500 hover:to-pink-600"
+                                : "bg-gradient-to-r from-indigo-500 to-purple-600 text-blue-800 hover:from-indigo-600 hover:to-purple-700"
                         }`}
                     >
                         {showDetails ? (
@@ -121,6 +135,8 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
                             </>
                         )}
                     </button>
+
+
                 </div>
             </div>
         </motion.div>
@@ -133,16 +149,30 @@ export default function AtolyelerSayfasi() {
             <div className="flex flex-1">
                 {/* Sidebar - %20 genişlikte ve sabit */}
                 <div style={{ width: '20%', minWidth: '200px' }}>
+                    <br/>
                     <Sidebar items={gebze} title={"ATÖLYELER"} />
                 </div>
-
+                <br/>
                 {/* Ana İçerik Alanı */}
                 <div className="flex-1 p-4">
                     {/* Atölye Merkezleri - Satır başına 2 kart */}
                     <section className="mb-10">
-                        <h2 className="text-2xl font-semibold mb-6 flex items-center border-b pb-3">
-                            <span className="text-blue-700">Atölye Merkezleri</span>
-                        </h2>
+                        <br/>
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="bg-gradient-to-r from-blue-500 to-teal-500 p-6 rounded-xl shadow-xl mb-10"
+                        >
+
+                            <h2 className="text-3xl font-bold text-orange-400 mb-4 flex items-center justify-between">
+        <span className="text-orange-400
+        ">
+            Atölye Merkezleri
+        </span>
+                            </h2>
+                        </motion.div>
+
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                             {atolyeMerkezleri.map((center) => (
                                 <WorkshopCenterCard key={center.id} center={center} />
