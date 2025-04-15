@@ -330,3 +330,66 @@ export const yayınlarımız: DropdownItem[] = [
         path: '/yayin/kultur'
     }
 ];
+
+export const tarihiyerler: DropdownItem[] = [
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'ANİBALIN MEZARI',
+        path: '/gebze/tarihiyerler/anibal'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'BALLIKAYALAR',
+        path: '/gebze/tarihiyerler/ballikayalar'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'ÇOBAN MUSTAFA PAŞA KÜLLİYESİ',
+        path: '/gebze/tarihiyerler/kulliye'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'ÇOBAN MUSTAFA PAŞA HAMAMI',
+        path: '/gebze/tarihiyerler/hamam'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'ÇOBAN MUSTAFA PAŞA ŞADIRVANI',
+        path: '/gebze/tarihiyerler/sadirvan'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'ESKİHİSAR ÇEŞMESİ',
+        path: '/gebze/tarihiyerler/eskihisarcamii'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'ESKİHİSAR KALESİ',
+        path: '/gebze/tarihiyerler/kale'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'HÜNKAR ÇAYIRI',
+        path: '/gebze/tarihiyerler/hunkarcayiri'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'İBRAHİM PAŞA ÇEŞMESİ',
+        path: '/gebze/tarihiyerler/ibrahimpasa'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'İLYAS BEY CAMİİ',
+        path: '/gebze/tarihiyerler/ilyasbey'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'OSMAN HAMDİ BEY YALISI',
+        path: '/gebze/tarihiyerler/osmanhamdi'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'SULTAN ORHAN CAMİİ',
+        path: '/gebze/tarihiyerler/sultanorhan'
+    }
+];
