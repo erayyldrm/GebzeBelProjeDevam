@@ -78,12 +78,12 @@ const Gallery: React.FC = () => {
                 </div>
                 {selectedImageIndex !== null && (
                     <div
-                        className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+                        className="fixed inset-0 bg-[#022842]/80 flex items-center justify-center z-50"
                         onClick={() => setSelectedImageIndex(null)}
                     >
                         <div className="relative flex items-center max-w-[90vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
                             <button
-                                className="absolute left-0 ml-4 text-white text-3xl bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center"
+                                className="absolute left-0 ml-4 text-white text-3xl bg-[#022842] rounded-full w-12 h-12 flex items-center justify-center hover:bg-opacity-80 transition-all"
                                 onClick={handlePrev}
                                 disabled={selectedImageIndex === 0}
                             >
@@ -92,10 +92,10 @@ const Gallery: React.FC = () => {
                             <img
                                 src={images[selectedImageIndex].url}
                                 alt="Selected"
-                                className="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain"
+                                className="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain shadow-xl"
                             />
                             <button
-                                className="absolute right-0 mr-4 text-white text-3xl bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center"
+                                className="absolute right-0 mr-4 text-white text-3xl bg-[#022842] rounded-full w-12 h-12 flex items-center justify-center hover:bg-opacity-80 transition-all"
                                 onClick={handleNext}
                                 disabled={selectedImageIndex === images.length - 1}
                             >

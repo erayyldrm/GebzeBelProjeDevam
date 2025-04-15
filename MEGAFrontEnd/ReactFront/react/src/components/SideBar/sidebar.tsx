@@ -17,7 +17,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
 
 
         {/* Sidebar Title */}
-            <div className="p-3 border-b border-black bg-[#022842] rounded-t-2xl h-32 flex items-center justify-center">
+            <div className="p-3 border-b border-black bg-[#f7a600] rounded-t-2xl h-32 flex items-center justify-center">
                 <h2 className="text-xl font-bold text-white text-center">{title}</h2>
             </div>
 
