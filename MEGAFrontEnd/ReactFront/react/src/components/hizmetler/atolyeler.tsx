@@ -62,13 +62,16 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
 
 
     return (
+
         <motion.div
             whileHover={{ scale: 1.03, y: -4 }}
-            className="bg-white border border-orange-300 shadow-xl rounded-2xl overflow-hidden transition-all relative flex flex-col h-auto hover:shadow-2xl"
+            className="  w-[288px] h-[250px]  bg-white border border-orange-200 shadow-xl rounded-xl overflow-hidden transition-all relative flex flex-col items-center justify-center h-auto hover:shadow-xl text-center"
         >
 
         {/* Resim */}
-            <div className="h-90 w-full flex items-center justify-center">
+
+
+            <div className="  flex items-center justify-center  w-[300px] h-[185px] ">
                 <img
                     src={center.image}
                     alt={center.name}
@@ -80,29 +83,29 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
 
             {/* İçerik */}
             <div className="p-6 flex flex-col flex-1">
-                <div className="text-2xl font-bold text-blue-500 mb-4 text-center">{center.name}</div>
+
+                <p  style={{ fontSize: "14px", fontWeight: "bold", textAlign: "center" , color:"dodgerblue" }} >{center.name}</p>
                 <hr className="my-2 border-t border-gray-300" />
-                <br/>
                 <div className="space-y-3 mb-4 text-sm">
                     <div className="flex items-start">
-                        <MapPin className="w-4 h-4 text-blue-600 mr-2 mt-1 flex-shrink-0" />
-                        <p className="text-gray-700">{center.address}</p>
+                        <MapPin className="w-4 h-4  font-bold  text-blue-600 mr-2  flex-shrink-0" />
+                        <p  style={{ fontSize: "12px", fontWeight: "semibold", textAlign: "center" }} >{center.address}</p>
                     </div>
 
                     <div className="flex items-center">
-                        <Phone className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" />
-                        <p className="text-gray-700">{center.phone}</p>
+                        <Phone className="w-4 h-4 font-bold text-blue-600 mr-2 flex-shrink-0" />
+                        <p  style={{ fontSize: "12px", fontWeight: "semibold", textAlign: "center" }}>{center.phone}</p>
                     </div>
                 </div>
 
                 {/* Butonlar */}
-                <div className="flex space-x-3 mt-auto">
+                <div className="flex space-x-4 mt-auto">
                     {/* KONUM Butonu */}
                     <a
                         href={center.mapLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center px-4 py-2
+                        className="flex items-center justify-center px-8 py-3
                bg-gradient-to-r from-sky-500 to-sky-700
                text-blue-800 rounded-md
                hover:from-sky-600 hover:to-sky-800
@@ -116,7 +119,7 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
                     {/* Örnek: Mor tonlarında geçişli detay butonu */}
                     <button
                         onClick={handleDetailsClick}
-                        className={`flex items-center justify-center px-4 py-2 
+                        className={`flex items-center justify-center px-8 py-3 
               rounded-md transition-all shadow-md font-medium text-sm flex-1 ${
                             showDetails
                                 ? "bg-gradient-to-r from-rose-400 to-pink-500 text-blue-800 hover:from-rose-500 hover:to-pink-600"
@@ -173,8 +176,8 @@ export default function AtolyelerSayfasi() {
                             </h2>
                         </motion.div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-                            {atolyeMerkezleri.map((center) => (
+                        <div className="grid grid-cols-4 sm:grid-cols-4 gap-6 justify-center">
+                        {atolyeMerkezleri.map((center) => (
                                 <WorkshopCenterCard key={center.id} center={center} />
                             ))}
                         </div>
