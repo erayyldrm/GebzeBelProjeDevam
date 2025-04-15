@@ -1,12 +1,16 @@
 import React from 'react';
-import Sidebar from "../SideBar/sidebar.tsx";
-import {kurumsal} from "../_SayfaBilgileri/Sayfalar.tsx";
 
-const BusinessTaxation: React.FC = () => {
+const VisionPage: React.FC = () => {
     return (
-        <div className="page-wrapper">
-
-
+        <div
+            className="page-wrapper"
+            style={{
+                boxShadow: '0 0 40px rgba(0, 0, 0, 0.25)', // Sayfanın arkasına gölge
+                backgroundColor: '#fff', // Gölge belli olsun diye beyaz zemin
+                position: 'relative',
+                zIndex: 1,
+            }}
+        >
             {/* Main Header */}
             <header className="main-header header-style-one">
                 {/* Mobile Menu */}
@@ -21,7 +25,6 @@ const BusinessTaxation: React.FC = () => {
                             </a>
                         </div>
                         <div className="menu-outer">{/* Menu will come automatically via Javascript */}</div>
-                        {/* Social Links */}
                         <div className="social-links">
                             <ul className="clearfix">
                                 <li><a href="#"><span className="fab fa-twitter"></span></a></li>
@@ -66,21 +69,30 @@ const BusinessTaxation: React.FC = () => {
                     <div className="content-box">
                         <div className="content-wrapper">
                             <div className="title">
-                                <h1 style={{ color: "white", fontSize: "180px", fontFamily: "Poppins" }}>Vizyonumuz</h1>
+                                <h1 style={{ color: "white", fontSize: "120px", fontFamily: "Poppins" }}>Vizyonumuz</h1>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
             {/* Sidebar Page Container */}
             <section className="sidebar-page-container">
                 <div className="auto-container">
-                    <div className="row">
-                        <div className="col-lg-8 order-lg-2">
-                            <div className="depertment-details pl-5">
-
+                    <div className="row justify-content-center">
+                        <div className="col-lg-8">
+                            <div
+                                className="depertment-details shadow p-4"
+                                style={{
+                                    backgroundColor: "#ffffff",
+                                    borderRadius: "12px",
+                                    textAlign: "center",
+                                    boxShadow: "0 4px 16px rgba(0,0,0,0.1)"
+                                }}
+                            >
                                 <div className="text mb-40">
-                                    <p style={{ fontSize: '20px' }}> Gebze'yi sadece bir yaşam alanı olarak değil, geçmişten gelen zengin kültürel mirasını koruyan,
+                                    <p style={{ fontSize: '18px', textAlign: 'left' }}>
+                                        Gebze'yi sadece bir yaşam alanı olarak değil, geçmişten gelen zengin kültürel mirasını koruyan,
                                         tarihi dokusunu yaşatan ve aynı zamanda modern şehircilik anlayışıyla geleceğe taşıyan örnek bir
                                         kent haline getirmek temel hedefimizdir. Bu doğrultuda, şehircilik anlayışımızı sürdürülebilirlik,
                                         çevreye duyarlılık, sosyal bütünleşme ve katılımcı yönetişim ilkeleri üzerine inşa ederek, her yaştan
@@ -89,22 +101,18 @@ const BusinessTaxation: React.FC = () => {
                                         modern ulaşım ağlarıyla kent içi hareketliliği kolaylaştırmak en büyük önceliklerimiz arasındadır.
                                         Gebze’yi ekonomik, sosyal ve kültürel olarak daha yaşanabilir bir kent haline getirmek için yenilikçi
                                         belediyecilik anlayışıyla çalışmalarımızı sürdürerek, sadece bugünün değil, geleceğin de şehir modelini
-                                        inşa etmeye devam edeceğiz.</p>
+                                        inşa etmeye devam edeceğiz.
+                                    </p>
                                 </div>
-
-                                <div className="text" style={{ fontSize: '20px' }}>
+                                <div className="text" style={{ fontSize: '18px', textAlign: 'left' }}>
                                     Geleceğin Gebze’sini inşa ederken, insanı merkeze alan, tarihi değerlerine sahip çıkan ve modern şehircilik ilkeleriyle
                                     bütünleşmiş bir kent vizyonuyla, sürdürülebilir ve yaşanabilir bir şehir oluşturma yolunda kararlılıkla çalışmaya devam edeceğiz.
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
-            {/* Main Footer */}
-
 
             {/* Scroll to top */}
             <div className="scroll-to-top scroll-to-target" data-target="html"><span className="icon-arrow"></span></div>
@@ -112,12 +120,11 @@ const BusinessTaxation: React.FC = () => {
     );
 };
 
-export default BusinessTaxation;
+export default VisionPage;
 
-// To add to your main component where you want to include the head content
+// Head content loader
 export const GovernliaHeadContent: React.FC = () => {
     React.useEffect(() => {
-        // You can dynamically add scripts and styles using useEffect
         const loadScripts = () => {
             const scripts = [
                 'assets/js/jquery.js',
@@ -148,11 +155,7 @@ export const GovernliaHeadContent: React.FC = () => {
         };
 
         loadScripts();
-
-        // Cleanup function to remove scripts when component unmounts
-        return () => {
-            // Optional: Remove scripts if needed
-        };
+        return () => {};
     }, []);
 
     return null;

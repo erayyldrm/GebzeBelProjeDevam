@@ -1,11 +1,16 @@
 import React from 'react';
-import Sidebar from "../SideBar/sidebar.tsx";
-import {kurumsal} from "../_SayfaBilgileri/Sayfalar.tsx";
 
 const BusinessTaxation: React.FC = () => {
     return (
-        <div className="page-wrapper">
-
+        <div
+            className="page-wrapper"
+            style={{
+                boxShadow: '0 0 40px rgba(0, 0, 0, 0.25)',
+                backgroundColor: '#fff',
+                position: 'relative',
+                zIndex: 1,
+            }}
+        >
 
             {/* Main Header */}
             <header className="main-header header-style-one">
@@ -20,8 +25,7 @@ const BusinessTaxation: React.FC = () => {
                                 <img src="assets/images/logo.png" alt="" title="" />
                             </a>
                         </div>
-                        <div className="menu-outer">{/* Menu will come automatically via Javascript */}</div>
-                        {/* Social Links */}
+                        <div className="menu-outer"></div>
                         <div className="social-links">
                             <ul className="clearfix">
                                 <li><a href="#"><span className="fab fa-twitter"></span></a></li>
@@ -33,14 +37,12 @@ const BusinessTaxation: React.FC = () => {
                         </div>
                     </nav>
                 </div>
-                {/* End Mobile Menu */}
 
                 <div className="nav-overlay">
                     <div className="cursor"></div>
                     <div className="cursor-follower"></div>
                 </div>
             </header>
-            {/* End Main Header */}
 
             {/* Search Popup */}
             <div id="search-popup" className="search-popup">
@@ -48,10 +50,10 @@ const BusinessTaxation: React.FC = () => {
                 <div className="popup-inner">
                     <div className="overlay-layer"></div>
                     <div className="search-form">
-                        <form method="post" action="https://html.tonatheme.com/2021/Governlia/index.html">
+                        <form method="post" action="#">
                             <div className="form-group">
                                 <fieldset>
-                                    <input type="search" className="form-control" name="search-input" value="" placeholder="Search Here" required />
+                                    <input type="search" className="form-control" name="search-input" placeholder="Search Here" required />
                                     <input type="submit" value="Search Now!" className="theme-btn" />
                                 </fieldset>
                             </div>
@@ -64,9 +66,16 @@ const BusinessTaxation: React.FC = () => {
             <section className="page-title" style={{ backgroundImage: 'url(/images/kurumsal/gebze.jpg)' }}>
                 <div className="auto-container">
                     <div className="content-box">
-                        <div className="content-wrapper">
+                        <div className="content-wrapper text-center">
                             <div className="title">
-                                <h1 style={{ color: "white", fontSize: "180px", fontFamily: "Poppins" }}>Misyonumuz</h1>
+                                <h1 style={{
+                                    color: "white",
+                                    fontSize: "120px",
+                                    fontFamily: "Poppins",
+                                    textShadow: "2px 2px 8px rgba(0,0,0,0.5)"
+                                }}>
+                                    Misyonumuz
+                                </h1>
                             </div>
                         </div>
                     </div>
@@ -76,12 +85,19 @@ const BusinessTaxation: React.FC = () => {
             {/* Sidebar Page Container */}
             <section className="sidebar-page-container">
                 <div className="auto-container">
-                    <div className="row">
-                        <div className="col-lg-8 order-lg-2">
-                            <div className="depertment-details pl-5">
-
+                    <div className="row justify-content-center">
+                        <div className="col-lg-8">
+                            <div
+                                className="depertment-details shadow p-4"
+                                style={{
+                                    backgroundColor: "#ffffff",
+                                    borderRadius: "12px",
+                                    textAlign: "center",
+                                    boxShadow: "0 4px 16px rgba(0,0,0,0.1)"
+                                }}
+                            >
                                 <div className="text mb-40">
-                                    <p style={{ fontSize: '20px' }}>
+                                    <p style={{ fontSize: '18px', textAlign: 'left' }}>
                                         Gebze Belediyesi olarak, kentimizin yaşam kalitesini artırmak, sürdürülebilir
                                         kalkınmayı sağlamak ve vatandaşlarımızın ihtiyaçlarına duyarlı,
                                         adil ve etkin hizmetler sunmak en büyük sorumluluklarımız arasındadır.
@@ -98,25 +114,22 @@ const BusinessTaxation: React.FC = () => {
                                         halkın beklentilerini ön planda tutarak karar alma süreçlerine dahil ediyor ve
                                         kaynaklarımızı etkin kullanarak sürdürülebilir bir belediyecilik anlayışı benimsiyoruz.
                                         Tüm bu çalışmalarımızla Gebze’yi hem bugünün hem de geleceğin modern, yaşanabilir ve
-                                        güçlü bir kenti haline getirmek için durmaksızın çalışıyoruz.</p>
+                                        güçlü bir kenti haline getirmek için durmaksızın çalışıyoruz.
+                                    </p>
                                 </div>
 
-                                <div className="text" style={{ fontSize: '20px' }}>
+                                <div className="text" style={{ fontSize: '18px', textAlign: 'left' }}>
                                     Ulaşım altyapısını iyileştirmek, yeşil alanları artırmak,
                                     çevre temizliği ve atık yönetimi gibi konularda çalışmalar yürütürken,
                                     sosyal yardımlarla dezavantajlı gruplara destek sağlıyoruz.
                                     Eğitim, sağlık ve spor alanlarında projeler geliştirerek her yaştan vatandaşımıza yönelik hizmetler sunuyor,
                                     kültürel etkinliklerle şehrimizin tarihi ve sanatsal değerlerini yaşatıyoruz.
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
-            {/* Main Footer */}
-
 
             {/* Scroll to top */}
             <div className="scroll-to-top scroll-to-target" data-target="html"><span className="icon-arrow"></span></div>
@@ -126,10 +139,9 @@ const BusinessTaxation: React.FC = () => {
 
 export default BusinessTaxation;
 
-// To add to your main component where you want to include the head content
+// Scripts loader
 export const GovernliaHeadContent: React.FC = () => {
     React.useEffect(() => {
-        // You can dynamically add scripts and styles using useEffect
         const loadScripts = () => {
             const scripts = [
                 'assets/js/jquery.js',
@@ -160,11 +172,6 @@ export const GovernliaHeadContent: React.FC = () => {
         };
 
         loadScripts();
-
-        // Cleanup function to remove scripts when component unmounts
-        return () => {
-            // Optional: Remove scripts if needed
-        };
     }, []);
 
     return null;
