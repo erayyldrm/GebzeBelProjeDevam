@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import Sidebar from "../SideBar/sidebar.tsx";
-import { gebze } from "../_SayfaBilgileri/Sayfalar.tsx";
+
 import { MapPin, Phone, Info, X } from 'lucide-react';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -131,10 +130,7 @@ export default function AtolyelerSayfasi() {
     return (
         <div className="flex flex-col min-h-screen">
             <div className="flex flex-1">
-                {/* Sidebar - %20 genişlikte ve sabit */}
-                <div style={{ width: '20%', minWidth: '200px' }}>
-                    <Sidebar items={gebze} title={"ATÖLYELER"} />
-                </div>
+
 
                 {/* Ana İçerik Alanı */}
                 <div className="flex-1 p-4">

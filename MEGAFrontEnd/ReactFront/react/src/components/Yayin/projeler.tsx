@@ -12,7 +12,7 @@ const documents = [
 const Projeler = () => {
     return (
         <div id="pcoded" className="pcoded">
-            <br /><br /><br /><br /><br /><br />
+
             <div className="pcoded-overlay-box"></div>
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container-left">
@@ -22,15 +22,10 @@ const Projeler = () => {
                                 <div className="main-body">
                                     <div className="page-wrapper">
                                         <div className="row">
-                                            {/* Sidebar */}
-                                            <div className="col-lg-3 col-md-4 mb-4 mb-md-0">
-                                                <div className="sidebar-wrapper">
-                                                    <Sidebar items={kurumsal} title={"KURUMSAL"} />
-                                                </div>
-                                            </div>
+
 
                                             {/* Main Content */}
-                                            <div className="col-lg-9 col-md-8">
+                                            <div className="col-lg">
                                                 <div className="card mx-auto w-100">
                                                     <div className="card-block p-5">
                                                         <h1 className="text-left text-2xl font-bold text-gray-800 mb-4">

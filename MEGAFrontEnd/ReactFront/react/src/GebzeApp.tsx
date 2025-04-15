@@ -16,7 +16,7 @@ const GebzeApp: React.FC =() => {
             <Route path="/kardessehirler" element={<KardesSehirler/>}/>
             <Route path="/muhtarlar" element={<Muhtarlar/>}/>
             <Route path="/tarihce" element={<Tarihce/>}/>
-            <Route path="/fotoğraflarlagebze" element={<Fotoğraflarla/>}/>
+            <Route path="/fotograflarlaGebze" element={<Fotoğraflarla/>}/>
             <Route path="/bugunkugebze" element={<BugunkuGebze/>}/>
             <Route path="/tarihiyerler" element={<Gallarytest/>}/>
             <Route path="/uyeoldugumuzbirlikler" element={<UyeOldugumuzBirlikler/>}/>

@@ -33,8 +33,7 @@ const TarihcePage: React.FC = () => {
     };
 
     return (
-        <div id="pcoded" className="pcoded"><br/><br/><br/><br/><br/><br/>
-            <div className="pcoded-overlay-box"></div>
+        <div id="pcoded" className="pcoded">
             <div className="pcoded-container navbar-wrapper">
 
                 <div className="pcoded-main-container">
@@ -46,10 +45,8 @@ const TarihcePage: React.FC = () => {
                                 <div className="main-body">
                                     <div className="page-wrapper">
                                         <div className="row">
-                                            <div style={{ width: '20%', minWidth: '200px' }}>
-                                                <Sidebar items={gebze} title={"GEBZE"} />
-                                            </div>
-                                            <div className="col-lg-9 ms-auto">
+
+                                            <div className="col-lg ms-auto">
                                                 <div className="card">
                                                     <div className="card-block">
                                                         {/* Image slider */}
