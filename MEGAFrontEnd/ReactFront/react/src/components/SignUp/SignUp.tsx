@@ -141,7 +141,7 @@ const SignUP: React.FC = () => {
                                                 type="button"
                                                 className="inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out"
                                                 style={{
-                                                    background: "#9c8e45",
+                                                    background: "#f7a600",
                                                 }}>
                                                 Giriş Yap
                                             </button>

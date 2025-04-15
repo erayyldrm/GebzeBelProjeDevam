@@ -1,146 +1,113 @@
 import React, { useState } from "react";
 import { FileText } from "lucide-react";
 
-// PDFs grouped by their departments
 const documents = [
     {
         department: "Faaliyet Raporu",
         docs: [
-            { name: "2023 Mali İdare Yılı Faaliyet Raporu", url: "/2023mali.pdf" },
-            { name: "2022 Mali İdare Yılı Faaliyet Raporu", url: "/2022mali.pdf" },
-            { name: "2021 Mali İdare Yılı Faaliyet Raporu", url: "/2021mali.pdf" },
-            { name: "2020 Faaliyet Raporu", url: "/2020faaliyet.pdf" },
+            { name: "2023 Maali Yılı İdare Faaliyet Rapru", url: "/2023mali.pdf" },
+            { name: "2022 Maali Yılı İdare Faaliyet Raporu", url: "/2022mali.pdf" },
+            { name: "2021 Maali Yılı İdare Faaliyet Raporu", url: "/2021mali.pdf" },
+            { name: "2020 Faaliyet Raporu", url: "/2020faliyet.pdf" },
             { name: "2019 Faaliyet Raporu", url: "/2019faaliyet.pdf" },
-            { name: "2018 Faaliyet Raporu", url: "/.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
-            { name: "Veteriner İşleri Müdürlüğü", url: "/veteriner.pdf" },
+            { name: "2018 Faaliyet Raporu", url: "/2018faaliyet.pdf" },
+            { name: "2017 Faaliyet Raporu", url: "/2017faaliyet.pdf" },
+            { name: "2016 Faaliyet Raporu", url: "/2016faaliyet.pdf" },
+            { name: "2015 Faaliyet Raporu", url: "/2015faaliyet.pdf" },
+            { name: "2014 Faaliyet Raporu", url: "/2014faaliyet.pdf" },
+            { name: "2013 Faaliyet Raporu", url: "/2013faaliyet.pdf" },
+            { name: "2012 Faaliyet Raporu", url: "/2012faaliyet.pdf" },
+            { name: "2011 Faaliyet Raporu", url: "/2011faaliyet.pdf" },
+            { name: "2010 Faaliyet Raporu", url: "/2010faaliyet.pdf" },
+            { name: "2009 Faaliyet Raporu", url: "/2009faaliyet.pdf" },
+            { name: "2008 Faaliyet Raporu", url: "/2008faaliyet.pdf" },
+            { name: "2007 Faaliyet Raporu", url: "/2007faaliyet.pdf" },
+            { name: "2006 Faaliyet Raporu", url: "/2006faaliyet.pdf" },
         ],
     },
     {
         department: "İç Kontrol Eylem Planı",
         docs: [
-            { name: "Temizlik İşleri Müdürlüğü", url: "docs/temizlik.pdf" },
-            { name: "Park ve Bahçeler Müdürlüğü", url: "docs/park.pdf" },
-            { name: "Mali Hizmetler Müdürlüğü", url: "docs/mali.pdf" },
+            { name: "2025 - 2029 İç Kontrol Eylem Planı", url: "/2025eylem.pdf" },
+            { name: "2020 - 2024 İç Kontrol Eylem Planı", url: "/2020eylem.pdf" },
+            { name: "2015 - 2019 İç Kontrol Eylem Planı", url: "/2015eylem.pdf" },
         ],
     },
     {
         department: "Mali Durum ve Beklentiler Raporu",
         docs: [
-            { name: "İmar Ve Şehircilik Müdürlüğü", url: "docs/imar.pdf" },
-            { name: "Fen İşleri Müdürlüğü", url: "docs/fen.pdf" },
-            { name: "Fen İşleri Müdürlüğü", url: "docs/fen.pdf" },
-            { name: "Fen İşleri Müdürlüğü", url: "docs/fen.pdf" },
+            { name: "2023 Mali Durum Ve Bekel", url: "/performans2025.pdf" },
         ],
     },
     {
-        department: "Performans Ve Plan",
+        department: "Performans Programı",
         docs: [
-            { name: "Emlak Ve İstimlak Müdürlüğü", url: "docs/emlak.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
+            { name: "2025-2029 Stratejik Plan", url: "/stratejik2025.pdf" },
         ],
     },
     {
-        department: "Strateji Ve Plan",
+        department: "Strateji Plan",
         docs: [
-            { name: "Emlak Ve İstimlak Müdürlüğü", url: "docs/emlak.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
-            { name: "Sosyal Destek Hizmetleri", url: "docs/sosyal.pdf" },
+            { name: "2024 Faaliyet Raporu", url: "/faaliyet2024.pdf" },
         ],
     },
 ];
 
-const Kraporlar = () => {
-    return (
-        <div id="pcoded" className="pcoded">
-            <br /><br /><br /><br /><br /><br />
-            <div className="pcoded-overlay-box"></div>
-            <div className="pcoded-container navbar-wrapper">
-                <div className="pcoded-main-container-left">
-                    <div className="pcoded-wrapper">
-                        <div className="pcoded-content">
-                            <div className="pcoded-inner-content">
-                                <div className="main-body">
-                                    <div className="page-wrapper">
-                                        <div className="row">
-                                            {/* Sidebar */}
+const Kararlar = () => {
+    const [activeTab, setActiveTab] = useState<string>(documents[0].department);
 
-                                            {/* Main Content */}
-                                            <div className="col-lg-9 col-md-8">
-                                                <div className="card mx-auto w-100">
-                                                    <div className="card-block p-5">
-                                                        <h1 className="text-left text-2xl font-bold text-gray-800 mb-4">
-                                                            Kurumsal Raporlar
-                                                        </h1>
-                                                        {/* Loop through document categories */}
-                                                        {documents.map((category, index) => (
-                                                            <div key={index} className="mb-8">
-                                                                <h2 className="text-xl font-bold text-gray-800 mt-4 mb-4 pb-2 border-b-2 border-blue-500">
-                                                                    {category.department}
-                                                                </h2>
-                                                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                                                    {category.docs.map((doc, idx) => (
-                                                                        <div
-                                                                            key={idx}
-                                                                            className="bg-blue-50 p-5 rounded-lg hover:bg-blue-100 transition flex flex-col items-center shadow-md"
-                                                                        >
-                                                                            <FileText className="text-red-500 mb-3" size={65} />
-                                                                            <a
-                                                                                href={doc.url}
-                                                                                target="_blank"
-                                                                                rel="noopener noreferrer"
-                                                                                className="text-blue-700 font-semibold text-left"
-                                                                            >
-                                                                                {doc.name}
-                                                                            </a>
-                                                                        </div>
-                                                                    ))}
-                                                                </div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    return (
+        <div className="p-6 bg-gray-50 shadow-lg min-h-screen">
+            <h1 className="text-3xl font-bold text-center mb-12 text-blue-700">
+                Kurumsal Raporlar
+            </h1>
+
+            {/* Sekmeler - Larger buttons with green styling */}
+            <div className="flex flex-wrap justify-center gap-3 mb-12">
+                {documents.map((category) => (
+                    <button
+                        key={category.department}
+                        onClick={() => setActiveTab(category.department)}
+                        className={`
+                            px-6 py-3 text-base md:text-lg rounded-lg font-semibold 
+                            border-2 transition-all duration-200
+                            ${
+                            activeTab === category.department
+                                ? "bg-green-500 border-green-600 text-white shadow-md"
+                                : "bg-white border-gray-300 text-gray-700 hover:bg-green-100 hover:border-green-400"
+                        }
+                        `}
+                    >
+                        {category.department}
+                    </button>
+                ))}
             </div>
+
+            {/* İçerik */}
+            {activeTab && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
+                    {documents
+                        .find((cat) => cat.department === activeTab)
+                        ?.docs.map((doc, i) => (
+                            <div
+                                key={i}
+                                className="bg-blue-50 p-6 rounded-lg hover:bg-blue-100 transition shadow-md flex flex-col items-center mb-6"
+                            >
+                                <FileText className="text-orange-500 mb-4" size={50} />
+                                <a
+                                    href={doc.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-700 text-base font-semibold text-center mb-4 hover:text-blue-900 hover:underline"
+                                >
+                                    {doc.name}
+                                </a>
+                            </div>
+                        ))}
+                </div>
+            )}
         </div>
     );
 };
 
-export default Kraporlar;
+export default Kararlar;

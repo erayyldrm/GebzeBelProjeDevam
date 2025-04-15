@@ -39,7 +39,7 @@ const BaskanPage: React.FC = () => {
                                                                         31 Mart 2019 Mahalli İdareler Seçimi'nde halkımızın teveccühü ile Gebze Belediye Başkanı seçilmiştir ve halen bu görevi yürütmeye devam etmektedir.
                                                                     </p>
                                                                 </div>
-                                                                <div className="text-center text-md-end mt-4">
+                                                                <div className="mt-4 d-flex justify-content-end">
                                                                     <img
                                                                         src="/images/kurumsal/imza.png"
                                                                         alt="imza"
