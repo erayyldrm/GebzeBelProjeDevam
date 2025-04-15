@@ -69,7 +69,6 @@ const FormerMayors: React.FC = () => {
 
     return (
         <div id="pcoded" className="pcoded">
-            <br /><br /><br /><br /><br /><br />
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
@@ -86,7 +85,7 @@ const FormerMayors: React.FC = () => {
                                                 <div className="mb-8">
                                                     <div className="flex flex-col md:flex-row justify-between items-center">
                                                         <div className="mb-4 md:mb-0">
-                                                            <h1 className="text-2xl font-bold">ESKİ BELEDİYE BAŞKANLARI</h1>
+                                                            <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">ESKİ BELEDİYE BAŞKANLARI</h1>
                                                         </div>
                                                     </div>
                                                 </div>
