@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FileText } from "lucide-react";
-import Sidebar from "../SideBar/sidebar.tsx";
-import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
+
 
 const meclisDocuments = [
     { name: "3 Nisan 2025 Meclis Kararları", url: "/3nisan.pdf" },
