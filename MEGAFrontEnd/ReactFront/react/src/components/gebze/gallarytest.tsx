@@ -16,7 +16,7 @@ const GalleryTest: React.FC = () => {
                         { img: "/images/gebze/tarihiyerler/eskihisarcesme/6.jpg", title: "ESKİHİSAR ÇEŞMESİ" },
                         { img: "/images/gebze/tarihiyerler/kale/7.JPG", title: "ESKİHİSAR KALESİ" },
                         { img: "/images/gebze/tarihiyerler/hünkar/8.JPG", title: "HÜNKAR ÇAYIRI" },
-                        { img: "/images/gebze/tarihiyerler/ibrahimpasacamii/DJI_0600.JPG", title: "İBRAHİM PAŞA ÇEŞMESİ" },
+                        { img: "/images/gebze/tarihiyerler/ibrahimpasacamii/2.JPG", title: "İBRAHİM PAŞA ÇEŞMESİ" },
                         { img: "/images/gebze/tarihiyerler/ilyasbeycamii/9.JPG", title: "İLYAS BEY CAMİİ" },
                         { img: "/images/gebze/tarihiyerler/yalı/11.JPG", title: "OSMAN HAMDİ BEY YALISI" },
                         { img: "/images/gebze/tarihiyerler/sultan orhan cami/12.jpg", title: "SULTAN ORHAN CAMİİ" }
