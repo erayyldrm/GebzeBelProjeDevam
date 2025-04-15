@@ -1,6 +1,5 @@
 // @ts-ignore
 import Sidebar from "../SideBar/sidebar.tsx";
-import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
 import { FileText } from "lucide-react";
 
 const documents = [
@@ -14,7 +13,6 @@ const documents = [
 const Kimlik = () => {
     return (
         <div id="pcoded" className="pcoded">
-            <br /><br /><br /><br /><br /><br />
             <div className="pcoded-overlay-box"></div>
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container-left">

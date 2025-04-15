@@ -1,6 +1,5 @@
 import React from 'react';
-import Sidebar from "../SideBar/sidebar.tsx";
-import {kurumsal} from "../_SayfaBilgileri/Sayfalar.tsx";
+
 
 const BusinessTaxation: React.FC = () => {
     return (
