@@ -1,6 +1,6 @@
 import Sidebar from '../SideBar/sidebar.tsx';
 import { Outlet, useLocation } from 'react-router-dom';
-import { kurumsal } from '../_SayfaBilgileri/Sayfalar.tsx';
+import { skurumsal } from '../_SayfaBilgileri/Sayfalar.tsx';
 
 const KurumsalLayout = () => {
     const location = useLocation();
@@ -10,7 +10,7 @@ const KurumsalLayout = () => {
 
     return (
         <div className="flex">
-            {shouldDisplaySidebar && <Sidebar items={kurumsal} title="Kurumsal" />}
+            {shouldDisplaySidebar && <Sidebar items={skurumsal} title="Kurumsal" />}
             <div className="flex-1 p-6">
                 <Outlet />
             </div>

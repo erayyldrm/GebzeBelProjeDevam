@@ -167,6 +167,73 @@ export const kurumsal: DropdownItem[] = [
 
 ];
 
+export const skurumsal: DropdownItem[] = [
+
+    {
+        icon: <FiUsers className="text-gray-800" size={20}/>,
+        title: 'BAŞKAN',
+        description: 'Başkan hakkında bilgi',
+        path: '/kurumsal/baskan'// onClick yerine pathname kullanın
+
+    },
+    {
+        icon: <FiEye className="text-gray-800" size={20}/>,
+        title: 'VİZYONUMUZ',
+        description: 'Vizyonumuz hakkında bilgi',
+        path: '/kurumsal/vizyon_2'
+
+    },
+    {
+        icon: <FiTarget className="text-gray-800" size={20}/>,
+        title: 'MİSYONUMUZ',
+        description: 'Misyonumuz hakkında bilgi',
+        path: '/kurumsal/misyon_2'
+    },
+    {
+        icon: <FiAward className="text-gray-800" size={20}/>,
+        title: 'İLKELERİMİZ',
+        description: 'İlkelerimiz hakkında bilgi',
+        path: '/kurumsal/ilkelerimiz_2'
+    },
+    {
+        icon: <FiUsers className="text-gray-800" size={20}/>,
+        title: 'BELEDİYE MECLİSİ',
+        description: 'Belediye Meclisi hakkında bilgi',
+        path: '/kurumsal/belediyemeclisi'
+    },
+    {
+        icon: <FiLayout className="text-gray-800" size={20}/>,
+        title: 'YÖNETİM ŞEMASI',
+        description: 'Yönetim Şeması hakkında bilgi',
+        path: '/kurumsal/yonetimsemasi'
+    },
+    {
+        icon: <FiUsers className="text-gray-800" size={20}/>,
+        title: 'BAŞKAN YARDIMCILARI',
+        description: 'Başkan Yardımcıları hakkında bilgi',
+        path:'/kurumsal/baskanyardimcilari'
+    },
+    {
+        icon: <FiUser className="text-gray-800" size={20}/>,
+        title: 'BAŞKAN DANIŞMANLARI',
+        description: 'Başkan Danışmanları hakkında bilgi',
+        path: '/kurumsal/baskandanismanlari'
+    },
+    {
+        icon: <FiFileText className="text-gray-800" size={20}/>,
+        title: 'MÜDÜRLÜKLER',
+        description: 'Müdürlükler hakkında bilgi',
+        path:'/kurumsal/mudurlukler'
+    },
+    {
+        icon: <FiUsers className="text-gray-800" size={20}/>,
+        title: 'ESKİ BAŞKANLAR',
+        description: 'Eski Başkanlar hakkında bilgi',
+        path:'/kurumsal/eskibaskanlar'
+    }
+];
+
+
 export const hizmetler: DropdownItem[] = [
     {
         icon: <FiTool className="text-gray-800"/>,
