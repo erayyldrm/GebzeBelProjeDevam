@@ -8,18 +8,18 @@ const GalleryTest: React.FC = () => {
                 <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Gebze Tarihi Yerler</h1><br/>
                 <div className="grid grid-cols-3 gap-8">
                     {[
-                        { img: "/images/gebze/tarihiyerler/1.JPG", title: "ANİBALIN MEZARI" },
-                        { img: "/images/gebze/tarihiyerler/2.jpg", title: "BALLIKAYALAR" },
-                        { img: "/images/gebze/tarihiyerler/3.JPG", title: "ÇOBAN MUSTAFA PAŞA KÜLLİYESİ" },
-                        { img: "/images/gebze/tarihiyerler/4.JPG", title: "ÇOBAN MUSTAFA PAŞA HAMAMI" },
-                        { img: "/images/gebze/tarihiyerler/5.JPG", title: "ÇOBAN MUSTAFA PAŞA ŞADIRVANI" },
-                        { img: "/images/gebze/tarihiyerler/6.jpg", title: "ESKİHİSAR ÇEŞMESİ" },
-                        { img: "/images/gebze/tarihiyerler/7.JPG", title: "ESKİHİSAR KALESİ" },
-                        { img: "/images/gebze/tarihiyerler/8.JPG", title: "HÜNKAR ÇAYIRI" },
-                        { img: "/images/gebze/tarihiyerler/DJI_0600.JPG", title: "İBRAHİM PAŞA ÇEŞMESİ" },
-                        { img: "/images/gebze/tarihiyerler/9.JPG", title: "İLYAS BEY CAMİİ" },
-                        { img: "/images/gebze/tarihiyerler/11.JPG", title: "OSMAN HAMDİ BEY YALISI" },
-                        { img: "/images/gebze/tarihiyerler/12.jpg", title: "SULTAN ORHAN CAMİİ" }
+                        { img: "/images/gebze/tarihiyerler/anibal/1.JPG", title: "ANİBALIN MEZARI" },
+                        { img: "/images/gebze/tarihiyerler/ballikayalar/2.jpg", title: "BALLIKAYALAR" },
+                        { img: "/images/gebze/tarihiyerler/külliye/3.JPG", title: "ÇOBAN MUSTAFA PAŞA KÜLLİYESİ" },
+                        { img: "/images/gebze/tarihiyerler/hamam/4.JPG", title: "ÇOBAN MUSTAFA PAŞA HAMAMI" },
+                        { img: "/images/gebze/tarihiyerler/sadirvan/5.JPG", title: "ÇOBAN MUSTAFA PAŞA ŞADIRVANI" },
+                        { img: "/images/gebze/tarihiyerler/eskihisarcesme/6.jpg", title: "ESKİHİSAR ÇEŞMESİ" },
+                        { img: "/images/gebze/tarihiyerler/kale/7.JPG", title: "ESKİHİSAR KALESİ" },
+                        { img: "/images/gebze/tarihiyerler/hünkar/8.JPG", title: "HÜNKAR ÇAYIRI" },
+                        { img: "/images/gebze/tarihiyerler/ibrahimpasacamii/DJI_0600.JPG", title: "İBRAHİM PAŞA ÇEŞMESİ" },
+                        { img: "/images/gebze/tarihiyerler/ilyasbeycamii/9.JPG", title: "İLYAS BEY CAMİİ" },
+                        { img: "/images/gebze/tarihiyerler/yalı/11.JPG", title: "OSMAN HAMDİ BEY YALISI" },
+                        { img: "/images/gebze/tarihiyerler/sultan orhan cami/12.jpg", title: "SULTAN ORHAN CAMİİ" }
                     ].map((item, index) => (
                         <div
                             key={index}
