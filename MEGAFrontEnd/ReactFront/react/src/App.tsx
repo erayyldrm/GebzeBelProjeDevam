@@ -17,9 +17,7 @@ import KurumsalLayout from './components/Layouts/kurumsalLayout.tsx';
 import GebzeLayout from './components/Layouts/gebzeLayout.tsx';
 import Yayin from "./YayinApp.tsx";
 import Yayinpdf from "./components/Yayin/yayinpdf.tsx";
-import TarihiyerlerLayout from "./components/Layouts/tarihiyerlerLayout.tsx";
-import TarihiApp from "./TarihiApp.tsx";
-import Gallarytest from "./components/gebze/gallarytest.tsx";
+
 
 
 
@@ -89,26 +87,8 @@ const App: React.FC = () => {
                         <Route path="*" element={<Gebze />} />
                     </Route>
 
-                    <Route
-                        path="/tarihiyerler/*"
-                        element={<GebzeLayout />}
-                    >
-                        <Route path="*" element={<Gallarytest />} />
-                    </Route>
-
-
-
-                    <Route
-                        path="/gebze/tarihiyerler/*"
-                        element={<TarihiyerlerLayout />}
-                    >
-                        <Route path="*" element={<TarihiApp/>} />
-                    </Route>
-
-
 
                     <Route path="/yayin/*" element={<Yayin/>}/>
-                    <Route path="/tarihiyerler" element={<Gallarytest/>}/>
                     <Route path="/yayinpdf/*" element={<Yayinpdf/>}/>
 
 
