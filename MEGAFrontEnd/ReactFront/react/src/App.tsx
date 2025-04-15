@@ -10,6 +10,7 @@ import ContentArea from "./components/Slide/Slide.tsx";
 import TEST from "./components/sablon/testsablon.tsx"
 import Kurumsal from "./KurumsalApp.tsx";
 import Hizmetler from "./HizmetlerApp.tsx";
+import HizmetlerLayout from "./components/Layouts/hizmetlerLayout.tsx";
 import Gebze from "./GebzeApp.tsx";
 import EventsSection from "./components/Etkinlikler/etkinlikler.tsx";
 import KurumsalLayout from './components/Layouts/kurumsalLayout.tsx';
@@ -54,7 +55,12 @@ const App: React.FC = () => {
                         </>
                     }
                 >
-                    <Route path="/hizmetler/*" element={<Hizmetler />} />
+                    <Route
+                        path="/hizmetler/*"
+                        element={<HizmetlerLayout />}
+                    >
+                        <Route path="*" element={<Hizmetler />} />
+                    </Route>
 
                     {/* Navbar ve Footerli elemanlar burada olacak */}
                     <Route path="/" element={<ContentArea/>}/>
