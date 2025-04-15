@@ -9,7 +9,6 @@ const YayinApp: React.FC =() => {
 
     return (
         <Routes>
-
             <Route path="/manset" element={<Manset/>}/>
             <Route path="/kultur" element={<Cultur/>}/>
             <Route path="/projeler" element={<Projeler/>}/>

@@ -41,7 +41,6 @@ const CityCard = ({ city }: { city: { name: string; city: string; country: strin
 export default function SisterCities() {
     return (
         <div id="pcoded" className="pcoded">
-            <br /><br /><br /><br /><br /><br />
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
