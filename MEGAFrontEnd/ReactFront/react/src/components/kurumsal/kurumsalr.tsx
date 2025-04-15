@@ -98,8 +98,8 @@ const Kararlar = () => {
                             border-2 transition-all duration-200
                             ${
                             activeTab === category.department
-                                ? "bg-green-500 border-green-600 text-white shadow-md"
-                                : "bg-white border-gray-300 text-gray-700 hover:bg-green-100 hover:border-green-400"
+                                ? "bg-blue-500 border-blue-600 text-white shadow-md"
+                                : "bg-white border-gray-300 text-gray-700 hover:bg-orange-100 hover:border-green-400"
                         }
                         `}
                     >
