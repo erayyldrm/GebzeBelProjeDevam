@@ -89,6 +89,13 @@ const App: React.FC = () => {
                         <Route path="*" element={<Gebze />} />
                     </Route>
 
+                    <Route
+                        path="/tarihiyerler/*"
+                        element={<GebzeLayout />}
+                    >
+                        <Route path="*" element={<Gallarytest />} />
+                    </Route>
+
 
 
                     <Route
@@ -101,7 +108,7 @@ const App: React.FC = () => {
 
 
                     <Route path="/yayin/*" element={<Yayin/>}/>
-                    <Route path="/gebze/tarihiyerler" element={<Gallarytest/>}/>
+                    <Route path="/tarihiyerler" element={<Gallarytest/>}/>
                     <Route path="/yayinpdf/*" element={<Yayinpdf/>}/>
 
 

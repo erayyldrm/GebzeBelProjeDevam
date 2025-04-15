@@ -4,7 +4,7 @@ import {tarihiyerler} from '../_SayfaBilgileri/Sayfalar.tsx';
 
 const tarihiyerlerLayout = () => {
     const location = useLocation();
-    const pagesWithoutSidebar = ['/login', '/signup']; // Sidebar istemediğiniz sayfaların path'lerini ekleyin.
+    const pagesWithoutSidebar = ['/login', '/signup',]; // Sidebar istemediğiniz sayfaların path'lerini ekleyin.
 
     const shouldDisplaySidebar = !pagesWithoutSidebar.includes(location.pathname);
 

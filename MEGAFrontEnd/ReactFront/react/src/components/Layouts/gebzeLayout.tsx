@@ -4,7 +4,7 @@ import { gebze } from '../_SayfaBilgileri/Sayfalar.tsx';
 
 const GebzeLayout = () => {
     const location = useLocation();
-    const pagesWithoutSidebar = ['/login', '/signup','/gebze/tarihiyerler','/gebze/fotograflarlaGebze','/gebze/360sanaltur','/gebze/muhtarlar','/gebze/uyeoldugumuzbirlikler']; // Sidebar istemediğiniz sayfaların path'lerini ekleyin.
+    const pagesWithoutSidebar = ['/login', '/signup','/tarihiyerler','/gebze/tarihiyerler','/gebze/fotograflarlaGebze','/gebze/360sanaltur','/gebze/muhtarlar','/gebze/uyeoldugumuzbirlikler']; // Sidebar istemediğiniz sayfaların path'lerini ekleyin.
 
     const shouldDisplaySidebar = !pagesWithoutSidebar.includes(location.pathname);
 
