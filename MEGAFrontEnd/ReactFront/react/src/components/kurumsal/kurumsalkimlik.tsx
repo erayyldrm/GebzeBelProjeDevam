@@ -25,7 +25,7 @@ const Kimlik = () => {
                                             <div className="col-lg-9 col-md-8">
                                                 <div className="card mx-auto w-full max-w-6xl">
                                                     <div className="card-block p-5">
-                                                        <h1 className="text-left text-2xl font-bold text-gray-800 mb-4">
+                                                        <h1 className="text-left text-2xl font-bold text-gray-800 mb-4 text-center">
                                                             Kurumsal Kimlik
                                                         </h1>
                                                         {/* Grid Layout */}
