@@ -16,16 +16,20 @@ const BaskanDanismanlari: React.FC = () => {
                                             <div className="flex-1 p-4 pt-0 mt-[-10px]"> {/* İçeriği de yukarı aldık */}
                                                 {/* Header */}
                                                 <div className="mb-6">
-                                                    <div className="flex justify-center">
+                                                    <div
+                                                        className="depertment-details shadow p-4"
+                                                        style={{
+                                                            backgroundColor: "#ffffff",
+                                                            borderRadius: "12px",
+                                                            textAlign: "center",
+                                                            boxShadow: "0 4px 16px rgba(0,0,0,0.1)"
+                                                        }}
+                                                    >
                                                         <h1 className="text-2xl font-bold text-center">BAŞKAN DANIŞMANLARI</h1>
                                                     </div>
                                                 </div>
-
                                                 {/* Main Content */}
                                                 <div className="card shadow-lg rounded-lg mt-2">
-                                                    <div className="card-header bg-blue-900 p-4">
-                                                        <h4 className="text-2xl font-bold text-white text-center">BAŞKAN DANIŞMANLARI</h4>
-                                                    </div>
                                                     <div className="card-block p-4">
                                                         <div className="col-md-12">
                                                             <ul className="space-y-4">

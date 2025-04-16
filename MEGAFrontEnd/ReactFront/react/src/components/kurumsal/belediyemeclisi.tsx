@@ -55,9 +55,10 @@ const MunicipalityCouncil: React.FC = () => {
         { name: "Hakan KAHRAMAN", imageUrl: "/images/kurumsal/belediyemeclisi/hakankahraman.jpg", role: "Meclis Üyesi" }
     ];
 
+
     const PersonCard: React.FC<{ person: CouncilMember; isPresident?: boolean }> = ({ person, isPresident = false }) => {
         const cardClasses = isPresident ? "max-w-md mb-10" : "max-w-xs mb-5";
-        const imgClasses = isPresident ? "h-[50px] w-[300px] object-cover" : "h-36 w-full object-cover";
+        const imgClasses = isPresident ? "h-[300px] w-[300px] object-cover" : "h-36 w-full object-cover"; // Burada imgClasses düzenlendi.
         return (
             <div className={`bg-white rounded-lg shadow-md overflow-hidden ${cardClasses}`}>
                 <div className="text-center">

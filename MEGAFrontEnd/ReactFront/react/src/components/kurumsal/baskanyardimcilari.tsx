@@ -14,7 +14,14 @@ const BaskanYardimcilari: React.FC = () => {
                                             {/* Ana İçerik Alanı */}
                                             <div className="flex-1 p-4 pt-0 mt-[-10px]"> {/* margin-top eksiye çekildi */}
                                                 {/* Header */}
-                                                <div className="mb-6">
+                                                <div  className="depertment-details shadow p-4"
+                                                      style={{
+                                                          backgroundColor: "#ffffff",
+                                                          borderRadius: "12px",
+                                                          textAlign: "center",
+                                                          boxShadow: "0 4px 16px rgba(0,0,0,0.1)"
+                                                      }}
+                                                >
                                                     <div className="flex justify-center">
                                                         <h1 className="text-2xl font-bold text-center">BAŞKAN YARDIMCILARI</h1>
                                                     </div>
