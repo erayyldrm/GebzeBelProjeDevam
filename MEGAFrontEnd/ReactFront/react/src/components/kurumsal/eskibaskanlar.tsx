@@ -1,4 +1,5 @@
 import React from 'react';
+
 interface CouncilMember {
     name: string;
     imageUrl: string;
@@ -39,11 +40,10 @@ const FormerMayors: React.FC = () => {
         { name: "Hafız Ali DÖNMEZ", imageUrl: "/images/kurumsal/eskibaskanlar/Hafiz-Ali-DONMEZ.jpg", role: "1914 - 1915" },
         { name: "Sapçı Mehmet Çavuş", imageUrl: "/images/kurumsal/eskibaskanlar/Sapci-Mehmet-CAVUS.jpg", role: "1911 - 1914" }];
 
-
     // Person card component
     const PersonCard: React.FC<{ person: CouncilMember }> = ({ person }) => {
         return (
-            <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-xs mb-5">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-xs mb-5">
                 <div className="text-center">
                     <div className="relative">
                         <img
@@ -76,27 +76,22 @@ const FormerMayors: React.FC = () => {
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
                                     <div className="page-wrapper">
-                                        <div className="flex flex-row gap-4">
+                                        <div className="flex flex-col gap-4 p-4">
 
+                                            {/* Header */}
+                                            <div className="mb-8 text-center">
+                                                <h1 className="text-3xl font-bold text-gray-800 mb-8">ESKİ BELEDİYE BAŞKANLARI</h1> <br/>
+                                            </div>
 
-                                            {/* Ana İçerik Alanı */}
-                                            <div className="flex-1 p-4">
-                                                {/* Header */}
-                                                <div className="mb-8">
-                                                    <div className="flex flex-col md:flex-row justify-between items-center">
-                                                        <div className="mb-4 md:mb-0">
-                                                            <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">ESKİ BELEDİYE BAŞKANLARI</h1>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                {/* Former Mayors Grid */}
+                                            {/* Content in box with shadow */}
+                                            <div className="bg-white p-6 rounded-lg shadow-lg">
                                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                                     {formerMayors.map((mayor, index) => (
                                                         <PersonCard key={index} person={mayor} />
                                                     ))}
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
