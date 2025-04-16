@@ -4,7 +4,7 @@ import { gebze } from "../_SayfaBilgileri/Sayfalar.tsx";
 import { MapPin, Phone, Mail, Info, ExternalLink } from 'lucide-react';
 
 // Atölye merkezi verileri
-const atolyeMerkezleri = [
+const bakimevi = [
     {
         id: 1,
         name: "Enderun Çocuk Atölyeleri",
@@ -46,7 +46,7 @@ const atolyeTurleri = [
 ];
 
 // Atölye Merkezi Kartı Bileşeni
-const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) => (
+const WorkshopCenterCard = ({ center }: { center: typeof bakimevi[0] }) => (
     <motion.div
         whileHover={{ scale: 1.02 }}
         className="bg-white shadow-lg rounded-2xl overflow-hidden transition-all"
@@ -102,7 +102,7 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
 );
 
 // Atölye Türü Kartı Bileşeni
-const WorkshopTypeCard = ({ workshop }: { workshop: typeof atolyeTurleri[0] }) => (
+const WorkshopTypeCard = ({ workshop }: { workshop: typeof bakimevi[0] }) => (
     <motion.div
         whileHover={{ scale: 1.05 }}
         className="bg-white shadow-md rounded-xl overflow-hidden transition-all hover:shadow-lg"
@@ -123,7 +123,7 @@ const WorkshopTypeCard = ({ workshop }: { workshop: typeof atolyeTurleri[0] }) =
     </motion.div>
 );
 
-export default function AtolyelerSayfasi() {
+export default function Bakimevi() {
     return (
         <div id="pcoded" className="pcoded">
             <br /><br /><br /><br /><br /><br />
@@ -156,7 +156,7 @@ export default function AtolyelerSayfasi() {
                                                         <span className="text-blue-700">Atölye Merkezlerimiz</span>
                                                     </h2>
                                                     <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
-                                                        {atolyeMerkezleri.map((center) => (
+                                                        {Bakimevi.map((center) => (
                                                             <WorkshopCenterCard key={center.id} center={center} />
                                                         ))}
                                                     </div>
