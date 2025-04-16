@@ -45,7 +45,7 @@ const atolyeMerkezleri = [
         image: "/images/hizmetler/atölyeler/sportif.jpg",
         mapLink: "https://www.google.com/maps/place/Cumhuriyet,+Yeni+Ba%C4%9Fdat+Cd.+No:119,+41400+Gebze%2FKocaeli/@40.808399,29.3767127,18z/data=!3m1!4b1!4m5!3m4!1s0x14cadfa98c371e2f:0x21939a9f1a7d9e94!8m2!3d40.808397!4d29.377807?shorturl=1",
         details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz.",
-        detailPage: "/hizmetler/atolyeler/sportıf"
+        detailPage: "/hizmetler/atolyeler/sportısf"
     }
 ];
 
@@ -154,10 +154,7 @@ export default function AtolyelerSayfasi() {
         <div className="flex flex-col min-h-screen">
             <div className="flex flex-1">
                 {/* Sidebar - %20 genişlikte ve sabit */}
-                <div style={{ width: '20%', minWidth: '200px' }}>
-                    <br/>
-                    <Sidebar items={gebze} title={"ATÖLYELER"} />
-                </div>
+
                 <br/>
                 {/* Ana İçerik Alanı */}
                 <div className="flex-1 p-4">
