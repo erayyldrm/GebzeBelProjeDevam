@@ -41,11 +41,6 @@ const Layout: React.FC = () => {
                             <div className="title">
                                 <h1>Müdürler</h1>
                             </div>
-                            <ul className="bread-crumb">
-                                <li>Ana Sayfa</li>
-                                <li>Kurumsal</li>
-                                <li>Müdürler</li>
-                            </ul>
                         </div>
                     </div>
                 </div>

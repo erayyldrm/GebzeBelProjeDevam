@@ -1,6 +1,4 @@
 import React from 'react';
-import Sidebar from "../SideBar/sidebar.tsx";
-import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
 
 const ManagementChart: React.FC = () => {
     return (
@@ -14,40 +12,15 @@ const ManagementChart: React.FC = () => {
                                     <div className="page-wrapper">
                                         <div className="flex flex-row gap-4">
 
-
                                             {/* Ana İçerik Alanı */}
                                             <div className="flex-1 p-4">
-                                                {/* Header */}
-                                                <div className="mb-8">
-                                                    <div className="flex flex-col md:flex-row justify-between items-center">
-                                                        <div className="mb-4 md:mb-0">
-                                                            <h1 className="text-2xl font-bold">YÖNETİM ŞEMASI</h1>
-                                                        </div>
-                                                        <div>
-                                                            <nav className="flex" aria-label="Breadcrumb">
-                                                                <ol className="inline-flex items-center space-x-1 md:space-x-3">
-                                                                    <li className="inline-flex items-center">
-                                                                        <a href="index.html" className="text-gray-700 hover:text-blue-600">
-                                                                            Ana Sayfa
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div className="flex items-center">
-                                                                            <span className="mx-2">/</span>
-                                                                            <a href="#" className="text-gray-700 hover:text-blue-600">Kurumsal</a>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li aria-current="page">
-                                                                        <div className="flex items-center">
-                                                                            <span className="mx-2">/</span>
-                                                                            <span className="text-gray-500">Yönetim Şeması</span>
-                                                                        </div>
-                                                                    </li>
-                                                                </ol>
-                                                            </nav>
-                                                        </div>
-                                                    </div>
+                                                {/* Centered Header */}
+                                                <div className="mb-8 text-center">
+                                                    <h1 className="text-3xl font-bold">YÖNETİM ŞEMASI</h1> <br/>
                                                 </div>
+
+                                                {/* Added spacing between header and content */}
+                                                <div className="my-6"></div>
 
                                                 {/* Main Content */}
                                                 <div className="card shadow-lg rounded-lg">
@@ -301,7 +274,7 @@ const ManagementChart: React.FC = () => {
 
                                                                                 <div className="space-y-2">
                                                                                     <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Makina İkmal, Bakım Ve Onarım Müdürlüğü <br />
+                                                                                        Makina İkmal, Bakım <br/> Ve Onarım Müdürlüğü <br />
                                                                                         <h5 className="text-sm">Dursun Ali Yayla</h5>
                                                                                     </button>&nbsp;<br/>
                                                                                     <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
@@ -309,7 +282,7 @@ const ManagementChart: React.FC = () => {
                                                                                         <h5 className="text-sm">İslam ÖZDAĞ</h5>
                                                                                     </button>&nbsp;&nbsp;<br/>
                                                                                     <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        İşletme Ve İştirakler Müdürlüğü<br />
+                                                                                        İşletme Ve İştirakler<br/> Müdürlüğü<br />
                                                                                         <h5 className="text-sm">Hacı KEY</h5>
                                                                                     </button><br/>
                                                                                 </div>

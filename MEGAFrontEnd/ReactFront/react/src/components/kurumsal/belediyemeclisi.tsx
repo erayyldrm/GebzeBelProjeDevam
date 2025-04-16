@@ -1,6 +1,4 @@
 import React from 'react';
-import Sidebar from "../SideBar/sidebar.tsx";
-import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
 
 interface CouncilMember {
     name: string;
@@ -54,9 +52,9 @@ const MunicipalityCouncil: React.FC = () => {
         { name: "Birol Elüstü", imageUrl: "/images/kurumsal/belediyemeclisi/birolelustu.jpg", role: "Meclis Üyesi" },
         { name: "Zeynep Aslan ÇAPÇI", imageUrl: "/images/kurumsal/belediyemeclisi/zeynepaslancapı.png", role: "Meclis Üyesi" },
         { name: "Yunus Umut AYDOĞDU", imageUrl: "/images/kurumsal/belediyemeclisi/yunusumutaydogdu.png", role: "Meclis Üyesi" },
-        { name: "Hakan KAHRAMAN", imageUrl: "/images/kurumsal/belediyemeclisi/hakankahraman.jpg", role: "Meclis Üyesi" }];
+        { name: "Hakan KAHRAMAN", imageUrl: "/images/kurumsal/belediyemeclisi/hakankahraman.jpg", role: "Meclis Üyesi" }
+    ];
 
-    // Person card component
     const PersonCard: React.FC<{ person: CouncilMember; isPresident?: boolean }> = ({ person, isPresident = false }) => {
         const cardClasses = isPresident ? "max-w-md mb-10" : "max-w-xs mb-5";
         const imgClasses = isPresident ? "h-[50px] w-[300px] object-cover" : "h-36 w-full object-cover";
@@ -86,7 +84,7 @@ const MunicipalityCouncil: React.FC = () => {
     };
 
     return (
-        <div id="pcoded" className="pcoded">
+        <div id="pcoded" className="pcoded min-h-screen bg-gray-100 shadow-2xl p-4">
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
@@ -95,53 +93,28 @@ const MunicipalityCouncil: React.FC = () => {
                                 <div className="main-body">
                                     <div className="page-wrapper">
                                         <div className="flex flex-row gap-4">
-
-
                                             {/* Ana İçerik Alanı */}
                                             <div className="flex-1 p-4">
                                                 {/* Header */}
-                                                <div className="mb-8">
-                                                    <div className="flex flex-col md:flex-row justify-between items-center">
-                                                        <div className="mb-4 md:mb-0">
-                                                            <h1 className="text-2xl font-bold">BELEDİYE MECLİSİ</h1>
-                                                        </div>
-                                                        <div>
-                                                            <nav className="flex" aria-label="Breadcrumb">
-                                                                <ol className="inline-flex items-center space-x-1 md:space-x-3">
-                                                                    <li className="inline-flex items-center">
-                                                                        <a href="index.html" className="text-gray-700 hover:text-blue-600">
-                                                                            Ana Sayfa
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div className="flex items-center">
-                                                                            <span className="mx-2">/</span>
-                                                                            <a href="#" className="text-gray-700 hover:text-blue-600">Kurumsal</a>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li aria-current="page">
-                                                                        <div className="flex items-center">
-                                                                            <span className="mx-2">/</span>
-                                                                            <span className="text-gray-500">Belediye Meclisi</span>
-                                                                        </div>
-                                                                    </li>
-                                                                </ol>
-                                                            </nav>
-                                                        </div>
+                                                <div className="mb-8 text-center">
+                                                    <h1 className="text-3xl font-bold">BELEDİYE MECLİSİ</h1> <br/>
+                                                </div>
+
+                                                {/* İçeriği kutuya al */}
+                                                <div className="bg-white rounded-xl shadow-lg p-6">
+                                                    {/* Mayor Section */}
+                                                    <div className="flex justify-center mb-8">
+                                                        <PersonCard person={mayor} isPresident={true} />
+                                                    </div>
+
+                                                    {/* Council Members Grid */}
+                                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                                                        {councilMembers.map((member, index) => (
+                                                            <PersonCard key={index} person={member} />
+                                                        ))}
                                                     </div>
                                                 </div>
 
-                                                {/* Mayor Section */}
-                                                <div className="flex justify-center mb-8">
-                                                    <PersonCard person={mayor} isPresident={true} />
-                                                </div>
-
-                                                {/* Council Members Grid */}
-                                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                                                    {councilMembers.map((member, index) => (
-                                                        <PersonCard key={index} person={member} />
-                                                    ))}
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

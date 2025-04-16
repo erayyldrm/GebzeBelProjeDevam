@@ -37,7 +37,7 @@ export const gebze: DropdownItem[] = [
         icon: <FiMap className="text-gray-800"/>,
         title: 'TARİHİ YERLER',
         description: 'Tarihi Yerler hakkında bilgi',
-        path:'/gebze/tarihiyerler'
+        path:'gebze/tarihiyerler'
     },
     {
         icon: <FiCamera className="text-gray-800"/>,
@@ -328,5 +328,68 @@ export const yayınlarımız: DropdownItem[] = [
         title: 'KÜLTÜR YAYINLARI',
         description: 'Kültürel yayınlanan belgeler ',
         path: '/yayin/kultur'
+    }
+];
+
+export const tarihiyerler: DropdownItem[] = [
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'ANİBALIN MEZARI',
+        path: '/gebze/tarihiyerler/hanibalınmezarı'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'BALLIKAYALAR',
+        path: '/gebze/tarihiyerler/ballikayalar'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'ÇOBAN MUSTAFA PAŞA KÜLLİYESİ',
+        path: '/gebze/tarihiyerler/külliyesi'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'ÇOBAN MUSTAFA PAŞA HAMAMI',
+        path: '/gebze/tarihiyerler/hamami'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'ÇOBAN MUSTAFA PAŞA ŞADIRVANI',
+        path: '/gebze/tarihiyerler/sadirvani'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'ESKİHİSAR ÇEŞMESİ',
+        path: '/gebze/tarihiyerler/cesmesi'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'ESKİHİSAR KALESİ',
+        path: '/gebze/tarihiyerler/kalesi'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'HÜNKAR ÇAYIRI',
+        path: '/gebze/tarihiyerler/hünkar'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'İBRAHİM PAŞA ÇEŞMESİ',
+        path: '/gebze/tarihiyerler/ibrahimpasacesmesi'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'İLYAS BEY CAMİİ',
+        path: '/gebze/tarihiyerler/ilyasbeycamii'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'OSMAN HAMDİ BEY YALISI',
+        path: '/gebze/tarihiyerler/osmanhamdibeyyalisi'
+    },
+    {
+        icon: <FiMap className="text-gray-800"/>,
+        title: 'SULTAN ORHAN CAMİİ',
+        path: '/gebze/tarihiyerler/sultanorhancamii'
     }
 ];

@@ -36,19 +36,44 @@ const documents = [
     {
         department: "Mali Durum ve Beklentiler Raporu",
         docs: [
-            { name: "2023 Mali Durum Ve Bekel", url: "/performans2025.pdf" },
+            { name: "2023 Maali Durum Ve Beklentiler Raporu", url: "/2023beklenti.pdf" },
+            { name: "2022 Maali Durum Ve Beklentiler Raporu", url: "/2022beklenti.pdf" },
+            { name: "2021 Maali Durum Ve Beklentiler Raporu ", url: "/2021beklenti.pdf" },
+            { name: "2020 Maali Durum Ve Beklentiler Raporu ", url: "/2020beklenti.pdf" },
         ],
     },
     {
         department: "Performans Programı",
         docs: [
-            { name: "2025-2029 Stratejik Plan", url: "/stratejik2025.pdf" },
+            { name: "2025 Maali Yılı Performans Programı ", url: "/2025performans.pdf" },
+            { name: "2024 Maali Yılı Performans Kitabı ", url: "/202performans.pdf" },
+            { name: "2023 Maali Yılı Performans Programı", url: "/2023performans.pdf" },
+            { name: "2022 Maali Yılı Performans Programı", url: "/2022performans.pdf" },
+            { name: "2021 Performams Programı", url: "/2021performans.pdf" },
+            { name: "2020 Performans Programı", url: "/2020performans.pdf" },
+            { name: "2019 Performans Programı", url: "/2019performans.pdf" },
+            { name: "2018 Performans Programı", url: "/2018performans.pdf" },
+            { name: "2017 Performans Programı", url: "/2017performans.pdf" },
+            { name: "2016 Performans Programı", url: "/2016performans.pdf" },
+            { name: "2015 Performans Programı", url: "/2015performans.pdf" },
+            { name: "2014 Performans Programı", url: "/2014performans.pdf" },
+            { name: "2013 Performans Programı", url: "/2013performans.pdf" },
+            { name: "2012 Performans Programı", url: "/2012performans.pdf" },
+            { name: "2011 Performans Programı", url: "/2011performans.pdf" },
+            { name: "2010 Performans Programı", url: "/2010performans.pdf" },
+            { name: "2009 Performans Programı", url: "/2009performans.pdf" },
         ],
     },
     {
         department: "Strateji Plan",
         docs: [
-            { name: "2024 Faaliyet Raporu", url: "/faaliyet2024.pdf" },
+            { name: "Gebze Belediyesi 2025 - 2019 Stratejik Plan", url: "/2025plan.pdf" },
+            { name: "Gebze Belediyesi 2020 Stratejik Plan", url: "/2020plan.pdf" },
+            { name: "Gebze Belediyesi 2020 - 2024 Stratejik Plan ", url: "/2024plan.pdf" },
+            { name: "Gebze Belediyesi 2015 - 2019 Stratejik Plan (revize)", url: "revizeplan/.pdf" },
+            { name: "Gebze Belediyesi 2015 - 2019 Stratejik Plan", url: "/2015plan.pdf" },
+            { name: "Gebze Belediyesi 2010 - 2014 Stratejik Plan", url: "/2010plan.pdf" },
+            { name: "Gebze Belediyesi 2006 - 2010 Stratejik Plan", url: "/2006plan.pdf" },
         ],
     },
 ];
@@ -73,8 +98,8 @@ const Kararlar = () => {
                             border-2 transition-all duration-200
                             ${
                             activeTab === category.department
-                                ? "bg-green-500 border-green-600 text-white shadow-md"
-                                : "bg-white border-gray-300 text-gray-700 hover:bg-green-100 hover:border-green-400"
+                                ? "bg-blue-500 border-blue-600 text-white shadow-md"
+                                : "bg-white border-gray-300 text-gray-700 hover:bg-orange-100 hover:border-green-400"
                         }
                         `}
                     >
@@ -93,7 +118,7 @@ const Kararlar = () => {
                                 key={i}
                                 className="bg-blue-50 p-6 rounded-lg hover:bg-blue-100 transition shadow-md flex flex-col items-center mb-6"
                             >
-                                <FileText className="text-orange-500 mb-4" size={50} />
+                                <FileText className="text-orange-500 mb-4" size={75} />
                                 <a
                                     href={doc.url}
                                     target="_blank"

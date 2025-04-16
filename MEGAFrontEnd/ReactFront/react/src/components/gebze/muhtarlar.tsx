@@ -74,6 +74,7 @@ const GebzePage: React.FC = () => {
                         <div className="pcoded-content">
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
+                                    <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">MAHALLE MUHTARLARI</h1>
                                     <div className="page-wrapper">
                                         <div className="flex flex-row gap-4">
 

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { FileText } from "lucide-react";
-import Sidebar from "../SideBar/sidebar.tsx";
-import { kurumsal } from "../_SayfaBilgileri/Sayfalar.tsx";
 
 const meclisDocuments = [
     { name: "3 Nisan 2025 Meclis Kararları", url: "/3nisan.pdf" },
@@ -10,11 +8,10 @@ const meclisDocuments = [
 ];
 
 const Kararlar = () => {
-    const [activeTab, setActiveTab] = useState("meclis"); // meclis | encumen
+    const [activeTab, setActiveTab] = useState("meclis");
 
     return (
         <div id="pcoded" className="pcoded">
-            <br /><br /><br /><br /><br /><br />
             <div className="pcoded-overlay-box"></div>
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container-left">
@@ -23,10 +20,10 @@ const Kararlar = () => {
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
                                     <div className="page-wrapper">
-                                        <div className="row">
+                                        <div className="row flex justify-center items-start mt-[-40px]">
                                             {/* Main Content */}
                                             <div className="col-lg-9 col-md-8">
-                                                <div className="card mx-auto w-100">
+                                                <div className="card w-full max-w-6xl mx-auto">
                                                     <div className="card-block p-5">
                                                         {/* Sekmeler */}
                                                         <div className="flex border-b mb-4">
