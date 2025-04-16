@@ -15,7 +15,6 @@ const documents = [
 const KurumsalDoc = () => {
     return (
         <div id="pcoded" className="pcoded">
-            <br /><br /><br /><br /><br /><br />
             <div className="pcoded-overlay-box"></div>
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
@@ -24,10 +23,10 @@ const KurumsalDoc = () => {
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
                                     <div className="page-wrapper">
-                                        <div className="row">
+                                        <div className="row justify-center">
                                             {/* Main container */}
-                                            <div className="container-fluid px-0">
-                                                <div className="row gx-lg-4">
+                                            <div className="container-fluid px-0 flex justify-center items-start min-h-screen">
+                                                <div className="row gx-lg-4 w-full justify-center">
 
                                                     {/* Main Content */}
                                                     <div className="col-lg-9 col-md-8">
