@@ -17,24 +17,6 @@ const VisionPage: React.FC = () => {
                 <div className="mobile-menu">
                     <div className="menu-backdrop"></div>
                     <div className="close-btn"><span className="icon far fa-times-circle"></span></div>
-
-                    <nav className="menu-box">
-                        <div className="nav-logo">
-                            <a href="index.html">
-                                <img src="assets/images/logo.png" alt="" title="" />
-                            </a>
-                        </div>
-                        <div className="menu-outer">{/* Menu will come automatically via Javascript */}</div>
-                        <div className="social-links">
-                            <ul className="clearfix">
-                                <li><a href="#"><span className="fab fa-twitter"></span></a></li>
-                                <li><a href="#"><span className="fab fa-facebook-square"></span></a></li>
-                                <li><a href="#"><span className="fab fa-pinterest-p"></span></a></li>
-                                <li><a href="#"><span className="fab fa-instagram"></span></a></li>
-                                <li><a href="#"><span className="fab fa-youtube"></span></a></li>
-                            </ul>
-                        </div>
-                    </nav>
                 </div>
                 {/* End Mobile Menu */}
 
@@ -69,7 +51,17 @@ const VisionPage: React.FC = () => {
                     <div className="content-box">
                         <div className="content-wrapper">
                             <div className="title">
-                                <h1 style={{ color: "white", fontSize: "120px", fontFamily: "Poppins" }}>Vizyonumuz</h1>
+                                <h1 style={{
+                                    color: "#fff",
+                                    fontSize: "72px",
+                                    fontFamily: "Poppins, sans-serif",
+                                    fontWeight: 600,
+                                    letterSpacing: "1px",
+                                    textShadow: "2px 2px 8px rgba(0,0,0,0.5)",
+                                    marginBottom: "20px"
+                                }}>
+                                    Vizyonumuz
+                                </h1>
                             </div>
                         </div>
                     </div>

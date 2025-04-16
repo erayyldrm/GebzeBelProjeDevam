@@ -2,35 +2,34 @@ import React from 'react';
 
 const BaskanDanismanlari: React.FC = () => {
     return (
-        <div id="pcoded" className="pcoded">
+        <div id="pcoded" className="pcoded bg-gray-100 shadow-inner min-h-screen">
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
                         <div className="pcoded-content">
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
-                                    <div className="page-wrapper">
+                                    <div className="page-wrapper pt-0 mt-[-10px]"> {/* Sayfayı yukarı çektik */}
                                         <div className="flex flex-row gap-4">
 
                                             {/* Ana İçerik Alanı */}
-                                            <div className="flex-1 p-4">
+                                            <div className="flex-1 p-4 pt-0 mt-[-10px]"> {/* İçeriği de yukarı aldık */}
                                                 {/* Header */}
-                                                <div className="mb-8">
-                                                    <div className="flex flex-col md:flex-row justify-center items-center">
-                                                        <div className="mb-4 md:mb-0">
-                                                            <h1 className="text-2xl font-bold text-center">BAŞKAN DANIŞMANLARI</h1>
-                                                        </div>
+                                                <div className="mb-6">
+                                                    <div className="flex justify-center">
+                                                        <h1 className="text-2xl font-bold text-center">BAŞKAN DANIŞMANLARI</h1>
                                                     </div>
                                                 </div>
+
                                                 {/* Main Content */}
-                                                <div className="card shadow-lg rounded-lg">
+                                                <div className="card shadow-lg rounded-lg mt-2">
                                                     <div className="card-header bg-blue-900 p-4">
-                                                        <h4 className="text-2xl font-bold text-white text-center ">BAŞKAN DANIŞMANLARI</h4>
+                                                        <h4 className="text-2xl font-bold text-white text-center">BAŞKAN DANIŞMANLARI</h4>
                                                     </div>
                                                     <div className="card-block p-4">
                                                         <div className="col-md-12">
                                                             <ul className="space-y-4">
-                                                                {/* Başkan */}
+                                                                {/* Danışman 1 */}
                                                                 <li>
                                                                     <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
                                                                         <div className="media flex items-start">
@@ -55,6 +54,8 @@ const BaskanDanismanlari: React.FC = () => {
                                                                         </div>
                                                                     </div>
                                                                 </li>
+
+                                                                {/* Danışman 2 */}
                                                                 <li>
                                                                     <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
                                                                         <div className="media flex items-start">
@@ -83,7 +84,8 @@ const BaskanDanismanlari: React.FC = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+
+                                            </div> {/* İçerik sonu */}
                                         </div>
                                     </div>
                                 </div>

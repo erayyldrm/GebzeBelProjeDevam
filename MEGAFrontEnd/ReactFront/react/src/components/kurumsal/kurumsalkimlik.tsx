@@ -9,7 +9,6 @@ const documents = [
     { name: "Başkan Logo", url: "docs/naskanlogo.pdf" },
 ];
 
-
 const Kimlik = () => {
     return (
         <div id="pcoded" className="pcoded">
@@ -21,13 +20,10 @@ const Kimlik = () => {
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
                                     <div className="page-wrapper">
-                                        <div className="row">
-                                            {/* Sidebar */}
-
-
+                                        <div className="row flex justify-center items-start mt-[-40px]">
                                             {/* Main Content */}
                                             <div className="col-lg-9 col-md-8">
-                                                <div className="card mx-auto w-100">
+                                                <div className="card mx-auto w-full max-w-6xl">
                                                     <div className="card-block p-5">
                                                         <h1 className="text-left text-2xl font-bold text-gray-800 mb-4">
                                                             Kurumsal Kimlik
@@ -44,7 +40,7 @@ const Kimlik = () => {
                                                                         href={doc.url}
                                                                         target="_blank"
                                                                         rel="noopener noreferrer"
-                                                                        className="text-blue-700 font-semibold text-left"
+                                                                        className="text-blue-700 font-semibold text-center"
                                                                     >
                                                                         {doc.name}
                                                                     </a>
