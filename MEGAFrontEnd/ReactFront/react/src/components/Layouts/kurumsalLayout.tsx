@@ -4,7 +4,7 @@ import { skurumsal } from '../_SayfaBilgileri/Sayfalar.tsx';
 
 const KurumsalLayout = () => {
     const location = useLocation();
-    const pagesWithoutSidebar = ['/login', '/signup','/kurumsal/eskibaskanlar']; // Sidebar istemediğiniz sayfaların path'lerini ekleyin.
+    const pagesWithoutSidebar = ['/login', '/signup','/kurumsal/eskibaskanlar', '/kurumsal/belediyemeclisi']; // Sidebar istemediğiniz sayfaların path'lerini ekleyin.
 
     const shouldDisplaySidebar = !pagesWithoutSidebar.includes(location.pathname);
 
