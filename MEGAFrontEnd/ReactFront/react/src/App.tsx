@@ -17,7 +17,7 @@ import KurumsalLayout from './components/Layouts/kurumsalLayout.tsx';
 import GebzeLayout from './components/Layouts/gebzeLayout.tsx';
 import Yayin from "./YayinApp.tsx";
 import Yayinpdf from "./components/Yayin/yayinpdf.tsx";
-
+import AdminPanel from "./components/AdminPanelTest/testPanel.tsx";
 
 
 
@@ -98,6 +98,7 @@ const App: React.FC = () => {
                 {/* Routes WITHOUT navbar and footer */}
                 <Route path="/login" element={<LoginForm/>}/>
                 <Route path="/signup" element={<SignUp/>}/>
+                <Route path="/admin" element={<AdminPanel/>}/>
             </Routes>
         </QueryClientProvider>
     );
