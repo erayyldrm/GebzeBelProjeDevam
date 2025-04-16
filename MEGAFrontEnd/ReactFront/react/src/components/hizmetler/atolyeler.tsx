@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import Sidebar from "../SideBar/sidebar.tsx";
-import { gebze } from "../_SayfaBilgileri/Sayfalar.tsx";
 import { MapPin, Phone, Info, X } from 'lucide-react';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -24,8 +22,7 @@ const atolyeMerkezleri = [
         address: "Mustafapaşa Mah. 712/2 Sok. No:2 Gebze / Kocaeli",
         image: "/images/hizmetler/atölyeler/enderun.webp",
         mapLink: "https://www.google.com/maps/place/Mustafapa%C5%9Fa,+712%2F2.+Sk.+No:2,+41400+Gebze%2FKocaeli/@40.802388,29.427409,18z/data=!4m6!3m5!1s0x14cb2085a55b34a1:0xfb2fb8bc3b387035!8m2!3d40.802388!4d29.427409!16s%2Fg%2F11c2927bq_?hl=tr&entry=tts&g_ep=EgoyMDI0MDYyNi4wKgBIAVAD",
-        details: "Çocukların yaratıcı ve eğitsel gelişimini destekleyen çeşitli aktiviteler sunuyoruz.",
-        detailPage: "/hizmetler/atolyeler/enderun"
+        details: "Çocukların yaratıcı ve eğitsel gelişimini destekleyen çeşitli aktiviteler sunuyoruz."
     },
     {
         id: 2,
@@ -34,8 +31,7 @@ const atolyeMerkezleri = [
         address: "Hacı Halil Mah. Zübeyde Hanım Cad. Eyüp Güvenç İş Merkezi Gebze",
         image: "/images/hizmetler/atölyeler/gençlik.jpg",
         mapLink: "https://www.google.com/maps/place/GESMEK+-+Gebze+Belediyesi+G%C3%BCzel+Sanatlar+ve+Meslek+E%C4%9Fitimi+Kurslar%C4%B1/@40.799833,29.433036,15z/data=!4m6!3m5!1s0x14cb208ec548401f:0x51d3b10ec2b5859a!8m2!3d40.799833!4d29.433036!16s%2Fg%2F11g6xrd_n2?entry=ttu&g_ep=EgoyMDI1MDQwOS4wIKXMDSoASAFQAw%3D%3D",
-        details: "Gençlerin yetenek ve becerilerini geliştirmek için özel programlar ve etkinlikler düzenliyoruz.",
-        detailPage: "/hizmetler/atolyeler/genclik"
+        details: "Gençlerin yetenek ve becerilerini geliştirmek için özel programlar ve etkinlikler düzenliyoruz."
     },
     {
         id: 4,
@@ -44,8 +40,7 @@ const atolyeMerkezleri = [
         address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze Kocaeli",
         image: "/images/hizmetler/atölyeler/sportif.jpg",
         mapLink: "https://www.google.com/maps/place/Cumhuriyet,+Yeni+Ba%C4%9Fdat+Cd.+No:119,+41400+Gebze%2FKocaeli/@40.808399,29.3767127,18z/data=!3m1!4b1!4m5!3m4!1s0x14cadfa98c371e2f:0x21939a9f1a7d9e94!8m2!3d40.808397!4d29.377807?shorturl=1",
-        details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz.",
-        detailPage: "/hizmetler/atolyeler/sportıf"
+        details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz."
     }
 ];
 
@@ -71,7 +66,7 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
             className="  w-[288px] h-[250px]  bg-white border border-orange-200 shadow-xl rounded-xl overflow-hidden transition-all relative flex flex-col items-center justify-center h-auto hover:shadow-xl text-center"
         >
 
-        {/* Resim */}
+            {/* Resim */}
 
 
             <div className="  flex items-center justify-center  w-[300px] h-[185px] ">
@@ -87,7 +82,7 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
             {/* İçerik */}
             <div className="p-6 flex flex-col flex-1">
 
-                <p  style={{ fontSize: "14px", fontWeight: "bold", textAlign: "center" , color:"dodgerblue" }} >{center.name}</p>
+                <p  style={{ fontSize: "14 px", fontWeight: "bold", textAlign: "center" , color:"dodgerblue" }} >{center.name}</p>
                 <hr className="my-2 border-t border-gray-300" />
                 <div className="space-y-3 mb-4 text-sm">
                     <div className="flex items-start">
@@ -154,10 +149,6 @@ export default function AtolyelerSayfasi() {
         <div className="flex flex-col min-h-screen">
             <div className="flex flex-1">
                 {/* Sidebar - %20 genişlikte ve sabit */}
-                <div style={{ width: '20%', minWidth: '200px' }}>
-                    <br/>
-                    <Sidebar items={gebze} title={"ATÖLYELER"} />
-                </div>
                 <br/>
                 {/* Ana İçerik Alanı */}
                 <div className="flex-1 p-4">
@@ -171,7 +162,7 @@ export default function AtolyelerSayfasi() {
                             className="bg-gradient-to-r from-blue-500 to-teal-500 p-6 rounded-xl shadow-xl mb-10"
                         >
 
-                            <h2 className="text-3xl font-semibold text-orange-400 mb-4 flex items-center justify-center">
+                            <h2 className="text-3xl font-bold text-orange-400 mb-4 flex items-center justify-between">
         <span className="text-orange-400
         ">
             Atölye Merkezleri
@@ -180,7 +171,7 @@ export default function AtolyelerSayfasi() {
                         </motion.div>
 
                         <div className="grid grid-cols-4 sm:grid-cols-4 gap-6 justify-center">
-                        {atolyeMerkezleri.map((center) => (
+                            {atolyeMerkezleri.map((center) => (
                                 <WorkshopCenterCard key={center.id} center={center} />
                             ))}
                         </div>

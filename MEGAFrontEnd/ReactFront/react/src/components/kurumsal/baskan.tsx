@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const BaskanPage: React.FC = () => {
     return (
         <div id="pcoded" className="pcoded">
@@ -12,20 +11,20 @@ const BaskanPage: React.FC = () => {
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
                                     <div className="page-wrapper">
-                                        <div className="row">
+                                        <div className="row justify-content-center align-items-center" style={{ minHeight: '70vh' }}>
                                             {/* Main container */}
                                             <div className="container-fluid px-0">
-                                                <div className="row gx-lg-4">
+                                                <div className="row gx-lg-4 justify-content-center">
                                                     {/* Main Content */}
                                                     <div className="col-lg-9 col-md-8">
-                                                        <div className="card">
+                                                        <div className="card" style={{ marginTop: '-50px' }}>
                                                             <div className="card-block p-3 p-md-4">
                                                                 <img
                                                                     src="/images/kurumsal/baskansayfasi.jpg"
                                                                     alt="Zinnur Büyükgöz"
                                                                     className="img-fluid rounded"
                                                                 />
-                                                                <h3 className="mt-4 mb-3"><b>Zinnur BÜYÜKGÖZ</b></h3>
+                                                                <h3 className="mt-4 mb-3 text-center"><b>Zinnur BÜYÜKGÖZ</b></h3>
                                                                 <div className="text-justify">
                                                                     <p>
                                                                         1964 yılında Erzurum'da doğdu. İlköğretim tahsilini 1975'te Bakırköy Koca Sinan İlkokulu'nda ve 1978'de Kadıköy İmam Hatip Ortaokulu'nda tamamladı. 1983'te ise Gebze İmam Hatip Lisesi'nden mezun oldu.

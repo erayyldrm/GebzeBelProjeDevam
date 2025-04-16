@@ -2,9 +2,9 @@ import {Route, Routes} from "react-router-dom";
 import React from "react";
 import Eskibaskanlar from "./components/kurumsal/eskibaskanlar.tsx";
 import ManagementChart from "./components/kurumsal/yonetimsemasi.tsx";
-import BaskanPage from "./components/kurumsal/vizyon_2.tsx";
-import Misyon from "./components/kurumsal/misyon_2.tsx";
-import İlkelerimiz from "./components/kurumsal/ilkelerimiz_2.tsx";
+import VisionPage from "./components/kurumsal/vizyon.tsx";
+import Misyon from "./components/kurumsal/misyon.tsx";
+import İlkelerimiz from "./components/kurumsal/ilkelerimiz.tsx";
 import MudurTest from "./components/kurumsal/mudurlukler/_Mudurler.tsx";
 import Arabuluculuk from "./components/kurumsal/arabuluculuk.tsx";
 import EtikKomisyonu from './components/kurumsal/etikkomisyonu.tsx';
@@ -32,9 +32,9 @@ const Kurumsal: React.FC = () => {
             <Route path="eskibaskanlar" element={<Eskibaskanlar/>}></Route>
             <Route path="baskan" element={<Baskan/>}/>
             <Route path="belediyemeclisi" element={<BelediyeMeclisi/>}/>
-            <Route path="vizyon_2" element={<BaskanPage/>}/>
-            <Route path="misyon_2" element={<Misyon/>}/>
-            <Route path="ilkelerimiz_2" element={<İlkelerimiz/>}/>
+            <Route path="vizyon" element={<VisionPage/>}/>
+            <Route path="misyon" element={<Misyon/>}/>
+            <Route path="ilkelerimiz" element={<İlkelerimiz/>}/>
             <Route path="arabuluculuk" element={<Arabuluculuk/>}/>
             <Route path="baskanyardimcilari" element={<Baskanyardimcilari/>}/>
             <Route path="baskandanismanlari" element={<Baskandanismanlari/>}/>
@@ -49,10 +49,6 @@ const Kurumsal: React.FC = () => {
             <Route path="kurumsalkimlik/" element={<Kimlik/>}/>
             <Route path="raporlar/" element={<Kraporlar/>}/>
             <Route path="mecliskararlari/" element={<Kararlar/>}/>
-
-
-
-
         </Routes>
     )
 
