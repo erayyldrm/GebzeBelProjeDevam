@@ -12,12 +12,12 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
 
 
     return (
-        <div className="hidden md:block w-64 bg-[#ffffff] shadow-md rounded-2xl sticky top-0 h-screen left-13 z-10">
+        <div className="hidden md:block w-64 bg-[#ffffff] shadow-md rounded-2xl relative top-0 h-75 left-13 z-10">
 
 
 
         {/* Sidebar Title */}
-            <div className="p-3 border-b border-black bg-[#f7a600] rounded-t-2xl h-32 flex items-center justify-center">
+            <div className="p-3 bg-[#f7a600] rounded-t-2xl h-32 flex items-center justify-center">
                 <h2 className="text-xl font-bold text-white text-center">{title}</h2>
             </div>
 
@@ -31,8 +31,8 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
                             <li key={index}>
                                 <Link
                                     to={item.path || "#"}
-                                    className={`flex items-center gap-5 p-3 transition-colors border-b border-gray-200 
-                                    ${isActive ? "bg-[#0794b5] text-blue-600 font-semibold" : "text-black hover:bg-[gray-200]"} 
+                                    className={`flex items-center gap-5 p-3 transition-colors 
+                                    ${isActive ? "text-blue-600 font-semibold" : "text-black hover:bg-[gray-200]"} 
                                     ${index === items.length - 1 ? 'border-b-0' : ''}`}
                                 >
                                     <span className={`text-xl ${isActive ? 'text-blue-600' : 'text-gray-500'}`}>
