@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Users, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
+import { MapPin, Phone, Clock,  ChevronDown, ChevronUp } from 'lucide-react';
 
 interface ServiceDetailProps {
     title: string;
@@ -13,144 +13,7 @@ interface ServiceDetailProps {
 }
 
 const workshopData = [
-    {
-        title: "📘 Akademik Atölyeler",
-        sub: [
-            "Güzide Yarıyıl Kampı",
-            "Güzide Yaz Okulu",
-            "Fizik Dersleri",
-            "Arapça Dersleri",
-            "Osmanlıca Dersleri",
-            "Kur’an-ı Kerim Dersleri",
-            "Tarih Seminerleri",
-            "Sosyoloji Okumaları",
-            "Din Kültürü ve Ahlak Bilgisi Dersleri",
-            "Felsefe Okumaları",
-            "Psikoloji Okumaları",
-            "Güzide Edebiyat Kartları (GEK)",
-            "Klasik Şiir Atölyesi"
-        ]
-    },
-    {
-        title: "🧠 Tekno-Akademik Atölyeler",
-        sub: [
-            "XR Tanıtım Atölyesi",
-            "XR Fizik",
-            "XR Kimya",
-            "XR Biyoloji",
-            "XR Matematik",
-            "XR Geometri"
-        ]
-    },
-    {
-        title: "📚 Sınav Atölyeleri",
-        sub: [
-            "YKS (TYT-AYT) Denemeleri",
-            "Soru Çözüm Kampları",
-            "Konu Tekrar Kampları",
-            "Sınav Analizleri"
-        ]
-    },
-    {
-        title: "🌍 Genel Kültür Atölyeleri",
-        sub: [
-            "Güzide Doğa Okulu (Güz, Kış ve Yaz Doğa Kampları, Geziler, İstikamet Programları)",
-            "Yazarlık Okulu",
-            "Kitap Tahlilleri",
-            "Sesli Kitap Atölyesi",
-            "Etimoloji Atölyesi",
-            "Bilgi Yarışmaları",
-            "Diksiyon ve Hitabet Dersleri",
-            "Edebiyat Söyleşileri",
-            "Dergicilik Okulu",
-            "Film Okumaları",
-            "Münazara"
-        ]
-    },
-    {
-        title: "🎨 Sanat Atölyeleri",
-        sub: [
-            "Geleneksel Sanat Atölyeleri (Hat, Tezhip, Kaligrafi, Ebru, Minyatür, Kat’ı)",
-            "Modern Sanat Atölyeleri (Resim / Kara Kalem, Yağlı Boya, Kuru Boya, Toz Pastel, Akrilik)",
-            "Tiyatro",
-            "Drama",
-            "El Sanatları Atölyesi (Kanaviçe, Örgü, Biçki, Dikiş)",
-            "Savunma Sanatı (Kick-Box)",
-            "Mutfak Sanatları Atölyesi",
-            "Ahşap",
-            "Cam Takı",
-            "Mimarlık Atölyesi",
-            "Müzik Atölyesi (Bendir, Kalimba)",
-            "Sergiler"
-        ]
-    },
-    {
-        title: "💻 Tekno-Eğitim Atölyeleri",
-        sub: [
-            "Yazılım Atölyeleri (C#, Java, Python, Web [HTML-CSS], Web Tasarım, GeoGebra)",
-            "Robotik Atölyeleri (Arduino, Esp 32, Rex, Mblock 5, Pinoo)",
-            "Güzide Garaj",
-            "Dijital Eğitim Sınıfları",
-            "3D Yazıcı Atölyesi",
-            "Greenbox Stüdyosu",
-            "Podcast Stüdyosu"
-        ]
-    },
-    {
-        title: "🎮 Tekno-Eğlence Atölyeleri",
-        sub: [
-            "Laser-Tag",
-            "VR (Sanal Gerçeklik Gözlüğü)",
-            "Uçuş Simülatörü",
-            "Araç Simülatörü",
-            "PS 5",
-            "Klasik Atari"
-        ]
-    },
-    {
-        title: "🏃 Spor Atölyeleri",
-        sub: [
-            "Fitness",
-            "Pilates",
-            "Masa Tenisi",
-            "Bilardo",
-            "Langırt",
-            "Shuffleboard",
-            "Satranç",
-            "Okçuluk",
-            "Voleybol",
-            "Futsal",
-            "Cornhole"
-        ]
-    },
-    {
-        title: "🧭 Rehberlik-Psikolojik Danışmanlık Atölyeleri",
-        sub: [
-            "Manevi Danışmanlık (Değerler Eğitimi)",
-            "Psikolog (Psikoloji Kulübü, Grup Etkinlikleri)",
-            "Psikolojik Danışman (Kariyer Okulu, Sınav Kaygısı, Sınav Stratejileri Seminerleri)",
-            "Aile Danışmanı (Ebeveyn Psikoloji Atölyeleri, Ergenlik, Akademik Başarı Seminerleri)",
-            "Eğitim Danışmanı (Tercih Danışmanlığı, Sınav Bilgilendirme Seminerleri)",
-            "Sağlık Danışmanlığı (Beslenme ve Diyetetik, Geleneksel Tıp, Kadın Sağlığı, Spor ve Sağlık Seminerleri)",
-            "Öğrenci Seminerleri",
-            "Veli Seminerleri",
-            "Zarafet Atölyesi"
-        ]
-    },
-    {
-        title: "✨ Diğer Atölyeler",
-        sub: [
-            "Mangala",
-            "Lego",
-            "Resfebe",
-            "Zekâ Oyunları",
-            "Materyal Tasarım",
-            "Kriptoloji",
-            "Tabu",
-            "MaTabu",
-            "Mukabele"
-        ]
-    }
+
 ];
 
 
@@ -158,7 +21,7 @@ const workshopData = [
 const GuzideGenclikMerkezi: React.FC<ServiceDetailProps> = ({
                                                                 title = "Güzide Gençlik Merkezi",
                                                                 description = "",
-                                                                imageUrl = "/images/hizmetler/atölyeler/güzide.jpg",
+                                                                imageUrl = "/images/hizmetler/atölyeler/guzide.jpg",
                                                                 address = "Hacıhalil Mah. Adliye Cad. No: 38 41400 Gebze / KOCAELİ",
                                                                 phone = "(0262) 646 95 86",
                                                                 workingHours = "Pazartesi-Cuma: 08:30-17:30",
@@ -188,11 +51,11 @@ const GuzideGenclikMerkezi: React.FC<ServiceDetailProps> = ({
 
                 <div className="relative h-[600px] rounded-lg overflow-hidden shadow-lg">
                     <img
-                        src={imageUrl}
+                        src="/images/hizmetler/atölyeler/güzide.jpg"
                         alt={title}
                         className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-t  flex items-center justify-center">
                         <div className="text-white text-center px-4 max-w-2xl">
                             <p className="text-lg md:text-xl font-medium">{description}</p>
                         </div>
@@ -208,7 +71,7 @@ const GuzideGenclikMerkezi: React.FC<ServiceDetailProps> = ({
                 <div className="lg:col-span-2">
                     {/* Hakkında Bölümü */}
                     <section className="mb-8">
-                        <h2 className="text-2xl font-semibold text-blue-700 mb-4 border-b pb-2">Hakkında</h2>
+                        <h2 className="text-2xl font-semibold text-blue-700 mb-4 border-b pb-2">Verilen Hizmetler</h2>
                         <p className="text-gray-700 mb-4">
                             Güzide Gençlik Merkezinde atölye faaliyetleri lise öğrencilerini hem akademiye hem de hayata hazırlayacak şekilde organize edilmektedir.
                             <br /><br />
@@ -222,6 +85,247 @@ const GuzideGenclikMerkezi: React.FC<ServiceDetailProps> = ({
                     <section className="mb-16">
                         <h2 className="text-2xl font-semibold text-blue-700 mb-4 border-b pb-2">Atölyelerimiz</h2>
                         <div className="space-y-4">
+                            <p>Akademik Atölyeler
+                                <br/>
+                                Güzide Yarıyıl Kampı
+                                <br/>
+                                Güzide Yaz Okulu
+                                <br/>
+                                Fizik Dersleri
+                                <br/>
+                                Arapça Dersleri
+                                <br/>
+                                Osmanlıca Dersleri
+                                <br/>
+                                Kur’an-ı Kerim Dersleri
+                                <br/>
+                                Tarih Seminerleri
+                                <br/>
+                                Sosyoloji Okumaları
+                                <br/>
+                                Din Kültürü ve Ahlak Bilgisi Dersleri
+                                <br/>
+                                Felsefe Okumaları
+                                <br/>
+                                Psikoloji Okumaları
+                                <br/>
+                                Güzide Edebiyat Kartları (GEK)
+                                <br/>
+                                Klasik Şiir Atölyesi
+                                <br/>
+                                <br/>
+                                Tekno-Akademik Atölyeler
+                                <br/>
+                                XR Tanıtım Atölyesi
+                                <br/>
+                                XR Fizik
+                                <br/>
+                                XR Kimya
+                                <br/>
+                                XR Biyoloji
+                                <br/>
+                                XR Matematik
+                                <br/>
+                                XR Geometri
+                                <br/>
+                                <br/>
+
+                                Sınav Atölyeleri
+                                <br/>
+                                YKS (TYT-AYT) Denemeleri
+                                <br/>
+                                Soru Çözüm Kampları
+                                <br/>
+                                Konu Tekrar Kampları
+                                <br/>
+                                Sınav Analizleri
+                                <br/>
+                                <br/>
+
+                                Genel Kültür Atölyeleri
+                                <br/>
+                                Güzide Doğa Okulu
+                                <br/>
+                                (Güz, Kış ve Yaz Doğa Kampları, Geziler, İstikamet Programları)
+                                <br/>
+                                Yazarlık Okulu
+                                <br/>
+                                Kitap Tahlilleri
+                                <br/>
+                                Sesli Kitap Atölyesi
+                                <br/>
+                                Etimoloji Atölyesi
+                                <br/>
+                                Bilgi Yarışmaları
+                                <br/>
+                                Diksiyon ve Hitabet Dersleri
+                                <br/>
+                                Edebiyat Söyleşileri
+                                <br/>
+                                Dergicilik Okulu
+                                <br/>
+                                Film Okumaları
+                                <br/>
+                                Münazara
+
+                                <br/>
+                                <br/>
+                                Sanat Atölyeleri
+                                <br/>
+                                Geleneksel Sanat Atölyeleri
+                                <br/>
+                                ( Hat, Tezhip, Kaligrafi, Ebru, Minyatür, Kat’ı )
+                                <br/>
+                                Modern Sanat Atölyeleri
+                                <br/>
+                                ( Resim / Kara Kalem, Yağlı Boya, Kuru Boya, Toz Pastel, Akrilik )
+                                <br/>
+                                Tiyatro
+                                <br/>
+                                Drama
+                                <br/>
+                                El Sanatları Atölyesi
+                                <br/>
+                                ( Kanaviçe, Örgü, Biçki, Dikiş)
+                                <br/>
+                                Savunma Sanatı
+                                <br/>
+                                ( Kick-Box )
+                                <br/>
+                                Mutfak Sanatları Atölyesi
+                                <br/>
+                                Ahşap
+                                <br/>
+                                Cam Takı
+                                <br/>
+                                Mimarlık Atölyesi
+                                <br/>
+                                Müzik Atölyesi
+                                <br/>
+                                (Bendir, Kalimba)
+                                <br/>
+                                Sergiler
+
+                                <br/>
+                                <br/>
+                                Tekno-Eğitim Atölyeleri
+                                <br/>
+                                Yazılım Atölyeleri
+                                <br/>
+                                (C#, Java, Python, Web [HTML-CSS], Web Tasarım, GeoGebra)
+                                <br/>
+                                Robotik Atölyeleri
+                                <br/>
+                                (Arduino, Esp 32, Rex, Mblock 5, Pinoo)
+                                <br/>
+                                Güzide Garaj
+                                <br/>
+                                Dijital Eğitim Sınıfları
+                                <br/>
+                                3 D Yazıcı Atölyesi
+                                <br/>
+                                Greenbox Stüdyosu
+                                <br/>
+                                Podcast Stüdyosu
+
+                                <br/>
+                                <br/>
+                                Tekno-Eğlence Atölyeleri
+                                <br/>
+                                Laser-Tag
+                                <br/>
+                                VR ( Sanal Gerçeklik Gözlüğü )
+                                <br/>
+                                Uçuş Simülatörü
+                                <br/>
+                                Araç Simülatörü
+                                <br/>
+                                PS 5
+                                <br/>
+                                Klasik Atari
+                                <br/>
+                                <br/>
+
+                                Spor Atölyeleri
+                                <br/>
+                                Fitness
+                                <br/>
+                                Pilates
+                                <br/>
+                                Masa Tenisi
+                                <br/>
+                                Bilardo
+                                <br/>
+                                Langırt
+                                <br/>
+                                Shuffleboard
+                                <br/>
+                                Satranç
+                                <br/>
+                                Okçuluk
+                                <br/>
+                                Voleybol
+                                <br/>
+                                Futsal
+                                <br/>
+                                Cornhole
+
+                                <br/>
+                                <br/>
+                                Rehberlik-Psikolojik Danışmanlık Atölyeleri
+                                <br/>
+                                Manevi Danışmanlık
+                                <br/>
+                                (Değerler Eğitimi)
+                                <br/>
+                                Psikolog
+                                <br/>
+                                (Psikoloji Kulübü, Grup Etkinlikleri)
+                                <br/>
+                                Psikolojik Danışman
+                                <br/>
+                                (Kariyer Okulu, Sınav Kaygısı, Sınav Stratejileri Seminerleri)
+                                <br/>
+                                Aile Danışmanı
+                                <br/>
+                                (Ebeveyn Psikoloji Atölyeleri, Ergenlik, Akademik Başarı Seminerleri)
+                                <br/>
+                                Eğitim Danışmanı
+                                <br/>
+                                (Tercih Danışmanlığı, Sınav Bilgilendirme Seminerleri)
+                                <br/>
+                                Sağlık Danışmanlığı (Hemşire)
+                                <br/>
+                                (Beslenme ve Diyetetik, Geleneksel Tıp, Kadın Sağlığı, Spor ve Sağlık Seminerleri)
+                                <br/>
+                                Öğrenci Seminerleri
+                                <br/>
+                                Veli Seminerleri
+                                <br/>
+                                Zarafet Atölyesi
+
+                                <br/>
+                                <br/>
+                                Diğer Atölyeler
+                                <br/>
+                                Mangala
+                                <br/>
+                                Lego
+                                <br/>
+                                Resfebe
+                                <br/>
+                                Zekâ Oyunları
+                                <br/>
+                                Materyal Tasarım
+                                <br/>
+                                Kriptoloji
+                                <br/>
+                                Tabu
+                                <br/>
+                                MaTabu
+
+<br/>
+                                Mukabele</p>
                             {workshopData.map((item, index) => (
                                 <div key={index} className="bg-blue-50 rounded-lg p-4 shadow-sm">
                                     <button
@@ -255,52 +359,27 @@ const GuzideGenclikMerkezi: React.FC<ServiceDetailProps> = ({
                         <div className="space-y-4">
                             <div className="flex items-start">
                                 <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                                <p className="text-gray-700">{address}</p>
+                                <p className="text-gray-700">Hacıhalil Mah. Adliye Cad. No: 38 41400 Gebze / KOCAELİ {address}</p>
+
                             </div>
+                            <br/>
                             <div className="flex items-center">
                                 <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                <p className="text-gray-700">{phone}</p>
+                                <p className="text-gray-700">0262 646 95 86 {phone}</p>
                             </div>
+                            <br/>
                             <div className="flex items-center">
                                 <Clock className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                <p className="text-gray-700">{workingHours}</p>
+                                <p className="text-gray-700"> 08:00 - 16:00{workingHours}</p>
                             </div>
                         </div>
                     </div>
 
                     {/* Hızlı Erişim */}
-                    <div className="bg-gray-50 rounded-lg p-6 shadow-sm">
-                        <h3 className="text-xl font-semibold text-blue-800 mb-4">Hızlı Erişim</h3>
-                        <ul className="space-y-3">
-                            <li>
-                                <a href="#" className="text-blue-600 hover:underline flex items-center">
-                                    <Calendar className="w-4 h-4 mr-2" />
-                                    Atölye Takvimi
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://sende.gebze.bel.tr/egitimler?locations[0]=9" className="text-blue-600 hover:underline flex items-center">
-                                    <Users className="w-4 h-4 mr-2" />
-                                    Kayıt Formu
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+
 
                     {/* Harita */}
-                    <div className="bg-gray-50 rounded-lg p-6 shadow-sm">
-                        <h3 className="text-xl font-semibold text-blue-800 mb-4">Harita</h3>
-                        <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
-                            <iframe
-                                src="https://yandex.com.tr/harita/11508/istanbul/?ll=29.436794%2C40.796756&mode=search&sll=29.436722%2C40.796806&text=40.796806%2C29.436722&z=16.59"
-                                width="100%"
-                                height="200"
-                                style={{ border: 0 }}
-                                allowFullScreen
-                                loading="lazy"
-                            ></iframe>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </motion.div>

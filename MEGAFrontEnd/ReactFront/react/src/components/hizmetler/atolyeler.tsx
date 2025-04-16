@@ -24,7 +24,8 @@ const atolyeMerkezleri = [
         address: "Mustafapaşa Mah. 712/2 Sok. No:2 Gebze / Kocaeli",
         image: "/images/hizmetler/atölyeler/enderun.webp",
         mapLink: "https://www.google.com/maps/place/Mustafapa%C5%9Fa,+712%2F2.+Sk.+No:2,+41400+Gebze%2FKocaeli/@40.802388,29.427409,18z/data=!4m6!3m5!1s0x14cb2085a55b34a1:0xfb2fb8bc3b387035!8m2!3d40.802388!4d29.427409!16s%2Fg%2F11c2927bq_?hl=tr&entry=tts&g_ep=EgoyMDI0MDYyNi4wKgBIAVAD",
-        details: "Çocukların yaratıcı ve eğitsel gelişimini destekleyen çeşitli aktiviteler sunuyoruz."
+        details: "Çocukların yaratıcı ve eğitsel gelişimini destekleyen çeşitli aktiviteler sunuyoruz.",
+        detailPage: "/hizmetler/atolyeler/enderun"
     },
     {
         id: 2,
@@ -33,7 +34,8 @@ const atolyeMerkezleri = [
         address: "Hacı Halil Mah. Zübeyde Hanım Cad. Eyüp Güvenç İş Merkezi Gebze",
         image: "/images/hizmetler/atölyeler/gençlik.jpg",
         mapLink: "https://www.google.com/maps/place/GESMEK+-+Gebze+Belediyesi+G%C3%BCzel+Sanatlar+ve+Meslek+E%C4%9Fitimi+Kurslar%C4%B1/@40.799833,29.433036,15z/data=!4m6!3m5!1s0x14cb208ec548401f:0x51d3b10ec2b5859a!8m2!3d40.799833!4d29.433036!16s%2Fg%2F11g6xrd_n2?entry=ttu&g_ep=EgoyMDI1MDQwOS4wIKXMDSoASAFQAw%3D%3D",
-        details: "Gençlerin yetenek ve becerilerini geliştirmek için özel programlar ve etkinlikler düzenliyoruz."
+        details: "Gençlerin yetenek ve becerilerini geliştirmek için özel programlar ve etkinlikler düzenliyoruz.",
+        detailPage: "/hizmetler/atolyeler/genclik"
     },
     {
         id: 4,
@@ -42,7 +44,8 @@ const atolyeMerkezleri = [
         address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze Kocaeli",
         image: "/images/hizmetler/atölyeler/sportif.jpg",
         mapLink: "https://www.google.com/maps/place/Cumhuriyet,+Yeni+Ba%C4%9Fdat+Cd.+No:119,+41400+Gebze%2FKocaeli/@40.808399,29.3767127,18z/data=!3m1!4b1!4m5!3m4!1s0x14cadfa98c371e2f:0x21939a9f1a7d9e94!8m2!3d40.808397!4d29.377807?shorturl=1",
-        details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz."
+        details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz.",
+        detailPage: "/hizmetler/atolyeler/sportıf"
     }
 ];
 
@@ -168,7 +171,7 @@ export default function AtolyelerSayfasi() {
                             className="bg-gradient-to-r from-blue-500 to-teal-500 p-6 rounded-xl shadow-xl mb-10"
                         >
 
-                            <h2 className="text-3xl font-bold text-orange-400 mb-4 flex items-center justify-between">
+                            <h2 className="text-3xl font-semibold text-orange-400 mb-4 flex items-center justify-center">
         <span className="text-orange-400
         ">
             Atölye Merkezleri
