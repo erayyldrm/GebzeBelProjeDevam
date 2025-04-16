@@ -46,18 +46,20 @@ const Genclik: React.FC<ServiceDetailProps> = ({
             <div className="h-8" />
 
             {/* Başlık ve Hero Görsel */}
-            <div className="mb-8 max-w-6xl mx-auto">
-                <h1 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4 text-center">{title}</h1>
+            <div className="mb-8 max-w-6xl text-center mx-auto">
+                <h1 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4">{title}</h1>
 
-                <div className="relative h-[600px] rounded-lg overflow-hidden shadow-lg">
-                    <img
-                        src="/images/hizmetler/atölyeler/gençlik.jpg"
-                        alt={title}
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t  flex items-center justify-center">
-                        <div className="text-white text-center px-4 max-w-2xl">
-                            <p className="text-lg md:text-xl font-medium">{description}</p>
+                <div className="flex justify-center">
+                    <div className="relative h-[500px] w-[990px] rounded-lg overflow-hidden shadow-lg">
+                        <img
+                            src="/images/hizmetler/atölyeler/gençlik.jpg"
+                            alt={title}
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t flex items-center justify-center">
+                            <div className="text-white text-center px-4 max-w-2xl">
+                                <p className="text-lg md:text-xl font-medium">{description}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -66,11 +68,11 @@ const Genclik: React.FC<ServiceDetailProps> = ({
             </div>
 
             {/* İki Sütunlu Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="flex justify-center items-start gap-16 px-4 py-8 flex-wrap">
                 {/* Ana İçerik */}
-                <div className="lg:col-span-2">
+                <div className="max-w-md ">
                     {/* Hakkında Bölümü */}
-                    <section className="mb-8">
+                    <section className="mb-5">
                         <h2 className="text-2xl font-semibold text-blue-700 mb-4 border-b pb-2">Verilen Hizmetler</h2>
                         <p className="text-gray-700 mb-4">Bu program Gebze bölgesinde eğitim gören 9,10 ve 11. sınıf öğrencilerinin psikolojik, fiziksel ve manevi enerjilerini doğru yönlendirmek, alanında uzman rol model eğitmenler aracılığı ile ilgi duydukları alanda hem kendilerini geliştirmelerini, hem de değerlerine sahip çıkan bir gençlik olma yolunda deneyimlenmelerini hedefleyen bir eğitim programıdır. Ayrıca program içerisinde kişisel gelişim, sağlıklı yaşam ve sosyal proje alanlarında eğitim ve etkinlikler gerçekleştirilir.
                             <br/>
