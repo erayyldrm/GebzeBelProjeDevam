@@ -17,9 +17,8 @@ import KurumsalLayout from './components/Layouts/kurumsalLayout.tsx';
 import GebzeLayout from './components/Layouts/gebzeLayout.tsx';
 import Yayin from "./YayinApp.tsx";
 import Yayinpdf from "./components/Yayin/yayinpdf.tsx";
+import Haberler from "./components/Haberler/haberler.tsx";
 import AdminPanel from "./components/AdminPanelTest/testPanel.tsx";
-
-
 
 
 
@@ -71,6 +70,7 @@ const App: React.FC = () => {
                     <Route path="/test" element={<TEST/>}></Route>
 
                     <Route path="/etkinlikler" element={<EventsSection/>}/>
+                    <Route path="/haberler" element={<Haberler/>}/>
                     {/* Kurumsal gibi gebzede olması lazım */}
                     <Route
                         path="/kurumsal/*"
@@ -78,6 +78,7 @@ const App: React.FC = () => {
                     >
                         <Route path="*" element={<Kurumsal />} />
                     </Route>
+
 
 
                     <Route
