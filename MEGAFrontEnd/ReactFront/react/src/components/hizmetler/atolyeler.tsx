@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+
 import { MapPin, Phone, Info, X } from 'lucide-react';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +44,7 @@ const atolyeMerkezleri = [
         image: "/images/hizmetler/atölyeler/sportif.jpg",
         mapLink: "https://www.google.com/maps/place/Cumhuriyet,+Yeni+Ba%C4%9Fdat+Cd.+No:119,+41400+Gebze%2FKocaeli/@40.808399,29.3767127,18z/data=!3m1!4b1!4m5!3m4!1s0x14cadfa98c371e2f:0x21939a9f1a7d9e94!8m2!3d40.808397!4d29.377807?shorturl=1",
         details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz.",
-        detailPage: "/hizmetler/atolyeler/sportısf"
+        detailPage: "/hizmetler/atolyeler/sportiff"
     }
 ];
 
@@ -65,74 +66,72 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
     return (
 
         <motion.div
-    whileHover={{ scale: 1.03, y: -4 }}
-    className="w-full max-w-xs bg-white border border-orange-200 shadow-xl rounded-xl overflow-hidden transition-all relative flex flex-col items-center justify-between hover:shadow-xl text-center mx-auto"
+            whileHover={{ scale: 1.02, y: -2 }}
+            className="h-[250px] w-[900px] bg-white border border-orange-200 shadow-xl rounded-xl overflow-hidden transition-all relative flex flex-row items-stretch hover:shadow-xl mx-auto"
         >
-        {/* Resim */}
-    <div className="w-full h-44 sm:h-48 md:h-52 lg:h-56">
-        <img
-            src={center.image}
-            alt={center.name}
-            className="object-cover w-full h-full"
-        />
-    </div>
+            {/* Sol: Resim */}
+            <div className="w-1/3 h-full">
 
-    {/* Ayırıcı çizgi */}
-    <div className="h-1 w-full bg-gradient-to-r from-transparent via-gray-500 to-transparent shadow-md" />
-
-    {/* İçerik */}
-    <div className="p-4 flex flex-col flex-1 w-full">
-        <p className="text-sm font-bold text-blue-500 text-center">{center.name}</p>
-        <hr className="my-2 border-t border-gray-300" />
-
-        <div className="space-y-2 mb-4 text-xs sm:text-sm">
-            <div className="flex items-start">
-                <MapPin className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" />
-                <p className="text-left">{center.address}</p>
+            <img
+                    src={center.image}
+                    alt={center.name}
+                    className="object-cover w-[300px] h-full"
+                />
             </div>
 
-            <div className="flex items-center">
-                <Phone className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" />
-                <p>{center.phone}</p>
+            {/* Sağ: İçerik */}
+            <div className="w-2/3 p-4 flex flex-col justify-between">
+                <div>
+                    <p className="text-lg font-bold text-blue-500">{center.name}</p>
+                    <hr className="my-2 border-t border-gray-300" />
+
+                    <div className="space-y-2 text-sm">
+                        <div className="flex items-start">
+                            <MapPin className="w-4 h-4 text-blue-600 mr-2 mt-0.5" />
+                            <p>{center.address}</p>
+                        </div>
+
+                        <div className="flex items-center">
+                            <Phone className="w-4 h-4 text-blue-600 mr-2" />
+                            <p>{center.phone}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-2 mt-4">
+                    <a
+                        href={center.mapLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-sky-500 to-sky-700 text-blue-800 rounded-md hover:from-sky-600 hover:to-sky-800 transition-all shadow-md text-sm flex-1"
+                    >
+                        <MapPin className="w-4 h-4 mr-2" />
+                        Konum
+                    </a>
+
+                    <button
+                        onClick={handleDetailsClick}
+                        className={`flex items-center justify-center px-4 py-2 rounded-md transition-all shadow-md text-sm flex-1 ${
+                            showDetails
+                                ? "bg-gradient-to-r from-rose-400 to-pink-500 text-blue-800 hover:from-rose-500 hover:to-pink-600"
+                                : "bg-gradient-to-r from-indigo-500 to-purple-600 text-blue-800 hover:from-indigo-600 hover:to-purple-700"
+                        }`}
+                    >
+                        {showDetails ? (
+                            <>
+                                <X className="w-4 h-4 mr-2" />
+                                Gizle
+                            </>
+                        ) : (
+                            <>
+                                <Info className="w-4 h-4 mr-2" />
+                                Detaylı Bilgi
+                            </>
+                        )}
+                    </button>
+                </div>
             </div>
-        </div>
-
-        {/* Butonlar */}
-        <div className="flex flex-col sm:flex-row gap-2 mt-auto">
-            <a
-                href={center.mapLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-sky-500 to-sky-700 text-blue-800 rounded-md hover:from-sky-600 hover:to-sky-800 transition-all shadow-md text-xs sm:text-sm flex-1"
-            >
-                <MapPin className="w-4 h-4 mr-2" />
-                Konum
-            </a>
-
-            <button
-                onClick={handleDetailsClick}
-                className={`flex items-center justify-center px-4 py-2 rounded-md transition-all shadow-md text-xs sm:text-sm flex-1 ${
-                    showDetails
-                        ? "bg-gradient-to-r from-rose-400 to-pink-500 text-blue-800 hover:from-rose-500 hover:to-pink-600"
-                        : "bg-gradient-to-r from-indigo-500 to-purple-600 text-blue-800 hover:from-indigo-600 hover:to-purple-700"
-                }`}
-            >
-                {showDetails ? (
-                    <>
-                        <X className="w-4 h-4 mr-2" />
-                        Gizle
-                    </>
-                ) : (
-                    <>
-                        <Info className="w-4 h-4 mr-2" />
-                        Detaylı Bilgi
-                    </>
-                )}
-            </button>
-        </div>
-    </div>
-</motion.div>
-
+        </motion.div>
 );
 };
 
@@ -144,32 +143,28 @@ export default function AtolyelerSayfasi() {
 
                 <br/>
                 {/* Ana İçerik Alanı */}
-                <div className="flex-1 p-4">
+                <div className="flex-1 px-10 pt-0 mt-[0px] pb-5">
                     {/* Atölye Merkezleri - Satır başına 2 kart */}
-                    <section className="mb-5">
-                        <br/>
+                    <section className="mb-40">
                         <motion.div
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
-                            className="bg-gradient-to-r from-blue-500 to-teal-500 p-6 rounded-xl shadow-xl mb-5"
+                            className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 rounded-xl shadow-xl mb-5"
                         >
-
-                            <h2 className="text-2xl font-semibold text-orange-400 mb-4 flex items-center justify-center">
-        <span className="text-orange-400
-        ">
-            Atölye Merkezleri
-        </span>
-                            </h2>
+                            <div className="text-3xl font-semibold text-blue-500 text-center">
+                             Atölyeler
+                            </div>
                         </motion.div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {/* Kartları alt alta ve ortalanmış şekilde göster */}
+                        <div className="flex flex-col items-center gap-6 px-4">
                             {atolyeMerkezleri.map((center) => (
                                 <WorkshopCenterCard key={center.id} center={center} />
                             ))}
                         </div>
-
                     </section>
+
                 </div>
             </div>
         </div>

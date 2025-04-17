@@ -1,27 +1,27 @@
 
 import { motion } from "framer-motion";
-
 import { MapPin, Phone, Info, X } from 'lucide-react';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 // Atölye merkezi verileri
-const atolyeMerkezleri = [
+const bebekbakimmerkezi = [
     {
         id: 3,
-        name: "Güzide Gençlik Merkezi Atölyeleri",
+        name: "Güzide 7/24 Bebek ve Çocuk Bakım Evi",
         phone: " 0262 642 82 00 - 0530 557 42 59",
         address: "Osman Yılmaz Mah. 608/2 Sk. No:7 Gebze / Kocaeli",
-        image: "/images/hizmetler/atölyeler/güzide.jpg",
+        image: "/images/hizmetler/bebekbakım/bebekbakım.jpg",
         mapLink: "https://www.google.com.tr/maps/search/40.796793,+29.436732?entry=tts",
         details: "Sanat, kültür ve bilim alanlarında çeşitli atölyeler ve aktiviteler sunuyoruz.",
-        detailPage: "/hizmetler/atolyeler/guzide" // Buradaki path'i güncelledim
+        detailPage: "/hizmetler/bebekbakım/bebekbakim" // Buradaki path'i güncelledim
     },
 
 ];
 
 // Atölye Merkezi Kartı Bileşeni - İyileştirilmiş versiyon
-const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) => {
+const WorkshopCenterCard = ({ center }: { center: typeof bebekbakimmerkezi[0] }) => {
     const [showDetails, setShowDetails] = useState(false);
     const navigate = useNavigate();
 
@@ -36,14 +36,14 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
     return (
         <motion.div
             whileHover={{ scale: 1.02, y: -2 }}
-            className="h-[300px] w-[900px] bg-white border border-orange-200 shadow-xl rounded-xl overflow-hidden transition-all relative flex flex-row items-stretch hover:shadow-xl mx-auto"
+            className="h-[270px] w-[900px] bg-white border border-orange-200 shadow-xl rounded-xl overflow-hidden transition-all relative flex flex-row items-stretch hover:shadow-xl mx-auto"
         >
             {/* Sol: Resim */}
             <div className="w-1/3 h-auto">
                 <img
-                    src={center.image}
+                    src="/images/hizmetler/bebekbakım/bebekbakım.jpg"
                     alt={center.name}
-                    className="object-cover w-[500px] h-[340px]"
+                    className="object-cover w-[300px] h-[270px]"
                 />
             </div>
 
@@ -71,7 +71,7 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
                         href={center.mapLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-sky-500 to-sky-700 text-white rounded-md hover:from-sky-600 hover:to-sky-800 transition-all shadow-md text-sm flex-1"
+                        className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-sky-500 to-sky-700 text-blue-800 rounded-md hover:from-sky-600 hover:to-sky-800 transition-all shadow-md text-sm flex-1"
                     >
                         <MapPin className="w-4 h-4 mr-2" />
                         Konum
@@ -81,8 +81,8 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
                         onClick={handleDetailsClick}
                         className={`flex items-center justify-center px-4 py-2 rounded-md transition-all shadow-md text-sm flex-1 ${
                             showDetails
-                                ? "bg-gradient-to-r from-rose-400 to-pink-500 text-white hover:from-rose-500 hover:to-pink-600"
-                                : "bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:from-indigo-600 hover:to-purple-700"
+                                ? "bg-gradient-to-r from-rose-400 to-pink-500 text-blue-800 hover:from-rose-500 hover:to-pink-600"
+                                : "bg-gradient-to-r from-indigo-500 to-purple-600 text-blue-800 hover:from-indigo-600 hover:to-purple-700"
                         }`}
                     >
                         {showDetails ? (
@@ -104,7 +104,7 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
 };
 
 
-export default function AtolyelerSayfasi() {
+export default function Bebekbakimsayfasi() {
     return (
         <div className="flex flex-col min-h-screen">
             <div className="flex flex-1">
@@ -112,21 +112,28 @@ export default function AtolyelerSayfasi() {
 
                 <br/>
                 {/* Ana İçerik Alanı */}
-                <div className="flex-1 p-4">
+                <div className="flex-1 px-10 pt-0 mt-[0px] pb-5">
                     {/* Atölye Merkezleri - Satır başına 2 kart */}
                     <section className="mb-40">
-                        <br/>
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 rounded-xl shadow-xl mb-5"
+                        >
+                            <div className="text-3xl font-semibold text-blue-500 text-center">
+                              Bebek ve Çocuk Bakım Evi
+                            </div>
+                        </motion.div>
 
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-10 ">
-                            {atolyeMerkezleri.map((center) => (
+                        {/* Kartları alt alta ve ortalanmış şekilde göster */}
+                        <div className="flex flex-col items-center gap-6 px-4">
+                            {bebekbakimmerkezi.map((center) => (
                                 <WorkshopCenterCard key={center.id} center={center} />
                             ))}
                         </div>
-
-
-
                     </section>
+
                 </div>
             </div>
         </div>
