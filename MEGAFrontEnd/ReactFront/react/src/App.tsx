@@ -49,9 +49,9 @@ const App: React.FC = () => {
                     element={
                         <>
                             <CoolNavbar/>
-                            <br/> <br/>
+
                             <Outlet/> {/* This is important! */}
-                            <br/> <br/>
+
                             <Footer/>
 
 
