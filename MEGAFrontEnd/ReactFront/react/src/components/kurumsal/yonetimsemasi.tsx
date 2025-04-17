@@ -15,18 +15,20 @@ const ManagementChart: React.FC = () => {
                                             {/* Ana İçerik Alanı */}
                                             <div className="flex-1 p-4">
                                                 {/* Centered Header */}
-                                                <div className="mb-8 text-center">
+                                                <div  className="depertment-details shadow p-4"
+                                                      style={{
+                                                          backgroundColor: "#ffffff",
+                                                          borderRadius: "12px",
+                                                          textAlign: "center",
+                                                          boxShadow: "0 4px 16px rgba(0,0,0,0.1)"
+                                                      }}
+                                                >
                                                     <h1 className="text-3xl font-bold">YÖNETİM ŞEMASI</h1> <br/>
                                                 </div>
-
                                                 {/* Added spacing between header and content */}
                                                 <div className="my-6"></div>
-
                                                 {/* Main Content */}
                                                 <div className="card shadow-lg rounded-lg">
-                                                    <div className="card-header bg-blue-900 p-4">
-                                                        <h4 className="text-2xl font-bold text-white">Yönetim Şeması</h4>
-                                                    </div>
                                                     <div className="card-block p-4">
                                                         <div className="col-md-12">
                                                             <ul className="space-y-4">

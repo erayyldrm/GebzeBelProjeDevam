@@ -2,12 +2,17 @@ import React from 'react';
 
 const BusinessTaxation: React.FC = () => {
     return (
-        <div className="page-wrapper" style={{
-            boxShadow: '0 0 40px rgba(0, 0, 0, 0.25)', // Sayfanın arkasına gölge ekledik
-            position: 'relative',
-            zIndex: 1,
-        }}>
-
+        <div
+            className="page-wrapper"
+            style={{
+                boxShadow: '0 0 40px rgba(0, 0, 0, 0.25)', // Sayfanın arkasına gölge
+                position: 'relative',
+                zIndex: 1,
+                margin: '0 auto', // Sayfanın tam ortalanması
+                maxWidth: '1200px', // Sağ-sol genişlik sınırlaması (navbar hizası)
+                padding: '0 20px', // Sağ-sol içerik boşlukları (sidebar ile içerik arası)
+            }}
+        >
             {/* Main Header */}
             <header className="main-header header-style-one">
                 {/* Mobile Menu */}
@@ -82,7 +87,7 @@ const BusinessTaxation: React.FC = () => {
                                         lineHeight: '1.8',
                                         paddingLeft: 0,
                                         listStylePosition: 'inside',
-                                        textAlign: 'left',
+                                        textAlign: 'justify',
                                         display: 'inline-block'
                                     }}>
                                         <li>Tüm hizmetlerimizde Gebze halkının ihtiyaç ve beklentilerini merkeze koyarız.</li>

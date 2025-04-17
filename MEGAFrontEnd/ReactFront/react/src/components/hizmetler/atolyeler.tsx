@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-
+import Sidebar from "../SideBar/sidebar.tsx";
+import { gebze } from "../_SayfaBilgileri/Sayfalar.tsx";
 import { MapPin, Phone, Info, X } from 'lucide-react';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +45,7 @@ const atolyeMerkezleri = [
         image: "/images/hizmetler/atölyeler/sportif.jpg",
         mapLink: "https://www.google.com/maps/place/Cumhuriyet,+Yeni+Ba%C4%9Fdat+Cd.+No:119,+41400+Gebze%2FKocaeli/@40.808399,29.3767127,18z/data=!3m1!4b1!4m5!3m4!1s0x14cadfa98c371e2f:0x21939a9f1a7d9e94!8m2!3d40.808397!4d29.377807?shorturl=1",
         details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz.",
-        detailPage: "/hizmetler/atolyeler/sportıf"
+        detailPage: "/hizmetler/atolyeler/sportısf"
     }
 ];
 
@@ -67,7 +68,7 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
 
         <motion.div
     whileHover={{ scale: 1.03, y: -4 }}
-    className=" w-[500px] max-w-xs bg-white border border-orange-200 shadow-xl rounded-xl overflow-hidden transition-all relative flex flex-col items-center justify-between hover:shadow-xl text-center mx-auto"
+    className="w-full max-w-xs bg-white border border-orange-200 shadow-xl rounded-xl overflow-hidden transition-all relative flex flex-col items-center justify-between hover:shadow-xl text-center mx-auto"
         >
         {/* Resim */}
     <div className="w-full h-44 sm:h-48 md:h-52 lg:h-56">
@@ -147,17 +148,28 @@ export default function AtolyelerSayfasi() {
                 {/* Ana İçerik Alanı */}
                 <div className="flex-1 p-4">
                     {/* Atölye Merkezleri - Satır başına 2 kart */}
-                    <section className="mb-40">
+                    <section className="mb-5">
                         <br/>
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="bg-gradient-to-r from-blue-500 to-teal-500 p-6 rounded-xl shadow-xl mb-5"
+                        >
 
+                            <h2 className="text-2xl font-semibold text-orange-400 mb-4 flex items-center justify-center">
+        <span className="text-orange-400
+        ">
+            Atölye Merkezleri
+        </span>
+                            </h2>
+                        </motion.div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-10 ">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                             {atolyeMerkezleri.map((center) => (
                                 <WorkshopCenterCard key={center.id} center={center} />
                             ))}
                         </div>
-
-
 
                     </section>
                 </div>

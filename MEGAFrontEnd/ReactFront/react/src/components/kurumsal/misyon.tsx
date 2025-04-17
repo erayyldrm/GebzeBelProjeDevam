@@ -5,17 +5,19 @@ const BusinessTaxation: React.FC = () => {
         <div
             className="page-wrapper"
             style={{
-                boxShadow: '0 0 40px rgba(0, 0, 0, 0.25)',
-                backgroundColor: '#fff',
+                boxShadow: '0 0 40px rgba(0, 0, 0, 0.25)', // Sayfanın arkasına gölge
+                backgroundColor: '#fff', // Gölge belli olsun diye beyaz zemin
                 position: 'relative',
                 zIndex: 1,
+                margin: '0 auto', // Sayfanın tam ortalanması
+                maxWidth: '1200px', // Sağ-sol genişlik sınırlaması (navbar hizası)
+                padding: '0 20px', // Sağ-sol içerik boşlukları (sidebar ile içerik arası)
             }}
         >
 
             {/* Main Header */}
             <header className="main-header header-style-one">
                 {/* Mobile Menu */}
-
 
                 <div className="nav-overlay">
                     <div className="cursor"></div>
@@ -154,6 +156,7 @@ export const GovernliaHeadContent: React.FC = () => {
         };
 
         loadScripts();
+        return () => {};
     }, []);
 
     return null;

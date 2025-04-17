@@ -77,20 +77,20 @@ export const kurumsal: DropdownItem[] = [
         icon: <FiEye className="text-gray-800" size={20}/>,
         title: 'VİZYONUMUZ',
         description: 'Vizyonumuz hakkında bilgi',
-        path: '/kurumsal/vizyon_2'
+        path: '/kurumsal/vizyon'
 
     },
     {
         icon: <FiTarget className="text-gray-800" size={20}/>,
         title: 'MİSYONUMUZ',
         description: 'Misyonumuz hakkında bilgi',
-        path: '/kurumsal/misyon_2'
+        path: '/kurumsal/misyon'
     },
     {
         icon: <FiAward className="text-gray-800" size={20}/>,
         title: 'İLKELERİMİZ',
         description: 'İlkelerimiz hakkında bilgi',
-        path: '/kurumsal/ilkelerimiz_2'
+        path: '/kurumsal/ilkelerimiz'
     },
     {
         icon: <FiUsers className="text-gray-800" size={20}/>,
@@ -180,20 +180,20 @@ export const skurumsal: DropdownItem[] = [
         icon: <FiEye className="text-gray-800" size={20}/>,
         title: 'VİZYONUMUZ',
         description: 'Vizyonumuz hakkında bilgi',
-        path: '/kurumsal/vizyon_2'
+        path: '/kurumsal/vizyon'
 
     },
     {
         icon: <FiTarget className="text-gray-800" size={20}/>,
         title: 'MİSYONUMUZ',
         description: 'Misyonumuz hakkında bilgi',
-        path: '/kurumsal/misyon_2'
+        path: '/kurumsal/misyon'
     },
     {
         icon: <FiAward className="text-gray-800" size={20}/>,
         title: 'İLKELERİMİZ',
         description: 'İlkelerimiz hakkında bilgi',
-        path: '/kurumsal/ilkelerimiz_2'
+        path: '/kurumsal/ilkelerimiz'
     },
     {
         icon: <FiUsers className="text-gray-800" size={20}/>,
