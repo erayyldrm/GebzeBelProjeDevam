@@ -18,7 +18,7 @@ import GebzeLayout from './components/Layouts/gebzeLayout.tsx';
 import Yayin from "./YayinApp.tsx";
 import Yayinpdf from "./components/Yayin/yayinpdf.tsx";
 import Haberler from "./components/Haberler/haberler.tsx";
-import AdminPanel from "./components/AdminPanelTest/testPanel.tsx";
+import AdminPanelApp from "./components/AdminPanel/_AdminApp.tsx";
 
 
 
@@ -49,9 +49,9 @@ const App: React.FC = () => {
                     element={
                         <>
                             <CoolNavbar/>
-                            <br/> <br/>
+
                             <Outlet/> {/* This is important! */}
-                            <br/> <br/>
+
                             <Footer/>
 
 
@@ -99,7 +99,9 @@ const App: React.FC = () => {
                 {/* Routes WITHOUT navbar and footer */}
                 <Route path="/login" element={<LoginForm/>}/>
                 <Route path="/signup" element={<SignUp/>}/>
-                <Route path="/admin" element={<AdminPanel/>}/>
+                <Route path="/admin/*">
+                    <Route path="*" element={<AdminPanelApp/>}/>
+                </Route>
             </Routes>
         </QueryClientProvider>
     );
