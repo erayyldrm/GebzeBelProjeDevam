@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import Sidebar from "../SideBar/sidebar.tsx";
-import { gebze } from "../_SayfaBilgileri/Sayfalar.tsx";
 import { MapPin, Phone, Info, X } from 'lucide-react';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";

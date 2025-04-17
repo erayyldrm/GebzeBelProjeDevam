@@ -22,12 +22,12 @@ const HizmetlerApp: React.FC =() => {
     return (
         <Routes>
             <Route path="/atolyeler" element={<Atolyeler/>}/>
-            <Route path="atolyeler/guzide" element={<Guzide/>}/>
-            <Route path="atolyeler/genclik" element={<Genclik/>}/>
+            <Route path="/guzide" element={<Guzide/>}/>
+            <Route path="/genclik" element={<Genclik/>}/>
             <Route path="/bakimevi" element={<Bakimevi/>}/>
             <Route path="/egitimler" element={<Egitimler/>}/>
-            <Route path="atolyeler/sportif" element={<Sportif/>}/>
-            <Route path="atolyeler/enderun" element={<Enderunokulları/>}/>
+            <Route path="/sportif" element={<Sportif/>}/>
+            <Route path="/enderunokullari" element={<Enderunokulları/>}/>
             <Route path="/evlendirme" element={<Evlendirme/>}/>
             <Route path="/gures" element={<Gures/>}/>
             <Route path="/geridonusum" element={<GeriDonusum/>}/>

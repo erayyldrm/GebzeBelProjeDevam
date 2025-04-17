@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Users, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
+import { MapPin, Phone, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface ServiceDetailProps {
     title: string;
