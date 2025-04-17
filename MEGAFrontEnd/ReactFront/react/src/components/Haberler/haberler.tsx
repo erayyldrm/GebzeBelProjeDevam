@@ -1,48 +1,8 @@
 import React, { useEffect } from 'react';
 
+
 const GebzeBelediyesi: React.FC = () => {
-    // Stil ve JS dosyalarını dinamik olarak yükleme fonksiyonu
-    const loadAssets = () => {
-        const assets = [
-            // CSS dosyaları
-            { type: 'stylesheet', href: '/assets/css/all.min.css' },
-            { type: 'stylesheet', href: '/assets/css/animate.css' },
-            { type: 'stylesheet', href: '/assets/css/back-menus.css' },
-            { type: 'stylesheet', href: '/assets/css/back-spacing.css' },
-            { type: 'stylesheet', href: '/assets/css/bootstrap.min.css' },
-            { type: 'stylesheet', href: '/assets/css/magnific-popup.css' },
-            { type: 'stylesheet', href: '/assets/css/owl.carousel.css' },
-            { type: 'stylesheet', href: '/assets/css/responsive.css' },
-            { type: 'stylesheet', href: '/assets/css/rounded.css' },
-            // JS dosyaları
-            { type: 'script', src: 'assets/js/jquery.min.js' },
-            { type: 'script', src: 'assets/js/bootstrap.min.js' },
-            { type: 'script', src: 'assets/js/owl.carousel.min.js' },
-            { type: 'script', src: 'assets/js/jquery.magnific-popup.min.js' },
-            { type: 'script', src: 'assets/js/wow.min.js' },
-            { type: 'script', src: 'assets/js/back-menus.js' },
-            { type: 'script', src: 'assets/js/plugins.js' },
-            { type: 'script', src: 'assets/js/main.js' },
-        ];
 
-        assets.forEach(asset => {
-            let element;
-            if (asset.type === 'stylesheet') {
-                element = document.createElement('link');
-                element.rel = 'stylesheet';
-                element.href = asset.href;
-            } else if (asset.type === 'script') {
-                element = document.createElement('script');
-                element.src = asset.src;
-                element.defer = true;
-            }
-            if (element) document.head.appendChild(element);
-        });
-    };
-
-    useEffect(() => {
-        loadAssets();
-    }, []);
 
     return (
         <div className="bg-gray-100">
@@ -151,3 +111,40 @@ const GebzeBelediyesi: React.FC = () => {
 };
 
 export default GebzeBelediyesi;
+
+export const GovernliaHeadContent: React.FC = () => {
+    React.useEffect(() => {
+        // You can dynamically add scripts and styles using useEffect
+        const loadScripts = () => {
+            const scripts = [
+                'assets/js/jquery.min.js',
+                'assets/js/bootstrap.min.js',
+                'assets/js/owl.carousel.min.js',
+                'assets/js/jquery.magnific-popup.min.js',
+                'assets/js/wow.min.js',
+                'assets/js/back-menus.js',
+                'assets/js/plugins.js',
+                'assets/js/main.js'
+
+
+
+
+            ];
+
+            scripts.forEach(src => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.async = true;
+                document.body.appendChild(script);
+            });
+        };
+
+        loadScripts();
+
+        // Cleanup function to remove scripts when component unmounts
+        return () => {
+            // Optional: Remove scripts if needed
+        };
+    }, []);
+    return null;
+};
