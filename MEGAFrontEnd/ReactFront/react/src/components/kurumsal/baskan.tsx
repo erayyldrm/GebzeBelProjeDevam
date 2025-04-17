@@ -24,7 +24,7 @@ const BaskanPage: React.FC = () => {
                                                                     alt="Zinnur Büyükgöz"
                                                                     className="img-fluid rounded"
                                                                 />
-                                                                <h3 className="mt-4 mb-3 text-center"><b>Zinnur BÜYÜKGÖZ</b></h3>
+                                                                <h3 className="mt-4 mb-3 text-center"><b>Zinnur BÜYÜKGÖZ</b></h3><br/>
                                                                 <div className="text-justify">
                                                                     <p>
                                                                         1964 yılında Erzurum'da doğdu. İlköğretim tahsilini 1975'te Bakırköy Koca Sinan İlkokulu'nda ve 1978'de Kadıköy İmam Hatip Ortaokulu'nda tamamladı. 1983'te ise Gebze İmam Hatip Lisesi'nden mezun oldu.
