@@ -18,7 +18,7 @@ const workshopData = [
 
 
 
-const Sportıf: React.FC<ServiceDetailProps> = ({
+const Sportif: React.FC<ServiceDetailProps> = ({
                                                                 title = "Güzide Gençlik Merkezi",
                                                                 description = "",
                                                                 imageUrl = "/images/hizmetler/atölyeler/sportıf.jpg",
@@ -167,4 +167,4 @@ const Sportıf: React.FC<ServiceDetailProps> = ({
     );
 };
 
-export default Sportıf;
+export default Sportif;
