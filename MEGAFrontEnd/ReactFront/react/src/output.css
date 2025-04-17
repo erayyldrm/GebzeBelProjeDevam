@@ -257,14 +257,8 @@
 .h-\[50px\] {
   height: 50px;
 }
-.h-\[185px\] {
-  height: 185px;
-}
 .h-\[200px\] {
   height: 200px;
-}
-.h-\[250px\] {
-  height: 250px;
 }
 .h-\[500px\] {
   height: 500px;
@@ -305,11 +299,17 @@
 .w-5\/6 {
   width: calc(5/6 * 100%);
 }
-.w-\[288px\] {
-  width: 288px;
-}
 .w-\[300px\] {
   width: 300px;
+}
+.w-\[890px\] {
+  width: 890px;
+}
+.w-\[950px\] {
+  width: 950px;
+}
+.w-\[990px\] {
+  width: 990px;
 }
 .w-auto {
   width: auto;
