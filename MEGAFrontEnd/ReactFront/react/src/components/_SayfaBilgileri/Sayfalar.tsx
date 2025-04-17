@@ -244,40 +244,54 @@ export const hizmetler: DropdownItem[] = [
     {
         icon: <FiHome className="text-gray-800"/>,
         title: 'BEBEK VE ÇOCUK BAKIM EVİ',
-        description: 'Bebek ve çocuk bakımı hakkında bilgi'
+        description: 'Bebek ve çocuk bakımı hakkında bilgi',
+        path: '/hizmetler/bakimevi'
 
     },
     {
         icon: <FiBook className="text-gray-800"/>,
         title: 'EĞİTİMLER',
-        description: 'Eğitim programları hakkında bilgi'
+        description: 'Eğitim programları hakkında bilgi',
+        path: '/hizmetler/egitimler'
 
     },
     {
         icon: <FiHeart className="text-gray-800"/>,
         title: 'EVLENDİRME',
-        description: 'Evlendirme işlemleri hakkında bilgi'
+        description: 'Evlendirme işlemleri hakkında bilgi',
+        path: '/hizmetler/evlendirme'
     },
     {
         icon: <FiRefreshCw className="text-gray-800"/>,
         title: 'GERİ DÖNÜŞÜM',
-        description: 'Geri dönüşüm hizmetleri hakkında bilgi'
+        description: 'Geri dönüşüm hizmetleri hakkında bilgi',
+        path: '/hizmetler/geridonusum'
     },
     {
         icon: <FiActivity className="text-gray-800"/>,
         title: 'GÜREŞ',
-        description: 'Güreş etkinlikleri hakkında bilgi'
+        description: 'Güreş etkinlikleri hakkında bilgi',
+        path: '/hizmetler/gures'
     },
     {
         icon: <FiBookOpen className="text-gray-800"/>,
         title: 'KÜTÜPHANE',
-        description: 'Kütüphane hizmetleri hakkında bilgi'
+        description: 'Kütüphane hizmetleri hakkında bilgi',
+        path: '/hizmetler/kutuphane'
+
     },
-    {icon: <FiMapPin className="text-gray-800"/>, title: 'MERKEZLER', description: 'Merkezler hakkında bilgi'},
+    {
+        icon: <FiMapPin className="text-gray-800"/>,
+        title: 'MERKEZLER',
+        description: 'Merkezler hakkında bilgi',
+        path: '/hizmetler/merkezler'
+    },
+
     {
         icon: <FiCoffee className="text-gray-800"/>,
         title: 'MESİRE ALANI',
-        description: 'Mesire alanları hakkında bilgi'
+        description: 'Mesire alanları hakkında bilgi',
+        path: '/hizmetler/mesirealani'
     },
 ];
 export const eBelediye: DropdownItem[] = [
