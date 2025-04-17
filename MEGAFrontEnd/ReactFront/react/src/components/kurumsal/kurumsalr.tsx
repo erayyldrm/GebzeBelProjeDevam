@@ -9,20 +9,20 @@ const documents = [
             { name: "2022 Maali Yılı İdare Faaliyet Raporu", url: "/2022mali.pdf" },
             { name: "2021 Maali Yılı İdare Faaliyet Raporu", url: "/2021mali.pdf" },
             { name: "2020 Faaliyet Raporu", url: "/2020faliyet.pdf" },
-            { name: "2019 Faaliyet Raporu", url: "/2019faaliyet.pdf" },
-            { name: "2018 Faaliyet Raporu", url: "/2018faaliyet.pdf" },
-            { name: "2017 Faaliyet Raporu", url: "/2017faaliyet.pdf" },
-            { name: "2016 Faaliyet Raporu", url: "/2016faaliyet.pdf" },
-            { name: "2015 Faaliyet Raporu", url: "/2015faaliyet.pdf" },
-            { name: "2014 Faaliyet Raporu", url: "/2014faaliyet.pdf" },
-            { name: "2013 Faaliyet Raporu", url: "/2013faaliyet.pdf" },
-            { name: "2012 Faaliyet Raporu", url: "/2012faaliyet.pdf" },
-            { name: "2011 Faaliyet Raporu", url: "/2011faaliyet.pdf" },
-            { name: "2010 Faaliyet Raporu", url: "/2010faaliyet.pdf" },
-            { name: "2009 Faaliyet Raporu", url: "/2009faaliyet.pdf" },
-            { name: "2008 Faaliyet Raporu", url: "/2008faaliyet.pdf" },
-            { name: "2007 Faaliyet Raporu", url: "/2007faaliyet.pdf" },
-            { name: "2006 Faaliyet Raporu", url: "/2006faaliyet.pdf" },
+            { name: "2019 Faaliyet Raporu", url: "/2019faliyet.pdf" },
+            { name: "2018 Faaliyet Raporu", url: "/2018faliyet.pdf" },
+            { name: "2017 Faaliyet Raporu", url: "/2017faliyet.pdf" },
+            { name: "2016 Faaliyet Raporu", url: "/2016faliyet.pdf" },
+            { name: "2015 Faaliyet Raporu", url: "/2015faliyet.pdf" },
+            { name: "2014 Faaliyet Raporu", url: "/2014faliyet.pdf" },
+            { name: "2013 Faaliyet Raporu", url: "/2013faliyet.pdf" },
+            { name: "2012 Faaliyet Raporu", url: "/2012faliyet.pdf" },
+            { name: "2011 Faaliyet Raporu", url: "/2011faliyet.pdf" },
+            { name: "2010 Faaliyet Raporu", url: "/2010faliyet.pdf" },
+            { name: "2009 Faaliyet Raporu", url: "/2009faliyet.pdf" },
+            { name: "2008 Faaliyet Raporu", url: "/2008faliyet.pdf" },
+            { name: "2007 Faaliyet Raporu", url: "/2007faliyet.pdf" },
+            { name: "2006 Faaliyet Raporu", url: "/2007faliyet.pdf" },
         ],
     },
     {
@@ -48,8 +48,7 @@ const documents = [
             { name: "2025 Maali Yılı Performans Programı ", url: "/2025performans.pdf" },
             { name: "2024 Maali Yılı Performans Kitabı ", url: "/202performans.pdf" },
             { name: "2023 Maali Yılı Performans Programı", url: "/2023performans.pdf" },
-            { name: "2022 Maali Yılı Performans Programı", url: "/2022performans.pdf" },
-            { name: "2021 Performams Programı", url: "/2021performans.pdf" },
+            { name: "2021 Performans Programı", url: "/2021performans.pdf" },
             { name: "2020 Performans Programı", url: "/2020performans.pdf" },
             { name: "2019 Performans Programı", url: "/2019performans.pdf" },
             { name: "2018 Performans Programı", url: "/2018performans.pdf" },
@@ -62,6 +61,7 @@ const documents = [
             { name: "2011 Performans Programı", url: "/2011performans.pdf" },
             { name: "2010 Performans Programı", url: "/2010performans.pdf" },
             { name: "2009 Performans Programı", url: "/2009performans.pdf" },
+            { name: "2008 Performans Programı", url: "/2008performans.pdf" },
         ],
     },
     {
@@ -69,39 +69,42 @@ const documents = [
         docs: [
             { name: "Gebze Belediyesi 2025 - 2019 Stratejik Plan", url: "/2025plan.pdf" },
             { name: "Gebze Belediyesi 2020 Stratejik Plan", url: "/2020plan.pdf" },
-            { name: "Gebze Belediyesi 2020 - 2024 Stratejik Plan ", url: "/2024plan.pdf" },
-            { name: "Gebze Belediyesi 2015 - 2019 Stratejik Plan (revize)", url: "revizeplan/.pdf" },
-            { name: "Gebze Belediyesi 2015 - 2019 Stratejik Plan", url: "/2015plan.pdf" },
-            { name: "Gebze Belediyesi 2010 - 2014 Stratejik Plan", url: "/2010plan.pdf" },
-            { name: "Gebze Belediyesi 2006 - 2010 Stratejik Plan", url: "/2006plan.pdf" },
+            { name: "Gebze Belediyesi 2015 - 2019 Stratejik Plan ", url: "/2015plan.pdf" },
+            { name: "Gebze Belediyesi 2015 - 2019 Stratejik Plan (revize) ", url: "/revize.plan.pdf" },
+            { name: "Gebze Belediyesi 2010 - 2014 Stratejik Plan ", url: "/2010plan.pdf" },
+            { name: "Gebze Belediyesi 2006 - 2010 Stratejik Plan ", url: "/2006plan.pdf" },
         ],
     },
-];
-
+]
 const Kararlar = () => {
     const [activeTab, setActiveTab] = useState<string>(documents[0].department);
 
     return (
-        <div className="p-6 bg-gray-50 shadow-lg min-h-screen">
+        <div
+            className="p-6 bg-gray-50 shadow-lg min-h-screen"
+            style={{
+                margin: '0 auto', // Ortalanmış sayfa
+                maxWidth: 'calc(100% - 80px)', // Sağ taraftan genişlik ayarı
+                padding: '0 20px', // İçerik boşlukları
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)', // Sayfa arkasına gölge
+            }}
+        >
             <h1 className="text-3xl font-bold text-center mb-12 text-blue-700">
                 Kurumsal Raporlar
             </h1>
 
-            {/* Sekmeler - Larger buttons with green styling */}
+            {/* Sekmeler - Inline style ile renk kontrolü */}
             <div className="flex flex-wrap justify-center gap-3 mb-12">
                 {documents.map((category) => (
                     <button
                         key={category.department}
                         onClick={() => setActiveTab(category.department)}
-                        className={`
-                            px-6 py-3 text-base md:text-lg rounded-lg font-semibold 
-                            border-2 transition-all duration-200
-                            ${
+                        style={
                             activeTab === category.department
-                                ? "bg-blue-500 border-blue-600 text-white shadow-md"
-                                : "bg-white border-gray-300 text-gray-700 hover:bg-orange-100 hover:border-green-400"
+                                ? { backgroundColor: "#022842", color: "#FFFFFF" } // Seçili başlık için renk
+                                : { backgroundColor: "#FFFFFF", color: "#000000" } // Seçili olmayan başlık için renk
                         }
-                        `}
+                        className="px-6 py-3 text-base md:text-lg rounded-md font-semibold border-2 transition-all duration-200"
                     >
                         {category.department}
                     </button>
@@ -116,7 +119,7 @@ const Kararlar = () => {
                         ?.docs.map((doc, i) => (
                             <div
                                 key={i}
-                                className="bg-blue-50 p-6 rounded-lg hover:bg-blue-100 transition shadow-md flex flex-col items-center mb-6"
+                                className="bg-blue-50 p-6 rounded-md hover:bg-blue-100 transition shadow-md flex flex-col items-center mb-6"
                             >
                                 <FileText className="text-orange-500 mb-4" size={75} />
                                 <a

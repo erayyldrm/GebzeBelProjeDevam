@@ -41,14 +41,33 @@ const EtikKomisyonu: React.FC = () => {
     ];
 
     return (
-        <div className="page-wrapper" style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.1)', minHeight: '100vh' }}>
+        <div
+            className="page-wrapper"
+            style={{
+                boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+                minHeight: '100vh',
+                margin: '0 auto',
+                maxWidth: '1200px',
+                padding: '0 20px'
+            }}
+        >
             {/* Page Title */}
             <section className="page-title" style={{ backgroundImage: 'url(/images/kurumsal/gebze.jpg)' }}>
                 <div className="auto-container">
                     <div className="content-box">
-                        <div className="content-wrapper">
+                        <div className="content-wrapper text-center">
                             <div className="title">
-                                <h1 style={{ color: "white", fontSize: "70px", fontFamily: "Poppins" }}>Etik Komisyonu</h1>
+                                <h1 style={{
+                                    color: "#fff",
+                                    fontSize: "72px",
+                                    fontFamily: "Poppins, sans-serif",
+                                    fontWeight: 600,
+                                    letterSpacing: "1px",
+                                    textShadow: "2px 2px 8px rgba(0,0,0,0.5)",
+                                    marginBottom: "20px"
+                                }}>
+                                    Etik Komisyonu
+                                </h1>
                             </div>
                         </div>
                     </div>
@@ -67,7 +86,7 @@ const EtikKomisyonu: React.FC = () => {
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center',
-                                    boxShadow: '0 4px 16px rgba(0,0,0,0.2)', // Etik Davranış İlkeleri kutusuna gölge ekledim
+                                    boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
                                 }}
                             >
                                 <div style={{ width: '100%' }}>
@@ -88,7 +107,7 @@ const EtikKomisyonu: React.FC = () => {
 
                             {/* Etik Komisyonu Listesi Kartları */}
                             <div className="bg-white shadow-lg rounded-lg p-6">
-                                <h2 className="text-2xl font-bold mb-4 text-blue-600 border-b pb-2">ETİK KOMISYONU LİSTESİ</h2>
+                                <h2 className="text-2xl font-bold mb-4 text-blue-600 border-b pb-2">ETİK KOMİSYONU LİSTESİ</h2>
                                 <div className="grid md:grid-cols-3 gap-6">
                                     {etikKomisyonuListesi.map((uye, index) => (
                                         <div
