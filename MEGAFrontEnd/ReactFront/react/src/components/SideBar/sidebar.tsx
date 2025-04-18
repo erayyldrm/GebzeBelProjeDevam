@@ -11,10 +11,10 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
     const location = useLocation();
 
     return (
-        <div className="hidden md:block w-64 bg-[#ffffff] shadow-md rounded-2xl relative top-10 h-75 left-13 z-10 border-3 border-[#891737]">
+        <div className="hidden md:block w-64 bg-[#ffffff] shadow-md rounded-2xl relative top-10 h-75 left-13 z-10 border-3 border-[#022842]">
             {/* Sidebar Title with Radial Gradient */}
             <div
-                className="p-3 rounded-t-2xl h-15 flex items-center justify-center"
+                className="p-3 rounded-t-2xl h-10 flex items-center justify-center"
                 style={{
                     background: 'linear-gradient(135deg,  #002335 50%, #002335 90%)'
                 }}
