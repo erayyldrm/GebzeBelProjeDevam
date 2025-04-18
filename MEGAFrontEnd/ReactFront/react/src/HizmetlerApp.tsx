@@ -13,6 +13,7 @@ import Enderunokulları from "./components/hizmetler/atolyeler/enderun.tsx";
 import Bakimevi from "./components/hizmetler/bakimevi.tsx"
 import Egitimler from "./components/hizmetler/egitimler.tsx"
 import Bebekbakim from "./components/hizmetler/bebekbakım/bebekbakim.tsx";
+import Sportiff from "./components/hizmetler/atolyeler/sportif.tsx";
 import Fitness from "./components/hizmetler/egitimler/fitness.tsx";
 import Genc from "./components/hizmetler/egitimler/genc.tsx";
 import Tercih from "./components/hizmetler/egitimler/tercih.tsx";
