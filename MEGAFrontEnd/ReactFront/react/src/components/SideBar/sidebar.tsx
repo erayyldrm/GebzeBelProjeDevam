@@ -51,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
                                         ? "text-[#faa61a] font-semibold bg-blue-700"
                                         : "text-white hover:bg-blue-800"}`}
                                 >
-                                    <span className={`text-xl ${isActive ? 'text-blue' : 'text-white'}`}>
+                                    <span className={`text-xl ${isActive ? 'text-[#faa61a]' : 'text-white'}`}>
                                         {item.icon}
                                     </span>
                                     <span className="font-medium">{item.title}</span>
