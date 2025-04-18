@@ -1,57 +1,83 @@
-// components/Sidebar.tsx
 import { Menu, X, Home, Users, Package, Calendar, Settings, LogOut } from 'lucide-react';
-import { Link } from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 interface SidebarProps {
     sidebarOpen: boolean;
     setSidebarOpen: (open: boolean) => void;
 }
 
-export default function _Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
+interface SidebarLinkProps {
+    to: string;
+    icon: React.ReactNode;
+    text: string;
+    sidebarOpen: boolean;
+    active?: boolean;
+}
+
+export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
+    const location = useLocation();
+
     return (
-        <div className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-blue-900 text-white transition-all duration-300 flex flex-col`}>
-            <div className="p-4 flex items-center justify-between">
-                {sidebarOpen && <h1 className="text-xl font-bold">AdminPanel</h1>}
+        <div className={`${sidebarOpen ? 'w-56' : 'w-16'} min-w-16 bg-gray-900 text-white transition-all duration-300 flex flex-col h-screen shadow-xl`}>
+            {/* Header with logo and toggle button */}
+            <div className="py-4 px-3 flex items-center justify-between border-b border-gray-800">
+                {sidebarOpen ? (
+                    <h1 className="text-xl font-bold text-indigo-400">AdminPanel</h1>
+                ) : (
+                    <div className="w-full flex justify-center">
+                        <span className="font-bold text-lg text-indigo-400">A</span>
+                    </div>
+                )}
+
+                {/* Toggle button always visible */}
                 <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
-                    className="p-2 rounded-lg hover:bg-blue-800"
+                    className="p-1.5 rounded-md hover:bg-gray-800 text-gray-300 hover:text-indigo-400 z-10"
                 >
-                    {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+                    {sidebarOpen ? <X size={18} /> : <Menu size={18} />}
                 </button>
             </div>
 
-
-            <nav className="flex-1 pt-5">
-                <div className={`flex flex-col ${!sidebarOpen && "items-center"}`}>
-                    <Link to="/admin/dashboard" className="flex items-center p-4 text-white hover:bg-blue-800 rounded-lg mx-2">
-                        <Home size={24} className="min-w-6 min-h-6" />
-                        {sidebarOpen && <span className="ml-3">Dashboard</span>}
-                    </Link>
-                    <Link to="/admin/users" className="flex items-center p-4 text-white hover:bg-blue-800 rounded-lg mx-2">
-                        <Users size={20} />
-                        {sidebarOpen && <span className="ml-3">Users</span>}
-                    </Link>
-                    <Link to="/products" className="flex items-center p-4 text-white hover:bg-blue-800 rounded-lg mx-2">
-                        <Package size={20} />
-                        {sidebarOpen && <span className="ml-3">Products</span>}
-                    </Link>
-                    <Link to="/calendar" className="flex items-center p-4 text-white hover:bg-blue-800 rounded-lg mx-2">
-                        <Calendar size={20} />
-                        {sidebarOpen && <span className="ml-3">Calendar</span>}
-                    </Link>
-                    <Link to="/settings" className="flex items-center p-4 text-white hover:bg-blue-800 rounded-lg mx-2">
-                        <Settings size={20} />
-                        {sidebarOpen && <span className="ml-3">Settings</span>}
-                    </Link>
+            {/* Navigation items */}
+            <div className="flex-1 py-3 overflow-y-auto">
+                <div className="flex flex-col space-y-0.5 px-2">
+                    <SidebarLink to="/admin/dashboard" icon={<Home size={20} />} text="Dashboard" sidebarOpen={sidebarOpen} active={location.pathname === "/admin/dashboard"}  />
+                    <SidebarLink to="/admin/users" icon={<Users size={20} />} text="Users" sidebarOpen={sidebarOpen} active={location.pathname === "/admin/users"} />
+                    <SidebarLink to="/products" icon={<Package size={20} />} text="Products" sidebarOpen={sidebarOpen} />
+                    <SidebarLink to="/calendar" icon={<Calendar size={20} />} text="Calendar" sidebarOpen={sidebarOpen} />
+                    <SidebarLink to="/settings" icon={<Settings size={20} />} text="Settings" sidebarOpen={sidebarOpen} />
                 </div>
-            </nav>
+            </div>
 
-            <div className="p-4">
-                <a href="/logout" className={`flex items-center text-white hover:bg-blue-800 p-4 rounded-lg ${!sidebarOpen && 'justify-center'}`}>
-                    <LogOut size={20} />
-                    {sidebarOpen && <span className="ml-3">Logout</span>}
+            {/* Logout button */}
+            <div className="mt-auto px-2 py-3">
+                <a href="/logout" className={`flex items-center rounded-md py-2.5 transition-all hover:bg-gray-800 ${sidebarOpen ? 'px-3' : 'justify-center px-2'}`}>
+                    <LogOut size={20} className="text-gray-300" />
+                    {sidebarOpen && <span className="ml-3 text-sm font-medium text-gray-300">Logout</span>}
                 </a>
             </div>
         </div>
     );
 }
+
+const SidebarLink = ({ to, icon, text, sidebarOpen, active = false }: SidebarLinkProps) => {
+    return (
+        <Link
+            to={to}
+            className={`flex items-center rounded-md py-2.5 transition-all ${
+                active ? "bg-indigo-500/20" : "hover:bg-gray-800"
+            } ${sidebarOpen ? "px-3" : "justify-center px-2"}`}
+        >
+            <div className={`flex justify-center ${sidebarOpen ? '' : 'w-full'}`}>
+                <div className={active ? "text-indigo-400" : "text-gray-300"}>
+                    {icon}
+                </div>
+            </div>
+            {sidebarOpen && (
+                <span className={`ml-3 text-sm font-medium ${active ? "text-indigo-400" : "text-gray-300"}`}>
+                    {text}
+                </span>
+            )}
+        </Link>
+    );
+};
