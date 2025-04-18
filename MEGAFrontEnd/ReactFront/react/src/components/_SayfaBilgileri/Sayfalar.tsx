@@ -195,12 +195,7 @@ export const skurumsal: DropdownItem[] = [
         description: 'İlkelerimiz hakkında bilgi',
         path: '/kurumsal/ilkelerimiz'
     },
-    {
-        icon: <FiUsers  size={20}/>,
-        title: 'BELEDİYE MECLİSİ',
-        description: 'Belediye Meclisi hakkında bilgi',
-        path: '/kurumsal/belediyemeclisi'
-    },
+
     {
         icon: <FiLayout  size={20}/>,
         title: 'YÖNETİM ŞEMASI',
@@ -224,6 +219,12 @@ export const skurumsal: DropdownItem[] = [
         title: 'MÜDÜRLÜKLER',
         description: 'Müdürlükler hakkında bilgi',
         path:'/kurumsal/mudurlukler'
+    },
+    {
+        icon: <FiUsers  size={20}/>,
+        title: 'BELEDİYE MECLİSİ',
+        description: 'Belediye Meclisi hakkında bilgi',
+        path: '/kurumsal/belediyemeclisi'
     },
     {
         icon: <FiUsers  size={20}/>,
