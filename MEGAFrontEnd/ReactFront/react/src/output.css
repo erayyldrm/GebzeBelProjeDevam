@@ -347,6 +347,9 @@
 .max-w-none {
   max-width: none;
 }
+.min-w-full {
+  min-width: 100%;
+}
 .flex-1 {
   flex: 1;
 }

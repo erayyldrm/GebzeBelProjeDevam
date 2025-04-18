@@ -26,7 +26,7 @@ const GebzeLayout = () => {
     return (
         <div className="flex">
             {shouldDisplaySidebar && <Sidebar items={gebze} title="Gebze" />}
-            <div className="flex-1 p-6">
+            <div className="flex-1">
                 <Outlet />
             </div>
         </div>

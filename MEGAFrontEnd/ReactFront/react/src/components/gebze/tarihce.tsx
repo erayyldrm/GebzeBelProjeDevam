@@ -1,36 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import Sidebar from "../SideBar/sidebar.tsx";
-import {gebze} from "../_SayfaBilgileri/Sayfalar.tsx";
+import React from 'react';
+import ImageSlider from "../Sliders/SliderTest.tsx";
 
 const TarihcePage: React.FC = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
     const slides = [
-        "/images/gebze/tarihce/slide1.jpg",
-        "/images/gebze/tarihce/slide4.jpg",
-        "/images/gebze/tarihce/slide3.jpg"
+        {
+            image: "/images/gebze/tarihce/slide1.jpg",
+
+        },
+        {
+            image: "/images/gebze/tarihce/slide4.jpg",
+
+        },
+        {
+            image: "/images/gebze/tarihce/slide3.jpg",
+
+        }
     ];
 
-    // Auto-slide functionality
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-        }, 5000); // Change slide every 5 seconds
 
-        return () => clearInterval(timer);
-    }, []);
-
-    // Manual navigation functions
-    const goToNextSlide = () => {
-        setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    };
-
-    const goToPrevSlide = () => {
-        setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length);
-    };
-
-    const goToSlide = (index: number) => {
-        setCurrentSlide(index);
-    };
 
     return (
         <div id="pcoded" className="pcoded">
@@ -49,79 +36,9 @@ const TarihcePage: React.FC = () => {
                                             <div className="col-lg ms-auto">
                                                 <div className="card">
                                                     <div className="card-block">
-                                                        {/* Image slider */}
-                                                        <div className="slider-container" style={{ position: 'relative', width: '100%', height: '500px', overflow: 'hidden' }}>
-                                                            {/* Slides */}
-                                                            <div className="slides" style={{ display: 'flex', transition: 'transform 0.5s ease', transform: `translateX(-${currentSlide * 100}%)`, width: '100%', height: '100%' }}>
-                                                                {slides.map((slide, index) => (
-                                                                    <div key={index} style={{ minWidth: '100%', height: '100%' }}>
-                                                                        <img
-                                                                            src={slide}
-                                                                            alt={`Gebze Tarihçe Slide ${index + 1}`}
-                                                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                                                        />
-                                                                    </div>
-                                                                ))}
-                                                            </div>
-
-                                                            {/* Navigation arrows */}
-                                                            <button
-                                                                onClick={goToPrevSlide}
-                                                                style={{
-                                                                    position: 'absolute',
-                                                                    left: '10px',
-                                                                    top: '50%',
-                                                                    transform: 'translateY(-50%)',
-                                                                    background: 'rgba(0,0,0,0.5)',
-                                                                    color: 'white',
-                                                                    border: 'none',
-                                                                    borderRadius: '50%',
-                                                                    width: '40px',
-                                                                    height: '40px',
-                                                                    fontSize: '20px',
-                                                                    cursor: 'pointer'
-                                                                }}
-                                                            >
-                                                                &lt;
-                                                            </button>
-
-                                                            <button
-                                                                onClick={goToNextSlide}
-                                                                style={{
-                                                                    position: 'absolute',
-                                                                    right: '10px',
-                                                                    top: '50%',
-                                                                    transform: 'translateY(-50%)',
-                                                                    background: 'rgba(0,0,0,0.5)',
-                                                                    color: 'white',
-                                                                    border: 'none',
-                                                                    borderRadius: '50%',
-                                                                    width: '40px',
-                                                                    height: '40px',
-                                                                    fontSize: '20px',
-                                                                    cursor: 'pointer'
-                                                                }}
-                                                            >
-                                                                &gt;
-                                                            </button>
-
-                                                            {/* Indicators */}
-                                                            <div style={{ position: 'absolute', bottom: '10px', width: '100%', display: 'flex', justifyContent: 'center', gap: '8px' }}>
-                                                                {slides.map((_, index) => (
-                                                                    <button
-                                                                        key={index}
-                                                                        onClick={() => goToSlide(index)}
-                                                                        style={{
-                                                                            width: '12px',
-                                                                            height: '12px',
-                                                                            borderRadius: '50%',
-                                                                            background: currentSlide === index ? 'white' : 'rgba(255,255,255,0.5)',
-                                                                            border: 'none',
-                                                                            cursor: 'pointer'
-                                                                        }}
-                                                                    />
-                                                                ))}
-                                                            </div>
+                                                        <div className="max-w-4xl mx-auto mt-8">
+                                                            <h1 className="text-2xl font-bold mb-4">Bugünkü Gebze</h1>
+                                                            <ImageSlider slides={slides} />
                                                         </div>
 
                                                         <br />
