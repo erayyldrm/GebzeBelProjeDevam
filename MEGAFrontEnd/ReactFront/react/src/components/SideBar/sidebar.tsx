@@ -3,7 +3,7 @@ import { DropdownItem } from '../_SayfaBilgileri/types.tsx';
 import { Link, useLocation } from 'react-router-dom';
 // FontAwesome ikonunu içe aktarma
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 
 interface SidebarProps {
     items: DropdownItem[];
@@ -30,7 +30,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
         >
             {/* Modern Sidebar Title */}
             <div
-                className="p-4 flex items-center justify-center relative"
+                className="p-4 relative"
                 style={{
                     background: 'linear-gradient(135deg, #003366 0%, #00264d 100%)',
                     borderTopLeftRadius: '1rem',
@@ -38,19 +38,38 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
                     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
                 }}
             >
-                {/* Geçiş Butonu */}
-                <button
-                    className="absolute right-4 text-white hover:text-[#faa61a] transition-colors duration-200"
-                    onClick={toggleSidebar}
-                    aria-label={collapsed ? "Kenar çubuğunu genişlet" : "Kenar çubuğunu daralt"}
-                >
-                    <FontAwesomeIcon icon={collapsed ? faAnglesRight : faAnglesLeft} />
-                </button>
+                {/* Sidebar genişken: ortada başlık ve sağda ok ikonu */}
+                {!collapsed && (
+                    <>
+                        {title && (
+                            <div className="flex justify-center">
+                                <h3 className="text-white font-bold text-lg tracking-wide text-center">
+                                    {title}
+                                </h3>
+                            </div>
+                        )}
 
-                {title && !collapsed && (
-                    <h3 className="text-white font-bold text-lg tracking-wide">
-                        {title}
-                    </h3>
+                        <button
+                            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-[#faa61a] transition-colors duration-200"
+                            onClick={toggleSidebar}
+                            aria-label="Kenar çubuğunu daralt"
+                        >
+                            <FontAwesomeIcon icon={faAnglesLeft} />
+                        </button>
+                    </>
+                )}
+
+                {/* Sidebar darken: ortada ok ikonu */}
+                {collapsed && (
+                    <div className="flex justify-center">
+                        <button
+                            className="text-white hover:text-[#faa61a] transition-colors duration-200"
+                            onClick={toggleSidebar}
+                            aria-label="Kenar çubuğunu genişlet"
+                        >
+                            <FontAwesomeIcon icon={faAnglesRight} />
+                        </button>
+                    </div>
                 )}
             </div>
 
