@@ -100,7 +100,7 @@ const handleNavigation = (path: string) => {
                         }}
                     >
                         <motion.div
-                            className="p-2 bg-gray-100 rounded-md mr-3"
+                            className="p-2 bg-gray-100 text-gray-800 rounded-md mr-3"
                             whileHover={{ rotate: 5 }}
                         >
                             {item.icon}
