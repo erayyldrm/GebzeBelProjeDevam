@@ -3,7 +3,7 @@ import {useMutation} from '@tanstack/react-query';
 import axios from 'axios';
 import {TERipple} from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import ParticleBackground from "../backgroundAnim/particle.tsx";
 
 // Login Credentials Interface
@@ -28,6 +28,7 @@ const LoginPage: React.FC = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [message, setMessage] = useState<string | null>(null);
+    const navigate = useNavigate();
     // Login Mutation
     const loginMutation = useMutation({
         mutationFn: authService.login,
@@ -35,6 +36,8 @@ const LoginPage: React.FC = () => {
             //console.log('Login successful', data);
             setMessage(data.response?.data?.message || 'Giriş Başaşrılı');
             // Geçiş yapılacak diğer sayfayı yönlendirme ekleyebilirsiniz
+            navigate('/admin/dashboard'); // Yönlendirmek istediğiniz route'u belirtin
+
         },
         onError: (error: any) => {
             setError(

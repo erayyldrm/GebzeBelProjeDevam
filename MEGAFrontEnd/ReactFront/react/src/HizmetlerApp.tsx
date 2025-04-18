@@ -13,15 +13,20 @@ import Enderunokulları from "./components/hizmetler/atolyeler/enderun.tsx";
 import Bakimevi from "./components/hizmetler/bakimevi.tsx"
 import Egitimler from "./components/hizmetler/egitimler.tsx"
 import Bebekbakim from "./components/hizmetler/bebekbakım/bebekbakim.tsx";
-import Sportiff from "./components/hizmetler/atolyeler/sportif.tsx";
 import Fitness from "./components/hizmetler/egitimler/fitness.tsx";
 import Genc from "./components/hizmetler/egitimler/genc.tsx";
 import Tercih from "./components/hizmetler/egitimler/tercih.tsx";
 import Yaz from "./components/hizmetler/egitimler/yaz.tsx";
 import Aerobic from "./components/hizmetler/egitimler/Aerobic.tsx";
-import Nislemleri from "./components/hizmetler/evlendirme/nikah.tsx";
-import Guresss from "./components/hizmetler/güres/güress.tsx";
-
+import Ambalaj from "./components/hizmetler/geridonusum/ambalaj.tsx";
+import Bitkisel from "./components/hizmetler/geridonusum/bitkisel.tsx";
+import Elektronik from "./components/hizmetler/geridonusum/elektronik.tsx";
+import Evsel from "./components/hizmetler/geridonusum/evsel.tsx";
+import Hacimli from "./components/hizmetler/geridonusum/hacimli.tsx";
+import Moloz from "./components/hizmetler/geridonusum/moloz.tsx";
+import Piller from "./components/hizmetler/geridonusum/piller.tsx";
+import Sifiratik from "./components/hizmetler/geridonusum/sifiratik.tsx";
+import Tekstil from "./components/hizmetler/geridonusum/tekstil.tsx";
 
 
 
@@ -49,8 +54,16 @@ const HizmetlerApp: React.FC =() => {
             <Route path="/kutuphane" element={<Kutuphane/>}/>
             <Route path="/merkezler" element={<Merkezler/>}/>
             <Route path="/mesirealani" element={<Mesirealani/>}/>
-                <Route path="/evlendirme/nikah" element={<Nislemleri/>}/>
-                <Route path="/güres/güress" element={<Guresss/>}/>
+            <Route path="/geridonusum/ambalaj" element={<Ambalaj/>}/>
+            <Route path="/geridonusum/bitkisel" element={<Bitkisel/>}/>
+            <Route path="/geridonusum/elektronik" element={<Elektronik/>}/>
+            <Route path="/geridonusum/evsel" element={<Evsel/>}/>
+            <Route path="/geridonusum/hacimli" element={<Hacimli/>}/>
+            <Route path="/geridonusum/moloz" element={<Moloz/>}/>
+            <Route path="/geridonusum/piller" element={<Piller/>}/>
+            <Route path="/geridonusum/sifiratik" element={<Sifiratik/>}/>
+            <Route path="/geridonusum/tekstil" element={<Tekstil/>}/>
+
 
 
 

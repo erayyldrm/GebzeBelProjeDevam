@@ -1,82 +1,102 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const wasteTypes = [
     {
         icon: "🧃",
         title: "Ambalaj Atıkları",
         description: "Cam, plastik, metal ve kâğıt ambalaj atıkları.",
-        image: "/images/hizmetler/donusum/ambalaj.jpg"
+        image: "/images/hizmetler/donusum/ambalaj.jpg",
+        detailPage: "hizmetler/geridonusum/ambalaj",
+        mapLink: "http://google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8115684!4d29.4190946!16s%2Fg%2F11gnprgbd1?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D"
     },
     {
         icon: "🔋",
-        title: "Atık Piller Ve Akümülülaörler",
+        title: "Atık Piller Ve Akümülülatörler",
         description: "Kullanılmış pillerin çevreye zarar vermeden toplanması.",
-        image: "/images/hizmetler/donusum/pil.jpg"
+        image: "/images/hizmetler/donusum/pil.jpg",
+        detailPage: "hizmetler/geridonusum/piller",
+        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8115684!4d29.4190946!16s%2Fg%2F11gnprgbd1?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D"
     },
     {
-        icon: "📱",
+        icon: "️️🛢️",
         title: "Bitkisel Ve Atık Yağlar",
         description: "Kullanılmış yağların uygun şekilde bertaraf edilmesi.",
-        image: "/images/hizmetler/donusum/"
+        image: "/images/hizmetler/donusum/bitkisel.jpg",
+        detailPage: "hizmetler/geridonusum/bitkisel",
+        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8120141!4d29.4188972!16s%2Fg%2F11gnprgbd1?entry=tts&shorturl=1"
     },
     {
         icon: "📱",
         title: "Elektronik Atıklar",
-        description: "Kullanılmış yağların uygun şekilde bertaraf edilmesi.",
-        image: "/images/hizmetler/donusum/elektronik.jpg"
+        description: "Kullanılmış elektronik cihazların uygun şekilde bertaraf edilmesi.",
+        image: "/images/hizmetler/donusum/elektronik.jpg",
+        detailPage: "hizmetler/geridonusum/elektronik",
+        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8115684!4d29.4190946!16s%2Fg%2F11gnprgbd1?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D"
     },
     {
-        icon: "💊",
+        icon: "🍂",
         title: "Evsel Atıklar",
-        description: "Tarihi geçmiş ya da kullanılmayan ilaçlar.",
-        image: "/images/hizmetler/donusum/evsel.jpeg"
-    },
-    {
-        icon: "👞",
-        title: "İri Hacimli Atıklar",
-        description: "Kullanılmayan giysi, ayakkabı ve tekstil ürünleri.",
-        image: "/images/hizmetler/donusum/irihacimli.jpeg"
-    },
-    {
-        icon: "🖨️",
-        title: "Moloz Atıkları",
-        description: "Boş kartuş ve tonerlerin geri dönüşümü.",
-        image: "/images/hizmetler/donusum/moloz.jpg"
+        description: "Evsel Çöpler ve Organik Atıklar.",
+        image: "/images/hizmetler/donusum/evsel.jpeg",
+        detailPage: "hizmetler/geridonusum/evsel",
+        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8120141!4d29.4188972!16s%2Fg%2F11gnprgbd1?entry=tts&shorturl=1"
     },
     {
         icon: "🪑",
-        title:"Sıfır Atık Nedir ?",
-        description: "Eskimiş mobilya ve büyük hacimli atıklar.",
-        image: "/images/hizmetler/donusum/sifiratik.jpg"
+        title: "İri Hacimli Atıklar",
+        description: "Kullanılmayacak durumda olan büyük hacimli eşyaların toplanması.",
+        image: "/images/hizmetler/donusum/irihacimli.jpeg",
+        detailPage: "hizmetler/geridonusum/hacimli",
+        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8120141!4d29.4188972!16s%2Fg%2F11gnprgbd1?entry=tts&shorturl=1"
     },
     {
-        icon: "👞",
+        icon: "🏗️",
+        title: "Moloz Atıkları",
+        description: "İnşaat ve yıkım sonucu oluşan atıkların bertarafı.",
+        image: "/images/hizmetler/donusum/moloz.jpg",
+        detailPage: "hizmetler/geridonusum/moloz",
+        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8115684!4d29.4190946!16s%2Fg%2F11gnprgbd1?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D"
+    },
+    {
+        icon: "♻️",
+        title: "Sıfır Atık Nedir?",
+        description: "Atıkların geri dönüşümle bertaraf edilmesi.",
+        image: "/images/hizmetler/donusum/sifiratik.jpg",
+        detailPage: "hizmetler/geridonusum/sifiratik",
+        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8115684!4d29.4190946!16s%2Fg%2F11gnprgbd1?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D"
+    },
+    {
+        icon: "👕",
         title: "Tekstil Atıkları",
-        description: "Kimyasal içerikli ve özel bertaraf gerektiren atıklar.",
-        image: "/images/hizmetler/donusum/tekstil.jpg"
+        description: "Giysi, ayakkabı ve tekstil ürünlerinin geri dönüşümü.",
+        image: "/images/hizmetler/donusum/tekstil.jpg",
+        detailPage: "hizmetler/geridonusum/tekstil",
+        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8120141!4d29.4188972!16s%2Fg%2F11gnprgbd1?entry=tts&shorturl=1"
     }
 ];
 
 const GeriDonusumPage = () => {
-    const [activeButtons, setActiveButtons] = React.useState<Record<number, string>>({});
+    const [activeButtons, setActiveButtons] = useState<Record<number, string>>({});
+    const navigate = useNavigate();
 
-    const handleButtonClick = (cardIndex: number, buttonType: string) => {
-        setActiveButtons({
-            [cardIndex]: buttonType
-        });
+    const handleActionClick = (cardIndex: number, buttonType: string, detailPage: string, mapLink: string) => {
+        setActiveButtons({ [cardIndex]: buttonType });
+
+        if (buttonType === "detayli") {
+            navigate(`/${detailPage}`);
+        } else if (buttonType === "konum") {
+            window.open(mapLink, "_blank");
+        }
     };
 
     return (
-        <div
-            className="min-h-screen bg-green-50 text-gray-800 font-sans"
-            style={{
-                margin: '0 auto',
-                maxWidth: 'calc(100% - 120px)',
-                paddingLeft: '40px',
-                paddingRight: '20px',
-            }}
-        >
-            {/* Modern Header */}
+        <div className="min-h-screen bg-green-50 text-gray-800 font-sans" style={{
+            margin: '0 auto',
+            maxWidth: 'calc(100% - 120px)',
+            paddingLeft: '40px',
+            paddingRight: '20px',
+        }}>
             <header className="bg-green-100 px-6 py-10 rounded-b-2xl shadow-inner">
                 <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-6">
                     <div className="text-6xl sm:text-7xl">♻️</div>
@@ -91,18 +111,14 @@ const GeriDonusumPage = () => {
                 </div>
             </header>
 
-            {/* Content */}
             <div className="py-10 max-w-7xl mx-auto">
                 <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {wasteTypes.map((item, index) => (
-                        <div
-                            key={index}
-                            className="bg-white rounded-2xl shadow p-4 hover:shadow-lg transition flex flex-col justify-between h-full"
-                        >
+                        <div key={index} className="bg-white rounded-2xl shadow p-4 hover:shadow-lg transition flex flex-col justify-between h-full">
                             <img
                                 src={item.image}
                                 alt={item.title}
-                                className="w-full h-40 object-cover rounded-xl mb-4"
+                                className="w-full h-32 object-cover object-center rounded-xl mb-4"
                             />
                             <div className="flex-1">
                                 <h2 className="text-2xl font-semibold mb-2">
@@ -112,7 +128,7 @@ const GeriDonusumPage = () => {
                             </div>
                             <div className="flex flex-col sm:flex-row justify-between gap-2 mb-4">
                                 <button
-                                    onClick={() => handleButtonClick(index, "detayli")}
+                                    onClick={() => handleActionClick(index, "detayli", item.detailPage, item.mapLink)}
                                     style={
                                         activeButtons[index] === "detayli"
                                             ? { backgroundColor: "#022842", color: "#FFFFFF" }
@@ -123,7 +139,7 @@ const GeriDonusumPage = () => {
                                     Detaylı Bilgi
                                 </button>
                                 <button
-                                    onClick={() => handleButtonClick(index, "konum")}
+                                    onClick={() => handleActionClick(index, "konum", item.detailPage, item.mapLink)}
                                     style={
                                         activeButtons[index] === "konum"
                                             ? { backgroundColor: "#022842", color: "#FFFFFF" }
@@ -135,7 +151,7 @@ const GeriDonusumPage = () => {
                                 </button>
                             </div>
                             <div className="text-xs text-gray-500 border-t pt-2">
-                                İletişim: 444 41 41 | info@gebze.bel.tr
+                                İletişim :  0262 642 10 10 | sifiratik@gebze.bel.tr
                             </div>
                         </div>
                     ))}

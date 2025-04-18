@@ -61,14 +61,14 @@ const BugunkuGebzePage: React.FC = () => {
         <div className="main-body">
             <div className="page-wrapper">
                 <div className="d-flex">
-                    <div className="col-lg ms-auto">
-                        <div className="card">
-                            <div className="card-block p-4 md:p-6">
+                    <div className="col-lg ms-auto ">
+                        <div className="card max-w-4xl mx-auto top-2">
+                            <div className="card-block p-4 md:p-6  ">
                                 {/* Enhanced Image slider with Tailwind */}
                                 <div className="relative w-full overflow-hidden rounded-lg shadow-xl">
                                     <h1 className="text-2xl font-bold mb-4">Bugünkü Gebze</h1>
                                     <ImageSlider slides={slides}/>
-                                </div>
+                                    </div>
                                 <br/>
                                 <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">BUGÜNKÜ GEBZE</h2>
 
