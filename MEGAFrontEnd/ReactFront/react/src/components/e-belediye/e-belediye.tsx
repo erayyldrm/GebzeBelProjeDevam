@@ -5,7 +5,7 @@ const EBelediyeSayfasi: React.FC = () => {
     return (
         <div className="bg-gray-100 min-h-screen p-6">
             <div className="max-w-7xl mx-auto">
-                
+
                 {/* Main Content */}
                 <div className="bg-white p-6 rounded-b-lg shadow-md mb-6">
                     {/* Vergi İşlemleri Bölümü */}

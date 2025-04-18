@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+
 import './Haberler.css';
 
 // Interface for article data
@@ -26,9 +26,9 @@ const Haberler: React.FC = () => {
                 id: 1,
                 title: "Bosmogenic an designed for narita tourism in moon",
                 category: "LIFESTYLE",
-                image: "https://source.unsplash.com/random/800x600/?yoga",
+                image: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 author: "Jon Deo",
-                authorImage: "/assets/avatars/avatar1.jpg",
+                authorImage: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 date: "March 29, 2022",
                 comments: 99
             },
@@ -36,9 +36,9 @@ const Haberler: React.FC = () => {
                 id: 2,
                 title: "Dui fermes tempora maiores dicta anim? Vel curae eaque ab eaque pharetra blandit",
                 category: "POLITICS",
-                image: "https://source.unsplash.com/random/800x600/?newspaper",
+                image: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 author: "Jon Deo",
-                authorImage: "/assets/avatars/avatar2.jpg",
+                authorImage: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 date: "March 29, 2022",
                 comments: 99
             },
@@ -46,9 +46,9 @@ const Haberler: React.FC = () => {
                 id: 3,
                 title: "Virtual reality is here!",
                 category: "TECHNOLOGY",
-                image: "https://source.unsplash.com/random/800x600/?vr",
+                image: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 author: "Jon Deo",
-                authorImage: "/assets/avatars/avatar3.jpg",
+                authorImage: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 date: "March 29, 2022",
                 comments: 45
             },
@@ -56,9 +56,9 @@ const Haberler: React.FC = () => {
                 id: 4,
                 title: "Running on the field.",
                 category: "TRAVEL",
-                image: "https://source.unsplash.com/random/800x600/?running",
+                image: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 author: "Jon Deo",
-                authorImage: "/assets/avatars/avatar4.jpg",
+                authorImage: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 date: "March 29, 2022",
                 comments: 32
             },
@@ -66,9 +66,9 @@ const Haberler: React.FC = () => {
                 id: 5,
                 title: "Beautiful lady hookup",
                 category: "DESIGN",
-                image: "https://source.unsplash.com/random/800x600/?design",
+                image: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 author: "Anonymous",
-                authorImage: "/assets/avatars/avatar5.jpg",
+                authorImage: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 date: "March 22, 2022",
                 comments: 15
             },
@@ -76,9 +76,9 @@ const Haberler: React.FC = () => {
                 id: 6,
                 title: "Need some fresh air",
                 category: "TRAVEL",
-                image: "https://source.unsplash.com/random/800x600/?nature",
+                image: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 author: "Anonymous",
-                authorImage: "/assets/avatars/avatar6.jpg",
+                authorImage: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 date: "April 20, 2022",
                 comments: 8
             },
@@ -86,9 +86,9 @@ const Haberler: React.FC = () => {
                 id: 7,
                 title: "Art is creative minds",
                 category: "TECHNOLOGY",
-                image: "https://source.unsplash.com/random/800x600/?art",
+                image: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 author: "Anonymous",
-                authorImage: "/assets/avatars/avatar7.jpg",
+                authorImage: "/images/Haberler/habergörselleri/ziyaretler/ziyaret1.jpg",
                 date: "May 20, 2022",
                 comments: 12
             }
@@ -111,34 +111,7 @@ const Haberler: React.FC = () => {
 
     return (
         <div className="haberler-container">
-            <header className="haberler-header">
-                <div className="logo">
-                    <Link to="/">
-                        <img src="/assets/logo/neoton-logo.png" alt="Neoton" />
-                    </Link>
-                </div>
-                <nav className="main-nav">
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/pages">Pages</Link></li>
-                        <li><Link to="/categories">Categories</Link></li>
-                        <li><Link to="/blog">Blog</Link></li>
-                        <li><Link to="/posts">Posts</Link></li>
-                    </ul>
-                </nav>
-                <div className="nav-actions">
-                    <button className="theme-toggle">
-                        <span className="toggle-icon">🌓</span>
-                    </button>
-                    <button className="search-button">
-                        <span className="search-icon">🔍</span>
-                    </button>
-                    <button className="sign-in-button">Sign In</button>
-                    <button className="menu-toggle">
-                        <span className="menu-icon">☰</span>
-                    </button>
-                </div>
-            </header>
+            <br/>
 
             <section className="featured-articles">
                 <div className="featured-slider">
