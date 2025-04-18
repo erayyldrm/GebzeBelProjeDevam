@@ -48,8 +48,8 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
                                     to={item.path || "#"}
                                     className={`flex items-center gap-4 px-5 py-3 transition-all duration-200 
                                     ${isActive
-                                        ? "text-[#faa61a] font-semibold bg-blue-700"
-                                        : "text-white hover:bg-blue-800"}`}
+                                        ? "text-[#faa61a] font-semibold"
+                                        : "text-white"}`}
                                 >
                                     <span className={`text-xl ${isActive ? 'text-[#faa61a]' : 'text-white'}`}>
                                         {item.icon}
