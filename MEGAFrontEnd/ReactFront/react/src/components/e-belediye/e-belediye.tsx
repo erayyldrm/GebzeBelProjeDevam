@@ -1,31 +1,11 @@
 import React from 'react';
 import { FileText, SearchCheck, CreditCard, Landmark, MessageCircle, FileCheck, HelpCircle, Activity, Target, ArrowUpCircle, Home, Search, MapPin, Calendar, User, Lock } from 'lucide-react';
+
 const EBelediyeSayfasi: React.FC = () => {
     return (
         <div className="bg-gray-100 min-h-screen p-6">
             <div className="max-w-7xl mx-auto">
-                {/* Header with Logo and Search Bar */}
-                <div className="bg-white p-6 rounded-t-lg shadow-md mb-0 flex flex-col items-center">
-                    {/* Logo */}
-                    <div className="mb-4">
-                        <img
-                            src="/images/ebelediye/gebze-belediyesi-e-belediye-logo.png"
-                            alt="Gebze Belediyesi E-Belediye Logo"
-                            className="h-20 object-contain"/>
-                    </div>
-                    {/* Search Bar */}
-                    <div className="w-full max-w-2xl relative mb-2">
-                        <div className="relative">
-                            <input
-                                type="text"
-                                placeholder="Hizmet ara..."
-                                className="w-full p-4 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                            <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                                <Search className="text-gray-400" size={20}/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 {/* Main Content */}
                 <div className="bg-white p-6 rounded-b-lg shadow-md mb-6">
                     {/* Vergi İşlemleri Bölümü */}
@@ -34,7 +14,7 @@ const EBelediyeSayfasi: React.FC = () => {
                             <Landmark className="text-blue-600 mr-3" size={28} />
                             <h2 className="text-2xl font-bold text-blue-800">VERGİ İŞLEMLERİ</h2>
                         </div>
-                        <div className="grid grid-cols-4 md:grid-cols-1 gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             {/* Vergi/Borç Ödeme Kartı */}
                             <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer">
                                 <div className="bg-gradient-to-br from-blue-100 to-blue-200 p-4 rounded-full mb-4 shadow-inner">
@@ -65,7 +45,7 @@ const EBelediyeSayfasi: React.FC = () => {
                             <MessageCircle className="text-red-600 mr-3" size={28} />
                             <h2 className="text-2xl font-bold text-red-800">GEBZE İLETİŞİM MERKEZİ</h2>
                         </div>
-                        <div className="grid grid-cols-4 md:grid-cols-1 gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             {/* Başvuru Formu Kartı */}
                             <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer">
                                 <div className="bg-gradient-to-br from-red-100 to-red-200 p-4 rounded-full mb-4 shadow-inner">
@@ -95,7 +75,7 @@ const EBelediyeSayfasi: React.FC = () => {
                             <Landmark className="text-indigo-600 mr-3" size={28} />
                             <h2 className="text-2xl font-bold text-indigo-800">İNTERAKTİF HİZMETLER</h2>
                         </div>
-                        <div className="grid grid-cols-4 md:grid-cols-1 gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             {/* e-Eksper */}
                             <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer">
                                 <div className="bg-indigo-100 p-4 rounded-full mb-4">
@@ -162,7 +142,7 @@ const EBelediyeSayfasi: React.FC = () => {
                             <Landmark className="text-indigo-600 mr-3" size={28} />
                             <h2 className="text-2xl font-bold text-indigo-800">SPOR & EĞİTİM</h2>
                         </div>
-                        <div className="grid grid-cols-4 md:grid-cols-1 gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             {/* SENDE */}
                             <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer">
                                 <div className="bg-indigo-100 p-4 rounded-full mb-4">
@@ -180,7 +160,7 @@ const EBelediyeSayfasi: React.FC = () => {
                             <h2 className="text-2xl font-bold text-teal-800">İMAR YÖNETİM SİSTEMİ</h2>
                         </div>
 
-                        <div className="grid grid-cols-4 md:grid-cols-1 gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             {/* İmar Durumu Başvurusu */}
                             <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer">
                                 <div className="bg-teal-100 p-4 rounded-full mb-4">
@@ -232,7 +212,7 @@ const EBelediyeSayfasi: React.FC = () => {
                                 <div className="bg-pink-100 p-4 rounded-full mb-4">
                                     <Home className="text-pink-600" size={36} />
                                 </div>
-                                <h3 className="text-lg font-semibold">Kat İrtifakı / Mülkiyet Projesi Onayı</h3>
+                                <h3 className="text-lg font-semibold">Kat İrtifakı & Mülkiyet Projesi Onayı</h3>
                             </div>
 
                             <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer">
@@ -250,7 +230,7 @@ const EBelediyeSayfasi: React.FC = () => {
                             <h2 className="text-2xl font-bold text-teal-800">BİLGİLENDİRME HİZMETLERİ</h2>
                         </div>
 
-                        <div className="grid grid-cols-4 md:grid-cols-1 gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             {/* Bilgilendirme hizmetleri entries */}
                             <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer">
                                 <div className="bg-teal-100 p-4 rounded-full mb-4">
@@ -263,7 +243,7 @@ const EBelediyeSayfasi: React.FC = () => {
                                 <div className="bg-blue-100 p-4 rounded-full mb-4">
                                     <SearchCheck className="text-blue-600" size={36} />
                                 </div>
-                                <h3 className="text-lg font-semibold">Arsa Metrekare Birim Değeri Sorgulama</h3>
+                                <h3 className="text-lg font-semibold">Arsa Metrekare Birim<br/> Değeri Sorgulama</h3>
                             </div>
 
                             <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer">
@@ -317,7 +297,7 @@ const EBelediyeSayfasi: React.FC = () => {
 
                             <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer">
                                 <div className="bg-gray-100 p-4 rounded-full mb-4">
-                                    <MessageCircle className="text-gray-600" size={36} />
+                                    <span className="text-3xl">🪦</span>
                                 </div>
                                 <h3 className="text-lg font-semibold">Vefat Edenler</h3>
                             </div>
@@ -330,7 +310,7 @@ const EBelediyeSayfasi: React.FC = () => {
                             <h2 className="text-2xl font-bold text-teal-800">KURUM İÇİ İŞLEMLER</h2>
                         </div>
 
-                        <div className="grid grid-cols-4 md:grid-cols-1 gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             {/* Personel Giriş */}
                             <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer">
                                 <div className="bg-blue-100 p-4 rounded-full mb-4">

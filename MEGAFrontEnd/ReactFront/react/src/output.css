@@ -290,11 +290,17 @@
 .max-h-\[90vh\] {
   max-height: 90vh;
 }
+.max-h-\[270px\] {
+  max-height: 270px;
+}
 .max-h-\[500px\] {
   max-height: 500px;
 }
 .max-h-full {
   max-height: 100%;
+}
+.min-h-\[300px\] {
+  min-height: 300px;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -316,6 +322,9 @@
 }
 .w-\[90\%\] {
   width: 90%;
+}
+.w-\[200px\] {
+  width: 200px;
 }
 .w-\[300px\] {
   width: 300px;
@@ -361,6 +370,9 @@
 }
 .flex-1 {
   flex: 1;
+}
+.flex-2 {
+  flex: 2;
 }
 .flex-shrink-0 {
   flex-shrink: 0;
@@ -636,6 +648,9 @@
 }
 .whitespace-nowrap {
   white-space: nowrap;
+}
+.text-\[\#faa61a\] {
+  color: #faa61a;
 }
 .capitalize {
   text-transform: capitalize;
