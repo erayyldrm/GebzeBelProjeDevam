@@ -14,13 +14,14 @@ interface ServiceDetailProps {
 
 const workshopData = [];
 
-const Tercih: React.FC<ServiceDetailProps> = ({
-                                                      title = "DOĞRU TERCİH HAZIR KURSLAR",
-                                                      description = "https://sende.gebze.bel.tr/egitimler?categories[0]=33",
-                                                      imageUrl = "/images/hizmetler/bebekbakım/bebekbakim.jpg",
+const Guresss: React.FC<ServiceDetailProps> = ({
+                                                      title = "GELENEKSEL HÜNKAR ÇAYIRI YAĞLI GÜREŞLERİ",
+                                                      description = "",
+                                                      imageUrl = "",
                                                       address = "",
                                                       phone = "",
                                                       workingHours = "",
+
                                                   }) => {
     const [openIndexes, setOpenIndexes] = useState<number[]>([]);
 
@@ -49,13 +50,13 @@ const Tercih: React.FC<ServiceDetailProps> = ({
                     <div className="flex justify-center">
                         <div className="relative h-[500px] sm:h-[600px] md:h-[750px] lg:h-[850px] w-[90%] sm:w-3/4 md:w-2/3 lg:w-2/3 rounded-lg overflow-hidden shadow-lg">
                             <img
-                                src="/images/hizmetler/egitimler/hazırkurslar.jpg"
+                                src="/images/hizmetler/güres/güreş.jpg"
                                 alt={title}
                                 className="w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t flex items-center justify-center">
                                 <div className="text-white text-center px-4 max-w-2xl">
-                                    <p className="text-lg md:text-xl font-medium"></p>
+                                    <p className="text-lg md:text-xl font-medium">{description}</p>
                                 </div>
                             </div>
                         </div>
@@ -73,26 +74,10 @@ const Tercih: React.FC<ServiceDetailProps> = ({
                             <h2 className="text-2xl font-semibold text-blue-700 mb-4 border-b pb-2">
                                 Verilen Hizmetler
                             </h2>
-                            <p className="text-gray-700 mb-4 text-sm sm:text-base">
-                                Lise ve üniversite mezunu olan gençlerimize Doğru Tercih projemiz bünyesinde uzman antrenörler eşliğinde, doğru antrenmanlar programları, rehberlik hizmetleri ve nizami parkur eğitimleri ile istedikleri hedefe ulaşmaları yolunda destek olmaktayız.
-<br/>
-                                BRANŞLAR
-                                <br/>
-                                Spor Bilimleri
-                                <br/>
-                                Polis Akademisi
-                                <br/>
-                                Askeri Okullar
-                                <br/>
-                                Polis Meslek Yüksek Okulu
-                                <br/>
-                                Bekçilik </p> </section>
-                        <a
-                            href="https://sende.gebze.bel.tr/egitimler?categories[0]=33"
-                            className=" font-semibold inline-block mt-2 text-blue bg-blue-600 hover:bg-blue-700 transitionflex items-center justify-center px-4 py-3 rounded-md transition-all shadow-md text-xs flex-2"
-                        >
-                            Kayıt Linki
-                        </a>
+                            <p className="text-gray-700 mb-4 text-sm sm:text-base">VERİLEN HİZMETLER <br/>
+                                Her yıl Gebze’de Fatih’in Otağında bu organizasyon gerçekleştirilmektedir.         </p>   </section>
+                        {/* PDF İndir Alanı */}
+
                         {/* Atölyeler */}
                         <section className="mb-16">
                             <div className="space-y-4">
@@ -137,20 +122,20 @@ const Tercih: React.FC<ServiceDetailProps> = ({
                                 <div className="flex items-start">
                                     <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
                                     <p className="text-gray-700">
-                                        Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze Kocaeli{" "}
+                                        Cumhuriyet Mah. 2257 Sk. Gebze / Kocaeli
+
+                                        {" "}
                                         {address}
                                     </p>
                                 </div>
                                 <br />
                                 <div className="flex items-center">
                                     <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                    <p className="text-gray-700">0262 641 24 93{phone}</p>
+                                    <p className="text-gray-700">0262 641 24 92
+                                        {phone}</p>
                                 </div>
                                 <br />
-                                <div className="flex items-center">
-                                    <Clock className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                    <p className="text-gray-700">08:00 - 17:00 {workingHours}</p>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -160,4 +145,4 @@ const Tercih: React.FC<ServiceDetailProps> = ({
     );
 };
 
-export default Tercih;
+export default Guresss;
