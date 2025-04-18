@@ -173,6 +173,9 @@
 .mt-\[-40px\] {
   margin-top: -40px;
 }
+.mt-\[0px\] {
+  margin-top: 0px;
+}
 .mt-auto {
   margin-top: auto;
 }
@@ -254,6 +257,12 @@
 .h-\[200px\] {
   height: 200px;
 }
+.h-\[250px\] {
+  height: 250px;
+}
+.h-\[270px\] {
+  height: 270px;
+}
 .h-\[300px\] {
   height: 300px;
 }
@@ -287,6 +296,9 @@
 .w-1\/2 {
   width: calc(1/2 * 100%);
 }
+.w-1\/3 {
+  width: calc(1/3 * 100%);
+}
 .w-2\/3 {
   width: calc(2/3 * 100%);
 }
@@ -296,17 +308,14 @@
 .w-5\/6 {
   width: calc(5/6 * 100%);
 }
+.w-\[90\%\] {
+  width: 90%;
+}
 .w-\[300px\] {
   width: 300px;
 }
-.w-\[890px\] {
-  width: 890px;
-}
-.w-\[950px\] {
-  width: 950px;
-}
-.w-\[990px\] {
-  width: 990px;
+.w-\[900px\] {
+  width: 900px;
 }
 .w-auto {
   width: auto;
@@ -434,6 +443,9 @@
 .items-start {
   align-items: flex-start;
 }
+.items-stretch {
+  align-items: stretch;
+}
 .justify-between {
   justify-content: space-between;
 }
@@ -482,6 +494,10 @@
   border-style: var(--tw-border-style);
   border-width: 2px;
 }
+.border-3 {
+  border-style: var(--tw-border-style);
+  border-width: 3px;
+}
 .border-t {
   border-top-style: var(--tw-border-style);
   border-top-width: 1px;
@@ -501,6 +517,9 @@
 .border-l-4 {
   border-left-style: var(--tw-border-style);
   border-left-width: 4px;
+}
+.border-\[\#891737\] {
+  border-color: #891737;
 }
 .border-transparent {
   border-color: transparent;
@@ -523,9 +542,6 @@
 .bg-\[\#891737\] {
   background-color: #891737;
 }
-.bg-\[\#f7a600\] {
-  background-color: #f7a600;
-}
 .bg-\[\#ffffff\] {
   background-color: #ffffff;
 }
@@ -542,10 +558,6 @@
 }
 .bg-\[url\(\'white\.jpg\'\)\] {
   background-image: url('white.jpg');
-}
-.from-transparent {
-  --tw-gradient-from: transparent;
-  --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
 }
 .to-transparent {
   --tw-gradient-to: transparent;
@@ -779,13 +791,6 @@
   &:hover {
     @media (hover: hover) {
       background-color: color-mix(in oklab, #4FC3F7 80%, transparent);
-    }
-  }
-}
-.hover\:bg-\[gray-200\] {
-  &:hover {
-    @media (hover: hover) {
-      background-color: gray-200;
     }
   }
 }
