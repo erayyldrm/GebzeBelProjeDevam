@@ -103,7 +103,12 @@ const Aerobic: React.FC<ServiceDetailProps> = ({
 
                                 +90 262 641 24 93
                             </p>   </section>
-
+                        <a
+                            href="https://sende.gebze.bel.tr/egitimler?categories[0]=41&majors[0]=36"
+                            className=" font-semibold inline-block mt-2 text-blue bg-blue-600 hover:bg-blue-700 transitionflex items-center justify-center px-4 py-3 rounded-md transition-all shadow-md text-xs flex-2"
+                        >
+                            Detaylı Bilgi ve Kayıt Linki İçin Tıklayınız
+                        </a>
                         {/* Atölyeler */}
                         <section className="mb-16">
                             <div className="space-y-4">

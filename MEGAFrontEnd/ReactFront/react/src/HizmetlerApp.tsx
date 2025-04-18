@@ -19,6 +19,9 @@ import Genc from "./components/hizmetler/egitimler/genc.tsx";
 import Tercih from "./components/hizmetler/egitimler/tercih.tsx";
 import Yaz from "./components/hizmetler/egitimler/yaz.tsx";
 import Aerobic from "./components/hizmetler/egitimler/Aerobic.tsx";
+import Nislemleri from "./components/hizmetler/evlendirme/nikah.tsx";
+import Guresss from "./components/hizmetler/güres/güress.tsx";
+
 
 
 
@@ -46,6 +49,8 @@ const HizmetlerApp: React.FC =() => {
             <Route path="/kutuphane" element={<Kutuphane/>}/>
             <Route path="/merkezler" element={<Merkezler/>}/>
             <Route path="/mesirealani" element={<Mesirealani/>}/>
+                <Route path="/evlendirme/nikah" element={<Nislemleri/>}/>
+                <Route path="/güres/güress" element={<Guresss/>}/>
 
 
 

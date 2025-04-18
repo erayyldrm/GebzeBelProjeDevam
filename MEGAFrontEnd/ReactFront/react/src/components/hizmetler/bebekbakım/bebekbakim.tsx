@@ -15,7 +15,7 @@ interface ServiceDetailProps {
 const workshopData = [];
 
 const Bebekbakim: React.FC<ServiceDetailProps> = ({
-                                                      title = "Güzide 7/24 Bebek ve Çocuk Bakım Evi",
+                                                      title = "GÜZİDE BEBEK VE ÇOCUK BAKIM EVİ",
                                                       description = "",
                                                       imageUrl = "/images/hizmetler/bebekbakım/bebekbakim.jpg",
                                                       address = "",
