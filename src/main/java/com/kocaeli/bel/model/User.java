@@ -21,6 +21,14 @@ public class User {
     private String TCNo;
     @Column()
     private String password;
+    @Column()
+    private String role;
+
+    public User(String role, String TCNo, String password) {
+        this.role = role;
+        this.TCNo = TCNo;
+        this.password = password;
+    }
 
     public User(Long id, String TCNo, String password) {
         this.id = id;

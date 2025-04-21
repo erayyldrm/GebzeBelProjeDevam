@@ -257,12 +257,6 @@
 .h-\[200px\] {
   height: 200px;
 }
-.h-\[250px\] {
-  height: 250px;
-}
-.h-\[270px\] {
-  height: 270px;
-}
 .h-\[300px\] {
   height: 300px;
 }
@@ -284,20 +278,23 @@
 .max-h-\[90vh\] {
   max-height: 90vh;
 }
+.max-h-\[270px\] {
+  max-height: 270px;
+}
 .max-h-\[500px\] {
   max-height: 500px;
 }
-.max-h-full {
-  max-height: 100%;
+.min-h-\[300px\] {
+  min-height: 300px;
+}
+.min-h-\[300px\] {
+  min-height: 300px;
 }
 .min-h-screen {
   min-height: 100vh;
 }
 .w-1\/2 {
   width: calc(1/2 * 100%);
-}
-.w-1\/3 {
-  width: calc(1/3 * 100%);
 }
 .w-2\/3 {
   width: calc(2/3 * 100%);
@@ -311,11 +308,11 @@
 .w-\[90\%\] {
   width: 90%;
 }
+.w-\[200px\] {
+  width: 200px;
+}
 .w-\[300px\] {
   width: 300px;
-}
-.w-\[900px\] {
-  width: 900px;
 }
 .w-auto {
   width: auto;
@@ -352,6 +349,9 @@
 }
 .flex-1 {
   flex: 1;
+}
+.flex-2 {
+  flex: 2;
 }
 .flex-shrink-0 {
   flex-shrink: 0;
@@ -446,9 +446,6 @@
 .items-start {
   align-items: flex-start;
 }
-.items-stretch {
-  align-items: stretch;
-}
 .justify-between {
   justify-content: space-between;
 }
@@ -497,10 +494,6 @@
   border-style: var(--tw-border-style);
   border-width: 2px;
 }
-.border-3 {
-  border-style: var(--tw-border-style);
-  border-width: 3px;
-}
 .border-t {
   border-top-style: var(--tw-border-style);
   border-top-width: 1px;
@@ -509,10 +502,6 @@
   border-bottom-style: var(--tw-border-style);
   border-bottom-width: 1px;
 }
-.border-b-0 {
-  border-bottom-style: var(--tw-border-style);
-  border-bottom-width: 0px;
-}
 .border-b-2 {
   border-bottom-style: var(--tw-border-style);
   border-bottom-width: 2px;
@@ -520,9 +509,6 @@
 .border-l-4 {
   border-left-style: var(--tw-border-style);
   border-left-width: 4px;
-}
-.border-\[\#891737\] {
-  border-color: #891737;
 }
 .border-transparent {
   border-color: transparent;
@@ -545,11 +531,12 @@
 .bg-\[\#891737\] {
   background-color: #891737;
 }
-.bg-\[\#ffffff\] {
-  background-color: #ffffff;
-}
 .bg-transparent {
   background-color: transparent;
+}
+.bg-gradient-to-br {
+  --tw-gradient-position: to bottom right in oklab;
+  background-image: linear-gradient(var(--tw-gradient-stops));
 }
 .bg-gradient-to-r {
   --tw-gradient-position: to right in oklab;
@@ -619,6 +606,9 @@
 }
 .whitespace-nowrap {
   white-space: nowrap;
+}
+.text-\[\#faa61a\] {
+  color: #faa61a;
 }
 .capitalize {
   text-transform: capitalize;
@@ -753,6 +743,11 @@
     visibility: visible;
   }
 }
+.\*\:text-\[\#faa61a\] {
+  :is(& > *) {
+    color: #faa61a;
+  }
+}
 .group-hover\:scale-105 {
   &:is(:where(.group):hover *) {
     @media (hover: hover) {
@@ -794,6 +789,13 @@
   &:hover {
     @media (hover: hover) {
       background-color: color-mix(in oklab, #4FC3F7 80%, transparent);
+    }
+  }
+}
+.hover\:text-\[\#faa61a\] {
+  &:hover {
+    @media (hover: hover) {
+      color: #faa61a;
     }
   }
 }

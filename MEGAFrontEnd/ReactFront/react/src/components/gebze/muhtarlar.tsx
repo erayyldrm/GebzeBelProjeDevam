@@ -1,6 +1,4 @@
 import React from "react";
-import Sidebar from "../SideBar/sidebar.tsx";
-import { gebze } from "../_SayfaBilgileri/Sayfalar.tsx";
 
 interface CouncilMember {
     name: string;

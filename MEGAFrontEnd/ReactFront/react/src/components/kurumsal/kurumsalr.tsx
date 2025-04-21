@@ -75,7 +75,8 @@ const documents = [
             { name: "Gebze Belediyesi 2006 - 2010 Stratejik Plan ", url: "/2006plan.pdf" },
         ],
     },
-]
+];
+
 const Kararlar = () => {
     const [activeTab, setActiveTab] = useState<string>(documents[0].department);
 
@@ -83,35 +84,34 @@ const Kararlar = () => {
         <div
             className="p-6 bg-gray-50 shadow-lg min-h-screen"
             style={{
-                margin: '0 auto', // Ortalanmış sayfa
-                maxWidth: 'calc(100% - 80px)', // Sağ taraftan genişlik ayarı
-                padding: '0 20px', // İçerik boşlukları
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)', // Sayfa arkasına gölge
+                margin: '0 auto',
+                maxWidth: 'calc(100% - 80px)',
+                padding: '0 20px',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
             }}
         >
             <h1 className="text-3xl font-bold text-center mb-12 text-blue-700">
                 Kurumsal Raporlar
             </h1>
 
-            {/* Sekmeler - Inline style ile renk kontrolü */}
             <div className="flex flex-wrap justify-center gap-3 mb-12">
                 {documents.map((category) => (
                     <button
                         key={category.department}
                         onClick={() => setActiveTab(category.department)}
-                        style={
-                            activeTab === category.department
-                                ? { backgroundColor: "#022842", color: "#FFFFFF" } // Seçili başlık için renk
-                                : { backgroundColor: "#FFFFFF", color: "#000000" } // Seçili olmayan başlık için renk
-                        }
-                        className="px-6 py-3 text-base md:text-lg rounded-md font-semibold border-2 transition-all duration-200"
+                        style={{
+                            ...(activeTab === category.department
+                                ? { backgroundColor: "#022842", color: "#FFFFFF" }
+                                : { backgroundColor: "#FFFFFF", color: "#000000" }),
+                            borderRadius: "1rem" // Buton radius'u burada
+                        }}
+                        className="px-6 py-3 text-base md:text-lg font-semibold border-2 transition-all duration-200"
                     >
                         {category.department}
                     </button>
                 ))}
             </div>
 
-            {/* İçerik */}
             {activeTab && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
                     {documents

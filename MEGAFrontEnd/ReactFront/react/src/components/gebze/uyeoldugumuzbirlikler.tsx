@@ -50,31 +50,35 @@ const membershipData = [
 
 const CorporateMembershipCard: React.FC = () => {
     return (
-        <div className="container mx-auto px-4 py-8">
-            <div className="bg-blue-900 rounded-2xl p-2 flex justify-center items-center max-w-[466px] mx-auto">
+        <div className="container mx-auto px-4 py-8"><br/>
+            {/* Başlık Kutusu */}
+            <div className="bg-blue-900 rounded-2xl p-2 flex justify-center items-center max-w-[466px] mx-auto mb-6">
                 <img
                     src="/images/gebze/uyeoldugumuzbirlikler/gebze-belediyesi-birlik.png"
                     alt="Gebze Belediyesi"
                     className="h-24 object-contain"
                 />
             </div>
-            <br/>
-            <div className="grid grid-cols-3 gap-8 bg-white p-8 rounded-b-2xl shadow-lg">
+
+            {/* Kartlar */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white p-6 rounded-b-2xl shadow-lg">
                 {membershipData.map((org, index) => (
                     <div
                         key={index}
                         className="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl flex flex-col"
                     >
                         <div className="p-6 flex flex-col items-center text-center flex-grow">
-                            <div className="mb-4 w-48 h-48 flex items-center justify-center">
+                            {/* Resim */}
+                            <div className="mb-4 w-[200px] h-[200px] flex items-center justify-center">
                                 <img
                                     src={org.logo}
                                     alt={org.title}
-                                    className="max-w-full max-h-full object-contain"
+                                    className="w-full h-full object-contain"
+                                    style={{ width: '200px', height: '200px' }}
                                 />
                             </div>
 
-                            <h3 className="text-xl font-semibold text-gray-800 mb-4 flex-grow">
+                            <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4 flex-grow">
                                 {org.title}
                             </h3>
                         </div>
@@ -88,7 +92,7 @@ const CorporateMembershipCard: React.FC = () => {
                         </div>
                     </div>
                 ))}
-            </div><br/><br/>
+            </div>
         </div>
     );
 };
