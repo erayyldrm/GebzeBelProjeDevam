@@ -13,7 +13,7 @@ import Enderunokulları from "./components/hizmetler/atolyeler/enderun.tsx";
 import Bakimevi from "./components/hizmetler/bakimevi.tsx"
 import Egitimler from "./components/hizmetler/egitimler.tsx"
 import Bebekbakim from "./components/hizmetler/bebekbakım/bebekbakim.tsx";
-import Sportiff from "./components/hizmetler/atolyeler/sportif.tsx";
+
 import Fitness from "./components/hizmetler/egitimler/fitness.tsx";
 import Genc from "./components/hizmetler/egitimler/genc.tsx";
 import Tercih from "./components/hizmetler/egitimler/tercih.tsx";
@@ -21,6 +21,16 @@ import Yaz from "./components/hizmetler/egitimler/yaz.tsx";
 import Aerobic from "./components/hizmetler/egitimler/Aerobic.tsx";
 import Nislemleri from "./components/hizmetler/evlendirme/nikah.tsx";
 import Guresss from "./components/hizmetler/güres/güress.tsx";
+import Aile from "./components/hizmetler/merkezler/aile.tsx";
+import Arapcesme from "./components/hizmetler/merkezler/arapcesme.tsx";
+import Atli from "./components/hizmetler/merkezler/atli.tsx";
+import Beylikbagi from "./components/hizmetler/merkezler/beylikbagi.tsx";
+import Eray from "./components/hizmetler/merkezler/eray.tsx";
+import Gebze from "./components/hizmetler/merkezler/gebze.tsx";
+import Gesmek from "./components/hizmetler/merkezler/gesmek.tsx";
+import Güzide from "./components/hizmetler/merkezler/güzide.tsx";
+import İstasyon from "./components/hizmetler/merkezler/istasyon.tsx";
+import Hayvan from "./components/hizmetler/merkezler/hayvan.tsx";
 
 
 
@@ -51,6 +61,16 @@ const HizmetlerApp: React.FC =() => {
             <Route path="/mesirealani" element={<Mesirealani/>}/>
                 <Route path="/evlendirme/nikah" element={<Nislemleri/>}/>
                 <Route path="/güres/güress" element={<Guresss/>}/>
+            <Route path="/merkezler/aile" element={<Aile/>}/>
+            <Route path="/merkezler/arapcesme" element={<Arapcesme/>}/>
+            <Route path="/merkezler/atli" element={<Atli/>}/>
+            <Route path="/merkezler/beylikbagi" element={<Beylikbagi/>}/>
+            <Route path="/merkezler/eray" element={<Eray/>}/>
+            <Route path="/merkezler/gebze" element={<Gebze/>}/>
+            <Route path="/merkezler/gesmek" element={<Gesmek/>}/>
+            <Route path="/merkezler/güzide" element={<Güzide/>}/>
+            <Route path="/merkezler/istasyon" element={<İstasyon/>}/>
+            <Route path="/merkezler/Hayvan" element={<Hayvan/>}/>
 
 
 

@@ -9,7 +9,7 @@ const bebekbakimmerkezi = [
         name: "Güzide 7/24 Bebek ve Çocuk Bakım Evi",
         phone: " 0262 642 82 00 - 0530 557 42 59",
         address: "Osman Yılmaz Mah. 608/2 Sk. No:7 Gebze / Kocaeli",
-        image: "/images/hizmetler/bebekbakım/bebekbakım.jpg",
+        image: "/images/hizmetler/bebekbakim/bebekbakım.jpg",
         mapLink: "https://www.google.com/maps/place/Mahallesi,+Osman+Y%C4%B1lmaz,+608%2F2.+Sk.+No:10,+41400+Gebze%2FKocaeli/@40.7898281,29.4190002,17z/data=!3m1!4b1!4m6!3m5!1s0x14cb2078114a1a51:0xa7e7d93f12a55158!8m2!3d40.7898281!4d29.4190002!16s%2Fg%2F11q4k1nlkp?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D",
         details: "Sanat, kültür ve bilim alanlarında çeşitli atölyeler ve aktiviteler sunuyoruz.",
         detailPage: "/hizmetler/bebekbakım/bebekbakim"
