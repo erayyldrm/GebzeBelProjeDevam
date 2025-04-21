@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Carousel from 'react-bootstrap/Carousel';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 type Event = {
     id: number;
@@ -32,83 +30,116 @@ const events: Event[] = [
 ];
 
 const EventsSection: React.FC = () => {
-    const [index, setIndex] = useState(0);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [isTransitioning, setIsTransitioning] = useState(false);
 
-    const handleSelect = (selectedIndex: number) => {
-        setIndex(selectedIndex);
+    const goToSlide = (index: number) => {
+        if (index === currentSlide || isTransitioning) return;
+        setIsTransitioning(true);
+        setCurrentSlide(index);
     };
 
-    const handlePrev = () => {
-        setIndex(index === 0 ? events.length - 1 : index - 1);
+    const nextSlide = () => {
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setCurrentSlide((prev) => (prev === events.length - 1 ? 0 : prev + 1));
     };
 
-    const handleNext = () => {
-        setIndex(index === events.length - 1 ? 0 : index + 1);
+    const prevSlide = () => {
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setCurrentSlide((prev) => (prev === 0 ? events.length - 1 : prev - 1));
     };
 
-    // Custom CSS for React Bootstrap carousel controls
-    const carouselStyles = `
-        .carousel-control-prev-icon, .carousel-control-next-icon {
-            background-color: #fff;
-            border-radius: 50%;
-            padding: 10px;
-            background-size: 60%;
-        }
-        
-        .carousel-control-prev, .carousel-control-next {
-            width: 10%;
-            opacity: 1;
-        }
-    `;
+    useEffect(() => {
+        const transitionEnd = () => setIsTransitioning(false);
+        const slider = document.querySelector('.slider-container');
+        slider?.addEventListener('transitionend', transitionEnd);
+
+        return () => {
+            slider?.removeEventListener('transitionend', transitionEnd);
+        };
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            nextSlide();
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [currentSlide, isTransitioning]);
 
     return (
         <div className="container mx-auto py-10">
-            <style>{carouselStyles}</style>
             <h2 className="text-3xl font-bold mb-6 text-center">Etkinlikler</h2>
 
-            {/* Bootstrap Carousel with Card */}
-            <div className="mb-16 relative">
-                <div style={{ backgroundColor: "#002a55" }} className="rounded-xl shadow-xl p-6">
-                    <Carousel
-                        activeIndex={index}
-                        onSelect={handleSelect}
-                        interval={5000}
-                        indicators={false}
-                        controls={true}
-                        prevIcon={<span className="carousel-control-prev-icon" aria-hidden="true" style={{color: "#002a55"}}></span>}
-                        nextIcon={<span className="carousel-control-next-icon" aria-hidden="true" style={{color: "#002a55"}}></span>}
-                    >
-                        {events.map((event) => (
-                            <Carousel.Item key={event.id}>
-                                <div className="bg-white rounded-lg overflow-hidden">
-                                    <div className="relative h-[450px] w-full overflow-hidden">
-                                        <img
-                                            src={event.imageUrl}
-                                            alt={event.title}
-                                            className="w-full h-full object-contain"
-                                        />
-                                    </div>
-                                </div>
-                            </Carousel.Item>
+            {/* Slider Container */}
+            <div className="relative mb-16 px-16">
+                {/* Card-like Container */}
+                <div className="bg-white rounded-xl shadow-xl p-1">
+                    {/* Slider with Animation */}
+                    <div className="slider-container relative h-[500px] w-full rounded-lg overflow-hidden">
+                        {events.map((event, index) => (
+                            <div
+                                key={event.id}
+                                className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                                    index === currentSlide
+                                        ? 'opacity-100 translate-x-0'
+                                        : index < currentSlide
+                                            ? '-translate-x-full opacity-0'
+                                            : 'translate-x-full opacity-0'
+                                }`}
+                            >
+                                <img
+                                    src={event.imageUrl}
+                                    alt={event.title}
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
                         ))}
-                    </Carousel>
-
-                    {/* Custom Navigation Arrows */}
-                    <button
-                        onClick={handlePrev}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-10 ml-2 text-xl font-bold text-gray-800"
-                        style={{ transform: "translateY(-50%)" }}
-                    >
-                        ❮
-                    </button>
-                    <button
-                        onClick={handleNext}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-10 mr-2 text-xl font-bold text-gray-800"
-                        style={{ transform: "translateY(-50%)" }}
-                    >
-                        ❯
-                    </button>
+                    </div>
                 </div>
+
+                {/* Navigation Arrows */}
+                <button
+                    onClick={prevSlide}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 p-4 rounded-full z-20 text-white text-2xl transition-all duration-300 shadow-xl"
+                    aria-label="Önceki slide"
+                    style={{
+                        backgroundColor: '#022842',
+                        transform: 'translateY(-50%) translateX(-50%)',
+                    }}
+                    disabled={isTransitioning}
+                >
+                    ❮
+                </button>
+                <button
+                    onClick={nextSlide}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 p-4 rounded-full z-20 text-white text-2xl transition-all duration-300 shadow-xl"
+                    aria-label="Sonraki slide"
+                    style={{
+                        backgroundColor: '#022842',
+                        transform: 'translateY(-50%) translateX(50%)',
+                    }}
+                    disabled={isTransitioning}
+                >
+                    ❯
+                </button>
+
+            </div>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center -mt-8 mb-10">
+                {events.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => goToSlide(index)}
+                        className={`w-3 h-3 mx-1.5 rounded-full transition-all duration-300 ${
+                            index === currentSlide ? 'bg-black' : 'bg-gray-400'
+                        } ${isTransitioning && index === currentSlide ? 'scale-125' : ''}`}
+                        aria-label={`Slide ${index + 1}`}
+                        disabled={isTransitioning}
+                    />
+                ))}
             </div>
 
             {/* Events Grid */}
