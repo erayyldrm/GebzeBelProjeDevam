@@ -54,6 +54,7 @@ const App: React.FC = () => {
 
                             <Outlet/> {/* This is important! */}
 
+
                             <Footer/>
 
 

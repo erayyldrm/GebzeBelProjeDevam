@@ -4,9 +4,10 @@ const BaskanPage: React.FC = () => {
     return (
         <div id="pcoded" className="pcoded">
             <div className="pcoded-overlay-box"></div>
-            <div className="pcoded-container navbar-wrapper">
+            <div className="pcoded-container navbar-wrapper bg-transparent">
                 <div className="pcoded-main-container">
-                    <div className="pcoded-wrapper">
+
+                <div className="pcoded-wrapper">
                         <div className="pcoded-content">
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
@@ -17,7 +18,7 @@ const BaskanPage: React.FC = () => {
                                                 <div className="row gx-lg-4 justify-content-center">
                                                     {/* Main Content */}
                                                     <div className="col-lg-9 col-md-8">
-                                                        <div className="card" style={{ marginTop: '-50px' }}>
+                                                        <div className="card" style={{ marginTop: '-20px' }}>
                                                             <div className="card-block p-3 p-md-4">
                                                                 <img
                                                                     src="/images/kurumsal/baskansayfasi.jpg"

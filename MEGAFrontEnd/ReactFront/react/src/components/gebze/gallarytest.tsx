@@ -36,23 +36,24 @@ const GalleryTest: React.FC = () => {
     ];
 
     return (
-        <div className="bg-gray-50 min-h-screen p-8">
-            <div className="container mx-auto">
-
-                <div className="bg-[#891737] shadow-lg rounded-2xl p-6 mb-6 my-3 w-full text-center">
-                    <h1 className="text-3xl font-bold text-white">GEBZE TARİHİ YERLER</h1>
+        <div className="bg-gray-50 min-h-screen">
+            <div className="mx-auto px-5">
+                <div className="bg-red-900 shadow-lg rounded-4xl p-3 mb-4 mt-2 text-center">
+                    <h1 className="text-3xl sm:text-3xl md:text-4xl font-bold text-white">
+                        GEBZE TARİHİ YERLER
+                    </h1>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {historicalSites.map((item, index) => (
                         <div
                             key={index}
                             className="relative rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl group"
                         >
-                            <div className="w-full h-70 overflow-hidden">
+                            <div className="w-full h-72 overflow-hidden">
                                 <img
                                     src={item.img}
                                     alt={item.title}
-                                    className="w-full h-full object-cover transition-transform duration-300"
+                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                                 />
                             </div>
                             <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
@@ -79,7 +80,7 @@ const GalleryTest: React.FC = () => {
                         </div>
                     ))}
                 </div>
-            </div><br/>
+            </div><br/><br/>
         </div>
     );
 };

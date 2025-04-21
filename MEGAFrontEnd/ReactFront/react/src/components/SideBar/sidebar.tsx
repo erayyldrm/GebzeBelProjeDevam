@@ -43,7 +43,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
                     <>
                         {title && (
                             <div className="flex justify-center">
-                                <h3 className="text-white font-bold text-lg tracking-wide text-center">
+                                <h3 className="text-white font-bold text-lg tracking-wide text-center uppercase">
                                     {title}
                                 </h3>
                             </div>

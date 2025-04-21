@@ -69,7 +69,7 @@ const EventsSection: React.FC = () => {
     }, [currentSlide, isTransitioning]);
 
     return (
-        <div className="container mx-auto py-10"> <br/><br/><br/><br/><br/><br/><br/>
+        <div className="container mx-auto py-10">
             <h2 className="text-3xl font-bold mb-6 text-center">Etkinlikler</h2>
 
             {/* Slider Container */}

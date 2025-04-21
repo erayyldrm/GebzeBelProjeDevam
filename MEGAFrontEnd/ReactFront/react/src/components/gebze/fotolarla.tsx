@@ -60,9 +60,11 @@ const Gallery: React.FC = () => {
     return (
         <div className="flex justify-center w-full">
             <div className="p-4 flex flex-col items-center w-full max-w-[1200px]">
-                <div className="bg-[#891737] shadow-lg rounded-2xl p-6 mb-6 w-full text-center">
-                    <h1 className="text-3xl font-bold text-white">FOTOĞRAFLARLA GEBZE</h1>
+                <div
+                    className="bg-red-900 shadow-lg rounded-2xl p-3 mb-6 my-3 mx-auto w-full max-w-xl text-center">
+                    <h1 className="text-3xl sm:text-3xl md:text-4xl font-bold text-white">FOTOĞRAFLARLA GEBZE</h1>
                 </div>
+
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
                     {images.map((image, index) => (
