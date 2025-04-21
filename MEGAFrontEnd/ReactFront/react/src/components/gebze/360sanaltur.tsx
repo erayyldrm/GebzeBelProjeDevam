@@ -33,7 +33,7 @@ const VrGogglesIcon = () => (
 
 const VirtualTourGallery: React.FC = () => {
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8"> <br/>
             <div className="bg-blue-900 rounded-2xl p-2 flex justify-center items-center max-w-[466px] mx-auto">
                 <img
                     src="/images/gebze/360sanaltur/gebze-belediyesi-sanal-tur.png"
