@@ -207,24 +207,27 @@ export default function Merkezlersayfasi() {
                 <div className="flex-1 px-6 pt-0 mt-[0px] pb-5">
                     {/* Atölye Merkezleri */}
                     <section className="mb-40">
-                        <motion.div
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 rounded-xl shadow-xl mb-5"
-                        >
-                            <div className="text-3xl font-semibold text-blue-500 text-center">
-                                Merkezler
-                            </div>
-                        </motion.div>
+                        <div className="max-w-6xl mx-auto px-4">
+                            <motion.div
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6 }}
+                                className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 rounded-xl shadow-xl mb-5"
+                            >
+                                <div className="text-3xl font-semibold text-blue-500 text-center">
+                                 Merkezler
+                                </div>
+                            </motion.div>
 
-                        {/* Kartları alt alta ve ortalanmış şekilde göster */}
-                        <div className="flex flex-wrap justify-center gap-6 px-4">
-                            {merkezler.map((center) => (
-                                <WorkshopCenterCard key={center.id} center={center} />
-                            ))}
+                            {/* Kartlar */}
+                            <div className="flex flex-wrap justify-center gap-6">
+                                {merkezler.map((center) => (
+                                    <WorkshopCenterCard key={center.id} center={center} />
+                                ))}
+                            </div>
                         </div>
                     </section>
+
                 </div>
             </div>
         </div>
