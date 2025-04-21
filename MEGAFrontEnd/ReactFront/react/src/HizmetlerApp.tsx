@@ -80,15 +80,15 @@ const HizmetlerApp: React.FC =() => {
             <Route path="/merkezler/güzide" element={<Güzide/>}/>
             <Route path="/merkezler/istasyon" element={<İstasyon/>}/>
             <Route path="/merkezler/Hayvan" element={<Hayvan/>}/>
-            <Route path="/hizmetler/ambalaj" element={<Ambalaj/>}/>
-            <Route path="/hizmetler/bitkisel" element={<Bitkisel/>}/>
-            <Route path="/hizmetler/elektronik" element={<Elektronik/>}/>
-            <Route path="/hizmetler/evsel" element={<Evsel/>}/>
-            <Route path="/hizmetler/hacimli" element={<Hacimli/>}/>
-            <Route path="/hizmetler/moloz" element={<Moloz/>}/>
-            <Route path="/hizmetler/piller" element={<Piller/>}/>
-            <Route path="/hizmetler/sifiratik" element={<Sifiratik/>}/>
-            <Route path="/hizmetler/tekstil" element={<Tekstil/>}/>
+            <Route path="/geridonusum/ambalaj" element={<Ambalaj/>}/>
+            <Route path="/geridonusum/bitkisel" element={<Bitkisel/>}/>
+            <Route path="/geridonusum/elektronik" element={<Elektronik/>}/>
+            <Route path="/geridonusum/evsel" element={<Evsel/>}/>
+            <Route path="/geridonusum/hacimli" element={<Hacimli/>}/>
+            <Route path="/geridonusum/moloz" element={<Moloz/>}/>
+            <Route path="/geridonusum/piller" element={<Piller/>}/>
+            <Route path="/geridonusum/sifiratik" element={<Sifiratik/>}/>
+            <Route path="/geridonusum/tekstil" element={<Tekstil/>}/>
 
 
         </Routes>
