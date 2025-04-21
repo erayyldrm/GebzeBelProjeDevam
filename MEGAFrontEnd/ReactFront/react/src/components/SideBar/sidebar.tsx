@@ -20,7 +20,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
 
     return (
         <div
-            className={`hidden md:block ${collapsed ? 'w-16' : 'w-64'} shadow-lg rounded-2xl relative top-10 h-75 left-13 z-10 overflow-hidden transition-all duration-300`}
+            className={`hidden md:block ${collapsed ? 'w-16' : 'w-68'} shadow-lg rounded-2xl relative top-10 h-75 left-13 z-10 overflow-hidden transition-all duration-300`}
             style={{
                 background: 'linear-gradient(180deg, #003366 0%, #00264d 100%)',
                 borderTopLeftRadius: '1rem',
@@ -83,16 +83,23 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
                             <li key={index}>
                                 <Link
                                     to={item.path || "#"}
-                                    className={`flex items-center ${collapsed ? 'justify-center' : 'justify-start gap-4 px-5'} py-3 transition-all duration-200 
+                                    className={`flex items-center ${collapsed ? 'justify-center' : ''} py-3 transition-all duration-200 
                                     ${isActive
                                         ? " text-[#faa61a] *:text-[#faa61a] font-semibold bg-blue-700"
                                         : "text-white hover:bg-blue-600"}`}
                                 >
-                                    <span className={`text-xl ${isActive ? 'text-[#faa61a] hover:text-[#faa61a] ' : 'text-white'}`}>
-                                        {item.icon}
-                                    </span>
                                     {!collapsed && (
-                                        <span className="font-medium">{item.title}</span>
+                                        <div className="flex items-center w-full pl-6">
+                                            <span className={`text-xl ${isActive ? 'text-[#faa61a] hover:text-[#faa61a] ' : 'text-white'} mr-3`}>
+                                                {item.icon}
+                                            </span>
+                                            <span className="font-medium">{item.title}</span>
+                                        </div>
+                                    )}
+                                    {collapsed && (
+                                        <span className={`text-xl ${isActive ? 'text-[#faa61a] hover:text-[#faa61a] ' : 'text-white'}`}>
+                                            {item.icon}
+                                        </span>
                                     )}
                                 </Link>
                             </li>
