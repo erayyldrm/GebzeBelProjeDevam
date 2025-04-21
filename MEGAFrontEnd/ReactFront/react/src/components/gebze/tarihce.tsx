@@ -4,12 +4,13 @@ import ImageSlider from "../Sliders/SliderTest.tsx";
 const TarihcePage: React.FC = () => {
     const slides = [
         {
-            image: "/images/gebze/tarihce/slide1.jpg",
-
+            image: "/images/gebze/tarihce/slide3.jpg",
         },
         {
             image: "/images/gebze/tarihce/slide4.jpg",
-
+        },
+        {
+            image: "/images/gebze/tarihce/slide1.jpg",
         }
     ];
 
@@ -19,11 +20,11 @@ const TarihcePage: React.FC = () => {
             <div className="page-wrapper">
                 <div className="d-flex">
                     <div className="col-lg ms-auto">
-                        <div className="card max-w-4xl mx-auto top-2">
+                        <div className="card w-full max-w-screen-lg mx-auto top-2 mt-1">
                             <div className="card-block p-4 md:p-6">
                                 {/* Enhanced Image slider with Tailwind */}
                                 <div className="relative w-full overflow-hidden rounded-lg shadow-xl">
-                                    <h1 className="text-2xl font-bold mb-4">Bugünkü Gebze</h1>
+
                                     <ImageSlider slides={slides}/>
                                 </div>
                                 <br/>

@@ -74,7 +74,7 @@ const SultanOrhanCamiiPage = () => {
                     className="h-full w-full object-cover rounded-lg" /* Yuvarlatılmış kenarlar */
                 />
                 <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">SULTAN ORHAN CAMİİ</h1>
+                    <h1 className="text-4xl md:text-5xl bg-[#022842]/60 font-bold text-white mb-4 rounded-xl px-2 py-2 inline-block">SULTAN ORHAN CAMİİ</h1>
                     <div className="flex items-center text-white bg-[#022842] px-4 py-2 rounded-full">
                         <MapPin className="w-5 h-5 mr-2" />
                         <span>Gebze, Kocaeli</span>

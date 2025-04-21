@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import Sidebar from "../SideBar/sidebar.tsx";
-import { gebze } from "../_SayfaBilgileri/Sayfalar.tsx";
+
 
 
 const domesticMunicipalities = [
@@ -48,12 +47,15 @@ export default function SisterCities() {
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
                                     <div className="page-wrapper">
-                                        <div className="flex flex-row gap-4">
-
+                                        <div className="flex justify-end px-4"> {/* Sağa yaslamak için justify-end */}
 
                                             {/* Ana İçerik Alanı */}
-                                            <div className="flex-1 p-4">
-                                                <h1 className="text-3xl font-bold text-center mb-8">Kardeş Şehirler</h1>
+                                            <div className="w-full max-w-7xl p-4"> {/* Genişlik sınırı ve padding */}
+                                                <div className="bg-red-900 shadow-lg rounded-2xl p-3 mb-4 mt-2 text-center">
+                                                    <h1 className="text-3xl sm:text-3xl md:text-4xl font-bold text-white">
+                                                        KARDEŞ ŞEHİRLER
+                                                    </h1>
+                                                </div>
 
                                                 {/* Yurt İçi Şehirler */}
                                                 <section className="mb-12">
@@ -79,6 +81,7 @@ export default function SisterCities() {
                                                     </div>
                                                 </section>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -88,5 +91,6 @@ export default function SisterCities() {
                 </div>
             </div>
         </div>
+
     );
 }

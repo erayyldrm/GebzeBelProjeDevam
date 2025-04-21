@@ -50,7 +50,7 @@ const membershipData = [
 
 const CorporateMembershipCard: React.FC = () => {
     return (
-        <div className="container mx-auto px-4 py-8"><br/>
+        <div className="container mx-auto px-4 py-8 mt-4">
             {/* Başlık Kutusu */}
             <div className="bg-blue-900 rounded-2xl p-2 flex justify-center items-center max-w-[466px] mx-auto mb-6">
                 <img
@@ -92,7 +92,7 @@ const CorporateMembershipCard: React.FC = () => {
                         </div>
                     </div>
                 ))}
-            </div>
+            </div><br/>
         </div>
     );
 };
