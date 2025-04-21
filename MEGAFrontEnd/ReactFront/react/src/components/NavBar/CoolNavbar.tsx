@@ -226,20 +226,7 @@ const handleNavigation = (path: string) => {
                             </div>
 
                             {/* E-Belediye link */}
-                            <div className="relative flex justify-center">
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white"
-                                    onClick={() => toggleDropdown('eBelediye')}
-                                >
-                                    eBelediye
-                                    {openDropdown === 'eBelediye' ? <FiChevronUp className="ml-1"/> : <FiChevronDown className="ml-1"/>}
-                                </motion.button>
-                                <AnimatePresence>
-                                    {openDropdown === 'eBelediye' && renderDropdownItems(eBelediye)}
-                                </AnimatePresence>
-                            </div>
+
 
                             {/* YAYINLARIMIZ link */}
                             <div className="relative flex justify-center">
@@ -256,6 +243,11 @@ const handleNavigation = (path: string) => {
                                     {openDropdown === 'Yayınlarımız' && renderDropdownItems(yayınlarımız)}
                                 </AnimatePresence>
                             </div>
+
+
+                            <a href="/e-belediye" className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white">
+                                eBelediye
+                            </a>
 
                             {/* Other links */}
                             <a href="/etkinlikler" className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white">
