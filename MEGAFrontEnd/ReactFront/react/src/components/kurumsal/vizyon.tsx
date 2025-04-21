@@ -23,13 +23,12 @@ const VisionPage: React.FC = () => {
 
     return (
         <div
-            className="page-wrapper"
+            className="page-wrapper mt-3"
             style={{
                 boxShadow: '0 0 20px rgba(0, 0, 0, 0.25)',
                 backgroundColor: '#fff',
                 position: 'relative',
                 zIndex: 1,
-                marginTop: '+10px',
                 maxWidth: isDesktop ? '1000px' : '100%',
                 padding: isMobile ? '0 15px' : '0 20px',
             }}

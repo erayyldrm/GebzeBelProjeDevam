@@ -31,6 +31,15 @@ import Gesmek from "./components/hizmetler/merkezler/gesmek.tsx";
 import Güzide from "./components/hizmetler/merkezler/güzide.tsx";
 import İstasyon from "./components/hizmetler/merkezler/istasyon.tsx";
 import Hayvan from "./components/hizmetler/merkezler/hayvan.tsx";
+import Ambalaj from "./components/hizmetler/geridonusum/ambalaj.tsx";
+import Piller from "./components/hizmetler/geridonusum/piller.tsx";
+import Bitkisel from "./components/hizmetler/geridonusum/bitkisel.tsx";
+import Elektronik from "./components/hizmetler/geridonusum/elektronik.tsx";
+import Evsel from "./components/hizmetler/geridonusum/evsel.tsx";
+import Hacimli from "./components/hizmetler/geridonusum/hacimli.tsx";
+import Moloz from "./components/hizmetler/geridonusum/moloz.tsx";
+import Sifiratik from "./components/hizmetler/geridonusum/sifiratik.tsx";
+import Tekstil from "./components/hizmetler/geridonusum/tekstil.tsx";
 
 
 
@@ -71,7 +80,15 @@ const HizmetlerApp: React.FC =() => {
             <Route path="/merkezler/güzide" element={<Güzide/>}/>
             <Route path="/merkezler/istasyon" element={<İstasyon/>}/>
             <Route path="/merkezler/Hayvan" element={<Hayvan/>}/>
-
+            <Route path="/hizmetler/ambalaj" element={<Ambalaj/>}/>
+            <Route path="/hizmetler/bitkisel" element={<Bitkisel/>}/>
+            <Route path="/hizmetler/elektronik" element={<Elektronik/>}/>
+            <Route path="/hizmetler/evsel" element={<Evsel/>}/>
+            <Route path="/hizmetler/hacimli" element={<Hacimli/>}/>
+            <Route path="/hizmetler/moloz" element={<Moloz/>}/>
+            <Route path="/hizmetler/piller" element={<Piller/>}/>
+            <Route path="/hizmetler/sifiratik" element={<Sifiratik/>}/>
+            <Route path="/hizmetler/tekstil" element={<Tekstil/>}/>
 
 
         </Routes>
