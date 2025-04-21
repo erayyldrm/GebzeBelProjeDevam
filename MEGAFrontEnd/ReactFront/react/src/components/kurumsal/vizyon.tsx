@@ -29,8 +29,8 @@ const VisionPage: React.FC = () => {
                 backgroundColor: '#fff',
                 position: 'relative',
                 zIndex: 1,
-                margin: '0 auto',
-                maxWidth: isDesktop ? '1100px' : '100%',
+                marginTop: '+10px',
+                maxWidth: isDesktop ? '1000px' : '100%',
                 padding: isMobile ? '0 15px' : '0 20px',
             }}
         >
@@ -66,7 +66,7 @@ const VisionPage: React.FC = () => {
                     className="auto-container"
                     style={{
                         width: '100%',
-                        maxWidth: '1200px',
+                        maxWidth: '1000px',
                         margin: '0 auto',
                         padding: '0 15px',
                     }}
@@ -108,7 +108,7 @@ const VisionPage: React.FC = () => {
                     className="auto-container"
                     style={{
                         width: '100%',
-                        maxWidth: '1200px',
+                        maxWidth: '1000px',
                         margin: '0 auto',
                         padding: '0 15px',
                     }}
@@ -122,9 +122,9 @@ const VisionPage: React.FC = () => {
                         }}
                     >
                         <div
-                            className="col-lg-8"
+                            className="col-lg-20"
                             style={{
-                                width: isDesktop ? '66.66667%' : '100%',
+                                width: '100%', // Kutunun genişliği resmin genişliği kadar olacak
                                 padding: '0 15px',
                             }}
                         >
@@ -151,11 +151,11 @@ const VisionPage: React.FC = () => {
                                     <p
                                         style={{
                                             fontSize: isMobile
-                                                ? '16px'
+                                                ? '15px'
                                                 : isTablet
                                                     ? '17px'
-                                                    : '18px',
-                                            textAlign: 'left',
+                                                    : '16px',
+                                            textAlign: 'justify',
                                         }}
                                     >
                                         Gebze'yi sadece bir yaşam alanı olarak değil, geçmişten
@@ -185,8 +185,8 @@ const VisionPage: React.FC = () => {
                                             ? '16px'
                                             : isTablet
                                                 ? '17px'
-                                                : '18px',
-                                        textAlign: 'left',
+                                                : '16px',
+                                        textAlign: 'justify',
                                     }}
                                 >
                                     Geleceğin Gebze'sini inşa ederken, insanı merkeze alan, tarihi

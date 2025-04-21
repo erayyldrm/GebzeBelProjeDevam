@@ -27,8 +27,8 @@ const BusinessTaxation: React.FC = () => {
                 backgroundColor: '#fff',
                 position: 'relative',
                 zIndex: 1,
-                margin: '0 auto',
-                maxWidth: isDesktop ? '1100px' : '100%',
+                marginTop: '+10px',
+                maxWidth: isDesktop ? '1000px' : '100%',
                 padding: isMobile ? '0 15px' : '0 20px',
             }}
         >
@@ -73,7 +73,7 @@ const BusinessTaxation: React.FC = () => {
             >
                 <div className="auto-container" style={{
                     width: '100%',
-                    maxWidth: '1200px',
+                    maxWidth: '1000px',
                     margin: '0 auto',
                     padding: '0 15px'
                 }}>
@@ -103,7 +103,7 @@ const BusinessTaxation: React.FC = () => {
             }}>
                 <div className="auto-container" style={{
                     width: '100%',
-                    maxWidth: '1200px',
+                    maxWidth: '1000px',
                     margin: '0 auto',
                     padding: '0 15px'
                 }}>
@@ -112,7 +112,7 @@ const BusinessTaxation: React.FC = () => {
                         flexWrap: 'wrap',
                         justifyContent: 'center'
                     }}>
-                        <div className="col-lg-8" style={{
+                        <div className="col-lg-12" style={{
                             width: isDesktop ? '66.66667%' : '100%',
                             padding: '0 15px',
                         }}>
@@ -130,8 +130,8 @@ const BusinessTaxation: React.FC = () => {
                                     marginBottom: isMobile ? '20px' : isTablet ? '30px' : '40px',
                                 }}>
                                     <p style={{
-                                        fontSize: isMobile ? '16px' : isTablet ? '17px' : '18px',
-                                        textAlign: 'left'
+                                        fontSize: isMobile ? '16px' : isTablet ? '16px' : '16px',
+                                        textAlign: 'justify'
                                     }}>
                                         Gebze Belediyesi olarak, kentimizin yaşam kalitesini artırmak, sürdürülebilir
                                         kalkınmayı sağlamak ve vatandaşlarımızın ihtiyaçlarına duyarlı,
@@ -154,8 +154,8 @@ const BusinessTaxation: React.FC = () => {
                                 </div>
 
                                 <div className="text" style={{
-                                    fontSize: isMobile ? '16px' : isTablet ? '17px' : '18px',
-                                    textAlign: 'left'
+                                    fontSize: isMobile ? '16px' : isTablet ? '16px' : '16px',
+                                    textAlign: 'justify'
                                 }}>
                                     Ulaşım altyapısını iyileştirmek, yeşil alanları artırmak,
                                     çevre temizliği ve atık yönetimi gibi konularda çalışmalar yürütürken,
