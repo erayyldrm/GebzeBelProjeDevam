@@ -73,7 +73,7 @@ const Aerobic: React.FC<ServiceDetailProps> = ({
                             <h2 className="text-2xl font-semibold text-blue-700 mb-4 border-b pb-2">
                                 Verilen Hizmetler
                             </h2>
-                            <p className="text-gray-700 mb-4 text-sm sm:text-base">VERİLEN HİZMETLER
+                            <p className="text-gray-700 mb-4 text-sm sm:text-base">
                                 <br/>
                                 Sağlıklı ve formda olmanızı desteklemek adına kadınlara özel oluşturduğumuz grup derslerimizde müzik ve ritim eşliğinde keyifle yapabileceğiniz spor hizmetleri verilmektedir.
 
