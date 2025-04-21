@@ -119,9 +119,6 @@ const AtikPilDetayPage = () => {
                         </table>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
     );
