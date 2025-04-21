@@ -137,7 +137,7 @@ const GeriDonusumPage = () => {
                                     }
                                     className="px-4 py-2 border border-green-600 rounded hover:bg-gray-200 transition text-sm w-full"
                                 >
-                                    ℹ️ Detaylı Bilgi
+                                    ℹ️ Hakkında
                                 </button>
                                 <button
                                     onClick={() => handleActionClick(index, "konum", item.detailPage, item.mapLink)}
