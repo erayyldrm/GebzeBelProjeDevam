@@ -59,9 +59,6 @@
 .z-50 {
   z-index: 50;
 }
-.z-\[-1\] {
-  z-index: -1;
-}
 .z-\[100\] {
   z-index: 100;
 }
@@ -287,8 +284,8 @@
 .max-h-\[500px\] {
   max-height: 500px;
 }
-.max-h-full {
-  max-height: 100%;
+.min-h-\[300px\] {
+  min-height: 300px;
 }
 .min-h-\[300px\] {
   min-height: 300px;
@@ -407,12 +404,6 @@
 .resize\! {
   resize: both !important;
 }
-.list-inside {
-  list-style-position: inside;
-}
-.list-decimal {
-  list-style-type: decimal;
-}
 .list-disc {
   list-style-type: disc;
 }
@@ -503,10 +494,6 @@
   border-style: var(--tw-border-style);
   border-width: 2px;
 }
-.border-3 {
-  border-style: var(--tw-border-style);
-  border-width: 3px;
-}
 .border-t {
   border-top-style: var(--tw-border-style);
   border-top-width: 1px;
@@ -515,10 +502,6 @@
   border-bottom-style: var(--tw-border-style);
   border-bottom-width: 1px;
 }
-.border-b-0 {
-  border-bottom-style: var(--tw-border-style);
-  border-bottom-width: 0px;
-}
 .border-b-2 {
   border-bottom-style: var(--tw-border-style);
   border-bottom-width: 2px;
@@ -526,9 +509,6 @@
 .border-l-4 {
   border-left-style: var(--tw-border-style);
   border-left-width: 4px;
-}
-.border-\[\#891737\] {
-  border-color: #891737;
 }
 .border-transparent {
   border-color: transparent;
@@ -550,9 +530,6 @@
 }
 .bg-\[\#891737\] {
   background-color: #891737;
-}
-.bg-\[\#ffffff\] {
-  background-color: #ffffff;
 }
 .bg-transparent {
   background-color: transparent;
@@ -587,9 +564,6 @@
 }
 .object-cover {
   object-fit: cover;
-}
-.object-center {
-  object-position: center;
 }
 .text-center {
   text-align: center;
