@@ -26,8 +26,8 @@ const BusinessTaxation: React.FC = () => {
                 boxShadow: '0 0 40px rgba(0, 0, 0, 0.25)',
                 position: 'relative',
                 zIndex: 1,
-                margin: '0 auto',
-                maxWidth: isDesktop ? '1100px' : '100%',
+                marginTop: '+10px',
+                maxWidth: isDesktop ? '1000px' : '100%',
                 padding: isMobile ? '0 15px' : '0 20px',
             }}
         >
@@ -74,7 +74,7 @@ const BusinessTaxation: React.FC = () => {
             >
                 <div className="auto-container" style={{
                     width: '100%',
-                    maxWidth: '1200px',
+                    maxWidth: '1000px',
                     margin: '0 auto',
                     padding: '0 15px'
                 }}>
@@ -104,7 +104,7 @@ const BusinessTaxation: React.FC = () => {
             }}>
                 <div className="auto-container" style={{
                     width: '100%',
-                    maxWidth: '1200px',
+                    maxWidth: '1000px',
                     margin: '0 auto',
                     padding: '0 15px'
                 }}>
@@ -113,7 +113,7 @@ const BusinessTaxation: React.FC = () => {
                         flexWrap: 'wrap',
                         justifyContent: 'center'
                     }}>
-                        <div className="col-lg-8" style={{
+                        <div className="col-lg-12" style={{
                             width: isDesktop ? '66.66667%' : '100%',
                             padding: '0 15px',
                         }}>
@@ -131,27 +131,27 @@ const BusinessTaxation: React.FC = () => {
                                     marginBottom: isMobile ? '20px' : isTablet ? '30px' : '40px',
                                 }}>
                                     <ul style={{
-                                        fontSize: isMobile ? '16px' : isTablet ? '17px' : '18px',
+                                        fontSize: isMobile ? '16px' : isTablet ? '16px' : '16px',
                                         lineHeight: '1.8',
                                         paddingLeft: 0,
                                         listStylePosition: 'inside',
-                                        textAlign: isMobile ? 'left' : 'justify',
+                                        textAlign: isMobile ? 'center' : 'justify',
                                         display: 'inline-block',
                                         width: '100%',
                                         margin: 0,
                                     }}>
-                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>Tüm hizmetlerimizde Gebze halkının ihtiyaç ve beklentilerini merkeze koyarız.</li>
-                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>Gebzelilerin karar alma süreçlerine aktif katılımını destekler, birlikte yönetim anlayışını uygularız.</li>
-                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>Belediye hizmetlerinde en son bilgi teknolojilerini kullanarak modern ve sürdürülebilir çözümler sunarız.</li>
-                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>Gebze'nin yeşil alanlarını koruyarak, çevre dostu projeleri hayata geçiririz.</li>
-                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>Tüm çalışmalarımızda yasal mevzuat ve etik kurallar çerçevesinde hareket ederiz.</li>
-                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>Tüm vatandaşlara eşit hizmet götürmeyi ilke edinir, sosyal adaleti ön planda tutarız.</li>
-                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>Gebze'de istihdamı artıracak projeler geliştirerek, yerel esnaf ve girişimcilere destek oluruz.</li>
-                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>Belediye personelimizin verimli, mutlu ve güvenli bir ortamda çalışmasını sağlarız.</li>
-                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>Gebze'nin geleceğini planlayarak, sorunları oluşmadan çözüm üretmeye çalışırız.</li>
-                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>Olası afet ve kriz durumlarına karşı hızlı ve etkin çözümler üreterek, vatandaşlarımızın güvenliğini sağlarız.</li>
-                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>Gebze'de sürdürülebilir ve akıcı bir ulaşım ağı kurarak, trafik sorunlarını minimize etmeyi hedefleriz.</li>
-                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>Gebze'nin tarihi ve kültürel dokusunu koruyarak, gelecek nesillere aktarmak için projeler üretiriz.</li>
+                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>📝 Tüm hizmetlerimizde Gebze halkının ihtiyaç ve beklentilerini merkeze koyarız.</li>
+                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>📝 Gebzelilerin karar alma süreçlerine aktif katılımını destekler, birlikte yönetim anlayışını uygularız.</li>
+                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>📝 Belediye hizmetlerinde en son bilgi teknolojilerini kullanarak modern ve sürdürülebilir çözümler sunarız.</li>
+                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>📝 Gebze'nin yeşil alanlarını koruyarak, çevre dostu projeleri hayata geçiririz.</li>
+                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>📝 Tüm çalışmalarımızda yasal mevzuat ve etik kurallar çerçevesinde hareket ederiz.</li>
+                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>📝 Tüm vatandaşlara eşit hizmet götürmeyi ilke edinir, sosyal adaleti ön planda tutarız.</li>
+                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>📝 Gebze'de istihdamı artıracak projeler geliştirerek, yerel esnaf ve girişimcilere destek oluruz.</li>
+                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>📝 Belediye personelimizin verimli, mutlu ve güvenli bir ortamda çalışmasını sağlarız.</li>
+                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>📝 Gebze'nin geleceğini planlayarak, sorunları oluşmadan çözüm üretmeye çalışırız.</li>
+                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>📝 Olası afet ve kriz durumlarına karşı hızlı ve etkin çözümler üreterek, vatandaşlarımızın güvenliğini sağlarız.</li>
+                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>📝 Gebze'de sürdürülebilir ve akıcı bir ulaşım ağı kurarak, trafik sorunlarını minimize etmeyi hedefleriz.</li>
+                                        <li style={{ marginBottom: isMobile ? '10px' : '15px' }}>📝 Gebze'nin tarihi ve kültürel dokusunu koruyarak, gelecek nesillere aktarmak için projeler üretiriz.</li>
                                     </ul>
                                 </div>
                             </div>

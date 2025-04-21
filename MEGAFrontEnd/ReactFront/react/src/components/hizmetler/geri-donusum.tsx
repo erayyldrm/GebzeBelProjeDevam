@@ -96,6 +96,7 @@ const GeriDonusumPage = () => {
             maxWidth: 'calc(100% - 120px)',
             paddingLeft: '40px',
             paddingRight: '20px',
+            marginTop: '+16px',
         }}>
             <header className="bg-green-100 px-6 py-10 rounded-b-2xl shadow-inner">
                 <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-6">
