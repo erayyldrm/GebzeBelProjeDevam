@@ -49,7 +49,7 @@ const Bebekbakim: React.FC<ServiceDetailProps> = ({
                     <div className="flex justify-center">
                         <div className="relative h-[500px] sm:h-[600px] md:h-[750px] lg:h-[850px] w-[90%] sm:w-3/4 md:w-2/3 lg:w-2/3 rounded-lg overflow-hidden shadow-lg">
                             <img
-                                src="/images/hizmetler/bebekbakım/bebekbakım.jpg"
+                                src="/images/hizmetler/bebekbakim/bebekbakım.jpg"
                                 alt={title}
                                 className="w-full h-full object-cover"
                             />
