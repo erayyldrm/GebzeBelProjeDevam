@@ -37,19 +37,19 @@ const GalleryTest: React.FC = () => {
 
     return (
         <div className="bg-gray-50 min-h-screen">
-            <div className="mx-auto px-5">
+            <div className="max-w-6xl mx-auto px-5">
                 <div className="bg-red-900 shadow-lg rounded-4xl p-3 mb-4 mt-2 text-center">
                     <h1 className="text-3xl sm:text-3xl md:text-4xl font-bold text-white">
                         GEBZE TARİHİ YERLER
                     </h1>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
                     {historicalSites.map((item, index) => (
                         <div
                             key={index}
-                            className="relative rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl group"
+                            className="relative rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl group w-full max-w-sm"
                         >
-                            <div className="w-full h-72 overflow-hidden">
+                            <div className="w-full h-48 overflow-hidden flex items-center justify-center">
                                 <img
                                     src={item.img}
                                     alt={item.title}
