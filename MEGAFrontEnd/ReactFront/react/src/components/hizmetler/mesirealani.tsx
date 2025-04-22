@@ -14,11 +14,11 @@ const egitimlermerkezi = [
         image: "/images/hizmetler/egitimler/41genç.jpg",
         mapLink: "https://www.google.com.tr/maps/place/Cumak%C3%B6y,+41400+Gebze%2FKocaeli/@40.9264301,29.4788978,13z/data=!3m1!4b1!4m6!3m5!1s0x14cb2ed02b79abf9:0xf12cb2e4521d3b6!8m2!3d40.9239106!4d29.5165713!16s%2Fg%2F11dxb218n_?entry=ttu&g_ep=EgoyMDI1MDQxNi4xIKXMDSoASAFQAw%3D%3D",
         details: "Sanat, kültür ve bilim alanlarında çeşitli atölyeler ve aktiviteler sunuyoruz.",
-        detailPage: "/hizmetler/egitimler/genc" // Buradaki path'i güncelledim
+        detailPage: "/hizmetler/mesirealani/cumakoy" // Buradaki path'i güncelledim
     },
     {
         id: 1,
-        name: "Doğru Tercih Hazırlık Kursları",
+        name: "Kuştepe",
         phone: "0262 641 24 93",
         address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze Kocaeli",
         image: "/images/hizmetler/egitimler/hazırkurslar.jpg",
