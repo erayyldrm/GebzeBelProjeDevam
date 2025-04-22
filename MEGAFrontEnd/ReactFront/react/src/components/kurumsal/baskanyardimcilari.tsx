@@ -44,7 +44,7 @@ const BaskanYardimcilari: React.FC = () => {
                                                                     },
                                                                     {
                                                                         name: "Şerif Canpolat",
-                                                                        img: "şerif canpolat.jpg",
+                                                                        img: "şeerif canpolat.jpg",
                                                                         email: "serif.canpolat@gebze.bel.tr",
                                                                         phone: "0262 642 0430"
                                                                     },
@@ -91,6 +91,14 @@ const BaskanYardimcilari: React.FC = () => {
                                                                                         </h4>
                                                                                         <h6 className="text-gray-600">Başkan Yardımcısı</h6>
                                                                                         <hr className="my-2 border-t border-gray-300" />
+                                                                                        {person.biography && (
+                                                                                            <div className="biography mt-3 mb-4">
+                                                                                                <h6 className="text-black-900 font-semibold mb-2">Biyografi</h6>
+                                                                                                <p className="text-gray-700 text-sm leading-relaxed">
+                                                                                                    {person.biography}
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        )}
                                                                                         <div className="contact-info mt-3">
                                                                                             <p className="flex items-center text-gray-700 mb-2">
                                                                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-black-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -109,14 +117,6 @@ const BaskanYardimcilari: React.FC = () => {
                                                                                                 </a>
                                                                                             </p>
                                                                                         </div>
-                                                                                        {person.biography && (
-                                                                                            <div className="biography mt-3 mb-4">
-                                                                                                <h6 className="text-black-900 font-semibold mb-2">Biyografi</h6>
-                                                                                                <p className="text-gray-700 text-sm leading-relaxed">
-                                                                                                    {person.biography}
-                                                                                                </p>
-                                                                                            </div>
-                                                                                        )}
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
