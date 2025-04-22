@@ -26,7 +26,16 @@ export const gebze: DropdownItem[] = [
         icon: <FiMap />,
         title: 'BUGÜNKÜ GEBZE',
         description: 'Bugünkü Gebze hakkında bilgi',
-        path:'/gebze/bugunkugebze'},
+        path:'/gebze/bugunkugebze'
+    },
+
+    {
+        icon: <FiGlobe />,
+        title: 'KARDEŞ ŞEHİRLER',
+        description: 'Kardeş Şehirler hakkında bilgi',
+        path:'/gebze/kardessehirler'
+    },
+
     {
         icon: <FiMapPin />,
         title: 'MAHALLE MUHTARLARI',
@@ -45,12 +54,7 @@ export const gebze: DropdownItem[] = [
         description: 'Gebze Fotoğrafları hakkında bilgi',
         path:'/gebze/fotograflarlaGebze'
     },
-    {
-        icon: <FiGlobe />,
-        title: 'KARDEŞ ŞEHİRLER',
-        description: 'Kardeş Şehirler hakkında bilgi',
-        path:'/gebze/kardessehirler'
-    },
+
     {
         icon: <FiUsers />,
         title: 'ÜYE OLDUĞUMUZ BİRLİKLER',
