@@ -158,30 +158,6 @@ const BusinessTaxation: React.FC = () => {
                     </div>
                 </div>
             </section>
-
-            {/* Scroll to top */}
-            <div
-                className="scroll-to-top scroll-to-target"
-                data-target="html"
-                style={{
-                    position: 'fixed',
-                    bottom: '20px',
-                    right: '20px',
-                    width: isMobile ? '40px' : isTablet ? '45px' : '50px',
-                    height: isMobile ? '40px' : isTablet ? '45px' : '50px',
-                    borderRadius: '50%',
-                    backgroundColor: '#f7f7f7',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    zIndex: 99,
-                    transition: 'all 0.3s ease',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-                }}
-            >
-                <span className="icon-arrow"></span>
-            </div>
         </div>
     );
 };
