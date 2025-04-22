@@ -55,7 +55,7 @@ const VisionPage: React.FC = () => {
             <section
                 className="page-title"
                 style={{
-                    backgroundImage: 'url(/images/kurumsal/gebze.jpg)',
+                    backgroundImage: 'url(/images/kurumsal/1.jpg)',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     padding: isMobile ? '40px 0' : isTablet ? '60px 0' : '80px 0',

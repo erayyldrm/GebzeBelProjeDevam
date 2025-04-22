@@ -19,6 +19,7 @@ import Yayin from "./YayinApp.tsx";
 import Yayinpdf from "./components/Yayin/yayinpdf.tsx";
 import Haberler from "./components/Haberler/haberler.tsx";
 import EBelediye from "./components/e-belediye/e-belediye.tsx";
+import Iletisim from "./components/İletişim/iletisim.tsx";
 import AdminPanelApp from "./components/AdminPanel/_AdminApp.tsx";
 
 
@@ -75,6 +76,7 @@ const App: React.FC = () => {
                     <Route path="/etkinlikler" element={<EventsSection/>}/>
                     <Route path="/haberler" element={<Haberler/>}/>
                     <Route path="/e-belediye" element={<EBelediye/>}/>
+                    <Route path="/iletisim" element={<Iletisim/>}/>
                     {/* Kurumsal gibi gebzede olması lazım */}
                     <Route
                         path="/kurumsal/*"
