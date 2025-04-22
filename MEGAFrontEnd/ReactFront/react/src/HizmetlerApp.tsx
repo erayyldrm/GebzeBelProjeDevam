@@ -42,10 +42,9 @@ import ElektronikAtikPage from "./components/hizmetler/geridonusum/elektronik.ts
 import EvselAtikPage from "./components/hizmetler/geridonusum/evsel.tsx";
 import IriHacimliAtikPage from "./components/hizmetler/geridonusum/hacimli.tsx";
 import MolozAtiklariPage from "./components/hizmetler/geridonusum/moloz.tsx";
-import AtikPilDetayPage from "./components/hizmetler/geridonusum/piller.tsx";
 import SifirAtikPage from "./components/hizmetler/geridonusum/sifiratik.tsx";
-import TekstilAtiklariPage from "./components/hizmetler/geridonusum/tekstil.tsx";
 import Piller from "./components/hizmetler/geridonusum/piller.tsx";
+import TekstilAtiklariPage from "./components/hizmetler/geridonusum/tekstil.tsx";
 
 
 
@@ -77,7 +76,7 @@ const HizmetlerApp: React.FC =() => {
             <Route path="/geridonusum/moloz" element={<MolozAtiklariPage/>}/>
             <Route path="/geridonusum/piller" element={<Piller/>}/>
             <Route path="/geridonusum/sifiratik" element={<SifirAtikPage/>}/>
-            <Route path="/geridonusum/tekstil" element={<SifirAtikPage/>}/>
+            <Route path="/geridonusum/tekstil" element={<TekstilAtiklariPage/>}/>
             <Route path="/kutuphane" element={<Kutuphane/>}/>
             <Route path="/merkezler" element={<Merkezler/>}/>
             <Route path="/mesirealani" element={<Mesirealani/>}/>

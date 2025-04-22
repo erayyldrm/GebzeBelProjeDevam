@@ -5,10 +5,10 @@ const MolozAtiklariPage = () => {
         <div
             className="min-h-screen bg-green-50 text-gray-800 font-sans"
             style={{
-                margin: "0 auto",
-                maxWidth: "calc(100% - 120px)",
-                paddingLeft: "40px",
-                paddingRight: "20px",
+                margin: '20px auto 0',
+                maxWidth: 'calc(100% - 80px)',
+                paddingLeft: '40px',
+                paddingRight: '40px',
             }}
         >
             <header className="bg-green-100 px-6 py-10 rounded-b-2xl shadow-inner">
@@ -25,13 +25,13 @@ const MolozAtiklariPage = () => {
                 </div>
             </header>
 
-            <div className="py-10 max-w-3xl mx-auto flex flex-col gap-6">
-                {/* Resim Kartı */}
+            <div className="py-10 max-w-6xl mx-auto flex flex-col gap-6">
+                {/* Görsel Kartı */}
                 <div className="bg-white p-6 rounded-2xl shadow">
                     <img
-                        src="/images/hizmetler/donusum/moloz.jpg"
+                        src="/images/hizmetler/donusum/moloz2.jpg"
                         alt="Moloz Atıkları"
-                        className="w-full h-48 object-cover rounded-xl mb-4"
+                        className="w-full h-64 object-cover rounded-xl mb-4"
                     />
                 </div>
 
