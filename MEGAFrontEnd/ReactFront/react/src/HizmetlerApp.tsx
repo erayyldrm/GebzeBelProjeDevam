@@ -36,8 +36,16 @@ import Arapbilim from "./components/hizmetler/kutuphane/arapbilim.tsx";
 import Beylikbilim from "./components/hizmetler/kutuphane/beylikbilim.tsx";
 import Baris from "./components/hizmetler/kutuphane/baris.tsx";
 import İstasyonB from "./components/hizmetler/kutuphane/İstasyonbilim.tsx";
-
-
+import GeriDonusumDetayPage from "./components/hizmetler/geridonusum/ambalaj.tsx";
+import BitkiselAtikYagPage from "./components/hizmetler/geridonusum/bitkisel.tsx";
+import ElektronikAtikPage from "./components/hizmetler/geridonusum/elektronik.tsx";
+import EvselAtikPage from "./components/hizmetler/geridonusum/evsel.tsx";
+import IriHacimliAtikPage from "./components/hizmetler/geridonusum/hacimli.tsx";
+import MolozAtiklariPage from "./components/hizmetler/geridonusum/moloz.tsx";
+import AtikPilDetayPage from "./components/hizmetler/geridonusum/piller.tsx";
+import SifirAtikPage from "./components/hizmetler/geridonusum/sifiratik.tsx";
+import TekstilAtiklariPage from "./components/hizmetler/geridonusum/tekstil.tsx";
+import Piller from "./components/hizmetler/geridonusum/piller.tsx";
 
 
 
@@ -61,6 +69,15 @@ const HizmetlerApp: React.FC =() => {
             <Route path="/evlendirme" element={<Evlendirme/>}/>
             <Route path="/gures" element={<Gures/>}/>
             <Route path="/geridonusum" element={<GeriDonusum/>}/>
+            <Route path="/geridonusum/ambalaj" element={<GeriDonusumDetayPage/>}/>
+            <Route path="/geridonusum/bitkisel" element={<BitkiselAtikYagPage/>}/>
+            <Route path="/geridonusum/elektronik" element={<ElektronikAtikPage/>}/>
+            <Route path="/geridonusum/evsel" element={<EvselAtikPage/>}/>
+            <Route path="/geridonusum/hacimli" element={<IriHacimliAtikPage/>}/>
+            <Route path="/geridonusum/moloz" element={<MolozAtiklariPage/>}/>
+            <Route path="/geridonusum/piller" element={<Piller/>}/>
+            <Route path="/geridonusum/sifiratik" element={<SifirAtikPage/>}/>
+            <Route path="/geridonusum/tekstil" element={<SifirAtikPage/>}/>
             <Route path="/kutuphane" element={<Kutuphane/>}/>
             <Route path="/merkezler" element={<Merkezler/>}/>
             <Route path="/mesirealani" element={<Mesirealani/>}/>
