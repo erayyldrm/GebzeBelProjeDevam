@@ -74,7 +74,7 @@ const Nislemleri: React.FC<ServiceDetailProps> = ({
                             <h2 className="text-2xl font-semibold text-blue-700 mb-4 border-b pb-2">
                                 Verilen Hizmetler
                             </h2>
-                            <p className="text-gray-700 mb-4 text-sm sm:text-base">VERİLEN HİZMETLER
+                            <p className="text-gray-700 mb-4 text-sm sm:text-base">
                                 NİKÂH İÇİN GEREKLİ OLAN EVRAK LİSTESİ
 <br/>
                                 1.	Çiftler T.C. Nüfus Cüzdanlarıyla (daha önce boşanma, ölüm varsa nüfus cüzdanlarına işlenmiş son medeni halleri yazılı olacak.) 1 adet Nüfus Cüzdan fotokopileri.

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ImageSlider from "../Sliders/SliderTest.tsx";
 
 type Event = {
     id: number;
@@ -30,116 +31,23 @@ const events: Event[] = [
 ];
 
 const EventsSection: React.FC = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [isTransitioning, setIsTransitioning] = useState(false);
-
-    const goToSlide = (index: number) => {
-        if (index === currentSlide || isTransitioning) return;
-        setIsTransitioning(true);
-        setCurrentSlide(index);
-    };
-
-    const nextSlide = () => {
-        if (isTransitioning) return;
-        setIsTransitioning(true);
-        setCurrentSlide((prev) => (prev === events.length - 1 ? 0 : prev + 1));
-    };
-
-    const prevSlide = () => {
-        if (isTransitioning) return;
-        setIsTransitioning(true);
-        setCurrentSlide((prev) => (prev === 0 ? events.length - 1 : prev - 1));
-    };
-
-    useEffect(() => {
-        const transitionEnd = () => setIsTransitioning(false);
-        const slider = document.querySelector('.slider-container');
-        slider?.addEventListener('transitionend', transitionEnd);
-
-        return () => {
-            slider?.removeEventListener('transitionend', transitionEnd);
-        };
-    }, []);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            nextSlide();
-        }, 5000);
-        return () => clearInterval(interval);
-    }, [currentSlide, isTransitioning]);
+    // Create slides array using all 18 events for the slider
+    const slides = events.map(event => ({
+        image: event.imageUrl
+    }));
 
     return (
         <div className="container mx-auto py-10">
             <h2 className="text-3xl font-bold mb-6 text-center">Etkinlikler</h2>
 
-            {/* Slider Container */}
-            <div className="relative mb-16 px-16">
-                {/* Card-like Container */}
-                <div className="bg-white rounded-xl shadow-xl p-1">
-                    {/* Slider with Animation */}
-                    <div className="slider-container relative h-[500px] w-full rounded-lg overflow-hidden">
-                        {events.map((event, index) => (
-                            <div
-                                key={event.id}
-                                className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-                                    index === currentSlide
-                                        ? 'opacity-100 translate-x-0'
-                                        : index < currentSlide
-                                            ? '-translate-x-full opacity-0'
-                                            : 'translate-x-full opacity-0'
-                                }`}
-                            >
-                                <img
-                                    src={event.imageUrl}
-                                    alt={event.title}
-                                    className="w-full h-full object-contain"
-                                />
-                            </div>
-                        ))}
+            {/* Wider Card with #002850 background color */}
+            <div className="w-full mx-auto mb-16">
+                <div style={{ backgroundColor: "#002850" }} className="p-8 rounded-xl shadow-xl">
+                    {/* Using ImageSlider component from TarihcePage */}
+                    <div className="relative w-full overflow-hidden rounded-lg">
+                        <ImageSlider slides={slides} />
                     </div>
                 </div>
-
-                {/* Navigation Arrows */}
-                <button
-                    onClick={prevSlide}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 p-4 rounded-full z-20 text-white text-2xl transition-all duration-300 shadow-xl"
-                    aria-label="Önceki slide"
-                    style={{
-                        backgroundColor: '#022842',
-                        transform: 'translateY(-50%) translateX(-50%)',
-                    }}
-                    disabled={isTransitioning}
-                >
-                    ❮
-                </button>
-                <button
-                    onClick={nextSlide}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 p-4 rounded-full z-20 text-white text-2xl transition-all duration-300 shadow-xl"
-                    aria-label="Sonraki slide"
-                    style={{
-                        backgroundColor: '#022842',
-                        transform: 'translateY(-50%) translateX(50%)',
-                    }}
-                    disabled={isTransitioning}
-                >
-                    ❯
-                </button>
-
-            </div>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center -mt-8 mb-10">
-                {events.map((_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => goToSlide(index)}
-                        className={`w-3 h-3 mx-1.5 rounded-full transition-all duration-300 ${
-                            index === currentSlide ? 'bg-black' : 'bg-gray-400'
-                        } ${isTransitioning && index === currentSlide ? 'scale-125' : ''}`}
-                        aria-label={`Slide ${index + 1}`}
-                        disabled={isTransitioning}
-                    />
-                ))}
             </div>
 
             {/* Events Grid */}
