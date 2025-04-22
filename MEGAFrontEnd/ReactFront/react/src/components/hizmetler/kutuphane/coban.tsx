@@ -14,14 +14,15 @@ interface ServiceDetailProps {
 
 const workshopData = [];
 
-const Fitness: React.FC<ServiceDetailProps> = ({
-                                                      title = "FITNESS",
-                                                      description = "",
-                                                      imageUrl = "",
-                                                      address = "",
-                                                      phone = "",
-                                                      workingHours = "",
-                                                  }) => {
+const Coban: React.FC<ServiceDetailProps> = ({
+                                                   title = "ÇOBAN MUSTAFA PAŞA KÜTÜPHANESİ",
+                                                   description = "",
+                                                   imageUrl = "",
+                                                   address = "",
+                                                   phone = "",
+                                                   workingHours = "",
+
+                                               }) => {
     const [openIndexes, setOpenIndexes] = useState<number[]>([]);
 
     const toggleIndex = (index: number) => {
@@ -49,7 +50,7 @@ const Fitness: React.FC<ServiceDetailProps> = ({
                     <div className="flex justify-center">
                         <div className="relative h-[500px] sm:h-[600px] md:h-[750px] lg:h-[850px] w-[90%] sm:w-3/4 md:w-2/3 lg:w-2/3 rounded-lg overflow-hidden shadow-lg">
                             <img
-                                src="/images/hizmetler/egitimler/fıtness.jpg"
+                                src="/images/hizmetler/kütüphane/çobanmustafa.jpg"
                                 alt={title}
                                 className="w-full h-full object-cover"
                             />
@@ -73,40 +74,20 @@ const Fitness: React.FC<ServiceDetailProps> = ({
                             <h2 className="text-2xl font-semibold text-blue-700 mb-4 border-b pb-2">
                                 Verilen Hizmetler
                             </h2>
-                            <p className="text-gray-700 mb-4 text-sm sm:text-base">
-
+                            <p className="text-gray-700 mb-4 text-sm sm:text-base"> <br/>
+                                Çoban Mustafa Paşa Kütüphanemiz Haftaiçi ve Haftasonu 09:00/24:00 saatleri arasında her gün tüm halkımıza açıktır. Kütüphanemizdeki oturma alanlarını kullanabilmek için  aşağıda ki web adresi üzerinden üyelik bilgileriniz ile oturum açarak rezervasyon yaptırmanız gerekmektedir. Ayrıca web adresi üzerinden üyelik bilgileriniz ile oturum açarak Online Kitap Arama, Süre Uzatma, Kitap Ayırtma ve Rezervasyon işlemlerinizi gerçekleştirebilirsiniz.
 <br/>
-                                Sağlıklı ve aktif yaşamı desteklemek adına profesyonel eğitmenler ve donanımlı tesislerimiz ile sizlere erişilebilir spor imkanı verilmektedir.
+                                Kütüphanemizde 10 Kişilik ve 12 Kişilik Grup Çalışma Odası bulunmakta olup bu alanlarda ekip arkadaşlarınızla proje tasarlayabilir ve Smart TV ile görsel paylaşım yapabilirsiniz.
                                 <br/>
+                                Kütüphanemizde 20,000 Adet Yetişkin, Çocuk ve Okul Öncesi yaş gruplarına ait koleksiyon bulunmaktadır. Süreli yayın koleksiyonumuzla her yaş grubunda farklı içerikleri okuyucularımızla buluşturuyoruz.
                                 <br/>
-                                TESİSLER
-                                <br/>
-                                ARAPÇEŞME BİLİM VE SANAT MERKEZİ
-                                <br/>
-                                Arapçeşme Mah Arapçeşme, Arapçeşme Mahallesi Kavak Caddesi, 1066. Sk. No:27, 41400 Gebze/Kocaeli Gebze / KOCAELİ
-                                <br/>
-                                +90 262 641 24 93
-                                <br/>
-                                genclik.spor@gebze.bel.tr
-                                <br/>
-                                <br/>
-
-                                SÜMEYYE BOYACI YARI OLİMPİK YÜZME HAVUZU
-                                <br/>
-                                Cumhuri̇yet Mah Cumhuriyet, Necip Fazıl Cd., 41400 Gebze/Kocaeli Gebze / KOCAELİ
-                                <br/>
-                                +90 262 641 24 93
-                                <br/>
-                                genclik.spor@gebze.bel.tr
-
-
-                            </p>
-                        </section>
+                                Kütüphanemizde ziyaretçilerimizin kullanımına sunduğumuz bilgisayarlar ile İnternete erişim sağlayabilirsiniz. Kütüphanemizin her noktasında ziyaretçilerimizin kendi kişisel tablet, telefon ve bilgisayarları ile kullanabilecekleri Ücretsiz Wi-Fİ ağımız bulunmaktadır.         </p>   </section>
+                        {/* PDF İndir Alanı */}
                         <a
-                            href="https://sende.gebze.bel.tr/egitimler?categories[0]=41&majors[0]=36"
+                            href="https://kutuphane.gebze.bel.tr/yordam/"
                             className=" font-semibold inline-block mt-2 text-blue bg-blue-600 hover:bg-blue-700 transitionflex items-center justify-center px-4 py-3 rounded-md transition-all shadow-md text-xs flex-2"
                         >
-                            Detaylı Bilgi ve Kayıt İçin Tıklayınız
+                            ÜYELİK
                         </a>
                         {/* Atölyeler */}
                         <section className="mb-16">
@@ -152,21 +133,19 @@ const Fitness: React.FC<ServiceDetailProps> = ({
                                 <div className="flex items-start">
                                     <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
                                     <p className="text-gray-700">
-                                        Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze/KOCAELİ{" "}
+                                        HACI HALİL MAH. ATATÜRK CAD. NO: 10 GEBZE KOCAELİ
+                                        {" "}
                                         {address}
                                     </p>
                                 </div>
                                 <br />
                                 <div className="flex items-center">
                                     <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                    <p className="text-gray-700">0262 641 24 92
+                                    <p className="text-gray-700">02626420430 - 1773
                                         {phone}</p>
                                 </div>
                                 <br />
-                                <div className="flex items-center">
-                                    <Clock className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                    <p className="text-gray-700">08:00 - 17:00 {workingHours}</p>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -176,4 +155,4 @@ const Fitness: React.FC<ServiceDetailProps> = ({
     );
 };
 
-export default Fitness;
+export default Coban;

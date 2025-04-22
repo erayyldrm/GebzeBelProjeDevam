@@ -153,7 +153,7 @@ export default function Egitimlersayfasi() {
             <div className="flex flex-1">
                 <br />
                 {/* Ana İçerik Alanı */}
-                <div className="flex-1 px-6 pt-0 mt-[0px] pb-5">
+                <div className="flex-1 px-6 pt-0 mt-[0px] pb-5"><br/>
                     {/* Atölye Merkezleri */}
                     <section className="mb-40">
                         <div className="max-w-6xl mx-auto px-4">
@@ -161,10 +161,10 @@ export default function Egitimlersayfasi() {
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6 }}
-                                className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 rounded-xl shadow-xl mb-5"
+                                className="bg-[#891737] p-4 rounded-xl shadow-xl mb-5"
                             >
-                                <div className="text-3xl font-semibold text-blue-500 text-center">
-                                   Eğitimler
+                                <div className="text-2xl font-semibold text-white text-center">
+                                 EĞİTİMLER
                                 </div>
                             </motion.div>
 
