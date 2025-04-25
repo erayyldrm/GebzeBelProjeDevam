@@ -1,6 +1,5 @@
-// @ts-ignore
-import Sidebar from "../SideBar/sidebar.tsx";
 import { FileText } from "lucide-react";
+
 
 const documents = [
     { name: "Ruhsat ve Denetim Müdürlüğü", url: "docs/ruhsat.pdf" },
@@ -14,62 +13,38 @@ const documents = [
 
 const KurumsalDoc = () => {
     return (
-        <div id="pcoded" className="pcoded">
-            <div className="pcoded-overlay-box"></div>
-            <div className="pcoded-container navbar-wrapper">
-                <div className="pcoded-main-container">
-                    <div className="pcoded-wrapper">
-                        <div className="pcoded-content">
-                            <div className="pcoded-inner-content">
-                                <div className="main-body">
-                                    <div className="page-wrapper">
-                                        <div className="flex justify-center">
-                                            {/* Sayfa genel çerçevesi */}
-                                            <div
-                                                className="bg-gray-100 border border-gray-300 shadow-xl rounded-2xl w-full max-w-7xl ml-4 relative"
-                                                style={{
-                                                    marginLeft: '280px', // Sidebar ile aradaki boşluk
-                                                    padding: '20px',
-                                                    paddingRight: '20px',
-                                                }}
-                                            >
-                                                <div className="absolute top-0 left-0 h-full w-full bg-white z-[-1] border-gray-300 rounded-2xl">
-                                                </div>
+        <div className="flex">
+            {/* Sidebar would go here */}
 
-                                                {/* İçerik */}
-                                                <div className="container-fluid px-0 flex justify-center items-start">
-                                                    <div className="row gx-lg-4 w-full justify-center">
-                                                        {/* Main Content */}
-                                                        <div className="col-lg-9 col-md-8">
-                                                            <h1 className="text-center text-2xl font-bold text-gray-800 mb-4">
-                                                                Kurumsal Dokümanlar
-                                                            </h1>
-                                                            <ul className="list-none p-0">
-                                                                {documents.map((doc, index) => (
-                                                                    <li
-                                                                        key={index}
-                                                                        className="p-4 bg-blue-50 my-2 border border-blue-200 rounded-lg hover:bg-blue-100 transition flex items-center"
-                                                                    >
-                                                                        <FileText className="text-red-500 mr-2" size={30} />
-                                                                        <a
-                                                                            href={doc.url}
-                                                                            target="_blank"
-                                                                            rel="noopener noreferrer"
-                                                                            className="text-blue-700 font-semibold"
-                                                                        >
-                                                                            {doc.name}
-                                                                        </a>
-                                                                    </li>
-                                                                ))}
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {/* Sayfa çerçevesi sonu */}
-                                        </div>
+            {/* Main content area with sidebar spacing */}
+            <div className="w-full pl-72">
+                <div className="max-w-7xl mx-auto p-5">
+                    {/* Main content frame */}
+                    <div className="relative bg-white border border-gray-300 rounded-2xl shadow-xl p-6 mt-[-30px] ">
+                        {/* Content */}
+                        <div className="w-full text-center">
+                            <h1 className="text-3xl text-white font-bold bg-red-900 border-2 border-gray-300 inline-block px-4 py-3 mt-0 rounded-2xl">
+                                KURUMSAL DOKÜMANLAR
+                            </h1><br/><br/>
+
+                            {/* 4-column grid layout */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {documents.map((doc, index) => (
+                                    <div
+                                        key={index}
+                                        className="bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors duration-200 p-6 flex flex-col items-center text-center h-full"
+                                    >
+                                        <FileText className="text-red-500 mb-2" size={60} />
+                                        <a
+                                            href={doc.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-blue-700 font-semibold hover:underline mt-2"
+                                        >
+                                            {doc.name}
+                                        </a>
                                     </div>
-                                </div>
+                                ))}
                             </div>
                         </div>
                     </div>
