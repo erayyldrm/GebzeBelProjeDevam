@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { MapPin, ChevronRight, ChevronLeft } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const AnibalinMezariPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -89,7 +90,6 @@ const AnibalinMezariPage = () => {
             {/* Content Section */}
             <div className="container mx-auto px-3 py-9">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    {/* Main Content */}
                     <div className="p-6">
                         <div className="flex flex-col md:flex-row gap-8">
                             <div className="md:w-2/3">
@@ -129,7 +129,6 @@ const AnibalinMezariPage = () => {
                                 </div>
                             </div>
 
-                            {/* Sidebar */}
                             <div className="md:w-1/3">
                                 <div className="bg-blue-50 p-4 rounded-lg mb-6">
                                     <h3 className="text-xl font-bold text-blue-800 mb-4">🚗 Nasıl Gidilir?</h3>
@@ -148,24 +147,23 @@ const AnibalinMezariPage = () => {
                                     </a>
                                 </div>
 
-                                {/* Normal Galeri - slider olmadan */}
+                                {/* Galeri */}
                                 <div className="bg-gray-100 p-4 rounded-lg mb-6">
                                     <h3 className="text-xl font-bold text-gray-800 mb-3">🖼️ Galeri</h3>
-                                    <div className="grid grid-cols-2 gap-2">
-                                        {[
-                                            {id: 1, path: "/images/gebze/tarihiyerler/anibal/sub1.jpg", alt: "AnibalinMezari görünüm 1"},
-                                            {id: 2, path: "/images/gebze/tarihiyerler/anibal/sub2.JPG", alt: "AnibalinMezari görünüm 2"},
-                                            {id: 3, path: "/images/gebze/tarihiyerler/anibal/sub3.jpg", alt: "AnibalinMezari görünüm 3"},
-                                            {id: 4, path: "/images/gebze/tarihiyerler/anibal/sub4.JPG", alt: "AnibalinMezari görünüm 4"}
-                                        ].map((item) => (
-                                            <div key={item.id} className="aspect-square overflow-hidden rounded-lg">
-                                                <img
-                                                    src={item.path}
-                                                    alt={item.alt}
-                                                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                                                />
-                                            </div>
-                                        ))}
+                                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
+                                        {[{ id: 1, path: "/images/gebze/tarihiyerler/anibal/sub1.jpg", alt: "AnibalinMezari görünüm 1" },
+                                            { id: 2, path: "/images/gebze/tarihiyerler/anibal/sub2.JPG", alt: "AnibalinMezari görünüm 2" },
+                                            { id: 3, path: "/images/gebze/tarihiyerler/anibal/sub3.jpg", alt: "AnibalinMezari görünüm 3" },
+                                            { id: 4, path: "/images/gebze/tarihiyerler/anibal/sub4.JPG", alt: "AnibalinMezari görünüm 4" }]
+                                            .map((item) => (
+                                                <div key={item.id} className="aspect-square overflow-hidden rounded-lg">
+                                                    <img
+                                                        src={item.path}
+                                                        alt={item.alt}
+                                                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                                    />
+                                                </div>
+                                            ))}
                                     </div>
                                 </div>
                             </div>
@@ -173,12 +171,11 @@ const AnibalinMezariPage = () => {
                     </div>
                 </div>
 
-                {/* Other Places Section - Slider olarak düzenlenmiş */}
+                {/* Diğer Tarihi Yerler Slider */}
                 <div className="mt-12">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">DİĞER TARİHİ YERLER</h2>
 
                     <div className="relative">
-                        {/* Navigation Buttons */}
                         <button
                             onClick={prevSlide}
                             className="absolute -left-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10 disabled:opacity-50"
@@ -188,40 +185,44 @@ const AnibalinMezariPage = () => {
                             <ChevronLeft className="w-5 h-5" />
                         </button>
 
-                        {/* Slider Container */}
-                        <div className="overflow-hidden">
-                            <div
-                                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2"
-                            >
-                                {visiblePlaces().map((place, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col"
-                                    >
-                                        {/* Resim alanı */}
-                                        <div className="h-55 overflow-hidden">
-                                            <img
-                                                src={place.imagePath}
-                                                alt={place.name}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                            />
-                                        </div>
+                        <div className="overflow-hidden min-h-[350px]">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={currentIndex}
+                                    initial={{ opacity: 0, x: 100 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -100 }}
+                                    transition={{ duration: 0.6 }}
+                                    className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
 
-                                        {/* İçerik alanı */}
-                                        <div className="p-4 flex flex-col items-center justify-center text-center flex-grow">
-                                            <h3 className="text-lg font-semibold mb-4">{place.name}</h3>
-                                            <a
-                                                href={place.route}
-                                                className="text-blue-600 hover:text-blue-800 inline-flex items-center text-sm"
-                                            >
-                                                Detaylı bilgi
-                                                <ChevronRight className="w-4 h-4 ml-1" />
-                                            </a>
+                                >
+                                    {visiblePlaces().map((place, index) => (
+                                        <div
+                                            key={index}
+                                            className="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col"
+                                        >
+                                            <div className="h-55 overflow-hidden">
+                                                <img
+                                                    src={place.imagePath}
+                                                    alt={place.name}
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                />
+                                            </div>
+                                            <div className="p-4 flex flex-col items-center justify-center text-center flex-grow">
+                                                <h3 className="text-lg font-semibold mb-4">{place.name}</h3>
+                                                <a
+                                                    href={place.route}
+                                                    className="text-blue-600 hover:text-blue-800 inline-flex items-center text-sm"
+                                                >
+                                                    Detaylı bilgi
+                                                    <ChevronRight className="w-4 h-4 ml-1" />
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                                    ))}
+                                </motion.div>
+                            </AnimatePresence>
+                        </div><br/>
 
                         <button
                             onClick={nextSlide}
@@ -231,27 +232,6 @@ const AnibalinMezariPage = () => {
                         >
                             <ChevronRight className="w-5 h-5" />
                         </button>
-                    </div>
-
-                    {/* Pagination Dots */}
-                    <div className="flex justify-center space-x-2 mt-6">
-                        {Array.from({ length: Math.ceil(otherPlaces.length / 4) }).map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => {
-                                    if (!isAnimating) {
-                                        setIsAnimating(true);
-                                        setCurrentIndex(index * 4);
-                                        setTimeout(() => setIsAnimating(false), 500);
-                                    }
-                                }}
-                                className={`h-2 rounded-full transition-all ${
-                                    Math.floor(currentIndex / 4) === index ? 'w-6 bg-blue-600' : 'w-2 bg-gray-300'
-                                }`}
-                                aria-label={`Sayfa ${index + 1}`}
-                                disabled={isAnimating}
-                            />
-                        ))}
                     </div>
                 </div>
             </div>

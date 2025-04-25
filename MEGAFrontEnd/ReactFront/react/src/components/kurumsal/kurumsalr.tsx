@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FileText } from "lucide-react";
 
 const documents = [
@@ -102,7 +102,7 @@ const KurumsalRaporlar = () => {
                         {category.department}
                     </button>
                 ))}
-            </div>
+            </div><br/>
 
             {/* Documents Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-8">
