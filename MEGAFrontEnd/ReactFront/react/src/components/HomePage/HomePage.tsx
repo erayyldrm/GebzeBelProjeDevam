@@ -1,19 +1,18 @@
-import { useState } from "react";
+
 
 export default function HomePage() {
-    const [searchTerm, setSearchTerm] = useState("");
 
     // Sample data for the different sections
     const news = [
         {
             id: 1,
-            title: "Anahtar Parti'den Büyükakın'a ziyaret",
+            title: "Başkan Büyükgöz Koltuğu Sultana Devretti",
             image: "/api/placeholder/400/220",
-            date: "12 Nisan 2025"
+            date: "23 Nisan 2025"
         },
         {
             id: 2,
-            title: "Yeni yeşil alan projesi başladı",
+            title: "41 Genç`i başarılı öğrencileri Başkan Büyükgöz`e konuk oldu",
             image: "/api/placeholder/400/220",
             date: "10 Nisan 2025"
         }
@@ -190,37 +189,17 @@ export default function HomePage() {
         <div className="bg-gray-50">
             {/* Hero Section with Search */}
             <section className="relative h-96 w-full bg-blue-900 overflow-hidden">
-                <img
-                    src="/api/placeholder/1920/500"
-                    alt="Panoramic city view"
-                    className="absolute w-full h-full object-cover opacity-40"
+                <video
+                    className="absolute w-full h-full object-cover"
+                    src="/gebze.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-blue-900/50 to-blue-900/90"></div>
-
-                <div className="relative z-10 max-w-6xl mx-auto px-4 h-full flex flex-col justify-between pt-20 pb-12">
-                    <div className="mb-8">
-                        <div className="bg-white rounded-lg shadow-lg overflow-hidden flex items-center w-full max-w-3xl mx-auto">
-                            <input
-                                type="text"
-                                placeholder="Site içinde arama yapabilirsiniz..."
-                                className="px-4 py-3 w-full focus:outline-none"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
-                            <button className="bg-blue-600 text-white px-5 py-3 flex items-center justify-center">
-                                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="text-center text-white">
-                        <h1 className="text-2xl font-bold mb-1">TAHİR BÜYÜKAKIN</h1>
-                        <p className="text-sm">Kocaeli Büyükşehir Belediye Başkanı</p>
-                    </div>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-b"></div>
             </section>
+
 
             {/* News Section */}
             <section className="max-w-6xl mx-auto px-4 py-12">
@@ -295,7 +274,7 @@ export default function HomePage() {
                 {/* Announcements */}
                 <div>
                     <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-xl font-bold text-blue-800">BÜYÜKŞEHİR'DEN DUYURULAR</h2>
+                        <h2 className="text-xl font-bold text-blue-800"> DUYURULAR</h2>
                         <a href="#" className="text-sm text-blue-500 hover:underline">Tüm Duyurular</a>
                     </div>
 
@@ -407,28 +386,7 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* Mobile Apps Section */}
-            <section className="max-w-6xl mx-auto px-4 py-12">
-                <div className="text-center mb-8">
-                    <h2 className="text-xl font-bold text-blue-800 mb-2">MOBİL UYGULAMALARIMIZ</h2>
-                    <p className="text-gray-500">Tüm hizmetlere mobil cihazlarınızdan erişebilirsiniz</p>
-                </div>
 
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6">
-                    {Array.from({ length: 12 }).map((_, i) => (
-                        <div key={i} className="text-center">
-                            <div className="bg-blue-50 h-16 w-16 rounded-xl flex items-center justify-center mx-auto mb-2">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-blue-600" strokeWidth="2">
-                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                                    <line x1="8" y1="21" x2="16" y2="21"></line>
-                                    <line x1="12" y1="17" x2="12" y2="21"></line>
-                                </svg>
-                            </div>
-                            <p className="text-xs">Mobil Uygulama {i+1}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
 
             {/* Projects Section */}
             <section className="bg-gray-50 py-12">

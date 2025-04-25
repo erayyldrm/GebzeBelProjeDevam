@@ -21,6 +21,7 @@ import Haberler from "./components/Haberler/haberler.tsx";
 import EBelediye from "./components/e-belediye/e-belediye.tsx";
 import Iletisim from "./components/İletişim/iletisim.tsx";
 import AdminPanelApp from "./components/AdminPanel/_AdminApp.tsx";
+import HizmetNoktalari from "./components/İletişim/hizmet-noktalarimiz.tsx";
 
 
 
@@ -77,6 +78,7 @@ const App: React.FC = () => {
                     <Route path="/haberler" element={<Haberler/>}/>
                     <Route path="/e-belediye" element={<EBelediye/>}/>
                     <Route path="/iletisim" element={<Iletisim/>}/>
+                    <Route path="/hizmet-noktalari" element={<HizmetNoktalari/>}/>
                     {/* Kurumsal gibi gebzede olması lazım */}
                     <Route
                         path="/kurumsal/*"
