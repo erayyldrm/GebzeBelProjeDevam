@@ -7,50 +7,31 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
-
-
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    /*
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Find your user entity and convert to Spring Security's UserDetails
-        return userRepository.findByUsername(username)
-                .map(user -> new org.springframework.security.core.userdetails.User(
-                        user.getUsername(),
-                        user.getPassword(),
-                        // Add authorities/roles as needed
-                        getAuthorities(user)
-                ))
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
-    }
-    private Collection<? extends GrantedAuthority> getAuthorities(User user) {
-        // Convert your user roles to Spring Security authorities
-        return user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
-                .collect(Collectors.toList());
-    }
-*/
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Find your user entity
+        // Add debug logging
+        System.out.println("Attempting to load user: " + username);
+
+        // Assume TCNo is the username
         User user = userRepository.findByTCNo(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+                .orElseThrow(() -> {
+                    System.out.println("User not found with TCNo: " + username);
+                    return new UsernameNotFoundException("User not found with TCNo: " + username);
+                });
 
-        // Create a UserDetails object with basic authorities
+        System.out.println("User found: " + user.getTCNo() + ", role: " + user.getRole());
+
+        // Return a Spring Security UserDetails object
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getTCNo())
                 .password(user.getPassword())
-                .authorities("USER") // Basic authority, no roles
+                .roles(user.getRole()) // assuming role is a String like "USER", "ADMIN"
                 .build();
     }
-
-
 }

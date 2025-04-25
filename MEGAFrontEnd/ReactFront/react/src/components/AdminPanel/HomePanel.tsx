@@ -4,6 +4,7 @@ import { BarChart2, Users, Settings, User } from 'lucide-react';
 import AdminLayout from './_LayoutAdminPanel.tsx';
 import { useSearch } from './context/SearchContext';
 
+
 // Define TypeScript interfaces
 interface DataItem {
     id: number;
@@ -68,6 +69,9 @@ const StatusBadge: React.FC<{ status: 'active' | 'inactive' | 'pending' }> = ({ 
 export default function Dashboard() {
     const { searchQuery } = useSearch();
     const [filteredData, setFilteredData] = useState(mockData);
+
+
+
 
     // Update filtered data when search query changes
     useEffect(() => {
