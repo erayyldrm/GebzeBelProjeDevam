@@ -3,14 +3,14 @@ import React from 'react';
 const ManagementChart: React.FC = () => {
     return (
         <div id="pcoded" className="pcoded">
-            <div className="pcoded-container navbar-wrapper">
+            <div className="pcoded-container navbar-wrapper ">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
                         <div className="pcoded-content">
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
-                                    <div className="page-wrapper">
-                                        <div className="flex flex-row gap-4">
+                                    <div className="page-wrapper ">
+                                        <div className="flex flex-row gap-10">
 
                                             {/* Ana İçerik Alanı */}
                                             <div className="flex-1 p-4">
@@ -23,12 +23,14 @@ const ManagementChart: React.FC = () => {
                                                           boxShadow: "0 4px 16px rgba(0,0,0,0.1)"
                                                       }}
                                                 >
-                                                    <h1 className="text-3xl font-bold">YÖNETİM ŞEMASI</h1> <br/>
+                                                    <div className="flex justify-center">
+                                                        <h1 className="text-2xl font-bold text-center">YÖNETİM ŞEMASI</h1>
+                                                    </div>
                                                 </div>
                                                 {/* Added spacing between header and content */}
-                                                <div className="my-6"></div>
+                                                <div className="my-6 mt-3"></div>
                                                 {/* Main Content */}
-                                                <div className="card shadow-lg rounded-lg">
+                                                <div className="card shadow-lg rounded-lg mt-3">
                                                     <div className="card-block p-4">
                                                         <div className="col-md-12">
                                                             <ul className="space-y-4">
