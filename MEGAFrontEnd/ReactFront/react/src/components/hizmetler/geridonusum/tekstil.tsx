@@ -5,10 +5,10 @@ const TekstilAtiklariPage = () => {
         <div
             className="min-h-screen bg-green-50 text-gray-800 font-sans"
             style={{
-                margin: "0 auto",
-                maxWidth: "calc(100% - 120px)",
-                paddingLeft: "40px",
-                paddingRight: "20px",
+                margin: '20px auto 0',
+                maxWidth: 'calc(100% - 80px)',
+                paddingLeft: '40px',
+                paddingRight: '40px',
             }}
         >
             <header className="bg-green-100 px-6 py-10 rounded-b-2xl shadow-inner">
