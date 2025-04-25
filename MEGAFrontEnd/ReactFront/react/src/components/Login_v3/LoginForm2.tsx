@@ -5,6 +5,7 @@ import {TERipple} from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
 import {Link, useNavigate} from 'react-router-dom';
 import ParticleBackground from "../backgroundAnim/particle.tsx";
+import {login} from "../AdminPanel/services/authService.tsx";
 
 // Login Credentials Interface
 interface LoginCredentials {
@@ -33,28 +34,51 @@ const LoginPage: React.FC = () => {
     const loginMutation = useMutation({
         mutationFn: authService.login,
         onSuccess: (data) => {
-            //console.log('Login successful', data);
+
+            console.log('Login successful', data);
+
             setMessage(data.response?.data?.message || 'Giriş Başaşrılı');
+
+            // Store the token and user data in localStorage
+            localStorage.setItem('token', data.data.token);
+            localStorage.setItem('user', JSON.stringify({
+                tcNo: data.data.tcNo,
+                role: data.data.role // Make sure this matches your API response
+            }));
+
             // Geçiş yapılacak diğer sayfayı yönlendirme ekleyebilirsiniz
-            navigate('/admin/dashboard'); // Yönlendirmek istediğiniz route'u belirtin
+            navigate('/admin/dashboard');
 
         },
         onError: (error: any) => {
+            console.error('Login error:', error);
             setError(
                 error.response?.data?.message ||
-                'Giriş başarısız. Lütfen tekrar deneyin. Backend açık mı?'
+                error.message ||
+                'Giriş başarısız. Lütfen tekrar deneyin.'
             );
+            // Clear any existing auth data on error
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
         }
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(null);
+        const success = await login(username, password);
 
-        loginMutation.mutate({
-            username,
-            password
-        });
+        if (success) {
+            // Verify storage immediately after login
+            console.log('Post-login storage verification:', {
+                token: localStorage.getItem('token'),
+                user: JSON.parse(localStorage.getItem('user') || 'null')
+            });
+
+            // Add small delay to ensure state updates
+            setTimeout(() => {
+                navigate('/admin');
+            }, 100);
+        }
     };
 
     return (
@@ -111,9 +135,11 @@ const LoginPage: React.FC = () => {
                             <div className="text-center mb-4">
                                 <TERipple rippleColor="light" className="w-full">
                                     <button
-                                        className="inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out"
                                         type="submit"
                                         disabled={loginMutation.isPending}
+                                        className={`inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out ${
+                                            loginMutation.isPending ? 'opacity-50 cursor-not-allowed' : ''
+                                        }`}
                                         style={{
                                             background: "linear-gradient(to right, #022842, #222222)",
                                         }}

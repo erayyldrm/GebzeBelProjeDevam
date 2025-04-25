@@ -35,18 +35,11 @@ const BaskanDanismanlari: React.FC = () => {
                                             <div className="flex-1 p-4 pt-0 mt-[-10px]"> {/* İçeriği de yukarı aldık */}
                                                 {/* Header */}
                                                 <div className="mb-6">
-                                                    <div
-                                                        className="depertment-details shadow p-4"
-                                                        style={{
-                                                            backgroundColor: "#ffffff",
-                                                            borderRadius: "12px",
-                                                            textAlign: "center",
-                                                            boxShadow: "0 4px 16px rgba(0,0,0,0.1)"
-                                                        }}
-                                                    >
-                                                        <h1 className="text-2xl font-bold text-center">BAŞKAN DANIŞMANLARI</h1>
+                                                    <div className="bg-white rounded-xl text-center shadow-md p-6 max-w-xl mx-auto">
+                                                        <h1 className="text-3xl font-bold text-gray-800">BAŞKAN DANIŞMANLARI</h1>
                                                     </div>
                                                 </div>
+
                                                 {/* Main Content */}
                                                 <div className="card shadow-lg rounded-lg mt-2">
                                                     <div className="card-block p-4">
@@ -77,14 +70,15 @@ const BaskanDanismanlari: React.FC = () => {
                                                                                         {danisman.bio && (
                                                                                             <div className="biography mt-3 mb-4">
                                                                                                 <h6 className="text-black-900 font-semibold mb-2">Biyografi</h6>
-                                                                                                <p className="text-gray-700 text-sm leading-relaxed">
+                                                                                                <p className="text-gray-700 text-sm leading-relaxed text-justify">
                                                                                                     {danisman.bio}
                                                                                                 </p>
                                                                                             </div>
                                                                                         )}
 
-                                                                                        <div className="contact-info mt-3">
+                                                                                        <div className="contact-info mt-3"><h6 className="text-black-900 font-semibold mb-2">İletişim:</h6>
                                                                                             <p className="flex items-center text-gray-700 mb-2">
+
                                                                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-black-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                                                                                 </svg>

@@ -1,34 +1,43 @@
 import React from "react";
-import {Route, Routes, Navigate } from "react-router-dom";
+import {Route, Routes, Navigate, Outlet} from "react-router-dom";
 import Users from "./Users.tsx";
 import Dashboard from './HomePanel.tsx';
 import {SearchProvider} from './context/SearchContext.tsx';
-import { isAuthenticated, isAdmin } from './services/authService.tsx';
+import {isAuthenticated, isAdmin} from './services/authService.tsx';
 
 
-
-
-const AdminRoute: React.FC<{children: React.ReactNode}> = ({ children }) => {
+const AdminRoute = () => {
+    // Check these return the expected values
+    console.log('Is authenticated:', isAuthenticated());
+    console.log('Is admin:', isAdmin());
     if (!isAuthenticated()) {
-        return <Navigate to="/login" />;
+        return <Navigate to="/login"/>;
     }
 
     if (!isAdmin()) {
-        return <Navigate to="/dashboard" />;
+
+        return <Navigate to="/unauthorized" replace />;
     }
 
-    return <>{children}</>;
+    return <Outlet />; // This will render the child routes
 };
 
 const _AdminApp: React.FC = () => {
     return (
         <SearchProvider> {/* Wrap ALL routes that need search context */}
-
             <Routes>
-                <Route path="/users" element={<Users />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-            </Routes>
+                {/* All routes here are relative to /admin */}
+                <Route element={<AdminRoute />}>
+                    {/* /admin/dashboard */}
+                    <Route path="dashboard" element={<Dashboard />} />
 
+                    {/* /admin/users */}
+                    <Route path="users" element={<Users />} />
+
+                    {/* Redirect /admin to /admin/dashboard */}
+                    <Route index element={<Navigate to="dashboard" replace />} />
+                </Route>
+            </Routes>
         </SearchProvider>
     );
 };

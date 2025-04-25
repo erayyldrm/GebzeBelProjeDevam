@@ -105,9 +105,9 @@ const App: React.FC = () => {
                 {/* Routes WITHOUT navbar and footer */}
                 <Route path="/login" element={<LoginForm/>}/>
                 <Route path="/signup" element={<SignUp/>}/>
-                <Route path="/admin/*">
-                    <Route path="*" element={<AdminPanelApp/>}/>
-                </Route>
+                {/* Admin routes */}
+                <Route path="/admin/*" element={<AdminPanelApp />} />
+
             </Routes>
         </QueryClientProvider>
     );

@@ -10,9 +10,9 @@ const Arabuluculuk: React.FC = () => {
                             <div className="pcoded-inner-content pt-0">
                                 <div className="main-body pt-0">
                                     <div className="page-wrapper py-0 mt-0">
-                                        <div className="flex flex-row gap-4 mt-0">
+                                        <div className="flex flex-row gap-4 mt-[-6px]">
                                             {/* İçerik Alanı */}
-                                            <div className="flex-1 p-4 pt-0 -mt-4">
+                                            <div className="flex-1 p-4 pt-0 ">
                                                 <div className="bg-white shadow-lg rounded-lg p-6">
                                                     <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Arabuluculuk Komisyonu</h2>
 
