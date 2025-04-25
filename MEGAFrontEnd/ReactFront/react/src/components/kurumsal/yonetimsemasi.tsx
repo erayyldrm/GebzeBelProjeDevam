@@ -1,44 +1,35 @@
 import React from 'react';
 
-const ManagementChart: React.FC = () => {
+const ManagementChart = () => {
     return (
         <div id="pcoded" className="pcoded">
-            <div className="pcoded-container navbar-wrapper ">
+            <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
                         <div className="pcoded-content">
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
-                                    <div className="page-wrapper ">
-                                        <div className="flex flex-row gap-10">
+                                    <div className="page-wrapper">
+                                        <div className="flex flex-row gap-4">
 
                                             {/* Ana İçerik Alanı */}
                                             <div className="flex-1 p-4">
                                                 {/* Centered Header */}
-                                                <div  className="depertment-details shadow p-4"
-                                                      style={{
-                                                          backgroundColor: "#ffffff",
-                                                          borderRadius: "12px",
-                                                          textAlign: "center",
-                                                          boxShadow: "0 4px 16px rgba(0,0,0,0.1)"
-                                                      }}
-                                                >
-                                                    <div className="flex justify-center">
-                                                        <h1 className="text-2xl font-bold text-center">YÖNETİM ŞEMASI</h1>
-                                                    </div>
+                                                <div className="shadow p-4 bg-white rounded-xl text-center">
+                                                    <h1 className="text-3xl font-bold">YÖNETİM ŞEMASI</h1>
                                                 </div>
                                                 {/* Added spacing between header and content */}
-                                                <div className="my-6 mt-3"></div>
+                                                <div className="my-6"></div>
                                                 {/* Main Content */}
-                                                <div className="card shadow-lg rounded-lg mt-3">
-                                                    <div className="card-block p-4">
+                                                <div className="shadow-lg rounded-lg">
+                                                    <div className="p-4">
                                                         <div className="col-md-12">
                                                             <ul className="space-y-4">
                                                                 {/* Başkan */}
                                                                 <li>
-                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
-                                                                        <div className="media flex items-start">
-                                                                            <a className="media-left" href="#">
+                                                                    <div className="bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="flex items-start">
+                                                                            <a className="flex-shrink-0" href="#">
                                                                                 <img
                                                                                     className="rounded-lg"
                                                                                     src="/images/kurumsal/belediyemeclisi/zinnurbuyukgoz.jpg"
@@ -47,7 +38,7 @@ const ManagementChart: React.FC = () => {
                                                                                     alt="Zinnur BÜYÜKGÖZ"
                                                                                 />
                                                                             </a>
-                                                                            <div className="media-body ml-4">
+                                                                            <div className="ml-4 w-full">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-xl font-bold">
                                                                                         Zinnur BÜYÜKGÖZ
@@ -56,18 +47,19 @@ const ManagementChart: React.FC = () => {
                                                                                     <hr className="my-2 border-t border-gray-300" />
                                                                                 </div>
 
-                                                                                <div className="space-y-2">
-                                                                                    <button className="btn-container bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Özel Kalem Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Dr. Yusuf ATASEVEN</h5>
-                                                                                    </button>&nbsp;<br/>
-                                                                                    <button className="btn-container bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Hukuk İşleri Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Av. Murat TUNCA</h5>
-                                                                                    </button><br/>
-                                                                                    <button className="btn-container bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Teftiş Kurulu Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Kemal TETİK</h5>
+                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-3 text-center">İlgili Müdürlükler</h6>
+                                                                                <div className="grid grid-cols-2 gap-2">
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Özel Kalem Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Dr. Yusuf ATASEVEN</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Hukuk İşleri Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Av. Murat TUNCA</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Teftiş Kurulu Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Kemal TETİK</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -78,9 +70,9 @@ const ManagementChart: React.FC = () => {
                                                                 {/* Başkan Yardımcıları */}
                                                                 {/* Dursun Ali ARSLAN */}
                                                                 <li>
-                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
-                                                                        <div className="media flex items-start">
-                                                                            <a className="media-left" href="#">
+                                                                    <div className="bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="flex items-start">
+                                                                            <a className="flex-shrink-0" href="#">
                                                                                 <img
                                                                                     className="rounded-lg"
                                                                                     src="/images/yonetimsemasi/Dursun ali .jpg"
@@ -89,7 +81,7 @@ const ManagementChart: React.FC = () => {
                                                                                     alt="Dursun Ali ARSLAN"
                                                                                 />
                                                                             </a>
-                                                                            <div className="media-body ml-4">
+                                                                            <div className="ml-4 w-full">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-xl font-bold">
                                                                                         Dursun Ali ARSLAN
@@ -98,22 +90,23 @@ const ManagementChart: React.FC = () => {
                                                                                     <hr className="my-2 border-t border-gray-300" />
                                                                                 </div>
 
-                                                                                <div className="space-y-2">
-                                                                                    <button className="btn-container bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Sosyal Destek Hizmetleri Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Mecit KESKİNOĞLU</h5>
-                                                                                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-                                                                                    <button className="btn-container bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Zabıta Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Burhan KANDEMİR</h5>
-                                                                                    </button>&nbsp;<br/>
-                                                                                    <button className="btn-container bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        İklim Değişikliği ve Sıfır Atık Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Senay ALTINTAŞ</h5>
-                                                                                    </button>&nbsp;<br/>
-                                                                                    <button className="btn-container bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Temizlik İşleri Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Senay ALTINTAŞ</h5>
+                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-3 text-center">İlgili Müdürlükler</h6>
+                                                                                <div className="grid grid-cols-2 gap-3">
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Sosyal Destek Hizmetleri Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Mecit KESKİNOĞLU</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Zabıta Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Burhan KANDEMİR</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">İklim Değişikliği ve Sıfır Atık Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Senay ALTINTAŞ</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Temizlik İşleri Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Senay ALTINTAŞ</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -121,12 +114,11 @@ const ManagementChart: React.FC = () => {
                                                                     </div>
                                                                 </li>
 
-                                                                {/* Diğer Başkan Yardımcıları */}
                                                                 {/* Ahmet Hüseyin ÇELEBİ */}
                                                                 <li>
-                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
-                                                                        <div className="media flex items-start">
-                                                                            <a className="media-left" href="#">
+                                                                    <div className="bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="flex items-start">
+                                                                            <a className="flex-shrink-0" href="#">
                                                                                 <img
                                                                                     className="rounded-lg"
                                                                                     src="/images/yonetimsemasi/ahmet hüseyin.jpg"
@@ -135,7 +127,7 @@ const ManagementChart: React.FC = () => {
                                                                                     alt="Ahmet Hüseyin ÇELEBİ"
                                                                                 />
                                                                             </a>
-                                                                            <div className="media-body ml-4">
+                                                                            <div className="ml-4 w-full">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-xl font-bold">
                                                                                         Ahmet Hüseyin ÇELEBİ
@@ -144,22 +136,23 @@ const ManagementChart: React.FC = () => {
                                                                                     <hr className="my-2 border-t border-gray-300" />
                                                                                 </div>
 
-                                                                                <div className="space-y-2">
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Mali Hizmetler Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Bilgin ALTAY</h5>
-                                                                                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        İnsan Kaynakları ve Eğitim Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">İmran AYYILDIZ</h5>
-                                                                                    </button><br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Ruhsat Denetim Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Erhan HORUZ</h5>
-                                                                                    </button>&nbsp;&nbsp;<br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Destek Hizmetleri Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Carullah Recai ER</h5>
+                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-3 text-center">İlgili Müdürlükler</h6>
+                                                                                <div className="grid grid-cols-2 gap-3">
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Mali Hizmetler Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Bilgin ALTAY</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">İnsan Kaynakları ve Eğitim Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">İmran AYYILDIZ</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Ruhsat Denetim Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Erhan HORUZ</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Destek Hizmetleri Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Carullah Recai ER</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -167,10 +160,11 @@ const ManagementChart: React.FC = () => {
                                                                     </div>
                                                                 </li>
 
+                                                                {/* Şerif Canpolat */}
                                                                 <li>
-                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
-                                                                        <div className="media flex items-start">
-                                                                            <a className="media-left" href="#">
+                                                                    <div className="bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="flex items-start">
+                                                                            <a className="flex-shrink-0" href="#">
                                                                                 <img
                                                                                     className="rounded-lg"
                                                                                     src="/images/yonetimsemasi/şerif canpolat.jpg"
@@ -179,7 +173,7 @@ const ManagementChart: React.FC = () => {
                                                                                     alt="Şerif Canpolat"
                                                                                 />
                                                                             </a>
-                                                                            <div className="media-body ml-4">
+                                                                            <div className="ml-4 w-full">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-xl font-bold">
                                                                                         Şerif Canpolat
@@ -188,18 +182,19 @@ const ManagementChart: React.FC = () => {
                                                                                     <hr className="my-2 border-t border-gray-300" />
                                                                                 </div>
 
-                                                                                <div className="space-y-2">
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Fen İşleri Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Hafız ALTINTAŞ</h5>
-                                                                                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Park Ve Bahçeler Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Tunacy TÜRETKEN</h5>
-                                                                                    </button><br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Etüt Ve Proje Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Ömer ŞAHİN</h5>
+                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-3 text-center">İlgili Müdürlükler</h6>
+                                                                                <div className="grid grid-cols-2 gap-3">
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Fen İşleri Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Hafız ALTINTAŞ</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Park ve Bahçeler Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Tunacy TÜRETKEN</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Etüt ve Proje Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Ömer ŞAHİN</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -207,10 +202,11 @@ const ManagementChart: React.FC = () => {
                                                                     </div>
                                                                 </li>
 
+                                                                {/* Muharrem BALTACIOGLU */}
                                                                 <li>
-                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
-                                                                        <div className="media flex items-start">
-                                                                            <a className="media-left" href="#">
+                                                                    <div className="bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="flex items-start">
+                                                                            <a className="flex-shrink-0" href="#">
                                                                                 <img
                                                                                     className="rounded-lg"
                                                                                     src="/images/yonetimsemasi/muharrem baltacıoğlu.jpg"
@@ -219,7 +215,7 @@ const ManagementChart: React.FC = () => {
                                                                                     alt="Muharrem BALTACIOGLU"
                                                                                 />
                                                                             </a>
-                                                                            <div className="media-body ml-4">
+                                                                            <div className="ml-4 w-full">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-xl font-bold">
                                                                                         Muharrem BALTACIOGLU
@@ -228,37 +224,39 @@ const ManagementChart: React.FC = () => {
                                                                                     <hr className="my-2 border-t border-gray-300" />
                                                                                 </div>
 
-                                                                                <div className="space-y-2">
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Emlak Ve İstimlak Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Şaban SARIAY</h5>
-                                                                                    </button>&nbsp;&nbsp;<br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Plan Ve Proje Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Asker ÇOBAN</h5>
-                                                                                    </button><br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Bilgi İşlem Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Tümay AKSAN</h5>
-                                                                                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        İmar Ve Şehircilik Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Mücahit KOKSAL</h5>
-                                                                                    </button><br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Yapı Ve Kontrol Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Mücahit KOKSAL</h5>
-                                                                                    </button><br/>
+                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-3 text-center">İlgili Müdürlükler</h6>
+                                                                                <div className="grid grid-cols-2 gap-3">
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Emlak ve İstimlak Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Şaban SARIAY</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Plan ve Proje Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Asker ÇOBAN</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Bilgi İşlem Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Tümay AKSAN</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">İmar ve Şehircilik Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Mücahit KOKSAL</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Yapı ve Kontrol Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Mücahit KOKSAL</span>
+                                                                                    </button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </li>
 
+                                                                {/* Mahmut YANDIK */}
                                                                 <li>
-                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
-                                                                        <div className="media flex items-start">
-                                                                            <a className="media-left" href="#">
+                                                                    <div className="bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="flex items-start">
+                                                                            <a className="flex-shrink-0" href="#">
                                                                                 <img
                                                                                     className="rounded-lg"
                                                                                     src="/images/yonetimsemasi/mahmut yandık.jpg"
@@ -267,7 +265,7 @@ const ManagementChart: React.FC = () => {
                                                                                     alt="Mahmut YANDIK"
                                                                                 />
                                                                             </a>
-                                                                            <div className="media-body ml-4">
+                                                                            <div className="ml-4 w-full">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-xl font-bold">
                                                                                         Mahmut YANDIK
@@ -276,29 +274,32 @@ const ManagementChart: React.FC = () => {
                                                                                     <hr className="my-2 border-t border-gray-300" />
                                                                                 </div>
 
-                                                                                <div className="space-y-2">
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Makina İkmal, Bakım <br/> Ve Onarım Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Dursun Ali Yayla</h5>
-                                                                                    </button>&nbsp;<br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Mezarlıklar Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">İslam ÖZDAĞ</h5>
-                                                                                    </button>&nbsp;&nbsp;<br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        İşletme Ve İştirakler<br/> Müdürlüğü<br />
-                                                                                        <h5 className="text-sm">Hacı KEY</h5>
-                                                                                    </button><br/>
+                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-3 text-center">İlgili Müdürlükler</h6>
+                                                                                <div className="grid grid-cols-2 gap-3">
+
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Mezarlıklar Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">İslam ÖZDAĞ</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">İşletme ve İştirakler Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Hacı KEY</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Makina İkmal, Bakım ve Onarım Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Dursun Ali Yayla</span>
+                                                                                    </button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </li>
 
+                                                                {/* Şener AKIN */}
                                                                 <li>
-                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
-                                                                        <div className="media flex items-start">
-                                                                            <a className="media-left" href="#">
+                                                                    <div className="bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="flex items-start">
+                                                                            <a className="flex-shrink-0" href="#">
                                                                                 <img
                                                                                     className="rounded-lg"
                                                                                     src="/images/yonetimsemasi/şener akın.jpg"
@@ -307,7 +308,7 @@ const ManagementChart: React.FC = () => {
                                                                                     alt="Şener AKIN"
                                                                                 />
                                                                             </a>
-                                                                            <div className="media-body ml-4">
+                                                                            <div className="ml-4 w-full">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-xl font-bold">
                                                                                         Şener AKIN
@@ -316,29 +317,31 @@ const ManagementChart: React.FC = () => {
                                                                                     <hr className="my-2 border-t border-gray-300" />
                                                                                 </div>
 
-                                                                                <div className="space-y-2">
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Veteriner İşleri Müdürlüğü<br />
-                                                                                        <h5 className="text-sm">Cevat ALTINTAŞ</h5>
-                                                                                    </button>&nbsp;&nbsp;<br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Afet İşleri Müdürlüğü<br />
-                                                                                        <h5 className="text-sm">Soner BİLİR</h5>
-                                                                                    </button><br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Yazı İşleri Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Bahar ÖZALP</h5>
-                                                                                    </button><br/>
+                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-3 text-center">İlgili Müdürlükler</h6>
+                                                                                <div className="grid grid-cols-2 gap-3">
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Veteriner İşleri Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Cevat ALTINTAŞ</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Afet İşleri Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Soner BİLİR</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Yazı İşleri Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Bahar ÖZALP</span>
+                                                                                    </button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </li>
 
+                                                                {/* Mücahit BİRBEN */}
                                                                 <li>
-                                                                    <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
-                                                                        <div className="media flex items-start">
-                                                                            <a className="media-left" href="#">
+                                                                    <div className="bg-white rounded-lg shadow-md p-4">
+                                                                        <div className="flex items-start">
+                                                                            <a className="flex-shrink-0" href="#">
                                                                                 <img
                                                                                     className="rounded-lg"
                                                                                     src="/images/yonetimsemasi/mücahit birben.jpg"
@@ -347,7 +350,7 @@ const ManagementChart: React.FC = () => {
                                                                                     alt="Mücahit BİRBEN"
                                                                                 />
                                                                             </a>
-                                                                            <div className="media-body ml-4">
+                                                                            <div className="ml-4 w-full">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-xl font-bold">
                                                                                         Mücahit BİRBEN
@@ -356,22 +359,23 @@ const ManagementChart: React.FC = () => {
                                                                                     <hr className="my-2 border-t border-gray-300" />
                                                                                 </div>
 
-                                                                                <div className="space-y-2">
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Gençlik Ve Spor Hizmetleri Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Burhannettin DEMİRCİ</h5>
-                                                                                    </button><br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Basın Yayın Ve Halkla İlişkiler Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Birsen VURDEM</h5>
-                                                                                    </button><br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Kültür İşleri Müdürlüğü<br />
-                                                                                        <h5 className="text-sm">Hasan GÜLER</h5>
-                                                                                    </button>&nbsp;&nbsp;<br/>
-                                                                                    <button className="btn-hover bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-700">
-                                                                                        Kadın Ve Aile Hizmetleri Müdürlüğü <br />
-                                                                                        <h5 className="text-sm">Zeynep YILDIRIM</h5>
+                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-3 text-center">İlgili Müdürlükler</h6>
+                                                                                <div className="grid grid-cols-2 gap-3">
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Gençlik ve Spor Hizmetleri Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Burhannettin DEMİRCİ</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Basın Yayın ve Halkla İlişkiler Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Birsen VURDEM</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Kültür İşleri Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Hasan GÜLER</span>
+                                                                                    </button>
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                        <span className="block">Kadın ve Aile Hizmetleri Müdürlüğü</span>
+                                                                                        <span className="text-sm font-normal">Zeynep YILDIRIM</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
