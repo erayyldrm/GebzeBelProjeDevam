@@ -10,14 +10,21 @@ export const login = async (username: string, password: string) => {
         });
 
         const data = await response.json();
+        console.log('Full login response:', data); // Debug log
 
         if (data.status === 'success') {
-            // Store token in localStorage
+            // Store token
             localStorage.setItem('token', data.data.token);
-            localStorage.setItem('user', JSON.stringify({
-                tcNo: data.data.tcNo,
-                role: data.role
-            }));
+
+            // Store complete user data including role from response
+            const userData = {
+                ...data.data,      // Spread all data properties
+                role: data.role    // Include the role from top level
+            };
+
+            localStorage.setItem('user', JSON.stringify(userData));
+            console.log('Stored user data:', userData); // Debug
+
             return true;
         }
         return false;
@@ -39,22 +46,35 @@ export const getAuthHeader = () => {
 };
 
 export const isAuthenticated = () => {
+
     return localStorage.getItem('token') !== null;
 };
 
 export const getUserRole = () => {
-    const userStr = localStorage.getItem('user');
-    if (!userStr) return null;
+    try {
+        const userStr = localStorage.getItem('user');
+        if (!userStr) {
+            console.warn('No user data in localStorage');
+            return null;
+        }
 
-    const user = JSON.parse(userStr);
-    return user.role || null;
+        const user = JSON.parse(userStr);
+        console.log('Current localStorage user:', user);
+
+        // Check role in multiple possible locations
+        return user?.role || null;
+    } catch (error) {
+        console.error('Error parsing user data:', error);
+        return null;
+    }
 };
-
 export const hasRole = (requiredRole: string) => {
     const role = getUserRole();
     return role === requiredRole;
 };
 
 export const isAdmin = () => {
-    return hasRole('Admin');
+    const role = getUserRole();
+    return role && role.toLowerCase() === 'admin';
+
 };
