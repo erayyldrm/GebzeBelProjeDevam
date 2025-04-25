@@ -34,10 +34,37 @@ export const login = async (username: string, password: string) => {
     }
 };
 
+// authService.ts
 export const logout = () => {
+    // Clear all auth-related items
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    window.location.href = '/login';
+
+    // Optional: Clear any other application state
+    // localStorage.removeItem('other-app-data');
+
+    // For complete cleanup, consider:
+     sessionStorage.clear();
+
+    // Redirect will happen in the UI component
+    console.log('User logged out successfully');
+};
+
+// Add to authService.ts
+export const setupAuthListener = (navigate: (path: string) => void) => {
+    // Listen for storage changes (logout from other tabs)
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'token' && !event.newValue) {
+            navigate('/login');
+        }
+    });
+
+    // Check auth periodically
+    setInterval(() => {
+        if (!isAuthenticated()) {
+            navigate('/login');
+        }
+    }, 300000); // 5 minutes
 };
 
 export const getAuthHeader = () => {

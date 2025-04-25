@@ -62,9 +62,6 @@
 .z-50 {
   z-index: 50;
 }
-.z-\[-1\] {
-  z-index: -1;
-}
 .z-\[100\] {
   z-index: 100;
 }
@@ -143,9 +140,6 @@
 .col-auto {
   grid-column: auto;
 }
-.col-span-1 {
-  grid-column: span 1 / span 1;
-}
 .col-span-3 {
   grid-column: span 3 / span 3;
 }
@@ -173,8 +167,17 @@
 .ms-auto {
   margin-inline-start: auto;
 }
+.mt-\[-6px\] {
+  margin-top: -6px;
+}
 .mt-\[-10px\] {
   margin-top: -10px;
+}
+.mt-\[-20px\] {
+  margin-top: -20px;
+}
+.mt-\[-30px\] {
+  margin-top: -30px;
 }
 .mt-\[-40px\] {
   margin-top: -40px;
@@ -256,6 +259,9 @@
 }
 .table-row-group {
   display: table-row-group;
+}
+.aspect-\[16\/9\] {
+  aspect-ratio: 16/9;
 }
 .aspect-square {
   aspect-ratio: 1 / 1;
@@ -347,9 +353,6 @@
 .max-w-\[466px\] {
   max-width: 466px;
 }
-.max-w-\[800px\] {
-  max-width: 800px;
-}
 .max-w-\[1200px\] {
   max-width: 1200px;
 }
@@ -426,6 +429,9 @@
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -452,6 +458,9 @@
 }
 .items-center {
   align-items: center;
+}
+.items-end {
+  align-items: flex-end;
 }
 .items-start {
   align-items: flex-start;
@@ -532,6 +541,9 @@
 .bg-\[\#3b71ca\] {
   background-color: #3b71ca;
 }
+.bg-\[\#005599\] {
+  background-color: #005599;
+}
 .bg-\[\#022842\] {
   background-color: #022842;
 }
@@ -541,14 +553,15 @@
 .bg-\[\#022842\]\/80 {
   background-color: color-mix(in oklab, #022842 80%, transparent);
 }
-.bg-\[\#064169\] {
-  background-color: #064169;
-}
 .bg-\[\#891737\] {
   background-color: #891737;
 }
 .bg-transparent {
   background-color: transparent;
+}
+.bg-gradient-to-b {
+  --tw-gradient-position: to bottom in oklab;
+  background-image: linear-gradient(var(--tw-gradient-stops));
 }
 .bg-gradient-to-br {
   --tw-gradient-position: to bottom right in oklab;
@@ -656,6 +669,12 @@
 }
 .opacity-0 {
   opacity: 0%;
+}
+.opacity-14 {
+  opacity: 14%;
+}
+.opacity-40 {
+  opacity: 40%;
 }
 .opacity-50 {
   opacity: 50%;

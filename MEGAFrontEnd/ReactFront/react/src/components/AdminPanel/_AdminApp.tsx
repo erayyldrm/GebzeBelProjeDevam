@@ -1,9 +1,9 @@
-import React from "react";
-import {Route, Routes, Navigate, Outlet} from "react-router-dom";
+import React, {useEffect} from "react";
+import {Route, Routes, Navigate, Outlet, useNavigate} from "react-router-dom";
 import Users from "./Users.tsx";
 import Dashboard from './HomePanel.tsx';
 import {SearchProvider} from './context/SearchContext.tsx';
-import {isAuthenticated, isAdmin} from './services/authService.tsx';
+import {isAuthenticated, isAdmin, setupAuthListener} from './services/authService.tsx';
 
 
 const AdminRoute = () => {
@@ -22,7 +22,14 @@ const AdminRoute = () => {
     return <Outlet />; // This will render the child routes
 };
 
+
 const _AdminApp: React.FC = () => {
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        setupAuthListener(navigate);
+    }, [navigate]);
+
     return (
         <SearchProvider> {/* Wrap ALL routes that need search context */}
             <Routes>
