@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const VisionPage: React.FC = () => {
-    const [windowWidth, setWindowWidth] = useState(
+    const [, setWindowWidth] = useState(
         typeof window !== 'undefined' ? window.innerWidth : 1200
     );
 
@@ -16,189 +16,63 @@ const VisionPage: React.FC = () => {
         };
     }, []);
 
-    // Responsive breakpoints
-    const isMobile = windowWidth < 768;
-    const isTablet = windowWidth >= 768 && windowWidth < 992;
-    const isDesktop = windowWidth >= 992;
-
     return (
-        <div
-            className="page-wrapper mt-3"
-            style={{
-                boxShadow: '0 0 20px rgba(0, 0, 0, 0.25)',
-                backgroundColor: '#fff',
-                position: 'relative',
-                zIndex: 1,
-                maxWidth: isDesktop ? '1000px' : '100%',
-                padding: isMobile ? '0 15px' : '0 20px',
-            }}
-        >
-            {/* Main Header */}
-            <header className="main-header header-style-one">
-                {/* Mobile Menu */}
-                <div className="mobile-menu">
-                    <div className="menu-backdrop"></div>
-                    <div className="close-btn">
-                        <span className="icon far fa-times-circle"></span>
-                    </div>
+        // Outer container card that wraps everything
+        <div className="mt-3 mx-auto bg-white rounded-xl shadow-lg relative z-10 max-w-4xl px-4 md:px-5 py-6 md:py-8">
+            <div className="space-y-6">
+                {/* Image Card */}
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img
+                        src="/images/kurumsal/1.jpg"
+                        alt="Zinnur Büyükgöz"
+                        className="w-full h-auto"
+                    />
                 </div>
-                {/* End Mobile Menu */}
 
-                <div className="nav-overlay">
-                    <div className="cursor"></div>
-                    <div className="cursor-follower"></div>
-                </div>
-            </header>
-            {/* End Main Header */}
+                {/* Text Content Card */}
+                <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 mt-4">
+                    <section className="py-1 md:py-6">
+                        <div className="w-full max-w-4xl mx-auto">
+                            <h3 className="mb-4  font-sans font-bold text-center  tracking-wider">
+                                VİZYONUMUZ
+                            </h3>
 
-            {/* Page Title */}
-            <section
-                className="page-title"
-                style={{
-                    backgroundImage: 'url(/images/kurumsal/1.jpg)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    padding: isMobile ? '40px 0' : isTablet ? '60px 0' : '80px 0',
-                }}
-            >
-                <div
-                    className="auto-container"
-                    style={{
-                        width: '100%',
-                        maxWidth: '1000px',
-                        margin: '0 auto',
-                        padding: '0 15px',
-                    }}
-                >
-                    <div className="content-box">
-                        <div className="content-wrapper">
-                            <div className="title">
-                                <h1
-                                    style={{
-                                        color: '#fff',
-                                        fontSize: isMobile
-                                            ? '36px'
-                                            : isTablet
-                                                ? '54px'
-                                                : '72px',
-                                        fontFamily: 'Poppins, sans-serif',
-                                        fontWeight: 600,
-                                        letterSpacing: '1px',
-                                        textShadow: '2px 2px 8px rgba(0,0,0,0.5)',
-                                        marginBottom: '20px',
-                                    }}
-                                >
-                                    Vizyonumuz
-                                </h1>
+                            <div className="mb-5 md:mb-7 text-sm md:text-base text-justify">
+                                Gebze'yi sadece bir yaşam alanı olarak değil, geçmişten
+                                gelen zengin kültürel mirasını koruyan, tarihi dokusunu
+                                yaşatan ve aynı zamanda modern şehircilik anlayışıyla
+                                geleceğe taşıyan örnek bir kent haline getirmek temel
+                                hedefimizdir. Bu doğrultuda, şehircilik anlayışımızı
+                                sürdürülebilirlik, çevreye duyarlılık, sosyal bütünleşme
+                                ve katılımcı yönetişim ilkeleri üzerine inşa ederek, her
+                                yaştan ve her kesimden vatandaşımızın yaşam kalitesini
+                                artırmayı amaçlıyoruz. Teknolojik altyapıyı güçlendirerek
+                                akıllı şehir uygulamalarını hayata geçirmek, yeşil
+                                alanları artırarak doğayla iç içe bir yaşam sunmak ve
+                                modern ulaşım ağlarıyla kent içi hareketliliği
+                                kolaylaştırmak en büyük önceliklerimiz arasındadır. Gebze'yi
+                                ekonomik, sosyal ve kültürel olarak daha yaşanabilir bir
+                                kent haline getirmek için yenilikçi belediyecilik
+                                anlayışıyla çalışmalarımızı sürdürerek, sadece bugünün
+                                değil, geleceğin de şehir modelini inşa etmeye devam
+                                edeceğiz.<br/><br/>
+                                Geleceğin Gebze'sini inşa ederken, insanı merkeze alan, tarihi
+                                değerlerine sahip çıkan ve modern şehircilik ilkeleriyle
+                                bütünleşmiş bir kent vizyonuyla, sürdürülebilir ve yaşanabilir
+                                bir şehir oluşturma yolunda kararlılıkla çalışmaya devam
+                                edeceğiz.
+                            </div>
+                            <div className="mt-0 flex justify-end">
+                                <img
+                                    src="/images/kurumsal/gebze-belediyesi-logo-png_seeklogo-406755.png"
+                                    alt="imza"
+                                    className="max-w-[200px] h-auto"
+                                />
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
-            </section>
-
-            {/* Sidebar Page Container */}
-            <section
-                className="sidebar-page-container"
-                style={{
-                    padding: isMobile ? '40px 0' : isTablet ? '60px 0' : '80px 0',
-                }}
-            >
-                <div
-                    className="auto-container"
-                    style={{
-                        width: '100%',
-                        maxWidth: '1000px',
-                        margin: '0 auto',
-                        padding: '0 15px',
-                    }}
-                >
-                    <div
-                        className="row justify-content-center"
-                        style={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            justifyContent: 'center',
-                        }}
-                    >
-                        <div
-                            className="col-lg-20"
-                            style={{
-                                width: '100%', // Kutunun genişliği resmin genişliği kadar olacak
-                                padding: '0 15px',
-                            }}
-                        >
-                            <div
-                                className="depertment-details shadow p-4"
-                                style={{
-                                    backgroundColor: '#ffffff',
-                                    borderRadius: '12px',
-                                    textAlign: 'center',
-                                    boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-                                    padding: isMobile ? '15px' : isTablet ? '20px' : '25px',
-                                }}
-                            >
-                                <div
-                                    className="text mb-40"
-                                    style={{
-                                        marginBottom: isMobile
-                                            ? '20px'
-                                            : isTablet
-                                                ? '30px'
-                                                : '40px',
-                                    }}
-                                >
-                                    <p
-                                        style={{
-                                            fontSize: isMobile
-                                                ? '15px'
-                                                : isTablet
-                                                    ? '17px'
-                                                    : '16px',
-                                            textAlign: 'justify',
-                                        }}
-                                    >
-                                        Gebze'yi sadece bir yaşam alanı olarak değil, geçmişten
-                                        gelen zengin kültürel mirasını koruyan, tarihi dokusunu
-                                        yaşatan ve aynı zamanda modern şehircilik anlayışıyla
-                                        geleceğe taşıyan örnek bir kent haline getirmek temel
-                                        hedefimizdir. Bu doğrultuda, şehircilik anlayışımızı
-                                        sürdürülebilirlik, çevreye duyarlılık, sosyal bütünleşme
-                                        ve katılımcı yönetişim ilkeleri üzerine inşa ederek, her
-                                        yaştan ve her kesimden vatandaşımızın yaşam kalitesini
-                                        artırmayı amaçlıyoruz. Teknolojik altyapıyı güçlendirerek
-                                        akıllı şehir uygulamalarını hayata geçirmek, yeşil
-                                        alanları artırarak doğayla iç içe bir yaşam sunmak ve
-                                        modern ulaşım ağlarıyla kent içi hareketliliği
-                                        kolaylaştırmak en büyük önceliklerimiz arasındadır. Gebze'yi
-                                        ekonomik, sosyal ve kültürel olarak daha yaşanabilir bir
-                                        kent haline getirmek için yenilikçi belediyecilik
-                                        anlayışıyla çalışmalarımızı sürdürerek, sadece bugünün
-                                        değil, geleceğin de şehir modelini inşa etmeye devam
-                                        edeceğiz.
-                                    </p>
-                                </div>
-                                <div
-                                    className="text"
-                                    style={{
-                                        fontSize: isMobile
-                                            ? '16px'
-                                            : isTablet
-                                                ? '17px'
-                                                : '16px',
-                                        textAlign: 'justify',
-                                    }}
-                                >
-                                    Geleceğin Gebze'sini inşa ederken, insanı merkeze alan, tarihi
-                                    değerlerine sahip çıkan ve modern şehircilik ilkeleriyle
-                                    bütünleşmiş bir kent vizyonuyla, sürdürülebilir ve yaşanabilir
-                                    bir şehir oluşturma yolunda kararlılıkla çalışmaya devam
-                                    edeceğiz.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            </div>
         </div>
     );
 };
