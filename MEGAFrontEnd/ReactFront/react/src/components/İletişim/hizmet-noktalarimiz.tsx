@@ -8,32 +8,18 @@ const hizmetNoktalari = [
         ad: "📊 Basın Yayın ve Halkla İlişkiler Müdürlüğü",
         kategori: "Birimler",
         adres: "",
-        konumUrl: "https://goo.gl/maps/example1",
+        konumUrl: "https://www.google.com/maps/place/Gebze+Belediye+Ba%C5%9Fkanl%C4%B1%C4%9F%C4%B1/@40.805905,29.440195,1707m/data=!3m1!1e3!4m6!3m5!1s0x14cb2088efaa11d3:0x575a512b11a2fd35!8m2!3d40.805905!4d29.440195!16s%2Fg%2F1tk69xgw?hl=tr&entry=ttu&g_ep=EgoyMDI1MDQyNy4xIKXMDSoASAFQAw%3D%3D",
     },
     {
         id: 2,
         ad: " 💻  Bilgi İşlem Müdürlüğü",
         kategori: "Birimler",
         adres: "",
-        konumUrl: "https://goo.gl/maps/example1",
+        konumUrl: "https://www.google.com/maps/place/Gebze+Belediye+Ba%C5%9Fkanl%C4%B1%C4%9F%C4%B1/@40.805905,29.440195,1707m/data=!3m1!1e3!4m6!3m5!1s0x14cb2088efaa11d3:0x575a512b11a2fd35!8m2!3d40.805905!4d29.440195!16s%2Fg%2F1tk69xgw?hl=tr&entry=ttu&g_ep=EgoyMDI1MDQyNy4xIKXMDSoASAFQAw%3D%3D",
     },
     {
         id: 3,
         ad: "🛠️ Destek Hizmetleri Müdürlüğü",
-        kategori: "Birimler",
-        adres: "",
-        konumUrl: "https://goo.gl/maps/example1",
-    },
-    {
-        id: 4,
-        ad: "🏗️ Makina İkmal Bakım Onarım Servisi",
-        kategori: "Birimler",
-        adres: "",
-        konumUrl: "https://goo.gl/maps/example1",
-    },
-    {
-        id: 5,
-        ad: "🚌  Otobüs İşleri Servisi",
         kategori: "Birimler",
         adres: "",
         konumUrl: "https://goo.gl/maps/example1",
@@ -45,13 +31,7 @@ const hizmetNoktalari = [
         adres: "",
         konumUrl: "https://goo.gl/maps/example1",
     },
-    {
-        id: 7,
-        ad: "🔢  Numarataj Şefliği",
-        kategori: "Birimler",
-        adres: "",
-        konumUrl: "https://goo.gl/maps/example1",
-    },
+
     {
         id: 8,
         ad: "🚧 Fen İşleri Müdürlüğü",
@@ -83,6 +63,28 @@ const hizmetNoktalari = [
     {
         id: 12,
         ad: "🧑‍💼 İstihdam Büro",
+        kategori: "Birimler",
+        adres: "",
+        konumUrl: "https://goo.gl/maps/example1",
+    },
+    {
+        id: 4,
+        ad: "🏗️ Makina İkmal Bakım Onarım Servisi",
+        kategori: "Birimler",
+        adres: "",
+        konumUrl: "https://goo.gl/maps/example1",
+    },
+    {
+        id: 5,
+        ad: "🚌  Otobüs İşleri Servisi",
+        kategori: "Birimler",
+        adres: "",
+        konumUrl: "https://goo.gl/maps/example1",
+    },
+
+    {
+        id: 7,
+        ad: "🔢  Numarataj Şefliği",
         kategori: "Birimler",
         adres: "",
         konumUrl: "https://goo.gl/maps/example1",
@@ -458,35 +460,41 @@ export default function HizmetNoktalari() {
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6"
                 >
-                    {filtrelenmisNoktalar.map((nokta) => (
-                        <div
-                            key={nokta.id}
-                            className="flex flex-col justify-between h-full border rounded-2xl p-4 shadow-md hover:shadow-lg transition-all bg-white"
-                        >
-                            <div>
-                                <h2 className="text-base font-semibold mb-2 text-gray-800">{nokta.ad}</h2>
-                                <p className="text-sm text-gray-600 mb-5">{nokta.adres}</p>
-                            </div>
+                    {filtrelenmisNoktalar.map((nokta) => {
+                        const [emoji, ...baslikKelimeleri] = nokta.ad.trim().split(" ");
+                        const baslik = baslikKelimeleri.join(" ");
 
-                            {tiklananId === nokta.id ? (
-                                <div className="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium bg-green-700 text-white transition-colors">
-                                    <MapPin className="w-4 h-4" />
-                                    Yönlendiriliyor...
+                        return (
+                            <div
+                                key={nokta.id}
+                                className="flex flex-col justify-between h-full border rounded-2xl p-4 shadow-md hover:shadow-lg transition-all bg-white items-center text-center"
+                            >
+                                <div>
+                                    <div className="text-4xl mb-2">{emoji}</div>
+                                    <h2 className="text-base font-semibold mb-2 text-gray-800">{baslik}</h2>
+                                    <p className="text-sm text-gray-600 mb-5">{nokta.adres}</p>
                                 </div>
-                            ) : (
-                                <a
-                                    href={nokta.konumUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={() => setTiklananId(nokta.id)}
-                                    className="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium bg-blue-500 text-white hover:bg-green-600 transition-colors"
-                                >
-                                    <MapPin className="w-4 h-4" />
-                                    Konuma Git
-                                </a>
-                            )}
-                        </div>
-                    ))}
+
+                                {tiklananId === nokta.id ? (
+                                    <div className="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium bg-green-700 text-white transition-colors">
+                                        <MapPin className="w-4 h-4" />
+                                        Yönlendiriliyor...
+                                    </div>
+                                ) : (
+                                    <a
+                                        href={nokta.konumUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={() => setTiklananId(nokta.id)}
+                                        className="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium bg-blue-500 text-white hover:bg-green-600 transition-colors"
+                                    >
+                                        <MapPin className="w-4 h-4" />
+                                        Konuma Git
+                                    </a>
+                                )}
+                            </div>
+                        );
+                    })}
                 </motion.div>
             </AnimatePresence>
         </div>

@@ -1,28 +1,26 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Phone, Info, X } from 'lucide-react';
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
-// Atölye merkezi verileri
+// Kütüphane verileri
 const kutuphanemerkezi = [
     {
         id: 3,
         name: "Arapçeşme Bilim ve Sanat Merkezi Kütüphanesi",
-        phone: " 0262 643 99 15",
-        address: " ARAPÇEŞME MAH. 1065 SOKAK. NO: 28 GEBZE/KOCAELİ",
+        phone: "0262 643 99 15",
+        address: "ARAPÇEŞME MAH. 1065 SOKAK. NO: 28 GEBZE/KOCAELİ",
         image: "/images/hizmetler/kütüphane/arapçeşme.jpg",
-        mapLink: "https://www.google.com/maps/place/Arap%C3%A7e%C5%9Fme+Bilim+ve+Sanat+Merkezi/@40.8089479,29.4478023,17z/data=!3m1!4b1!4m5!3m4!1s0x14cb218c872ba7cb:0xd9ac3808d8983b27!8m2!3d40.8089439!4d29.449991?shorturl=1",
+        mapLink: "https://www.google.com/maps/place/Arap%C3%A7e%C5%9Fme...",
         details: "Sanat, kültür ve bilim alanlarında çeşitli atölyeler ve aktiviteler sunuyoruz.",
-        detailPage: "/hizmetler/kutuphane/arapbilim" // Buradaki path'i güncelledim
+        detailPage: "/hizmetler/kutuphane/arapbilim"
     },
     {
         id: 1,
         name: "Barış Sosyal Tesisleri",
-
         address: "Barış Mahallesi 1819/1 Sokak No:52 41400 Gebze/KOCAELİ",
         image: "/images/hizmetler/kütüphane/barış.jpg",
-        mapLink: "https://www.google.com/maps/place//@40.7784393,29.4255709,17z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI1MDQxNi4xIKXMDSoASAFQAw%3D%3D",
+        mapLink: "https://www.google.com/maps/place//@40.7784393...",
         details: "Çocukların yaratıcı ve eğitsel gelişimini destekleyen çeşitli aktiviteler sunuyoruz.",
         detailPage: "/hizmetler/kutuphane/baris"
     },
@@ -30,9 +28,9 @@ const kutuphanemerkezi = [
         id: 2,
         name: "Beylikbağı Bilim ve Sanat Merkezi Kütüphanesi",
         phone: "0262 642 18 95",
-        address:" BEYLİKBAĞI MAH. ANKARA CAD.NO:7 GEBZE/KOCAELİ",
+        address: "BEYLİKBAĞI MAH. ANKARA CAD.NO:7 GEBZE/KOCAELİ",
         image: "/images/hizmetler/kütüphane/beylikbagıbilim.jpg",
-        mapLink: "https://www.google.com/maps/place/Beylikba%C4%9F%C4%B1+Bilim+ve+Sanat+Merkezi/@40.8060484,29.383749,15z/data=!4m5!3m4!1s0x0:0x9d4de4e27aefbc48!8m2!3d40.8060359!4d29.3837509?sa=X&ved=2ahUKEwiVtv6y6ITmAhXcQUEAHVKOBLcQ_BIwCnoECBUQCA&shorturl=1&shorturl=1",
+        mapLink: "https://www.google.com/maps/place/Beylikba%C4%9F%C4%B1...",
         details: "Gençlerin yetenek ve becerilerini geliştirmek için özel programlar ve etkinlikler düzenliyoruz.",
         detailPage: "/hizmetler/kutuphane/beylikbilim"
     },
@@ -42,7 +40,7 @@ const kutuphanemerkezi = [
         phone: "02626420430 - 1773",
         address: "HACI HALİL MAH. ATATÜRK CAD. NO: 10 GEBZE KOCAELİ",
         image: "/images/hizmetler/kütüphane/çobanmustafa.jpg",
-        mapLink: "https://www.google.com/maps/place/Gebze+%C3%87oban+Mustafa+Pa%C5%9Fa+K%C3%BCt%C3%BCphanesi/@40.7977228,29.4316221,19z/data=!4m6!3m5!1s0x14cb21c719aca3e9:0x9a7a3a97fbcfd89c!8m2!3d40.7977141!4d29.4319093!16s%2Fg%2F11h0crlgh4?entry=ttu&g_ep=EgoyMDI1MDQxNi4xIKXMDSoASAFQAw%3D%3D",
+        mapLink: "https://www.google.com/maps/place/Gebze+%C3%87oban+Mustafa...",
         details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz.",
         detailPage: "/hizmetler/kutuphane/coban"
     },
@@ -52,13 +50,13 @@ const kutuphanemerkezi = [
         phone: "0262 655 25 54",
         address: "İSTASYON MAH. ŞEHİT ABDULLAH HOROZ CAD. NO: 26 GEBZE/ KOCAELİ",
         image: "/images/hizmetler/kütüphane/istasyonbilim.jpg",
-        mapLink: "https://www.google.com/maps/place/Gebze+K%C3%BClt%C3%BCr+Merkezi/@40.8074201,29.4398777,15.25z/data=!4m5!3m4!1s0x0:0x6f17b50e45cc6c97!8m2!3d40.7979754!4d29.4299296?shorturl=1",
+        mapLink: "https://www.google.com/maps/place/Gebze+K%C3%BClt%C3%BCr+Merkezi...",
         details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz.",
         detailPage: "/hizmetler/kutuphane/istasyonbilim"
     }
 ];
 
-// Atölye Merkezi Kartı Bileşeni
+// Kart bileşeni
 const WorkshopCenterCard = ({ center }: { center: typeof kutuphanemerkezi[0] }) => {
     const [showDetails, setShowDetails] = useState(false);
     const navigate = useNavigate();
@@ -78,13 +76,11 @@ const WorkshopCenterCard = ({ center }: { center: typeof kutuphanemerkezi[0] }) 
         >
             {/* Sol: Resim */}
             <div className="w-full md:w-1/3 h-[200px] md:h-auto">
-
                 <img
                     src={center.image}
                     alt={center.name}
                     className="object-cover w-full h-full max-h-[270px] rounded-lg"
                 />
-
             </div>
 
             {/* Sağ: İçerik */}
@@ -96,7 +92,7 @@ const WorkshopCenterCard = ({ center }: { center: typeof kutuphanemerkezi[0] }) 
                     >
                         {center.name}
                     </Link>
-                    <br/>
+                    <br />
                     <div className="space-y-2 text-sm">
                         <div className="flex items-start">
                             <MapPin className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
@@ -106,7 +102,6 @@ const WorkshopCenterCard = ({ center }: { center: typeof kutuphanemerkezi[0] }) 
                             <Phone className="w-5 h-5 text-blue-600 mr-2" />
                             <p>{center.phone}</p>
                         </div>
-
                     </div>
                 </div>
 
@@ -142,19 +137,36 @@ const WorkshopCenterCard = ({ center }: { center: typeof kutuphanemerkezi[0] }) 
                         )}
                     </button>
                 </div>
+
+                {/* Detaylı Bilgi Animasyonu */}
+                <AnimatePresence>
+                    {showDetails && (
+                        <motion.div
+                            key="details"
+                            initial={{ height: 0, opacity: 0, y: 20 }}
+                            animate={{ height: "auto", opacity: 1, y: 0 }}
+                            exit={{ height: 0, opacity: 0, y: 20 }}
+                            transition={{ duration: 0.4, ease: "easeInOut" }}
+                            className="overflow-hidden mt-4"
+                        >
+                            <div className="bg-blue-50 border border-blue-200 text-sm text-blue-900 rounded-lg p-3 shadow-inner">
+                                {center.details}
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </motion.div>
     );
 };
 
+// Sayfa bileşeni
 export default function kutuphanesayfasi() {
     return (
         <div className="flex flex-col min-h-screen">
             <div className="flex flex-1">
                 <br />
-                {/* Ana İçerik Alanı */}
                 <div className="flex-1 px-6 pt-0 mt-[0px] pb-10"><br/>
-                    {/* Atölye Merkezleri */}
                     <section className="mb-40">
                         <div className="max-w-6xl mx-auto px-4">
                             <motion.div
@@ -168,8 +180,6 @@ export default function kutuphanesayfasi() {
                                 </div>
                             </motion.div>
 
-
-
                             {/* Kartlar */}
                             <div className="flex flex-wrap justify-center gap-6">
                                 {kutuphanemerkezi.map((center) => (
@@ -178,7 +188,6 @@ export default function kutuphanesayfasi() {
                             </div>
                         </div>
                     </section>
-
                 </div>
             </div>
         </div>
