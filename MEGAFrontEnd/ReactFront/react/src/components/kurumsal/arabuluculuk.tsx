@@ -1,22 +1,18 @@
 import React from "react";
 
-
 const Arabuluculuk: React.FC = () => {
     return (
         <div id="pcoded" className="pcoded">
-            
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
                         <div className="pcoded-content">
-                            <div className="pcoded-inner-content">
-                                <div className="main-body">
-                                    <div className="page-wrapper">
-                                        <div className="flex flex-row gap-4">
-
-
+                            <div className="pcoded-inner-content pt-0">
+                                <div className="main-body pt-0">
+                                    <div className="page-wrapper py-0 mt-0">
+                                        <div className="flex flex-row gap-4 mt-[-6px]">
                                             {/* İçerik Alanı */}
-                                            <div className="flex-1 p-4">
+                                            <div className="flex-1 p-4 pt-0 ">
                                                 <div className="bg-white shadow-lg rounded-lg p-6">
                                                     <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Arabuluculuk Komisyonu</h2>
 
@@ -30,17 +26,17 @@ const Arabuluculuk: React.FC = () => {
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr className="hover:bg-gray-100">
-                                                            <td className="border border-gray-300 p-2">Başkan Av. Murat TUNCA</td>
-                                                            <td className="border border-gray-300 p-2">Hukuk İşleri Müdürlüğü V.</td>
+                                                        <tr>
+                                                            <td className="border border-gray-300 p-2 bg-white">Başkan Av. Murat TUNCA</td>
+                                                            <td className="border border-gray-300 p-2 bg-white">Hukuk İşleri Müdürlüğü V.</td>
                                                         </tr>
-                                                        <tr className="bg-gray-50 hover:bg-gray-100">
-                                                            <td className="border border-gray-300 p-2">İmran AYYILDIZ</td>
-                                                            <td className="border border-gray-300 p-2">İnsan Kaynakları ve Eğitim Müdür V.</td>
+                                                        <tr>
+                                                            <td className="border border-gray-300 p-2 bg-white">İmran AYYILDIZ</td>
+                                                            <td className="border border-gray-300 p-2 bg-white">İnsan Kaynakları ve Eğitim Müdür V.</td>
                                                         </tr>
-                                                        <tr className="hover:bg-gray-100">
-                                                            <td className="border border-gray-300 p-2">Bilgin ALTAY</td>
-                                                            <td className="border border-gray-300 p-2">Mali Hizmetler Müdür V.</td>
+                                                        <tr>
+                                                            <td className="border border-gray-300 p-2 bg-white">Bilgin ALTAY</td>
+                                                            <td className="border border-gray-300 p-2 bg-white">Mali Hizmetler Müdür V.</td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -64,9 +60,9 @@ const Arabuluculuk: React.FC = () => {
                                                             ["Erkan YAKIN", "Mali Hizmetler Müdürlüğü"],
                                                             ["Elvan GÜLFİDANE", "Mali Hizmetler Müdürlüğü"],
                                                         ].map((member, index) => (
-                                                            <tr key={index} className={index % 2 === 0 ? "bg-gray-50 hover:bg-gray-100" : "hover:bg-gray-100"}>
-                                                                <td className="border border-gray-300 p-2">{member[0]}</td>
-                                                                <td className="border border-gray-300 p-2">{member[1]}</td>
+                                                            <tr key={index}>
+                                                                <td className="border border-gray-300 p-2 bg-white">{member[0]}</td>
+                                                                <td className="border border-gray-300 p-2 bg-white">{member[1]}</td>
                                                             </tr>
                                                         ))}
                                                         </tbody>

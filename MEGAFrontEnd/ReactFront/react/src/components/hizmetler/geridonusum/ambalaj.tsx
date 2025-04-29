@@ -1,39 +1,38 @@
 import React from "react";
 
-
 const GeriDonusumDetayPage = () => {
 
     return (
         <div
             className="min-h-screen bg-green-50 text-gray-800 font-sans"
             style={{
-                margin: '0 auto',
-                maxWidth: 'calc(100% - 120px)',
+                margin: '20px auto 0',
+                maxWidth: 'calc(100% - 80px)',
                 paddingLeft: '40px',
-                paddingRight: '20px',
+                paddingRight: '40px',
             }}
         >
-            <header className="bg-green-100 px-6 py-10 rounded-b-2xl shadow-inner">
+            <header className="bg-green-100 px-6 py-10 rounded-b-2xl shadow-inner mt-10">
                 <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-6">
                     <div className="text-6xl sm:text-7xl">🧃</div>
                     <div>
                         <h1 className="text-3xl sm:text-4xl font-bold text-green-900 mb-2">
                             Ambalaj Atıkları
                         </h1>
-                        <div className="bg-white border-l-4 border-green-600 p-4 rounded shadow text-gray-700 max-w-2xl">
+                        <div className="bg-white border-l-4 border-green-600 p-4 rounded shadow text-gray-700 max-w-3xl">
                             Ambalaj atıkları, geri dönüşüm sürecine dahil edilerek çevreye katkı sağlanabilir. Cam, plastik, metal ve kâğıt ambalajlar geri dönüştürülebilir.
                         </div>
                     </div>
                 </div>
             </header>
 
-            <div className="py-10 max-w-3xl mx-auto flex flex-col gap-6">
+            <div className="py-10 max-w-6xl mx-auto flex flex-col gap-6">
                 {/* Resim Kartı */}
                 <div className="bg-white p-6 rounded-2xl shadow">
                     <img
                         src="/images/hizmetler/donusum/ambalaj.jpg"
                         alt="Ambalaj Atıkları"
-                        className="w-full h-48 object-cover rounded-xl mb-4"
+                        className="w-full h-64 object-cover rounded-xl mb-4"
                     />
                 </div>
 
@@ -48,7 +47,7 @@ const GeriDonusumDetayPage = () => {
                     <p className="text-lg text-gray-700">
                         Ambalaj atıklarının geri dönüşümü çevreyi korur, enerji tasarrufu sağlar ve kaynakların verimli kullanılmasına yardımcı olur. Bu nedenle, geri dönüşüm noktalarına bu atıkları yerinde bırakmanız çok önemlidir.
                     </p>
-                    <h2 className="text-2xl font-bold text-green-800 mb-4"></h2>BELEDİYEMİZ NELER YAPIYOR?
+                    <h2 className="text-2xl font-bold text-green-800 mb-4 mt-6">BELEDİYEMİZ NELER YAPIYOR?</h2>
                     <p className="text-lg text-gray-700 mb-4">
                         Belediyemiz 2009 yılından itibaren ambalaj atıklarının kaynağında ayrı toplanmasına pilot bölgeler oluşturarak başlamış ve bu konuda çeşitli etkinlikler, projeler hazırlayarak farkındalık oluşturulmuştur. 2005 yılında yürürlüğe giren “Ambalaj Atıklarının Kontrolü Yönetmeliği’nce yasal zorunluluk haline gelen uygulama, 2009 yılında Belediyemizce hazırlanan ve Çevre ve Şehircilik Bakanlığı’nca onaylanan “Gebze İlçesi Ambalaj Atıkları Yönetim Planı” ile tüm ilçeyi kapsamıştır.
 

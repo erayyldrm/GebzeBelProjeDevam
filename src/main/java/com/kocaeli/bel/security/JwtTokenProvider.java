@@ -1,10 +1,10 @@
 package com.kocaeli.bel.security;
 
-import com.kocaeli.bel.model.User;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -26,15 +26,19 @@ public class JwtTokenProvider {
     }
 
     public String generateToken(Authentication authentication) {
-        User user = (User) authentication.getPrincipal();
+        // Here's the fix - use UserDetails instead of your domain User class
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         Instant now = Instant.now();
         Instant expiry = now.plus(jwtExpirationMs, ChronoUnit.MILLIS);
 
         return Jwts.builder()
-                .subject(user.getTCNo())
-                .claim("Admin", user.getRole())
-                .issuedAt(Date.from(now))  // Using java.time.Instant converted to Date
+                .subject(userDetails.getUsername())
+                .claim("Admin", userDetails.getAuthorities().stream()
+                        .findFirst()
+                        .map(auth -> auth.getAuthority().replace("ROLE_", ""))
+                        .orElse("USER"))
+                .issuedAt(Date.from(now))
                 .expiration(Date.from(expiry))
                 .signWith(key())
                 .compact();
@@ -67,6 +71,6 @@ public class JwtTokenProvider {
                 .build()
                 .parseSignedClaims(token)
                 .getPayload()
-                .get("role", String.class);
+                .get("Admin", String.class);
     }
 }

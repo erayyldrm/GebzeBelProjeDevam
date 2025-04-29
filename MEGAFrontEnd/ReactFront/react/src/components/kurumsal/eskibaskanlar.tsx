@@ -80,7 +80,7 @@ const FormerMayors: React.FC = () => {
 
                                             {/* Header */}
                                             <div className="mb-8 text-center">
-                                                <h1 className="text-3xl font-bold text-gray-800 mb-8">ESKİ BELEDİYE BAŞKANLARI</h1> <br/> <br/>
+                                                <h1 className="text-4xl text-white font-bold bg-red-900 border-2 border-gray-300 inline-block px-5 py-3 mt-1 rounded-2xl">ESKİ BELEDİYE BAŞKANLARI</h1> <br/> <br/>
                                             </div>
 
                                             {/* Content in box with shadow */}

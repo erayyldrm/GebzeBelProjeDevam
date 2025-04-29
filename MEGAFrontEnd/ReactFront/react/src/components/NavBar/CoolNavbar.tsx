@@ -256,7 +256,7 @@ const handleNavigation = (path: string) => {
                             <a href="#" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white">
                                 Haberler
                             </a>
-                            <a href="#" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white">
+                            <a href="/iletisim" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white">
                                 İletişim
                             </a>
                         </div>
@@ -391,7 +391,7 @@ const handleNavigation = (path: string) => {
                         <a href="#" className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-100">
                             Haberler
                         </a>
-                        <a href="#" className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-100">
+                        <a href="/iletisim" className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-100">
                             İletişim
                         </a>
 

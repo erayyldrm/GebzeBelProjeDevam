@@ -1,7 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FileText } from "lucide-react";
 
 const documents = [
+    {
+        department: "Strateji Plan",
+        docs: [
+            { name: "Gebze Belediyesi 2025 - 2019 Stratejik Plan", url: "/2025plan.pdf" },
+            { name: "Gebze Belediyesi 2020 Stratejik Plan", url: "/2020plan.pdf" },
+            { name: "Gebze Belediyesi 2015 - 2019 Stratejik Plan ", url: "/2015plan.pdf" },
+            { name: "Gebze Belediyesi 2015 - 2019 Stratejik Plan (revize) ", url: "/revize.plan.pdf" },
+            { name: "Gebze Belediyesi 2010 - 2014 Stratejik Plan ", url: "/2010plan.pdf" },
+            { name: "Gebze Belediyesi 2006 - 2010 Stratejik Plan ", url: "/2006plan.pdf" },
+        ],
+    },
     {
         department: "Faaliyet Raporu",
         docs: [
@@ -23,23 +34,6 @@ const documents = [
             { name: "2008 Faaliyet Raporu", url: "/2008faliyet.pdf" },
             { name: "2007 Faaliyet Raporu", url: "/2007faliyet.pdf" },
             { name: "2006 Faaliyet Raporu", url: "/2007faliyet.pdf" },
-        ],
-    },
-    {
-        department: "İç Kontrol Eylem Planı",
-        docs: [
-            { name: "2025 - 2029 İç Kontrol Eylem Planı", url: "/2025eylem.pdf" },
-            { name: "2020 - 2024 İç Kontrol Eylem Planı", url: "/2020eylem.pdf" },
-            { name: "2015 - 2019 İç Kontrol Eylem Planı", url: "/2015eylem.pdf" },
-        ],
-    },
-    {
-        department: "Mali Durum ve Beklentiler Raporu",
-        docs: [
-            { name: "2023 Maali Durum Ve Beklentiler Raporu", url: "/2023beklenti.pdf" },
-            { name: "2022 Maali Durum Ve Beklentiler Raporu", url: "/2022beklenti.pdf" },
-            { name: "2021 Maali Durum Ve Beklentiler Raporu ", url: "/2021beklenti.pdf" },
-            { name: "2020 Maali Durum Ve Beklentiler Raporu ", url: "/2020beklenti.pdf" },
         ],
     },
     {
@@ -65,77 +59,74 @@ const documents = [
         ],
     },
     {
-        department: "Strateji Plan",
+        department: "İç Kontrol Eylem Planı",
         docs: [
-            { name: "Gebze Belediyesi 2025 - 2019 Stratejik Plan", url: "/2025plan.pdf" },
-            { name: "Gebze Belediyesi 2020 Stratejik Plan", url: "/2020plan.pdf" },
-            { name: "Gebze Belediyesi 2015 - 2019 Stratejik Plan ", url: "/2015plan.pdf" },
-            { name: "Gebze Belediyesi 2015 - 2019 Stratejik Plan (revize) ", url: "/revize.plan.pdf" },
-            { name: "Gebze Belediyesi 2010 - 2014 Stratejik Plan ", url: "/2010plan.pdf" },
-            { name: "Gebze Belediyesi 2006 - 2010 Stratejik Plan ", url: "/2006plan.pdf" },
+            { name: "2025 - 2029 İç Kontrol Eylem Planı", url: "/2025eylem.pdf" },
+            { name: "2020 - 2024 İç Kontrol Eylem Planı", url: "/2020eylem.pdf" },
+            { name: "2015 - 2019 İç Kontrol Eylem Planı", url: "/2015eylem.pdf" },
+        ],
+    },
+    {
+        department: "Mali Durum ve Beklentiler Raporu",
+        docs: [
+            { name: "2023 Maali Durum Ve Beklentiler Raporu", url: "/2023beklenti.pdf" },
+            { name: "2022 Maali Durum Ve Beklentiler Raporu", url: "/2022beklenti.pdf" },
+            { name: "2021 Maali Durum Ve Beklentiler Raporu ", url: "/2021beklenti.pdf" },
+            { name: "2020 Maali Durum Ve Beklentiler Raporu ", url: "/2020beklenti.pdf" },
         ],
     },
 ];
 
-const Kararlar = () => {
-    const [activeTab, setActiveTab] = useState<string>(documents[0].department);
+const KurumsalRaporlar = () => {
+    const [activeTab, setActiveTab] = useState(documents[0].department);
 
     return (
-        <div
-            className="p-6 bg-gray-50 shadow-lg min-h-screen"
-            style={{
-                margin: '0 auto',
-                maxWidth: 'calc(100% - 80px)',
-                padding: '0 20px',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
-            }}
-        >
-            <h1 className="text-3xl font-bold text-center mb-12 text-blue-700">
-                Kurumsal Raporlar
+        <div className="mx-auto max-w-5xl px-4 py-6 bg-gray-50 shadow-lg min-h-screen text-center mt-3">
+            <h1 className="text-2xl md:text-3xl text-white font-bold bg-red-900 border-2 border-gray-300 inline-block px-3 py-2 md:px-4 md:py-3 mt-1 rounded-xl md:rounded-2xl">
+                KURUMSAL RAPORLAR
             </h1>
 
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {/* Improved Tab Navigation */}
+            <div className="flex flex-wrap justify-center mt-4">
                 {documents.map((category) => (
                     <button
                         key={category.department}
                         onClick={() => setActiveTab(category.department)}
-                        style={{
-                            ...(activeTab === category.department
-                                ? { backgroundColor: "#022842", color: "#FFFFFF" }
-                                : { backgroundColor: "#FFFFFF", color: "#000000" }),
-                            borderRadius: "1rem" // Buton radius'u burada
-                        }}
-                        className="px-6 py-3 text-base md:text-lg font-semibold border-2 transition-all duration-200"
+                        className={`m-1 px-3 py-2 text-sm md:text-base font-semibold border-2 rounded-lg md:rounded-xl transition-all duration-200 ${
+                            activeTab === category.department
+                                ? "bg-blue-900 text-white border-blue-900"
+                                : "bg-white text-black border-gray-300 hover:bg-blue-50"
+                        }`}
+                        style={{ minWidth: "150px" }}
                     >
                         {category.department}
                     </button>
                 ))}
-            </div>
+            </div><br/>
 
-            {activeTab && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
-                    {documents
-                        .find((cat) => cat.department === activeTab)
-                        ?.docs.map((doc, i) => (
-                            <div
-                                key={i}
-                                className="bg-blue-50 p-6 rounded-md hover:bg-blue-100 transition shadow-md flex flex-col items-center mb-6"
+            {/* Documents Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-8">
+                {documents
+                    .find((cat) => cat.department === activeTab)
+                    ?.docs.map((doc, i) => (
+                        <div
+                            key={i}
+                            className="bg-blue-50 p-4 rounded-lg hover:bg-blue-100 transition shadow-md flex flex-col items-center"
+                        >
+                            <FileText className="text-orange-500 mb-3" size={50} />
+                            <a
+                                href={doc.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-700 text-sm md:text-base font-medium text-center hover:text-blue-900 hover:underline"
                             >
-                                <FileText className="text-orange-500 mb-4" size={75} />
-                                <a
-                                    href={doc.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-700 text-base font-semibold text-center mb-4 hover:text-blue-900 hover:underline"
-                                >
-                                    {doc.name}
-                                </a>
-                            </div>
-                        ))}
-                </div>
-            )}
+                                {doc.name}
+                            </a>
+                        </div>
+                    ))}
+            </div>
         </div>
     );
 };
 
-export default Kararlar;
+export default KurumsalRaporlar;

@@ -1,5 +1,6 @@
 import { Menu, X, Home, Users, Package, Calendar, Settings, LogOut } from 'lucide-react';
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {logout} from "./services/authService.tsx";
 
 interface SidebarProps {
     sidebarOpen: boolean;
@@ -16,6 +17,12 @@ interface SidebarLinkProps {
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
     const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout(); // Calls authService logout
+        navigate('/login');
+    };
 
     return (
         <div className={`${sidebarOpen ? 'w-56' : 'w-16'} min-w-16 bg-gray-900 text-white transition-all duration-300 flex flex-col h-screen shadow-xl`}>
@@ -51,7 +58,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
 
             {/* Logout button */}
             <div className="mt-auto px-2 py-3">
-                <a href="/logout" className={`flex items-center rounded-md py-2.5 transition-all hover:bg-gray-800 ${sidebarOpen ? 'px-3' : 'justify-center px-2'}`}>
+                <a onClick={handleLogout} className={`flex items-center rounded-md py-2.5 transition-all hover:bg-gray-800 ${sidebarOpen ? 'px-3' : 'justify-center px-2'}`}>
                     <LogOut size={20} className="text-gray-300" />
                     {sidebarOpen && <span className="ml-3 text-sm font-medium text-gray-300">Logout</span>}
                 </a>

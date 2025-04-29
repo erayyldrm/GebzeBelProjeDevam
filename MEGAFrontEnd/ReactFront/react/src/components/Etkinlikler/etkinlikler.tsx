@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import ImageSlider from "../Sliders/SliderTest.tsx";
+import React, { useState } from "react";
+import ImageSlider from "../Sliders2/SliderTest2.tsx";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 
 type Event = {
     id: number;
@@ -10,12 +11,12 @@ type Event = {
 };
 
 const events: Event[] = [
-    { id: 7, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-21", imageUrl: "/images/etkinlikler/etkinlik7.jpg", description: "Yer: Sultan Orhan Mahallesi İlyas Bey Camii" },
     { id: 14, title: "Hacivat İle Karagöz", date: "2025-03-21", imageUrl: "/images/etkinlikler/etkinlik14.jpg", description: "Yer: Arapçeşme Bilim Sanat Merkezi" },
     { id: 16, title: "Çitlembiğin Ramazan Macerası", date: "2025-03-21", imageUrl: "/images/etkinlikler/etkinlik16.jpg", description: "Yer: Beylikbağı Bilim Sanat Merkezi" },
     { id: 2, title: "Karagöz İle Hacivat", date: "2025-03-22", imageUrl: "/images/etkinlikler/etkinlik2.jpg", description: "Yer: Gebze Kültür Merkezi" },
     { id: 5, title: "Karagöz'ün Karnesi", date: "2025-03-22", imageUrl: "/images/etkinlikler/etkinlik5.jpg", description: "Yer: Arapçeşme Bilim Sanat Merkezi" },
     { id: 6, title: "Gazi Dede İle Çanakkale Hatıraları", date: "2025-03-22", imageUrl: "/images/etkinlikler/etkinlik6.jpg", description: "Yer: Beylikbağı Bilim Sanat Merkezi" },
+    { id: 7, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-21", imageUrl: "/images/etkinlikler/etkinlik7.jpg", description: "Yer: Sultan Orhan Mahallesi İlyas Bey Camii" },
     { id: 8, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-22", imageUrl: "/images/etkinlikler/etkinlik8.jpg", description: "Yer: Tatlıkuyu Mahallesi Merkez Camii" },
     { id: 1, title: "Şen Davulcu", date: "2025-03-23", imageUrl: "/images/etkinlikler/etkinlik1.jpg", description: "Yer: İstasyon Bilim Sanat Merkezi" },
     { id: 4, title: "Tekno Sabri Macera Yolcusu", date: "2025-03-23", imageUrl: "/images/etkinlikler/etkinlik4.jpg", description: "Yer: Gebze Kültür Merkezi" },
@@ -31,10 +32,41 @@ const events: Event[] = [
 ];
 
 const EventsSection: React.FC = () => {
-    // Create slides array using all 18 events for the slider
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
+
+    // Create slides array with improved image data and captions
     const slides = events.map(event => ({
-        image: event.imageUrl
+        image: event.imageUrl,
+        alt: event.title,
+        caption: `${event.title} - ${event.date}`
     }));
+
+    // Total number of slides
+    const totalSlides = slides.length;
+
+    // Handle next slide
+    const nextSlide = () => {
+        if (!isAnimating) {
+            setIsAnimating(true);
+            setCurrentSlide((prev) => (prev + 1) % totalSlides);
+            setTimeout(() => setIsAnimating(false), 500);
+        }
+    };
+
+    // Handle previous slide
+    const prevSlide = () => {
+        if (!isAnimating) {
+            setIsAnimating(true);
+            setCurrentSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
+            setTimeout(() => setIsAnimating(false), 500);
+        }
+    };
+
+    // This function will be passed to the ImageSlider for slide changes
+    const handleSlideChange = (index: number) => {
+        setCurrentSlide(index);
+    };
 
     return (
         <div className="container mx-auto py-10">
@@ -42,11 +74,35 @@ const EventsSection: React.FC = () => {
 
             {/* Wider Card with #002850 background color */}
             <div className="w-full mx-auto mb-16">
-                <div style={{ backgroundColor: "#002850" }} className="p-8 rounded-xl shadow-xl">
-                    {/* Using ImageSlider component from TarihcePage */}
+                <div style={{ backgroundColor: "#002850" }} className="p-4 md:p-8 rounded-xl shadow-xl relative">
+                    {/* Custom Navigation Buttons (outside the slider) */}
+                    <button
+                        onClick={prevSlide}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 disabled:opacity-50 hover:bg-gray-100"
+                        aria-label="Önceki"
+                        disabled={isAnimating}
+                    >
+                        <ChevronLeft className="w-5 h-5" />
+                    </button>
+
+                    {/* Image slider container with proper padding */}
                     <div className="relative w-full overflow-hidden rounded-lg">
-                        <ImageSlider slides={slides} />
+                        <ImageSlider
+                            slides={slides}
+                            currentSlide={currentSlide}
+                            onSlideChange={handleSlideChange}
+                            autoPlay={false}
+                        />
                     </div>
+
+                    <button
+                        onClick={nextSlide}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 disabled:opacity-50 hover:bg-gray-100"
+                        aria-label="Sonraki"
+                        disabled={isAnimating}
+                    >
+                        <ChevronRight className="w-5 h-5" />
+                    </button>
                 </div>
             </div>
 
@@ -54,7 +110,13 @@ const EventsSection: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
                 {events.map((event) => (
                     <div key={event.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-                        <img src={event.imageUrl} alt={event.title} className="w-full h-48 object-cover" />
+                        <div className="aspect-video w-full relative">
+                            <img
+                                src={event.imageUrl}
+                                alt={event.title}
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
                         <div className="p-5">
                             <h3 className="text-lg font-semibold mb-2">{event.title}</h3>
                             <p className="text-sm text-gray-600 mb-1">Tarih: {event.date}</p>

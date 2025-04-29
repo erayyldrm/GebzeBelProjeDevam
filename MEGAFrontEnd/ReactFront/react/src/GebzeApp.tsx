@@ -5,7 +5,7 @@ import Tarihce from "./components/gebze/tarihce.tsx";
 import Fotograflarla from "./components/gebze/fotolarla.tsx";
 import BugunkuGebze from "./components/gebze/bugunkugebze.tsx";
 import React from "react";
-import Gallarytest from "./components/gebze/gallarytest.tsx";
+import Gallarytest from "./components/gebze/tarihiyerler.tsx";
 import UyeOldugumuzBirlikler from "./components/gebze/uyeoldugumuzbirlikler.tsx";
 import SanalTur from "./components/gebze/360sanaltur.tsx";
 import HanibalAniti from "./components/gebze/tarihiyerler/anibalinmezari.tsx";

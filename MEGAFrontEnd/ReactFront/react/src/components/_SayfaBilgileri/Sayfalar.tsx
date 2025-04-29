@@ -46,7 +46,7 @@ export const gebze: DropdownItem[] = [
         icon: <FiMap />,
         title: 'TARİHİ YERLER',
         description: 'Tarihi Yerler hakkında bilgi',
-        path:'gebze/tarihiyerler'
+        path:'/gebze/tarihiyerler'
     },
     {
         icon: <FiCamera />,

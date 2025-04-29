@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import { FileText } from "lucide-react";
 
 const meclisDocuments = [
-    { name: "3 Nisan 2025 Meclis Kararları", url: "/3nisan.pdf" },
-    { name: "4 Mart 2025 Meclis Kararları", url: "/4mart.pdf" },
+    { name: "3 Nisan 2025 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20250410150120.pdf" },
+    { name: "4 Mart 2025 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20250311163949.rar" },
+    { name: "4 Şubat 2025 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20250210111051.pdf" },
+    { name: "2 Ocak 2025 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20250108162430.pdf" },
+    { name: "24 Aralık 2024 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20241227170844.pdf" },
+    { name: "3 Aralık 2024 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20241227170753.pdf" },
+    { name: "5 Kasım 2024 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20241111141116.pdf" },
+    { name: "1 Ekim 2024 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20241017094509.pdf" },
     // diğerleri...
 ];
 
@@ -55,9 +61,9 @@ const Kararlar = () => {
                                                                 {meclisDocuments.map((doc, index) => (
                                                                     <div
                                                                         key={index}
-                                                                        className="bg-blue-50 p-5 rounded-lg hover:bg-blue-100 transition flex flex-col items-center shadow-md"
+                                                                        className="bg-blue-50 p-4 rounded-lg hover:bg-blue-100 transition flex flex-col items-center shadow-md"
                                                                     >
-                                                                        <FileText className="text-red-500 mb-3" size={65} />
+                                                                        <FileText className="text-red-500 mb-3" size={100} />
                                                                         <a
                                                                             href={doc.url}
                                                                             target="_blank"
@@ -71,8 +77,8 @@ const Kararlar = () => {
                                                             </div>
                                                         ) : (
                                                             <div className="bg-yellow-100 p-5 rounded-lg text-gray-700 text-lg">
-                                                                <strong></strong>
-                                                                6698 Sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında kaldırılmıştır.
+                                                                <strong>
+                                                                Encümen Kararları 6698 Sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında kaldırılmıştır.</strong>
                                                             </div>
                                                         )}
                                                     </div>

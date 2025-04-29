@@ -120,10 +120,18 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
             </div>
 
             {/* Arrows */}
-            <button onClick={goToPrevSlide} className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/70 transition">
+            <button
+                onClick={goToPrevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100 transition"
+            >
                 &lt;
             </button>
-            <button onClick={goToNextSlide} className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/70 transition">
+
+            {/* Right Arrow */}
+            <button
+                onClick={goToNextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100 transition"
+            >
                 &gt;
             </button>
 

@@ -1,39 +1,37 @@
 import React from "react";
 
-
 const AtikPilDetayPage = () => {
-
 
     return (
         <div
             className="min-h-screen bg-green-50 text-gray-800 font-sans"
             style={{
-                margin: '0 auto',
-                maxWidth: 'calc(100% - 120px)',
+                margin: '20px auto 0',
+                maxWidth: 'calc(100% - 80px)',
                 paddingLeft: '40px',
-                paddingRight: '20px',
+                paddingRight: '40px',
             }}
         >
-            <header className="bg-green-100 px-6 py-10 rounded-b-2xl shadow-inner">
+            <header className="bg-green-100 px-6 py-10 rounded-b-2xl shadow-inner mt-10">
                 <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-6">
                     <div className="text-6xl sm:text-7xl">🔋</div>
                     <div>
                         <h1 className="text-3xl sm:text-4xl font-bold text-green-900 mb-2">
                             Atık Pil ve Akümülatörler
                         </h1>
-                        <div className="bg-white border-l-4 border-green-600 p-4 rounded shadow text-gray-700 max-w-2xl">
+                        <div className="bg-white border-l-4 border-green-600 p-4 rounded shadow text-gray-700 max-w-3xl">
                             Atık piller doğada uzun süre çözünmeden kalır ve içerdikleri ağır metaller çevre ve insan sağlığına büyük tehdit oluşturur.
                         </div>
                     </div>
                 </div>
             </header>
 
-            <div className="py-10 max-w-3xl mx-auto flex flex-col gap-6">
+            <div className="py-10 max-w-6xl mx-auto flex flex-col gap-6">
                 <div className="bg-white p-6 rounded-2xl shadow">
                     <img
                         src="/images/hizmetler/donusum/pil.jpg"
                         alt="Atık Pil ve Akümülatörler"
-                        className="w-full h-48 object-cover rounded-xl mb-4"
+                        className="w-full h-64 object-cover rounded-xl mb-4"
                     />
                 </div>
 

@@ -58,7 +58,7 @@ const MunicipalityCouncil: React.FC = () => {
 
     const PersonCard: React.FC<{ person: CouncilMember; isPresident?: boolean }> = ({ person, isPresident = false }) => {
         const cardClasses = isPresident ? "max-w-md mb-10" : "max-w-xs mb-5";
-        const imgClasses = isPresident ? "h-[300px] w-[300px] object-cover" : "h-36 w-full object-cover"; // Burada imgClasses düzenlendi.
+        const imgClasses = isPresident ? "h-[300px] w-[300px] object-cover" : "h-36 w-full object-cover";
         return (
             <div className={`bg-white rounded-lg shadow-md overflow-hidden ${cardClasses}`}>
                 <div className="text-center">
@@ -85,7 +85,7 @@ const MunicipalityCouncil: React.FC = () => {
     };
 
     return (
-        <div id="pcoded" className="pcoded min-h-screen bg-gray-100 shadow-2xl p-4">
+        <div id="pcoded" className="pcoded min-h-screen bg-white shadow-2xl p-4">
             <div className="pcoded-container navbar-wrapper">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
@@ -96,13 +96,13 @@ const MunicipalityCouncil: React.FC = () => {
                                         <div className="flex flex-row gap-4">
                                             {/* Ana İçerik Alanı */}
                                             <div className="flex-1 p-4">
-                                                {/* Header */}
-                                                <div className="mb-8 text-center">
-                                                    <h1 className="text-3xl font-bold">BELEDİYE MECLİSİ</h1> <br/>
-                                                </div>
-
                                                 {/* İçeriği kutuya al */}
-                                                <div className="bg-white rounded-xl shadow-lg p-6">
+                                                <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+                                                    {/* Title now placed inside the interior card */}
+                                                    <div className="mb-8 text-center">
+                                                        <h1 className="text-4xl text-white font-bold bg-red-900 border-2 border-gray-300 inline-block px-5 py-3 mt-1 rounded-2xl">BELEDİYE MECLİSİ</h1><br/><br/>
+                                                    </div>
+
                                                     {/* Mayor Section */}
                                                     <div className="flex justify-center mb-8">
                                                         <PersonCard person={mayor} isPresident={true} />
@@ -115,7 +115,6 @@ const MunicipalityCouncil: React.FC = () => {
                                                         ))}
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>

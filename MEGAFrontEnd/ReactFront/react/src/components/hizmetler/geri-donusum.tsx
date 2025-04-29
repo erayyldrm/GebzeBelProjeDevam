@@ -151,8 +151,8 @@ const GeriDonusumPage = () => {
                                     🚩 Konum
                                 </button>
                             </div>
-                            <div className="text-xs text-gray-500 border-t pt-2">
-                                İletişim :  0262 642 10 10 | sifiratik@gebze.bel.tr
+                            <div className="text-xs text-gray-500 border-t pt-2 text-center">
+                                📞  0262 642 10 10&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;📩 sifiratik@gebze.bel.tr
                             </div>
                         </div>
                     ))}
