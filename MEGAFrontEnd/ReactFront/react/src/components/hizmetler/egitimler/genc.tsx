@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, ChevronDown, ChevronUp } from "lucide-react";
+import {MapPin, Phone, Clock, ChevronDown, ChevronUp, Mail} from "lucide-react";
 
 interface ServiceDetailProps {
     title: string;
@@ -35,85 +35,45 @@ const Genc: React.FC<ServiceDetailProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="flex justify-center items-center min-h-screen px-4"
+            className="min-h-screen flex flex-col items-center px-4 py-10 space-y-8"
         >
-            {/* Kart İçeriği: Başlık, Resim, Verilen Hizmetler ve İletişim Bilgileri */}
-            <div className="bg-white p-6 rounded-lg shadow-lg space-y-6 w-full max-w-5xl">
+            {/* Ana Kart */}
+            <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[880px] p-6 space-y-6">
 
-                {/* Başlık ve Resim */}
-                <div className="mb-8 text-center text-blue-800">
-                    <div className="text-2xl md:text-2xl font-semibold text-blue-500 mb-3">
-                        {title}
-                    </div>
+                {/* Başlık Kartı */}
+                <div className="bg-[#891737] rounded-xl shadow-lg w-full py-6 px-8 mb-4">
+                    <div className="text-2xl md:text-3xl font-semibold text-white text-center">{title}</div>
+                </div>
 
-                    <div className="flex justify-center">
-                        <div className="relative h-[500px] sm:h-[600px] md:h-[750px] lg:h-[850px] w-[90%] sm:w-3/4 md:w-2/3 lg:w-2/3 rounded-lg overflow-hidden shadow-lg">
-                            <img
-                                src="/images/hizmetler/egitimler/41genç.jpg"
-                                alt={title}
-                                className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t flex items-center justify-center">
-                                <div className="text-white text-center px-4 max-w-2xl">
-                                    <p className="text-lg md:text-xl font-medium">{description}</p>
-                                </div>
-                            </div>
-                        </div>
+                {/* Başlık + Resim Kartı */}
+                <div className="relative flex justify-center w-full mb-6">
+                    <div className="w-full sm:w-[650px] md:w-[750px] h-[450px] rounded-xl overflow-hidden">
+                        {/* Resim kartı tamamen kaplasın */}
+                        <img
+                            src="/images/hizmetler/egitimler/41genç.jpg"
+                            alt={title}
+                            className="w-full h-full object-cover"
+                        />
                     </div>
                 </div>
-                <br/>
-                <br/>
 
-                {/* 2 Sütun: Verilen Hizmetler ve İletişim Bilgileri Yan Yana */}
-                <div className="flex flex-col md:flex-row gap-5">
-
-                    {/* Sol: Verilen Hizmetler */}
-                    <div className="md:w-2/3 w-full">
-                        <section>
-                            <h2 className="text-2xl font-semibold text-blue-700 mb-4 border-b pb-2">
-                                Verilen Hizmetler
-                            </h2>
-                            <p >Gebze Belediyesi'nin Gençlik ve Liderlik projesidir. Gebze'de okuyan Lise 2 ve 3. sınıflardan uzmanlar eşliğinde yapılan mülakatlar sonucunda; Liderlik vasfı olan, liderlik vasfını henüz keşfetmemiş, bu alanda kendini geliştirmeye hazır 41 öğrencinin seçilerek oluşturduğu 4 ay süren bir projedir. Lider olacak gençlerin gelişimine katkı sağlamak amacı ile Üniversite ortamında bilim, psikoloji, kültür, tarih, sosyoloji, edebiyat, siyaset bilimi ve uluslararası ilişkiler dallarında ders verilmektedir. Tarihi kimlik algılarını geliştirmek ve toplumunu daha iyi anlamalarını sağlamak amacı ile geziler düzenlenip öğrencilere bilgiler yerinde aktarılmaktadır. Rol model insanlarla söyleşiler ve öncü kurum ile firma ziyaretleri ile başarılı
+                {/* Verilen Hizmetler ve İletişim Bilgileri Kartı */}
+                <div className="flex flex-col md:flex-row gap-8">
+                    {/* Verilen Hizmetler */}
+                    <section className="flex-1 text-justify space-y-4">
+                        <h3 className="text-lg font-semibold text-blue-700">Verilen Hizmetler</h3>
+                        <p className="text-gray-700 text-sm leading-relaxed">
+                            Gebze Belediyesi'nin Gençlik ve Liderlik projesidir. Gebze'de okuyan Lise 2 ve 3. sınıflardan uzmanlar eşliğinde yapılan mülakatlar sonucunda; Liderlik vasfı olan, liderlik vasfını henüz keşfetmemiş, bu alanda kendini geliştirmeye hazır 41 öğrencinin seçilerek oluşturduğu 4 ay süren bir projedir. Lider olacak gençlerin gelişimine katkı sağlamak amacı ile Üniversite ortamında bilim, psikoloji, kültür, tarih, sosyoloji, edebiyat, siyaset bilimi ve uluslararası ilişkiler dallarında ders verilmektedir. Tarihi kimlik algılarını geliştirmek ve toplumunu daha iyi anlamalarını sağlamak amacı ile geziler düzenlenip öğrencilere bilgiler yerinde aktarılmaktadır. Rol model insanlarla söyleşiler ve öncü kurum ile firma ziyaretleri ile başarılı
 <br/>
-                                Liderlik hikâyelerine tanıklık etmeleri sağlanmaktadır. Sosyal sorumluk, sanat ve spor etkinlikleriyle; ekip olma, ekip yönetme strateji üretme kazanımları desteklenmektedir.</p>     </section>
+                            Liderlik hikâyelerine tanıklık etmeleri sağlanmaktadır. Sosyal sorumluk, sanat ve spor etkinlikleriyle; ekip olma, ekip yönetme strateji üretme kazanımları desteklenmektedir.   </p>
+                    </section>
 
-                        {/* Atölyeler */}
-                        <section className="mb-16">
-                            <div className="space-y-4">
-                                {workshopData.map((item, index) => (
-                                    <div key={index} className="bg-blue-50 rounded-lg p-4 shadow-sm">
-                                        <button
-                                            onClick={() => toggleIndex(index)}
-                                            className="flex items-center justify-between w-full text-left"
-                                        >
-                                            <div className="flex items-center gap-2">
-                                                <span className="text-blue-600 text-lg">•</span>
-                                                <span className="text-blue-800 font-medium">
-                                                    {item.title}
-                                                </span>
-                                            </div>
-                                            {openIndexes.includes(index) ? (
-                                                <ChevronUp size={18} />
-                                            ) : (
-                                                <ChevronDown size={18} />
-                                            )}
-                                        </button>
-                                        {openIndexes.includes(index) && (
-                                            <ul className="mt-2 ml-6 list-disc text-sm text-gray-700 space-y-1">
-                                                {item.sub.map((subItem, i) => (
-                                                    <li key={i}>{subItem}</li>
-                                                ))}
-                                            </ul>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
-                    </div>
+                    {/* Dikey Çizgi */}
+                    <div className="hidden md:flex w-px bg-gray-300" />
 
-                    {/* Sağ: İletişim Bilgileri */}
+                    {/* İletişim Bilgileri */}
                     <div className="md:w-1/3 max-w-sm w-full">
-                        <div className="bg-gray-50 rounded-lg p-6 shadow-sm">
+                        <div className="bg-blue-50 rounded-lg p-6 shadow-sm">
                             <h3 className="text-xl font-semibold text-blue-800 mb-4">
                                 İletişim Bilgileri
                             </h3>
@@ -121,20 +81,24 @@ const Genc: React.FC<ServiceDetailProps> = ({
                                 <div className="flex items-start">
                                     <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
                                     <p className="text-gray-700">
-                                        HACI HALİL MAH. ATATÜRK CAD. NO: 8 15 TEMMUZ MİLLİ İRADE KENT MEYDANI{" "}
+                                        HACI HALİL MAH. ATATÜRK CAD. NO: 8 15 TEMMUZ MİLLİ İRADE KENT MEYDANI
+
+                                        {" "}
                                         {address}
                                     </p>
                                 </div>
                                 <br />
                                 <div className="flex items-center">
                                     <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                    <p className="text-gray-700"> 0262 644 56 89 {phone}</p>
+                                    <p className="text-gray-700"> 0262 644 56 89
+                                        {phone}</p>
                                 </div>
-                                <br />
                                 <div className="flex items-center">
-                                    <Clock className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                    <p className="text-gray-700">08:00 - 17:00 {workingHours}</p>
-                                </div>
+                                <Mail className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                                <p className="text-gray-700">kultur@gebze.bel.tr</p>
+                            </div>
+                                <br />
+
                             </div>
                         </div>
                     </div>

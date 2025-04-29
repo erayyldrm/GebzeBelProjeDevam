@@ -41,8 +41,8 @@ const Enderunokulları: React.FC<ServiceDetailProps> = ({
             <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[880px] p-6 space-y-6">
 
                 {/* Başlık Kartı */}
-                <div className="bg-white rounded-xl shadow-lg w-full py-6 px-8 mb-4">
-                    <div className="text-2xl md:text-3xl font-semibold text-blue-500 text-center">{title}</div>
+                <div className="bg-[#891737] rounded-xl shadow-lg w-full py-6 px-8 mb-4">
+                    <div className="text-2xl md:text-3xl font-semibold text-white text-center">{title}</div>
                 </div>
 
                 {/* Başlık + Resim Kartı */}
@@ -63,40 +63,55 @@ const Enderunokulları: React.FC<ServiceDetailProps> = ({
                     <section className="flex-1 text-justify space-y-4">
                         <h3 className="text-lg font-semibold text-blue-700">Verilen Hizmetler</h3>
                         <p className="text-gray-700 text-sm leading-relaxed">
-                            “Gece gündüz demeden, sevgiyle…” düsturuyla yola çıktığımız Güzide Bebek ve Çocuk Bakımevi Türkiye’de bir ilke imza atarak, 7/24 bebek ve çocuk bakım hizmeti veren ilk kuruluş olmuştur.
-                        </p>
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                            Güzide Bebek ve Çocuk Bakımevi 0-66 ay arası çocuklara hizmet vermektedir. Günün her saatinde kendilerini güvende hissetmelerini sağlamak, temel öz bakımlarını ve gelişimsel ihtiyaçlarını karşılamak hedeflerimizin başında gelmektedir. Ayrıca İngilizce, Değerler Eğitimi ve Sanat Atölyeleri ile gelişimleri desteklenmektedir.
-                        </p>
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                            Ferah ve geniş bahçesiyle de çocuklarımıza büyüme, gelişme ve eğlenme ortamı sunulmaktadır.
-                        </p>
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                            Kurumumuz anne şefkati ile deneyimli öğretmenleri, hizmetli personeli ve yönetimiyle hizmet vermeye devam etmektedir.
-                        </p>
+                            ENDERUN ÇOCUK ATÖLYELERİ'NDE 0-6 YAŞ GRUBUNA HİZMET VERİLMEKTEDİR.
+    <br/>
+                            ATÖLYELERİMİZ  ÇOCUKLARIN OYUN YOLUYLA GELİŞİMLERİNİ DESTEKLEMEYİ AMAÇLAMAKTADIR, FARKLI YAŞ GRUPLARINA VE İLGİ ALANLARINA UYGUN ÇEŞİTLİ ETKİNLİKLER YAPILMAKTADIR.
+                            <br/>
+                            HİZMETLERİMİZDEN BAZILARI; ÇOCUK GELİŞİM ATÖLYESİ, SANAT ATÖLYESİ,  BİLİM ATÖLYESİ, EBRU ATÖLYESİ, RESİM ATÖLYESİ, AKIL VE ZEKA  ATÖLYESİ, DEĞERLER EĞİTİMİ, EĞLENCELİ MATEMATİK, GELENEKSEL OYUNLAR, HAREKET PARKURU, SPOR AKTİVİTELERİ, İNGİLİZCE, GEZİLER, ATLI EĞİTİM MERKEZİ GEZİSİ
+                            <br/>
+                            <br/>
+
+                            ENDERUN ÇOCUK ATÖLYELERİ 4 BİRİMDEN OLUŞMAKTADIR;
+                            <br/>
+                            - ENDERUN ÇOCUK ATÖLYELERİ MERKEZ BİNASI
+                            <br/>
+                            - ARAPÇEŞME BİLİM SANAT MERKEZİ
+                            <br/>
+                            - İSTASYON BİLİM SANAT MERKEZİ
+                            <br/>
+                            - ERAY ŞAMDAN SPOR KOMPLEKSİ   </p>
                     </section>
 
                     {/* Dikey Çizgi */}
                     <div className="hidden md:flex w-px bg-gray-300" />
 
                     {/* İletişim Bilgileri */}
-                    <section className="flex-1 space-y-4">
-                        <h3 className="text-lg font-semibold text-blue-700">İletişim Bilgileri</h3>
-                        <div className="space-y-4 text-gray-700 text-sm">
-                            <div className="flex items-start">
-                                <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-1" />
-                                <p>Osman Yılmaz Mah. 608/2 Sk. No:7 Gebze / Kocaeli {address}</p>
-                            </div>
-                            <div className="flex items-center">
-                                <Phone className="w-5 h-5 text-blue-600 mr-3" />
-                                <p>0262 642 82 00 - 0530 557 42 59 {phone}</p>
-                            </div>
-                            <div className="flex items-center">
-                                <Clock className="w-5 h-5 text-blue-600 mr-3" />
-                                <p>08:00 - 17:00 {workingHours}</p>
+                    <div className="md:w-1/3 max-w-sm w-full">
+                        <div className="bg-blue-50 rounded-lg p-6 shadow-sm">
+                            <h3 className="text-xl font-semibold text-blue-800 mb-4">
+                                İletişim Bilgileri
+                            </h3>
+                            <div className="space-y-4">
+                                <div className="flex items-start">
+                                    <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                                    <p className="text-gray-700">
+                                        Mustafapaşa Mah. 712/2 Sok. No:2 Gebze / Kocaeli
+
+                                        {" "}
+                                        {address}
+                                    </p>
+                                </div>
+                                <br />
+                                <div className="flex items-center">
+                                    <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                                    <p className="text-gray-700">0262 643 03 30
+                                        {phone}</p>
+                                </div>
+                                <br />
+
                             </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
             </div>
         </motion.div>

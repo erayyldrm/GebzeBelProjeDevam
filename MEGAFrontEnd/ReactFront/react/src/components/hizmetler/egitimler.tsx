@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Info, X } from 'lucide-react';
+import {MapPin, Phone, Info, X, Mail} from 'lucide-react';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const egitimlermerkezi = [
     {
         id: 3,
+        mail:" kultur@gebze.bel.tr",
         name: "41 Genç 41 Gelecek",
         phone: "0262 644 56 89",
         address: "HACI HALİL MAH. ATATÜRK CAD. NO: 8 15 TEMMUZ MİLLİ İRADE KENT MEYDANI",
@@ -18,6 +19,7 @@ const egitimlermerkezi = [
     },
     {
         id: 1,
+        mail:"genclik.spor@gebze.bel.tr",
         name: "Doğru Tercih Hazırlık Kursları",
         phone: "0262 641 24 93",
         address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze Kocaeli",
@@ -28,6 +30,7 @@ const egitimlermerkezi = [
     },
     {
         id: 2,
+        mail:"genclik.spor@gebze.bel.tr",
         name: "Fıtness",
         phone: "0262 641 24 92",
         address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze/KOCAELİ",
@@ -38,6 +41,7 @@ const egitimlermerkezi = [
     },
     {
         id: 5,
+        mail:"genclik.spor@gebze.bel.tr",
         name: "Step Aorebik",
         phone: " 0262 641 24 92",
         address: " Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze/KOCAELİ",
@@ -48,6 +52,7 @@ const egitimlermerkezi = [
     },
     {
         id: 4,
+        mail:"genclik.spor@gebze.bel.tr",
         name: "Yaz ve Kış Okulları",
         phone: "0262 641 24 92",
         address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze Kocaeli",
@@ -106,6 +111,10 @@ const WorkshopCenterCard = ({ center }: { center: typeof egitimlermerkezi[0] }) 
                         <div className="flex items-center">
                             <Phone className="w-5 h-5 text-blue-600 mr-2" />
                             <p>{center.phone}</p>
+                        </div>
+                        <div className="flex items-center">
+                            <Mail className="w-5 h-5 text-blue-600 mr-2" />
+                            <p>{center.mail}</p>
                         </div>
                     </div>
                 </div>

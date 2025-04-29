@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, ChevronDown, ChevronUp } from "lucide-react";
+import { MapPin, Phone, Mail , Clock, ChevronDown, ChevronUp } from "lucide-react";
 
 interface ServiceDetailProps {
     title: string;
@@ -21,6 +21,8 @@ const Genclik: React.FC<ServiceDetailProps> = ({
                                                    address = "Hacıhalil Mah. Adliye Cad. No: 38 41400 Gebze / KOCAELİ",
                                                    phone = "(0262) 646 95 86",
                                                    workingHours = "Pazartesi-Cuma: 08:30-17:30",
+                                                   mail ="kultur.gesmek@gebze.bel.tr"
+
                                                }) => {
     const [openIndexes, setOpenIndexes] = useState<number[]>([]);
 
@@ -41,8 +43,8 @@ const Genclik: React.FC<ServiceDetailProps> = ({
             <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[880px] p-6 space-y-6">
 
                 {/* Başlık Kartı */}
-                <div className="bg-white rounded-xl shadow-lg w-full py-6 px-8 mb-4">
-                    <div className="text-2xl md:text-3xl font-semibold text-blue-500 text-center">{title}</div>
+                <div className="bg-[#891737] rounded-xl shadow-lg w-full py-6 px-8 mb-4">
+                    <div className="text-2xl md:text-3xl font-semibold text-white text-center">{title}</div>
                 </div>
 
                 {/* Başlık + Resim Kartı */}
@@ -63,40 +65,81 @@ const Genclik: React.FC<ServiceDetailProps> = ({
                     <section className="flex-1 text-justify space-y-4">
                         <h3 className="text-lg font-semibold text-blue-700">Verilen Hizmetler</h3>
                         <p className="text-gray-700 text-sm leading-relaxed">
-                            “Gece gündüz demeden, sevgiyle…” düsturuyla yola çıktığımız Güzide Bebek ve Çocuk Bakımevi Türkiye’de bir ilke imza atarak, 7/24 bebek ve çocuk bakım hizmeti veren ilk kuruluş olmuştur.
-                        </p>
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                            Güzide Bebek ve Çocuk Bakımevi 0-66 ay arası çocuklara hizmet vermektedir. Günün her saatinde kendilerini güvende hissetmelerini sağlamak, temel öz bakımlarını ve gelişimsel ihtiyaçlarını karşılamak hedeflerimizin başında gelmektedir. Ayrıca İngilizce, Değerler Eğitimi ve Sanat Atölyeleri ile gelişimleri desteklenmektedir.
-                        </p>
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                            Ferah ve geniş bahçesiyle de çocuklarımıza büyüme, gelişme ve eğlenme ortamı sunulmaktadır.
-                        </p>
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                            Kurumumuz anne şefkati ile deneyimli öğretmenleri, hizmetli personeli ve yönetimiyle hizmet vermeye devam etmektedir.
-                        </p>
+                            Bu program Gebze bölgesinde eğitim gören 9,10 ve 11. sınıf öğrencilerinin psikolojik, fiziksel ve manevi enerjilerini doğru yönlendirmek, alanında uzman rol model eğitmenler aracılığı ile ilgi duydukları alanda hem kendilerini geliştirmelerini, hem de değerlerine sahip çıkan bir gençlik olma yolunda deneyimlenmelerini hedefleyen bir eğitim programıdır. Ayrıca program içerisinde kişisel gelişim, sağlıklı yaşam ve sosyal proje alanlarında eğitim ve etkinlikler gerçekleştirilir.
+<br/>
+                            Konu Başlıkları
+                            <br/>
+                            İngilizce, Resim, Müzik, Fotoğrafçılık ve Tiyatro olmak üzere 5 farklı atölyesi ile 28 haftalık bir eğitim dönemini kapsar. Eğitimler hafta sonları 1 gün, 4 ders şeklinde yapılır.
+                            <br/>
+                            İstihdam Alanları
+                            <br/>
+                            Öğrencilerinin psikolojik, fiziksel ve manevi enerjilerini doğru yönlendirmeyi amaçlayan program aynı zamanda öğrencilerin lisans eğitim hayatı için bir temel oluşturur.
+                            <br/>
+                            Kayıt Şartları
+                            <br/>
+                            İngilizce Atölyesi
+                            <br/>
+                            *Atölyeye dil becerisi en az A2 seviyesinde olanlar başvurabilirler.
+                            <br/>
+                            Resim Atölyesi
+                            <br/>
+                            *Resme ilgisi ve yeteneği olan, güzel sanatları hedefleyen öğrenciler başvuru yapabilirler.
+                            <br/>
+                            Müzik Atölyesi
+                            <br/>
+                            *İyi derecede en az bir müzik aleti çalabilen öğrenciler başvuru yapabilirler.
+                            <br/>
+                            Fotoğrafçılık Atölyesi
+                            <br/>
+                            *Fotoğrafa ilgisi olan, tercihen fotoğraf makinası olan öğrencilerimiz başvuru yapabilir.
+                            <br/>
+                            Tiyatro Atölyesi
+                            <br/>
+                            *Bu alanda yetenekli, üniversitede ilgili bölümleri hedefleyen öğrenciler başvuru yapabilir.
+                            <br/>
+                            KURS VERİLEN MERKEZLER
+                            <br/>
+                            GESMEK Kurs Merkezi
+                            <br/>
+                            Kayıt İçin Gerekli Evraklar
+                            <br/>
+                            Öğrenci Belgesi
+                            <br/>
+                            1 Adet Kimlik Fotokopisi   </p>
                     </section>
 
                     {/* Dikey Çizgi */}
                     <div className="hidden md:flex w-px bg-gray-300" />
 
                     {/* İletişim Bilgileri */}
-                    <section className="flex-1 space-y-4">
-                        <h3 className="text-lg font-semibold text-blue-700">İletişim Bilgileri</h3>
-                        <div className="space-y-4 text-gray-700 text-sm">
-                            <div className="flex items-start">
-                                <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-1" />
-                                <p>Osman Yılmaz Mah. 608/2 Sk. No:7 Gebze / Kocaeli {address}</p>
-                            </div>
-                            <div className="flex items-center">
-                                <Phone className="w-5 h-5 text-blue-600 mr-3" />
-                                <p>0262 642 82 00 - 0530 557 42 59 {phone}</p>
-                            </div>
-                            <div className="flex items-center">
-                                <Clock className="w-5 h-5 text-blue-600 mr-3" />
-                                <p>08:00 - 17:00 {workingHours}</p>
+                    <div className="md:w-1/3 max-w-sm w-full">
+                        <div className="bg-blue-50 rounded-lg p-6 shadow-sm">
+                            <h3 className="text-xl font-semibold text-blue-800 mb-4">
+                                İletişim Bilgileri
+                            </h3>
+                            <div className="space-y-4">
+                                <div className="flex items-start">
+                                    <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                                    <p className="text-gray-700">
+                                        Hacı Halil Mah. Zübeyde Hanım Cad. Eyüp Güvenç İş Merkezi Gebze
+                                        {" "}
+                                        {address}
+                                    </p>
+                                </div>
+
+                                <div className="flex items-center">
+                                    <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                                    <p className="text-gray-700">0262 644 33 78 {phone}</p>
+                                </div>
+<br/>
+                                <div className="flex items-center">
+                                    <Mail className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                                    <p className="text-gray-700">kultur.gesmek@gebze.bel.tr</p>
+                                </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
+
                 </div>
             </div>
         </motion.div>

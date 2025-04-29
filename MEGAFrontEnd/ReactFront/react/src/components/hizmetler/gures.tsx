@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Info, X } from 'lucide-react';
+import { MapPin, Phone, Info, X, Mail } from 'lucide-react';
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 const güresmerkezi= [
     {
         id: 3,
+        mail:"genclik.spor@gebze.bel.tr",
         name: "Geleneksel Hünkar Çayırı Yağlı Güreşleri",
         phone: "0262 641 24 92",
         address: "Cumhuriyet Mah. 2257 Sk. Gebze / Kocaeli",
@@ -63,6 +64,10 @@ const WorkshopCenterCard = ({ center }: { center: typeof güresmerkezi[0] }) => 
                         <div className="flex items-center">
                             <Phone className="w-5 h-5 text-blue-600 mr-2" />
                             <p>{center.phone}</p>
+                        </div>
+                        <div className="flex items-center">
+                            <Mail className="w-5 h-5 text-blue-600 mr-2" />
+                            <p>{center.mail}</p>
                         </div>
                     </div>
                 </div>

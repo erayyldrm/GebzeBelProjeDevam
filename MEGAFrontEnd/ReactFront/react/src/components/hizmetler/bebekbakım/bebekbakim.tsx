@@ -31,8 +31,8 @@ const Bebekbakim: React.FC<ServiceDetailProps> = ({
             <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[880px] p-6 space-y-6">
 
                 {/* Başlık Kartı */}
-                <div className="bg-white rounded-xl shadow-lg w-full py-6 px-8 mb-4">
-                    <div className="text-2xl md:text-3xl font-semibold text-blue-500 text-center">{title}</div>
+                <div className="bg-[#891737] rounded-xl shadow-lg w-full py-6 px-8 mb-4">
+                    <div className="text-2xl md:text-3xl font-semibold text-white text-center">{title}</div>
                 </div>
 
                 {/* Başlık + Resim Kartı */}

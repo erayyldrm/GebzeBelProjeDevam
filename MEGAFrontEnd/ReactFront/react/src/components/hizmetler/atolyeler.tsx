@@ -1,23 +1,14 @@
 import { motion } from "framer-motion";
 
-import { MapPin, Phone, Info, X } from 'lucide-react';
+import { MapPin, Phone, Info, X, Mail } from 'lucide-react';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 // Atölye merkezi verileri
 const atolyeMerkezleri = [
     {
-        id: 3,
-        name: "Güzide Gençlik Merkezi Atölyeleri",
-        phone: "0262 646 95 86",
-        address: "Hacıhalil Mah. Adliye Cad. No: 38 41400 Gebze / KOCAELİ",
-        image: "/images/hizmetler/atölyeler/güzide.jpg",
-        mapLink: "https://www.google.com.tr/maps/search/40.796793,+29.436732?entry=tts",
-        details: "Sanat, kültür ve bilim alanlarında çeşitli atölyeler ve aktiviteler sunuyoruz.",
-        detailPage: "/hizmetler/atolyeler/guzide" // Buradaki path'i güncelledim
-    },
-    {
         id: 1,
+        mail:"",
         name: "Enderun Çocuk Atölyeleri",
         phone: "0262 643 03 30",
         address: "Mustafapaşa Mah. 712/2 Sok. No:2 Gebze / Kocaeli",
@@ -27,8 +18,21 @@ const atolyeMerkezleri = [
         detailPage: "/hizmetler/atolyeler/enderun"
     },
     {
+        id: 3,
+        name: "Güzide Gençlik Merkezi Atölyeleri",
+        mail:"",
+        phone: "0262 646 95 86",
+        address: "Hacıhalil Mah. Adliye Cad. No: 38 41400 Gebze / KOCAELİ",
+        image: "/images/hizmetler/atölyeler/güzide.jpg",
+        mapLink: "https://www.google.com.tr/maps/search/40.796793,+29.436732?entry=tts",
+        details: "Sanat, kültür ve bilim alanlarında çeşitli atölyeler ve aktiviteler sunuyoruz.",
+        detailPage: "/hizmetler/atolyeler/guzide" // Buradaki path'i güncelledim
+    },
+
+    {
         id: 2,
         name: "Gençlik Atölyesi",
+        mail:"kultur.gesmek@gebze.bel.tr",
         phone: "0262 644 33 78",
         address: "Hacı Halil Mah. Zübeyde Hanım Cad. Eyüp Güvenç İş Merkezi Gebze",
         image: "/images/hizmetler/atölyeler/gençlik.jpg",
@@ -39,6 +43,7 @@ const atolyeMerkezleri = [
     {
         id: 4,
         name: "Sportif Çocuk Atölyesi",
+        mail:"genclik.spor@gebze.bel.tr",
         phone: "0262 641 24 92",
         address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze Kocaeli",
         image: "/images/hizmetler/atölyeler/sportif.jpg",
@@ -96,6 +101,11 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
                         <div className="flex items-center">
                             <Phone className="w-5 h-5 text-blue-600 mr-2" />
                             <p>{center.phone}</p>
+                        </div>
+
+                        <div className="flex items-center">
+                            <Mail className="w-5 h-5 text-blue-600 mr-2" />
+                            <p>{center.mail}</p>
                         </div>
                     </div>
                 </div>
