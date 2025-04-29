@@ -1,8 +1,19 @@
-import {MapPin, ChevronRight, ChevronLeft} from "lucide-react";
+import {MapPin, ChevronRight, ChevronLeft, X} from "lucide-react";
 import {useEffect, useState} from "react";
+
+
+
 const EskihisarCesmesiPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [showGalleryModal, setShowGalleryModal] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    // Galeri resimleri
+    const galleryImages = [
+        {id: 1, path: "/images/gebze/tarihiyerler/eskihisarcesme/sub1.JPG", alt: "Eskihisar Çeşmesi görünüm 1"},
+        {id: 2, path: "/images/gebze/tarihiyerler/eskihisarcesme/6.jpg", alt: "Eskihisar Çeşmesi görünüm 2"}
+    ];
 
     // Diğer Tarihi Yerler için veri
     const otherPlaces = [
@@ -30,7 +41,7 @@ const EskihisarCesmesiPage = () => {
                     return 0;
                 }
             });
-        }, 5000); // 3 saniyede bir
+        }, 5000); // 5 saniyede bir
 
         return () => clearInterval(interval); // Temizlik
     }, []);
@@ -54,7 +65,7 @@ const EskihisarCesmesiPage = () => {
         }
     };
 
-    // Görüntülenecek kartlar (her seferinde 3 kart)
+    // Görüntülenecek kartlar (her seferinde 4 kart)
     const visiblePlaces = () => {
         const places = [];
         for (let i = 0; i < 4; i++) {
@@ -62,16 +73,34 @@ const EskihisarCesmesiPage = () => {
         }
         return places;
     };
+
+    // Galeri fonksiyonları
+    const openGallery = ({index}: { index: any }) => {
+        setCurrentImageIndex(index);
+        setShowGalleryModal(true);
+    };
+
+    const closeGallery = () => {
+        setShowGalleryModal(false);
+    };
+
+    const nextImage = () => {
+        setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+    };
+
+    const prevImage = () => {
+        setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+    };
+
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            {/* Hero Section - Modified */}
-            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6"> {/* Container ve max-width eklendi */}
-                <div className="absolute inset-0  z-10" />
+            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6">
+                <div className="absolute inset-0 z-10" />
                 <img
                     src="/images/gebze/tarihiyerler/eskihisarcesme/6.jpg"
-                    alt="EskihisarCesmesiPage"
-                    className="h-full w-full object-cover rounded-lg" /* Yuvarlatılmış kenarlar */
+                    alt="Eskihisar Çeşmesi"
+                    className="h-full w-full object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
                     <h1 className="text-4xl md:text-5xl bg-[#022842]/60 font-bold text-white mb-4 rounded-xl px-2 py-2 inline-block">ESKİHİSAR ÇEŞMESİ</h1>
@@ -85,9 +114,6 @@ const EskihisarCesmesiPage = () => {
             {/* Content Section */}
             <div className="container mx-auto px-3 py-9">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    {/* Quick Info Panel */}
-
-
                     {/* Main Content */}
                     <div className="p-6">
                         <div className="flex flex-col md:flex-row gap-8">
@@ -99,7 +125,6 @@ const EskihisarCesmesiPage = () => {
 
                                         Osmanlı dönemine ait su mimarisinin güzel örneklerinden biri olan Eskihisar Çeşmesi, tarihi dokusu ve özgün yapısıyla mutlaka görülmesi gereken yapılar arasında yer alır.
                                     </p>
-
                                 </div>
 
                                 <div className="mt-8">
@@ -123,7 +148,6 @@ const EskihisarCesmesiPage = () => {
                                                 Çeşme çevresinde zaman geçirirken, oturup dinlenebilir ve gezilen yer hakkında arkadaşlarınızla sohbet edebilirsiniz. Bu tür bir sosyal aktivite, hem dinlendirici hem de bilgilendirici olur.
                                             </p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +163,7 @@ const EskihisarCesmesiPage = () => {
                                         href="https://www.google.com/maps/place/Eskihisar+%C3%87e%C5%9Fmesi/@40.769591,29.4252723,17z/data=!3m1!4b1!4m5!3m4!1s0x14cb200fbb67de7d:0x8c7064d245464b3d!8m2!3d40.769591!4d29.427461?shorturl=1"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center bg-blue-600 text-black px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                                        className="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                                     >
                                         <MapPin className="w-5 h-5 mr-2" />
                                         Haritada Gör
@@ -149,11 +173,12 @@ const EskihisarCesmesiPage = () => {
                                 <div className="bg-gray-100 p-4 rounded-lg mb-6">
                                     <h3 className="text-xl font-bold text-gray-800 mb-3">🖼️ Galeri</h3>
                                     <div className="grid grid-cols-2 gap-2">
-                                        {[
-                                            {id: 1, path: "/images/gebze/tarihiyerler/eskihisarcesme/sub1.JPG", alt: "EskihisarCesmesiPage görünüm 1"},
-                                            {id: 2, path: "/images/gebze/tarihiyerler/eskihisarcesme/6.jpg", alt: "EskihisarCesmesiPage görünüm 2"}
-                                        ].map((item) => (
-                                            <div key={item.id} className="aspect-square overflow-hidden rounded-lg">
+                                        {galleryImages.map((item, index) => (
+                                            <div
+                                                key={item.id}
+                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer"
+                                                onClick={() => openGallery({index: index})}
+                                            >
                                                 <img
                                                     src={item.path}
                                                     alt={item.alt}
@@ -162,10 +187,7 @@ const EskihisarCesmesiPage = () => {
                                             </div>
                                         ))}
                                     </div>
-
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -252,6 +274,55 @@ const EskihisarCesmesiPage = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Galeri Modal */}
+            {showGalleryModal && (
+                <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+                    <div className="relative w-full max-w-4xl mx-auto">
+                        {/* Kapat düğmesi */}
+                        <button
+                            onClick={closeGallery}
+                            className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all"
+                            aria-label="Kapat"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+
+                        {/* Görsel */}
+                        <div className="relative bg-black flex items-center justify-center">
+                            <img
+                                src={galleryImages[currentImageIndex].path}
+                                alt={galleryImages[currentImageIndex].alt}
+                                className="max-h-[80vh] object-contain"
+                            />
+                        </div>
+
+                        {/* Navigasyon düğmeleri */}
+                        <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 flex justify-between px-4">
+                            <button
+                                onClick={prevImage}
+                                className="bg-black bg-opacity-50 rounded-full p-2 text-white hover:bg-opacity-70 transition-all"
+                                aria-label="Önceki resim"
+                            >
+                                <ChevronLeft className="w-8 h-8" />
+                            </button>
+                            <button
+                                onClick={nextImage}
+                                className="bg-black bg-opacity-50 rounded-full p-2 text-white hover:bg-opacity-70 transition-all"
+                                aria-label="Sonraki resim"
+                            >
+                                <ChevronRight className="w-8 h-8" />
+                            </button>
+                        </div>
+
+                        {/* Resim bilgisi ve sayaç */}
+                        <div className="text-center py-4 text-white">
+                            <p className="font-medium">{galleryImages[currentImageIndex].alt}</p>
+                            <p className="text-sm text-gray-300">{currentImageIndex + 1} / {galleryImages.length}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

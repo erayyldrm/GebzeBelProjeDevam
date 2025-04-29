@@ -302,6 +302,9 @@
 .min-h-\[300px\] {
   min-height: 300px;
 }
+.min-h-\[350px\] {
+  min-height: 350px;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -428,9 +431,6 @@
 }
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -672,9 +672,6 @@
 }
 .opacity-14 {
   opacity: 14%;
-}
-.opacity-40 {
-  opacity: 40%;
 }
 .opacity-50 {
   opacity: 50%;
