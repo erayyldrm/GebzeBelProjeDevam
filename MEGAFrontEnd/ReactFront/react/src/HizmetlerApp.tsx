@@ -36,6 +36,9 @@ import Arapbilim from "./components/hizmetler/kutuphane/arapbilim.tsx";
 import Beylikbilim from "./components/hizmetler/kutuphane/beylikbilim.tsx";
 import Baris from "./components/hizmetler/kutuphane/baris.tsx";
 import İstasyonB from "./components/hizmetler/kutuphane/İstasyonbilim.tsx";
+import Cumakoy from "./components/hizmetler/mesirealani/cumakoy.tsx";
+import Gaziler from "./components/hizmetler/mesirealani/gaziler.tsx";
+import Yumrukaya from "./components/hizmetler/mesirealani/yumrukaya.tsx";
 
 
 
@@ -81,7 +84,9 @@ const HizmetlerApp: React.FC =() => {
                 <Route path="/kutuphane/beylikbilim" element={<Beylikbilim/>}/>
                 <Route path="/kutuphane/baris" element={<Baris/>}/>
                 <Route path="/kutuphane/istasyonbilim" element={<İstasyonB/>}/>
-
+            <Route path="/mesirealani/cumakoy" element={<Cumakoy/>}/>
+            <Route path="/mesirealani/gaziler" element={<Gaziler/>}/>
+            <Route path="/mesirealani/yumrukaya" element={<Yumrukaya/>}/>
 
 
         </Routes>
@@ -89,3 +94,5 @@ const HizmetlerApp: React.FC =() => {
 
 }
 export default HizmetlerApp
+
+

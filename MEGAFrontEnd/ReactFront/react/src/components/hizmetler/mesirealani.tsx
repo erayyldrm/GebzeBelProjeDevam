@@ -11,51 +11,32 @@ const egitimlermerkezi = [
         name: "Cumaköy Mesire Alanı",
         phone: "Belirtilmemiş",
         address: "Cumaköy Cumhuriyet Caddesi, No:136C, Cumaköy, Gebze İlçesi, Kocaeli",
-        image: "/images/hizmetler/egitimler/41genç.jpg",
-        mapLink: "https://www.google.com.tr/maps/place/Cumak%C3%B6y,+41400+Gebze%2FKocaeli/@40.9264301,29.4788978,13z/data=!3m1!4b1!4m6!3m5!1s0x14cb2ed02b79abf9:0xf12cb2e4521d3b6!8m2!3d40.9239106!4d29.5165713!16s%2Fg%2F11dxb218n_?entry=ttu&g_ep=EgoyMDI1MDQxNi4xIKXMDSoASAFQAw%3D%3D",
+        image: "/images/hizmetler/mesirealani/cumaköy.jpg",
+        mapLink: "https://www.google.com/maps/dir//Cumak%C3%B6y,+41400+Gebze%2FKocaeli/@40.9101111,29.4104837,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x14cb290075c9e929:0xa93baeb721fda3b2!2m2!1d29.4928845!2d40.9101404?entry=ttu&g_ep=EgoyMDI1MDQyMi4wIKXMDSoASAFQAw%3D%3D",
         details: "Sanat, kültür ve bilim alanlarında çeşitli atölyeler ve aktiviteler sunuyoruz.",
         detailPage: "/hizmetler/mesirealani/cumakoy" // Buradaki path'i güncelledim
     },
     {
         id: 1,
-        name: "Kuştepe",
-        phone: "0262 641 24 93",
-        address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze Kocaeli",
-        image: "/images/hizmetler/egitimler/hazırkurslar.jpg",
-        mapLink: "https://www.google.com/maps/place/Cumhuriyet,+Yeni+Ba%C4%9Fdat+Cd.+No:119,+41400+Gebze%2FKocaeli/@40.808399,29.3767127,18z/data=!3m1!4b1!4m5!3m4!1s0x14cadfa98c371e2f:0x21939a9f1a7d9e94!8m2!3d40.808397!4d29.377807?shorturl=1",
+        name: "Gaziler Dağı Mesire Alanı",
+        phone: "Belirtilmemiş",
+        address: "Gaziler, Dicle Cd. No:48, 41400 Gebze/Kocaeli",
+        image: "/images/hizmetler/mesirealani/gazilerdağı.jpg",
+        mapLink: "https://www.google.com/maps/dir//Gaziler,+Dicle+Cd.+No:48,+41400+Gebze%2FKocaeli/@40.83049,29.3447269,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x14cb21e3f92f3d03:0xf3e8a2e6ff3f0764!2m2!1d29.4271277!2d40.8305193?hl=tr&entry=ttu&g_ep=EgoyMDI1MDQyMi4wIKXMDSoASAFQAw%3D%3D",
         details: "Çocukların yaratıcı ve eğitsel gelişimini destekleyen çeşitli aktiviteler sunuyoruz.",
-        detailPage: "/hizmetler/egitimler/tercih"
+        detailPage: "/hizmetler/mesirealani/gaziler"
     },
     {
         id: 2,
-        name: "Fıtness",
-        phone: "0262 641 24 92",
-        address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze/KOCAELİ",
-        image: "/images/hizmetler/egitimler/fıtness.jpg",
-        mapLink: "https://www.google.com/maps/place/Eray+%C5%9Eamdan+Spor+Salonu/@40.8090748,29.3786323,18z/data=!4m6!3m5!1s0x14cadf018db0cbf7:0x98b7941fd4f10fb3!8m2!3d40.8091904!4d29.3782963!16s%2Fg%2F11sw47tbj0?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D",
+        name: "Yumrukaya Mesire Alanı",
+        phone: "Belirtilmemiş",
+        address: "Gaziler, İbrahim Ağa cd. 41400 Gebze/Kocaeli",
+        image: "/images/hizmetler/mesirealani/yumrukaya.jpg",
+        mapLink: "https://www.google.com/maps?sca_esv=178908ee291956e1&rlz=1C1CHBD_trTR1158TR1158&sxsrf=AHTn8zqCf6rECRs5rKleWVxA8AXMPnECTQ:1745583921085&gs_lp=Egxnd3Mtd2l6LXNlcnAiE3l1bXJ1IG1lc2lyZSBhbGFuxLEqAggAMgYQABgHGB4yCBAAGKIEGIkFMggQABiiBBiJBTIIEAAYgAQYogQyBRAAGO8FSMcaUABYnBBwAHgAkAEAmAHBA6ABzBKqAQkwLjEuMS40LjG4AQPIAQD4AQGYAgSgApMKwgIKEAAYgAQYQxiKBZgDAJIHCTAuMS4wLjIuMaAHhCKyBwkwLjEuMC4yLjG4B5MK&um=1&ie=UTF-8&fb=1&gl=tr&sa=X&geocode=KUWYmaSxIMsUMZsOUWLuUeoe&daddr=Gaziler,+%C4%B0brahim+A%C4%9Fa+Cd.,+41400+Gebze/Kocaeli",
         details: "Gençlerin yetenek ve becerilerini geliştirmek için özel programlar ve etkinlikler düzenliyoruz.",
-        detailPage: "/hizmetler/egitimler/fitness"
-    },
-    {
-        id: 5,
-        name: "Step Aorebik",
-        phone: " 0262 641 24 92",
-        address: " Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze/KOCAELİ",
-        image: "/images/hizmetler/egitimler/step.jpg",
-        mapLink: "https://www.google.com/maps/place/Eray+%C5%9Eamdan+Spor+Salonu/@40.8090748,29.3786323,18.5z/data=!4m6!3m5!1s0x14cadf018db0cbf7:0x98b7941fd4f10fb3!8m2!3d40.8091904!4d29.3782963!16s%2Fg%2F11sw47tbj0?entry=tts&g_ep=EgoyMDI1MDQwOC4wIPu8ASoASAFQAw%3D%3D&skid=3b4bc55a-cb80-40d2-9128-3176014feaa3",
-        details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz.",
-        detailPage: "/hizmetler/egitimler/Aerobic"
-    },
-    {
-        id: 4,
-        name: "Yaz ve Kış Okulları",
-        phone: "0262 641 24 92",
-        address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze Kocaeli",
-        image: "/images/hizmetler/egitimler/yazkışokulları.jpg",
-        mapLink: "https://www.google.com/maps/place/Gebze+K%C3%BClt%C3%BCr+Merkezi/@40.8074201,29.4398777,15.25z/data=!4m5!3m4!1s0x0:0x6f17b50e45cc6c97!8m2!3d40.7979754!4d29.4299296?shorturl=1",
-        details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz.",
-        detailPage: "/hizmetler/egitimler/yaz"
+        detailPage: "/hizmetler/mesirealani/yumrukaya"
     }
+
 ];
 
 // Atölye Merkezi Kartı Bileşeni
@@ -164,7 +145,7 @@ export default function Egitimlersayfasi() {
                                 className="bg-[#891737] p-4 rounded-xl shadow-xl mb-5"
                             >
                                 <div className="text-2xl font-semibold text-white text-center">
-                                    EĞİTİMLER
+                               MESİRE ALANLARI
                                 </div>
                             </motion.div>
 

@@ -21,7 +21,7 @@ const atolyeMerkezleri = [
         name: "Enderun Çocuk Atölyeleri",
         phone: "0262 643 03 30",
         address: "Mustafapaşa Mah. 712/2 Sok. No:2 Gebze / Kocaeli",
-        image: "/images/hizmetler/atölyeler/enderun.webp",
+        image: "/images/hizmetler/atölyeler/enderun.jpg",
         mapLink: "https://www.google.com/maps/place/Mustafapa%C5%9Fa,+712%2F2.+Sk.+No:2,+41400+Gebze%2FKocaeli/@40.802388,29.427409,18z/data=!4m6!3m5!1s0x14cb2085a55b34a1:0xfb2fb8bc3b387035!8m2!3d40.802388!4d29.427409!16s%2Fg%2F11c2927bq_?hl=tr&entry=tts&g_ep=EgoyMDI0MDYyNi4wKgBIAVAD",
         details: "Çocukların yaratıcı ve eğitsel gelişimini destekleyen çeşitli aktiviteler sunuyoruz.",
         detailPage: "/hizmetler/atolyeler/enderun"

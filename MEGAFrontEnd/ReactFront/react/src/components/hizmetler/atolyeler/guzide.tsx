@@ -14,62 +14,58 @@ interface ServiceDetailProps {
 
 const workshopData = [];
 
-const Guzide: React.FC<ServiceDetailProps> = ({
-                                                   title = " Güzide Gençlik Merkezi Atölyeleri",
-                                                   description = "",
-                                                   imageUrl = "/images/hizmetler/atölyeler/guzide.jpg",
-                                                   address = "",
-                                                   phone = "",
-                                                   workingHours = "",
-                                               }) => {
-    const [openIndexes, setOpenIndexes] = useState<number[]>([]);
 
-    const toggleIndex = (index: number) => {
-        setOpenIndexes((prev) =>
-            prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-        );
-    };
+    const Guzide: React.FC<ServiceDetailProps> = ({
+                                                      title = " Güzide Gençlik Merkezi Atölyeleri",
+                                                      description = "",
+                                                      imageUrl = "/images/hizmetler/atölyeler/guzide.jpg",
+                                                      address = "",
+                                                      phone = "",
+                                                      workingHours = "",
+                                                  }) => {
+        const [openIndexes, setOpenIndexes] = useState<number[]>([]);
 
-    return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="flex justify-center items-center min-h-screen px-4"
-        >
-            <div className="bg-white p-6 rounded-lg shadow-lg space-y-6 w-full max-w-5xl">
-                {/* Başlık ve Görsel */}
-                <div className="mb-8 text-center text-blue-500">
-                    <div className="text-2xl md:text-2xl font-semibold mb-3">{title}</div>
+        const toggleIndex = (index: number) => {
+            setOpenIndexes((prev) =>
+                prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+            );
+        };
 
-                    <div className="flex justify-center">
-                        <div className="relative h-[500px] sm:h-[600px] md:h-[750px] lg:h-[850px] w-[90%] sm:w-3/4 md:w-2/3 lg:w-2/3 rounded-lg overflow-hidden shadow-lg">
+        return (
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="min-h-screen flex flex-col items-center px-4 py-10 space-y-8"
+            >
+                {/* Ana Kart */}
+                <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[880px] p-6 space-y-6">
+
+                    {/* Başlık Kartı */}
+                    <div className="bg-white rounded-xl shadow-lg w-full py-6 px-8 mb-4">
+                        <div className="text-2xl md:text-3xl font-semibold text-blue-500 text-center">{title}</div>
+                    </div>
+
+                    {/* Başlık + Resim Kartı */}
+                    <div className="relative flex justify-center w-full mb-6">
+                        <div className="w-full sm:w-[650px] md:w-[750px] h-[450px] rounded-xl overflow-hidden">
+                            {/* Resim kartı tamamen kaplasın */}
                             <img
-                                src= "/images/hizmetler/atölyeler/güzide.jpg"
+                                src="/images/hizmetler/atölyeler/güzide.jpg"
                                 alt={title}
                                 className="w-full h-full object-cover"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t flex items-center justify-center">
-                                <div className="text-white text-center px-4 max-w-2xl">
-                                    <p className="text-lg md:text-xl font-medium">{description}</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </div>
-                <br/>
-                <br/>
-                {/* İçerik & Bilgi Bölümü */}
-                <div className="flex flex-col md:flex-row gap-5">
-                    {/* Sol: Verilen Hizmetler */}
-                    <div className="md:w-2/3 w-full">
-                        <section className="mb-5">
-                            <h2 className="text-2xl font-semibold text-blue-700 mb-4 border-b pb-2">
-                                Verilen Hizmetler
-                            </h2>
-                            <p className="text-gray-700 mb-4 text-sm sm:text-base">
+
+                    {/* Hizmetler ve İletişim Kartları */}
+                    <div className="flex flex-col md:flex-row gap-8">
+                        {/* Verilen Hizmetler */}
+                        <section className="flex-1 text-justify space-y-4">
+                            <h3 className="text-lg font-semibold text-blue-700">Verilen Hizmetler</h3>
+                            <p className="text-gray-700 text-sm leading-relaxed">
                                 Güzide Gençlik Merkezinde atölye faaliyetleri lise öğrencilerini hem akademiye hem de hayata hazırlayacak şekilde organize edilmektedir.
-<br/>
+                                <br/>
                                 Akademik atölyeler başlığında Türk Dili ve Edebiyatı, Matematik ve Geometri derslerinin haricinde; XR Laboratuvarında yapılan faaliyetler, sosyal bilimlere dair atölyeler ve sınavlara ilişkin çalışmalar şeklinde üçlü bir yapılanma mevcuttur.
                                 <br/>
                                 Hayata hazırlama amacı güden ve çeşitli yaşam becerilerini de kapsama alan atölye çalışmalarında ise Merkez içi yahut dışında yapılan bazı aktiviteler, genel kültüre katkı sunacak çalışmalar ve tekno-eğitim/tekno-eğlence faaliyetleri şeklinde yine üçlü bir yapılanma üzerinden gidilmektedir.
@@ -319,69 +315,41 @@ const Guzide: React.FC<ServiceDetailProps> = ({
 
                                 Mukabele </p>
                         </section>
+                        <div className="hidden md:flex w-px bg-gray-300" />
+                        {/* İletişim Bilgileri Kartı */}
+                        <div className="md:w-1/3 max-w-sm w-full">
+                            <div className="bg-blue-50 rounded-lg p-6 shadow-sm">
+                                <h3 className="text-xl font-semibold text-blue-800 mb-4">
+                                    İletişim Bilgileri
+                                </h3>
+                                <div className="space-y-4">
+                                    <div className="flex items-start">
+                                        <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                                        <p className="text-gray-700">
+                                            ARAPÇEŞME MAH. 1065 SOKAK. NO: 28 GEBZE/KOCAELİ
 
-                        <section className="mb-16">
-                            <div className="space-y-4">
-                                {workshopData.map((item, index) => (
-                                    <div key={index} className="bg-blue-50 rounded-lg p-4 shadow-sm">
-                                        <button
-                                            onClick={() => toggleIndex(index)}
-                                            className="flex items-center justify-between w-full text-left"
-                                        >
-                                            <div className="flex items-center gap-2">
-                                                <span className="text-blue-600 text-lg">•</span>
-                                                <span className="text-blue-800 font-medium">{item.title}</span>
-                                            </div>
-                                            {openIndexes.includes(index) ? (
-                                                <ChevronUp size={18} />
-                                            ) : (
-                                                <ChevronDown size={18} />
-                                            )}
-                                        </button>
-                                        {openIndexes.includes(index) && (
-                                            <ul className="mt-2 ml-6 list-disc text-sm text-gray-700 space-y-1">
-                                                {item.sub.map((subItem, i) => (
-                                                    <li key={i}>{subItem}</li>
-                                                ))}
-                                            </ul>
-                                        )}
+                                            {" "}
+                                            {address}
+                                        </p>
                                     </div>
-                                ))}
-                            </div>
-                        </section>
-                    </div>
+                                    <br />
+                                    <div className="flex items-center">
+                                        <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                                        <p className="text-gray-700">0262 643 99 15
+                                            {phone}</p>
+                                    </div>
+                                    <br />
 
-                    {/* Sağ: İletişim Bilgileri */}
-                    <div className="md:w-1/3 max-w-sm w-full">
-                        <div className="bg-gray-50 rounded-lg p-6 shadow-sm">
-                            <h3 className="text-xl font-semibold text-blue-800 mb-4">
-                                İletişim Bilgileri
-                            </h3>
-                            <div className="space-y-4">
-                                <div className="flex items-start">
-                                    <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                                    <p className="text-gray-700">
-                                        Hacıhalil Mah. Adliye Cad. No: 38 41400 Gebze / KOCAELİ   {address}
-                                    </p>
-                                </div>
-                                <br />
-                                <div className="flex items-center">
-                                    <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                    <p className="text-gray-700">0262 646 95 86
-                                        {phone}</p>
-                                </div>
-                                <br />
-                                <div className="flex items-center">
-                                    <Clock className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                    <p className="text-gray-700"> 08:00 - 18:00 {workingHours}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </motion.div>
-    );
-};
+            </motion.div>
+        );
+    };
 
-export default Guzide;
+    export default Guzide;
+
+
+

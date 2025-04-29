@@ -168,3 +168,253 @@ const Sportif: React.FC<ServiceDetailProps> = ({
 };
 
 export default Sportif;
+Güzide Gençlik Merkezinde atölye faaliyetleri lise öğrencilerini hem akademiye hem de hayata hazırlayacak şekilde organize edilmektedir.
+<br/>
+Akademik atölyeler başlığında Türk Dili ve Edebiyatı, Matematik ve Geometri derslerinin haricinde; XR Laboratuvarında yapılan faaliyetler, sosyal bilimlere dair atölyeler ve sınavlara ilişkin çalışmalar şeklinde üçlü bir yapılanma mevcuttur.
+<br/>
+Hayata hazırlama amacı güden ve çeşitli yaşam becerilerini de kapsama alan atölye çalışmalarında ise Merkez içi yahut dışında yapılan bazı aktiviteler, genel kültüre katkı sunacak çalışmalar ve tekno-eğitim/tekno-eğlence faaliyetleri şeklinde yine üçlü bir yapılanma üzerinden gidilmektedir.
+
+<br/>
+<br/>
+ATÖLYELER:
+    <br/>
+
+<br/>
+Akademik Atölyeler,
+
+    Güzide Yarıyıl Kampı,
+
+    Güzide Yaz Okulu,
+
+    Fizik Dersleri,
+
+    Arapça Dersleri,
+
+    Osmanlıca Dersleri,
+    Kur’an-ı Kerim Dersleri,
+
+    Tarih Seminerleri,
+
+    Sosyoloji Okumaları,
+
+    Din Kültürü ve Ahlak Bilgisi Dersleri,
+
+    Felsefe Okumaları,
+
+    Psikoloji Okumaları,
+
+    Güzide Edebiyat Kartları (GEK),
+
+    Klasik Şiir Atölyesi
+<br/>
+<br/>
+Tekno-Akademik Atölyeler
+
+XR Tanıtım Atölyesi,
+
+    XR Fizik,
+
+    XR Kimya,
+
+    XR Biyoloji,
+
+    XR Matematik,
+    XR Geometri
+<br/>
+<br/>
+
+Sınav Atölyeleri
+
+YKS (TYT-AYT) Denemeleri,
+
+    Soru Çözüm Kampları,
+
+    Konu Tekrar Kampları,
+
+    Sınav Analizleri
+<br/>
+<br/>
+Genel Kültür Atölyeleri
+
+Güzide Doğa Okulu,
+
+    (Güz, Kış ve Yaz Doğa Kampları, Geziler, İstikamet Programları),
+
+Yazarlık Okulu,
+
+    Kitap Tahlilleri,
+
+    Sesli Kitap Atölyesi,
+
+    Etimoloji Atölyesi,
+
+    Bilgi Yarışmaları,
+
+    Diksiyon ve Hitabet Dersleri,
+
+    Edebiyat Söyleşileri,
+
+    Dergicilik Okulu,
+
+    Film Okumaları,
+
+Münazara
+<br/>
+<br/>
+
+Sanat Atölyeleri
+
+Geleneksel Sanat Atölyeleri,
+
+    ( Hat, Tezhip, Kaligrafi, Ebru, Minyatür, Kat’ı ),
+
+Modern Sanat Atölyeleri,
+
+    ( Resim / Kara Kalem, Yağlı Boya, Kuru Boya, Toz Pastel, Akrilik ),
+
+Tiyatro,
+
+    Drama,
+
+    El Sanatları Atölyesi,
+
+    ( Kanaviçe, Örgü, Biçki, Dikiş),
+
+    Savunma Sanatı,
+
+    ( Kick-Box ),
+
+    Mutfak Sanatları Atölyesi,
+
+    Ahşap,
+
+    Cam Takı,
+
+    Mimarlık Atölyesi,
+
+    Müzik Atölyesi,
+
+    (Bendir, Kalimba),
+
+Sergiler
+
+<br/>
+<br/>
+Tekno-Eğitim Atölyeleri
+
+Yazılım Atölyeleri,
+
+    (C#, Java, Python, Web [HTML-CSS], Web Tasarım, GeoGebra),
+
+Robotik Atölyeleri,
+
+    (Arduino, Esp 32, Rex, Mblock 5, Pinoo),
+
+Güzide Garaj,
+
+    Dijital Eğitim Sınıfları,
+
+    3 D Yazıcı Atölyesi,
+
+    Greenbox Stüdyosu,
+
+    Podcast Stüdyosu
+<br/>
+<br/>
+
+Tekno-Eğlence Atölyeleri
+
+Laser-Tag,
+
+    VR ( Sanal Gerçeklik Gözlüğü ),
+
+Uçuş Simülatörü,
+
+    Araç Simülatörü,
+
+    PS 5,
+
+    Klasik Atari
+<br/>
+<br/>
+
+Spor Atölyeleri
+
+Fitness,
+
+    Pilates,
+
+    Masa Tenisi,
+
+    Bilardo,
+
+    Langırt,
+
+    Shuffleboard,
+
+    Satranç,
+
+    Okçuluk,
+
+    Voleybol,
+
+    Futsal,
+
+Cornhole
+<br/>
+<br/>
+
+Rehberlik-Psikolojik Danışmanlık Atölyeleri
+
+Manevi Danışmanlık,
+
+    (Değerler Eğitimi),
+
+Psikolog,
+
+    (Psikoloji Kulübü, Grup Etkinlikleri),
+
+Psikolojik Danışman,
+
+    (Kariyer Okulu, Sınav Kaygısı, Sınav Stratejileri Seminerleri),
+
+Aile Danışmanı,
+
+    (Ebeveyn Psikoloji Atölyeleri, Ergenlik, Akademik Başarı Seminerleri),
+
+Eğitim Danışmanı,
+
+    (Tercih Danışmanlığı, Sınav Bilgilendirme Seminerleri),
+
+Sağlık Danışmanlığı (Hemşire),
+
+    (Beslenme ve Diyetetik, Geleneksel Tıp, Kadın Sağlığı, Spor ve Sağlık Seminerleri),
+
+Öğrenci Seminerleri,
+
+    Veli Seminerleri,
+
+    Zarafet Atölyesi
+
+<br/>
+<br/>
+Diğer Atölyeler
+
+Mangala,
+
+    Lego,
+
+    Resfebe,
+
+    Zekâ Oyunları,
+
+    Materyal Tasarım,
+
+    Kriptoloji,
+
+    Tabu,
+
+    MaTabu,
+
+
+Mukabele </p>
