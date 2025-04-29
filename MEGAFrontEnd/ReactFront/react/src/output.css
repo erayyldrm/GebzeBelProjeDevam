@@ -272,8 +272,14 @@
 .h-\[300px\] {
   height: 300px;
 }
+.h-\[450px\] {
+  height: 450px;
+}
 .h-\[500px\] {
   height: 500px;
+}
+.h-\[550px\] {
+  height: 550px;
 }
 .h-\[600px\] {
   height: 600px;
@@ -289,6 +295,9 @@
 }
 .h-screen {
   height: 100vh;
+}
+.max-h-\[80vh\] {
+  max-height: 80vh;
 }
 .max-h-\[90vh\] {
   max-height: 90vh;
@@ -332,11 +341,17 @@
 .w-\[300px\] {
   width: 300px;
 }
+.w-\[950px\] {
+  width: 950px;
+}
 .w-auto {
   width: auto;
 }
 .w-full {
   width: 100%;
+}
+.w-px {
+  width: 1px;
 }
 .max-w-\[90\%\] {
   max-width: 90%;
@@ -355,6 +370,9 @@
 }
 .max-w-\[466px\] {
   max-width: 466px;
+}
+.max-w-\[880px\] {
+  max-width: 880px;
 }
 .max-w-\[1200px\] {
   max-width: 1200px;
@@ -810,6 +828,13 @@
       --tw-scale-y: 110%;
       --tw-scale-z: 110%;
       scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+  }
+}
+.hover\:bg-\[\#033b60\] {
+  &:hover {
+    @media (hover: hover) {
+      background-color: #033b60;
     }
   }
 }
