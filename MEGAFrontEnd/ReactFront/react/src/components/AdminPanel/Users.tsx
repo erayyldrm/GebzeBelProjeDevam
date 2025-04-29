@@ -1,8 +1,9 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {Users, Filter, ChevronDown, ChevronUp, MoreHorizontal, Plus, Trash, Edit, Eye} from 'lucide-react';
 import AdminLayout from './_LayoutAdminPanel.tsx';
 import {useSearch} from "./context/SearchContext.tsx";
 import {fetchUsers, User} from "./services/userService.tsx";
+import {useClickOutside} from "../useClickOutside.tsx";
 
 
 
@@ -24,6 +25,7 @@ export default function UsersPage() {
     const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
     const [actionDropdownId, setActionDropdownId] = useState<number | null>(null);
     const {searchQuery} = useSearch();
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     // Filter and sort users
     const filteredUsers = users.filter(user => {
@@ -34,6 +36,7 @@ export default function UsersPage() {
             role.toLowerCase().includes(searchQuery.toLowerCase());
         // Filter by role
         const matchesRole = selectedRole === 'All Roles' || role === selectedRole;
+
         return matchesSearch && matchesRole;
     }).sort((a, b) => {
         // Handle sorting
@@ -45,6 +48,8 @@ export default function UsersPage() {
         } else {
             return fieldA > fieldB ? -1 : fieldA < fieldB ? 1 : 0;
         }
+        // Close dropdown when clicking outside
+
     });
 
     // Handle sort changes
@@ -81,7 +86,10 @@ export default function UsersPage() {
             .catch(console.error)
             .finally(() => setLoading(false));
     }, []);
-
+    // Close dropdown when clicking outside
+    useClickOutside(dropdownRef, () => {
+        setActionDropdownId(null);
+    });
     return (
         <AdminLayout>
 
@@ -305,6 +313,7 @@ export default function UsersPage() {
 
                                         {actionDropdownId === user.id && (
                                             <div
+                                                ref={dropdownRef}
                                                 className="absolute right-4 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
                                                 <ul className="py-1">
                                                     <li>
