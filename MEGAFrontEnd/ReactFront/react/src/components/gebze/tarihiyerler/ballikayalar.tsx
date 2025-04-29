@@ -1,9 +1,21 @@
 import { useState, useEffect } from "react";
-import {MapPin, ChevronRight, ChevronLeft} from "lucide-react";
+import { MapPin, ChevronRight, ChevronLeft, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const BallikayalarPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    // Resim görüntüleyici için state'ler
+    const [showImageViewer, setShowImageViewer] = useState(false);
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+    // Galeri resimleri
+    const galleryImages = [
+        {id: 1, path: "/images/gebze/tarihiyerler/ballikayalar/2.jpg", alt: "Ballıkayalar görünüm 1"},
+        {id: 2, path: "/images/gebze/tarihiyerler/ballikayalar/sub2.jpg", alt: "Ballıkayalar görünüm 2"},
+        {id: 3, path: "/images/gebze/tarihiyerler/ballikayalar/sub3.jpg", alt: "Ballıkayalar görünüm 3"},
+        {id: 4, path: "/images/gebze/tarihiyerler/ballikayalar/sub4.jpg", alt: "Ballıkayalar görünüm 4"}
+    ];
 
     // Diğer Tarihi Yerler için veri
     const otherPlaces = [
@@ -31,7 +43,7 @@ const BallikayalarPage = () => {
                     return 0;
                 }
             });
-        }, 5000); // 3 saniyede bir
+        }, 5000); // 5 saniyede bir
 
         return () => clearInterval(interval); // Temizlik
     }, []);
@@ -55,7 +67,7 @@ const BallikayalarPage = () => {
         }
     };
 
-    // Görüntülenecek kartlar (her seferinde 3 kart)
+    // Görüntülenecek kartlar (her seferinde 4 kart)
     const visiblePlaces = () => {
         const places = [];
         for (let i = 0; i < 4; i++) {
@@ -63,16 +75,52 @@ const BallikayalarPage = () => {
         }
         return places;
     };
+
+    // Resim görüntüleyici fonksiyonları
+    const openImageViewer = ({index}: { index: any }) => {
+        setSelectedImageIndex(index);
+        setShowImageViewer(true);
+    };
+
+    const closeImageViewer = () => {
+        setShowImageViewer(false);
+    };
+
+    const nextImage = () => {
+        setSelectedImageIndex((prev) => (prev + 1) % galleryImages.length);
+    };
+
+    const prevImage = () => {
+        setSelectedImageIndex((prev) =>
+            prev === 0 ? galleryImages.length - 1 : prev - 1
+        );
+    };
+
+    // ESC tuşuna basıldığında resim görüntüleyiciyi kapat
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                closeImageViewer();
+            } else if (e.key === "ArrowRight" && showImageViewer) {
+                nextImage();
+            } else if (e.key === "ArrowLeft" && showImageViewer) {
+                prevImage();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [showImageViewer]);
+
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            {/* Hero Section - Modified */}
-            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6"> {/* Container ve max-width eklendi */}
-                <div className="absolute inset-0  z-10" />
+            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6">
+                <div className="absolute inset-0 z-10" />
                 <img
                     src="/images/gebze/tarihiyerler/ballikayalar/sub1.jpg"
                     alt="Ballıkayalar Tabiat Parkı"
-                    className="h-full w-full object-cover rounded-lg" /* Yuvarlatılmış kenarlar */
+                    className="h-full w-full object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
                     <h1 className="text-4xl md:text-5xl bg-[#022842]/60 font-bold text-white mb-4 rounded-xl px-2 py-2 inline-block">BALLIKAYALAR TABİAT PARKI</h1>
@@ -86,7 +134,6 @@ const BallikayalarPage = () => {
             {/* Content Section */}
             <div className="container mx-auto px-3 py-9">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    {/* Quick Info Panel */}
                     {/* Main Content */}
                     <div className="p-6">
                         <div className="flex flex-col md:flex-row gap-8">
@@ -173,13 +220,12 @@ const BallikayalarPage = () => {
                                 <div className="bg-gray-100 p-4 rounded-lg mb-6">
                                     <h3 className="text-xl font-bold text-gray-800 mb-3">🖼️ Galeri</h3>
                                     <div className="grid grid-cols-2 gap-2">
-                                        {[
-                                            {id: 1, path: "/images/gebze/tarihiyerler/ballikayalar/2.jpg", alt: "Ballıkayalar görünüm 1"},
-                                            {id: 2, path: "/images/gebze/tarihiyerler/ballikayalar/sub2.jpg", alt: "Ballıkayalar görünüm 2"},
-                                            {id: 3, path: "/images/gebze/tarihiyerler/ballikayalar/sub3.jpg", alt: "Ballıkayalar görünüm 3"},
-                                            {id: 4, path: "/images/gebze/tarihiyerler/ballikayalar/sub4.jpg", alt: "Ballıkayalar görünüm 4"}
-                                        ].map((item) => (
-                                            <div key={item.id} className="aspect-square overflow-hidden rounded-lg">
+                                        {galleryImages.map((item, index) => (
+                                            <div
+                                                key={item.id}
+                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer"
+                                                onClick={() => openImageViewer({index: index})}
+                                            >
                                                 <img
                                                     src={item.path}
                                                     alt={item.alt}
@@ -188,16 +234,13 @@ const BallikayalarPage = () => {
                                             </div>
                                         ))}
                                     </div>
-
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Other Places Section - Slider olarak düzenlenmiş */}
+                {/* Other Places Section - Animated Slider */}
                 <div className="mt-12">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">DİĞER TARİHİ YERLER</h2>
 
@@ -212,39 +255,46 @@ const BallikayalarPage = () => {
                             <ChevronLeft className="w-5 h-5" />
                         </button>
 
-                        {/* Slider Container */}
-                        <div className="overflow-hidden">
-                            <div
-                                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2"
-                            >
-                                {visiblePlaces().map((place, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col"
-                                    >
-                                        {/* Resim alanı */}
-                                        <div className="h-55 overflow-hidden">
-                                            <img
-                                                src={place.imagePath}
-                                                alt={place.name}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                            />
-                                        </div>
+                        {/* Slider Container with Animation */}
+                        <div className="overflow-hidden min-h-[350px]">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={currentIndex}
+                                    initial={{ opacity: 0, x: 100 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -100 }}
+                                    transition={{ duration: 0.6 }}
+                                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+                                >
+                                    {visiblePlaces().map((place, index) => (
+                                        <div
+                                            key={index}
+                                            className="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col"
+                                        >
+                                            {/* Resim alanı */}
+                                            <div className="h-55 overflow-hidden">
+                                                <img
+                                                    src={place.imagePath}
+                                                    alt={place.name}
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                />
+                                            </div>
 
-                                        {/* İçerik alanı */}
-                                        <div className="p-4 flex flex-col items-center justify-center text-center flex-grow">
-                                            <h3 className="text-lg font-semibold mb-4">{place.name}</h3>
-                                            <a
-                                                href={place.route}
-                                                className="text-blue-600 hover:text-blue-800 inline-flex items-center text-sm"
-                                            >
-                                                Detaylı bilgi
-                                                <ChevronRight className="w-4 h-4 ml-1" />
-                                            </a>
+                                            {/* İçerik alanı */}
+                                            <div className="p-4 flex flex-col items-center justify-center text-center flex-grow">
+                                                <h3 className="text-lg font-semibold mb-4">{place.name}</h3>
+                                                <a
+                                                    href={place.route}
+                                                    className="text-blue-600 hover:text-blue-800 inline-flex items-center text-sm"
+                                                >
+                                                    Detaylı bilgi
+                                                    <ChevronRight className="w-4 h-4 ml-1" />
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
+                                    ))}
+                                </motion.div>
+                            </AnimatePresence>
                         </div>
 
                         <button
@@ -279,6 +329,65 @@ const BallikayalarPage = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Resim Görüntüleyici (Lightbox) */}
+            {showImageViewer && (
+                <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+                    <div className="relative w-full max-w-4xl p-4">
+                        {/* Kapat düğmesi */}
+                        <button
+                            onClick={closeImageViewer}
+                            className="absolute top-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-full z-10"
+                            aria-label="Kapat"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+
+                        {/* Resim */}
+                        <div className="relative">
+                            <AnimatePresence mode="wait">
+                                <motion.img
+                                    key={selectedImageIndex}
+                                    src={galleryImages[selectedImageIndex].path}
+                                    alt={galleryImages[selectedImageIndex].alt}
+                                    className="w-full h-auto max-h-[80vh] object-contain mx-auto"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                />
+                            </AnimatePresence>
+                        </div>
+
+                        {/* Navigasyon düğmeleri */}
+                        <div className="absolute inset-y-0 left-0 flex items-center">
+                            <button
+                                onClick={prevImage}
+                                className="bg-black bg-opacity-50 text-white p-2 rounded-full ml-2"
+                                aria-label="Önceki resim"
+                            >
+                                <ChevronLeft className="w-6 h-6" />
+                            </button>
+                        </div>
+
+                        <div className="absolute inset-y-0 right-0 flex items-center">
+                            <button
+                                onClick={nextImage}
+                                className="bg-black bg-opacity-50 text-white p-2 rounded-full mr-2"
+                                aria-label="Sonraki resim"
+                            >
+                                <ChevronRight className="w-6 h-6" />
+                            </button>
+                        </div>
+
+                        {/* Resim bilgisi ve sayısı */}
+                        <div className="absolute bottom-4 left-0 right-0 text-center text-white">
+                            <p>{galleryImages[selectedImageIndex].alt}</p>
+                            <p className="text-sm">{selectedImageIndex + 1} / {galleryImages.length}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

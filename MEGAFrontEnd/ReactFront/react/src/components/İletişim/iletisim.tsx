@@ -12,7 +12,8 @@ const Contact = () => {
                         allowFullScreen
                         loading="lazy"
                         className="w-full h-full"
-                        style={{height: "500px"}}
+                        style={{height: "5" +
+                                "00px"}}
                     ></iframe>
                 </div>
                 <h2 className="text-2xl font-bold text-center text-gray-800 mb-6 relative">

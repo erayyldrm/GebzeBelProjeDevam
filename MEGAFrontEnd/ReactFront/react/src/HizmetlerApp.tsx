@@ -13,6 +13,7 @@ import Enderunokulları from "./components/hizmetler/atolyeler/enderun.tsx";
 import Bakimevi from "./components/hizmetler/bakimevi.tsx"
 import Egitimler from "./components/hizmetler/egitimler.tsx"
 import Bebekbakim from "./components/hizmetler/bebekbakım/bebekbakim.tsx";
+import Sportiff from "./components/hizmetler/atolyeler/sportiff.tsx";
 
 import Fitness from "./components/hizmetler/egitimler/fitness.tsx";
 import Genc from "./components/hizmetler/egitimler/genc.tsx";
@@ -85,6 +86,7 @@ const HizmetlerApp: React.FC =() => {
             <Route path="/kutuphane" element={<Kutuphane/>}/>
             <Route path="/merkezler" element={<Merkezler/>}/>
             <Route path="/mesirealani" element={<Mesirealani/>}/>
+            <Route path="/atolyeler/sportiff" element={<Sportiff/>}/>
                 <Route path="/evlendirme/nikah" element={<Nislemleri/>}/>
                 <Route path="/güres/güress" element={<Guresss/>}/>
             <Route path="/merkezler/aile" element={<Aile/>}/>
