@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const wasteTypes = [
@@ -8,7 +8,7 @@ const wasteTypes = [
         description: "Cam, plastik, metal ve kâğıt ambalaj atıkları.",
         image: "/images/hizmetler/donusum/ambalaj.jpg",
         detailPage: "hizmetler/geridonusum/ambalaj",
-        mapLink: "http://google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8115684!4d29.4190946!16s%2Fg%2F11gnprgbd1?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D"
+        mapLink: "https://google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8115684!4d29.4190946!16s%2Fg%2F11gnprgbd1?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D"
     },
     {
         icon: "🔋",
