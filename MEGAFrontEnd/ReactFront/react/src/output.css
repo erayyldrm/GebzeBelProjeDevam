@@ -272,6 +272,9 @@
 .h-\[300px\] {
   height: 300px;
 }
+.h-\[450px\] {
+  height: 450px;
+}
 .h-\[500px\] {
   height: 500px;
 }
@@ -290,6 +293,9 @@
 .h-screen {
   height: 100vh;
 }
+.max-h-\[80vh\] {
+  max-height: 80vh;
+}
 .max-h-\[90vh\] {
   max-height: 90vh;
 }
@@ -301,6 +307,9 @@
 }
 .min-h-\[300px\] {
   min-height: 300px;
+}
+.min-h-\[350px\] {
+  min-height: 350px;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -335,6 +344,9 @@
 .w-full {
   width: 100%;
 }
+.w-px {
+  width: 1px;
+}
 .max-w-\[90\%\] {
   max-width: 90%;
 }
@@ -352,6 +364,9 @@
 }
 .max-w-\[466px\] {
   max-width: 466px;
+}
+.max-w-\[880px\] {
+  max-width: 880px;
 }
 .max-w-\[1200px\] {
   max-width: 1200px;
@@ -428,9 +443,6 @@
 }
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -672,9 +684,6 @@
 }
 .opacity-14 {
   opacity: 14%;
-}
-.opacity-40 {
-  opacity: 40%;
 }
 .opacity-50 {
   opacity: 50%;
