@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ImageSlider from "../Sliders2/SliderTest2.tsx";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 
