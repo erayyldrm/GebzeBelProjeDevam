@@ -278,6 +278,9 @@
 .h-\[500px\] {
   height: 500px;
 }
+.h-\[550px\] {
+  height: 550px;
+}
 .h-\[600px\] {
   height: 600px;
 }
@@ -337,6 +340,9 @@
 }
 .w-\[300px\] {
   width: 300px;
+}
+.w-\[950px\] {
+  width: 950px;
 }
 .w-auto {
   width: auto;
@@ -822,6 +828,13 @@
       --tw-scale-y: 110%;
       --tw-scale-z: 110%;
       scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+  }
+}
+.hover\:bg-\[\#033b60\] {
+  &:hover {
+    @media (hover: hover) {
+      background-color: #033b60;
     }
   }
 }

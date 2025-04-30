@@ -1,6 +1,7 @@
 package com.kocaeli.bel.service;
 
 import com.kocaeli.bel.DTO.LoginResponse;
+import com.kocaeli.bel.DTO.UserDTO;
 import com.kocaeli.bel.model.User;
 import com.kocaeli.bel.repository.UserRepository;
 import com.kocaeli.bel.exception.UserAlreadyExistsException;
@@ -23,8 +24,11 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserDTO> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(user -> new UserDTO(user.getId(), user.getTCNo(), user.getRole()))
+                .toList();
     }
 
     public Optional<User> getUserById(Long id) {

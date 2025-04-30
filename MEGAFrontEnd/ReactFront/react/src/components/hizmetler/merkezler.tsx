@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Info, X } from 'lucide-react';
+import { MapPin, Phone, Info, X,Mail } from 'lucide-react';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const merkezler = [
     {
         id: 3,
+        mail:"kultur@gebze.bel.tr",
         name: "Aile Danışmanlık Merkezi",
         phone: "0262 641 11 82",
         address: "HACI HALİL MAH. ATATÜRK CAD. NO: 8 15 TEMMUZ MİLLİ İRADE KENT MEYDANI",
@@ -18,6 +19,7 @@ const merkezler = [
     },
     {
         id: 1,
+        mail:"",
         name: "Arapçeşme Bilim ve Sanat Merkezi",
         phone: "0262 643 99 15",
         address: "ARAPÇEŞME MAH. 1065 SOKAK. NO: 28 GEBZE/KOCAELİ",
@@ -28,6 +30,7 @@ const merkezler = [
     },
     {
         id: 2,
+        mail:" genclik.spor@gebze.bel.tr",
         name: "Atlı Eğitim Merkezi",
         phone: " 0262 642 66 90",
         address: "GAZİLER MAH.1793 SOK. NO: 58 KOCAELİ/GEBZE",
@@ -38,6 +41,7 @@ const merkezler = [
     },
     {
         id: 5,
+        mail:"",
         name: "Beylikbağı Bilim ve Sanat Merkezi",
         phone: " 0262 642 18 95",
         address: "BEYLİKBAĞI MAH. ANKARA CAD.NO:7 GEBZE/KOCAELİ",
@@ -48,6 +52,7 @@ const merkezler = [
     },
     {
         id: 4,
+        mail:" genclik.spor@gebze.bel.tr",
         name: "Eray Şamdan Spor Okulları",
         phone: "0262 641 24 93",
         address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze Kocaeli",
@@ -58,6 +63,7 @@ const merkezler = [
     },
     {
         id: 8,
+        mail:"kultur@gebze.bel.tr",
         name: "Gebze Kültür Merkezi ",
         phone: "0262 644 56 89 ",
         address: "HACI HALİL MAH. ATATÜRK CAD. NO: 8 15 TEMMUZ MİLLİ İRADE KENT MEYDANI",
@@ -68,6 +74,7 @@ const merkezler = [
     },
     {
         id: 9,
+        mail:" kultur.gesmek@gebze.bel.tr",
         name: "Gesmek",
         phone: "0262 644 33 78",
         address: "Hacı Halil Mah. Zübeyde Hanım Cad. Eyüp Güvenç İş Merkezi Gebze Kocaeli",
@@ -78,6 +85,7 @@ const merkezler = [
     },
     {
         id: 10,
+        mail:" genclik.spor@gebze.bel.tr",
         name: "Güzide Gençlik Merkezi",
         phone: "0262 646 95 86",
         address: "Hacıhalil Mah. Adliye Cad. No: 38 41400 Gebze / KOCAELİ",
@@ -88,6 +96,7 @@ const merkezler = [
     },
     {
         id: 11,
+        mail:"",
         name: "İstasyon Bilim ve Sanat Merkezi",
         phone: "0262 655 25 54",
         address: "İSTASYON MAH. ŞEHİT ABDULLAH HOROZ CAD. NO: 26 GEBZE/ KOCAELİ",
@@ -98,6 +107,7 @@ const merkezler = [
     },
     {
         id: 12,
+        mail:" veteriner@gebze.bel.tr",
         name: "Sokak Hayvanları Tedavi, Rehabilitasyon ve Eğitim Merkezi",
         phone: "0262 642 04 30",
         address: "Pelitli Mahallesi Yeni Mezarlık Yolu Caddesi No:49 Gebze Kocaeli",
@@ -157,6 +167,10 @@ const WorkshopCenterCard = ({ center }: { center: typeof merkezler[0] }) => {
                         <div className="flex items-center">
                             <Phone className="w-5 h-5 text-blue-600 mr-2" />
                             <p>{center.phone}</p>
+                        </div>
+                        <div className="flex items-center">
+                            <Mail className="w-5 h-5 text-blue-600 mr-2" />
+                            <p>{center.mail}</p>
                         </div>
                     </div>
                 </div>

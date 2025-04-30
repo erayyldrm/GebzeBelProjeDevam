@@ -85,7 +85,7 @@ const Guresss: React.FC<ServiceDetailProps> = ({
                                         {address}
                                     </p>
                                 </div>
-                                <br />
+
                                 <div className="flex items-center">
                                     <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
                                     <p className="text-gray-700">0262 641 24 92

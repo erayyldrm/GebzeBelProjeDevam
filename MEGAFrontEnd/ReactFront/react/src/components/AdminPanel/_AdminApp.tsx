@@ -8,8 +8,8 @@ import {isAuthenticated, isAdmin, setupAuthListener} from './services/authServic
 
 const AdminRoute = () => {
     // Check these return the expected values
-    console.log('Is authenticated:', isAuthenticated());
-    console.log('Is admin:', isAdmin());
+    // console.log('Is authenticated:', isAuthenticated());
+    // console.log('Is admin:', isAdmin());
     if (!isAuthenticated()) {
         return <Navigate to="/login"/>;
     }

@@ -1,10 +1,11 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {kurumsal,gebze,hizmetler,eBelediye,yayınlarımız} from '../_SayfaBilgileri/Sayfalar.tsx';
 import {motion, AnimatePresence, useAnimation} from 'framer-motion';
 import './NavBar.css';
 import {Link, useNavigate} from 'react-router-dom';
 import {DropdownItem} from '../_SayfaBilgileri/types.tsx';
 import {FiChevronDown, FiChevronUp, FiMenu, FiX } from 'react-icons/fi';
+import { useClickOutside } from '../useClickOutside.tsx';
 
 const Navbar = () => {
 
@@ -22,7 +23,10 @@ const handleNavigation = (path: string) => {
     const [isNavbarFixed] = useState(false);
     const [lastScrollPosition, setLastScrollPosition] = useState(0);
     const navbarControls = useAnimation();
-
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
+    useClickOutside(dropdownRef, () => {
+        setOpenDropdown(null);
+    });
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollPos = window.scrollY;
@@ -174,7 +178,7 @@ const handleNavigation = (path: string) => {
                     </div>
 
                     {/* Desktop menu items - hidden on mobile */}
-                    <div className="hidden md:flex md:items-center md:justify-between">
+                    <div ref={dropdownRef} className="hidden md:flex md:items-center md:justify-between">
                         {/* Main navbar items */}
                         <div className="flex gap-8 ">
                             {/* Kurumsal Dropdown */}
