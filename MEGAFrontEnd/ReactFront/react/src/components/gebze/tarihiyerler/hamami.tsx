@@ -132,8 +132,6 @@ const CobanMustafaPasaHamamiPage = () => {
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Sidebar */}
                             <div className="md:w-1/3">
                                 <div className="bg-blue-50 p-4 rounded-lg mb-6">
                                     <h3 className="text-xl font-bold text-blue-800 mb-4">🚗 Nasıl Gidilir?</h3>

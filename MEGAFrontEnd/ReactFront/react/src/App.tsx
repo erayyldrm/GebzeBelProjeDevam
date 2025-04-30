@@ -22,6 +22,8 @@ import EBelediye from "./components/e-belediye/e-belediye.tsx";
 import Iletisim from "./components/İletişim/iletisim.tsx";
 import AdminPanelApp from "./components/AdminPanel/_AdminApp.tsx";
 import HizmetNoktalari from "./components/İletişim/hizmet-noktalarimiz.tsx";
+import Jarvis from "./components/jarvis.tsx";
+
 
 
 
@@ -56,7 +58,7 @@ const App: React.FC = () => {
 
                             <Outlet/> {/* This is important! */}
 
-
+<Jarvis/>
                             <Footer/>
 
 

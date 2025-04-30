@@ -450,6 +450,9 @@
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -492,6 +495,9 @@
 .justify-end {
   justify-content: flex-end;
 }
+.justify-start {
+  justify-content: flex-start;
+}
 .justify-items-center {
   justify-items: center;
 }
@@ -524,6 +530,18 @@
 .rounded-t-\[16px\] {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+}
+.rounded-tl-none {
+  border-top-left-radius: 0;
+}
+.rounded-tr-none {
+  border-top-right-radius: 0;
+}
+.rounded-br-none {
+  border-bottom-right-radius: 0;
+}
+.rounded-bl-none {
+  border-bottom-left-radius: 0;
 }
 .border {
   border-style: var(--tw-border-style);
