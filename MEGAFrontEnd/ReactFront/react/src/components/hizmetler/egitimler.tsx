@@ -45,7 +45,7 @@ const egitimlermerkezi = [
         name: "Step Aorebik",
         phone: " 0262 641 24 92",
         address: " Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze/KOCAELİ",
-        image: "/images/hizmetler/egitimler/step.jpg",
+        image: "/images/hizmetler/egitimler/step.png",
         mapLink: "https://www.google.com/maps/place/Eray+%C5%9Eamdan+Spor+Salonu/@40.8090748,29.3786323,18.5z/data=!4m6!3m5!1s0x14cadf018db0cbf7:0x98b7941fd4f10fb3!8m2!3d40.8091904!4d29.3782963!16s%2Fg%2F11sw47tbj0?entry=tts&g_ep=EgoyMDI1MDQwOC4wIPu8ASoASAFQAw%3D%3D&skid=3b4bc55a-cb80-40d2-9128-3176014feaa3",
         details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz.",
         detailPage: "/hizmetler/egitimler/Aerobic"
