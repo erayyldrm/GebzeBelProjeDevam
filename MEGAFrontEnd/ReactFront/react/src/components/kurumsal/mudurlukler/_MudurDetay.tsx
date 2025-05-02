@@ -112,7 +112,7 @@ const MudurDetay = () => {
     );
 
     return (
-        <div className="w-full max-w-6xl mx-auto my-8 px-4">
+        <div className="w-full max-w-6xl mx-auto my-8 px-4 mt-3">
             <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
                 {/* Hero Section */}
                 <div className="md:flex">
@@ -168,16 +168,6 @@ const MudurDetay = () => {
 
                         <div className="mt-6 md:mt-0">
                             <div className="inline-flex rounded-md shadow-sm" role="group">
-                                <button
-                                    onClick={() => setActiveTab('about')}
-                                    className={`px-4 py-2 text-sm font-medium rounded-l-lg ${
-                                        activeTab === 'about'
-                                            ? 'bg-blue-500 text-white'
-                                            : 'bg-white text-gray-700 hover:bg-gray-50'
-                                    } border border-gray-200`}
-                                >
-                                    Hakkında
-                                </button>
                                 <button
                                     onClick={() => setActiveTab('biography')}
                                     className={`px-4 py-2 text-sm font-medium ${
