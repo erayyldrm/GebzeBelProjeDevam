@@ -26,7 +26,7 @@ const EtikKomisyonu: React.FC = () => {
     ];
 
     return (
-        <div className="min-h-screen py-30 px-4 flex justify-center items-start">
+        <div className="min-h-screen mt-3 py-30 px-4 flex justify-center items-start">
             <div className="w-full max-w-5xl bg-white shadow-lg rounded-xl p-6 sm:p-10">
 
                 {/* Başlık Arka Planlı */}

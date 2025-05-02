@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
-import ImageSlider from "../../Sliders2/SliderTest2.tsx";
+
 
 const Yumrukaya = () => {
     const sliderImages = [
