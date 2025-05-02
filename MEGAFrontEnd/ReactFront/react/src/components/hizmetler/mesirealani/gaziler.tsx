@@ -5,7 +5,8 @@ import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 const Gaziler = () => {
     const sliderImages = [
         "/images/hizmetler/mesirealani/gazilerdağı.jpg",
-
+        "/images/hizmetler/mesirealani/gaziler3.jpg",
+        "/images/hizmetler/mesirealani/gaziler2.jpg"
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,7 +51,18 @@ const Gaziler = () => {
                 {/* Slider Controls */}
                 {/* Slider Controls */}
                 {/* Slider Controls */}
-
+                <button
+                    onClick={prevSlide}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white text-gray-800 p-3 rounded-full shadow-lg hover:scale-105 transition duration-200 z-10"
+                >
+                    <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                    onClick={nextSlide}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white text-gray-800 p-3 rounded-full shadow-lg hover:scale-105 transition duration-200 z-10"
+                >
+                    <ChevronRight className="w-4 h-4" />
+                </button>
 
             </div>
         </div>

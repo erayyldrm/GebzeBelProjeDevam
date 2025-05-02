@@ -50,7 +50,7 @@ const Aerobic: React.FC<ServiceDetailProps> = ({
                     <div className="w-full sm:w-[650px] md:w-[750px] h-[450px] rounded-xl overflow-hidden">
                         {/* Resim kartı tamamen kaplasın */}
                         <img
-                            src="/images/hizmetler/egitimler/step.jpg"
+                            src="/images/hizmetler/egitimler/step.png"
                             alt={title}
                             className="w-full h-full object-cover"
                         />
