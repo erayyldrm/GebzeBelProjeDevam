@@ -86,7 +86,7 @@ const HizmetlerApp: React.FC =() => {
             <Route path="/kutuphane" element={<Kutuphane/>}/>
             <Route path="/merkezler" element={<Merkezler/>}/>
             <Route path="/mesirealani" element={<Mesirealani/>}/>
-            <Route path="/atolyeler/sportiff" element={<Sportiff/>}/>
+            <Route path="/atolyeler/sportif" element={<Sportiff/>}/>
                 <Route path="/evlendirme/nikah" element={<Nislemleri/>}/>
                 <Route path="/güres/güress" element={<Guresss/>}/>
             <Route path="/merkezler/aile" element={<Aile/>}/>
