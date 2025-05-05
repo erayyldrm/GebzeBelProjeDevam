@@ -28,7 +28,7 @@ const BaskanYardimcilari: React.FC = () => {
                                                 <div className="card shadow-lg rounded-lg mt-2">
                                                     <div className="card-block p-4">
                                                         <div className="col-md-12">
-                                                            <ul className="space-y-4">
+                                                            <ul className="space-y-4 text-justify">
                                                                 {[{
                                                                     name: "Dursun Ali ARSLAN",
                                                                     img: "Dursun ali .jpg",

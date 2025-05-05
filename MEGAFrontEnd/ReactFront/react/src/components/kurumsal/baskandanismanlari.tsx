@@ -76,7 +76,7 @@ const BaskanDanismanlari: React.FC = () => {
                                                                                             </div>
                                                                                         )}
 
-                                                                                        <div className="contact-info mt-3"><h6 className="text-black-900 font-semibold mb-2">İletişim:</h6>
+                                                                                        <div className="contact-info mt-3"><h6 className="text-black-900 font-semibold mb-2">İletişim Bilgileri:</h6>
                                                                                             <p className="flex items-center text-gray-700 mb-2">
 
                                                                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-black-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">

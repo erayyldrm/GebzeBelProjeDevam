@@ -1,237 +1,205 @@
-import  { useEffect, useState } from 'react';
+import React, { useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-interface BlogPost {
+interface NewsItem {
     id: number;
-    image: string;
-    category: string;
-    categoryColor: string;
     title: string;
-    author: string;
-    authorImage: string;
     date: string;
-    comments: number;
+    description: string;
+    imageUrl: string;
+    category: string;
 }
 
-export default function ModernBlogSlider() {
-    // Main blog posts
-    const blogPosts: BlogPost[] = [
-        {
-            id: 1,
-            image: "/assets/images/hero-blog/1.jpg",
-            category: "LIFESTYLE",
-            categoryColor: "bg-pink-500",
-            title: "Bosmogenic an designed for narita iourism in moon",
-            author: "Jon Deo",
-            authorImage: "/assets/images/authors/jon-deo.jpg",
-            date: "March 29, 2022",
-            comments: 99
-        },
-        {
-            id: 2,
-            image: "/assets/images/hero-blog/2.jpg",
-            category: "POLITICS",
-            categoryColor: "bg-green-600",
-            title: "Dui fames tempora maiores dicta anim? Vel curae eaque ab eaque pharetra blandit",
-            author: "Jon Deo",
-            authorImage: "/assets/images/authors/jon-deo.jpg",
-            date: "March 29, 2022",
-            comments: 99
-        },
-        {
-            id: 3,
-            image: "/assets/images/hero-blog/3.jpg",
-            category: "TECHNOLOGY",
-            categoryColor: "bg-yellow-500",
-            title: "Virtual reality is here!",
-            author: "Jon Deo",
-            authorImage: "/assets/images/authors/jon-deo.jpg",
-            date: "March 29, 2022",
-            comments: 0
-        },
-        {
-            id: 4,
-            image: "/assets/images/hero-blog/4.jpg",
-            category: "TRAVEL",
-            categoryColor: "bg-blue-500",
-            title: "Running on the field.",
-            author: "Jon Deo",
-            authorImage: "/assets/images/authors/jon-deo.jpg",
-            date: "March 29, 2022",
-            comments: 0
-        }
-    ];
+const newsData: NewsItem[] = [
+    {
+        id: 1,
+        title: "Yeni Kültür Merkezi Açıldı",
+        date: "01 Mayıs 2025",
+        description:
+            "Yeni kültür merkezi, Kocaeli halkı için sosyal ve sanatsal faaliyetlerin merkezi olacak şekilde açıldı.",
+        imageUrl: "https://via.placeholder.com/800x400?text=Kultur+Merkezi",
+        category: "Kültür",
+    },
+    {
+        id: 2,
+        title: "Çevre Temizlik Kampanyası Başladı",
+        date: "28 Nisan 2025",
+        description:
+            "Belediye, vatandaşlarla birlikte geniş çaplı bir çevre temizliği kampanyasına başladı.",
+        imageUrl: "https://via.placeholder.com/800x400?text=Temizlik+Kampanyası",
+        category: "Çevre",
+    },
+    {
+        id: 3,
+        title: "Gençlik Festivali Yoğun İlgi Gördü",
+        date: "22 Nisan 2025",
+        description:
+            "Gençlik festivali, konserler, atölyeler ve spor etkinlikleriyle dolu dolu geçti.",
+        imageUrl: "https://via.placeholder.com/800x400?text=Genclik+Festivali",
+        category: "Gençlik",
+    },
+    {
+        id: 4,
+        title: "Sanat Sokağı Etkinliği",
+        date: "20 Nisan 2025",
+        description:
+            "Yerel sanatçıların katıldığı açık hava sanat etkinliği büyük beğeni topladı.",
+        imageUrl: "https://via.placeholder.com/800x400?text=Sanat+Etkinligi",
+        category: "Kültür",
+    },
+];
 
-    // State for responsive design
-    const [, setIsMobile] = useState(false);
+const categories = ["Tümü", "Kültür", "Çevre", "Gençlik"];
 
-    // Check window size for responsive design
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
+const NewsPage: React.FC = () => {
+    const [selectedCategory, setSelectedCategory] = useState("Tümü");
+    const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-        handleResize(); // Initial check
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const filteredNews =
+        selectedCategory === "Tümü"
+            ? newsData
+            : newsData.filter((item) => item.category === selectedCategory);
+
+    const sliderSettings = {
+        dots: true,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        dotsClass: "slick-dots custom-dots",
+        customPaging: () => (
+            <div className="custom-dot w-3 h-3 bg-white opacity-50 rounded-full mx-1 transition-opacity duration-300"></div>
+        ),
+    };
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* First large blog post - Left side */}
-                <div className="relative overflow-hidden rounded-lg group">
-                    <div className="aspect-w-16 aspect-h-9 md:aspect-h-10">
-                        <img
-                            src={blogPosts[0].image}
-                            alt={blogPosts[0].title}
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-
-                    {/* Overlay content */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex flex-col justify-end p-6">
-            <span className={`inline-block ${blogPosts[0].categoryColor} text-white px-6 py-1.5 rounded text-sm font-bold mb-4`}>
-              {blogPosts[0].category}
-            </span>
-                        <h2 className="text-white text-3xl md:text-4xl font-bold mb-4 leading-tight">
-                            {blogPosts[0].title}
-                        </h2>
-                        <div className="flex items-center text-white">
-                            <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
-                                <img
-                                    src={blogPosts[0].authorImage}
-                                    alt={blogPosts[0].author}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            <div className="mr-5">by {blogPosts[0].author}</div>
-                            <div className="flex items-center mr-5">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                {blogPosts[0].date}
-                            </div>
-                            <div className="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                </svg>
-                                {blogPosts[0].comments} Comments
-                            </div>
-                        </div>
-                    </div>
+        <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen font-sans">
+            {/* Header */}
+            <header className="bg-blue-600 text-white py-6 shadow-lg">
+                <div className="max-w-6xl mx-auto px-4">
+                    <h1 className="text-3xl font-bold">Şehrimizden Haberler</h1>
+                    <p className="mt-1 text-blue-100">Güncel gelişmeler ve etkinlikler</p>
                 </div>
+            </header>
 
-                {/* Right side column */}
-                <div className="space-y-6">
-                    {/* Second large blog post (Politics) */}
-                    <div className="relative overflow-hidden rounded-lg group">
-                        <div className="aspect-w-16 aspect-h-9">
-                            <img
-                                src={blogPosts[1].image}
-                                alt={blogPosts[1].title}
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-
-                        {/* Overlay content */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex flex-col justify-end p-6">
-              <span className={`inline-block ${blogPosts[1].categoryColor} text-white px-6 py-1.5 rounded text-sm font-bold mb-4`}>
-                {blogPosts[1].category}
-              </span>
-                            <h2 className="text-white text-2xl font-bold mb-4 leading-tight">
-                                {blogPosts[1].title}
-                            </h2>
-                            <div className="flex items-center text-white">
-                                <div className="w-8 h-8 rounded-full overflow-hidden mr-3">
+            {/* Slider */}
+            <div className="max-w-5xl mx-auto pt-8 px-4 relative">
+                <div className="rounded-3xl overflow-hidden shadow-xl">
+                    <Slider {...sliderSettings}>
+                        {newsData.map((news) => (
+                            <div key={news.id}>
+                                <div className="relative">
                                     <img
-                                        src={blogPosts[1].authorImage}
-                                        alt={blogPosts[1].author}
-                                        className="w-full h-full object-cover"
+                                        src={news.imageUrl}
+                                        alt={news.title}
+                                        className="w-full h-96 object-cover"
                                     />
-                                </div>
-                                <div className="mr-5">by {blogPosts[1].author}</div>
-                                <div className="flex items-center mr-5">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    {blogPosts[1].date}
-                                </div>
-                                <div className="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                    </svg>
-                                    {blogPosts[1].comments} Comments
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Two smaller blog posts in a row */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Technology post */}
-                        <div className="relative overflow-hidden rounded-lg group">
-                            <div className="aspect-w-4 aspect-h-5">
-                                <img
-                                    src={blogPosts[2].image}
-                                    alt={blogPosts[2].title}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-
-                            {/* Overlay content */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex flex-col justify-end p-4">
-                <span className={`inline-block ${blogPosts[2].categoryColor} text-white px-4 py-1 rounded text-xs font-bold mb-3`}>
-                  {blogPosts[2].category}
-                </span>
-                                <h2 className="text-white text-xl font-bold mb-3 leading-tight">
-                                    {blogPosts[2].title}
-                                </h2>
-                                <div className="flex items-center text-white">
-                                    <div className="w-6 h-6 rounded-full overflow-hidden mr-2">
-                                        <img
-                                            src={blogPosts[2].authorImage}
-                                            alt={blogPosts[2].author}
-                                            className="w-full h-full object-cover"
-                                        />
+                                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70"></div>
+                                    <div className="absolute bottom-0 left-0 p-8 text-white">
+                    <span className="inline-block px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full mb-3">
+                      {news.category}
+                    </span>
+                                        <h2 className="text-3xl font-bold text-white mb-2">{news.title}</h2>
+                                        <p className="text-sm text-gray-200 mb-2">{news.date}</p>
+                                        <p className="text-gray-100 max-w-2xl">{news.description}</p>
+                                        <button className="mt-4 px-6 py-2 bg-white text-blue-600 rounded-full font-medium hover:bg-blue-50 transition duration-300 shadow-lg">
+                                            Devamını Oku
+                                        </button>
                                     </div>
-                                    <div className="text-sm">by {blogPosts[2].author}</div>
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Travel post */}
-                        <div className="relative overflow-hidden rounded-lg group">
-                            <div className="aspect-w-4 aspect-h-5">
-                                <img
-                                    src={blogPosts[3].image}
-                                    alt={blogPosts[3].title}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-
-                            {/* Overlay content */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex flex-col justify-end p-4">
-                <span className={`inline-block ${blogPosts[3].categoryColor} text-white px-4 py-1 rounded text-xs font-bold mb-3`}>
-                  {blogPosts[3].category}
-                </span>
-                                <h2 className="text-white text-xl font-bold mb-3 leading-tight">
-                                    {blogPosts[3].title}
-                                </h2>
-                                <div className="flex items-center text-white">
-                                    <div className="w-6 h-6 rounded-full overflow-hidden mr-2">
-                                        <img
-                                            src={blogPosts[3].authorImage}
-                                            alt={blogPosts[3].author}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                    <div className="text-sm">by {blogPosts[3].author}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        ))}
+                    </Slider>
                 </div>
             </div>
+
+            {/* Kategoriler */}
+            <div className="max-w-6xl mx-auto px-4 mt-16">
+                <div className="flex flex-wrap gap-4 justify-center">
+                    {categories.map((cat) => (
+                        <button
+                            key={cat}
+                            onClick={() => setSelectedCategory(cat)}
+                            className={`px-6 py-3 rounded-full border-2 font-medium text-sm transition-all duration-300 transform ${
+                                selectedCategory === cat
+                                    ? "bg-blue-600 text-white border-blue-600 shadow-lg scale-105"
+                                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100 hover:border-blue-300"
+                            }`}
+                        >
+                            {cat}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            {/* Haber Kartları */}
+            <div className="max-w-6xl mx-auto mt-12 px-4 pb-20">
+                <h2 className="text-3xl font-bold text-gray-800 mb-8 border-b-2 border-blue-200 pb-2">
+                    {selectedCategory === "Tümü" ? "Tüm Haberler" : `${selectedCategory} Haberleri`}
+                </h2>
+                <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
+                    {filteredNews.map((news) => (
+                        <div
+                            key={news.id}
+                            className="bg-white rounded-3xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-2"
+                            onMouseEnter={() => setHoveredCard(news.id)}
+                            onMouseLeave={() => setHoveredCard(null)}
+                        >
+                            <div className="relative overflow-hidden">
+                                <img
+                                    src={news.imageUrl}
+                                    alt={news.title}
+                                    className={`h-56 w-full object-cover transition-transform duration-700 ${
+                                        hoveredCard === news.id ? "scale-110" : "scale-100"
+                                    }`}
+                                />
+                                <div className="absolute top-4 right-4">
+                  <span className="inline-block px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full">
+                    {news.category}
+                  </span>
+                                </div>
+                            </div>
+                            <div className="p-6">
+                                <p className="text-sm text-blue-600 font-semibold mb-1">{news.date}</p>
+                                <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">
+                                    {news.title}
+                                </h3>
+                                <p className="text-gray-600 line-clamp-3">{news.description}</p>
+                                <button className="mt-5 inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-800 transition group">
+                                    Devamını oku
+                                    <svg
+                                        className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Footer */}
+            <footer className="bg-gray-800 text-white py-8">
+                <div className="max-w-6xl mx-auto px-4 text-center">
+                    <p>© 2025 Şehir Haberleri Portalı. Tüm hakları saklıdır.</p>
+                    <div className="mt-4 flex justify-center gap-4">
+                        <button className="text-gray-300 hover:text-white transition">Hakkımızda</button>
+                        <button className="text-gray-300 hover:text-white transition">İletişim</button>
+                        <button className="text-gray-300 hover:text-white transition">Gizlilik Politikası</button>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
-}
+};
+
+export default NewsPage;

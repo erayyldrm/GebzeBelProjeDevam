@@ -9,7 +9,7 @@ type ChatMessage = {
     message: string;
 };
 
-const GÜZİDE = () => {
+const GUZIDE = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [userInput, setUserInput] = useState("");
     const [isTyping, setIsTyping] = useState(false);
@@ -317,4 +317,4 @@ const GÜZİDE = () => {
     );
 };
 
-export default GÜZİDE;
+export default GUZIDE;
