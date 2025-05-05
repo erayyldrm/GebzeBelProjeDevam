@@ -41,9 +41,6 @@
 .top-1\/2 {
   top: calc(1/2 * 100%);
 }
-.left-1\/2 {
-  left: calc(1/2 * 100%);
-}
 .isolate {
   isolation: isolate;
 }
@@ -293,6 +290,9 @@
 .h-\[500px\] {
   height: 500px;
 }
+.h-\[550px\] {
+  height: 550px;
+}
 .h-auto {
   height: auto;
 }
@@ -347,6 +347,9 @@
 .w-\[300px\] {
   width: 300px;
 }
+.w-\[950px\] {
+  width: 950px;
+}
 .w-auto {
   width: auto;
 }
@@ -376,12 +379,6 @@
 }
 .max-w-\[880px\] {
   max-width: 880px;
-}
-.max-w-\[950px\] {
-  max-width: 950px;
-}
-.max-w-\[1000px\] {
-  max-width: 1000px;
 }
 .max-w-\[1200px\] {
   max-width: 1200px;
@@ -418,10 +415,6 @@
 }
 .border-collapse {
   border-collapse: collapse;
-}
-.-translate-x-1\/2 {
-  --tw-translate-x: calc(calc(1/2 * 100%) * -1);
-  translate: var(--tw-translate-x) var(--tw-translate-y);
 }
 .-translate-y-1\/2 {
   --tw-translate-y: calc(calc(1/2 * 100%) * -1);
@@ -610,9 +603,6 @@
 }
 .bg-\[\#022842\]\/80 {
   background-color: color-mix(in oklab, #022842 80%, transparent);
-}
-.bg-\[\#022842\]\/85 {
-  background-color: color-mix(in oklab, #022842 85%, transparent);
 }
 .bg-\[\#891737\] {
   background-color: #891737;

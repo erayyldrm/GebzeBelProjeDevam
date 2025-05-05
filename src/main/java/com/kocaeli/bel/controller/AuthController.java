@@ -43,7 +43,7 @@ public class AuthController {
 public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
     try {
         // Log login attempt
-        System.out.println("Login attempt for username: " + loginRequest.getUsername());
+        // System.out.println("Login attempt for username: " + loginRequest.getUsername());
 
         // Create authentication object
         Authentication authentication = authenticationManager.authenticate(
@@ -62,7 +62,7 @@ public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
 
             // Create login response
             LoginResponse loginResponse = new LoginResponse(token, user.getTCNo());
-            System.out.println("Tokentest: " + token);
+            // System.out.println("Tokentest: " + token);
 
             return ResponseEntity.ok()
                     .body(Map.of(
