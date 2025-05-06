@@ -3,9 +3,7 @@ import React, { useState } from "react";
 const Arabuluculuk = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    const toggleMobileMenu = () => {
-        setMobileMenuOpen(!mobileMenuOpen);
-    };
+
 
     const asilUyeler = [
         { name: "Başkan Av. Murat TUNCA", role: "Hukuk İşleri Müdürlüğü V." },
