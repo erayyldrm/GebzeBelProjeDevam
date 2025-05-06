@@ -26,14 +26,16 @@ const ManagementChart = () => {
                                                                 <li>
                                                                     <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
                                                                         <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <a className="flex-shrink-0 mx-auto sm:mx-0" href="#">
-                                                                                <img
-                                                                                    className="rounded-lg w-40 md:w-64"
-                                                                                    src="/images/kurumsal/belediyemeclisi/zinnurbuyukgoz.jpg"
-                                                                                    alt="Zinnur BÜYÜKGÖZ"
-                                                                                />
-                                                                            </a>
-                                                                            <div className="sm:ml-4 w-full">
+                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
+                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
+                                                                                    <img
+                                                                                        className="absolute h-full w-full object-cover rounded-lg"
+                                                                                        src="/images/kurumsal/belediyemeclisi/zinnurbuyukgoz.jpg"
+                                                                                        alt="Zinnur BÜYÜKGÖZ"
+                                                                                    />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
                                                                                         Zinnur BÜYÜKGÖZ
@@ -43,20 +45,22 @@ const ManagementChart = () => {
                                                                                 </div>
 
                                                                                 <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 rounded-lg shadow transition-colors duration-300 h-full">
                                                                                         <span className="block text-sm md:text-base">Özel Kalem Müdürlüğü</span>
                                                                                         <span className="text-xs md:text-sm font-normal">Dr. Yusuf ATASEVEN</span>
                                                                                     </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 rounded-lg shadow transition-colors duration-300 h-full">
                                                                                         <span className="block text-sm md:text-base">Hukuk İşleri Müdürlüğü</span>
                                                                                         <span className="text-xs md:text-sm font-normal">Av. Murat TUNCA</span>
                                                                                     </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
+                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 rounded-lg shadow transition-colors duration-300 h-full">
                                                                                         <span className="block text-sm md:text-base">Teftiş Kurulu Müdürlüğü</span>
                                                                                         <span className="text-xs md:text-sm font-normal">Kemal TETİK</span>
                                                                                     </button>
                                                                                 </div>
+
+
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -67,14 +71,16 @@ const ManagementChart = () => {
                                                                 <li>
                                                                     <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
                                                                         <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <a className="flex-shrink-0 mx-auto sm:mx-0" href="#">
-                                                                                <img
-                                                                                    className="rounded-lg w-40 md:w-64"
-                                                                                    src="/images/yonetimsemasi/Dursun ali .jpg"
-                                                                                    alt="Dursun Ali ARSLAN"
-                                                                                />
-                                                                            </a>
-                                                                            <div className="sm:ml-4 w-full">
+                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
+                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
+                                                                                    <img
+                                                                                        className="absolute h-full w-full object-cover rounded-lg"
+                                                                                        src="/images/yonetimsemasi/Dursun ali .jpg"
+                                                                                        alt="Dursun Ali ARSLAN"
+                                                                                    />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
                                                                                         Dursun Ali ARSLAN
@@ -84,7 +90,7 @@ const ManagementChart = () => {
                                                                                 </div>
 
                                                                                 <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
+                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                                                                                     <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
                                                                                         <span className="block text-sm md:text-base">Sosyal Destek Hizmetleri Müdürlüğü</span>
                                                                                         <span className="text-xs md:text-sm font-normal">Mecit KESKİNOĞLU</span>
@@ -107,18 +113,22 @@ const ManagementChart = () => {
                                                                     </div>
                                                                 </li>
 
+                                                                {/* Other Vice Presidents */}
+                                                                {/* Follow the same pattern for other vice presidents */}
                                                                 {/* Ahmet Hüseyin ÇELEBİ */}
                                                                 <li>
                                                                     <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
                                                                         <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <a className="flex-shrink-0 mx-auto sm:mx-0" href="#">
-                                                                                <img
-                                                                                    className="rounded-lg w-40 md:w-64"
-                                                                                    src="/images/yonetimsemasi/ahmet hüseyin.jpg"
-                                                                                    alt="Ahmet Hüseyin ÇELEBİ"
-                                                                                />
-                                                                            </a>
-                                                                            <div className="sm:ml-4 w-full">
+                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
+                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
+                                                                                    <img
+                                                                                        className="absolute h-full w-full object-cover rounded-lg"
+                                                                                        src="/images/yonetimsemasi/ahmet hüseyin.jpg"
+                                                                                        alt="Ahmet Hüseyin ÇELEBİ"
+                                                                                    />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
                                                                                         Ahmet Hüseyin ÇELEBİ
@@ -128,7 +138,7 @@ const ManagementChart = () => {
                                                                                 </div>
 
                                                                                 <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
+                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                                                                                     <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
                                                                                         <span className="block text-sm md:text-base">Mali Hizmetler Müdürlüğü</span>
                                                                                         <span className="text-xs md:text-sm font-normal">Bilgin ALTAY</span>
@@ -155,14 +165,16 @@ const ManagementChart = () => {
                                                                 <li>
                                                                     <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
                                                                         <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <a className="flex-shrink-0 mx-auto sm:mx-0" href="#">
-                                                                                <img
-                                                                                    className="rounded-lg w-40 md:w-64"
-                                                                                    src="/images/yonetimsemasi/şerif canpolat.jpg"
-                                                                                    alt="Şerif Canpolat"
-                                                                                />
-                                                                            </a>
-                                                                            <div className="sm:ml-4 w-full">
+                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
+                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
+                                                                                    <img
+                                                                                        className="absolute h-full w-full object-cover rounded-lg"
+                                                                                        src="/images/yonetimsemasi/şerif canpolat.jpg"
+                                                                                        alt="Şerif Canpolat"
+                                                                                    />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
                                                                                         Şerif Canpolat
@@ -172,7 +184,7 @@ const ManagementChart = () => {
                                                                                 </div>
 
                                                                                 <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
+                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                                                                                     <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
                                                                                         <span className="block text-sm md:text-base">Fen İşleri Müdürlüğü</span>
                                                                                         <span className="text-xs md:text-sm font-normal">Hafız ALTINTAŞ</span>
@@ -195,14 +207,16 @@ const ManagementChart = () => {
                                                                 <li>
                                                                     <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
                                                                         <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <a className="flex-shrink-0 mx-auto sm:mx-0" href="#">
-                                                                                <img
-                                                                                    className="rounded-lg w-40 md:w-64"
-                                                                                    src="/images/yonetimsemasi/muharrem baltacıoğlu.jpg"
-                                                                                    alt="Muharrem BALTACIOGLU"
-                                                                                />
-                                                                            </a>
-                                                                            <div className="sm:ml-4 w-full">
+                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
+                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
+                                                                                    <img
+                                                                                        className="absolute h-full w-full object-cover rounded-lg"
+                                                                                        src="/images/yonetimsemasi/muharrem baltacıoğlu.jpg"
+                                                                                        alt="Muharrem BALTACIOGLU"
+                                                                                    />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
                                                                                         Muharrem BALTACIOGLU
@@ -212,7 +226,7 @@ const ManagementChart = () => {
                                                                                 </div>
 
                                                                                 <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
+                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                                                                                     <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
                                                                                         <span className="block text-sm md:text-base">Emlak ve İstimlak Müdürlüğü</span>
                                                                                         <span className="text-xs md:text-sm font-normal">Şaban SARIAY</span>
@@ -243,14 +257,16 @@ const ManagementChart = () => {
                                                                 <li>
                                                                     <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
                                                                         <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <a className="flex-shrink-0 mx-auto sm:mx-0" href="#">
-                                                                                <img
-                                                                                    className="rounded-lg w-40 md:w-64"
-                                                                                    src="/images/yonetimsemasi/mahmut yandık.jpg"
-                                                                                    alt="Mahmut YANDIK"
-                                                                                />
-                                                                            </a>
-                                                                            <div className="sm:ml-4 w-full">
+                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
+                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
+                                                                                    <img
+                                                                                        className="absolute h-full w-full object-cover rounded-lg"
+                                                                                        src="/images/yonetimsemasi/mahmut yandık.jpg"
+                                                                                        alt="Mahmut YANDIK"
+                                                                                    />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
                                                                                         Mahmut YANDIK
@@ -260,7 +276,7 @@ const ManagementChart = () => {
                                                                                 </div>
 
                                                                                 <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
+                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                                                                                     <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
                                                                                         <span className="block text-sm md:text-base">Mezarlıklar Müdürlüğü</span>
                                                                                         <span className="text-xs md:text-sm font-normal">İslam ÖZDAĞ</span>
@@ -283,14 +299,16 @@ const ManagementChart = () => {
                                                                 <li>
                                                                     <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
                                                                         <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <a className="flex-shrink-0 mx-auto sm:mx-0" href="#">
-                                                                                <img
-                                                                                    className="rounded-lg w-40 md:w-64"
-                                                                                    src="/images/yonetimsemasi/şener akın.jpg"
-                                                                                    alt="Şener AKIN"
-                                                                                />
-                                                                            </a>
-                                                                            <div className="sm:ml-4 w-full">
+                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
+                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
+                                                                                    <img
+                                                                                        className="absolute h-full w-full object-cover rounded-lg"
+                                                                                        src="/images/yonetimsemasi/şener akın.jpg"
+                                                                                        alt="Şener AKIN"
+                                                                                    />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
                                                                                         Şener AKIN
@@ -300,7 +318,7 @@ const ManagementChart = () => {
                                                                                 </div>
 
                                                                                 <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
+                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                                                                                     <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
                                                                                         <span className="block text-sm md:text-base">Veteriner İşleri Müdürlüğü</span>
                                                                                         <span className="text-xs md:text-sm font-normal">Cevat ALTINTAŞ</span>
@@ -323,14 +341,16 @@ const ManagementChart = () => {
                                                                 <li>
                                                                     <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
                                                                         <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <a className="flex-shrink-0 mx-auto sm:mx-0" href="#">
-                                                                                <img
-                                                                                    className="rounded-lg w-40 md:w-64"
-                                                                                    src="/images/yonetimsemasi/mücahit birben.jpg"
-                                                                                    alt="Mücahit BİRBEN"
-                                                                                />
-                                                                            </a>
-                                                                            <div className="sm:ml-4 w-full">
+                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
+                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
+                                                                                    <img
+                                                                                        className="absolute h-full w-full object-cover rounded-lg"
+                                                                                        src="/images/yonetimsemasi/mücahit birben.jpg"
+                                                                                        alt="Mücahit BİRBEN"
+                                                                                    />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
                                                                                 <div>
                                                                                     <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
                                                                                         Mücahit BİRBEN
@@ -340,7 +360,7 @@ const ManagementChart = () => {
                                                                                 </div>
 
                                                                                 <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
+                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                                                                                     <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
                                                                                         <span className="block text-sm md:text-base">Gençlik ve Spor Hizmetleri Müdürlüğü</span>
                                                                                         <span className="text-xs md:text-sm font-normal">Burhannettin DEMİRCİ</span>
