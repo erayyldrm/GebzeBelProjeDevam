@@ -10,15 +10,15 @@ const BaskanYardimcilari: React.FC = () => {
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
                                     <div className="page-wrapper pt-0 mt-0">
-                                        <div className="flex flex-row gap-4">
+                                        <div className="flex flex-col md:flex-row gap-4">
                                             <div className="flex-1 p-4 pt-0 mt-[-10px]">
-                                                <div  className="depertment-details shadow p-4"
-                                                      style={{
-                                                          backgroundColor: "#ffffff",
-                                                          borderRadius: "12px",
-                                                          textAlign: "center",
-                                                          boxShadow: "0 4px 16px rgba(0,0,0,0.1)"
-                                                      }}
+                                                <div className="depertment-details shadow p-4"
+                                                     style={{
+                                                         backgroundColor: "#ffffff",
+                                                         borderRadius: "12px",
+                                                         textAlign: "center",
+                                                         boxShadow: "0 4px 16px rgba(0,0,0,0.1)"
+                                                     }}
                                                 >
                                                     <div className="flex justify-center">
                                                         <h1 className="text-2xl font-bold text-center">BAŞKAN YARDIMCILARI</h1>
@@ -28,7 +28,7 @@ const BaskanYardimcilari: React.FC = () => {
                                                 <div className="card shadow-lg rounded-lg mt-2">
                                                     <div className="card-block p-4">
                                                         <div className="col-md-12">
-                                                            <ul className="space-y-4 text-justify">
+                                                            <ul className="space-y-4 text-justify px-2 sm:px-0">
                                                                 {[{
                                                                     name: "Dursun Ali ARSLAN",
                                                                     img: "Dursun ali .jpg",
@@ -64,7 +64,7 @@ const BaskanYardimcilari: React.FC = () => {
                                                                         name: "Şener AKIN",
                                                                         img: "şener akın.jpg",
                                                                         email: "sener.akin@gebze.bel.tr",
-                                                                        phone: " 0262 642 0430"
+                                                                        phone: "0262 642 0430"
                                                                     },
                                                                     {
                                                                         name: "Mücahit BİRBEN",
@@ -74,17 +74,15 @@ const BaskanYardimcilari: React.FC = () => {
                                                                     }].map((person, index) => (
                                                                     <li key={index}>
                                                                         <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
-                                                                            <div className="media flex items-start">
-                                                                                <a className="media-left" href="#">
+                                                                            <div className="media flex flex-col items-center sm:flex-row sm:items-start">
+                                                                                <a className="media-left mb-4 sm:mb-0 sm:mr-4" href="#">
                                                                                     <img
-                                                                                        className="rounded-lg"
+                                                                                        className="rounded-lg w-full max-w-[270px] h-auto object-cover"
                                                                                         src={`/images/yonetimsemasi/${person.img}`}
-                                                                                        width="270"
-                                                                                        height="350"
                                                                                         alt={person.name}
                                                                                     />
                                                                                 </a>
-                                                                                <div className="media-body ml-4">
+                                                                                <div className="media-body w-full">
                                                                                     <div>
                                                                                         <h4 className="inline-block text-blue-900 text-xl font-bold">
                                                                                             {person.name}
