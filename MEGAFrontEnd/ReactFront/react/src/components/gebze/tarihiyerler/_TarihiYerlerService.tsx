@@ -18,7 +18,7 @@ export const _TarihiYerlerService = {
     // Get all tarihiYerler
     getAllTarihiYerler: async (): Promise<TarihiYerler[]> => {
         try {
-            const response = await axios.get<TarihiYerler[]>(`${API_BASE_URL}/tarihiyerler`);
+            const response = await axios.get<TarihiYerler[]>(`${API_BASE_URL}/tarihi-yerler`);
             return response.data;
         } catch (error) {
             console.error('Error fetching tarihi yerler:', error);
@@ -29,7 +29,7 @@ export const _TarihiYerlerService = {
     // Get tarihi yer by ID
     getTarihiYerById: async (id: number): Promise<TarihiYerler> => {
         try {
-            const response = await axios.get<TarihiYerler>(`${API_BASE_URL}/tarihiyerler/${id}`);
+            const response = await axios.get<TarihiYerler>(`${API_BASE_URL}/tarihi-yerler/${id}`);
             return response.data;
         } catch (error) {
             console.error(`Error fetching tarihi yer with id ${id}:`, error);
@@ -40,7 +40,7 @@ export const _TarihiYerlerService = {
     // Create new tarihi yer
     createTarihiYer: async (tarihiYer: Omit<TarihiYerler, 'id'>): Promise<TarihiYerler> => {
         try {
-            const response = await axios.post<TarihiYerler>(`${API_BASE_URL}/tarihiyerler`, tarihiYer);
+            const response = await axios.post<TarihiYerler>(`${API_BASE_URL}/tarihi-yerler`, tarihiYer);
             return response.data;
         } catch (error) {
             console.error('Error creating tarihi yer:', error);
@@ -51,7 +51,7 @@ export const _TarihiYerlerService = {
     // Update existing tarihi yer
     updateTarihiYer: async (id: number, tarihiYer: TarihiYerler): Promise<TarihiYerler> => {
         try {
-            const response = await axios.put<TarihiYerler>(`${API_BASE_URL}/tarihiyerler/${id}`, tarihiYer);
+            const response = await axios.put<TarihiYerler>(`${API_BASE_URL}/tarihi-yerler/${id}`, tarihiYer);
             return response.data;
         } catch (error) {
             console.error(`Error updating tarihi yer with id ${id}:`, error);
