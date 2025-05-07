@@ -293,9 +293,6 @@
 .h-\[550px\] {
   height: 550px;
 }
-.h-\[600px\] {
-  height: 600px;
-}
 .h-auto {
   height: auto;
 }
@@ -320,6 +317,12 @@
 .max-h-\[500px\] {
   max-height: 500px;
 }
+.max-h-full {
+  max-height: 100%;
+}
+.max-h-screen {
+  max-height: 100vh;
+}
 .min-h-\[300px\] {
   min-height: 300px;
 }
@@ -343,9 +346,6 @@
 }
 .w-5\/6 {
   width: calc(5/6 * 100%);
-}
-.w-\[90\%\] {
-  width: 90%;
 }
 .w-\[200px\] {
   width: 200px;
@@ -425,6 +425,12 @@
 .-translate-y-1\/2 {
   --tw-translate-y: calc(calc(1/2 * 100%) * -1);
   translate: var(--tw-translate-x) var(--tw-translate-y);
+}
+.scale-90 {
+  --tw-scale-x: 90%;
+  --tw-scale-y: 90%;
+  --tw-scale-z: 90%;
+  scale: var(--tw-scale-x) var(--tw-scale-y);
 }
 .scale-100 {
   --tw-scale-x: 100%;
@@ -844,6 +850,16 @@
     color: #faa61a;
   }
 }
+.group-hover\:scale-100 {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      --tw-scale-x: 100%;
+      --tw-scale-y: 100%;
+      --tw-scale-z: 100%;
+      scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+  }
+}
 .group-hover\:scale-105 {
   &:is(:where(.group):hover *) {
     @media (hover: hover) {
@@ -851,6 +867,23 @@
       --tw-scale-y: 105%;
       --tw-scale-z: 105%;
       scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+  }
+}
+.group-hover\:scale-110 {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      --tw-scale-x: 110%;
+      --tw-scale-y: 110%;
+      --tw-scale-z: 110%;
+      scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+  }
+}
+.group-hover\:bg-\[\#022842\]\/60 {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      background-color: color-mix(in oklab, #022842 60%, transparent);
     }
   }
 }
