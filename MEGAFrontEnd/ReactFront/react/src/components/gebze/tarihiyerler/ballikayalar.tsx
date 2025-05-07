@@ -5,11 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 const BallikayalarPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
-    // Resim görüntüleyici için state'ler
     const [showImageViewer, setShowImageViewer] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-    // Galeri resimleri
     const galleryImages = [
         {id: 1, path: "/images/gebze/tarihiyerler/ballikayalar/2.jpg", alt: "Ballıkayalar görünüm 1"},
         {id: 2, path: "/images/gebze/tarihiyerler/ballikayalar/sub2.jpg", alt: "Ballıkayalar görünüm 2"},
@@ -17,7 +15,6 @@ const BallikayalarPage = () => {
         {id: 4, path: "/images/gebze/tarihiyerler/ballikayalar/sub4.jpg", alt: "Ballıkayalar görünüm 4"}
     ];
 
-    // Diğer Tarihi Yerler için veri
     const otherPlaces = [
         { name: "ESKİHİSAR KALESİ", imagePath: "/images/gebze/tarihiyerler/kale/7.JPG", route: "/gebze/tarihiyerler/eskihisarkalesi" },
         { name: "ANİBALIN MEZARI", imagePath: "/images/gebze/tarihiyerler/anibal/1.JPG", route: "/gebze/tarihiyerler/anibalinmezari" },
@@ -33,7 +30,6 @@ const BallikayalarPage = () => {
         { name: "SULTAN ORHAN CAMİİ", imagePath: "/images/gebze/tarihiyerler/sultanorhancami/12.jpg", route: "/gebze/tarihiyerler/sultanorhancamii" }
     ];
 
-    // Slider için otomatik geçiş
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex(prev => {
@@ -45,7 +41,7 @@ const BallikayalarPage = () => {
             });
         }, 5000); // 5 saniyede bir
 
-        return () => clearInterval(interval); // Temizlik
+        return () => clearInterval(interval);
     }, []);
 
     const nextSlide = () => {
@@ -67,7 +63,6 @@ const BallikayalarPage = () => {
         }
     };
 
-    // Görüntülenecek kartlar (her seferinde 4 kart)
     const visiblePlaces = () => {
         const places = [];
         for (let i = 0; i < 4; i++) {
@@ -76,8 +71,7 @@ const BallikayalarPage = () => {
         return places;
     };
 
-    // Resim görüntüleyici fonksiyonları
-    const openImageViewer = ({index}: { index: any }) => {
+    const openImageViewer = (index) => {
         setSelectedImageIndex(index);
         setShowImageViewer(true);
     };
@@ -92,13 +86,11 @@ const BallikayalarPage = () => {
 
     const prevImage = () => {
         setSelectedImageIndex((prev) =>
-            prev === 0 ? galleryImages.length - 1 : prev - 1
-        );
+            prev === 0 ? galleryImages.length - 1 : prev - 1);
     };
 
-    // ESC tuşuna basıldığında resim görüntüleyiciyi kapat
     useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
+        const handleKeyDown = (e) => {
             if (e.key === "Escape") {
                 closeImageViewer();
             } else if (e.key === "ArrowRight" && showImageViewer) {
@@ -130,8 +122,6 @@ const BallikayalarPage = () => {
                     </div>
                 </div>
             </div><br/>
-
-            {/* Content Section */}
             <div className="container mx-auto px-3 py-9">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                     {/* Main Content */}
@@ -162,7 +152,6 @@ const BallikayalarPage = () => {
                                         yaşamaktadır. Özellikle bahar aylarında bölge rengarenk çiçeklerle bezenmektedir.
                                     </p>
                                 </div>
-
                                 <div className="mt-8">
                                     <h2 className="text-2xl font-bold text-blue-800 mb-4">Aktiviteler</h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -197,8 +186,6 @@ const BallikayalarPage = () => {
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Sidebar */}
                             <div className="md:w-1/3">
                                 <div className="bg-blue-50 p-4 rounded-lg mb-6">
                                     <h3 className="text-xl font-bold text-blue-800 mb-4">🚗 Nasıl Gidilir?</h3>
@@ -216,36 +203,54 @@ const BallikayalarPage = () => {
                                         Haritada Gör
                                     </a>
                                 </div>
-
                                 <div className="bg-gray-100 p-4 rounded-lg mb-6">
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3">🖼️ Galeri</h3>
+                                    <div className="flex items-center mb-3">
+                                        <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                                            <span className="mr-2">🖼️</span>
+                                            <span>Galeri</span>
+                                        </h3>
+                                    </div>
                                     <div className="grid grid-cols-2 gap-2">
                                         {galleryImages.map((item, index) => (
                                             <div
                                                 key={item.id}
-                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer"
-                                                onClick={() => openImageViewer({index: index})}
+                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer relative group"
+                                                onClick={() => openImageViewer(index)}
                                             >
                                                 <img
                                                     src={item.path}
                                                     alt={item.alt}
-                                                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                                 />
+                                                <div className="absolute inset-0  bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-all duration-300">
+                                                    <div className="flex flex-col items-center">
+                                                        <div className="w-10 h-10 rounded-full bg-white bg-opacity-80 flex items-center justify-center mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                            </svg>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         ))}
+                                    </div>
+                                    <div className="text-center mt-4">
+                                        <button
+                                            onClick={() => openImageViewer(0)}
+                                            className="text-gray-800 hover:text-blue-600 text-sm font-medium"
+                                        >
+                                            Tüm resimleri görüntüle
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                {/* Other Places Section - Animated Slider */}
                 <div className="mt-12">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">DİĞER TARİHİ YERLER</h2>
-
                     <div className="relative">
-                        {/* Navigation Buttons */}
                         <button
                             onClick={prevSlide}
                             className="absolute -left-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10 disabled:opacity-50"
@@ -254,8 +259,6 @@ const BallikayalarPage = () => {
                         >
                             <ChevronLeft className="w-5 h-5" />
                         </button>
-
-                        {/* Slider Container with Animation */}
                         <div className="overflow-hidden min-h-[350px]">
                             <AnimatePresence mode="wait">
                                 <motion.div
@@ -279,8 +282,6 @@ const BallikayalarPage = () => {
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                                 />
                                             </div>
-
-                                            {/* İçerik alanı */}
                                             <div className="p-4 flex flex-col items-center justify-center text-center flex-grow">
                                                 <h3 className="text-lg font-semibold mb-4">{place.name}</h3>
                                                 <a
@@ -296,7 +297,6 @@ const BallikayalarPage = () => {
                                 </motion.div>
                             </AnimatePresence>
                         </div>
-
                         <button
                             onClick={nextSlide}
                             className="absolute -right-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10 disabled:opacity-50"
@@ -306,8 +306,6 @@ const BallikayalarPage = () => {
                             <ChevronRight className="w-5 h-5" />
                         </button>
                     </div>
-
-                    {/* Pagination Dots */}
                     <div className="flex justify-center space-x-2 mt-6">
                         {Array.from({ length: Math.ceil(otherPlaces.length / 4) }).map((_, index) => (
                             <button
@@ -330,61 +328,48 @@ const BallikayalarPage = () => {
                 </div>
             </div>
 
-            {/* Resim Görüntüleyici (Lightbox) */}
+            {/* Image Viewer */}
             {showImageViewer && (
-                <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
-                    <div className="relative w-full max-w-4xl p-4">
-                        {/* Kapat düğmesi */}
+                <div className="fixed inset-0 bg-[#022842]/60 bg-opacity-90 z-50 flex items-center justify-center">
+                    <div className="relative w-full h-full flex flex-col items-center justify-center">
+                        {/* Close button */}
                         <button
+                            className="absolute top-4 right-4 text-black bg-white bg-gray-800 bg-opacity-50 p-2 rounded-full hover:bg-opacity-70 transition-opacity"
                             onClick={closeImageViewer}
-                            className="absolute top-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-full z-10"
                             aria-label="Kapat"
                         >
                             <X className="w-6 h-6" />
                         </button>
 
-                        {/* Resim */}
-                        <div className="relative">
-                            <AnimatePresence mode="wait">
-                                <motion.img
-                                    key={selectedImageIndex}
-                                    src={galleryImages[selectedImageIndex].path}
-                                    alt={galleryImages[selectedImageIndex].alt}
-                                    className="w-full h-auto max-h-[80vh] object-contain mx-auto"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.3 }}
-                                />
-                            </AnimatePresence>
+                        {/* Image */}
+                        <div className="relative max-w-4xl max-h-[80vh] w-full">
+                            <img
+                                src={galleryImages[selectedImageIndex].path}
+                                alt={galleryImages[selectedImageIndex].alt}
+                                className="max-w-full max-h-[80vh] object-contain mx-auto"
+                            />
                         </div>
 
-                        {/* Navigasyon düğmeleri */}
-                        <div className="absolute inset-y-0 left-0 flex items-center">
+                        {/* Navigation buttons */}
+                        <div className="flex justify-between w-full absolute top-1/2 -translate-y-1/2 px-4">
                             <button
+                                className="bg-gray-800  bg-white bg-opacity-50 p-3 rounded-full hover:bg-opacity-70 transition-opacity"
                                 onClick={prevImage}
-                                className="bg-black bg-opacity-50 text-white p-2 rounded-full ml-2"
                                 aria-label="Önceki resim"
                             >
-                                <ChevronLeft className="w-6 h-6" />
+                                <ChevronLeft className="w-6 h-6 text-black" />
                             </button>
-                        </div>
-
-                        <div className="absolute inset-y-0 right-0 flex items-center">
                             <button
+                                className="bg-gray-800 bg-white bg-opacity-50 p-3 rounded-full hover:bg-opacity-70 transition-opacity"
                                 onClick={nextImage}
-                                className="bg-black bg-opacity-50 text-white p-2 rounded-full mr-2"
                                 aria-label="Sonraki resim"
                             >
-                                <ChevronRight className="w-6 h-6" />
+                                <ChevronRight className="w-6 h-6 text-black" />
                             </button>
                         </div>
 
-                        {/* Resim bilgisi ve sayısı */}
-                        <div className="absolute bottom-4 left-0 right-0 text-center text-white">
-                            <p>{galleryImages[selectedImageIndex].alt}</p>
-                            <p className="text-sm">{selectedImageIndex + 1} / {galleryImages.length}</p>
-                        </div>
+                        {/* Image counter */}
+
                     </div>
                 </div>
             )}

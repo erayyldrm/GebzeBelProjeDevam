@@ -1,8 +1,38 @@
-import {MapPin, ChevronRight, ChevronLeft} from "lucide-react";
+import {MapPin, ChevronRight, ChevronLeft, X} from "lucide-react";
 import {useEffect, useState} from "react";
+import {AnimatePresence, motion} from "framer-motion";
+
 const EskihisarKalesiPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [lightboxImage, setLightboxImage] = useState(0);
+
+    // Gallery images
+    const galleryImages = [
+        {id: 1, path: "/images/gebze/tarihiyerler/kale/sub1.JPG", alt: "EskihisarKalesi görünüm 1"},
+        {id: 2, path: "/images/gebze/tarihiyerler/kale/sub2.JPG", alt: "EskihisarKalesi görünüm 2"},
+        {id: 3, path: "/images/gebze/tarihiyerler/kale/sub3.JPG", alt: "EskihisarKalesi görünüm 3"},
+        {id: 4, path: "/images/gebze/tarihiyerler/kale/sub4.JPG", alt: "EskihisarKalesi görünüm 4"}
+    ];
+
+    // Lightbox functions
+    const openLightbox = ({index}) => {
+        setLightboxImage(index);
+        setLightboxOpen(true);
+    };
+
+    const closeLightbox = () => {
+        setLightboxOpen(false);
+    };
+
+    const nextLightboxImage = () => {
+        setLightboxImage((prev) => (prev + 1) % galleryImages.length);
+    };
+
+    const prevLightboxImage = () => {
+        setLightboxImage((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+    };
 
     // Diğer Tarihi Yerler için veri
     const otherPlaces = [
@@ -30,7 +60,7 @@ const EskihisarKalesiPage = () => {
                     return 0;
                 }
             });
-        }, 5000); // 3 saniyede bir
+        }, 5000); // 5 saniyede bir
 
         return () => clearInterval(interval); // Temizlik
     }, []);
@@ -54,7 +84,7 @@ const EskihisarKalesiPage = () => {
         }
     };
 
-    // Görüntülenecek kartlar (her seferinde 3 kart)
+    // Görüntülenecek kartlar (her seferinde 4 kart)
     const visiblePlaces = () => {
         const places = [];
         for (let i = 0; i < 4; i++) {
@@ -63,16 +93,39 @@ const EskihisarKalesiPage = () => {
         return places;
     };
 
+    // Keyboard events for lightbox
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!lightboxOpen) return;
+
+            switch (e.key) {
+                case "ArrowRight":
+                    nextLightboxImage();
+                    break;
+                case "ArrowLeft":
+                    prevLightboxImage();
+                    break;
+                case "Escape":
+                    closeLightbox();
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [lightboxOpen]);
+
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            {/* Hero Section - Modified */}
-            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6"> {/* Container ve max-width eklendi */}
-                <div className="absolute inset-0  z-10" />
+            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6">
+                <div className="absolute inset-0 z-10" />
                 <img
                     src="/images/gebze/tarihiyerler/kale/7.JPG"
                     alt="EskihisarKalesi"
-                    className="h-full w-full object-cover rounded-lg" /* Yuvarlatılmış kenarlar */
+                    className="h-full w-full object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
                     <h1 className="text-4xl md:text-5xl bg-[#022842]/60 font-bold text-white mb-4 rounded-xl px-2 py-2 inline-block">ESKİHİSAR KALESİ</h1>
@@ -92,11 +145,10 @@ const EskihisarKalesiPage = () => {
                                 <h2 className="text-2xl font-bold text-blue-800 mb-4">Tarihçe ve Genel Bilgi</h2>
                                 <div className="prose max-w-none text-gray-700">
                                     <p className="mb-4 text-justify">
-                                        Eskihisar Kalesi, Kocaeli’nin Gebze ilçesine bağlı Eskihisar Mahallesi’nde, İzmit Körfezi’ne hâkim bir tepe üzerine kurulmuş tarihi bir yapıdır. Yapımının 12. yüzyıla, Bizans İmparatoru I. Manuel Komnenos dönemine dayandığı düşünülmektedir. Kale, antik çağda "Niketiaton" olarak bilinen liman kentini ve deniz geçişlerini korumak amacıyla inşa edilmiştir.
+                                        Eskihisar Kalesi, Kocaeli'nin Gebze ilçesine bağlı Eskihisar Mahallesi'nde, İzmit Körfezi'ne hâkim bir tepe üzerine kurulmuş tarihi bir yapıdır. Yapımının 12. yüzyıla, Bizans İmparatoru I. Manuel Komnenos dönemine dayandığı düşünülmektedir. Kale, antik çağda "Niketiaton" olarak bilinen liman kentini ve deniz geçişlerini korumak amacıyla inşa edilmiştir.
 
-                                        Osmanlı döneminde de önemini sürdüren kale, 1998 yılında restore edilerek ziyarete açılmıştır. Dikdörtgen planlı yapının içinde 10 adet burç ve 4 adet kapı bulunmaktadır. Hem tarihî hem de doğal güzelliğiyle dikkat çeken Eskihisar Kalesi, İzmit Körfezi’ne karşı sunduğu panoramik manzara ile öne çıkar.
+                                        Osmanlı döneminde de önemini sürdüren kale, 1998 yılında restore edilerek ziyarete açılmıştır. Dikdörtgen planlı yapının içinde 10 adet burç ve 4 adet kapı bulunmaktadır. Hem tarihî hem de doğal güzelliğiyle dikkat çeken Eskihisar Kalesi, İzmit Körfezi'ne karşı sunduğu panoramik manzara ile öne çıkar.
                                     </p>
-
                                 </div>
 
                                 <div className="mt-8">
@@ -120,7 +172,6 @@ const EskihisarKalesiPage = () => {
                                                 Kale surları, burçlar ve İzmit Körfezi manzarası eşliğinde harika kareler yakalayabilirsiniz.
                                             </p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -145,24 +196,43 @@ const EskihisarKalesiPage = () => {
                                     </a>
                                 </div>
 
+                                {/* Enhanced Gallery Section */}
                                 <div className="bg-gray-100 p-4 rounded-lg mb-6">
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3">🖼️ Galeri</h3>
+                                    <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                                        <span className="mr-2">🖼️</span>
+                                        <span>Galeri</span>
+                                    </h3>
                                     <div className="grid grid-cols-2 gap-2">
-                                        {[
-                                            {id: 3, path: "/images/gebze/tarihiyerler/kale/sub1.JPG", alt: "EskihisarKalesi görünüm 3"},
-                                            {id: 1, path: "/images/gebze/tarihiyerler/kale/sub2.JPG", alt: "EskihisarKalesi görünüm 1"},
-                                            {id: 4, path: "/images/gebze/tarihiyerler/kale/sub3.JPG", alt: "EskihisarKalesi görünüm 4"},
-                                            {id: 2, path: "/images/gebze/tarihiyerler/kale/sub4.JPG", alt: "EskihisarKalesi görünüm 2"}
-
-                                        ].map((item) => (
-                                            <div key={item.id} className="aspect-square overflow-hidden rounded-lg">
+                                        {galleryImages.map((item, index) => (
+                                            <div
+                                                key={item.id}
+                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer relative group"
+                                                onClick={() => openLightbox({index: index})}
+                                            >
                                                 <img
                                                     src={item.path}
                                                     alt={item.alt}
-                                                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                                                 />
+                                                <div className="absolute inset-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                                                    <div className="opacity-0 group-hover:opacity-100 transform scale-90 group-hover:scale-100 transition-all duration-300">
+                                                        <div className="bg-white bg-opacity-80 rounded-full p-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         ))}
+                                    </div>
+                                    <div className="text-center mt-3">
+                                        <button
+                                            onClick={() => openLightbox({index: 0})}
+                                            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                                        >
+                                            Tüm resimleri görüntüle
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -252,7 +322,58 @@ const EskihisarKalesiPage = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Lightbox */}
+            {lightboxOpen && (
+                <div className="fixed inset-0 bg-[#022842]/60 bg-opacity-90 z-50 flex items-center justify-center">
+                    <div className="absolute top-4 right-4 z-10 flex space-x-2">
+                        <button
+                            onClick={closeLightbox}
+                            className="text-black p-2 rounded-full bg-white bg-opacity-50 hover:bg-opacity-70 transition-all"
+                            aria-label="Kapat"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+                    </div>
+
+                    <button
+                        onClick={prevLightboxImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-70 transition-all"
+                        aria-label="Önceki"
+                    >
+                        <ChevronLeft className="w-6 h-6" />
+                    </button>
+
+                    <div className="max-w-4xl max-h-[80vh] relative">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={lightboxImage}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="relative"
+                            >
+                                <img
+                                    src={galleryImages[lightboxImage].path}
+                                    alt={galleryImages[lightboxImage].alt}
+                                    className="max-w-full max-h-[80vh] object-contain mx-auto"
+                                />
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+
+                    <button
+                        onClick={nextLightboxImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-70 transition-all"
+                        aria-label="Sonraki"
+                    >
+                        <ChevronRight className="w-6 h-6" />
+                    </button>
+                </div>
+            )}
         </div>
     );
 };
+
 export default EskihisarKalesiPage;

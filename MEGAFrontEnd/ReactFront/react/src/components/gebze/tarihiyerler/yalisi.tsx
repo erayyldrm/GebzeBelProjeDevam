@@ -1,8 +1,65 @@
-import {MapPin, ChevronRight, ChevronLeft} from "lucide-react";
+import {MapPin, ChevronRight, ChevronLeft, X} from "lucide-react";
 import {useEffect, useState} from "react";
+
 const OsmanHamdiBeyYalisiPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [lightboxIndex, setLightboxIndex] = useState(0);
+
+    // Gallery Images
+    const galleryImages = [
+        {id: 1, path: "/images/gebze/tarihiyerler/yalı/sub1.JPG"},
+        {id: 2, path: "/images/gebze/tarihiyerler/yalı/sub2.JPG"},
+        {id: 3, path: "/images/gebze/tarihiyerler/yalı/sub3.JPG"},
+        {id: 4, path: "/images/gebze/tarihiyerler/yalı/sub4.JPG"}
+    ];
+
+    // Open lightbox with specific image index
+    const openLightbox = ({index}) => {
+        setLightboxIndex(index);
+        setLightboxOpen(true);
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+    };
+
+    // Close lightbox
+    const closeLightbox = () => {
+        setLightboxOpen(false);
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    };
+
+    // Navigate through lightbox images
+    const navigateLightbox = ({direction}: { direction: any }) => {
+        if (direction === 'next') {
+            setLightboxIndex((prev) => (prev + 1) % galleryImages.length);
+        } else {
+            setLightboxIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+        }
+    };
+
+    // Handle keyboard navigation for lightbox
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!lightboxOpen) return;
+
+            switch (e.key) {
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                case 'ArrowRight':
+                    navigateLightbox({direction: 'next'});
+                    break;
+                case 'ArrowLeft':
+                    navigateLightbox({direction: 'prev'});
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [lightboxOpen]);
 
     // Diğer Tarihi Yerler için veri
     const otherPlaces = [
@@ -30,7 +87,7 @@ const OsmanHamdiBeyYalisiPage = () => {
                     return 0;
                 }
             });
-        }, 5000); // 3 saniyede bir
+        }, 5000); // 5 saniyede bir
 
         return () => clearInterval(interval); // Temizlik
     }, []);
@@ -54,7 +111,7 @@ const OsmanHamdiBeyYalisiPage = () => {
         }
     };
 
-    // Görüntülenecek kartlar (her seferinde 3 kart)
+    // Görüntülenecek kartlar (her seferinde 4 kart)
     const visiblePlaces = () => {
         const places = [];
         for (let i = 0; i < 4; i++) {
@@ -62,16 +119,16 @@ const OsmanHamdiBeyYalisiPage = () => {
         }
         return places;
     };
+
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            {/* Hero Section - Modified */}
-            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6"> {/* Container ve max-width eklendi */}
-                <div className="absolute inset-0  z-10" />
+            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6">
+                <div className="absolute inset-0 z-10" />
                 <img
                     src="/images/gebze/tarihiyerler/yalı/11.JPG"
                     alt="OsmanHamdiBeyYalisi"
-                    className="h-full w-full object-cover rounded-lg" /* Yuvarlatılmış kenarlar */
+                    className="h-full w-full object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
                     <h1 className="text-4xl md:text-5xl bg-[#022842]/60 font-bold text-white mb-4 rounded-xl px-2 py-2 inline-block">OSMAN HAMDİ BEY YALISI</h1>
@@ -85,9 +142,6 @@ const OsmanHamdiBeyYalisiPage = () => {
             {/* Content Section */}
             <div className="container mx-auto px-3 py-9">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    {/* Quick Info Panel */}
-
-
                     {/* Main Content */}
                     <div className="p-6">
                         <div className="flex flex-col md:flex-row gap-8">
@@ -98,7 +152,6 @@ const OsmanHamdiBeyYalisiPage = () => {
                                         Osman Hamdi Bey Yalısı, Kocaeli'nin Gebze ilçesine bağlı Eskihisar Mahallesi'nde, İzmit Körfezi kıyısında yer alan tarihi bir yapıdır. 1884 yılında, Türk müzeciliğinin kurucusu ve ünlü ressam Osman Hamdi Bey tarafından inşa ettirilmiştir. Yalının planları Osman Hamdi Bey tarafından çizilmiş olup, yapımında kullanılan malzemelerin bir kısmı yurt dışından getirilmiştir.
                                         Yalı, iki katlı olarak inşa edilmiş ve Fransız mimarisi özellikleri taşımaktadır.
                                     </p>
-
                                 </div>
 
                                 <div className="mt-8">
@@ -107,7 +160,7 @@ const OsmanHamdiBeyYalisiPage = () => {
                                         <div className="bg-blue-50 p-4 rounded-lg">
                                             <h3 className="text-lg font-semibold text-blue-700 mb-2">🧭 Tarihi Gezi</h3>
                                             <p className="text-gray-700 text-justify">
-                                                Osman Hamdi Bey’in tarihi yalısını gezerek, Türk müzeciliğinin ve sanat tarihinin izinde kültürel bir yolculuğa çıkabilirsiniz.
+                                                Osman Hamdi Bey'in tarihi yalısını gezerek, Türk müzeciliğinin ve sanat tarihinin izinde kültürel bir yolculuğa çıkabilirsiniz.
                                             </p>
                                         </div>
                                         <div className="bg-blue-50 p-4 rounded-lg">
@@ -122,7 +175,6 @@ const OsmanHamdiBeyYalisiPage = () => {
                                                 Osman Hamdi Bey'in yaşamına ve eserlerine dair bilgi edinmek için müzeyi gezebilirsiniz.
                                             </p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -139,36 +191,94 @@ const OsmanHamdiBeyYalisiPage = () => {
                                         href="https://www.google.com/maps/place/Osman+Hamdi+Bey+Evi+ve+M%C3%BCzesi/@40.769348,29.4245433,17z/data=!3m1!4b1!4m5!3m4!1s0x14cb200fa27728bf:0xb8320b5bebc2a90a!8m2!3d40.769348!4d29.426732?shorturl=1"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center bg-blue-600 text-black px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                                        className="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                                     >
                                         <MapPin className="w-5 h-5 mr-2" />
                                         Haritada Gör
                                     </a>
                                 </div>
 
+                                {/* Enhanced Gallery Section with Lightbox */}
                                 <div className="bg-gray-100 p-4 rounded-lg mb-6">
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3">🖼️ Galeri</h3>
+                                    <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                                        <span className="mr-2">🖼️</span>
+                                        <span>Galeri</span>
+                                    </h3>
                                     <div className="grid grid-cols-2 gap-2">
-                                        {[
-                                            {id: 1, path: "/images/gebze/tarihiyerler/yalı/sub1.JPG", alt: "OsmanHamdiBeyYalisi görünüm 1"},
-                                            {id: 3, path: "/images/gebze/tarihiyerler/yalı/sub3.JPG", alt: "OsmanHamdiBeyYalisi görünüm 3"},
-                                            {id: 2, path: "/images/gebze/tarihiyerler/yalı/sub2.JPG", alt: "OsmanHamdiBeyYalisi görünüm 2"},
-                                            {id: 4, path: "/images/gebze/tarihiyerler/yalı/sub4.JPG", alt: "OsmanHamdiBeyYalisi görünüm 4"}
-                                        ].map((item) => (
-                                            <div key={item.id} className="aspect-square overflow-hidden rounded-lg">
+                                        {galleryImages.map((item, index) => (
+                                            <div
+                                                key={item.id}
+                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer relative group"
+                                                onClick={() => openLightbox({index: index})}
+                                            >
                                                 <img
                                                     src={item.path}
-                                                    alt={item.alt}
-                                                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                                                 />
+                                                <div className="absolute inset-0  group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                                                    <div className="opacity-0 group-hover:opacity-100 transform scale-90 group-hover:scale-100 transition-all duration-300">
+                                                        <div className="bg-white bg-opacity-80 rounded-full p-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         ))}
+                                    </div>
+                                    <div className="text-center mt-3">
+                                        <button
+                                            onClick={() => openLightbox({index: 0})}
+                                            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                                        >
+                                            Tüm resimleri görüntüle
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                {/* Lightbox Modal */}
+                {lightboxOpen && (
+                    <div className="fixed inset-0 bg-[#022842]/60 bg-opacity-90 z-50 flex items-center justify-center">
+                        <button
+                            onClick={closeLightbox}
+                            className="absolute top-4 right-4 text-black bg-white p-2 hover:bg-gray-800 rounded-full transition-colors"
+                            aria-label="Kapat"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+
+                        <button
+                            onClick={() => navigateLightbox({direction: 'prev'})}
+                            className="absolute left-4 text-black bg-white p-2 hover:bg-gray-800 rounded-full transition-colors"
+                            aria-label="Önceki"
+                        >
+                            <ChevronLeft className="w-8 h-8" />
+                        </button>
+
+                        <div className="w-full max-w-4xl p-4">
+                            <img
+                                src={galleryImages[lightboxIndex].path}
+
+                                className="w-full h-auto max-h-[80vh] object-contain mx-auto"
+                            />
+
+                        </div>
+
+                        <button
+                            onClick={() => navigateLightbox({direction: 'next'})}
+                            className="absolute right-4 text-black bg-white p-2 hover:bg-gray-800 rounded-full transition-colors"
+                            aria-label="Sonraki"
+                        >
+                            <ChevronRight className="w-8 h-8" />
+                        </button>
+                    </div>
+                )}
+
                 <div className="mt-12">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">DİĞER TARİHİ YERLER</h2>
 
@@ -194,7 +304,7 @@ const OsmanHamdiBeyYalisiPage = () => {
                                         className="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col"
                                     >
                                         {/* Resim alanı */}
-                                        <div className="h-55 overflow-hidden">
+                                        <div className="h-48 overflow-hidden">
                                             <img
                                                 src={place.imagePath}
                                                 alt={place.name}
@@ -228,29 +338,11 @@ const OsmanHamdiBeyYalisiPage = () => {
                         </button>
                     </div>
 
-                    {/* Pagination Dots */}
-                    <div className="flex justify-center space-x-2 mt-6">
-                        {Array.from({ length: Math.ceil(otherPlaces.length / 4) }).map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => {
-                                    if (!isAnimating) {
-                                        setIsAnimating(true);
-                                        setCurrentIndex(index * 4);
-                                        setTimeout(() => setIsAnimating(false), 500);
-                                    }
-                                }}
-                                className={`h-2 rounded-full transition-all ${
-                                    Math.floor(currentIndex / 4) === index ? 'w-6 bg-blue-600' : 'w-2 bg-gray-300'
-                                }`}
-                                aria-label={`Sayfa ${index + 1}`}
-                                disabled={isAnimating}
-                            />
-                        ))}
-                    </div>
+
                 </div>
             </div>
         </div>
     );
 };
+
 export default OsmanHamdiBeyYalisiPage;

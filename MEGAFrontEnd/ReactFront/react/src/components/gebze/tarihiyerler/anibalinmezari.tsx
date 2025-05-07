@@ -10,10 +10,10 @@ const AnibalinMezariPage = () => {
 
     // Galeri resimleri
     const galleryImages = [
-        { id: 1, path: "/images/gebze/tarihiyerler/anibal/sub1.jpg", alt: "AnibalinMezari görünüm 1" },
-        { id: 2, path: "/images/gebze/tarihiyerler/anibal/sub2.JPG", alt: "AnibalinMezari görünüm 2" },
-        { id: 3, path: "/images/gebze/tarihiyerler/anibal/sub3.jpg", alt: "AnibalinMezari görünüm 3" },
-        { id: 4, path: "/images/gebze/tarihiyerler/anibal/sub4.JPG", alt: "AnibalinMezari görünüm 4" }
+        { id: 1, path: "/images/gebze/tarihiyerler/anibal/sub1.jpg" },
+        { id: 2, path: "/images/gebze/tarihiyerler/anibal/sub2.JPG" },
+        { id: 3, path: "/images/gebze/tarihiyerler/anibal/sub3.jpg" },
+        { id: 4, path: "/images/gebze/tarihiyerler/anibal/sub4.JPG" }
     ];
 
     // Diğer Tarihi Yerler için veri ve route bilgileri
@@ -32,26 +32,9 @@ const AnibalinMezariPage = () => {
         { name: "SULTAN ORHAN CAMİİ", imagePath: "/images/gebze/tarihiyerler/sultanorhancami/12.jpg", route: "/gebze/tarihiyerler/sultanorhancamii" }
     ];
 
-    // Slider için otomatik geçiş
-    useEffect(() => {
-        if (lightboxOpen) return; // Lightbox açıkken otomatik geçişi durdur
-
-        const interval = setInterval(() => {
-            setCurrentIndex(prev => {
-                if (prev + 4 < otherPlaces.length) {
-                    return prev + 1;
-                } else {
-                    return 0;
-                }
-            });
-        }, 5000); // 5 saniyede bir
-
-        return () => clearInterval(interval); // Temizlik
-    }, [lightboxOpen]);
-
     // Klavye olaylarını dinle (lightbox için)
     useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
+        const handleKeyDown = (e) => {
             if (!lightboxOpen) return;
 
             if (e.key === "Escape") {
@@ -67,14 +50,27 @@ const AnibalinMezariPage = () => {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [lightboxOpen, lightboxImage]);
 
+    // Slider için otomatik geçiş
+    useEffect(() => {
+        if (lightboxOpen) return; // Lightbox açıkken otomatik geçişi durdur
+
+        const interval = setInterval(() => {
+            nextSlide();
+        }, 5000); // 5 saniyede bir
+
+        return () => clearInterval(interval); // Temizlik
+    }, [lightboxOpen, currentIndex]);
+
     // Lightbox kontrolü
     const openLightbox = ({index}: { index: any }) => {
         setLightboxImage(index);
         setLightboxOpen(true);
+        document.body.style.overflow = 'hidden'; // Arka planın kaymasını önle
     };
 
     const closeLightbox = () => {
         setLightboxOpen(false);
+        document.body.style.overflow = 'auto'; // Arka planın kaymasını tekrar etkinleştir
     };
 
     const nextLightboxImage = () => {
@@ -89,29 +85,44 @@ const AnibalinMezariPage = () => {
         if (!isAnimating) {
             setIsAnimating(true);
             setCurrentIndex(prev => {
-                const nextIndex = (prev + 1) % otherPlaces.length;
-                return nextIndex;
+                if (prev + 4 < otherPlaces.length) {
+                    return prev + 1;
+                } else {
+                    return 0;
+                }
             });
             setTimeout(() => setIsAnimating(false), 500);
         }
     };
 
     const prevSlide = () => {
-        if (currentIndex > 0 && !isAnimating) {
+        if (!isAnimating) {
             setIsAnimating(true);
-            setCurrentIndex(prev => prev - 1);
+            setCurrentIndex(prev => {
+                if (prev > 0) {
+                    return prev - 1;
+                } else {
+                    return Math.max(0, otherPlaces.length - 4);
+                }
+            });
             setTimeout(() => setIsAnimating(false), 500);
         }
     };
 
-    // Görüntülenecek kartlar (her seferinde 4 kart)
+    // Görüntülenecek kartlar
     const visiblePlaces = () => {
         const places = [];
         for (let i = 0; i < 4; i++) {
-            places.push(otherPlaces[(currentIndex + i) % otherPlaces.length]);
+            if (currentIndex + i < otherPlaces.length) {
+                places.push(otherPlaces[currentIndex + i]);
+            }
         }
         return places;
     };
+
+    // Sayfa numarası hesaplama
+    const totalPages = Math.ceil(otherPlaces.length / 4);
+    const currentPage = Math.floor(currentIndex / 4) + 1;
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -195,23 +206,42 @@ const AnibalinMezariPage = () => {
                                     </a>
                                 </div>
 
-                                {/* Galeri */}
+                                {/* Galeri - İyileştirilmiş Bölüm */}
                                 <div className="bg-gray-100 p-4 rounded-lg mb-6">
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3">🖼️ Galeri</h3>
-                                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
-                                        {galleryImages.map((item, index: number) => (
+                                    <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                                        <span className="mr-2">🖼️</span>
+                                        <span>Galeri</span>
+                                    </h3>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        {galleryImages.map((item, index) => (
                                             <div
                                                 key={item.id}
-                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer"
+                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer relative group"
                                                 onClick={() => openLightbox({index: index})}
                                             >
                                                 <img
                                                     src={item.path}
-                                                    alt={item.alt}
-                                                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                                                 />
+                                                <div className="absolute inset-0  group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                                                    <div className="opacity-0 group-hover:opacity-100 transform scale-90 group-hover:scale-100 transition-all duration-300">
+                                                        <div className="bg-white bg-opacity-80 rounded-full p-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         ))}
+                                    </div>
+                                    <div className="text-center mt-3">
+                                        <button
+                                            onClick={() => openLightbox({index: 0})}
+                                            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                                        >
+                                            Tüm resimleri görüntüle
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -219,48 +249,48 @@ const AnibalinMezariPage = () => {
                     </div>
                 </div>
 
-                {/* Lightbox */}
+                {/* Lightbox - İyileştirilmiş Bölüm */}
                 {lightboxOpen && (
-                    <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
-                        <button
-                            onClick={closeLightbox}
-                            className="absolute top-4 right-4 text-white p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
-                            aria-label="Kapat"
-                        >
-                            <X className="w-6 h-6" />
-                        </button>
+                    <div className="fixed inset-0 bg-[#022842]/60 bg-opacity-90 z-50 flex items-center justify-center">
+                        <div className="absolute top-4 right-4 z-10 flex space-x-2">
+                            <button
+                                onClick={closeLightbox}
+                                className="text-black p-2  rounded-full bg-white bg-opacity-50 hover:bg-opacity-70 transition-all"
+                                aria-label="Kapat"
+                            >
+                                <X className="w-6 h-6" />
+                            </button>
+                        </div>
 
                         <button
                             onClick={prevLightboxImage}
-                            className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-800 p-3 rounded-full text-white hover:bg-gray-700 transition-colors"
+                            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-70 transition-all"
                             aria-label="Önceki"
                         >
                             <ChevronLeft className="w-6 h-6" />
                         </button>
 
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={lightboxImage}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.3 }}
-                                className="max-w-4xl max-h-[80vh] p-2"
-                            >
-                                <img
-                                    src={galleryImages[lightboxImage].path}
-                                    alt={galleryImages[lightboxImage].alt}
-                                    className="max-w-full max-h-[80vh] object-contain mx-auto"
-                                />
-                                <p className="text-white text-center mt-4">
-                                    {lightboxImage + 1} / {galleryImages.length} - {galleryImages[lightboxImage].alt}
-                                </p>
-                            </motion.div>
-                        </AnimatePresence>
+                        <div className="max-w-4xl max-h-[80vh] relative">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={lightboxImage}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="relative"
+                                >
+                                    <img
+                                        src={galleryImages[lightboxImage].path}
+                                        className="max-w-full max-h-[80vh] object-contain mx-auto"
+                                    />
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
 
                         <button
                             onClick={nextLightboxImage}
-                            className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-800 p-3 rounded-full text-white hover:bg-gray-700 transition-colors"
+                            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-70 transition-all"
                             aria-label="Sonraki"
                         >
                             <ChevronRight className="w-6 h-6" />
@@ -268,66 +298,101 @@ const AnibalinMezariPage = () => {
                     </div>
                 )}
 
-                {/* Diğer Tarihi Yerler Slider */}
+                {/* Diğer Tarihi Yerler Slider - İyileştirilmiş Bölüm */}
                 <div className="mt-12">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">DİĞER TARİHİ YERLER</h2>
+                    <div className="flex justify-between items-center mb-6">
+                        <h2 className="text-2xl font-bold text-gray-800">DİĞER TARİHİ YERLER</h2>
+                        <div className="text-sm text-gray-600">
+                            Sayfa {currentPage} / {totalPages}
+                        </div>
+                    </div>
 
                     <div className="relative">
                         <button
                             onClick={prevSlide}
-                            className="absolute -left-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10 disabled:opacity-50"
+                            className="absolute -left-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-md z-10 hover:bg-gray-100 transition-colors"
                             aria-label="Önceki"
-                            disabled={isAnimating}
+                            disabled={isAnimating || currentIndex === 0}
                         >
-                            <ChevronLeft className="w-5 h-5" />
+                            <ChevronLeft className="w-5 h-5 text-gray-700" />
                         </button>
 
-                        <div className="overflow-hidden min-h-[350px]">
+                        <div className="overflow-hidden relative min-h-[350px]">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={currentIndex}
-                                    initial={{ opacity: 0, x: 100 }}
+                                    initial={{ opacity: 0, x: 50 }}
                                     animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -100 }}
-                                    transition={{ duration: 0.6 }}
-                                    className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+                                    exit={{ opacity: 0, x: -50 }}
+                                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
                                 >
                                     {visiblePlaces().map((place, index) => (
-                                        <div
-                                            key={index}
+                                        <motion.div
+                                            key={`${currentIndex}-${index}`}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{
+                                                opacity: 1,
+                                                y: 0,
+                                                transition: { delay: index * 0.1 }
+                                            }}
                                             className="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col"
                                         >
-                                            <div className="h-55 overflow-hidden">
+                                            <div className="h-48 overflow-hidden relative">
                                                 <img
                                                     src={place.imagePath}
                                                     alt={place.name}
-                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                                 />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                             </div>
                                             <div className="p-4 flex flex-col items-center justify-center text-center flex-grow">
-                                                <h3 className="text-lg font-semibold mb-4">{place.name}</h3>
+                                                <h3 className="text-lg font-semibold mb-3 group-hover:text-blue-700 transition-colors">{place.name}</h3>
                                                 <a
                                                     href={place.route}
-                                                    className="text-blue-600 hover:text-blue-800 inline-flex items-center text-sm"
+                                                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors inline-flex items-center text-sm"
                                                 >
                                                     Detaylı bilgi
                                                     <ChevronRight className="w-4 h-4 ml-1" />
                                                 </a>
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     ))}
                                 </motion.div>
                             </AnimatePresence>
-                        </div><br/>
+                        </div>
 
                         <button
                             onClick={nextSlide}
-                            className="absolute -right-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10 disabled:opacity-50"
+                            className="absolute -right-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-md z-10 hover:bg-gray-100 transition-colors"
                             aria-label="Sonraki"
-                            disabled={isAnimating}
+                            disabled={isAnimating || currentIndex + 4 >= otherPlaces.length}
                         >
-                            <ChevronRight className="w-5 h-5" />
+                            <ChevronRight className="w-5 h-5 text-gray-700" />
                         </button>
+                    </div>
+
+                    {/* Pagination Dots */}
+                    <div className="flex justify-center space-x-2 mt-6">
+                        {Array.from({ length: totalPages }).map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => {
+                                    if (!isAnimating) {
+                                        setIsAnimating(true);
+                                        setCurrentIndex(index * 4);
+                                        setTimeout(() => setIsAnimating(false), 500);
+                                    }
+                                }}
+                                className={`transition-all duration-300 ${
+                                    Math.floor(currentIndex / 4) === index
+                                        ? 'w-8 h-2 bg-blue-600 rounded-full'
+                                        : 'w-2 h-2 bg-gray-300 rounded-full hover:bg-gray-400'
+                                }`}
+                                aria-label={`Sayfa ${index + 1}`}
+                                disabled={isAnimating}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>

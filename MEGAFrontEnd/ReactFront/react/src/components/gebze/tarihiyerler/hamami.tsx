@@ -1,8 +1,20 @@
-import {MapPin, ChevronRight, ChevronLeft} from "lucide-react";
+import {MapPin, ChevronRight, ChevronLeft, X} from "lucide-react";
 import { useState, useEffect } from "react";
+import {AnimatePresence, motion} from "framer-motion";
+
 const CobanMustafaPasaHamamiPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [lightboxIndex, setLightboxIndex] = useState(0);
+
+    // Gallery images data
+    const galleryImages = [
+        {id: 1, path: "/images/gebze/tarihiyerler/hamam/sub1.JPG", alt: "Çoban Mustafa Paşa Hamamı görünüm 1"},
+        {id: 2, path: "/images/gebze/tarihiyerler/hamam/sub2.JPG", alt: "Çoban Mustafa Paşa Hamamı görünüm 2"},
+        {id: 3, path: "/images/gebze/tarihiyerler/hamam/sub3.JPG", alt: "Çoban Mustafa Paşa Hamamı görünüm 3"},
+        {id: 4, path: "/images/gebze/tarihiyerler/hamam/4.JPG", alt: "Çoban Mustafa Paşa Hamamı görünüm 4"}
+    ];
 
     // Diğer Tarihi Yerler için veri
     const otherPlaces = [
@@ -20,6 +32,56 @@ const CobanMustafaPasaHamamiPage = () => {
         { name: "SULTAN ORHAN CAMİİ", imagePath: "/images/gebze/tarihiyerler/sultanorhancami/12.jpg", route: "/gebze/tarihiyerler/sultanorhancamii" }
     ];
 
+    // Lightbox functions
+    const openLightbox = (index) => {
+        setLightboxIndex(index);
+        setLightboxOpen(true);
+        // Prevent scrolling when lightbox is open
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeLightbox = () => {
+        setLightboxOpen(false);
+        // Restore scrolling
+        document.body.style.overflow = 'auto';
+    };
+
+    const nextLightboxImage = () => {
+        setLightboxIndex((prevIndex) =>
+            prevIndex === galleryImages.length - 1 ? 0 : prevIndex + 1
+        );
+    };
+
+    const prevLightboxImage = () => {
+        setLightboxIndex((prevIndex) =>
+            prevIndex === 0 ? galleryImages.length - 1 : prevIndex - 1
+        );
+    };
+
+    // Handle keyboard navigation for lightbox
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!lightboxOpen) return;
+
+            switch(e.key) {
+                case 'ArrowRight':
+                    nextLightboxImage();
+                    break;
+                case 'ArrowLeft':
+                    prevLightboxImage();
+                    break;
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [lightboxOpen]);
+
     // Slider için otomatik geçiş
     useEffect(() => {
         const interval = setInterval(() => {
@@ -30,7 +92,7 @@ const CobanMustafaPasaHamamiPage = () => {
                     return 0;
                 }
             });
-        }, 5000); // 3 saniyede bir
+        }, 5000); // 5 saniyede bir
 
         return () => clearInterval(interval); // Temizlik
     }, []);
@@ -54,7 +116,7 @@ const CobanMustafaPasaHamamiPage = () => {
         }
     };
 
-    // Görüntülenecek kartlar (her seferinde 3 kart)
+    // Görüntülenecek kartlar (her seferinde 4 kart)
     const visiblePlaces = () => {
         const places = [];
         for (let i = 0; i < 4; i++) {
@@ -66,13 +128,12 @@ const CobanMustafaPasaHamamiPage = () => {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            {/* Hero Section - Modified */}
-            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6"> {/* Container ve max-width eklendi */}
-                <div className="absolute inset-0  z-10" />
+            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6">
+                <div className="absolute inset-0 z-10" />
                 <img
                     src="/images/gebze/tarihiyerler/hamam/4.JPG"
-                    alt="AnibalinMezari"
-                    className="h-full w-full object-cover rounded-lg" /* Yuvarlatılmış kenarlar */
+                    alt="Çoban Mustafa Paşa Hamamı"
+                    className="h-full w-full object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
                     <h1 className="text-4xl md:text-5xl bg-[#022842]/60 font-bold text-white mb-4 rounded-xl px-2 py-2 inline-block">ÇOBAN MUSTAFA PAŞA HAMAMI</h1>
@@ -86,9 +147,6 @@ const CobanMustafaPasaHamamiPage = () => {
             {/* Content Section */}
             <div className="container mx-auto px-3 py-9">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    {/* Quick Info Panel */}
-
-
                     {/* Main Content */}
                     <div className="p-6">
                         <div className="flex flex-col md:flex-row gap-8">
@@ -98,7 +156,6 @@ const CobanMustafaPasaHamamiPage = () => {
                                     <p className="mb-4 text-justify">
                                         Çoban Mustafa Paşa Hamamı, 1523 yılında Osmanlı dönemi devlet adamı Çoban Mustafa Paşa tarafından inşa edilmiştir. Gebze'nin Hacıhalil Mahallesi'nde yer alan bu tarihi hamam, iki ana kubbeden oluşan yapısıyla dikkat çeker. Osmanlı mimarisinin güzel bir örneği olan hamam, günümüzde aktif olarak kullanılmamakta, ancak tarihi bir yapı olarak korunmaktadır. Hem yerli hem de yabancı turistler tarafından ziyaret edilmektedir.
                                     </p>
-
                                 </div>
 
                                 <div className="mt-8">
@@ -107,7 +164,7 @@ const CobanMustafaPasaHamamiPage = () => {
                                         <div className="bg-blue-50 p-4 rounded-lg">
                                             <h3 className="text-lg font-semibold text-blue-700 mb-2">🧭 Tarihi Gezi</h3>
                                             <p className="text-gray-700 text-justify">
-                                                Çoban Mustafa Paşa Hamamı’nı gezip, Osmanlı dönemi mimarisini keşfedin. Hamamın yapımında kullanılan taşlar, kubbeler ve kemerler hakkında rehberli bilgi alabilirsiniz.
+                                                Çoban Mustafa Paşa Hamamı'nı gezip, Osmanlı dönemi mimarisini keşfedin. Hamamın yapımında kullanılan taşlar, kubbeler ve kemerler hakkında rehberli bilgi alabilirsiniz.
                                             </p>
                                         </div>
                                         <div className="bg-blue-50 p-4 rounded-lg">
@@ -128,7 +185,6 @@ const CobanMustafaPasaHamamiPage = () => {
                                                 Hamama yakın kafeler ve restoranlarda yerel yemekleri tadabilirsiniz. Geleneksel Osmanlı mutfağından örnekler alabilirsiniz.
                                             </p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -149,23 +205,43 @@ const CobanMustafaPasaHamamiPage = () => {
                                     </a>
                                 </div>
 
+                                {/* Enhanced Gallery Section */}
                                 <div className="bg-gray-100 p-4 rounded-lg mb-6">
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3">🖼️ Galeri</h3>
+                                    <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                                        <span className="mr-2">🖼️</span>
+                                        <span>Galeri</span>
+                                    </h3>
                                     <div className="grid grid-cols-2 gap-2">
-                                        {[
-                                            {id: 1, path: "/images/gebze/tarihiyerler/hamam/sub1.JPG", alt: "CobanMustafaPasaHamami görünüm 1"},
-                                            {id: 2, path: "/images/gebze/tarihiyerler/hamam/sub2.JPG", alt: "CobanMustafaPasaHamami görünüm 2"},
-                                            {id: 3, path: "/images/gebze/tarihiyerler/hamam/sub3.JPG", alt: "CobanMustafaPasaHamami görünüm 3"},
-                                            {id: 4, path: "/images/gebze/tarihiyerler/hamam/4.JPG", alt: "CobanMustafaPasaHamami görünüm 4"}
-                                        ].map((item) => (
-                                            <div key={item.id} className="aspect-square overflow-hidden rounded-lg">
+                                        {galleryImages.map((item, index) => (
+                                            <div
+                                                key={item.id}
+                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer relative group"
+                                                onClick={() => openLightbox(index)}
+                                            >
                                                 <img
                                                     src={item.path}
                                                     alt={item.alt}
-                                                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                                                 />
+                                                <div className="absolute inset-0  group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                                                    <div className="opacity-0 group-hover:opacity-100 transform scale-90 group-hover:scale-100 transition-all duration-300">
+                                                        <div className="bg-white bg-opacity-80 rounded-full p-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         ))}
+                                    </div>
+                                    <div className="text-center mt-3">
+                                        <button
+                                            onClick={() => openLightbox(0)}
+                                            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                                        >
+                                            Tüm resimleri görüntüle
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -199,7 +275,7 @@ const CobanMustafaPasaHamamiPage = () => {
                                         className="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col"
                                     >
                                         {/* Resim alanı */}
-                                        <div className="h-55 overflow-hidden">
+                                        <div className="h-48 overflow-hidden">
                                             <img
                                                 src={place.imagePath}
                                                 alt={place.name}
@@ -255,6 +331,56 @@ const CobanMustafaPasaHamamiPage = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Lightbox */}
+            {lightboxOpen && (
+                <div className="fixed inset-0 bg-[#022842]/60 bg-opacity-90 z-50 flex items-center justify-center">
+                    <div className="absolute top-4 right-4 z-10 flex space-x-2">
+                        <button
+                            onClick={closeLightbox}
+                            className="text-black p-2  rounded-full bg-white bg-opacity-50 hover:bg-opacity-70 transition-all"
+                            aria-label="Kapat"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+                    </div>
+
+                    <button
+                        onClick={prevLightboxImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-70 transition-all"
+                        aria-label="Önceki"
+                    >
+                        <ChevronLeft className="w-6 h-6" />
+                    </button>
+
+                    <div className="max-w-4xl max-h-[80vh] relative">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={lightboxIndex}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="relative"
+                            >
+                                <img
+                                    src={galleryImages[lightboxIndex].path}
+                                    alt={galleryImages[lightboxIndex].alt}
+                                    className="max-w-full max-h-[80vh] object-contain mx-auto"
+                                />
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+
+                    <button
+                        onClick={nextLightboxImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-70 transition-all"
+                        aria-label="Sonraki"
+                    >
+                        <ChevronRight className="w-6 h-6" />
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

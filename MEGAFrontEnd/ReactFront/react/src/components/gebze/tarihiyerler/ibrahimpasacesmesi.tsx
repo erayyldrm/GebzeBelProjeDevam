@@ -1,8 +1,18 @@
-import {MapPin, ChevronRight, ChevronLeft} from "lucide-react";
+import {MapPin, ChevronRight, ChevronLeft, X} from "lucide-react";
 import {useEffect, useState} from "react";
+import {AnimatePresence, motion} from "framer-motion";
+
 const İbrahimPasaCesmesiPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [lightboxImage, setLightboxImage] = useState(0);
+
+    // Define gallery images
+    const galleryImages = [
+        {id: 1, path: "/images/gebze/tarihiyerler/ibrahimpasacamii/2.JPG", alt: "İbrahim Paşa Çeşmesi görünüm 1"},
+        {id: 2, path: "/images/gebze/tarihiyerler/ibrahimpasacamii/1.JPG", alt: "İbrahim Paşa Çeşmesi görünüm 2"}
+    ];
 
     // Diğer Tarihi Yerler için veri
     const otherPlaces = [
@@ -20,6 +30,42 @@ const İbrahimPasaCesmesiPage = () => {
         { name: "SULTAN ORHAN CAMİİ", imagePath: "/images/gebze/tarihiyerler/sultanorhancami/12.jpg", route: "/gebze/tarihiyerler/sultanorhancamii" }
     ];
 
+    // Lightbox functions
+    const openLightbox = ({index}) => {
+        setLightboxImage(index);
+        setLightboxOpen(true);
+        // Disable body scroll when lightbox is open
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeLightbox = () => {
+        setLightboxOpen(false);
+        // Re-enable body scroll when lightbox is closed
+        document.body.style.overflow = 'auto';
+    };
+
+    const nextLightboxImage = () => {
+        setLightboxImage((prevIndex) => (prevIndex + 1) % galleryImages.length);
+    };
+
+    const prevLightboxImage = () => {
+        setLightboxImage((prevIndex) => (prevIndex - 1 + galleryImages.length) % galleryImages.length);
+    };
+
+    // Handle keyboard navigation for lightbox
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!lightboxOpen) return;
+
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextLightboxImage();
+            if (e.key === 'ArrowLeft') prevLightboxImage();
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [lightboxOpen]);
+
     // Slider için otomatik geçiş
     useEffect(() => {
         const interval = setInterval(() => {
@@ -30,7 +76,7 @@ const İbrahimPasaCesmesiPage = () => {
                     return 0;
                 }
             });
-        }, 5000); // 3 saniyede bir
+        }, 5000); // 5 saniyede bir
 
         return () => clearInterval(interval); // Temizlik
     }, []);
@@ -54,7 +100,7 @@ const İbrahimPasaCesmesiPage = () => {
         }
     };
 
-    // Görüntülenecek kartlar (her seferinde 3 kart)
+    // Görüntülenecek kartlar (her seferinde 4 kart)
     const visiblePlaces = () => {
         const places = [];
         for (let i = 0; i < 4; i++) {
@@ -66,13 +112,12 @@ const İbrahimPasaCesmesiPage = () => {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            {/* Hero Section - Modified */}
-            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6"> {/* Container ve max-width eklendi */}
-                <div className="absolute inset-0  z-10" />
+            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6">
+                <div className="absolute inset-0 z-10" />
                 <img
                     src="/images/gebze/tarihiyerler/ibrahimpasacamii/1.JPG"
                     alt="İbrahimPasaCesmesi"
-                    className="h-full w-full object-cover rounded-lg" /* Yuvarlatılmış kenarlar */
+                    className="h-full w-full object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
                     <h1 className="text-4xl md:text-5xl bg-[#022842]/60 font-bold text-white mb-4 rounded-xl px-2 py-2 inline-block">İBRAHİM PAŞA ÇEŞMESİ (ÇARŞI ÇESMESİ)</h1>
@@ -86,9 +131,6 @@ const İbrahimPasaCesmesiPage = () => {
             {/* Content Section */}
             <div className="container mx-auto px-3 py-9">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    {/* Quick Info Panel */}
-
-
                     {/* Main Content */}
                     <div className="p-6">
                         <div className="flex flex-col md:flex-row gap-8">
@@ -102,7 +144,6 @@ const İbrahimPasaCesmesiPage = () => {
 
                                         Günümüzde, çeşme, ziyaretçilerine Osmanlı döneminin estetik anlayışını ve su yapılarına olan ilgisini yansıtmaktadır.
                                     </p>
-
                                 </div>
 
                                 <div className="mt-8">
@@ -126,7 +167,6 @@ const İbrahimPasaCesmesiPage = () => {
                                                 Çeşme çevresinde zaman geçirirken, oturup dinlenebilir ve gezilen yer hakkında arkadaşlarınızla sohbet edebilirsiniz. Bu tür bir sosyal aktivite, hem dinlendirici hem de bilgilendirici olur.
                                             </p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -142,37 +182,104 @@ const İbrahimPasaCesmesiPage = () => {
                                         href="https://www.google.com/maps/place/%C4%B0brahim+Pa%C5%9Fa+%C3%87e%C5%9Fmesi+(Eski+%C3%87ar%C5%9F%C4%B1+%C3%87e%C5%9Fmesi)/@40.7983983,29.4316467,17z/data=!3m1!4b1!4m5!3m4!1s0x14cb2159ac7bdb4d:0x1128fdc4b678c96d!8m2!3d40.7983983!4d29.4338354?shorturl=1"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center bg-blue-600 text-black px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                                        className="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                                     >
                                         <MapPin className="w-5 h-5 mr-2" />
                                         Haritada Gör
                                     </a>
                                 </div>
 
+                                {/* Enhanced Gallery Section */}
                                 <div className="bg-gray-100 p-4 rounded-lg mb-6">
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3">🖼️ Galeri</h3>
+                                    <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                                        <span className="mr-2">🖼️</span>
+                                        <span>Galeri</span>
+                                    </h3>
                                     <div className="grid grid-cols-2 gap-2">
-                                        {[
-                                            {id: 1, path: "/images/gebze/tarihiyerler/ibrahimpasacamii/2.JPG", alt: "İbrahimPasaCesmesi görünüm 1"},
-                                            {id: 2, path: "/images/gebze/tarihiyerler/ibrahimpasacamii/1.JPG", alt: "İbrahimPasaCesmesi görünüm 2"}
-                                        ].map((item) => (
-                                            <div key={item.id} className="aspect-square overflow-hidden rounded-lg">
+                                        {galleryImages.map((item, index) => (
+                                            <div
+                                                key={item.id}
+                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer relative group"
+                                                onClick={() => openLightbox({index: index})}
+                                            >
                                                 <img
                                                     src={item.path}
-                                                    alt={item.alt}
-                                                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                                                 />
+                                                <div className="absolute inset-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                                                    <div className="opacity-0 group-hover:opacity-100 transform scale-90 group-hover:scale-100 transition-all duration-300">
+                                                        <div className="bg-white bg-opacity-80 rounded-full p-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
-
+                                    <div className="text-center mt-3">
+                                        <button
+                                            onClick={() => openLightbox({index: 0})}
+                                            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                                        >
+                                            Tüm resimleri görüntüle
+                                        </button>
+                                    </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
+
+                {/* Lightbox - İyileştirilmiş Bölüm */}
+                {lightboxOpen && (
+                    <div className="fixed inset-0 bg-[#022842]/60 bg-opacity-90 z-50 flex items-center justify-center">
+                        <div className="absolute top-4 right-4 z-10 flex space-x-2">
+                            <button
+                                onClick={closeLightbox}
+                                className="text-black p-2 rounded-full bg-white bg-opacity-50 hover:bg-opacity-70 transition-all"
+                                aria-label="Kapat"
+                            >
+                                <X className="w-6 h-6" />
+                            </button>
+                        </div>
+
+                        <button
+                            onClick={prevLightboxImage}
+                            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-70 transition-all"
+                            aria-label="Önceki"
+                        >
+                            <ChevronLeft className="w-6 h-6" />
+                        </button>
+
+                        <div className="max-w-4xl max-h-[80vh] relative">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={lightboxImage}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="relative"
+                                >
+                                    <img
+                                        src={galleryImages[lightboxImage].path}
+                                        className="max-w-full max-h-[80vh] object-contain mx-auto"
+                                    />
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
+
+                        <button
+                            onClick={nextLightboxImage}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-70 transition-all"
+                            aria-label="Sonraki"
+                        >
+                            <ChevronRight className="w-6 h-6" />
+                        </button>
+                    </div>
+                )}
 
                 <div className="mt-12">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">DİĞER TARİHİ YERLER</h2>
