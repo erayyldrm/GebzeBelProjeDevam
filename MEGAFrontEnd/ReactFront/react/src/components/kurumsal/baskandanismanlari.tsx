@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BaskanYardimcilari: React.FC = () => {
+const BaskanDanisamanlari: React.FC = () => {
     return (
         <div id="pcoded" className="pcoded bg-gray-100 shadow-inner min-h-screen">
             <div className="pcoded-container navbar-wrapper">
@@ -21,7 +21,7 @@ const BaskanYardimcilari: React.FC = () => {
                                                      }}
                                                 >
                                                     <div className="flex justify-center">
-                                                        <h1 className="text-2xl font-bold text-center">BAŞKAN YARDIMCILARI</h1>
+                                                        <h1 className="text-2xl font-bold text-center">BAŞKAN DANIŞMANLARI </h1>
                                                     </div>
                                                 </div>
 
@@ -30,47 +30,17 @@ const BaskanYardimcilari: React.FC = () => {
                                                         <div className="col-md-12">
                                                             <ul className="space-y-4 text-justify px-2 sm:px-0">
                                                                 {[{
-                                                                    name: "Dursun Ali ARSLAN",
-                                                                    img: "Dursun ali .jpg",
-                                                                    email: "dursunali.arslan@gebze.bel.tr",
-                                                                    phone: "0262 642 0430",
-                                                                    biography: "Dursun Ali ARSLAN, uzun yıllar kamu yönetimi ve belediyecilik alanında çeşitli görevlerde bulunmuş, halkla ilişkiler ve şehir planlama konularında uzmanlaşmış bir yöneticidir. Gebze Belediyesi'nde çeşitli projelere öncülük etmiştir."
+                                                                    name: "Yusuf BURKUT",
+                                                                    img: "Yusuf-BURKUT.jpg",
+                                                                    email: "yusuf.burkut@gebze.bel.tr",
+                                                                    phone: "0 262 642 04 30",
                                                                 },
                                                                     {
-                                                                        name: "Ahmet Hüseyin ÇELEBİ",
-                                                                        img: "ahmet hüseyin.jpg",
-                                                                        email: "ahmet.huseyincelebi@gebze.bel.tr",
-                                                                        phone: "0262 642 0430"
-                                                                    },
-                                                                    {
-                                                                        name: "Şerif Canpolat",
-                                                                        img: "şerif canpolat.jpg",
-                                                                        email: "serif.canpolat@gebze.bel.tr",
-                                                                        phone: "0262 642 0430"
-                                                                    },
-                                                                    {
-                                                                        name: "Muharrem BALTACIOGLU",
-                                                                        img: "muharrem baltacıoğlu.jpg",
-                                                                        email: "muharrem.baltacioglu@gebze.bel.tr",
-                                                                        phone: "0262 642 0430"
-                                                                    },
-                                                                    {
-                                                                        name: "Mahmut YANDIK",
-                                                                        img: "mahmut yandık.jpg",
-                                                                        email: "mahmut.yandik@gebze.bel.tr",
-                                                                        phone: "0262 642 0430"
-                                                                    },
-                                                                    {
-                                                                        name: "Şener AKIN",
-                                                                        img: "şener akın.jpg",
-                                                                        email: "sener.akin@gebze.bel.tr",
-                                                                        phone: "0262 642 0430"
-                                                                    },
-                                                                    {
-                                                                        name: "Mücahit BİRBEN",
-                                                                        img: "mücahit birben.jpg",
-                                                                        email: "mucahit.birben@gebze.bel.tr",
-                                                                        phone: "0262 642 0430"
+                                                                        name: "Remzi ŞEKER",
+                                                                        img: "Remzi-SEKER.jpg",
+                                                                        email: "remzi.seker@gebze.bel.tr",
+                                                                        phone: "0 262 642 04 30",
+                                                                        biography: "23 Şubat 1965 tarihinde Adapazarı'nda doğdu. İlk, orta ve lise öğrenimini Adapazarı'nda tamamladıktan sonra, Konya Selçuk Üniversitesi Mimarlık ve Mühendislik Fakültesi'nden Harita ve Kadastro Mühendisi olarak mezun oldu. Ayrıca, T.C. Sermaye Piyasaları Kurulu (SPK) lisanslı Gayrimenkul Değerleme Uzmanı unvanına sahiptir."
                                                                     }].map((person, index) => (
                                                                     <li key={index}>
                                                                         <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
@@ -78,7 +48,7 @@ const BaskanYardimcilari: React.FC = () => {
                                                                                 <a className="media-left order-1 sm:order-none" href="#">
                                                                                     <img
                                                                                         className="rounded-lg w-full max-w-[270px] h-auto object-cover"
-                                                                                        src={`/images/yonetimsemasi/${person.img}`}
+                                                                                        src={`/images/kurumsal/baskandanismanlari/${person.img}`}
                                                                                         alt={person.name}
                                                                                     />
                                                                                 </a>
@@ -87,7 +57,7 @@ const BaskanYardimcilari: React.FC = () => {
                                                                                         <h4 className="inline-block text-blue-900 text-xl font-bold">
                                                                                             {person.name}
                                                                                         </h4>
-                                                                                        <h6 className="text-gray-600">Başkan Yardımcısı</h6>
+                                                                                        <h6 className="text-gray-600">Başkan Danışmanı</h6>
                                                                                         <hr className="my-2 border-t border-gray-300" />
                                                                                         {person.biography && (
                                                                                             <div className="biography mt-3 mb-4">
@@ -139,4 +109,4 @@ const BaskanYardimcilari: React.FC = () => {
     );
 };
 
-export default BaskanYardimcilari;
+export default BaskanDanisamanlari;
