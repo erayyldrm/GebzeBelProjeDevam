@@ -2,7 +2,7 @@ package com.kocaeli.bel.service;
 
 import com.kocaeli.bel.DTO.LoginResponse;
 import com.kocaeli.bel.DTO.UserDTO;
-import com.kocaeli.bel.model.User;
+import com.kocaeli.bel.entity.User;
 import com.kocaeli.bel.repository.UserRepository;
 import com.kocaeli.bel.exception.UserAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;

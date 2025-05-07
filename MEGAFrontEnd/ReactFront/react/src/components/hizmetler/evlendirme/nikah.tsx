@@ -39,7 +39,7 @@ const Nislemleri: React.FC<ServiceDetailProps> = ({
             className="min-h-screen flex flex-col items-center px-4 py-10 space-y-8"
         >
             {/* Ana Kart */}
-            <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[880px] p-6 space-y-6">
+            <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[950px] p-6 space-y-6">
 
                 {/* Başlık Kartı */}
                 <div className="bg-[#891737] rounded-xl shadow-lg w-full py-6 px-8 mb-4">

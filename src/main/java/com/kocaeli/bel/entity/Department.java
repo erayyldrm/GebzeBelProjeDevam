@@ -1,4 +1,4 @@
-package com.kocaeli.bel.model;
+package com.kocaeli.bel.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.kocaeli.bel.repository;
 
-import com.kocaeli.bel.model.Department;
+import com.kocaeli.bel.entity.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

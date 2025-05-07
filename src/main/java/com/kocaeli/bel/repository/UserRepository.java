@@ -1,6 +1,6 @@
 package com.kocaeli.bel.repository;
 
-import com.kocaeli.bel.model.User;
+import com.kocaeli.bel.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
