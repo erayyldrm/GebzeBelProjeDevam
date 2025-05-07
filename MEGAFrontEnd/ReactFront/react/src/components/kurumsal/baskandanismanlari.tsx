@@ -48,7 +48,7 @@ const BaskanDanisamanlari: React.FC = () => {
                                                                                 <a className="media-left order-1 sm:order-none" href="#">
                                                                                     <img
                                                                                         className="rounded-lg w-full max-w-[270px] h-auto object-cover"
-                                                                                        src={`/images/yonetimsemasi/${person.img}`}
+                                                                                        src={`/images/kurumsal/baskandanismanlari/${person.img}`}
                                                                                         alt={person.name}
                                                                                     />
                                                                                 </a>
