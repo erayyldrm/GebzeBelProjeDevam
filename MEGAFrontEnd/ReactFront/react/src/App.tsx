@@ -7,7 +7,6 @@ import Footer from './components/Footer/Footer';
 import CoolNavbar from './components/NavBar/CoolNavbar';
 import SignUp from './components/SignUp/SignUp';
 import HomePage from "./components/HomePage/HomePage.tsx";
-import HomePage2 from "./components/HomePage/HomePageVar2.tsx";
 import TEST from "./components/sablon/testsablon.tsx"
 import Kurumsal from "./KurumsalApp.tsx";
 import Hizmetler from "./HizmetlerApp.tsx";

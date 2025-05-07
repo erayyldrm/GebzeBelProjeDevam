@@ -1,7 +1,6 @@
-import React, { useState } from "react";
 
 const Arabuluculuk = () => {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
 
 
 

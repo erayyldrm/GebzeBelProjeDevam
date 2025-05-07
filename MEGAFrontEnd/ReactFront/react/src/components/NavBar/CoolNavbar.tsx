@@ -257,7 +257,7 @@ const handleNavigation = (path: string) => {
                             <a href="/etkinlikler" className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white">
                                 Etkinlikler
                             </a>
-                            <a href="#" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white">
+                            <a href="/haberler" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white">
                                 Haberler
                             </a>
                             <a href="/iletisim" className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white">
