@@ -41,8 +41,8 @@ const BusinessTaxation = () => {
                                 İLKELERİMİZ
                             </h3>
 
-                            <div className={`text mb-10 md:mb-20 lg:mb-40`}>
-                                <ul className={`text-base leading-relaxed list-none w-full m-0 ${isMobile ? 'text-center' : 'text-justify'}`}>
+                            <div className="text mb-10 md:mb-20 lg:mb-40">
+                                <ul className="text-base leading-relaxed list-none w-full m-0 text-left">
                                     <li className="mb-3 md:mb-4"><span className="text-blue-700 font-semibold mr-2">➤</span> Gebze'nin yeşil alanlarını koruyarak, çevre dostu projeleri hayata geçiririz.</li>
                                     <li className="mb-3 md:mb-4"><span className="text-blue-700 font-semibold mr-2">➤</span> Tüm hizmetlerimizde Gebze halkının ihtiyaç ve beklentilerini merkeze koyarız.</li>
                                     <li className="mb-3 md:mb-4"><span className="text-blue-700 font-semibold mr-2">➤</span> Gebze'nin geleceğini planlayarak, sorunları oluşmadan çözüm üretmeye çalışırız.</li>

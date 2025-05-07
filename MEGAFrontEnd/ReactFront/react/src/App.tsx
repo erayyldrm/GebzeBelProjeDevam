@@ -6,7 +6,7 @@ import LoginForm from './components/Login_v3/LoginForm2.tsx';
 import Footer from './components/Footer/Footer';
 import CoolNavbar from './components/NavBar/CoolNavbar';
 import SignUp from './components/SignUp/SignUp';
-import ContentArea from "./components/HomePage/HomePage.tsx";
+import HomePage from "./components/HomePage/HomePage.tsx";
 import TEST from "./components/sablon/testsablon.tsx"
 import Kurumsal from "./KurumsalApp.tsx";
 import Hizmetler from "./HizmetlerApp.tsx";
@@ -73,7 +73,7 @@ const App: React.FC = () => {
                     </Route>
 
                     {/* Navbar ve Footerli elemanlar burada olacak */}
-                    <Route path="/" element={<ContentArea/>}/>
+                    <Route path="/" element={<HomePage/>}/>
                     <Route path="/test" element={<TEST/>}></Route>
 
                     <Route path="/etkinlikler" element={<EventsSection/>}/>
