@@ -307,7 +307,6 @@ const GUZIDE = () => {
                                     placeholder="Mesajınızı yazın..."
                                     className="flex-1 p-2 text-xs border rounded-full focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 />
-
                                 <button
                                     onClick={handleSendMessage}
                                     disabled={!userInput.trim()}
