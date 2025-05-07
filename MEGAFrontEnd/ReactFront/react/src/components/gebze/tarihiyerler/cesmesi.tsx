@@ -1,18 +1,17 @@
 import {MapPin, ChevronRight, ChevronLeft, X} from "lucide-react";
 import {useEffect, useState} from "react";
-
-
+import {AnimatePresence, motion} from "framer-motion";
 
 const EskihisarCesmesiPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
-    const [showGalleryModal, setShowGalleryModal] = useState(false);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [lightboxImage, setLightboxImage] = useState(0);
 
     // Galeri resimleri
     const galleryImages = [
-        {id: 1, path: "/images/gebze/tarihiyerler/eskihisarcesme/sub1.JPG", alt: "Eskihisar Çeşmesi görünüm 1"},
-        {id: 2, path: "/images/gebze/tarihiyerler/eskihisarcesme/6.jpg", alt: "Eskihisar Çeşmesi görünüm 2"}
+        {id: 1, path: "/images/gebze/tarihiyerler/eskihisarcesme/sub1.JPG"},
+        {id: 2, path: "/images/gebze/tarihiyerler/eskihisarcesme/6.jpg"}
     ];
 
     // Diğer Tarihi Yerler için veri
@@ -75,21 +74,21 @@ const EskihisarCesmesiPage = () => {
     };
 
     // Galeri fonksiyonları
-    const openGallery = ({index}: { index: any }) => {
-        setCurrentImageIndex(index);
-        setShowGalleryModal(true);
+    const openLightbox = ({index}) => {
+        setLightboxImage(index);
+        setLightboxOpen(true);
     };
 
-    const closeGallery = () => {
-        setShowGalleryModal(false);
+    const closeLightbox = () => {
+        setLightboxOpen(false);
     };
 
-    const nextImage = () => {
-        setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+    const nextLightboxImage = () => {
+        setLightboxImage((prev) => (prev + 1) % galleryImages.length);
     };
 
-    const prevImage = () => {
-        setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+    const prevLightboxImage = () => {
+        setLightboxImage((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
     };
 
     return (
@@ -170,22 +169,42 @@ const EskihisarCesmesiPage = () => {
                                     </a>
                                 </div>
 
+                                {/* Düzenlenmiş Galeri Bölümü */}
                                 <div className="bg-gray-100 p-4 rounded-lg mb-6">
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3">🖼️ Galeri</h3>
+                                    <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                                        <span className="mr-2">🖼️</span>
+                                        <span>Galeri</span>
+                                    </h3>
                                     <div className="grid grid-cols-2 gap-2">
                                         {galleryImages.map((item, index) => (
                                             <div
                                                 key={item.id}
-                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer"
-                                                onClick={() => openGallery({index: index})}
+                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer relative group"
+                                                onClick={() => openLightbox({index: index})}
                                             >
                                                 <img
                                                     src={item.path}
-                                                    alt={item.alt}
-                                                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                                                 />
+                                                <div className="absolute inset-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                                                    <div className="opacity-0 group-hover:opacity-100 transform scale-90 group-hover:scale-100 transition-all duration-300">
+                                                        <div className="bg-white bg-opacity-80 rounded-full p-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         ))}
+                                    </div>
+                                    <div className="text-center mt-3">
+                                        <button
+                                            onClick={() => openLightbox({index: 0})}
+                                            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                                        >
+                                            Tüm resimleri görüntüle
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -275,52 +294,52 @@ const EskihisarCesmesiPage = () => {
                 </div>
             </div>
 
-            {/* Galeri Modal */}
-            {showGalleryModal && (
-                <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
-                    <div className="relative w-full max-w-4xl mx-auto">
-                        {/* Kapat düğmesi */}
+            {/* Lightbox Modal */}
+            {lightboxOpen && (
+                <div className="fixed inset-0 bg-[#022842]/60 bg-opacity-90 z-50 flex items-center justify-center">
+                    <div className="absolute top-4 right-4 z-10 flex space-x-2">
                         <button
-                            onClick={closeGallery}
-                            className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all"
+                            onClick={closeLightbox}
+                            className="text-black p-2 rounded-full bg-white bg-opacity-50 hover:bg-opacity-70 transition-all"
                             aria-label="Kapat"
                         >
                             <X className="w-6 h-6" />
                         </button>
-
-                        {/* Görsel */}
-                        <div className="relative bg-black flex items-center justify-center">
-                            <img
-                                src={galleryImages[currentImageIndex].path}
-                                alt={galleryImages[currentImageIndex].alt}
-                                className="max-h-[80vh] object-contain"
-                            />
-                        </div>
-
-                        {/* Navigasyon düğmeleri */}
-                        <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 flex justify-between px-4">
-                            <button
-                                onClick={prevImage}
-                                className="bg-black bg-opacity-50 rounded-full p-2 text-white hover:bg-opacity-70 transition-all"
-                                aria-label="Önceki resim"
-                            >
-                                <ChevronLeft className="w-8 h-8" />
-                            </button>
-                            <button
-                                onClick={nextImage}
-                                className="bg-black bg-opacity-50 rounded-full p-2 text-white hover:bg-opacity-70 transition-all"
-                                aria-label="Sonraki resim"
-                            >
-                                <ChevronRight className="w-8 h-8" />
-                            </button>
-                        </div>
-
-                        {/* Resim bilgisi ve sayaç */}
-                        <div className="text-center py-4 text-white">
-                            <p className="font-medium">{galleryImages[currentImageIndex].alt}</p>
-                            <p className="text-sm text-gray-300">{currentImageIndex + 1} / {galleryImages.length}</p>
-                        </div>
                     </div>
+
+                    <button
+                        onClick={prevLightboxImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-70 transition-all"
+                        aria-label="Önceki"
+                    >
+                        <ChevronLeft className="w-6 h-6" />
+                    </button>
+
+                    <div className="max-w-4xl max-h-[80vh] relative">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={lightboxImage}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="relative"
+                            >
+                                <img
+                                    src={galleryImages[lightboxImage].path}
+                                    className="max-w-full max-h-[80vh] object-contain mx-auto"
+                                />
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+
+                    <button
+                        onClick={nextLightboxImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-70 transition-all"
+                        aria-label="Sonraki"
+                    >
+                        <ChevronRight className="w-6 h-6" />
+                    </button>
                 </div>
             )}
         </div>

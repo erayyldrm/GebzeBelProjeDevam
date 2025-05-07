@@ -1,8 +1,57 @@
-import {MapPin, ChevronRight, ChevronLeft} from "lucide-react";
+import {MapPin, ChevronRight, ChevronLeft, X} from "lucide-react";
 import {useEffect, useState} from "react";
+
 const SultanOrhanCamiiPage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [lightboxIndex, setLightboxIndex] = useState(0);
+
+    // Gallery images data
+    const galleryImages = [
+        {id: 1, path: "/images/gebze/tarihiyerler/sultanorhancami/sub1.JPG", alt: "SultanOrhanCamii görünüm 1"},
+        {id: 2, path: "/images/gebze/tarihiyerler/sultanorhancami/sub2.JPG", alt: "SultanOrhanCamii görünüm 2"},
+        {id: 3, path: "/images/gebze/tarihiyerler/sultanorhancami/12.jpg", alt: "SultanOrhanCamii dış görünüm"}
+    ];
+
+    // Lightbox functionality
+    const openLightbox = ({index}) => {
+        setLightboxIndex(index);
+        setLightboxOpen(true);
+        // Prevent scrolling when lightbox is open
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeLightbox = () => {
+        setLightboxOpen(false);
+        // Restore scrolling
+        document.body.style.overflow = 'auto';
+    };
+
+    const nextLightboxImage = () => {
+        setLightboxIndex((prev) => (prev + 1) % galleryImages.length);
+    };
+
+    const prevLightboxImage = () => {
+        setLightboxIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+    };
+
+    // Close lightbox with escape key
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextLightboxImage();
+            if (e.key === 'ArrowLeft') prevLightboxImage();
+        };
+
+        if (lightboxOpen) {
+            window.addEventListener('keydown', handleKeyDown);
+        }
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [lightboxOpen]);
 
     // Diğer Tarihi Yerler için veri
     const otherPlaces = [
@@ -30,7 +79,7 @@ const SultanOrhanCamiiPage = () => {
                     return 0;
                 }
             });
-        }, 5000); // 3 saniyede bir
+        }, 5000); // 5 saniyede bir
 
         return () => clearInterval(interval); // Temizlik
     }, []);
@@ -54,7 +103,7 @@ const SultanOrhanCamiiPage = () => {
         }
     };
 
-    // Görüntülenecek kartlar (her seferinde 3 kart)
+    // Görüntülenecek kartlar (her seferinde 4 kart)
     const visiblePlaces = () => {
         const places = [];
         for (let i = 0; i < 4; i++) {
@@ -62,16 +111,16 @@ const SultanOrhanCamiiPage = () => {
         }
         return places;
     };
+
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            {/* Hero Section - Modified */}
-            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6"> {/* Container ve max-width eklendi */}
-                <div className="absolute inset-0  z-10" />
+            <div className="container mx-auto relative h-[500px] max-w-6xl mt-6">
+                <div className="absolute inset-0 z-10" />
                 <img
                     src="/images/gebze/tarihiyerler/sultanorhancami/12.jpg"
                     alt="SultanOrhanCamii"
-                    className="h-full w-full object-cover rounded-lg" /* Yuvarlatılmış kenarlar */
+                    className="h-full w-full object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
                     <h1 className="text-4xl md:text-5xl bg-[#022842]/60 font-bold text-white mb-4 rounded-xl px-2 py-2 inline-block">SULTAN ORHAN CAMİİ</h1>
@@ -94,7 +143,6 @@ const SultanOrhanCamiiPage = () => {
                                         Sultan Orhan Camii, Kocaeli'nin Gebze ilçesinde, Sultan Orhan Mahallesi'nde yer alan ve Osmanlı mimarisinin erken dönemine ait önemli bir yapıdır. 1323-1331 yılları arasında, Osmanlı padişahı Orhan Gazi tarafından inşa ettirilmiştir.
                                         Bu cami, Gebze'deki Osmanlı eserlerinin en eskisi olup, erken Osmanlı döneminin sade ve işlevsel mimari anlayışını yansıtır.
                                     </p>
-
                                 </div>
 
                                 <div className="mt-8">
@@ -118,7 +166,6 @@ const SultanOrhanCamiiPage = () => {
                                                 Cami çevresindeki diğer tarihî yapılarla birlikte kültürel bir rota oluşturabilirsiniz.
                                             </p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -141,26 +188,45 @@ const SultanOrhanCamiiPage = () => {
                                     </a>
                                 </div>
 
+                                {/* Updated Gallery Section with Lightbox Functionality */}
                                 <div className="bg-gray-100 p-4 rounded-lg mb-6">
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3">🖼️ Galeri</h3>
+                                    <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                                        <span className="mr-2">🖼️</span>
+                                        <span>Galeri</span>
+                                    </h3>
                                     <div className="grid grid-cols-2 gap-2">
-                                        {[
-                                            {id: 1, path: "/images/gebze/tarihiyerler/sultanorhancami/sub1.JPG", alt: "SultanOrhanCamii görünüm 1"},
-                                            {id: 2, path: "/images/gebze/tarihiyerler/sultanorhancami/sub2.JPG", alt: "SultanOrhanCamii görünüm 2"}
-                                        ].map((item) => (
-                                            <div key={item.id} className="aspect-square overflow-hidden rounded-lg">
+                                        {galleryImages.slice(0, 2).map((item, index) => (
+                                            <div
+                                                key={item.id}
+                                                className="aspect-square overflow-hidden rounded-lg cursor-pointer relative group"
+                                                onClick={() => openLightbox({index})}
+                                            >
                                                 <img
                                                     src={item.path}
                                                     alt={item.alt}
-                                                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                                                 />
+                                                <div className="absolute inset-0  group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                                                    <div className="opacity-0 group-hover:opacity-100 transform scale-90 group-hover:scale-100 transition-all duration-300">
+                                                        <div className="bg-white bg-opacity-80 rounded-full p-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
-
+                                    <div className="text-center mt-3">
+                                        <button
+                                            onClick={() => openLightbox({index: 0})}
+                                            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                                        >
+                                            Tüm resimleri görüntüle
+                                        </button>
+                                    </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -248,6 +314,60 @@ const SultanOrhanCamiiPage = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Lightbox */}
+            {lightboxOpen && (
+                <div className="fixed inset-0 bg-[#022842]/60 bg-opacity-90 z-50 flex items-center justify-center">
+                    <div className="relative w-full h-full flex items-center justify-center">
+                        {/* Close button */}
+                        <button
+                            onClick={closeLightbox}
+                            className="absolute top-2 right-2 bg-white text-black rounded-full p-3 shadow hover:bg-gray-100 transition z-10"
+                            aria-label="Kapat"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-6 w-6"  // ikon boyutu büyütüldü
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+
+
+
+                        {/* Navigation buttons */}
+                        <button
+                            onClick={prevLightboxImage}
+                            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-70 transition-all"
+                            aria-label="Önceki"
+                        >
+                            <ChevronLeft className="w-6 h-6" />
+                        </button>
+
+                        {/* Current image */}
+                        <div className="w-full h-full max-w-4xl max-h-[80vh] p-4 flex items-center justify-center">
+                            <img
+                                src={galleryImages[lightboxIndex].path}
+                                alt={galleryImages[lightboxIndex].alt}
+                                className="max-w-full max-h-full object-contain"
+                            />
+                        </div>
+
+                        <button
+                            onClick={nextLightboxImage}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-70 transition-all"
+                            aria-label="Sonraki"
+                        >
+                            <ChevronRight className="w-6 h-6" />
+                        </button>
+
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
