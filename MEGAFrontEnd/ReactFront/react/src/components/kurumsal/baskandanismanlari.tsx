@@ -40,7 +40,7 @@ const BaskanDanisamanlari: React.FC = () => {
                                                                         img: "Remzi-SEKER.jpg",
                                                                         email: "remzi.seker@gebze.bel.tr",
                                                                         phone: "0 262 642 04 30",
-                                                                        biography: "23 Şubat 1965 tarihinde Adapazarı’nda doğdu. İlk, orta ve lise öğrenimini Adapazarı’nda tamamladıktan sonra, Konya Selçuk Üniversitesi Mimarlık ve Mühendislik Fakültesi’nden Harita ve Kadastro Mühendisi olarak mezun oldu. Ayrıca, T.C. Sermaye Piyasaları Kurulu (SPK) lisanslı Gayrimenkul Değerleme Uzmanı unvanına sahiptir."
+                                                                        biography: "23 Şubat 1965 tarihinde Adapazarı'nda doğdu. İlk, orta ve lise öğrenimini Adapazarı'nda tamamladıktan sonra, Konya Selçuk Üniversitesi Mimarlık ve Mühendislik Fakültesi'nden Harita ve Kadastro Mühendisi olarak mezun oldu. Ayrıca, T.C. Sermaye Piyasaları Kurulu (SPK) lisanslı Gayrimenkul Değerleme Uzmanı unvanına sahiptir."
                                                                     }].map((person, index) => (
                                                                     <li key={index}>
                                                                         <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
@@ -48,7 +48,7 @@ const BaskanDanisamanlari: React.FC = () => {
                                                                                 <a className="media-left order-1 sm:order-none" href="#">
                                                                                     <img
                                                                                         className="rounded-lg w-full max-w-[270px] h-auto object-cover"
-                                                                                        src={`/images/yonetimsemasi/${person.img}`}
+                                                                                        src={`/images/kurumsal/baskandanismanlari/${person.img}`}
                                                                                         alt={person.name}
                                                                                     />
                                                                                 </a>

@@ -6,11 +6,13 @@ import Fotograflarla from "./components/gebze/fotolarla.tsx";
 import BugunkuGebze from "./components/gebze/bugunkugebze.tsx";
 import React from "react";
 import Gallarytest from "./components/gebze/tarihiyerler.tsx";
+import TarihiYerlerListe from "./components/gebze/tarihiyerler/_TarihiYerlerList.tsx";
+
 import UyeOldugumuzBirlikler from "./components/gebze/uyeoldugumuzbirlikler.tsx";
 import SanalTur from "./components/gebze/360sanaltur.tsx";
 import HanibalAniti from "./components/gebze/tarihiyerler/anibalinmezari.tsx";
 import Ballikayalar from "./components/gebze/tarihiyerler/ballikayalar.tsx";
-import Kulliyesi from  "./components/gebze/tarihiyerler/külliyesi.tsx";
+import Kulliyesi from "./components/gebze/tarihiyerler/külliyesi.tsx";
 import Hamam from "./components/gebze/tarihiyerler/hamami.tsx";
 import Sadirvani from "./components/gebze/tarihiyerler/sadirvani.tsx";
 import Cesmesi from "./components/gebze/tarihiyerler/cesmesi.tsx";
@@ -22,8 +24,7 @@ import OsmanHamdiBeyYalisi from "./components/gebze/tarihiyerler/yalisi.tsx";
 import SultanOrhanCamii from "./components/gebze/tarihiyerler/sultanorhancamii.tsx";
 
 
-
-const GebzeApp: React.FC =() => {
+const GebzeApp: React.FC = () => {
 
     return (
         <Routes>
@@ -32,7 +33,10 @@ const GebzeApp: React.FC =() => {
             <Route path="/tarihce" element={<Tarihce/>}/>
             <Route path="/fotograflarlaGebze" element={<Fotograflarla/>}/>
             <Route path="/bugunkugebze" element={<BugunkuGebze/>}/>
-            <Route path="/tarihiyerler" element={<Gallarytest/>}/>
+            <Route path="/tarihiyerlereski" element={<Gallarytest/>}/>
+            <Route path="/tarihiyerler" element={<TarihiYerlerListe/>}/>
+
+
             <Route path="/uyeoldugumuzbirlikler" element={<UyeOldugumuzBirlikler/>}/>
             <Route path="/360sanaltur" element={<SanalTur/>}/>
             <Route path="/tarihiyerler/anibalinmezari" element={<HanibalAniti/>}/>

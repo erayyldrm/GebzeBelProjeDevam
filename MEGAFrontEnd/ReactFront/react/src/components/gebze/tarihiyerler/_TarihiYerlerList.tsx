@@ -25,6 +25,7 @@ const TarihiYerlerList: React.FC = () => {
                 setLoading(true);
                 const data = await _TarihiYerlerService.getAllTarihiYerler();
                 setTarihiYerler(data);
+                console.log(data);
                 setError(null);
             } catch (err) {
                 setError('Tarihi yerler yüklenirken bir hata oluştu.');
