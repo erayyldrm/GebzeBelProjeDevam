@@ -1,4 +1,5 @@
 
+
 const BaskanYardimcilari = () => {
     return (
         <div id="pcoded" className="pcoded bg-gray-100 shadow-inner min-h-screen">
