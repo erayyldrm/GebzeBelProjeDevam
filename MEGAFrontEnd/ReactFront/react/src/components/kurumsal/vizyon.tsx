@@ -26,7 +26,8 @@ const VisionPage: React.FC = () => {
                                 <div className="main-body">
                                     <div className="page-wrapper">
                                         <div className="flex justify-center">
-                                            <div className="w-full max-w-6xl px-4 md:px-0">
+                                            {/* Reduced max width from max-w-6xl to max-w-4xl and added more padding */}
+                                            <div className="w-full max-w-4xl px-8 md:px-12">
                                                 {/* Header */}
                                                 <div className="shadow p-4 bg-white rounded-xl text-center mt-4">
                                                     <h1 className="text-xl md:text-3xl font-bold">VİZYONUMUZ</h1>
@@ -35,7 +36,7 @@ const VisionPage: React.FC = () => {
                                                 {/* Content */}
                                                 <div className="my-4">
                                                     <div className="card bg-white shadow-lg rounded-lg">
-                                                        <div className="p-4">
+                                                        <div className="p-4 md:p-6">
                                                             {/* Image */}
                                                             <div className="mb-4">
                                                                 <img
@@ -57,7 +58,7 @@ const VisionPage: React.FC = () => {
                                                                 <img
                                                                     src="/images/kurumsal/gebze-belediyesi-logo-png_seeklogo-406755.png"
                                                                     alt="logo"
-                                                                    className="max-w-[200px] h-auto"
+                                                                    className="max-w-[180px] h-auto"
                                                                 />
                                                             </div>
                                                         </div>
