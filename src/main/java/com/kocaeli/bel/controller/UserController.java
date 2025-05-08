@@ -9,17 +9,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/users")
-@CrossOrigin(origins = "http://localhost:5173")// React'ten çağırmak için (güvenlik için prod'da domain verilmeli)
+@RestController // Bu sınıfın bir REST denetleyicisi olduğunu belirtir
+@RequestMapping("/api/users") // Bu denetleyiciye gelen isteklerin kök yolu
+@CrossOrigin(origins = "http://localhost:5173") // React (frontend) uygulamasından gelen isteklere izin verir
 public class UserController {
 
     private final UserService userService;
 
+    /**
+     * UserController constructor'ı, Spring tarafından otomatik olarak enjekte edilen UserService ile çalışır.
+     * @param userService Kullanıcı işlemlerini gerçekleştiren servis sınıfı
+     */
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
+    /**
+     * Tüm kullanıcıları dönen HTTP GET isteği için uç nokta.
+     * @return Kullanıcıları temsil eden DTO nesnelerinden oluşan bir liste
+     */
     @GetMapping
     public List<UserDTO> getAllUsers() {
         return userService.getAllUsers();

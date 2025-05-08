@@ -6,7 +6,7 @@ import com.kocaeli.bel.repository.UserRepository;
 import com.kocaeli.bel.service.UserService;
 import com.kocaeli.bel.DTO.LoginRequest;
 import com.kocaeli.bel.DTO.RegisterHandler;
-import com.kocaeli.bel.entity.User;
+import com.kocaeli.bel.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

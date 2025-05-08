@@ -1,6 +1,6 @@
 package com.kocaeli.bel.controller;
 
-import com.kocaeli.bel.entity.Department;
+import com.kocaeli.bel.model.Department;
 import com.kocaeli.bel.repository.DepartmentRepository;
 import com.kocaeli.bel.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;

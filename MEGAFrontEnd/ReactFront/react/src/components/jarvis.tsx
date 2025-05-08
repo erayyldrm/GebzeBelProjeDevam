@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { X, Send, Paperclip, Mic } from "lucide-react";
+import { X, Send, } from "lucide-react";
 
 // Sıkı tip tanımlamaları için literal tipleri kullanalım
 type ChatRole = "user" | "assistant";
@@ -39,8 +39,41 @@ const GUZIDE = () => {
         }
     }, [isOpen]);
 
-    // Asistan yanıtları için basit bir yapay zeka
-    const getAssistantResponse = (userMessage: string): string => {
+    // HuggingFace API'ye bağlanarak yanıt alacak fonksiyon
+    const getAIResponse = async (userMessage: string): Promise<string> => {
+        try {
+            // HuggingFace Inference API'sine istek gönderilecek
+            // Bu örnek için, HuggingFace üzerinden ücretsiz kullanılabilecek bir Türkçe dil modeli kullanıyoruz
+            const response = await fetch(
+                "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        // HuggingFace'ten ücretsiz bir API token almanız gerekecek
+                        Authorization: "Bearer hf_token_buraya_gelecek",
+                    },
+                    body: JSON.stringify({ inputs: userMessage }),
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("API yanıt vermedi");
+            }
+
+            const data = await response.json();
+            // API yanıtı modele göre değişebilir
+            return data.generated_text || "Üzgünüm, şu anda cevap veremiyorum.";
+        } catch (error) {
+            console.error("API hatası:", error);
+
+            // API hatası durumunda basit yanıtlar verecek yedek fonksiyon
+            return getFallbackResponse(userMessage);
+        }
+    };
+
+    // API yanıt vermezse kullanılacak yedek yanıt fonksiyonu
+    const getFallbackResponse = (userMessage: string): string => {
         const lowerCaseMsg = userMessage.toLowerCase();
 
         // Tarih ve zaman sorguları
@@ -78,10 +111,6 @@ const GUZIDE = () => {
             return "İletişim bilgilerimiz: \nTelefon: +90 212 123 45 67\nE-posta: info@sirket.com\nAdres: Merkez Mahallesi, Atatürk Caddesi No:123, İstanbul";
         }
 
-        if (lowerCaseMsg.includes("kütüphane") || lowerCaseMsg.includes("rezervasyon")) {
-            return "Kütüphane rezervasyonu yapmak için tarih ve saat bilgisi paylaşmanız gerekiyor. Hangi tarih ve saatte rezervasyon yapmak istersiniz?";
-        }
-
         if (lowerCaseMsg.includes("eczane") || lowerCaseMsg.includes("nöbetçi")) {
             return "Nöbetçi eczane bilgisi için bulunduğunuz ilçeyi belirtmeniz gerekiyor. Hangi ilçedeki nöbetçi eczaneleri öğrenmek istiyorsunuz?";
         }
@@ -101,7 +130,7 @@ const GUZIDE = () => {
     };
 
     // Kullanıcı mesajını gönderme fonksiyonu
-    const handleSendMessage = () => {
+    const handleSendMessage = async () => {
         if (userInput.trim() === "") return;
 
         // Kullanıcı mesajını ekle
@@ -116,17 +145,30 @@ const GUZIDE = () => {
         // Asistan yazıyor efekti
         setIsTyping(true);
 
-        // Asistan yanıtı (gecikme ile)
-        setTimeout(() => {
-            const assistantResponse = getAssistantResponse(userInput);
+        try {
+            // Yapay zeka API'sinden yanıt al
+            const aiResponse = await getAIResponse(userInput);
+
+            // Asistan yanıtını ekle
             const newAssistantMessage: ChatMessage = {
                 role: "assistant",
-                message: assistantResponse
+                message: aiResponse
             };
 
             setChatHistory((prev) => [...prev, newAssistantMessage]);
+        } catch (error) {
+            console.error("Yanıt alınamadı:", error);
+
+            // Hata durumunda kullanıcıya bilgi ver
+            const errorMessage: ChatMessage = {
+                role: "assistant",
+                message: "Üzgünüm, şu anda yanıt veremiyorum. Lütfen daha sonra tekrar deneyin."
+            };
+
+            setChatHistory((prev) => [...prev, errorMessage]);
+        } finally {
             setIsTyping(false);
-        }, 1000 + Math.random() * 1000); // 1-2 saniye arası rastgele gecikme
+        }
     };
 
     // Klavye olayını dinleyelim
@@ -140,67 +182,65 @@ const GUZIDE = () => {
     // Hızlı yanıt seçenekleri
     const quickReplies = [
         "Merhaba",
-        "Yardım alabilir miyim?",
-        "İletişim bilgisi",
-        "Nöbetçi eczane",
+        "Yardım",
+        "İletişim",
         "Teşekkürler"
     ];
 
     return (
         <>
-            {/* Yardımcı Buton - Daha yuvarlak yapıldı */}
-            <div className="fixed bottom-6 right-6 z-50">
+            {/* Yardımcı Buton - Kompakt boyut */}
+            <div className="fixed bottom-4 right-4  z-50">
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-xl transition transform hover:scale-105"
+                    className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-3 shadow-lg transition transform hover:scale-105 flex items-center justify-center"
                 >
-                    <span className="text-xl">🤖</span>
+                    <span className="text-lg">🤖</span>
                 </button>
             </div>
 
-            {/* Modal - Sağ tarafta açılacak ve yüksekliği uzatılmış */}
+            {/* Modal - Kompakt boyut */}
             {isOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-end">
-                    {/* Arkaplan overlay */}
+                <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-end px-4 pb-4">
+
+                {/* Arkaplan overlay */}
                     <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
 
-                    {/* Sağ tarafta açılan panel - Daha yuvarlatılmış kenarlar */}
+                    {/* Sağ tarafta açılan panel - Kompakt boyut */}
                     <div
-                        className="relative w-full max-w-md h-full flex flex-col bg-white shadow-2xl transition-all duration-300 animate-in fade-in overflow-hidden rounded-l-3xl"
+                        className="relative w-full sm:w-80 md:w-96 max-h-96 sm:max-h-[500px] flex flex-col bg-white shadow-2xl transition-all duration-300 animate-in fade-in overflow-hidden rounded-t-xl sm:rounded-xl"
                         style={{
-                            animation: "slideInFromRight 0.3s ease-out",
-                            height: "100vh" // Tam ekran yüksekliği
+                            animation: "slideInFromBottom 0.3s ease-out",
                         }}
                     >
-                        {/* Header - Daha yuvarlatılmış */}
-                        <div className="flex justify-between items-center p-4 border-b bg-blue-600 text-white rounded-bl-3xl">
+                        {/* Header - Kompakt */}
+                        <div className="flex justify-between items-center p-3 border-b bg-blue-600 text-white rounded-t-xl">
                             <div className="flex items-center gap-2">
-                                <span className="text-2xl">🤖</span>
+                                <span className="text-lg">🤖</span>
                                 <div>
-                                    <h3 className="font-medium">GÜZİDE Asistan</h3>
-                                    <p className="text-xs text-blue-100">7/24 hizmetinizdeyim</p>
+                                    <h3 className="font-medium text-sm">GÜZİDE Asistan</h3>
                                 </div>
                             </div>
-                            <button onClick={() => setIsOpen(false)} className="p-2 rounded-full hover:bg-blue-500 transition">
-                                <X className="w-5 h-5 text-white" />
+                            <button onClick={() => setIsOpen(false)} className="p-1 rounded-full hover:bg-blue-500 transition">
+                                <X className="w-4 h-4 text-white" />
                             </button>
                         </div>
 
-                        {/* Chat History - Uzatılmış yükseklik için flex-1 */}
-                        <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
+                        {/* Chat History - Kompakt boyut */}
+                        <div className="flex-1 p-3 overflow-y-auto bg-gray-50" style={{ maxHeight: "300px" }}>
                             {chatHistory.map((chat, index) => (
                                 <div
                                     key={index}
-                                    className={`mb-4 flex ${chat.role === "user" ? "justify-end" : "justify-start"}`}
+                                    className={`mb-2 flex ${chat.role === "user" ? "justify-end" : "justify-start"}`}
                                 >
                                     {chat.role === "assistant" && (
-                                        <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center mr-2 flex-shrink-0 shadow-md">
+                                        <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center mr-1 flex-shrink-0 shadow-md text-xs">
                                             🤖
                                         </div>
                                     )}
 
                                     <div
-                                        className={`max-w-xs px-4 py-2 rounded-2xl ${
+                                        className={`max-w-xs px-3 py-2 rounded-lg text-xs ${
                                             chat.role === "user"
                                                 ? "bg-blue-600 text-white rounded-tr-none shadow-md"
                                                 : "bg-white text-gray-800 border border-gray-200 rounded-tl-none shadow-sm"
@@ -210,7 +250,7 @@ const GUZIDE = () => {
                                     </div>
 
                                     {chat.role === "user" && (
-                                        <div className="w-8 h-8 rounded-full bg-gray-300 text-gray-700 flex items-center justify-center ml-2 flex-shrink-0 shadow-md">
+                                        <div className="w-6 h-6 rounded-full bg-gray-300 text-gray-700 flex items-center justify-center ml-1 flex-shrink-0 shadow-md text-xs">
                                             👤
                                         </div>
                                     )}
@@ -218,15 +258,15 @@ const GUZIDE = () => {
                             ))}
 
                             {isTyping && (
-                                <div className="flex justify-start mb-4">
-                                    <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center mr-2 flex-shrink-0 shadow-md">
+                                <div className="flex justify-start mb-2">
+                                    <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center mr-1 flex-shrink-0 shadow-md text-xs">
                                         🤖
                                     </div>
-                                    <div className="bg-white text-gray-800 border border-gray-200 px-4 py-2 rounded-2xl rounded-tl-none shadow-sm">
+                                    <div className="bg-black text-gray-800 border border-gray-200 px-3 py-2 rounded-lg rounded-tl-none shadow-sm">
                                         <div className="flex space-x-1">
-                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }}></div>
-                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "200ms" }}></div>
-                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "400ms" }}></div>
+                                            <div className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }}></div>
+                                            <div className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "200ms" }}></div>
+                                            <div className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "400ms" }}></div>
                                         </div>
                                     </div>
                                 </div>
@@ -235,9 +275,9 @@ const GUZIDE = () => {
                             <div ref={messagesEndRef} />
                         </div>
 
-                        {/* Quick Replies - Daha yuvarlatılmış */}
-                        <div className="p-3 border-t bg-gray-50 overflow-x-auto">
-                            <div className="flex gap-2">
+                        {/* Quick Replies - Kompakt boyut */}
+                        <div className="p-2 border-t bg-gray-50 overflow-x-auto">
+                            <div className="flex gap-1">
                                 {quickReplies.map((reply, index) => (
                                     <button
                                         key={index}
@@ -247,7 +287,7 @@ const GUZIDE = () => {
                                                 inputRef.current?.focus();
                                             }, 10);
                                         }}
-                                        className="whitespace-nowrap px-4 py-2 bg-white text-gray-600 text-sm border border-gray-200 rounded-full hover:bg-gray-100 transition shadow-sm"
+                                        className="whitespace-nowrap px-2 py-1 bg-white text-gray-600 text-xs border border-gray-200 rounded-full hover:bg-gray-100 transition shadow-sm"
                                     >
                                         {reply}
                                     </button>
@@ -255,16 +295,9 @@ const GUZIDE = () => {
                             </div>
                         </div>
 
-                        {/* Input Area - Daha yuvarlatılmış (form yerine div kullanıldı) */}
-                        <div className="p-4 border-t bg-white">
-                            <div className="flex gap-2 items-center">
-                                <button
-                                    type="button"
-                                    className="p-2 text-gray-500 hover:text-blue-500 transition rounded-full hover:bg-gray-100"
-                                >
-                                    <Paperclip className="w-5 h-5" />
-                                </button>
-
+                        {/* Input Area - Kompakt boyut */}
+                        <div className="p-2 border-t bg-white">
+                            <div className="flex items-center">
                                 <input
                                     ref={inputRef}
                                     type="text"
@@ -272,44 +305,57 @@ const GUZIDE = () => {
                                     onChange={(e) => setUserInput(e.target.value)}
                                     onKeyDown={handleKeyPress}
                                     placeholder="Mesajınızı yazın..."
-                                    className="flex-1 p-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="flex-1 p-2 text-xs border rounded-full focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 />
-
-                                <button
-                                    type="button"
-                                    className="p-2 text-gray-500 hover:text-blue-500 transition rounded-full hover:bg-gray-100"
-                                >
-                                    <Mic className="w-5 h-5" />
-                                </button>
-
                                 <button
                                     onClick={handleSendMessage}
                                     disabled={!userInput.trim()}
-                                    className="bg-blue-600 text-BLACK p-3 rounded-full disabled:opacity-50 hover:bg-blue-700 transition flex items-center justify-center"
+                                    className="bg-blue-600 text-black p-2 ml-1 rounded-full disabled:opacity-50 hover:bg-blue-700 transition flex items-center justify-center"
                                 >
-                                    <Send className="w-5 h-5" />
+                                    <Send className="w-4 h-4" />
                                 </button>
                             </div>
                         </div>
 
-                        {/* Footer - Daha yuvarlatılmış */}
-                        <div className="p-2 border-t bg-gray-50 text-center rounded-bl-3xl">
+                        {/* Footer - Kompakt boyut */}
+                        <div className="p-1 border-t bg-gray-50 text-center">
                             <p className="text-xs text-gray-500">
-                                GÜZİDE v1.0 | Powered by AI
+                                GÜZİDE v1.0 | Ücretsiz AI
                             </p>
                         </div>
                     </div>
                 </div>
             )}
 
-            {/* CSS Animation - Sağdan gelme efekti için */}
+            {/* CSS Animation - Aşağıdan yukarı gelme efekti için */}
             <style>{`
+                @keyframes slideInFromBottom {
+                    0% {
+                        transform: translateY(100%);
+                    }
+                    100% {
+                        transform: translateY(0);
+                    }
+                }
+                
                 @keyframes slideInFromRight {
                     0% {
                         transform: translateX(100%);
                     }
                     100% {
                         transform: translateX(0);
+                    }
+                }
+                
+                @media (min-width: 640px) {
+                    .slide-in-modal {
+                        animation: slideInFromRight 0.3s ease-out;
+                    }
+                }
+                
+                @media (max-width: 639px) {
+                    .slide-in-modal {
+                        animation: slideInFromBottom 0.3s ease-out;
                     }
                 }
             `}</style>
