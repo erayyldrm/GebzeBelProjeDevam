@@ -81,49 +81,55 @@ const KurumsalRaporlar = () => {
     const [activeTab, setActiveTab] = useState(documents[0].department);
 
     return (
-        <div className="mx-auto max-w-5xl px-4 py-6 bg-gray-50 shadow-lg min-h-screen text-center mt-3">
-            <h1 className="text-2xl md:text-3xl text-white font-bold bg-red-900 border-2 border-gray-300 inline-block px-3 py-2 md:px-4 md:py-3 mt-1 rounded-xl md:rounded-2xl">
-                KURUMSAL RAPORLAR
-            </h1>
+        <div className="bg-gray-50 min-h-screen py-6">
+            <div className="max-w-7xl mx-auto p-5 mt-[-40px]"> {/* mt-[-40px] olarak güncellendi */}
+                <div className="relative bg-white border border-gray-300 rounded-2xl shadow-xl p-6">
+                    <div className="w-full text-center">
+                        <h1 className="text-2xl md:text-3xl text-white font-bold bg-red-900 border-2 border-gray-300 inline-block px-3 py-2 md:px-4 md:py-3 mt-0 rounded-xl md:rounded-2xl">
+                            KURUMSAL RAPORLAR
+                        </h1>
 
-            {/* Improved Tab Navigation */}
-            <div className="flex flex-wrap justify-center mt-4">
-                {documents.map((category) => (
-                    <button
-                        key={category.department}
-                        onClick={() => setActiveTab(category.department)}
-                        className={`m-1 px-3 py-2 text-sm md:text-base font-semibold border-2 rounded-lg md:rounded-xl transition-all duration-200 ${
-                            activeTab === category.department
-                                ? "bg-blue-900 text-white border-blue-900"
-                                : "bg-white text-black border-gray-300 hover:bg-blue-50"
-                        }`}
-                        style={{ minWidth: "150px" }}
-                    >
-                        {category.department}
-                    </button>
-                ))}
-            </div><br/>
+                        {/* Tab Navigation Buttons */}
+                        <div className="flex flex-wrap justify-center mt-4">
+                            {documents.map((category) => (
+                                <button
+                                    key={category.department}
+                                    onClick={() => setActiveTab(category.department)}
+                                    className={`m-1 px-3 py-2 text-sm md:text-base font-semibold border-2 rounded-lg md:rounded-xl transition-all duration-200 ${
+                                        activeTab === category.department
+                                            ? "bg-blue-900 text-white border-blue-900"
+                                            : "bg-white text-black border-gray-300 hover:bg-blue-50"
+                                    }`}
+                                    style={{ minWidth: "150px" }}
+                                >
+                                    {category.department}
+                                </button>
+                            ))}
+                        </div><br/>
 
-            {/* Documents Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-8">
-                {documents
-                    .find((cat) => cat.department === activeTab)
-                    ?.docs.map((doc, i) => (
-                        <div
-                            key={i}
-                            className="bg-blue-50 p-4 rounded-lg hover:bg-blue-100 transition shadow-md flex flex-col items-center"
-                        >
-                            <FileText className="text-orange-500 mb-3" size={50} />
-                            <a
-                                href={doc.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-700 text-sm md:text-base font-medium text-center hover:text-blue-900 hover:underline"
-                            >
-                                {doc.name}
-                            </a>
+                        {/* Documents Grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+                            {documents
+                                .find((cat) => cat.department === activeTab)
+                                ?.docs.map((doc, index) => (
+                                    <div
+                                        key={index}
+                                        className="bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors duration-200 p-6 flex flex-col items-center text-center h-full"
+                                    >
+                                        <FileText className="text-orange-500 mb-2" size={60} />
+                                        <a
+                                            href={doc.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-blue-700 font-semibold hover:underline mt-2 text-sm md:text-base"
+                                        >
+                                            {doc.name}
+                                        </a>
+                                    </div>
+                                ))}
                         </div>
-                    ))}
+                    </div>
+                </div>
             </div>
         </div>
     );
