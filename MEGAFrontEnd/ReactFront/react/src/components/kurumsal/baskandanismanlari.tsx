@@ -1,6 +1,5 @@
-import React from 'react';
 
-const BaskanDanisamanlari: React.FC = () => {
+const BaskanDanisamanlari = () => {
     return (
         <div id="pcoded" className="pcoded bg-gray-100 shadow-inner min-h-screen">
             <div className="pcoded-container navbar-wrapper">
@@ -21,7 +20,7 @@ const BaskanDanisamanlari: React.FC = () => {
                                                      }}
                                                 >
                                                     <div className="flex justify-center">
-                                                        <h1 className="text-2xl font-bold text-center">BAŞKAN DANIŞMANLARI </h1>
+                                                        <h1 className="text-2xl font-bold text-center">BAŞKAN DANIŞMANLARI</h1>
                                                     </div>
                                                 </div>
 
@@ -44,15 +43,18 @@ const BaskanDanisamanlari: React.FC = () => {
                                                                     }].map((person, index) => (
                                                                     <li key={index}>
                                                                         <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
-                                                                            <div className="media flex flex-col sm:flex-row items-center sm:items-start">
-                                                                                <a className="media-left order-1 sm:order-none" href="#">
-                                                                                    <img
-                                                                                        className="rounded-lg w-full max-w-[270px] h-auto object-cover"
-                                                                                        src={`/images/kurumsal/baskandanismanlari/${person.img}`}
-                                                                                        alt={person.name}
-                                                                                    />
-                                                                                </a>
-                                                                                <div className="media-body sm:ml-4 mt-4 sm:mt-0 w-full order-2 sm:order-none">
+                                                                            <div className="media flex flex-col sm:flex-row">
+                                                                                {/* Image container with fixed dimensions */}
+                                                                                <div className="media-left flex justify-center sm:justify-start mb-6 sm:mb-0 sm:mr-4">
+                                                                                    <div className="w-64 h-64 flex-shrink-0">
+                                                                                        <img
+                                                                                            className="rounded-lg w-full h-full object-cover object-center"
+                                                                                            src={`/images/kurumsal/baskandanismanlari/${person.img}`}
+                                                                                            alt={person.name}
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div className="media-body w-full">
                                                                                     <div>
                                                                                         <h4 className="inline-block text-blue-900 text-xl font-bold">
                                                                                             {person.name}
@@ -70,18 +72,18 @@ const BaskanDanisamanlari: React.FC = () => {
                                                                                         <div className="contact-info mt-3">
                                                                                             <h6 className="text-black-900 font-semibold mb-2">İletişim Bilgileri</h6>
                                                                                             <p className="flex items-center text-gray-700 mb-2">
-                                                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-black-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                                                                                 </svg>
-                                                                                                <a href={`mailto:${person.email}`} className="hover:text-black-700 transition-colors">
+                                                                                                <a href={`mailto:${person.email}`} className="hover:text-blue-700 transition-colors">
                                                                                                     {person.email}
                                                                                                 </a>
                                                                                             </p>
                                                                                             <p className="flex items-center text-gray-700">
-                                                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-black-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                                                                                 </svg>
-                                                                                                <a href={`tel:${person.phone.replace(/\s/g, '')}`} className="hover:text-black-700 transition-colors">
+                                                                                                <a href={`tel:${person.phone.replace(/\s/g, '')}`} className="hover:text-blue-700 transition-colors">
                                                                                                     {person.phone}
                                                                                                 </a>
                                                                                             </p>
