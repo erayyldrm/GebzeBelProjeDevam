@@ -82,7 +82,7 @@ const KurumsalRaporlar = () => {
 
     return (
         <div className="bg-gray-50 min-h-screen py-6">
-            <div className="max-w-7xl mx-auto p-5 mt-[-40px]"> {/* mt-[-40px] olarak güncellendi */}
+            <div className="max-w-7xl mx-auto p-5 mt-[-60px]"> {/* mt-[-60px] olarak güncellendi */}
                 <div className="relative bg-white border border-gray-300 rounded-2xl shadow-xl p-6">
                     <div className="w-full text-center">
                         <h1 className="text-2xl md:text-3xl text-white font-bold bg-red-900 border-2 border-gray-300 inline-block px-3 py-2 md:px-4 md:py-3 mt-0 rounded-xl md:rounded-2xl">

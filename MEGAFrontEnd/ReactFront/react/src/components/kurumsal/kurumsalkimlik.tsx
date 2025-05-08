@@ -19,7 +19,7 @@ const Kimlik = () => {
                         <div className="pcoded-content">
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
-                                    <div className="page-wrapper">
+                                    <div className="page-wrapper" style={{ marginTop: '-20px' }}> {/* Üst marjin ayarlandı */}
                                         <div className="flex flex-col"> {/* Ana sarmalayıcı, gerekirse başka öğelerle dikey hizalama için */}
                                             {/* --- TÜM İÇERİĞİ KAPSAYAN TEK ANA KART --- */}
                                             <div className="flex-1 bg-white shadow-xl rounded-lg p-4 md:p-6">
