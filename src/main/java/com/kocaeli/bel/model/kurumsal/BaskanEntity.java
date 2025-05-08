@@ -21,6 +21,9 @@ public class BaskanEntity {
     @Column(name = "delta")
     private Integer delta;
 
+    @Column(name = "kategori")
+    private String kategori;
+
     // Getters and setters
     public Long getId() {
         return id;
@@ -60,5 +63,13 @@ public class BaskanEntity {
 
     public void setIcerik(String icerik) {
         this.icerik = icerik;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
     }
 }

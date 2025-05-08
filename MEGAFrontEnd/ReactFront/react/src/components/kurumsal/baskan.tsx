@@ -7,6 +7,7 @@ interface Baskan {
     imageUrl2: string; // Signature image
     icerik: string;    // Content field
     delta: number;     // Active status (1 = active, 0 = inactive)
+    kategori: string;  // Category (baskan, misyon, etc.)
 }
 
 const BaskanPage: React.FC = () => {
@@ -17,7 +18,7 @@ const BaskanPage: React.FC = () => {
     useEffect(() => {
         setIsLoading(true);
         console.log("Fetching active mayor data...");
-        // Fetch active mayor data instead of a specific ID
+        // Fetch active mayor data using the category endpoint
         fetch("http://localhost:8080/api/kurumsal/baskan/active")
             .then((response) => {
                 if (!response.ok) {
