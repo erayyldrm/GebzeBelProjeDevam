@@ -29,9 +29,8 @@ const MisyonPage: React.FC = () => {
         setIsLoading(true);
         console.log("Fetching active mission data...");
 
-        // Use the general category endpoint instead of a specific mission endpoint
-        // This is more likely to work if the backend isn't fully updated yet
-        fetch("http://localhost:8080/api/kurumsal/kategori/misyon")
+        // Use the active endpoint to get only active mission data
+        fetch("http://localhost:8080/api/kurumsal/misyon/active")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -44,19 +43,7 @@ const MisyonPage: React.FC = () => {
                 if (Array.isArray(data) && data.length > 0) {
                     setMisyon(data[0]);
                 } else {
-                    // Temporary fallback for testing - simulate mission data
-                    setMisyon({
-                        id: 1,
-                        resimUrl1: "/images/kurumsal/1.jpg",
-                        imageUrl2: "/images/kurumsal/gebze-belediyesi-logo-png_seeklogo-406755.png",
-                        icerik: `<p>Gebze Belediyesi olarak, kentimizin yaşam kalitesini artırmak, sürdürülebilir kalkınmayı sağlamak ve vatandaşlarımızın ihtiyaçlarına duyarlı, adil ve etkin hizmetler sunmak en büyük sorumluluklarımız arasındadır.</p>
-                        <p>Altyapı ve çevre düzenlemelerinden, sosyal hizmetlere, kültürel ve sanatsal faaliyetlerden, ekonomik kalkınmaya kadar geniş bir yelpazede hizmet sunarak, şehrimizin her alanında gelişimi destekliyoruz.</p>
-                        <p>Ulaşım altyapısını iyileştirmek, yeşil alanları artırmak, çevre temizliği ve atık yönetimi gibi konularda çalışmalar yürütürken, sosyal yardımlarla dezavantajlı gruplara destek sağlıyoruz.</p>
-                        <p>Eğitim, sağlık ve spor alanlarında projeler geliştirerek her yaştan vatandaşımıza yönelik hizmetler sunuyor, kültürel etkinliklerle şehrimizin tarihi ve sanatsal değerlerini yaşatıyoruz.</p>`,
-                        delta: 1,
-                        kategori: "misyon"
-                    });
-                    console.log("No data from API, using fallback data");
+                    setError("Aktif misyon bilgisi bulunamadı.");
                 }
                 setIsLoading(false);
             })

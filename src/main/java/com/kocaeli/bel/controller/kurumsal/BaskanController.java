@@ -33,6 +33,11 @@ public class BaskanController {
         return ResponseEntity.ok(baskanService.getActiveByKategori("vizyon"));
     }
 
+    @GetMapping("/ilkelerimiz/active")
+    public ResponseEntity<List<BaskanEntity>> getActiveIlkelerimiz() {
+        return ResponseEntity.ok(baskanService.getActiveByKategori("ilkelerimiz"));
+    }
+
     @GetMapping("/kategori/{kategori}")
     public ResponseEntity<List<BaskanEntity>> getActiveByKategori(@PathVariable String kategori) {
         return ResponseEntity.ok(baskanService.getActiveByKategori(kategori));

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-// Interface for the mission content based on BaskanEntity
+// Interface for the vision content based on BaskanEntity
 interface Vizyon {
     id: number;
     resimUrl1: string; // Main image
     imageUrl2: string; // Logo/signature image
     icerik: string;    // Content field
     delta: number;     // Active status (1 = active, 0 = inactive)
-    kategori: string;  // Category (baskan, misyon, etc.)
+    kategori: string;  // Category (baskan, misyon, vizyon, etc.)
 }
 
 const VizyonPage: React.FC = () => {
@@ -25,13 +25,12 @@ const VizyonPage: React.FC = () => {
 
         window.addEventListener('resize', handleResize);
 
-        // Fetch mission data from the API
+        // Fetch vision data from the API
         setIsLoading(true);
-        console.log("Fetching active visyon data...");
+        console.log("Fetching active vizyon data...");
 
-        // Use the general category endpoint instead of a specific mission endpoint
-        // This is more likely to work if the backend isn't fully updated yet
-        fetch("http://localhost:8080/api/kurumsal/kategori/vizyon")
+        // Use the active endpoint to get only active vision data
+        fetch("http://localhost:8080/api/kurumsal/vizyon/active")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -40,23 +39,11 @@ const VizyonPage: React.FC = () => {
             })
             .then((data) => {
                 console.log("Received vision data:", data); // Debug log
-                // The endpoint returns a list, so we need to take the first active mission
+                // The endpoint returns a list, so we need to take the first active vision
                 if (Array.isArray(data) && data.length > 0) {
                     setVizyon(data[0]);
                 } else {
-                    // Temporary fallback for testing - simulate mission data
-                    setVizyon({
-                        id: 1,
-                        resimUrl1: "/images/kurumsal/1.jpg",
-                        imageUrl2: "/images/kurumsal/gebze-belediyesi-logo-png_seeklogo-406755.png",
-                        icerik: `<p>Gebze Belediyesi olarak, kentimizin yaşam kalitesini artırmak, sürdürülebilir kalkınmayı sağlamak ve vatandaşlarımızın ihtiyaçlarına duyarlı, adil ve etkin hizmetler sunmak en büyük sorumluluklarımız arasındadır.</p>
-                        <p>Altyapı ve çevre düzenlemelerinden, sosyal hizmetlere, kültürel ve sanatsal faaliyetlerden, ekonomik kalkınmaya kadar geniş bir yelpazede hizmet sunarak, şehrimizin her alanında gelişimi destekliyoruz.</p>
-                        <p>Ulaşım altyapısını iyileştirmek, yeşil alanları artırmak, çevre temizliği ve atık yönetimi gibi konularda çalışmalar yürütürken, sosyal yardımlarla dezavantajlı gruplara destek sağlıyoruz.</p>
-                        <p>Eğitim, sağlık ve spor alanlarında projeler geliştirerek her yaştan vatandaşımıza yönelik hizmetler sunuyor, kültürel etkinliklerle şehrimizin tarihi ve sanatsal değerlerini yaşatıyoruz.</p>`,
-                        delta: 1,
-                        kategori: "vizyon"
-                    });
-                    console.log("No data from API, using fallback data");
+                    setError("Aktif vizyon bilgisi bulunamadı.");
                 }
                 setIsLoading(false);
             })
