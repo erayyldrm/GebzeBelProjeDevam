@@ -1,392 +1,335 @@
 const ManagementChart = () => {
     return (
-        <div id="pcoded" className="pcoded">
-            <div className="pcoded-container navbar-wrapper">
-                <div className="pcoded-main-container">
-                    <div className="pcoded-wrapper">
-                        <div className="pcoded-content">
-                            <div className="pcoded-inner-content">
-                                <div className="main-body">
-                                    <div className="page-wrapper">
-                                        <div className="flex flex-col lg:flex-row gap-4">
-                                            {/* Ana İçerik Alanı */}
-                                            <div className="flex-1 p-2 md:p-4">
-                                                {/* Centered Header */}
-                                                <div className="shadow p-3 md:p-4 bg-white rounded-xl text-center">
-                                                    <h1 className="text-xl md:text-3xl font-bold">YÖNETİM ŞEMASI</h1>
-                                                </div>
-                                                {/* Added spacing between header and content */}
-                                                <div className="my-4 md:my-6"></div>
-                                                {/* Main Content */}
-                                                <div className="shadow-lg rounded-lg">
-                                                    <div className="p-2 md:p-4">
-                                                        <div className="col-md-12">
-                                                            <ul className="space-y-3 md:space-y-4">
-                                                                {/* Başkan */}
-                                                                <li>
-                                                                    <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
-                                                                        <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
-                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
-                                                                                    <img
-                                                                                        className="absolute h-full w-full object-cover rounded-lg"
-                                                                                        src="/images/kurumsal/belediyemeclisi/zinnurbuyukgoz.jpg"
-                                                                                        alt="Zinnur BÜYÜKGÖZ"
-                                                                                    />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
-                                                                                <div>
-                                                                                    <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
-                                                                                        Zinnur BÜYÜKGÖZ
-                                                                                    </h4>
-                                                                                    <h6 className="text-gray-600">Başkan</h6>
-                                                                                    <hr className="my-2 border-t border-gray-300" />
-                                                                                </div>
+        <div className="min-h-screen bg-gray-100">
+            <div className="container mx-auto px-4 py-8">
+                {/* Page Header */}
+                <div className="bg-white rounded-xl shadow-md p-4 mb-6 text-center">
+                    <h1 className="text-2xl md:text-3xl font-bold text-blue-900">YÖNETİM ŞEMASI</h1>
+                </div>
 
-                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 rounded-lg shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Özel Kalem Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Dr. Yusuf ATASEVEN</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 rounded-lg shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Hukuk İşleri Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Av. Murat TUNCA</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 rounded-lg shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Teftiş Kurulu Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Kemal TETİK</span>
-                                                                                    </button>
-                                                                                </div>
+                {/* Management List */}
+                <div className="space-y-6">
+                    {/* President */}
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div className="p-4 md:p-6">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                {/* Image */}
+                                <div className="w-full md:w-48 lg:w-64 flex-shrink-0">
+                                    <div className="relative pb-[125%]">
+                                        <img
+                                            className="absolute h-full w-full object-cover rounded-lg"
+                                            src="/images/kurumsal/belediyemeclisi/zinnurbuyukgoz.jpg"
+                                            alt="Zinnur BÜYÜKGÖZ"
+                                        />
+                                    </div>
+                                </div>
 
+                                {/* Details */}
+                                <div className="flex-1">
+                                    <h2 className="text-xl md:text-2xl font-bold text-blue-900">Zinnur BÜYÜKGÖZ</h2>
+                                    <p className="text-gray-600">Başkan</p>
+                                    <hr className="my-3 border-gray-200" />
 
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
+                                    <h3 className="text-gray-600 font-semibold mb-3 text-center">İlgili Müdürlükler</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Özel Kalem Müdürlüğü</p>
+                                            <p className="text-sm">Dr. Yusuf ATASEVEN</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Hukuk İşleri Müdürlüğü</p>
+                                            <p className="text-sm">Av. Murat TUNCA</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Teftiş Kurulu Müdürlüğü</p>
+                                            <p className="text-sm">Kemal TETİK</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                                                {/* Başkan Yardımcıları */}
-                                                                {/* Dursun Ali ARSLAN */}
-                                                                <li>
-                                                                    <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
-                                                                        <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
-                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
-                                                                                    <img
-                                                                                        className="absolute h-full w-full object-cover rounded-lg"
-                                                                                        src="/images/yonetimsemasi/Dursun ali .jpg"
-                                                                                        alt="Dursun Ali ARSLAN"
-                                                                                    />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
-                                                                                <div>
-                                                                                    <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
-                                                                                        Dursun Ali ARSLAN
-                                                                                    </h4>
-                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
-                                                                                    <hr className="my-2 border-t border-gray-300" />
-                                                                                </div>
+                    {/* Vice Presidents */}
+                    {/* Dursun Ali ARSLAN */}
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div className="p-4 md:p-6">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                <div className="w-full md:w-48 lg:w-64 flex-shrink-0">
+                                    <div className="relative pb-[125%]">
+                                        <img
+                                            className="absolute h-full w-full object-cover rounded-lg"
+                                            src="/images/yonetimsemasi/Dursun ali .jpg"
+                                            alt="Dursun Ali ARSLAN"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex-1">
+                                    <h2 className="text-xl md:text-2xl font-bold text-blue-900">Dursun Ali ARSLAN</h2>
+                                    <p className="text-gray-600">Başkan Yardımcısı</p>
+                                    <hr className="my-3 border-gray-200" />
 
-                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Sosyal Destek Hizmetleri Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Mecit KESKİNOĞLU</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Zabıta Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Burhan KANDEMİR</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">İklim Değişikliği ve Sıfır Atık Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Senay ALTINTAŞ</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Temizlik İşleri Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Senay ALTINTAŞ</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
+                                    <h3 className="text-gray-600 font-semibold mb-3 text-center">İlgili Müdürlükler</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Sosyal Destek Hizmetleri Müdürlüğü</p>
+                                            <p className="text-sm">Mecit KESKİNOĞLU</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Zabıta Müdürlüğü</p>
+                                            <p className="text-sm">Burhan KANDEMİR</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">İklim Değişikliği ve Sıfır Atık Müdürlüğü</p>
+                                            <p className="text-sm">Senay ALTINTAŞ</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Temizlik İşleri Müdürlüğü</p>
+                                            <p className="text-sm">Senay ALTINTAŞ</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                                                {/* Other Vice Presidents */}
-                                                                {/* Follow the same pattern for other vice presidents */}
-                                                                {/* Ahmet Hüseyin ÇELEBİ */}
-                                                                <li>
-                                                                    <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
-                                                                        <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
-                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
-                                                                                    <img
-                                                                                        className="absolute h-full w-full object-cover rounded-lg"
-                                                                                        src="/images/yonetimsemasi/ahmet hüseyin.jpg"
-                                                                                        alt="Ahmet Hüseyin ÇELEBİ"
-                                                                                    />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
-                                                                                <div>
-                                                                                    <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
-                                                                                        Ahmet Hüseyin ÇELEBİ
-                                                                                    </h4>
-                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
-                                                                                    <hr className="my-2 border-t border-gray-300" />
-                                                                                </div>
+                    {/* Ahmet Hüseyin ÇELEBİ */}
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div className="p-4 md:p-6">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                <div className="w-full md:w-48 lg:w-64 flex-shrink-0">
+                                    <div className="relative pb-[125%]">
+                                        <img
+                                            className="absolute h-full w-full object-cover rounded-lg"
+                                            src="/images/yonetimsemasi/ahmet hüseyin.jpg"
+                                            alt="Ahmet Hüseyin ÇELEBİ"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex-1">
+                                    <h2 className="text-xl md:text-2xl font-bold text-blue-900">Ahmet Hüseyin ÇELEBİ</h2>
+                                    <p className="text-gray-600">Başkan Yardımcısı</p>
+                                    <hr className="my-3 border-gray-200" />
 
-                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Mali Hizmetler Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Bilgin ALTAY</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">İnsan Kaynakları ve Eğitim Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">İmran AYYILDIZ</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Ruhsat Denetim Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Erhan HORUZ</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Destek Hizmetleri Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Carullah Recai ER</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
+                                    <h3 className="text-gray-600 font-semibold mb-3 text-center">İlgili Müdürlükler</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Mali Hizmetler Müdürlüğü</p>
+                                            <p className="text-sm">Bilgin ALTAY</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">İnsan Kaynakları ve Eğitim Müdürlüğü</p>
+                                            <p className="text-sm">İmran AYYILDIZ</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Ruhsat Denetim Müdürlüğü</p>
+                                            <p className="text-sm">Erhan HORUZ</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Destek Hizmetleri Müdürlüğü</p>
+                                            <p className="text-sm">Carullah Recai ER</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                                                {/* Şerif Canpolat */}
-                                                                <li>
-                                                                    <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
-                                                                        <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
-                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
-                                                                                    <img
-                                                                                        className="absolute h-full w-full object-cover rounded-lg"
-                                                                                        src="/images/yonetimsemasi/şerif canpolat.jpg"
-                                                                                        alt="Şerif Canpolat"
-                                                                                    />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
-                                                                                <div>
-                                                                                    <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
-                                                                                        Şerif Canpolat
-                                                                                    </h4>
-                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
-                                                                                    <hr className="my-2 border-t border-gray-300" />
-                                                                                </div>
+                    {/* Şerif Canpolat */}
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div className="p-4 md:p-6">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                <div className="w-full md:w-48 lg:w-64 flex-shrink-0">
+                                    <div className="relative pb-[125%]">
+                                        <img
+                                            className="absolute h-full w-full object-cover rounded-lg"
+                                            src="/images/yonetimsemasi/şerif canpolat.jpg"
+                                            alt="Şerif Canpolat"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex-1">
+                                    <h2 className="text-xl md:text-2xl font-bold text-blue-900">Şerif Canpolat</h2>
+                                    <p className="text-gray-600">Başkan Yardımcısı</p>
+                                    <hr className="my-3 border-gray-200" />
 
-                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Fen İşleri Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Hafız ALTINTAŞ</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Park ve Bahçeler Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Tunacy TÜRETKEN</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Etüt ve Proje Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Ömer ŞAHİN</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
+                                    <h3 className="text-gray-600 font-semibold mb-3 text-center">İlgili Müdürlükler</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Fen İşleri Müdürlüğü</p>
+                                            <p className="text-sm">Hafız ALTINTAŞ</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Park ve Bahçeler Müdürlüğü</p>
+                                            <p className="text-sm">Tunacy TÜRETKEN</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Etüt ve Proje Müdürlüğü</p>
+                                            <p className="text-sm">Ömer ŞAHİN</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                                                {/* Muharrem BALTACIOGLU */}
-                                                                <li>
-                                                                    <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
-                                                                        <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
-                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
-                                                                                    <img
-                                                                                        className="absolute h-full w-full object-cover rounded-lg"
-                                                                                        src="/images/yonetimsemasi/muharrem baltacıoğlu.jpg"
-                                                                                        alt="Muharrem BALTACIOGLU"
-                                                                                    />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
-                                                                                <div>
-                                                                                    <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
-                                                                                        Muharrem BALTACIOGLU
-                                                                                    </h4>
-                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
-                                                                                    <hr className="my-2 border-t border-gray-300" />
-                                                                                </div>
+                    {/* Muharrem BALTACIOGLU */}
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div className="p-4 md:p-6">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                <div className="w-full md:w-48 lg:w-64 flex-shrink-0">
+                                    <div className="relative pb-[125%]">
+                                        <img
+                                            className="absolute h-full w-full object-cover rounded-lg"
+                                            src="/images/yonetimsemasi/muharrem baltacıoğlu.jpg"
+                                            alt="Muharrem BALTACIOGLU"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex-1">
+                                    <h2 className="text-xl md:text-2xl font-bold text-blue-900">Muharrem BALTACIOGLU</h2>
+                                    <p className="text-gray-600">Başkan Yardımcısı</p>
+                                    <hr className="my-3 border-gray-200" />
 
-                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Emlak ve İstimlak Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Şaban SARIAY</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Plan ve Proje Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Asker ÇOBAN</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Bilgi İşlem Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Tümay AKSAN</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">İmar ve Şehircilik Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Mücahit KOKSAL</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Yapı ve Kontrol Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Mücahit KOKSAL</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
+                                    <h3 className="text-gray-600 font-semibold mb-3 text-center">İlgili Müdürlükler</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Emlak ve İstimlak Müdürlüğü</p>
+                                            <p className="text-sm">Şaban SARIAY</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Plan ve Proje Müdürlüğü</p>
+                                            <p className="text-sm">Asker ÇOBAN</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Bilgi İşlem Müdürlüğü</p>
+                                            <p className="text-sm">Tümay AKSAN</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">İmar ve Şehircilik Müdürlüğü</p>
+                                            <p className="text-sm">Mücahit KOKSAL</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Yapı ve Kontrol Müdürlüğü</p>
+                                            <p className="text-sm">Mücahit KOKSAL</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                                                {/* Mahmut YANDIK */}
-                                                                <li>
-                                                                    <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
-                                                                        <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
-                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
-                                                                                    <img
-                                                                                        className="absolute h-full w-full object-cover rounded-lg"
-                                                                                        src="/images/yonetimsemasi/mahmut yandık.jpg"
-                                                                                        alt="Mahmut YANDIK"
-                                                                                    />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
-                                                                                <div>
-                                                                                    <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
-                                                                                        Mahmut YANDIK
-                                                                                    </h4>
-                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
-                                                                                    <hr className="my-2 border-t border-gray-300" />
-                                                                                </div>
+                    {/* Mahmut YANDIK */}
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div className="p-4 md:p-6">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                <div className="w-full md:w-48 lg:w-64 flex-shrink-0">
+                                    <div className="relative pb-[125%]">
+                                        <img
+                                            className="absolute h-full w-full object-cover rounded-lg"
+                                            src="/images/yonetimsemasi/mahmut yandık.jpg"
+                                            alt="Mahmut YANDIK"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex-1">
+                                    <h2 className="text-xl md:text-2xl font-bold text-blue-900">Mahmut YANDIK</h2>
+                                    <p className="text-gray-600">Başkan Yardımcısı</p>
+                                    <hr className="my-3 border-gray-200" />
 
-                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Mezarlıklar Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">İslam ÖZDAĞ</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">İşletme ve İştirakler Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Hacı KEY</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Makina İkmal, Bakım ve Onarım Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Dursun Ali Yayla</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
+                                    <h3 className="text-gray-600 font-semibold mb-3 text-center">İlgili Müdürlükler</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Mezarlıklar Müdürlüğü</p>
+                                            <p className="text-sm">İslam ÖZDAĞ</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">İşletme ve İştirakler Müdürlüğü</p>
+                                            <p className="text-sm">Hacı KEY</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Makina İkmal, Bakım ve Onarım Müdürlüğü</p>
+                                            <p className="text-sm">Dursun Ali Yayla</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                                                {/* Şener AKIN */}
-                                                                <li>
-                                                                    <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
-                                                                        <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
-                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
-                                                                                    <img
-                                                                                        className="absolute h-full w-full object-cover rounded-lg"
-                                                                                        src="/images/yonetimsemasi/şener akın.jpg"
-                                                                                        alt="Şener AKIN"
-                                                                                    />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
-                                                                                <div>
-                                                                                    <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
-                                                                                        Şener AKIN
-                                                                                    </h4>
-                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
-                                                                                    <hr className="my-2 border-t border-gray-300" />
-                                                                                </div>
+                    {/* Şener AKIN */}
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div className="p-4 md:p-6">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                <div className="w-full md:w-48 lg:w-64 flex-shrink-0">
+                                    <div className="relative pb-[125%]">
+                                        <img
+                                            className="absolute h-full w-full object-cover rounded-lg"
+                                            src="/images/yonetimsemasi/şener akın.jpg"
+                                            alt="Şener AKIN"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex-1">
+                                    <h2 className="text-xl md:text-2xl font-bold text-blue-900">Şener AKIN</h2>
+                                    <p className="text-gray-600">Başkan Yardımcısı</p>
+                                    <hr className="my-3 border-gray-200" />
 
-                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Veteriner İşleri Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Cevat ALTINTAŞ</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Afet İşleri Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Soner BİLİR</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Yazı İşleri Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Bahar ÖZALP</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
+                                    <h3 className="text-gray-600 font-semibold mb-3 text-center">İlgili Müdürlükler</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Veteriner İşleri Müdürlüğü</p>
+                                            <p className="text-sm">Cevat ALTINTAŞ</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Afet İşleri Müdürlüğü</p>
+                                            <p className="text-sm">Soner BİLİR</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Yazı İşleri Müdürlüğü</p>
+                                            <p className="text-sm">Bahar ÖZALP</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                                                {/* Mücahit BİRBEN */}
-                                                                <li>
-                                                                    <div className="bg-white rounded-lg shadow-md p-3 md:p-4">
-                                                                        <div className="flex flex-col sm:flex-row items-start gap-3">
-                                                                            <div className="flex-shrink-0 mx-auto sm:mx-0 w-full sm:w-auto">
-                                                                                <div className="relative pb-[125%] sm:pb-0 sm:h-40 md:h-64 sm:w-40 md:w-64">
-                                                                                    <img
-                                                                                        className="absolute h-full w-full object-cover rounded-lg"
-                                                                                        src="/images/yonetimsemasi/mücahit birben.jpg"
-                                                                                        alt="Mücahit BİRBEN"
-                                                                                    />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="sm:ml-4 w-full mt-3 sm:mt-0">
-                                                                                <div>
-                                                                                    <h4 className="inline-block text-blue-900 text-lg md:text-xl font-bold">
-                                                                                        Mücahit BİRBEN
-                                                                                    </h4>
-                                                                                    <h6 className="text-gray-600">Başkan Yardımcısı</h6>
-                                                                                    <hr className="my-2 border-t border-gray-300" />
-                                                                                </div>
+                    {/* Mücahit BİRBEN */}
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div className="p-4 md:p-6">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                <div className="w-full md:w-48 lg:w-64 flex-shrink-0">
+                                    <div className="relative pb-[125%]">
+                                        <img
+                                            className="absolute h-full w-full object-cover rounded-lg"
+                                            src="/images/yonetimsemasi/mücahit birben.jpg"
+                                            alt="Mücahit BİRBEN"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex-1">
+                                    <h2 className="text-xl md:text-2xl font-bold text-blue-900">Mücahit BİRBEN</h2>
+                                    <p className="text-gray-600">Başkan Yardımcısı</p>
+                                    <hr className="my-3 border-gray-200" />
 
-                                                                                <h6 className="text-gray-600 font-semibold mb-2 mt-2 md:mt-3 text-center">İlgili Müdürlükler</h6>
-                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Gençlik ve Spor Hizmetleri Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Burhannettin DEMİRCİ</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Basın Yayın ve Halkla İlişkiler Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Birsen VURDEM</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Kültür İşleri Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Hasan GÜLER</span>
-                                                                                    </button>
-                                                                                    <button className="bg-[#005599] hover:bg-blue-900 text-white font-medium py-2 px-2 rounded shadow transition-colors duration-300 h-full">
-                                                                                        <span className="block text-sm md:text-base">Kadın ve Aile Hizmetleri Müdürlüğü</span>
-                                                                                        <span className="text-xs md:text-sm font-normal">Zeynep YILDIRIM</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <h3 className="text-gray-600 font-semibold mb-3 text-center">İlgili Müdürlükler</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Gençlik ve Spor Hizmetleri Müdürlüğü</p>
+                                            <p className="text-sm">Burhannettin DEMİRCİ</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Basın Yayın ve Halkla İlişkiler Müdürlüğü</p>
+                                            <p className="text-sm">Birsen VURDEM</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Kültür İşleri Müdürlüğü</p>
+                                            <p className="text-sm">Hasan GÜLER</p>
+                                        </div>
+                                        <div className="bg-blue-800 hover:bg-blue-900 text-white p-3 rounded-lg shadow transition-colors">
+                                            <p className="font-medium">Kadın ve Aile Hizmetleri Müdürlüğü</p>
+                                            <p className="text-sm">Zeynep YILDIRIM</p>
                                         </div>
                                     </div>
                                 </div>

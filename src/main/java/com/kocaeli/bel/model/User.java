@@ -4,11 +4,8 @@ import jakarta.persistence.*;
 
 // User Entity (Updated)
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-@Setter
-@Getter
+
 @Data
 @Entity
 @Table(name = "KULLANICILAR")
@@ -21,10 +18,14 @@ public class User {
 
     @Column(name ="TCNO", unique = true)
     private String TCNo;
+    @Column(name="ISIM")
+    private String isim;
     @Column(name ="PASSWORD")
     private String password;
     @Column(name ="ROLE")
     private String role;
+    @Column(name="STATUS")
+    private String status;
 
     public User(String role, String TCNo, String password) {
         this.role = role;

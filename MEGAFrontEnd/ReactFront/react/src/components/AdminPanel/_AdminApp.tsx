@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Route, Routes, Navigate, Outlet, useNavigate} from "react-router-dom";
-import Users from "./Users.tsx";
+import Users from "./users/User2.tsx";
 import Dashboard from './HomePanel.tsx';
 import {SearchProvider} from './context/SearchContext.tsx';
 import {isAuthenticated, isAdmin, setupAuthListener} from './services/authService.tsx';
