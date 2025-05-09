@@ -112,13 +112,13 @@ const BaskanPage: React.FC = () => {
                                     <div className="page-wrapper">
                                         <div className="flex justify-center">
                                             {/* Reduced max width and added more padding */}
-                                            <div className="w-full max-w-4xl px-8 md:px-12">
+                                            <div className="w-full max-w-4xl px-4 md:px-8 mt-0">
                                                 {/* Content */}
                                                 <div className="my-4">
                                                     <div className="card bg-white shadow-lg rounded-lg">
                                                         <div className="p-4 md:p-6">
                                                             {/* Image */}
-                                                            <div className="mb-2"> {/* Added margin-bottom */}
+                                                            <div className="mb-2">
                                                                 <img
                                                                     src={baskan.resimUrl1}
                                                                     alt="Belediye Başkanı"
@@ -132,8 +132,8 @@ const BaskanPage: React.FC = () => {
                                                             <h3 className="mt-2 mb-3 text-center"><b>Zinnur BÜYÜKGÖZ</b></h3>
 
                                                             {/* Text */}
-                                                            <div className="text mb-10 md:mb-20 lg:mb-40">
-                                                                <div dangerouslySetInnerHTML={{ __html: baskan.icerik }} />
+                                                            <div className="text mb-10 md:mb-20 lg:mb-40 text-justify">
+                                                                <div dangerouslySetInnerHTML={{ __html: `<div style="font-weight: bold;">${baskan.icerik}</div>` }} />
                                                             </div>
 
                                                             {/* Signature */}
