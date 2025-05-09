@@ -72,10 +72,10 @@ const BaskanPage: React.FC = () => {
 
     // Loading state with shimmering effect
     if (isLoading) return (
-        <div className="w-full max-w-6xl mx-auto my-4 px-4">
+        <div className="w-full max-w-4xl mx-auto my-4 px-4">
             <div className="bg-white rounded shadow-lg overflow-hidden">
                 <div className="animate-pulse">
-                    <div className="h-64 bg-secondary w-full"></div>
+                    <div className="h-48 bg-secondary w-full"></div>
                     <div className="p-4">
                         <div className="h-6 bg-secondary rounded w-50 mx-auto mb-4"></div>
                         <div className="space-y-3">
@@ -94,7 +94,7 @@ const BaskanPage: React.FC = () => {
     // Empty data state
     if (!baskan) {
         return (
-            <div className="bg-warning border-left-4 border-warning text-dark p-4 rounded shadow-md max-w-6xl mx-auto my-4">
+            <div className="bg-warning border-left-4 border-warning text-dark p-4 rounded shadow-md max-w-4xl mx-auto my-4">
                 <p className="font-weight-bold">Uyarı</p>
                 <p>Aktif başkan bilgisi bulunamadı.</p>
             </div>
@@ -103,7 +103,6 @@ const BaskanPage: React.FC = () => {
 
     return (
         <div id="pcoded" className="pcoded">
-            <div className="pcoded-overlay-box"></div>
             <div className="pcoded-container navbar-wrapper bg-transparent">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
@@ -111,46 +110,49 @@ const BaskanPage: React.FC = () => {
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
                                     <div className="page-wrapper">
-                                        <div className="row justify-content-center align-items-center" style={{ minHeight: '70vh' }}>
-                                            {/* Main container */}
-                                            <div className="container-fluid px-0">
-                                                <div className="row gx-lg-4 justify-content-center">
-                                                    {/* Main Content */}
-                                                    <div className="col-lg-9 col-md-8">
-                                                        <div className="card" style={{ marginTop: '-20px' }}>
-                                                            <div className="card-block p-3 p-md-4">
+                                        <div className="flex justify-center">
+                                            {/* Reduced max width and added more padding */}
+                                            <div className="w-full max-w-4xl px-8 md:px-12">
+                                                {/* Content */}
+                                                <div className="my-4">
+                                                    <div className="card bg-white shadow-lg rounded-lg">
+                                                        <div className="p-4 md:p-6">
+                                                            {/* Image */}
+                                                            <div className="mb-2"> {/* Added margin-bottom */}
                                                                 <img
                                                                     src={baskan.resimUrl1}
                                                                     alt="Belediye Başkanı"
-                                                                    className="img-fluid rounded"
-                                                                    style={{ width: '100%', height: 'auto' }}
+                                                                    className="img-fluid rounded w-full h-auto object-cover"
                                                                     onError={(e) => {
                                                                         const target = e.target as HTMLImageElement;
                                                                         target.src = "/api/placeholder/800/400";
                                                                     }}
                                                                 />
-                                                                <h3 className="mt-4 mb-3 text-center"><b>Zinnur BÜYÜKGÖZ</b></h3><br />
-                                                                <div className="text-justify">
-                                                                    <div dangerouslySetInnerHTML={{ __html: baskan.icerik }} />
-                                                                </div>
-                                                                <div className="mt-4 d-flex justify-content-end">
-                                                                    <img
-                                                                        src={baskan.imageUrl2}
-                                                                        alt="imza"
-                                                                        className="img-fluid"
-                                                                        style={{ maxWidth: '200px', height: 'auto' }}
-                                                                        onError={(e) => {
-                                                                            const target = e.target as HTMLImageElement;
-                                                                            target.src = "/api/placeholder/200/100";
-                                                                        }}
-                                                                    />
-                                                                </div>
+                                                            </div>
+                                                            <h3 className="mt-2 mb-3 text-center"><b>Zinnur BÜYÜKGÖZ</b></h3>
+
+                                                            {/* Text */}
+                                                            <div className="text mb-10 md:mb-20 lg:mb-40">
+                                                                <div dangerouslySetInnerHTML={{ __html: baskan.icerik }} />
+                                                            </div>
+
+                                                            {/* Signature */}
+                                                            <div className="mt-4 flex justify-end">
+                                                                <img
+                                                                    src={baskan.imageUrl2}
+                                                                    alt="imza"
+                                                                    className="max-w-[180px] h-auto"
+                                                                    onError={(e) => {
+                                                                        const target = e.target as HTMLImageElement;
+                                                                        target.src = "/api/placeholder/200/100";
+                                                                    }}
+                                                                />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> {/* End of Row */}
                                     </div>
                                 </div>
                             </div>
