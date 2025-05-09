@@ -2,7 +2,7 @@ package com.kocaeli.bel.model.kurumsal;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "kurumsal_tablo_1")
+@Table(name = "kurumsal_baskan_misyon_vizyon_ilkelerimiz")
 public class BaskanEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

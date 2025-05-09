@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-// Interface for the mission content based on BaskanEntity
+// Interface for the vision content based on BaskanEntity
 interface Vizyon {
     id: number;
     resimUrl1: string; // Main image
     imageUrl2: string; // Logo/signature image
     icerik: string;    // Content field
     delta: number;     // Active status (1 = active, 0 = inactive)
-    kategori: string;  // Category (baskan, misyon, etc.)
+    kategori: string;  // Category (baskan, misyon, vizyon, etc.)
 }
 
 const VizyonPage: React.FC = () => {
@@ -25,13 +25,12 @@ const VizyonPage: React.FC = () => {
 
         window.addEventListener('resize', handleResize);
 
-        // Fetch mission data from the API
+        // Fetch vision data from the API
         setIsLoading(true);
-        console.log("Fetching active visyon data...");
+        console.log("Fetching active vizyon data...");
 
-        // Use the general category endpoint instead of a specific mission endpoint
-        // This is more likely to work if the backend isn't fully updated yet
-        fetch("http://localhost:8080/api/kurumsal/kategori/vizyon")
+        // Use the active endpoint to get only active vision data
+        fetch("http://localhost:8080/api/kurumsal/vizyon/active")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -40,23 +39,11 @@ const VizyonPage: React.FC = () => {
             })
             .then((data) => {
                 console.log("Received vision data:", data); // Debug log
-                // The endpoint returns a list, so we need to take the first active mission
+                // The endpoint returns a list, so we need to take the first active vision
                 if (Array.isArray(data) && data.length > 0) {
                     setVizyon(data[0]);
                 } else {
-                    // Temporary fallback for testing - simulate mission data
-                    setVizyon({
-                        id: 1,
-                        resimUrl1: "/images/kurumsal/1.jpg",
-                        imageUrl2: "/images/kurumsal/gebze-belediyesi-logo-png_seeklogo-406755.png",
-                        icerik: `<p>Gebze Belediyesi olarak, kentimizin yaşam kalitesini artırmak, sürdürülebilir kalkınmayı sağlamak ve vatandaşlarımızın ihtiyaçlarına duyarlı, adil ve etkin hizmetler sunmak en büyük sorumluluklarımız arasındadır.</p>
-                        <p>Altyapı ve çevre düzenlemelerinden, sosyal hizmetlere, kültürel ve sanatsal faaliyetlerden, ekonomik kalkınmaya kadar geniş bir yelpazede hizmet sunarak, şehrimizin her alanında gelişimi destekliyoruz.</p>
-                        <p>Ulaşım altyapısını iyileştirmek, yeşil alanları artırmak, çevre temizliği ve atık yönetimi gibi konularda çalışmalar yürütürken, sosyal yardımlarla dezavantajlı gruplara destek sağlıyoruz.</p>
-                        <p>Eğitim, sağlık ve spor alanlarında projeler geliştirerek her yaştan vatandaşımıza yönelik hizmetler sunuyor, kültürel etkinliklerle şehrimizin tarihi ve sanatsal değerlerini yaşatıyoruz.</p>`,
-                        delta: 1,
-                        kategori: "vizyon"
-                    });
-                    console.log("No data from API, using fallback data");
+                    setError("Aktif vizyon bilgisi bulunamadı.");
                 }
                 setIsLoading(false);
             })
@@ -130,46 +117,66 @@ const VizyonPage: React.FC = () => {
     }
 
     return (
-        // Outer container card that wraps everything
-        <div className="mt-3 mx-auto bg-white rounded-xl shadow-lg relative z-10 max-w-4xl px-4 md:px-5 py-6 md:py-8">
-            <div className="space-y-6">
-                {/* Image Card */}
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                    <img
-                        src={vizyon.resimUrl1}
-                        alt="Vizyon Görseli"
-                        className="w-full h-auto"
-                        onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = "/api/placeholder/800/400";
-                        }}
-                    />
-                </div>
+        <div id="pcoded" className="pcoded">
+            <div className="pcoded-container navbar-wrapper bg-transparent">
+                <div className="pcoded-main-container">
+                    <div className="pcoded-wrapper">
+                        <div className="pcoded-content">
+                            <div className="pcoded-inner-content">
+                                <div className="main-body">
+                                    <div className="page-wrapper">
+                                        <div className="flex justify-center">
+                                            {/* Reduced max width and added more padding */}
+                                            <div className="w-full max-w-4xl px-8 md:px-12">
+                                                {/* Header */}
+                                                <div className="shadow p-4 bg-white rounded-xl text-center mt-4">
+                                                    <h1 className="text-xl md:text-3xl font-bold">VİZYONUMUZ</h1>
+                                                </div>
 
-                {/* Text Content Card */}
-                <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 mt-4">
-                    <section className="py-1 md:py-6">
-                        <div className="w-full max-w-4xl mx-auto">
-                            <h3 className="mb-4 font-sans font-bold text-center tracking-wider">
-                                VİZYONUMUZ
-                            </h3>
+                                                {/* Content */}
+                                                <div className="my-4">
+                                                    <div className="card bg-white shadow-lg rounded-lg">
+                                                        <div className="p-4 md:p-6">
+                                                            {/* Image */}
+                                                            <div className="mb-4">
+                                                                <img
+                                                                    src={vizyon.resimUrl1}
+                                                                    alt="Vizyon Görseli"
+                                                                    className="img-fluid rounded w-full h-auto object-cover"
+                                                                    onError={(e) => {
+                                                                        const target = e.target as HTMLImageElement;
+                                                                        target.src = "/api/placeholder/800/400";
+                                                                    }}
+                                                                />
+                                                            </div>
 
-                            <div className="mb-5 md:mb-7 text-sm md:text-base text-justify">
-                                <div dangerouslySetInnerHTML={{ __html: vizyon.icerik }} />
-                            </div>
-                            <div className="mt-0 flex justify-end">
-                                <img
-                                    src={vizyon.imageUrl2}
-                                    alt="Logo"
-                                    className="max-w-[200px] h-auto"
-                                    onError={(e) => {
-                                        const target = e.target as HTMLImageElement;
-                                        target.src = "/api/placeholder/200/100";
-                                    }}
-                                />
+                                                            {/* Text */}
+                                                            <div className="text mb-10 md:mb-20 lg:mb-40">
+                                                                <div dangerouslySetInnerHTML={{ __html: vizyon.icerik }} />
+                                                            </div>
+
+                                                            {/* Logo */}
+                                                            <div className="mt-4 flex justify-end">
+                                                                <img
+                                                                    src={vizyon.imageUrl2}
+                                                                    alt="logo"
+                                                                    className="max-w-[180px] h-auto"
+                                                                    onError={(e) => {
+                                                                        const target = e.target as HTMLImageElement;
+                                                                        target.src = "/api/placeholder/200/100";
+                                                                    }}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> {/* End of Row */}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
             </div>
         </div>
