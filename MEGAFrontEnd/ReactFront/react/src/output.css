@@ -173,14 +173,14 @@
 .mt-\[-10px\] {
   margin-top: -10px;
 }
-.mt-\[-20px\] {
-  margin-top: -20px;
+.mt-\[-21px\] {
+  margin-top: -21px;
 }
 .mt-\[-30px\] {
   margin-top: -30px;
 }
-.mt-\[-40px\] {
-  margin-top: -40px;
+.mt-\[-60px\] {
+  margin-top: -60px;
 }
 .mt-\[0px\] {
   margin-top: 0px;
@@ -690,6 +690,9 @@
 }
 .text-wrap {
   text-wrap: wrap;
+}
+.break-words {
+  overflow-wrap: break-word;
 }
 .break-all {
   word-break: break-all;

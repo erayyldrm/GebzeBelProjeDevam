@@ -1,54 +1,49 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 
-const membershipData = [
-    {
-        logo: '/images/gebze/uyeoldugumuzbirlikler/1.jpg',
-        title: 'ANADOLU MEDENİYETLER BELEDİYELER BİRLİĞİ',
-        url: 'https://www.anadolubirlik.org.tr',
-    },
-    {
-        logo: '/images/gebze/uyeoldugumuzbirlikler/2.png',
-        title: 'BİRLEŞMİŞ KENTLER VE YEREL YÖNETİMLER',
-        url: 'https://www.uclg.org',
-    },
-    {
-        logo: '/images/gebze/uyeoldugumuzbirlikler/3.jpg',
-        title: 'GEBZE BELEDİYELER BİRLİĞİ',
-        url: 'https://www.gebzebelediyelerbirligi.org',
-    },
-    {
-        logo: '/images/gebze/uyeoldugumuzbirlikler/4.png',
-        title: 'MARMARA BELEDİYELER BİRLİĞİ',
-        url: 'https://www.marmara.gov.tr',
-    },
-    {
-        logo: '/images/gebze/uyeoldugumuzbirlikler/5.png',
-        title: 'TARİHİ KENTLER BİRLİĞİ',
-        url: 'https://www.tarihikentlerbirligi.org',
-    },
-    {
-        logo: '/images/gebze/uyeoldugumuzbirlikler/6.png',
-        title: 'TÜRK DÜNYASI BELEDİYELER BİRLİĞİ',
-        url: 'https://www.tdbb.org.tr',
-    },
-    {
-        logo: '/images/gebze/uyeoldugumuzbirlikler/7.png',
-        title: 'TÜRKİYE BELEDİYELER BİRLİĞİ',
-        url: 'https://www.tbb.gov.tr',
-    },
-    {
-        logo: '/images/gebze/uyeoldugumuzbirlikler/8.png',
-        title: 'TÜRKİYE SAĞLIKLI KENTLER BİRLİĞİ',
-        url: 'https://www.skb.gov.tr',
-    },
-    {
-        logo: '/images/gebze/uyeoldugumuzbirlikler/9.png',
-        title: 'AGRICITIES ULUSLARARASI TARIM ŞEHİRLERİ BİRLİĞİ',
-        url: 'https://www.agricities.org',
+const CorporateMembershipCard = () => {
+    const [membershipData, setMembershipData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchMembershipData = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/uye-oldugumuz-birlikler');
+
+                if (!response.ok) {
+                    throw new Error(`API yanıt hatası: ${response.status}`);
+                }
+
+                const data = await response.json();
+                setMembershipData(data);
+                setLoading(false);
+            } catch (err) {
+                console.error('Veri çekme hatası:', err);
+                const {message}: any = err;
+                setError(message);
+                setLoading(false);
+            }
+        };
+
+        fetchMembershipData();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="container mx-auto px-4 py-8 flex justify-center items-center">
+                <p className="text-lg">Yükleniyor...</p>
+            </div>
+        );
     }
-];
 
-const CorporateMembershipCard: React.FC = () => {
+    if (error) {
+        return (
+            <div className="container mx-auto px-4 py-8 flex justify-center items-center">
+                <p className="text-lg text-red-500">Hata: {error}</p>
+            </div>
+        );
+    }
+
     return (
         <div className="container mx-auto px-4 py-8 mt-4">
             {/* Başlık Kutusu */}
@@ -62,7 +57,7 @@ const CorporateMembershipCard: React.FC = () => {
 
             {/* Kartlar */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white p-6 rounded-b-2xl shadow-lg">
-                {membershipData.map((org, index) => (
+                {membershipData.map(({baslik, logo, title, url}, index) => (
                     <div
                         key={index}
                         className="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl flex flex-col"
@@ -71,20 +66,19 @@ const CorporateMembershipCard: React.FC = () => {
                             {/* Resim */}
                             <div className="mb-4 w-[200px] h-[200px] flex items-center justify-center">
                                 <img
-                                    src={org.logo}
-                                    alt={org.title}
+                                    src={logo}
+                                    alt={title}
                                     className="w-full h-full object-contain"
-                                    style={{ width: '200px', height: '200px' }}
                                 />
                             </div>
 
                             <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4 flex-grow">
-                                {org.title}
+                                {baslik}
                             </h3>
                         </div>
                         <div className="p-4">
                             <button
-                                onClick={() => window.open(org.url, "_blank")}
+                                onClick={() => window.open(url, "_blank")}
                                 className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
                             >
                                 Detaylı Bilgi
