@@ -239,7 +239,7 @@ const MUNICIPALITY_NEWS: MunicipalityNews[] = [
 // Duyurular
 const ANNOUNCEMENTS: MunicipalityNews[] = [
     {
-        img: `/api/placeholder/800/500`,
+        img: `./images/`,
         tag: "DUYURU",
         title: "Su Kesintisi Bilgilendirmesi",
         desc: "Şebeke bakım çalışmaları nedeniyle 10 Mayıs Cumartesi günü 09:00-15:00 saatleri arasında Merkez ve Yeni Mahalle'de su kesintisi yapılacaktır.",

@@ -1,6 +1,5 @@
 import React from 'react';
 import { MapPin } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 interface Location {
     id: number;
@@ -33,47 +32,57 @@ const VrGogglesIcon = () => (
 
 const VirtualTourGallery: React.FC = () => {
     return (
-        <div className="container mx-auto px-4 py-8"> <br/>
-            <div className="bg-blue-900 rounded-2xl p-2 flex justify-center items-center max-w-[466px] mx-auto">
+        <div className="container mx-auto px-2 sm:px-4 py-8 max-w-screen-2xl">
+            {/* Başlık üstüne bir satır boşluk */}
+            <div className="h-8"></div>
+
+            <div className="bg-blue-900 rounded-2xl p-2 flex justify-center items-center max-w-lg mx-auto mb-8">
                 <img
                     src="/images/gebze/360sanaltur/gebze-belediyesi-sanal-tur.png"
                     alt="Gebze Belediyesi"
                     className="h-24 object-contain"
                 />
             </div>
-            <br />
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+            {/* Başlık altına bir satır boşluk */}
+            <div className="h-8"></div>
+
+            {/* Adjusted to 3 columns with moderate spacing */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {locations.map((location) => (
-                    <motion.div
+                    <div
                         key={location.id}
-                        className="relative group cursor-pointer"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ type: "spring", stiffness: 300 }}
+                        className="relative group cursor-pointer overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl"
                     >
-                        <img
-                            src={location.imageUrl}
-                            alt={location.name}
-                            className="w-full h-60 md:h-64 object-cover rounded-lg"
-                        />
-                        <div className="absolute bottom-2 left-2 bg-black/60 text-white px-3 py-1 rounded-lg text-sm">
+                        {/* Standard 16:9 aspect ratio */}
+                        <div className="aspect-[16/9] w-full">
+                            <img
+                                src={location.imageUrl}
+                                alt={location.name}
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-2 rounded-lg text-sm md:text-base font-medium max-w-[90%]">
                             {location.name}
                         </div>
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 rounded-lg flex items-center justify-center">
-                            <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity flex space-x-4">
-                                <a href={location.tourUrl} target="_blank" rel="noopener noreferrer">
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
+                            <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity flex space-x-6 duration-300">
+                                <a href={location.tourUrl} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" title="Sanal Tur">
                                     <VrGogglesIcon />
                                 </a>
-                                <a href={location.mapUrl} target="_blank" rel="noopener noreferrer">
-                                    <MapPin size={32} className="cursor-pointer text-white hover:text-green-400" />
+                                <a href={location.mapUrl} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" title="Haritada Gör">
+                                    <MapPin size={36} className="text-white hover:text-green-400 transition-colors" />
                                 </a>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
                 ))}
-            </div><br/>
+            </div>
+
+            {/* Tüm resimlerin altına 2 satır boşluk */}
+            <div className="h-16"></div>
         </div>
     );
 };
 
 export default VirtualTourGallery;
-

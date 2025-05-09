@@ -1,6 +1,6 @@
-import React from 'react';
 
-const BaskanYardimcilari: React.FC = () => {
+
+const BaskanYardimcilari = () => {
     return (
         <div id="pcoded" className="pcoded bg-gray-100 shadow-inner min-h-screen">
             <div className="pcoded-container navbar-wrapper">
@@ -74,14 +74,16 @@ const BaskanYardimcilari: React.FC = () => {
                                                                     }].map((person, index) => (
                                                                     <li key={index}>
                                                                         <div className="card list-view-media bg-white rounded-lg shadow-md p-4">
-                                                                            <div className="media flex flex-col items-center sm:flex-row sm:items-start">
-                                                                                <a className="media-left mb-4 sm:mb-0 sm:mr-4" href="#">
-                                                                                    <img
-                                                                                        className="rounded-lg w-full max-w-[270px] h-auto object-cover"
-                                                                                        src={`/images/yonetimsemasi/${person.img}`}
-                                                                                        alt={person.name}
-                                                                                    />
-                                                                                </a>
+                                                                            <div className="media flex flex-col sm:flex-row">
+                                                                                <div className="media-left flex justify-center sm:justify-start mb-6 sm:mb-0 sm:mr-4">
+                                                                                    <div className="w-64 h-64 flex-shrink-0 overflow-hidden rounded-lg">
+                                                                                        <img
+                                                                                            className="w-full h-full object-cover object-center"
+                                                                                            src={`/images/yonetimsemasi/${person.img}`}
+                                                                                            alt={person.name}
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
                                                                                 <div className="media-body w-full">
                                                                                     <div>
                                                                                         <h4 className="inline-block text-blue-900 text-xl font-bold">

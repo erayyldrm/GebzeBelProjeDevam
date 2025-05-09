@@ -71,15 +71,16 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
             whileHover={{ scale: 1.02, y: -2 }}
             className="w-full md:w-2/5 sm:w-3/5 bg-white border border-orange-200 shadow-xl rounded-xl overflow-hidden transition-all relative flex flex-col md:flex-row min-h-[300px] p-4"
         >
-            {/* Sol: Resim */}
-            <div className="w-full md:w-1/3 h-[200px] md:h-auto">
-
-                <img
-                    src={center.image}
-                    alt={center.name}
-                    className="object-cover w-full h-full max-h-[270px] rounded-lg"
-                />
-
+            {/* Sol: Resim - Responsive düzeltme */}
+            <div className="w-full md:w-1/3 h-[200px] md:h-auto flex items-center justify-center">
+                <div className="relative w-full h-full">
+                    <img
+                        src={center.image}
+                        alt={center.name}
+                        className="absolute inset-0 w-full h-full object-cover rounded-lg"
+                        style={{ aspectRatio: "1/1" }}
+                    />
+                </div>
             </div>
 
             {/* Sağ: İçerik */}
@@ -94,17 +95,17 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
                     <br/>
                     <div className="space-y-2 text-sm">
                         <div className="flex items-start">
-                            <MapPin className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
+                            <MapPin className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
                             <p>{center.address}</p>
                         </div>
 
                         <div className="flex items-center">
-                            <Phone className="w-5 h-5 text-blue-600 mr-2" />
+                            <Phone className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0" />
                             <p>{center.phone}</p>
                         </div>
 
                         <div className="flex items-center">
-                            <Mail className="w-5 h-5 text-blue-600 mr-2" />
+                            <Mail className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0" />
                             <p>{center.mail}</p>
                         </div>
                     </div>
@@ -117,7 +118,7 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
                         rel="noopener noreferrer"
                         className="flex items-center justify-center px-3 py-2 bg-gradient-to-r from-sky-500 to-sky-700 text-blue-800 rounded-md hover:from-sky-600 hover:to-sky-800 transition-all shadow-md text-xs flex-1"
                     >
-                        <MapPin className="w-4 h-4 mr-2" />
+                        <MapPin className="w-4 h-4 mr-2 flex-shrink-0" />
                         Konum
                     </a>
 
@@ -131,12 +132,12 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyeMerkezleri[0] }) 
                     >
                         {showDetails ? (
                             <>
-                                <X className="w-4 h-4 mr-2" />
+                                <X className="w-4 h-4 mr-2 flex-shrink-0" />
                                 Gizle
                             </>
                         ) : (
                             <>
-                                <Info className="w-4 h-4 mr-2" />
+                                <Info className="w-4 h-4 mr-2 flex-shrink-0" />
                                 Detaylı Bilgi
                             </>
                         )}
@@ -164,7 +165,7 @@ export default function AtolyelerSayfasi() {
                                 className="bg-[#891737] p-4 rounded-xl shadow-xl mb-5"
                             >
                                 <div className="text-2xl font-semibold text-white text-center">
-                             ATÖLYELER
+                                    ATÖLYELER
                                 </div>
                             </motion.div>
 
@@ -176,7 +177,6 @@ export default function AtolyelerSayfasi() {
                             </div>
                         </div>
                     </section>
-
                 </div>
             </div>
         </div>
