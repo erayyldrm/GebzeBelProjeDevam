@@ -117,46 +117,66 @@ const VizyonPage: React.FC = () => {
     }
 
     return (
-        // Outer container card that wraps everything
-        <div className="mt-3 mx-auto bg-white rounded-xl shadow-lg relative z-10 max-w-4xl px-4 md:px-5 py-6 md:py-8">
-            <div className="space-y-6">
-                {/* Image Card */}
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                    <img
-                        src={vizyon.resimUrl1}
-                        alt="Vizyon Görseli"
-                        className="w-full h-auto"
-                        onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = "/api/placeholder/800/400";
-                        }}
-                    />
-                </div>
+        <div id="pcoded" className="pcoded">
+            <div className="pcoded-container navbar-wrapper bg-transparent">
+                <div className="pcoded-main-container">
+                    <div className="pcoded-wrapper">
+                        <div className="pcoded-content">
+                            <div className="pcoded-inner-content">
+                                <div className="main-body">
+                                    <div className="page-wrapper">
+                                        <div className="flex justify-center">
+                                            {/* Reduced max width and added more padding */}
+                                            <div className="w-full max-w-4xl px-8 md:px-12">
+                                                {/* Header */}
+                                                <div className="shadow p-4 bg-white rounded-xl text-center mt-4">
+                                                    <h1 className="text-xl md:text-3xl font-bold">VİZYONUMUZ</h1>
+                                                </div>
 
-                {/* Text Content Card */}
-                <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 mt-4">
-                    <section className="py-1 md:py-6">
-                        <div className="w-full max-w-4xl mx-auto">
-                            <h3 className="mb-4 font-sans font-bold text-center tracking-wider">
-                                VİZYONUMUZ
-                            </h3>
+                                                {/* Content */}
+                                                <div className="my-4">
+                                                    <div className="card bg-white shadow-lg rounded-lg">
+                                                        <div className="p-4 md:p-6">
+                                                            {/* Image */}
+                                                            <div className="mb-4">
+                                                                <img
+                                                                    src={vizyon.resimUrl1}
+                                                                    alt="Vizyon Görseli"
+                                                                    className="img-fluid rounded w-full h-auto object-cover"
+                                                                    onError={(e) => {
+                                                                        const target = e.target as HTMLImageElement;
+                                                                        target.src = "/api/placeholder/800/400";
+                                                                    }}
+                                                                />
+                                                            </div>
 
-                            <div className="mb-5 md:mb-7 text-sm md:text-base text-justify">
-                                <div dangerouslySetInnerHTML={{ __html: vizyon.icerik }} />
-                            </div>
-                            <div className="mt-0 flex justify-end">
-                                <img
-                                    src={vizyon.imageUrl2}
-                                    alt="Logo"
-                                    className="max-w-[200px] h-auto"
-                                    onError={(e) => {
-                                        const target = e.target as HTMLImageElement;
-                                        target.src = "/api/placeholder/200/100";
-                                    }}
-                                />
+                                                            {/* Text */}
+                                                            <div className="text mb-10 md:mb-20 lg:mb-40">
+                                                                <div dangerouslySetInnerHTML={{ __html: vizyon.icerik }} />
+                                                            </div>
+
+                                                            {/* Logo */}
+                                                            <div className="mt-4 flex justify-end">
+                                                                <img
+                                                                    src={vizyon.imageUrl2}
+                                                                    alt="logo"
+                                                                    className="max-w-[180px] h-auto"
+                                                                    onError={(e) => {
+                                                                        const target = e.target as HTMLImageElement;
+                                                                        target.src = "/api/placeholder/200/100";
+                                                                    }}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> {/* End of Row */}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
             </div>
         </div>
