@@ -1,38 +1,47 @@
 package com.kocaeli.bel.controller.gebze;
-
 import com.kocaeli.bel.DTO.gebze.KardesSehirlerDTO;
-import com.kocaeli.bel.service.gebze.KardesSehirelerService;
-import lombok.RequiredArgsConstructor;
+import com.kocaeli.bel.service.gebze.KardesSehirlerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/kardes-sehirler")
-@RequiredArgsConstructor
+@CrossOrigin(origins = "*") // Add this to allow cross-origin requests if needed
 public class KardesSehirlerController {
+    private final KardesSehirlerService service;
 
-    private final KardesSehirelerService kardesSehirelerService;
+    @Autowired
+    public KardesSehirlerController(KardesSehirlerService service) {
+        this.service = service;
+    }
 
-    /**
-     * Get all sister cities (merged and sorted by ID)
-     */
     @GetMapping
-    public ResponseEntity<List<KardesSehirlerDTO>> getAllSisterCitiesSortedById() {
-        List<KardesSehirlerDTO> allCities = kardesSehirelerService.getAllSisterCities();
+    public ResponseEntity<List<KardesSehirlerDTO>> getAllCities() {
+        return ResponseEntity.ok(service.getAllCities());
+    }
 
-        // Sadece ID'si 1-14 arasında olanları al, ID'ye göre sırala
-        List<KardesSehirlerDTO> filteredAndSorted = allCities.stream()
-                .filter(dto -> dto.getId() >= 1 && dto.getId() <= 14)
-                .sorted(Comparator.comparing(KardesSehirlerDTO::getId)) // <-- düzeltildi
-                .collect(Collectors.toList());
+    @GetMapping("/api/kardes-sehirler")
+    public ResponseEntity<List<KardesSehirlerDTO>> getDomesticCities() {
+        return ResponseEntity.ok(service.getDomesticCities());
+    }
 
-        return ResponseEntity.ok(filteredAndSorted);
+    @GetMapping("/api/kardes-sehirler")
+    public ResponseEntity<List<KardesSehirlerDTO>> getInternationalCities() {
+        return ResponseEntity.ok(service.getInternationalCities());
+    }
+
+    @PostMapping
+    public ResponseEntity<KardesSehirlerDTO> createCity(@RequestBody KardesSehirlerDTO cityDTO) {
+        return ResponseEntity.ok(service.createCity(cityDTO));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCity(@PathVariable Long id) {
+        service.deleteCity(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
