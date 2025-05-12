@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ImageSlider from "../Sliders2/SliderTest2.tsx";
-import { ChevronRight, ChevronLeft } from "lucide-react";
+import { ChevronRight, ChevronLeft, Clock } from "lucide-react";
+import React, { useEffect } from "react";
 
 type Event = {
     id: number;
@@ -8,6 +9,72 @@ type Event = {
     date: string;
     imageUrl: string;
     description: string;
+};
+
+interface NewsCardProps {
+    image: string;
+    category: string;
+    title: string;
+    author?: {
+        name: string;
+        image: string;
+    };
+    date?: string;
+}
+
+const NewsCard: React.FC<NewsCardProps> = ({
+                                               image,
+                                               category,
+                                               title,
+                                               author,
+                                               date,
+                                           }) => {
+    return (
+        <li className="mb-6 last:mb-0">
+            <div className="flex items-start">
+                <div className="relative w-1/5 mr-3">
+                    <div className="overflow-hidden rounded-lg">
+                        <a href="#" className="block">
+                            <img
+                                src={image}
+                                alt={title}
+                                className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
+                            />
+                        </a>
+                    </div>
+                </div>
+
+                <div className="w-4/5">
+                    <div className="mb-1">
+                        <a href="#" className="text-green-600 text-xs uppercase font-medium tracking-wider hover:text-green-800">
+                            {category}
+                        </a>
+                    </div>
+
+                    <h3 className="text-sm font-semibold leading-tight hover:text-blue-600">
+                        <a href="#">{title}</a>
+                    </h3>
+
+                    {author && date && (
+                        <ul className="flex flex-wrap items-center text-xs text-gray-500 mt-1">
+                            <li className="flex items-center mr-3 mb-1">
+                                <span className="mr-1">
+                                    <img src={author.image} alt={author.name} className="w-4 h-4 rounded-full" />
+                                </span>
+                                <a href="#" className="hover:text-blue-600 text-xs">by {author.name}</a>
+                            </li>
+                            <li className="flex items-center">
+                                <span className="mr-1">
+                                    <Clock size={12} />
+                                </span>
+                                <span className="text-xs">{date}</span>
+                            </li>
+                        </ul>
+                    )}
+                </div>
+            </div>
+        </li>
+    );
 };
 
 const events: Event[] = [
@@ -30,6 +97,120 @@ const events: Event[] = [
     { id: 17, title: "Masal Kapısı", date: "2025-03-28", imageUrl: "/images/etkinlikler/etkinlik17.jpg", description: "Yer: Kadıllı İlkokulu" },
     { id: 18, title: "Bayram Kesesi", date: "2025-03-28", imageUrl: "/images/etkinlikler/etkinlik18.jpg", description: "Yer: Arapçeşme Bilim Sanat Merkezi" }
 ];
+
+const CompactNewsGrid: React.FC = () => {
+    const sideCards = [
+        {
+            image: "/assets/images/post/2.jpg",
+            category: "NEWS",
+            title: "Central bank customers need about currency",
+        },
+        {
+            image: "/assets/images/post/3.jpg",
+            category: "HEALTH",
+            title: "Pandemic impact mental health global view",
+        },
+        {
+            image: "/assets/images/post/4.jpg",
+            category: "POLITICS",
+            title: "Drunk driving law by on country and arrest",
+        },
+        {
+            image: "/assets/images/post/5.jpg",
+            category: "TRAVEL",
+            title: "A step back in time and holidays for the ages",
+        },
+        {
+            image: "/assets/images/post/6.jpg",
+            category: "SPORTS",
+            title: "World ni beat kamaica to first men's world cup",
+        },
+        {
+            image: "/assets/images/post/7.jpg",
+            category: "NEWS",
+            title: "Thabna girls stage of protest demand",
+        },
+        {
+            image: "/assets/images/post/8.jpg",
+            category: "SPORTS",
+            title: "World swimming changes rules in wake",
+        },
+        {
+            image: "/assets/images/post/9.jpg",
+            category: "FOOD",
+            title: "A step back in time and holidays for",
+        },
+    ];
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % sideCards.length);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [sideCards.length]);
+
+    const featured = sideCards[currentIndex];
+
+    return (
+        <div className="bg-gray-100 py-8 px-4 md:px-12 lg:px-24">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-7xl w-full mx-auto">
+                <div className="p-6 md:p-10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {/* Left Column */}
+                        <div className="md:col-span-1">
+                            <ul>
+                                {sideCards.slice(0, 4).map((card, index) => (
+                                    <NewsCard key={index} {...card} />
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Middle Column - Slider */}
+                        <div className="md:col-span-1 mt-1 transition-all duration-500">
+                            <div className="mb-6">
+                                <div className="relative h-52 md:h-64 lg:h-83 overflow-hidden rounded-lg">
+                                    <a href="#" className="block h-full">
+                                        <img
+                                            src={featured.image}
+                                            alt={featured.title}
+                                            className="w-full h-full object-cover transition-all duration-500"
+                                        />
+                                    </a>
+                                    <a
+                                        href="#"
+                                        className="absolute bottom-3 left-3 px-3 py-1 text-xs font-medium text-white rounded-md bg-orange-500"
+                                    >
+                                        {featured.category}
+                                    </a>
+                                </div>
+
+                                <div className="mt-3">
+                                    <h2 className="text-sm md:text-base font-bold leading-tight mb-2">
+                                        {featured.title}
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Column */}
+                        <div className="md:col-span-1">
+                            <ul>
+                                {sideCards.slice(4, 8).map((card, index) => (
+                                    <NewsCard key={index + 4} {...card} />
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    );
+};
 
 const EventsSection: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -72,7 +253,14 @@ const EventsSection: React.FC = () => {
         <div className="container mx-auto py-10">
             <h2 className="text-3xl font-bold mb-6 text-center">Etkinlikler</h2>
 
+
+
+
+
             {/* Wider Card with #002850 background color */}
+
+
+
             <div className="w-full mx-auto mb-16">
                 <div style={{ backgroundColor: "#002850" }} className="p-4 md:p-8 rounded-xl shadow-xl relative">
                     {/* Custom Navigation Buttons (outside the slider) */}
@@ -125,6 +313,9 @@ const EventsSection: React.FC = () => {
                     </div>
                 ))}
             </div>
+
+            {/* News Section */}
+            <CompactNewsGrid />
         </div>
     );
 };

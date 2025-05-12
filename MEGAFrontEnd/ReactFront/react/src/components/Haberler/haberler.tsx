@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 
 // ============= TYPE DEFINITIONS =============
 interface Author {
@@ -93,27 +93,27 @@ const NewsListCard: React.FC<NewsCardProps> = ({
 };
 
 // Haber Kartı 3: Kompakt Kart
-const CompactNewsCard: React.FC<NewsCardProps> = ({
-                                                      img,
-                                                      tag,
-                                                      title,
-                                                      date,
-                                                  }) => {
-    return (
-        <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-            <img
-                src={img}
-                alt={title}
-                className="w-16 h-16 object-cover rounded-md"
-            />
-            <div>
-                <span className="text-xs font-medium text-green-600">{tag}</span>
-                <h4 className="text-sm font-semibold text-gray-800 line-clamp-2">{title}</h4>
-                <span className="text-xs text-gray-500">{date}</span>
-            </div>
-        </div>
-    );
-};
+//const CompactNewsCard: React.FC<NewsCardProps> = ({
+                                                      //img,
+                                                     // tag,
+                                                     // title,
+                                                     // date,
+                                                 // }) => {
+    //return (
+        //<div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+           // <img
+              // src={img}
+               //alt={title}
+               //className="w-16 h-16 object-cover rounded-md"
+            // />
+           // <div>
+                //<span className="text-xs font-medium text-green-600">{tag}</span>
+                //<h4 className="text-sm font-semibold text-gray-800 line-clamp-2">{title}</h4>
+                //<span className="text-xs text-gray-500">{date}</span>
+           // </div>
+        //</div>
+   // );
+// };
 
 // Haber Kartı 4: Blog Kartı
 const MunicipalityNewsCard: React.FC<NewsCardProps> = ({
