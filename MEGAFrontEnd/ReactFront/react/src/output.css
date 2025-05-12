@@ -430,6 +430,10 @@
   --tw-translate-y: calc(calc(1/2 * 100%) * -1);
   translate: var(--tw-translate-x) var(--tw-translate-y);
 }
+.translate-y-\[-60px\] {
+  --tw-translate-y: -60px;
+  translate: var(--tw-translate-x) var(--tw-translate-y);
+}
 .scale-90 {
   --tw-scale-x: 90%;
   --tw-scale-y: 90%;
