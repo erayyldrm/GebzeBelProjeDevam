@@ -8,11 +8,11 @@ const TarihiYerlerList: React.FC = () => {
         id: number;
         resimUrl: string;
         yerIsmi: string;
-        genelBilgi: string;
+        genelBilgi: string; // Bu bilgi de detay sayfasında gösterilebilir
         konum: string;
-        aktiviteler: string;
-        nasilGidilir: string;
-        galeri: string;
+        aktiviteler: string[]; // Aktiviteler için string dizisi
+        nasilGidilir: string; // Bu bilgi de detay sayfasında gösterilebilir
+        galeri: string[];     // Galeri resim URL'leri için string dizisi
     }
 
     const [tarihiYerler, setTarihiYerler] = useState<TarihiYerler[]>([]);
@@ -23,13 +23,26 @@ const TarihiYerlerList: React.FC = () => {
         const fetchTarihiYerler = async () => {
             try {
                 setLoading(true);
-                const data = await _TarihiYerlerService.getAllTarihiYerler();
-                setTarihiYerler(data);
-                console.log(data);
+                // Muhtemelen tüm tarihi yerleri getiren bir fonksiyon olmalı:
+                const dataFromApi = await _TarihiYerlerService.getAllTarihiYerler(); // Servis metodunuzu buna göre adlandırın/güncelleyin
+
+                // Eğer aktiviteler ve galeri JSON string ise parse edin
+                // Bu örnekte API'nin doğrudan string[] döndürdüğünü varsayıyoruz.
+                // Eğer değilse:
+                // const processedData = dataFromApi.map(item => ({
+                //     ...item,
+                //     aktiviteler: typeof item.aktiviteler === 'string' ? JSON.parse(item.aktiviteler) : item.aktiviteler,
+                //     galeri: typeof item.galeri === 'string' ? JSON.parse(item.galeri) : item.galeri,
+                // }));
+                // setTarihiYerler(processedData);
+
+                setTarihiYerler(dataFromApi);
                 setError(null);
             } catch (err) {
-                setError('Tarihi yerler yüklenirken bir hata oluştu.');
-                console.error(err);
+                setError('Tarihi yerler yüklenirken bir hata oluştu. Örnek veriler gösteriliyor.');
+                console.error("API'den veri çekme hatası:", err);
+                // Hata durumunda fallbackData kullanılacağı için tarihiYerler'i boş bırakabiliriz veya fallback'i set edebiliriz.
+                // Mevcut displayData mantığınız zaten bunu ele alıyor.
             } finally {
                 setLoading(false);
             }
@@ -38,21 +51,8 @@ const TarihiYerlerList: React.FC = () => {
         fetchTarihiYerler();
     }, []);
     // Create a function to generate the correct URL format based on the title
-    const getDetailPageUrl = (title: string): string => {
-        // Convert title to lowercase and remove special characters
-        const formattedTitle = title
-            .toLowerCase()
-            .replace(/ı/g, "i")
-            .replace(/ö/g, "o")
-            .replace(/ü/g, "u")
-            .replace(/ç/g, "c")
-            .replace(/ş/g, "s")
-            .replace(/ğ/g, "g")
-            .replace(/İ/g, "i")
-            .replace(/\s+/g, "")
-            .replace(/[^\w\s]/gi, "");
-
-        return `/gebze/tarihiyerler/${formattedTitle}`;
+    const getDetailPageUrl = (title: number): string => {
+        return `/gebze/tarihiyerler/${title}`;
     };
 
     // Fallback to static data if API fails or for development
@@ -118,7 +118,7 @@ const TarihiYerlerList: React.FC = () => {
                                         <h2 className="text-white text-base font-semibold truncate">&nbsp;&nbsp;{item.yerIsmi}</h2>
                                         <div className="flex space-x-2 mt-1">
                                             <a
-                                                href={getDetailPageUrl(item.yerIsmi)}
+                                                href={getDetailPageUrl(item.id)}
                                                 className="flex items-center text-white text-xs px-2 py-1 rounded-md hover:text-gray-200 transition-colors"
                                             >
                                                 <Info className="w-4 h-4 mr-1" />
