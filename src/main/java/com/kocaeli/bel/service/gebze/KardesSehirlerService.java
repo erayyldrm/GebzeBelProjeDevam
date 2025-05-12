@@ -25,13 +25,19 @@ public class KardesSehirlerService {
     }
 
     public List<KardesSehirlerDTO> getDomesticCities() {
-        return repository.findByLocation("Yurt İçi").stream()
+        // Veritabanında "Yurt Ici" formatında kaydedilmiş
+        List<KardesSehirlerEntity> domesticCities = repository.findByLocation("Yurt Ici");
+        
+        return domesticCities.stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
 
     public List<KardesSehirlerDTO> getInternationalCities() {
-        return repository.findByLocation("Yurt Dışı").stream()
+        // Veritabanında "Yurt Disi" formatında kaydedilmiş
+        List<KardesSehirlerEntity> internationalCities = repository.findByLocation("Yurt Disi");
+        
+        return internationalCities.stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
