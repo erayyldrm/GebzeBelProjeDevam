@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { MapPin, ChevronRight, ChevronLeft, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const AnibalinMezariPage = () => {
+const TarihiYerDetay = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
     const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -95,34 +95,6 @@ const AnibalinMezariPage = () => {
         }
     };
 
-    const prevSlide = () => {
-        if (!isAnimating) {
-            setIsAnimating(true);
-            setCurrentIndex(prev => {
-                if (prev > 0) {
-                    return prev - 1;
-                } else {
-                    return Math.max(0, otherPlaces.length - 4);
-                }
-            });
-            setTimeout(() => setIsAnimating(false), 500);
-        }
-    };
-
-    // Görüntülenecek kartlar
-    const visiblePlaces = () => {
-        const places = [];
-        for (let i = 0; i < 4; i++) {
-            if (currentIndex + i < otherPlaces.length) {
-                places.push(otherPlaces[currentIndex + i]);
-            }
-        }
-        return places;
-    };
-
-    // Sayfa numarası hesaplama
-    const totalPages = Math.ceil(otherPlaces.length / 4);
-    const currentPage = Math.floor(currentIndex / 4) + 1;
 
     return (
         <div className="max-w-[95%] w-full mx-auto min-h-screen bg-gray-50">
@@ -303,4 +275,4 @@ const AnibalinMezariPage = () => {
     );
 };
 
-export default AnibalinMezariPage;
+export default TarihiYerDetay;

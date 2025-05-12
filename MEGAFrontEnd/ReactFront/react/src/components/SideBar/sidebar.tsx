@@ -85,8 +85,8 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
                                     to={item.path || "#"}
                                     className={`flex items-center ${collapsed ? 'justify-center' : ''} py-3 transition-all duration-200 
                                     ${isActive
-                                        ? " text-[#faa61a] *:text-[#faa61a] font-semibold bg-blue-700"
-                                        : "text-white hover:bg-blue-600"}`}
+                                        ? " text-[#faa61a] *:text-[#faa61a] font-semibold bg-blue-700 hover:no-underline"
+                                        : "text-white hover:bg-blue-600 hover:no-underline"}`}
                                 >
                                     {!collapsed && (
                                         <div className="flex items-center w-full pl-6">

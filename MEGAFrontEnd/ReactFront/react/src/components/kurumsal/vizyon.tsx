@@ -127,7 +127,7 @@ const VizyonPage: React.FC = () => {
                                     <div className="page-wrapper">
                                         <div className="flex justify-center">
                                             {/* Reduced max width and added more padding */}
-                                            <div className="w-full max-w-4xl px-8 md:px-12">
+                                            <div className="w-full max-w-4xl px-6 md:px-10">
                                                 {/* Header */}
                                                 <div className="shadow p-4 bg-white rounded-xl text-center mt-4">
                                                     <h1 className="text-xl md:text-3xl font-bold">VİZYONUMUZ</h1>
@@ -151,7 +151,7 @@ const VizyonPage: React.FC = () => {
                                                             </div>
 
                                                             {/* Text */}
-                                                            <div className="text mb-10 md:mb-20 lg:mb-40">
+                                                            <div className="text-justify mb-10 md:mb-20 lg:mb-40">
                                                                 <div dangerouslySetInnerHTML={{ __html: vizyon.icerik }} />
                                                             </div>
 

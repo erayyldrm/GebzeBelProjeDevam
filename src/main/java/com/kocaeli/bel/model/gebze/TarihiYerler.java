@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity // Bu sınıfın bir JPA entity (veritabanı tablosu ile ilişkili) olduğunu belirtir
-@Table(name = "TARİHİ_YERLER") // Entity'nin veritabanındaki karşılık geldiği tablo adı
+@Table(name = "GEBZE_TARİHİ_YERLER") // Entity'nin veritabanındaki karşılık geldiği tablo adı
 @Data // Lombok anotasyonu: Getter, Setter, toString, equals, hashCode metotlarını otomatik oluşturur
 @NoArgsConstructor // Parametresiz constructor
 @AllArgsConstructor // Tüm alanları içeren constructor
