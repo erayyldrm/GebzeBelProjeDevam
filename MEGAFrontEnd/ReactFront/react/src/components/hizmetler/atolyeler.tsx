@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone, Info, X } from 'lucide-react';
 import { useNavigate, Link } from "react-router-dom";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const atolyelermerkezi = [
     {
@@ -156,7 +156,7 @@ export default function Atolyelersayfasi() {
                                 className="bg-blue-500 p-4 rounded-xl shadow-xl mb-5"
                             >
                                 <div className="text-2xl font-semibold text-white text-center">
-                                    BEBEK VE ÇOCUK BAKIM EVİ
+                               ATÖLYELER
                                 </div>
                             </motion.div>
 

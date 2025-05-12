@@ -1,8 +1,7 @@
 
-
-import React, { useState } from "react";
 import { motion } from "framer-motion";
-import {MapPin, Phone, Clock, ChevronDown, ChevronUp, Mail} from "lucide-react";
+import {MapPin, Phone, Mail} from "lucide-react";
+import React from "react";
 
 interface ServiceDetailProps {
     title: string;
@@ -14,54 +13,41 @@ interface ServiceDetailProps {
     announcements: string[];
 }
 
-const workshopData = [];
-
 const Tercih: React.FC<ServiceDetailProps> = ({
                                                   title = "DOĞRU TERCİH HAZIR KURSLAR",
-                                                  description = "https://sende.gebze.bel.tr/egitimler?categories[0]=33",
-                                                  imageUrl = "/images/hizmetler/bebekbakım/bebekbakim.jpg",
                                                   address = "",
                                                   phone = "",
-                                                  workingHours = "",
                                               }) => {
-    const [openIndexes, setOpenIndexes] = useState<number[]>([]);
-
-    const toggleIndex = (index: number) => {
-        setOpenIndexes((prev) =>
-            prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-        );
-    };
-
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen flex flex-col items-center px-4 py-10 space-y-8"
+            className="min-h-screen flex flex-col items-center px-4 py-10 space-y-8 mt-[-30px]"  // mt-[-20px] ekledim
         >
             {/* Ana Kart */}
             <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[950px] p-6 space-y-6">
-
-                <div className="bg-[#891737] rounded-xl shadow-lg w-full py-6 px-8 mb-4">
+                {/* Başlık Kartı */}
+                <div className="bg-blue-500 rounded-xl shadow-lg w-full py-6 px-8 mb-4">
                     <div className="text-2xl md:text-3xl font-semibold text-white text-center">{title}</div>
                 </div>
 
                 {/* Başlık + Resim Kartı */}
-                <div className="relative flex justify-center w-full mb-6">
-                    <div className="w-full sm:w-[650px] md:w-[750px] h-[450px] rounded-xl overflow-hidden">
-                        {/* Resim kartı tamamen kaplasın */}
+                <div className="relative flex justify-center w-full mb-2">
+                    <div className="w-full max-w-[850px] rounded-xl overflow-hidden">
                         <img
                             src="/images/hizmetler/egitimler/hazırkurslar.jpg"
                             alt={title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-auto max-h-[440px] object-cover"
                         />
                     </div>
                 </div>
+                <br/>
 
                 {/* Verilen Hizmetler ve İletişim Bilgileri Kartı */}
-                <div className="flex flex-col md:flex-row gap-8">
+                <div className="flex flex-col gap-4">
                     {/* Verilen Hizmetler */}
-                    <section className="flex-1 text-justify space-y-4">
+                    <section className="text-justify space-y-4">
                         <h3 className="text-lg font-semibold text-blue-700">Verilen Hizmetler</h3>
                         <p className="text-gray-700 text-sm leading-relaxed">
                             Lise ve üniversite mezunu olan gençlerimize Doğru Tercih projemiz bünyesinde uzman antrenörler eşliğinde, doğru antrenmanlar programları, rehberlik hizmetleri ve nizami parkur eğitimleri ile istedikleri hedefe ulaşmaları yolunda destek olmaktayız.
@@ -89,7 +75,7 @@ const Tercih: React.FC<ServiceDetailProps> = ({
                     <div className="hidden md:flex w-px bg-gray-300" />
 
                     {/* İletişim Bilgileri */}
-                    <div className="md:w-1/3 max-w-sm w-full">
+                    <div className="w-full">
                         <div className="bg-blue-50 rounded-lg p-6 shadow-sm">
                             <h3 className="text-xl font-semibold text-blue-800 mb-4">
                                 İletişim Bilgileri

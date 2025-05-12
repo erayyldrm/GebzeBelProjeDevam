@@ -1,4 +1,4 @@
-import { useState } from "react";
+import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const wasteTypes = [
@@ -77,10 +77,10 @@ const wasteTypes = [
 ];
 
 const GeriDonusumPage = () => {
-    const [activeButtons, setActiveButtons] = useState({});
+    const [activeButtons, setActiveButtons] = useState<Record<number, string>>({});
     const navigate = useNavigate();
 
-    const handleActionClick = (cardIndex, buttonType, detailPage, mapLink) => {
+    const handleActionClick = (cardIndex: number, buttonType: string, detailPage: string, mapLink: string) => {
         setActiveButtons({ [cardIndex]: buttonType });
 
         if (buttonType === "detayli") {
@@ -93,38 +93,38 @@ const GeriDonusumPage = () => {
     return (
         <div className="min-h-screen bg-green-50 text-gray-800 font-sans mt-3" style={{
             margin: '0 auto',
-            maxWidth: '100%',
-            paddingLeft: 'clamp(10px, 5%, 40px)',
-            paddingRight: 'clamp(10px, 5%, 20px)',
+            maxWidth: 'calc(100% - 120px)',
+            paddingLeft: '40px',
+            paddingRight: '20px',
         }}>
-            <header className="bg-green-100 px-4 sm:px-6 py-6 sm:py-10 rounded-b-2xl shadow-inner">
-                <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-6">
-                    <div className="text-5xl sm:text-6xl md:text-7xl">♻️</div>
-                    <div className="text-center sm:text-left">
-                        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-green-900 mb-2">
+            <header className="bg-green-100 px-6 py-10 rounded-b-2xl shadow-inner">
+                <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <div className="text-6xl sm:text-7xl">♻️</div>
+                    <div>
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-900 mb-2">
                             Geri Dönüşüm Noktaları
                         </h1>
-                        <div className="bg-white border-l-4 border-green-600 p-3 sm:p-4 rounded shadow text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 max-w-2xl">
+                        <div className="bg-white border-l-4 border-green-600 p-4 rounded shadow text-sm sm:text-base md:text-lg text-gray-700 max-w-2xl">
                             Atıkların doğru yere atılması, temiz bir gelecek için atılmış büyük bir adımdır. Buradan hangi atığı nereye bırakabileceğinizi öğrenebilirsiniz.
                         </div>
                     </div>
                 </div>
             </header>
 
-            <div className="py-6 sm:py-10 max-w-7xl mx-auto px-2 sm:px-4">
-                <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="py-10 max-w-7xl mx-auto">
+                <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {wasteTypes.map((item, index) => (
-                        <div key={index} className="bg-white rounded-2xl shadow p-3 sm:p-4 hover:shadow-lg transition flex flex-col justify-between h-full">
+                        <div key={index} className="bg-white rounded-2xl shadow p-4 hover:shadow-lg transition flex flex-col justify-between h-full">
                             <img
                                 src={item.image}
                                 alt={item.title}
-                                className="w-full h-24 sm:h-32 object-cover object-center rounded-xl mb-3 sm:mb-4"
+                                className="w-full h-32 object-cover object-center rounded-xl mb-4"
                             />
                             <div className="flex-1">
-                                <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-1 sm:mb-2 truncate">
+                                <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">
                                     {item.icon} {item.title}
                                 </h2>
-                                <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4">{item.description}</p>
+                                <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-4">{item.description}</p>
                             </div>
                             <div className="grid grid-cols-2 gap-2">
                                 <button
@@ -134,7 +134,7 @@ const GeriDonusumPage = () => {
                                             ? { backgroundColor: "#022842", color: "#FFFFFF" }
                                             : { backgroundColor: "#FFFFFF", color: "#000000" }
                                     }
-                                    className="px-2 sm:px-4 py-2 border border-green-600 rounded hover:bg-gray-200 transition text-xs sm:text-sm flex items-center justify-center"
+                                    className="px-4 py-2 border border-green-600 rounded hover:bg-gray-200 transition text-xs sm:text-sm flex items-center justify-center"
                                 >
                                     <span>ℹ️ Hakkında</span>
                                 </button>
@@ -145,15 +145,13 @@ const GeriDonusumPage = () => {
                                             ? { backgroundColor: "#022842", color: "#FFFFFF" }
                                             : { backgroundColor: "#FFFFFF", color: "#000000" }
                                     }
-                                    className="px-2 sm:px-4 py-2 border border-green-600 rounded hover:bg-gray-200 transition text-xs sm:text-sm flex items-center justify-center"
+                                    className="px-4 py-2 border border-green-600 rounded hover:bg-gray-200 transition text-xs sm:text-sm flex items-center justify-center"
                                 >
                                     <span>🚩 Konum</span>
                                 </button>
                             </div>
-                            <div className="text-xs text-gray-500 border-t pt-2 text-center mt-3 sm:mt-4">
-                                <span className="block sm:inline">📞 0262 642 10 10</span>
-                                <span className="hidden sm:inline">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
-                                <span className="block sm:inline">📩 sifiratik@gebze.bel.tr</span>
+                            <div className="text-xs text-gray-500 border-t pt-2 text-center mt-4">
+                                📞  0262 642 10 10&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;📩 sifiratik@gebze.bel.tr
                             </div>
                         </div>
                     ))}

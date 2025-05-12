@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import {MapPin, Phone, Info, X, Mail} from 'lucide-react';
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -34,7 +34,7 @@ const egitimlermerkezi = [
         name: "Fıtness",
         phone: "0262 641 24 92",
         address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze/KOCAELİ",
-        image: "/images/hizmetler/egitimler/fıtness.jpg",
+        image: "/images/hizmetler/egitimler/fıtnes.png",
         mapLink: "https://www.google.com/maps/place/Eray+%C5%9Eamdan+Spor+Salonu/@40.8090748,29.3786323,18z/data=!4m6!3m5!1s0x14cadf018db0cbf7:0x98b7941fd4f10fb3!8m2!3d40.8091904!4d29.3782963!16s%2Fg%2F11sw47tbj0?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D",
         details: "Gençlerin yetenek ve becerilerini geliştirmek için özel programlar ve etkinlikler düzenliyoruz.",
         detailPage: "/hizmetler/egitimler/fitness"

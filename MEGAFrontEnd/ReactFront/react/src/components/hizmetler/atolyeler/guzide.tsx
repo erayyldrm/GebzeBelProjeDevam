@@ -33,11 +33,11 @@ const Sportif: React.FC<ServiceDetailProps> = ({
 
                 {/* Başlık + Resim Kartı */}
                 <div className="relative flex justify-center w-full mb-2">
-                    <div className="w-full max-w-[850px] h-[440px]  rounded-xl overflow-hidden">
+                    <div className="w-full max-w-[850px] rounded-xl overflow-hidden">
                         <img
                             src="/images/hizmetler/atölyeler/güzide.jpg"
                             alt={title}
-                            className="w-full h-64 md:h-96 object-cover"
+                            className="w-full h-auto max-h-[440px] object-cover"
                         />
                     </div>
                 </div>

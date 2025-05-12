@@ -28,9 +28,9 @@ const danismanlar: Danisman[] = [
 
 const BaskanDanismanlari: React.FC = () => {
     return (
-        <div className="bg-gray-100 shadow-inner min-h-screen p-4">
+        <div className="bg-gray-100 shadow-inner min-h-screen p-10">
             <div className="max-w-6xl mx-auto">
-                <div className="bg-white rounded-xl shadow-md text-center py-6 mb-6">
+                <div className="bg-white rounded-xl shadow-md text-center py-4 mb-4">
                     <h1 className="text-2xl font-bold text-blue-900">BAŞKAN DANIŞMANLARI</h1>
                 </div>
 

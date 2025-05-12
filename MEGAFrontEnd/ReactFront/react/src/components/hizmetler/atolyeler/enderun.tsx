@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {MapPin, Phone, Clock, Mail} from "lucide-react";
+import {MapPin, Phone} from "lucide-react";
 
 interface ServiceDetailProps {
     title: string;
@@ -13,64 +13,62 @@ interface ServiceDetailProps {
 }
 
 const Enderunokulları: React.FC<ServiceDetailProps> = ({
-                                                   title = "ENDERUN ÇOCUK ATÖLYELERİ",
-                                                   description = "",
-                                                   imageUrl = "/images/hizmetler/at.jpg",
-                                                   address = "",
-                                                   phone = "",
-                                                   workingHours = "",
-                                               }) => {
+                                                           title = "ENDERUN ÇOCUK ATÖLYELERİ",
+                                                           address = "",
+                                                           phone = ""
+                                                       }) => {
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen flex flex-col items-center px-4 py-10 space-y-8"
+            className="flex flex-col items-center px-4 py-4 space-y-4 mt-[-20px]" // mt-[-20px] ile yukarı kaydırdık
         >
             {/* Ana Kart */}
-            <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[950px] p-6 space-y-6">
-
+            <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[950px] p-4 space-y-10">
                 {/* Başlık Kartı */}
-                <div className="bg-[#891737] rounded-xl shadow-lg w-full py-6 px-8 mb-4">
+                <div className="bg-blue-500 rounded-xl shadow-lg w-full py-6 px-8 mb-4">
                     <div className="text-2xl md:text-3xl font-semibold text-white text-center">{title}</div>
                 </div>
 
                 {/* Başlık + Resim Kartı */}
-                <div className="relative flex justify-center w-full mb-6">
-                    <div className="w-full sm:w-[650px] md:w-[750px] h-[450px] rounded-xl overflow-hidden">
-                        {/* Resim kartı tamamen kaplasın */}
+                <div className="relative flex justify-center w-full mb-2">
+                    <div className="w-full max-w-[850px] rounded-xl overflow-hidden">
                         <img
                             src="/images/hizmetler/atölyeler/enderun.jpg"
                             alt={title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-auto max-h-[440px] object-cover"
                         />
                     </div>
                 </div>
+                <br/>
 
                 {/* Verilen Hizmetler ve İletişim Bilgileri Kartı */}
-                <div className="flex flex-col md:flex-row gap-8">
+                <div className="flex flex-col gap-4">
                     {/* Verilen Hizmetler */}
-                    <section className="flex-1 text-justify space-y-4">
+                    <section className="text-justify space-y-4">
                         <h3 className="text-lg font-semibold text-blue-700">Verilen Hizmetler</h3>
                         <p className="text-gray-700 text-sm leading-relaxed">
-                            ENDERUN ÇOCUK ATÖLYELERİ'NDE 0-6 YAŞ GRUBUNA HİZMET VERİLMEKTEDİR.
-<br/>
-                            ATÖLYELERİMİZ  ÇOCUKLARIN OYUN YOLUYLA GELİŞİMLERİNİ DESTEKLEMEYİ AMAÇLAMAKTADIR, FARKLI YAŞ GRUPLARINA VE İLGİ ALANLARINA UYGUN ÇEŞİTLİ ETKİNLİKLER YAPILMAKTADIR.
+                            Enderun çocuk atölyeleri'nde 0-6 yaş grubuna hizmet verilmektedir.
                             <br/>
-                            HİZMETLERİMİZDEN BAZILARI; ÇOCUK GELİŞİM ATÖLYESİ, SANAT ATÖLYESİ,  BİLİM ATÖLYESİ, EBRU ATÖLYESİ, RESİM ATÖLYESİ, AKIL VE ZEKA  ATÖLYESİ, DEĞERLER EĞİTİMİ, EĞLENCELİ MATEMATİK, GELENEKSEL OYUNLAR, HAREKET PARKURU, SPOR AKTİVİTELERİ, İNGİLİZCE, GEZİLER, ATLI EĞİTİM MERKEZİ GEZİSİ
+                            Atölyelerimiz çocukların oyun yoluyla gelişimlerini desteklemeyi amaçlamaktadır, farklı yaş gruplarına ve ilgi alanlarına uygun çeşitli etkinlikler yapılmaktadır.
                             <br/>
+                            Hizmetlerimizden bazıları; çocuk gelişim atölyesi, sanat atölyesi, bilim atölyesi, ebru atölyesi, resim atölyesi, akıl ve zeka atölyesi, değerler eğitimi, eğlenceli matematik, geleneksel oyunlar, hareket parkuru, spor aktiviteleri, ingilizce, geziler, atlı eğitim merkezi gezisi.
+                            <br/>
+                            <br/>
+                            Enderun çocuk atölyeleri 4 birimden oluşmaktadır;
                             <br/>
 
-                            ENDERUN ÇOCUK ATÖLYELERİ 4 BİRİMDEN OLUŞMAKTADIR;
-                            <br/>
-                            - ENDERUN ÇOCUK ATÖLYELERİ MERKEZ BİNASI
-                            <br/>
-                            - ARAPÇEŞME BİLİM SANAT MERKEZİ
-                            <br/>
-                            - İSTASYON BİLİM SANAT MERKEZİ
-                            <br/>
-                            - ERAY ŞAMDAN SPOR KOMPLEKSİ
+                            Enderun çocuk atölyeleri merkez binası
 
+                            <br/>
+                            Arapçeşme bilim sanat merkezi
+
+                            <br/>
+                            İstasyon bilim sanat merkezi
+
+                            <br/>
+                            Eray şamdan spor kompleksi
                         </p>
                     </section>
 
@@ -78,7 +76,7 @@ const Enderunokulları: React.FC<ServiceDetailProps> = ({
                     <div className="hidden md:flex w-px bg-gray-300" />
 
                     {/* İletişim Bilgileri */}
-                    <div className="md:w-1/3 max-w-sm w-full">
+                    <div className="w-full">
                         <div className="bg-blue-50 rounded-lg p-6 shadow-sm">
                             <h3 className="text-xl font-semibold text-blue-800 mb-4">
                                 İletişim Bilgileri
@@ -98,7 +96,6 @@ const Enderunokulları: React.FC<ServiceDetailProps> = ({
                                         {phone}</p>
                                 </div>
                                 <br />
-
                             </div>
                         </div>
                     </div>
