@@ -1,46 +1,47 @@
 package com.kocaeli.bel.controller.gebze;
 import com.kocaeli.bel.DTO.gebze.KardesSehirlerDTO;
-import com.kocaeli.bel.service.gebze.KardesSehirelerService;
-import lombok.RequiredArgsConstructor;
+import com.kocaeli.bel.service.gebze.KardesSehirlerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/kardes-sehirler")
-@RequiredArgsConstructor
+@CrossOrigin(origins = "*") // Add this to allow cross-origin requests if needed
 public class KardesSehirlerController {
-    private final KardesSehirelerService kardesSehirlerService;
+    private final KardesSehirlerService service;
 
-    /**
-     * Get all sister cities categorized by domestic and international
-     */
+    @Autowired
+    public KardesSehirlerController(KardesSehirlerService service) {
+        this.service = service;
+    }
+
     @GetMapping
-    public ResponseEntity<Map<String, List<KardesSehirlerDTO>>> getAllSisterCities() {
-        Map<String, List<KardesSehirlerDTO>> response = new HashMap<>();
-        response.put("domestic", kardesSehirlerService.getDomesticMunicipalities());
-        response.put("international", kardesSehirlerService.getInternationalMunicipalities());
-        return ResponseEntity.ok(response);
+    public ResponseEntity<List<KardesSehirlerDTO>> getAllCities() {
+        return ResponseEntity.ok(service.getAllCities());
     }
 
-    /**
-     * Get only domestic sister cities
-     */
-    @GetMapping("/domestic")
-    public ResponseEntity<List<KardesSehirlerDTO>> getDomesticSisterCities() {
-        return ResponseEntity.ok(kardesSehirlerService.getDomesticMunicipalities());
+    @GetMapping("/api/kardes-sehirler")
+    public ResponseEntity<List<KardesSehirlerDTO>> getDomesticCities() {
+        return ResponseEntity.ok(service.getDomesticCities());
     }
 
-    /**
-     * Get only international sister cities
-     */
-    @GetMapping("/international")
-    public ResponseEntity<List<KardesSehirlerDTO>> getInternationalSisterCities() {
-        return ResponseEntity.ok(kardesSehirlerService.getInternationalMunicipalities());
+    @GetMapping("/api/kardes-sehirler")
+    public ResponseEntity<List<KardesSehirlerDTO>> getInternationalCities() {
+        return ResponseEntity.ok(service.getInternationalCities());
     }
+
+    @PostMapping
+    public ResponseEntity<KardesSehirlerDTO> createCity(@RequestBody KardesSehirlerDTO cityDTO) {
+        return ResponseEntity.ok(service.createCity(cityDTO));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCity(@PathVariable Long id) {
+        service.deleteCity(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

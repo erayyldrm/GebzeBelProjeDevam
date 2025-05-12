@@ -1,167 +1,193 @@
-import { useEffect, useState, ChangeEvent } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from "framer-motion";
+import axios from 'axios';
 
-// Define the type for a sister city object
-interface KardesSehir {
-    id: number;
+// City Interface
+interface City {
+    id?: number;
     name: string;
     city: string;
     country: string;
     flag: string;
+    type: 'domestic' | 'international'; // New field to differentiate location type
 }
 
-const KardesSehirlerCard = () => {
-    const [sehirlerData, setSehirlerData] = useState<KardesSehir[]>([]);
+// City Card Component
+const CityCard: React.FC<{ city: City }> = ({ city }) => (
+    <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white shadow-lg rounded-2xl overflow-hidden transition-all"
+    >
+        <div className="p-4">
+            <div className="flex items-center gap-2">
+                {city.flag && (
+                    <img
+                        src={city.flag}
+                        alt={city.country}
+                        className="w-6 h-4 rounded-sm"
+                    />
+                )}
+                <h2 className="text-xl font-semibold">{city.name}</h2>
+            </div>
+            <p className="text-gray-600 mt-2">{city.city}, {city.country}</p>
+        </div>
+    </motion.div>
+);
+
+// Sister Cities Component
+const SisterCities: React.FC = () => {
+    // State to store domestic and international cities
+    const [cities, setCities] = useState<City[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-    const [selectedCountry, setSelectedCountry] = useState<string>('all');
-    const [countries, setCountries] = useState<string[]>([]);
 
+    // Validate and transform city data
+    const transformCityData = (data: any, type: 'domestic' | 'international'): City[] => {
+        // If data is null or undefined, return an empty array
+        if (!data) return [];
+
+        // If data is already an array, map it
+        if (Array.isArray(data)) {
+            return data.map(city => ({
+                id: city?.id,
+                name: city?.name || 'Bilinmeyen Şehir',
+                city: city?.city || '',
+                country: city?.country || 'Türkiye',
+                flag: city?.flag || '/default-flag.png',
+                type: type
+            }));
+        }
+
+        // If data has a content or data property, try to use that
+        if (data.content && Array.isArray(data.content)) {
+            return data.content.map((city: any) => ({
+                id: city?.id,
+                name: city?.name || 'Bilinmeyen Şehir',
+                city: city?.city || '',
+                country: city?.country || 'Türkiye',
+                flag: city?.flag || '/default-flag.png',
+                type: type
+            }));
+        }
+
+        // If data has a data property, try to use that
+        if (data.data && Array.isArray(data.data)) {
+            return data.data.map((city: any) => ({
+                id: city?.id,
+                name: city?.name || 'Bilinmeyen Şehir',
+                city: city?.city || '',
+                country: city?.country || 'Türkiye',
+                flag: city?.flag || '/default-flag.png',
+                type: type
+            }));
+        }
+
+        // If no recognizable structure, return empty array
+        console.warn('Unrecognized city data structure:', data);
+        return [];
+    };
+
+    // Fetch cities when component mounts
     useEffect(() => {
-        const fetchSehirlerData = async () => {
+        const fetchCities = async () => {
             try {
-                let url = 'http://localhost:8080/api/kardes-sehirler';
+                // Fetch domestic cities
+                const domesticResponse = await axios.get('/api/kardes-sehirler/domestic');
 
-                if (selectedCountry !== 'all' && selectedCountry !== '') {
-                    url = `http://localhost:8080/api/kardes-sehirler/by-country/${selectedCountry}`;
-                }
+                // Fetch international cities
+                const internationalResponse = await axios.get('/api/kardes-sehirler/international');
 
-                const response = await fetch(url);
+                // Transform and combine cities
+                const domesticCities = transformCityData(domesticResponse.data, 'domestic');
+                const internationalCities = transformCityData(internationalResponse.data, 'international');
 
-                if (!response.ok) {
-                    throw new Error(`API yanıt hatası: ${response.status}`);
-                }
-
-                const data = await response.json() as KardesSehir[];
-                setSehirlerData(data);
-
-                // Extract unique countries for the filter
-                if (selectedCountry === 'all') {
-                    const uniqueCountries = [...new Set(data.map(city => city.country))];
-                    setCountries(uniqueCountries);
-                }
-
+                setCities([...domesticCities, ...internationalCities]);
                 setLoading(false);
             } catch (err) {
-                console.error('Veri çekme hatası:', err);
-                // Fix for error.message typing issue
-                setError(err instanceof Error ? err.message : 'Bilinmeyen bir hata oluştu');
+                console.error('Error fetching cities:', err);
+                setError("Şehirler yüklenirken hata oluştu");
                 setLoading(false);
             }
         };
 
-        fetchSehirlerData();
-    }, [selectedCountry]);
+        fetchCities();
+    }, []);
 
-    // Fix the event typing for the select element
-    const handleCountryChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        setSelectedCountry(e.target.value);
-    };
-
+    // Loading state
     if (loading) {
         return (
-            <div className="container mx-auto px-4 py-8 flex justify-center items-center">
-                <p className="text-lg">Yükleniyor...</p>
+            <div className="flex justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-900"></div>
             </div>
         );
     }
 
+    // Error state
     if (error) {
         return (
-            <div className="container mx-auto px-4 py-8 flex justify-center items-center">
-                <p className="text-lg text-red-500">Hata: {error}</p>
+            <div className="flex justify-center items-center h-screen text-red-600">
+                {error}
             </div>
         );
     }
 
+    // Separate domestic and international cities
+    const domesticCities = cities.filter(city => city.type === 'domestic');
+    const internationalCities = cities.filter(city => city.type === 'international');
+
     return (
-        <div className="container mx-auto px-4 py-8 mt-4">
-            {/* Başlık Kutusu */}
-            <div className="bg-blue-900 rounded-t-2xl p-2 flex justify-center items-center max-w-[466px] mx-auto">
-                <img
-                    src="/images/gebze/kardessehirler/kardes-sehirler-logo.png"
-                    alt="Kardeş Şehirler"
-                    className="h-24 object-contain"
-                />
+        <div className="container mx-auto px-4 py-8">
+            <div className="bg-red-900 shadow-lg rounded-2xl p-3 mb-8 text-center">
+                <h1 className="text-3xl sm:text-3xl md:text-4xl font-bold text-white">
+                    KARDEŞ ŞEHİRLER
+                </h1>
             </div>
 
-            {/* Filtre */}
-            <div className="bg-white p-4 shadow-md rounded-b-2xl max-w-[466px] mx-auto mb-6">
-                <div className="mb-4">
-                    <label htmlFor="countryFilter" className="block text-sm font-medium text-gray-700 mb-1">
-                        Ülkeye Göre Filtrele:
-                    </label>
-                    <select
-                        id="countryFilter"
-                        className="w-full border border-gray-300 rounded-md py-2 px-3"
-                        value={selectedCountry}
-                        onChange={handleCountryChange}
-                    >
-                        <option value="all">Tüm Ülkeler</option>
-                        {countries.map((country, index) => (
-                            <option key={index} value={country}>
-                                {country}
-                            </option>
-                        ))}
-                    </select>
+            {/* Domestic Cities Section */}
+            <section className="mb-12">
+                <h2 className="text-2xl font-semibold mb-6 flex items-center">
+                    <span className="mr-2">🏠</span> Yurt İçi Kardeş Şehirler
+                </h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {domesticCities.length > 0 ? (
+                        domesticCities.map((city, index) => (
+                            <CityCard
+                                key={`domestic-${city.id ?? index}`}
+                                city={city}
+                            />
+                        ))
+                    ) : (
+                        <p className="text-gray-600 col-span-full text-center">
+                            Yurt içi kardeş şehir bulunamadı.
+                        </p>
+                    )}
                 </div>
-            </div>
+            </section>
 
-            {/* Kartlar */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white p-6 rounded-2xl shadow-lg">
-                {sehirlerData.length > 0 ? (
-                    sehirlerData.map((city: KardesSehir) => (
-                        <div
-                            key={city.id}
-                            className="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl flex flex-col"
-                        >
-                            <div className="p-6 flex flex-col items-center text-center flex-grow">
-                                {/* Flag */}
-                                <div className="mb-4 w-[150px] h-[100px] flex items-center justify-center bg-gray-100 rounded-lg">
-                                    <img
-                                        src={city.flag || `/images/flags/${city.country.toLowerCase()}.png`}
-                                        alt={`${city.country} flag`}
-                                        className="w-full h-full object-contain p-2"
-                                    />
-                                </div>
-
-                                {/* City Info */}
-                                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
-                                    {city.name}
-                                </h3>
-
-                                <div className="text-gray-600 mb-2">
-                                    <span className="font-medium">Şehir:</span> {city.city}
-                                </div>
-
-                                <div className="text-gray-600 mb-4">
-                                    <span className="font-medium">Ülke:</span> {city.country}
-                                </div>
-                            </div>
-
-                            <div className="p-4 bg-gray-50 border-t border-gray-200">
-                                <div className="flex gap-2">
-                                    <button
-                                        className="flex-1 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
-                                    >
-                                        Detaylar
-                                    </button>
-                                    <button
-                                        className="flex-1 bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition-colors"
-                                    >
-                                        Haritada Gör
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    ))
-                ) : (
-                    <div className="col-span-3 text-center py-8">
-                        <p className="text-lg text-gray-500">Bu filtreye uygun kardeş şehir bulunamadı.</p>
-                    </div>
-                )}
-            </div>
+            {/* International Cities Section */}
+            <section>
+                <h2 className="text-2xl font-semibold mb-6 flex items-center">
+                    <span className="mr-2">🌍</span> Yurt Dışı Kardeş Şehirler
+                </h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {internationalCities.length > 0 ? (
+                        internationalCities.map((city, index) => (
+                            <CityCard
+                                key={`international-${city.id ?? index}`}
+                                city={city}
+                            />
+                        ))
+                    ) : (
+                        <p className="text-gray-600 col-span-full text-center">
+                            Yurt dışı kardeş şehir bulunamadı.
+                        </p>
+                    )}
+                </div>
+            </section>
         </div>
     );
 };
 
-export default KardesSehirlerCard;
+export default SisterCities;
