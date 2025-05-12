@@ -8,7 +8,7 @@ const CorporateMembershipCard = () => {
     useEffect(() => {
         const fetchMembershipData = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/uye-oldugumuz-birlikler');
+                const response = await fetch('http://localhost:8080/api/kardes-sehirler');
 
                 if (!response.ok) {
                     throw new Error(`API yanıt hatası: ${response.status}`);

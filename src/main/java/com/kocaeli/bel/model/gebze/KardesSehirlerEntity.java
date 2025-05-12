@@ -1,4 +1,4 @@
-package com.kocaeli.bel.entity;
+package com.kocaeli.bel.model.gebze;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "GEBZE_KARDESSEHİRLER")
+@Table(name = "GEBZE_KARDESSEHIRLER") // Türkçe karakter 'İ' düzeltildi
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,11 +26,11 @@ public class KardesSehirlerEntity {
     @Column(name = "SEHIR", length = 250)
     private String city;
 
-    @Column(name = "ÜLKE", length = 100)
+    @Column(name = "ULKE", length = 100) // 'ÜLKE' → 'ULKE' yapıldı
     private String country;
 
-    // Helper method to determine if this is a domestic city (Türkiye)
+    // Yardımcı metot: Türkiye olup olmadığını kontrol eder
     public boolean isDomestic() {
-        return "Türkiye".equals(country);
+        return "Türkiye".equalsIgnoreCase(country); // Büyük/küçük harf duyarsız hale getirildi
     }
 }
