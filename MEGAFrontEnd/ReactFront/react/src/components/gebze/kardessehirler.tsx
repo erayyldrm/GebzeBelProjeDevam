@@ -9,6 +9,7 @@ interface City {
     city: string;
     country: string;
     flag: string;
+    type: 'domestic' | 'international'; // New field to differentiate location type
 }
 
 // City Card Component
@@ -38,13 +39,12 @@ const CityCard: React.FC<{ city: City }> = ({ city }) => (
 // Sister Cities Component
 const SisterCities: React.FC = () => {
     // State to store domestic and international cities
-    const [domesticCities, setDomesticCities] = useState<City[]>([]);
-    const [internationalCities, setInternationalCities] = useState<City[]>([]);
+    const [cities, setCities] = useState<City[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     // Validate and transform city data
-    const transformCityData = (data: any): City[] => {
+    const transformCityData = (data: any, type: 'domestic' | 'international'): City[] => {
         // If data is null or undefined, return an empty array
         if (!data) return [];
 
@@ -55,7 +55,8 @@ const SisterCities: React.FC = () => {
                 name: city?.name || 'Bilinmeyen Şehir',
                 city: city?.city || '',
                 country: city?.country || 'Türkiye',
-                flag: city?.flag || '/default-flag.png'
+                flag: city?.flag || '/default-flag.png',
+                type: type
             }));
         }
 
@@ -66,7 +67,8 @@ const SisterCities: React.FC = () => {
                 name: city?.name || 'Bilinmeyen Şehir',
                 city: city?.city || '',
                 country: city?.country || 'Türkiye',
-                flag: city?.flag || '/default-flag.png'
+                flag: city?.flag || '/default-flag.png',
+                type: type
             }));
         }
 
@@ -77,7 +79,8 @@ const SisterCities: React.FC = () => {
                 name: city?.name || 'Bilinmeyen Şehir',
                 city: city?.city || '',
                 country: city?.country || 'Türkiye',
-                flag: city?.flag || '/default-flag.png'
+                flag: city?.flag || '/default-flag.png',
+                type: type
             }));
         }
 
@@ -93,17 +96,14 @@ const SisterCities: React.FC = () => {
                 // Fetch domestic cities
                 const domesticResponse = await axios.get('/api/kardes-sehirler/domestic');
 
-                // Transform domestic cities data
-                const cleanDomesticCities = transformCityData(domesticResponse.data);
-                setDomesticCities(cleanDomesticCities);
-
                 // Fetch international cities
                 const internationalResponse = await axios.get('/api/kardes-sehirler/international');
 
-                // Transform international cities data
-                const cleanInternationalCities = transformCityData(internationalResponse.data);
-                setInternationalCities(cleanInternationalCities);
+                // Transform and combine cities
+                const domesticCities = transformCityData(domesticResponse.data, 'domestic');
+                const internationalCities = transformCityData(internationalResponse.data, 'international');
 
+                setCities([...domesticCities, ...internationalCities]);
                 setLoading(false);
             } catch (err) {
                 console.error('Error fetching cities:', err);
@@ -132,6 +132,10 @@ const SisterCities: React.FC = () => {
             </div>
         );
     }
+
+    // Separate domestic and international cities
+    const domesticCities = cities.filter(city => city.type === 'domestic');
+    const internationalCities = cities.filter(city => city.type === 'international');
 
     return (
         <div className="container mx-auto px-4 py-8">
