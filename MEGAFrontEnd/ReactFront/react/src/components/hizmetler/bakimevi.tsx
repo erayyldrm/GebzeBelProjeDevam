@@ -47,13 +47,13 @@ const WorkshopCenterCard = ({ center }: { center: typeof bebekbakimmerkezi[0] })
             {/* Sağ: İçerik */}
             <div className="w-full md:w-2/3 p-4 flex flex-col justify-between">
                 <div>
-                    <Link
-                        to={center.detailPage}
-                        className="text-lg font-bold text-blue-500 border-b-2 border-blue-400 pb-1 block"
-                    >
-                        {center.name}
-                    </Link>
-<br/>
+                       <Link
+                            to={center.detailPage}
+                           className="text-lg font-bold text-blue-600 hover:text-blue-700 border-b border-blue-400 pb-1 block"
+                          >
+                           {center.name}
+                        </Link>
+                    <br/>
                     <div className="space-y-2 text-sm">
                         <div className="flex items-start">
                             <MapPin className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
@@ -119,7 +119,7 @@ export default function Bebekbakimsayfasi() {
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6 }}
-                                className="bg-[#891737] p-4 rounded-xl shadow-xl mb-5"
+                                className="bg-blue-500 p-4 rounded-xl shadow-xl mb-5"
                             >
                                 <div className="text-2xl font-semibold text-white text-center">
                                     BEBEK VE ÇOCUK BAKIM EVİ
