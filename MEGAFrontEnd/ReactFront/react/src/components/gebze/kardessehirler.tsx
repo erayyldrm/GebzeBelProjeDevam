@@ -2,14 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import axios from 'axios';
 
-// City Interface
+// API yapılandırması - Backend URL'sini doğrudan belirtelim
+const apiClient = axios.create({
+  baseURL: 'http://localhost:8080', // Backend sunucusunun gerçek adresi
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  }
+});
+
+// City Interface - Veritabanı modeliyle uyumlu
 interface City {
     id?: number;
     name: string;
     city: string;
     country: string;
     flag: string;
-    type: 'domestic' | 'international'; // New field to differentiate location type
+    location: string; // "Yurt Ici" veya "Yurt Disi" olarak saklanır
 }
 
 // City Card Component
@@ -36,19 +45,61 @@ const CityCard: React.FC<{ city: City }> = ({ city }) => (
     </motion.div>
 );
 
+// Örnek veri - API çalışmazsa kullanılacak
+const sampleCities: City[] = [
+    {
+        id: 1,
+        name: "Acıgöl Belediyesi",
+        city: "Nevşehir",
+        country: "Türkiye",
+        flag: "https://flagcdn.com/w320/tr.png",
+        location: "Yurt Ici"
+    },
+    {
+        id: 2,
+        name: "Gülşehir Belediyesi",
+        city: "Nevşehir",
+        country: "Türkiye",
+        flag: "https://flagcdn.com/w320/tr.png",
+        location: "Yurt Ici"
+    },
+    {
+        id: 8,
+        name: "Değirmenlik Belediyesi",
+        city: "Değirmenlik",
+        country: "KKTC",
+        flag: "https://flagcdn.com/w320/cy.png",
+        location: "Yurt Disi"
+    },
+    {
+        id: 9,
+        name: "Karakol Şehri",
+        city: "Issık-Göl",
+        country: "Kırgızistan",
+        flag: "https://flagcdn.com/w320/kg.png",
+        location: "Yurt Disi"
+    }
+];
+
 // Sister Cities Component
 const SisterCities: React.FC = () => {
-    // State to store domestic and international cities
+    // State to store all cities
     const [cities, setCities] = useState<City[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     // Validate and transform city data
-    const transformCityData = (data: any, type: 'domestic' | 'international'): City[] => {
-        // If data is null or undefined, return an empty array
-        if (!data) return [];
+    const transformCityData = (data: any): City[] => {
+        // HTML yanıtını kontrol et
+        if (typeof data === 'string' && data.toLowerCase().includes('<!doctype html')) {
+            console.error("API HTML yanıtı döndürdü, JSON yerine. API yolunu kontrol edin.");
+            return sampleCities; // API başarısız olursa örnek veriyi kullan
+        }
 
-        // If data is already an array, map it
+        // If data is null or undefined, return an empty array or sample data
+        if (!data) return sampleCities;
+
+        // If data is already an array, use it
         if (Array.isArray(data)) {
             return data.map(city => ({
                 id: city?.id,
@@ -56,58 +107,63 @@ const SisterCities: React.FC = () => {
                 city: city?.city || '',
                 country: city?.country || 'Türkiye',
                 flag: city?.flag || '/default-flag.png',
-                type: type
+                location: city?.location || 'Yurt Ici'
             }));
         }
 
-        // If data has a content or data property, try to use that
+        // If data has a content property
         if (data.content && Array.isArray(data.content)) {
-            return data.content.map((city: any) => ({
-                id: city?.id,
-                name: city?.name || 'Bilinmeyen Şehir',
-                city: city?.city || '',
-                country: city?.country || 'Türkiye',
-                flag: city?.flag || '/default-flag.png',
-                type: type
-            }));
+            return transformCityData(data.content);
         }
 
-        // If data has a data property, try to use that
+        // If data has a data property
         if (data.data && Array.isArray(data.data)) {
-            return data.data.map((city: any) => ({
-                id: city?.id,
-                name: city?.name || 'Bilinmeyen Şehir',
-                city: city?.city || '',
-                country: city?.country || 'Türkiye',
-                flag: city?.flag || '/default-flag.png',
-                type: type
-            }));
+            return transformCityData(data.data);
         }
 
-        // If no recognizable structure, return empty array
-        console.warn('Unrecognized city data structure:', data);
-        return [];
+        console.warn('Tanınmayan veri yapısı:', data);
+        return sampleCities; // Tanınmayan yapıda örnek veriyi kullan
     };
 
     // Fetch cities when component mounts
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                // Fetch domestic cities
-                const domesticResponse = await axios.get('/api/kardes-sehirler/domestic');
-
-                // Fetch international cities
-                const internationalResponse = await axios.get('/api/kardes-sehirler/international');
-
-                // Transform and combine cities
-                const domesticCities = transformCityData(domesticResponse.data, 'domestic');
-                const internationalCities = transformCityData(internationalResponse.data, 'international');
-
-                setCities([...domesticCities, ...internationalCities]);
-                setLoading(false);
+                console.log("API'ye istek gönderiliyor...");
+                // API'den veri almayı dene
+                const response = await apiClient.get('/api/kardes-sehirler');
+                console.log("API yanıtı:", response);
+                
+                if (response.status === 200) {
+                    const allCities = transformCityData(response.data);
+                    setCities(allCities);
+                } else {
+                    throw new Error("API yanıt vermedi");
+                }
             } catch (err) {
-                console.error('Error fetching cities:', err);
-                setError("Şehirler yüklenirken hata oluştu");
+                console.error('API hatası:', err);
+                
+                try {
+                    // Alternatif endpoint'leri dene
+                    console.log("Alternatif endpoints deneniyor...");
+                    
+                    // Yurt içi şehirler
+                    const domesticResponse = await apiClient.get('/api/kardes-sehirler/domestic');
+                    const domesticCities = transformCityData(domesticResponse.data);
+                    
+                    // Yurt dışı şehirler
+                    const internationalResponse = await apiClient.get('/api/kardes-sehirler/international');
+                    const internationalCities = transformCityData(internationalResponse.data);
+                    
+                    // Birleştir
+                    setCities([...domesticCities, ...internationalCities]);
+                } catch (fallbackErr) {
+                    console.error('Alternatif API çağrısı başarısız:', fallbackErr);
+                    console.log("Örnek veriler kullanılıyor");
+                    setCities(sampleCities); // Son çare olarak örnek verileri kullan
+                    setError("Veri kaynağına erişim sağlanamadı, örnek veriler gösteriliyor");
+                }
+            } finally {
                 setLoading(false);
             }
         };
@@ -124,18 +180,9 @@ const SisterCities: React.FC = () => {
         );
     }
 
-    // Error state
-    if (error) {
-        return (
-            <div className="flex justify-center items-center h-screen text-red-600">
-                {error}
-            </div>
-        );
-    }
-
-    // Separate domestic and international cities
-    const domesticCities = cities.filter(city => city.type === 'domestic');
-    const internationalCities = cities.filter(city => city.type === 'international');
+    // Veritabanında "Yurt Ici" ve "Yurt Disi" olarak kaydedildiği için bu değerlere göre ayrıştır
+    const domesticCities = cities.filter(city => city.location === "Yurt Ici");
+    const internationalCities = cities.filter(city => city.location === "Yurt Disi");
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -144,6 +191,19 @@ const SisterCities: React.FC = () => {
                     KARDEŞ ŞEHİRLER
                 </h1>
             </div>
+
+            {error && (
+                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <div className="flex">
+                        <div className="flex-shrink-0">
+                            ⚠️
+                        </div>
+                        <div className="ml-3">
+                            <p className="text-sm text-yellow-700">{error}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Domestic Cities Section */}
             <section className="mb-12">
