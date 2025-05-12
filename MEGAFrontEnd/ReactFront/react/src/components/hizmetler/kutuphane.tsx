@@ -173,7 +173,7 @@ export default function kutuphanesayfasi() {
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6 }}
-                                className="bg-[#891737] p-4 rounded-xl shadow-xl mb-5"
+                                className="bg-blue-500 p-4 rounded-xl shadow-xl mb-5"
                             >
                                 <div className="text-2xl font-semibold text-white text-center">
                                     KÜTÜPHANE
