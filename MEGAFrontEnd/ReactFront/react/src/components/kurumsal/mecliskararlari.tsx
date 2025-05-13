@@ -103,14 +103,6 @@ const Kararlar = () => {
                                                     className="bg-white shadow rounded-2xl p-5"
                                                 >
                                                     {/* Başlık */}
-                                                    <motion.h1
-                                                        initial={{ scale: 0.9, opacity: 0 }}
-                                                        animate={{ scale: 1, opacity: 1 }}
-                                                        transition={{ duration: 0.5, delay: 0.2 }}
-                                                        className="text-2xl text-center text-blue-900 font-bold mb-4"
-                                                    >
-                                                        GEBZE BELEDİYESİ KARARLAR
-                                                    </motion.h1>
 
                                                     {/* Sekmeler */}
                                                     <div className="flex border-b mb-4 overflow-x-auto">
