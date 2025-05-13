@@ -182,6 +182,9 @@
 .ms-auto {
   margin-inline-start: auto;
 }
+.mt-\[-20px\] {
+  margin-top: -20px;
+}
 .mt-\[-21px\] {
   margin-top: -21px;
 }
@@ -397,6 +400,9 @@
 }
 .max-w-\[466px\] {
   max-width: 466px;
+}
+.max-w-\[850px\] {
+  max-width: 850px;
 }
 .max-w-\[950px\] {
   max-width: 950px;
