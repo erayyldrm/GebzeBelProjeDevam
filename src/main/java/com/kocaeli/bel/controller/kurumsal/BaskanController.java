@@ -1,7 +1,7 @@
 package com.kocaeli.bel.controller.kurumsal;
 
 import com.kocaeli.bel.model.kurumsal.BaskanEntity;
-import com.kocaeli.bel.service.BaskanService;
+import com.kocaeli.bel.service.kurumsal.BaskanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

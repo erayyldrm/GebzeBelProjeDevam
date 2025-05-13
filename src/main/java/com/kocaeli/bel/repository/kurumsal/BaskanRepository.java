@@ -1,4 +1,4 @@
-package com.kocaeli.bel.repository;
+package com.kocaeli.bel.repository.kurumsal;
 
 import com.kocaeli.bel.model.kurumsal.BaskanEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

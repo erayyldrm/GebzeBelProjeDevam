@@ -1,15 +1,5 @@
-import { useState } from "react";
-import ImageSlider from "../Sliders2/SliderTest2.tsx";
-import { ChevronRight, ChevronLeft, Clock } from "lucide-react";
-import React, { useEffect } from "react";
-
-type Event = {
-    id: number;
-    title: string;
-    date: string;
-    imageUrl: string;
-    description: string;
-};
+import React, { useEffect, useState } from "react";
+import { Clock } from "lucide-react";
 
 interface NewsCardProps {
     image: string;
@@ -77,69 +67,16 @@ const NewsCard: React.FC<NewsCardProps> = ({
     );
 };
 
-const events: Event[] = [
-    { id: 14, title: "Hacivat İle Karagöz", date: "2025-03-21", imageUrl: "/images/etkinlikler/etkinlik14.jpg", description: "Yer: Arapçeşme Bilim Sanat Merkezi" },
-    { id: 16, title: "Çitlembiğin Ramazan Macerası", date: "2025-03-21", imageUrl: "/images/etkinlikler/etkinlik16.jpg", description: "Yer: Beylikbağı Bilim Sanat Merkezi" },
-    { id: 2, title: "Karagöz İle Hacivat", date: "2025-03-22", imageUrl: "/images/etkinlikler/etkinlik2.jpg", description: "Yer: Gebze Kültür Merkezi" },
-    { id: 5, title: "Karagöz'ün Karnesi", date: "2025-03-22", imageUrl: "/images/etkinlikler/etkinlik5.jpg", description: "Yer: Arapçeşme Bilim Sanat Merkezi" },
-    { id: 6, title: "Gazi Dede İle Çanakkale Hatıraları", date: "2025-03-22", imageUrl: "/images/etkinlikler/etkinlik6.jpg", description: "Yer: Beylikbağı Bilim Sanat Merkezi" },
-    { id: 7, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-21", imageUrl: "/images/etkinlikler/etkinlik7.jpg", description: "Yer: Sultan Orhan Mahallesi İlyas Bey Camii" },
-    { id: 8, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-22", imageUrl: "/images/etkinlikler/etkinlik8.jpg", description: "Yer: Tatlıkuyu Mahallesi Merkez Camii" },
-    { id: 1, title: "Şen Davulcu", date: "2025-03-23", imageUrl: "/images/etkinlikler/etkinlik1.jpg", description: "Yer: İstasyon Bilim Sanat Merkezi" },
-    { id: 4, title: "Tekno Sabri Macera Yolcusu", date: "2025-03-23", imageUrl: "/images/etkinlikler/etkinlik4.jpg", description: "Yer: Gebze Kültür Merkezi" },
-    { id: 9, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-23", imageUrl: "/images/etkinlikler/etkinlik9.jpg", description: "Yer: Yavuz Selim Mahallesi Fatih Camii" },
-    { id: 10, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-24", imageUrl: "/images/etkinlikler/etkinlik10.jpg", description: "Yer: Ulus Mahallesi Eyüp Camii" },
-    { id: 15, title: "Çitlembiğin Ramazan Macerası", date: "2025-03-24", imageUrl: "/images/etkinlikler/etkinlik15.jpg", description: "Yer: Barış Mahallesi Kurs Merkezi" },
-    { id: 11, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-26", imageUrl: "/images/etkinlikler/etkinlik11.jpg", description: "Yer: Çoban Mustafa Paşa Camii" },
-    { id: 12, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-27", imageUrl: "/images/etkinlikler/etkinlik12.jpg", description: "Yer: Hürriyet Mahallesi Hz.Ali Camii" },
-    { id: 3, title: "Çitlembiğin Ramazan Macerası", date: "2025-03-28", imageUrl: "/images/etkinlikler/etkinlik3.jpg", description: "Yer: Tarih Su Dolabı" },
-    { id: 13, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-28", imageUrl: "/images/etkinlikler/etkinlik13.jpg", description: "Yer: Güzeller Mahallesi Hacı Salih Camii" },
-    { id: 17, title: "Masal Kapısı", date: "2025-03-28", imageUrl: "/images/etkinlikler/etkinlik17.jpg", description: "Yer: Kadıllı İlkokulu" },
-    { id: 18, title: "Bayram Kesesi", date: "2025-03-28", imageUrl: "/images/etkinlikler/etkinlik18.jpg", description: "Yer: Arapçeşme Bilim Sanat Merkezi" }
-];
-
 const CompactNewsGrid: React.FC = () => {
     const sideCards = [
-        {
-            image: "/assets/images/post/2.jpg",
-            category: "NEWS",
-            title: "Central bank customers need about currency",
-        },
-        {
-            image: "/assets/images/post/3.jpg",
-            category: "HEALTH",
-            title: "Pandemic impact mental health global view",
-        },
-        {
-            image: "/assets/images/post/4.jpg",
-            category: "POLITICS",
-            title: "Drunk driving law by on country and arrest",
-        },
-        {
-            image: "/assets/images/post/5.jpg",
-            category: "TRAVEL",
-            title: "A step back in time and holidays for the ages",
-        },
-        {
-            image: "/assets/images/post/6.jpg",
-            category: "SPORTS",
-            title: "World ni beat kamaica to first men's world cup",
-        },
-        {
-            image: "/assets/images/post/7.jpg",
-            category: "NEWS",
-            title: "Thabna girls stage of protest demand",
-        },
-        {
-            image: "/assets/images/post/8.jpg",
-            category: "SPORTS",
-            title: "World swimming changes rules in wake",
-        },
-        {
-            image: "/assets/images/post/9.jpg",
-            category: "FOOD",
-            title: "A step back in time and holidays for",
-        },
+        { image: "/assets/images/post/2.jpg", category: "NEWS", title: "Central bank customers need about currency" },
+        { image: "/assets/images/post/3.jpg", category: "HEALTH", title: "Pandemic impact mental health global view" },
+        { image: "/assets/images/post/4.jpg", category: "POLITICS", title: "Drunk driving law by on country and arrest" },
+        { image: "/assets/images/post/5.jpg", category: "TRAVEL", title: "A step back in time and holidays for the ages" },
+        { image: "/assets/images/post/6.jpg", category: "SPORTS", title: "World ni beat kamaica to first men's world cup" },
+        { image: "/assets/images/post/7.jpg", category: "NEWS", title: "Thabna girls stage of protest demand" },
+        { image: "/assets/images/post/8.jpg", category: "SPORTS", title: "World swimming changes rules in wake" },
+        { image: "/assets/images/post/9.jpg", category: "FOOD", title: "A step back in time and holidays for" },
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -155,11 +92,10 @@ const CompactNewsGrid: React.FC = () => {
     const featured = sideCards[currentIndex];
 
     return (
-        <div className="bg-gray-100 py-8 px-4 md:px-12 lg:px-24">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-7xl w-full mx-auto">
-                <div className="p-6 md:p-10">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {/* Left Column */}
+        <div className="max-w-7xl mx-auto px-5 py-8">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full">
+                <div className="p-4 md:p-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="md:col-span-1">
                             <ul>
                                 {sideCards.slice(0, 4).map((card, index) => (
@@ -168,10 +104,9 @@ const CompactNewsGrid: React.FC = () => {
                             </ul>
                         </div>
 
-                        {/* Middle Column - Slider */}
                         <div className="md:col-span-1 mt-1 transition-all duration-500">
                             <div className="mb-6">
-                                <div className="relative h-52 md:h-64 lg:h-83 overflow-hidden rounded-lg">
+                                <div className="relative h-40 md:h-52 lg:h-64 overflow-hidden rounded-lg">
                                     <a href="#" className="block h-full">
                                         <img
                                             src={featured.image}
@@ -195,7 +130,6 @@ const CompactNewsGrid: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Right Column */}
                         <div className="md:col-span-1">
                             <ul>
                                 {sideCards.slice(4, 8).map((card, index) => (
@@ -207,95 +141,65 @@ const CompactNewsGrid: React.FC = () => {
                 </div>
             </div>
         </div>
-
-
     );
 };
 
+type Event = {
+    id: number;
+    title: string;
+    date: string;
+    imageUrl: string;
+    description: string;
+};
+
+const events: Event[] = [
+    { id: 14, title: "Hacivat İle Karagöz", date: "2025-03-21", imageUrl: "/images/etkinlikler/etkinlik14.jpg", description: "Yer: Arapçeşme Bilim Sanat Merkezi" },
+    { id: 16, title: "Çitlembiğin Ramazan Macerası", date: "2025-03-21", imageUrl: "/images/etkinlikler/etkinlik16.jpg", description: "Yer: Beylikbağı Bilim Sanat Merkezi" },
+    { id: 2, title: "Karagöz İle Hacivat", date: "2025-03-22", imageUrl: "/images/etkinlikler/etkinlik2.jpg", description: "Yer: Gebze Kültür Merkezi" },
+    { id: 5, title: "Karagöz'ün Karnesi", date: "2025-03-22", imageUrl: "/images/etkinlikler/etkinlik5.jpg", description: "Yer: Arapçeşme Bilim Sanat Merkezi" },
+    { id: 6, title: "Gazi Dede İle Çanakkale Hatıraları", date: "2025-03-22", imageUrl: "/images/etkinlikler/etkinlik6.jpg", description: "Yer: Beylikbağı Bilim Sanat Merkezi" },
+    { id: 7, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-21", imageUrl: "/images/etkinlikler/etkinlik7.jpg", description: "Yer: Sultan Orhan Mahallesi İlyas Bey Camii" },
+    { id: 8, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-22", imageUrl: "/images/etkinlikler/etkinlik8.jpg", description: "Yer: Tatlıkuyu Mahallesi Merkez Camii" },
+    { id: 1, title: "Şen Davulcu", date: "2025-03-23", imageUrl: "/images/etkinlikler/etkinlik1.jpg", description: "Yer: İstasyon Bilim Sanat Merkezi" },
+    { id: 4, title: "Tekno Sabri Macera Yolcusu", date: "2025-03-23", imageUrl: "/images/etkinlikler/etkinlik4.jpg", description: "Yer: Gebze Kültür Merkezi" },
+    { id: 9, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-23", imageUrl: "/images/etkinlikler/etkinlik9.jpg", description: "Yer: Yavuz Selim Mahallesi Fatih Camii" },
+    { id: 10, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-24", imageUrl: "/images/etkinlikler/etkinlik10.jpg", description: "Yer: Ulus Mahallesi Eyüp Camii" },
+    { id: 15, title: "Çitlembiğin Ramazan Macerası", date: "2025-03-24", imageUrl: "/images/etkinlikler/etkinlik15.jpg", description: "Yer: Barış Mahallesi Kurs Merkezi" },
+    { id: 11, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-26", imageUrl: "/images/etkinlikler/etkinlik11.jpg", description: "Yer: Çoban Mustafa Paşa Camii" },
+    { id: 12, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-27", imageUrl: "/images/etkinlikler/etkinlik12.jpg", description: "Yer: Hürriyet Mahallesi Hz.Ali Camii" },
+    { id: 3, title: "Çitlembiğin Ramazan Macerası", date: "2025-03-28", imageUrl: "/images/etkinlikler/etkinlik3.jpg", description: "Yer: Tarih Su Dolabı" },
+    { id: 13, title: "Kur-anı Kerim Tilaveti ve Teravih Namazı", date: "2025-03-28", imageUrl: "/images/etkinlikler/etkinlik13.jpg", description: "Yer: Güzeller Mahallesi Hacı Salih Camii" },
+    { id: 17, title: "Masal Kapısı", date: "2025-03-28", imageUrl: "/images/etkinlikler/etkinlik17.jpg", description: "Yer: Kadıllı İlkokulu" },
+    { id: 18, title: "Bayram Kesesi", date: "2025-03-28", imageUrl: "/images/etkinlikler/etkinlik18.jpg", description: "Yer: Arapçeşme Bilim Sanat Merkezi" },
+];
+
 const EventsSection: React.FC = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [isAnimating, setIsAnimating] = useState(false);
-
-    // Create slides array with improved image data and captions
-    const slides = events.map(event => ({
-        image: event.imageUrl,
-        alt: event.title,
-        caption: `${event.title} - ${event.date}`
-    }));
-
-    // Total number of slides
-    const totalSlides = slides.length;
-
-    // Handle next slide
-    const nextSlide = () => {
-        if (!isAnimating) {
-            setIsAnimating(true);
-            setCurrentSlide((prev) => (prev + 1) % totalSlides);
-            setTimeout(() => setIsAnimating(false), 500);
-        }
-    };
-
-    // Handle previous slide
-    const prevSlide = () => {
-        if (!isAnimating) {
-            setIsAnimating(true);
-            setCurrentSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
-            setTimeout(() => setIsAnimating(false), 500);
-        }
-    };
-
-    // This function will be passed to the ImageSlider for slide changes
-    const handleSlideChange = (index: number) => {
-        setCurrentSlide(index);
-    };
-
     return (
-        <div className="container mx-auto py-10">
-            <h2 className="text-3xl font-bold mb-6 text-center">Etkinlikler</h2>
+        <div className="max-w-7xl mx-auto px-5 py-8">
+            <h2 className="text-2xl font-bold mb-6 text-center">Etkinlikler</h2>
 
-
-
-
-
-            {/* Wider Card with #002850 background color */}
-
-
-
-            <div className="w-full mx-auto mb-16">
-                <div style={{ backgroundColor: "#002850" }} className="p-4 md:p-8 rounded-xl shadow-xl relative">
-                    {/* Custom Navigation Buttons (outside the slider) */}
-                    <button
-                        onClick={prevSlide}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 disabled:opacity-50 hover:bg-gray-100"
-                        aria-label="Önceki"
-                        disabled={isAnimating}
-                    >
-                        <ChevronLeft className="w-5 h-5" />
-                    </button>
-
-                    {/* Image slider container with proper padding */}
+            <div className="w-full mx-auto mb-12">
+                <div style={{ backgroundColor: "#002850" }} className="p-4 md:p-6 rounded-xl shadow-lg">
                     <div className="relative w-full overflow-hidden rounded-lg">
-                        <ImageSlider
-                            slides={slides}
-                            currentSlide={currentSlide}
-                            onSlideChange={handleSlideChange}
-                            autoPlay={false}
-                        />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="aspect-video w-full relative">
+                                <img
+                                    src="/images/etkinlikler/etkinlik14.jpg"
+                                    alt="Hacivat İle Karagöz"
+                                    className="w-full h-full object-cover rounded-lg"
+                                />
+                            </div>
+                            <div className="flex flex-col justify-center text-white">
+                                <h3 className="text-xl font-bold mb-3">Hacivat İle Karagöz</h3>
+                                <p className="text-base mb-2">Tarih: 2025-03-21</p>
+                                <p className="text-base">Yer: Arapçeşme Bilim Sanat Merkezi</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <button
-                        onClick={nextSlide}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 disabled:opacity-50 hover:bg-gray-100"
-                        aria-label="Sonraki"
-                        disabled={isAnimating}
-                    >
-                        <ChevronRight className="w-5 h-5" />
-                    </button>
                 </div>
             </div>
 
-            {/* Events Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {events.map((event) => (
                     <div key={event.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
                         <div className="aspect-video w-full relative">
@@ -305,19 +209,27 @@ const EventsSection: React.FC = () => {
                                 className="w-full h-full object-cover"
                             />
                         </div>
-                        <div className="p-5">
-                            <h3 className="text-lg font-semibold mb-2">{event.title}</h3>
+                        <div className="p-4">
+                            <h3 className="text-base font-semibold mb-2">{event.title}</h3>
                             <p className="text-sm text-gray-600 mb-1">Tarih: {event.date}</p>
-                            <p className="text-sm text-gray-600 mt-2">{event.description}</p>
+                            <p className="text-sm text-gray-600 mt-1">{event.description}</p>
                         </div>
                     </div>
                 ))}
             </div>
-
-            {/* News Section */}
-            <CompactNewsGrid />
         </div>
     );
 };
 
-export default EventsSection;
+const CombinedComponent: React.FC = () => {
+    return (
+        <div className="bg-gray-50 min-h-screen">
+            <div className="max-w-7xl mx-auto px-5">
+                <CompactNewsGrid />
+                <EventsSection />
+            </div>
+        </div>
+    );
+};
+
+export default CombinedComponent;
