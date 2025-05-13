@@ -1,7 +1,7 @@
-package com.kocaeli.bel.service;
+package com.kocaeli.bel.service.kurumsal;
 
 import com.kocaeli.bel.model.kurumsal.BaskanEntity;
-import com.kocaeli.bel.repository.BaskanRepository;
+import com.kocaeli.bel.repository.kurumsal.BaskanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
