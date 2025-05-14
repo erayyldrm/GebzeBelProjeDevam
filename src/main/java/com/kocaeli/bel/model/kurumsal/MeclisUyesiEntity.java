@@ -3,7 +3,7 @@ package com.kocaeli.bel.model.kurumsal;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "kurumsal_meclis")
+@Table(name = "KURUMSAL_MECLIS_ESKIBASKANLAR")
 public class MeclisUyesiEntity {
     
     @Id

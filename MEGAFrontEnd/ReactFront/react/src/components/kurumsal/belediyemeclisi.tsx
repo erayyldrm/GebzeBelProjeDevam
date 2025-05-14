@@ -25,8 +25,6 @@ const MunicipalityCouncil: React.FC = () => {
                 return response.json();
             })
             .then(data => {
-                // API artık sadece belediye meclisi üyelerini döndürecektir
-                // Ayrıştırma: Başkan ve Meclis Üyeleri
                 const mayorData = data.find((member: CouncilMember) => member.gorev === 'Başkan');
                 const membersData = data.filter((member: CouncilMember) => member.gorev !== 'Başkan');
                 
@@ -43,7 +41,6 @@ const MunicipalityCouncil: React.FC = () => {
             });
     }, []);
 
-    // Person card component
     const PersonCard: React.FC<{ person: CouncilMember; isPresident?: boolean }> = ({ person, isPresident = false }) => {
         const cardClasses = isPresident ? "max-w-md mb-10" : "max-w-xs mb-5";
         const imgClasses = isPresident ? "h-[300px] w-[300px] object-cover" : "h-36 w-full object-cover";
@@ -72,82 +69,91 @@ const MunicipalityCouncil: React.FC = () => {
         );
     };
 
-    // Yükleme durumu
-    if (isLoading) {
+    if (error && !mayor && councilMembers.length === 0) {
         return (
-            <div className="min-h-screen bg-white p-4 flex justify-center items-center">
-                <div className="animate-pulse text-center">
-                    <div className="h-8 bg-gray-300 rounded w-64 mx-auto mb-4"></div>
-                    <div className="h-64 w-64 bg-gray-300 rounded-lg mx-auto mb-4"></div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
-                        {Array(8).fill(0).map((_, index) => (
-                            <div key={index} className="bg-gray-300 h-48 rounded-lg"></div>
-                        ))}
+            <div className="flex justify-content-center align-items-center min-h-screen p-4 bg-light">
+                <div className="w-full max-w-2xl bg-white border-left border-danger rounded shadow-lg overflow-hidden">
+                    <div className="p-4">
+                        <div className="d-flex align-items-center">
+                            <div className="flex-shrink-0">
+                                <svg className="h-8 w-8 text-danger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                </svg>
+                            </div>
+                            <div className="ml-4">
+                                <h2 className="text-lg font-weight-bold text-dark">Hata</h2>
+                                <p className="text-secondary">{error}</p>
+                                <button
+                                    className="mt-3 px-4 py-2 bg-danger text-white rounded hover:bg-danger"
+                                    onClick={() => window.location.reload()}
+                                >
+                                    Yeniden Dene
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         );
     }
 
-    // Hata durumu
-    if (error && !mayor && councilMembers.length === 0) {
+    if (isLoading) {
         return (
-            <div className="min-h-screen bg-white p-4 flex justify-center items-center">
-                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-md">
-                    <strong className="font-bold">Hata!</strong>
-                    <span className="block sm:inline"> {error}</span>
-                    <button 
-                        className="mt-3 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={() => window.location.reload()}
-                    >
-                        Yenile
-                    </button>
+            <div className="w-full max-w-4xl mx-auto my-4 px-4">
+                <div className="bg-white rounded shadow-lg overflow-hidden">
+                    <div className="animate-pulse">
+                        <div className="h-48 bg-secondary w-full"></div>
+                        <div className="p-4">
+                            <div className="h-6 bg-secondary rounded w-50 mx-auto mb-4"></div>
+                            <div className="space-y-3">
+                                <div className="h-4 bg-secondary rounded"></div>
+                                <div className="h-4 bg-secondary rounded"></div>
+                                <div className="h-4 bg-secondary rounded"></div>
+                                <div className="h-4 bg-secondary rounded w-75"></div>
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
+                                {Array(8).fill(0).map((_, index) => (
+                                    <div key={index} className="bg-secondary h-48 rounded-lg"></div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
     }
 
     return (
-        <div id="pcoded" className="pcoded min-h-screen bg-white shadow-2xl p-4">
-            <div className="pcoded-container navbar-wrapper">
+        <div id="pcoded" className="pcoded">
+            <div className="pcoded-container navbar-wrapper bg-transparent">
                 <div className="pcoded-main-container">
                     <div className="pcoded-wrapper">
                         <div className="pcoded-content">
                             <div className="pcoded-inner-content">
                                 <div className="main-body">
                                     <div className="page-wrapper">
-                                        <div className="flex flex-row gap-4">
-                                            {/* Ana İçerik Alanı */}
-                                            <div className="flex-1 p-4">
-                                                {/* İçeriği kutuya al */}
+                                        <div className="flex justify-center">
+                                            <div className="w-full max-w-6xl px-4">
+                                                <div className="shadow p-4 bg-white rounded-xl text-center mt-4 mb-6">
+                                                    <h1 className="text-xl md:text-3xl font-bold">BELEDİYE MECLİSİ</h1>
+                                                </div>
                                                 <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-                                                    {/* Başlık */}
-                                                    <motion.div
-                                                        initial={{ opacity: 0, y: -20 }}
-                                                        animate={{ opacity: 1, y: 0 }}
-                                                        transition={{ duration: 0.6 }}
-                                                        className="mb-8 text-center"
-
-                                                    >
-                                                        <div className="text-4xl text-white font-bold px-5 py-3 rounded-2xl"
-                                                             style={{ background: 'linear-gradient(180deg, #003366 0%, #00264d 100%)' }}>
-                                                            BELEDİYE MECLİSİ
-                                                        </div>
-                                                    </motion.div>
-
-                                                    {/* Mayor Section */}
                                                     {mayor && (
                                                         <div className="flex justify-center mb-8">
                                                             <PersonCard person={mayor} isPresident={true} />
                                                         </div>
                                                     )}
-
-                                                    {/* Council Members Grid */}
                                                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                                         {councilMembers.map((member, index) => (
                                                             <PersonCard key={index} person={member} />
                                                         ))}
                                                     </div>
+                                                    {!mayor && councilMembers.length === 0 && (
+                                                        <div className="bg-warning border-left-4 border-warning text-dark p-4 rounded shadow-md">
+                                                            <p className="font-weight-bold">Uyarı</p>
+                                                            <p>Belediye meclisi üye bilgisi bulunamadı.</p>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
