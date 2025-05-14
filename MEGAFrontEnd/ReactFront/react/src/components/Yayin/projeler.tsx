@@ -1,91 +1,69 @@
-// @ts-ignore
-import { FileText } from "lucide-react";
-import { motion } from "framer-motion";
-
+import { FileText, Book } from "lucide-react";
 const documents = [
-    { name: "SÖZ VERDİĞİMİZ GİBİ", url: "/proje.pdf" },
-    // Daha çok proje eklenebilir
+    { name: "SÖZ VERDİĞİMİZ GİBİ", url: "https://www.gebze.bel.tr/dosya/20200807140647.pdf" },
 ];
 
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-};
-
-const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
-};
-
-const Projeler = () => {
+export default function CombinedCard() {
     return (
-
         <div className="flex justify-center pt-6 pb-8 sm:pt-8 sm:pb-10 px-4">
-            <div className="flex flex-col space-y-6 w-full max-w-[860px]">
-                <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={containerVariants}
-                    className="w-full bg-white rounded-2xl shadow-xl p-4 md:p-6 flex flex-col"
-                >
-                    <motion.div
-                        variants={itemVariants}
-                        className="flex justify-center mb-4"
-                    >
+            <div className="flex flex-col space-y-6 w-full max-w-[960px]">
+                {/* Ana Kart */}
+                <div className="w-full bg-white rounded-2xl shadow-xl overflow-hidden">
+                    {/* Başlık */}
+                    <div className="w-full flex justify-center p-4">
                         <div className="text-center text-xl md:text-2xl lg:text-3xl font-extrabold text-blue-900 bg-white border-2 border-blue-900 px-4 md:px-6 py-2 md:py-3 rounded-xl shadow-md">
                             GEBZE BELEDİYESİ PROJELERİ
                         </div>
-                    </motion.div>
-
-                    <div className="flex flex-col gap-3 md:gap-4">
-                        {documents.map((doc, index) => (
-                            <motion.div
-                                key={index}
-                                variants={itemVariants}
-                                whileHover={{
-                                    scale: 1.02,
-                                    boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)",
-                                }}
-                                className="flex items-center justify-between bg-blue-50 hover:bg-blue-100 p-3 md:p-4 rounded-lg transition shadow-md"
-                            >
-                                <div className="flex items-center gap-3 md:gap-4">
-                                    <FileText className="text-orange-500" size={24} />
-                                    <span className="text-blue-700 font-medium text-xs sm:text-sm md:text-base">
-                                        {doc.name}
-                                    </span>
-                                </div>
-                                <a
-                                    href={doc.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-600 hover:underline text-xs sm:text-sm whitespace-nowrap"
-                                >
-                                    Görüntüle
-                                </a>
-                            </motion.div>
-                        ))}
                     </div>
-                </motion.div>
-                <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={containerVariants}
-                    className="w-full aspect-[4/3] sm:aspect-[16/9] max-h-[610px] bg-white/90 border border-gray-300 rounded-2xl shadow-lg p-4 md:p-6 flex flex-col backdrop-blur-sm"
-                >
-                    <div className="relative w-full h-full rounded-xl overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-70 z-10"></div>
-                        <img
-                            src="/images/yayınlar/yayınlar.png"
-                            alt="Gebze Belediyesi Projeleri"
-                            className="w-full h-full object-cover"
-                        />
+
+                    {/* Sabit Görsel Kartı */}
+                    <div className="px-4 md:px-6 pb-4 md:pb-6 flex justify-center">
+                        <div className="bg-white rounded-xl shadow-md overflow-hidden w-full max-w-[700px] aspect-[4/3]">
+                            <div className="relative w-full h-full">
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-900/60 to-blue-700/40 z-10"></div>
+                                <img
+                                    src="/images/yayınlar/yayınlar.png"
+                                    className="w-full h-full object-cover"
+                                    alt="Kültür Yayını"
+                                />
+                            </div>
+                        </div>
                     </div>
-                </motion.div>
+                    {/* Yayınlarımız Bölümü */}
+                    <div className="p-4 md:p-6">
+                        <div className="mb-6">
+                            <div className="flex items-center gap-3 mb-4 border-b pb-3 border-blue-100">
+                                <Book className="text-orange-500" size={28} />
+                                <div className="text-lg md:text-xl font-bold text-blue-900">Yayınlarımız</div>
+                            </div>
 
-                {/* Bilgi Kartı */}
-
+                            <div className="space-y-3">
+                                {documents.map((doc, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex flex-col sm:flex-row sm:items-center justify-between bg-blue-50 hover:bg-blue-100 p-3 md:p-4 rounded-lg transition shadow-sm hover:shadow-md space-y-2 sm:space-y-0 sm:space-x-4"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <FileText className="text-orange-500 flex-shrink-0" size={20} />
+                                            <span className="text-blue-700 font-medium text-sm sm:text-base">
+                                                {doc.name}
+                                            </span>
+                                        </div>
+                                        <a
+                                            href={doc.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-white bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded text-xs sm:text-sm whitespace-nowrap transition text-center"
+                                        >
+                                            Görüntüle
+                                        </a>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
-};
-export default Projeler;
+}
