@@ -19,6 +19,17 @@ public class MeclisUyesiService {
     public List<MeclisUyesiEntity> getAllMeclisUyeleri() {
         return meclisUyesiRepository.findAllOrderByRoleAndOrder();
     }
+    
+    // Sadece Belediye Meclisi üyelerini getiren metot (Eski başkanlar hariç)
+    // Burada görev alanı null olmayanları getiriyoruz
+    public List<MeclisUyesiEntity> getMeclisUyeleri() {
+        return meclisUyesiRepository.findByGorevNotNull();
+    }
+    
+    // Eski başkanları getiren metot
+    public List<MeclisUyesiEntity> getEskiBaskanlar() {
+        return meclisUyesiRepository.findByGorevIsNull();
+    }
 
     public List<MeclisUyesiEntity> getByGorev(String gorev) {
         return meclisUyesiRepository.findByGorev(gorev);

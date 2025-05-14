@@ -20,7 +20,8 @@ public class MeclisUyesiController {
 
     @GetMapping("/belediyemeclisi")
     public ResponseEntity<List<MeclisUyesiEntity>> getAllMeclisUyeleri() {
-        return ResponseEntity.ok(meclisUyesiService.getAllMeclisUyeleri());
+        // Başkan ve Meclis Üyeleri için - Eski başkanları hariç tutuyoruz
+        return ResponseEntity.ok(meclisUyesiService.getMeclisUyeleri());
     }
 
     @GetMapping("/belediyemeclisi/gorev/{gorev}")
@@ -33,5 +34,11 @@ public class MeclisUyesiController {
         return meclisUyesiService.getById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+    
+    @GetMapping("/eskibaskanlar")
+    public ResponseEntity<List<MeclisUyesiEntity>> getEskiBaskanlar() {
+        // Eski başkanlar için, görev alanı null olan kayıtları getiriyoruz
+        return ResponseEntity.ok(meclisUyesiService.getEskiBaskanlar());
     }
 }

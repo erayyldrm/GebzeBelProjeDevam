@@ -25,6 +25,7 @@ const MunicipalityCouncil: React.FC = () => {
                 return response.json();
             })
             .then(data => {
+                // API artık sadece belediye meclisi üyelerini döndürecektir
                 // Ayrıştırma: Başkan ve Meclis Üyeleri
                 const mayorData = data.find((member: CouncilMember) => member.gorev === 'Başkan');
                 const membersData = data.filter((member: CouncilMember) => member.gorev !== 'Başkan');
@@ -32,39 +33,17 @@ const MunicipalityCouncil: React.FC = () => {
                 setMayor(mayorData || null);
                 setCouncilMembers(membersData);
                 setIsLoading(false);
+                
+                console.log("Belediye Meclisi Verileri:", data);
             })
             .catch(err => {
                 console.error("Belediye Meclisi verileri yüklenirken hata oluştu:", err);
                 setError("Veriler yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
                 setIsLoading(false);
-                
-                // Hata durumunda örnek veri kullanımı
-                fallbackToStaticData();
             });
     }, []);
 
-    // Hata durumunda statik verilere geri dönme
-    const fallbackToStaticData = () => {
-        // Başkan verisi
-        const fallbackMayor = {
-            id: 0,
-            isimSoyisim: "Zinnur BÜYÜKGÖZ",
-            resimUrl: "/images/kurumsal/belediyemeclisi/zinnurbuyukgoz.jpg",
-            gorev: "Başkan",
-            siraNo: 1
-        };
-
-        // Örnek statik meclis üyeleri
-        const fallbackMembers = [
-            { id: 1, isimSoyisim: "Hasan SOBA", resimUrl: "/images/kurumsal/belediyemeclisi/hasansoba.jpg", gorev: "Meclis Üyesi", siraNo: 1 },
-            { id: 2, isimSoyisim: "Mahmut YANDIK", resimUrl: "/images/kurumsal/belediyemeclisi/mahmutyandik.jpg", gorev: "Meclis Üyesi", siraNo: 2 },
-            // ...diğer fallback veriler
-        ];
-
-        setMayor(fallbackMayor);
-        setCouncilMembers(fallbackMembers);
-    };
-
+    // Person card component
     const PersonCard: React.FC<{ person: CouncilMember; isPresident?: boolean }> = ({ person, isPresident = false }) => {
         const cardClasses = isPresident ? "max-w-md mb-10" : "max-w-xs mb-5";
         const imgClasses = isPresident ? "h-[300px] w-[300px] object-cover" : "h-36 w-full object-cover";
@@ -148,9 +127,10 @@ const MunicipalityCouncil: React.FC = () => {
                                                         animate={{ opacity: 1, y: 0 }}
                                                         transition={{ duration: 0.6 }}
                                                         className="mb-8 text-center"
-                                                        style={{ background: 'linear-gradient(180deg, #003366 0%, #00264d 100%)' }}
+
                                                     >
-                                                        <div className="text-4xl text-white font-bold px-5 py-3 rounded-2xl">
+                                                        <div className="text-4xl text-white font-bold px-5 py-3 rounded-2xl"
+                                                             style={{ background: 'linear-gradient(180deg, #003366 0%, #00264d 100%)' }}>
                                                             BELEDİYE MECLİSİ
                                                         </div>
                                                     </motion.div>
@@ -183,4 +163,3 @@ const MunicipalityCouncil: React.FC = () => {
 };
 
 export default MunicipalityCouncil;
-
