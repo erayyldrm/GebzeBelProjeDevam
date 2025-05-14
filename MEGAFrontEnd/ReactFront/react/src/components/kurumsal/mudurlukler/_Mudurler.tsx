@@ -46,7 +46,7 @@ const Layout: React.FC = () => {
         <div className="min-h-screen bg-gray-50">
             {/* Page Title */}
             <div className="bg-white rounded-xl shadow-md text-center py-4 mb-4">
-                <h1 className="text-2xl font-bold text-blue-900">BAŞKAN DANIŞMANLARI</h1>
+                <h1 className="text-2xl font-bold text-blue-900">MÜDÜRLÜKLER</h1>
             </div>
 
             <div className="container mx-auto px-4 pb-12">
