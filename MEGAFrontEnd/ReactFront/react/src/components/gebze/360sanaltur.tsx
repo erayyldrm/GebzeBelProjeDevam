@@ -1,27 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin } from 'lucide-react';
+import axios from 'axios';
 
 interface Location {
     id: number;
-    name: string;
-    imageUrl: string;
-    tourUrl: string;
+    baslik: string;
+    resimUrl: string;
+    url: string;
     mapUrl: string;
+    konum: string;
+    type: string;
 }
-
-const locations: Location[] = [
-    { id: 1, name: "ANİBALIN MEZARI", imageUrl: "/images/gebze/360sanaltur/1.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/anibal-mezari_9.html", mapUrl: "https://www.google.com/maps/place/Hannibalin+Mezar%C4%B1/@40.782282,29.4417079,15z/data=!4m5!3m4!1s0x0:0xd11c044aa3d2711!8m2!3d40.782282!4d29.4417079?shorturl=1" },
-    { id: 2, name: "BALLIKAYALAR", imageUrl: "/images/gebze/360sanaltur/2.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/ballikayalar_5.html", mapUrl: "https://www.google.com/maps/place/Ball%C4%B1kayalar+Tabiat+Park%C4%B1/@40.8330952,29.516802,15z/data=!4m6!3m5!1s0x14cb242bfea49fbf:0x8a949c7858da831d!8m2!3d40.8332309!4d29.5168155!16s%2Fg%2F1thm0p0_?entry=ttu&g_ep=EgoyMDI1MDMyNC4wIKXMDSoASAFQAw%3D%3D" },
-    { id: 3, name: "ÇOBAN MUSTAFA PAŞA CAMİİ", imageUrl: "/images/gebze/360sanaltur/3.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/coban-mustafa-pasa-cami_6.html", mapUrl: "https://www.google.com/maps/place/Hac%C4%B1halil,+%C3%87oban+Mustafa+Pa%C5%9Fa+Cami,+41400+Gebze%2FKocaeli/@40.7998871,29.4293468,17z/data=!3m1!4b1!4m5!3m4!1s0x14cb208f33d5f6db:0xb8012998823d4822!8m2!3d40.7998831!4d29.4315355?shorturl=1" },
-    { id: 4, name: "ESKİHİSAR KALESİ", imageUrl: "/images/gebze/360sanaltur/4.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/eskihisar-kalesi_7.html", mapUrl: "https://www.google.com/maps/place/Eskihisar+Kalesi/@40.7718998,29.4302579,17z/data=!4m5!3m4!1s0x14cb2011812179d9:0xca32cd56ebba0ea1!8m2!3d40.771275!4d29.4321578?shorturl=1" },
-    { id: 5, name: "GEBZE TARİHİ SU DOLABI", imageUrl: "/images/gebze/360sanaltur/5.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/gebze-tarihi-su-dolabi_15.html", mapUrl: "https://www.google.com/maps/place/Tarihi+Su+Dolab%C4%B1/@40.8037724,29.4377811,15z/data=!4m5!3m4!1s0x0:0x9ddfa92da82047b2!8m2!3d40.8037627!4d29.4377932?sa=X&hl=tr&ved=2ahUKEwjEhPu10LfyAhVNm6QKHXDeBTsQ_BIwHXoECEsQBQ&shorturl=1" },
-    { id: 6, name: "HÜNKAR ÇAYIRI", imageUrl: "/images/gebze/360sanaltur/6.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/hunkar-cayiri_8.html", mapUrl: "https://www.google.com/maps/place/H%C3%BCnkar+%C3%87ay%C4%B1r%C4%B1/@40.813967,29.343185,15z/data=!4m5!3m4!1s0x0:0x563611efabd51aa!8m2!3d40.813967!4d29.343185?sa=X&ved=2ahUKEwj0xqr-v7fyAhXJ16QKHSivBHgQ_BIwG3oECFAQBQ&shorturl=1" },
-    { id: 7, name: "İBRAHİM PAŞA ÇEŞMESİ", imageUrl: "/images/gebze/360sanaltur/7.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/ibrahim-pasa-cesmesi-carsi-cesmesi_10.html", mapUrl: "https://www.google.com/maps/place/%C4%B0brahim+Pa%C5%9Fa+%C3%87e%C5%9Fmesi+(Eski+%C3%87ar%C5%9F%C4%B1+%C3%87e%C5%9Fmesi)/@40.7984023,29.4316467,17z/data=!3m1!4b1!4m5!3m4!1s0x14cb2159ac7bdb4d:0x1128fdc4b678c96d!8m2!3d40.7983983!4d29.4338354?shorturl=1" },
-    { id: 8, name: "İLYAS BEY CAMİİ", imageUrl: "/images/gebze/360sanaltur/8.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/ilyas-bey-cami_11.html", mapUrl: "https://www.google.com/maps/place/%C4%B0lyas+Bey+Cami/@40.7995368,29.4403006,15z/data=!4m5!3m4!1s0x0:0x648c4ebb83eead8a!8m2!3d40.7995368!4d29.4403006?sa=X&hl=tr&ved=2ahUKEwjGyoC-yrfyAhWtgf0HHcuGBU0Q_BIwE3oECEIQBQ&shorturl=1" },
-    { id: 9, name: "OSMAN HAMDİ BEY MÜZESİ", imageUrl: "/images/gebze/360sanaltur/9.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/osman-hamdi-bey-muzesi_12.html", mapUrl: "https://www.google.com/maps/place/Osman+Hamdi+Bey+Evi+ve+M%C3%BCzesi/@40.769348,29.4179773,15z/data=!4m6!3m5!1s0x14cb200fa27728bf:0xb8320b5bebc2a90a!8m2!3d40.769348!4d29.426732!15sCg9vc21hbiBoYW1kaSBiZXlaESIPb3NtYW4gaGFtZGkgYmV5kgEGbXVzZXVt?hl=tr&shorturl=1" },
-    { id: 10, name: "SULTAN ORHAN CAMİİ", imageUrl: "/images/gebze/360sanaltur/10.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/sultan-orhan-camii_13.html", mapUrl: "https://www.google.com/maps/place/Sultan+Orhan+Cami/@40.769348,29.4179773,15z/data=!4m5!3m4!1s0x14cb208c7bb7f3d5:0x805bf82146b0c733!8m2!3d40.7980824!4d29.4378397?hl=tr&shorturl=1" },
-    { id: 11, name: "TARİHİ ÇARŞI HAMAMI", imageUrl: "/images/gebze/360sanaltur/11.jpg", tourUrl: "https://www.gebze.bel.tr/sanaltur/tarihi-carsi-hamami_14.html", mapUrl: "https://www.google.com/maps/place/Tarihi+%C3%87ar%C5%9F%C4%B1+Hamam%C4%B1/@40.7985035,29.4318198,17z/data=!3m2!4b1!5s0x14cb20894a58a5d1:0xad3f6edee650f091!4m5!3m4!1s0x14cb20894af6630f:0xda82440ad30b8594!8m2!3d40.7984637!4d29.4339573?shorturl=1" }
-];
 
 const VrGogglesIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="white" className="bi bi-headset-vr" viewBox="0 0 16 16">
@@ -31,6 +20,51 @@ const VrGogglesIcon = () => (
 );
 
 const VirtualTourGallery: React.FC = () => {
+    const [locations, setLocations] = useState<Location[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchLocations = async () => {
+            try {
+                setIsLoading(true);
+                console.log('Sanal turlar yükleniyor...');
+                const response = await axios.get('http://localhost:8080/api/gebze/sanaltur');
+                console.log('Sanal tur yanıtı:', response.data);
+
+                if (Array.isArray(response.data)) {
+                    setLocations(response.data);
+                    console.log('Yüklenen sanal tur sayısı:', response.data.length);
+                } else {
+                    throw new Error('Geçersiz veri formatı');
+                }
+            } catch (err) {
+                console.error('Sanal tur yükleme hatası:', err);
+                setError("Sanal tur verileri yüklenirken bir hata oluştu.");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchLocations();
+    }, []);
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="text-xl">Yükleniyor...</div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="text-xl text-red-600">{error}</div>
+            </div>
+        );
+    }
+
     return (
         <div className="container mx-auto px-2 sm:px-4 py-8 max-w-screen-2xl">
             {/* Başlık üstüne bir satır boşluk */}
@@ -57,20 +91,20 @@ const VirtualTourGallery: React.FC = () => {
                         {/* Standard 16:9 aspect ratio */}
                         <div className="aspect-[16/9] w-full">
                             <img
-                                src={location.imageUrl}
-                                alt={location.name}
+                                src={location.resimUrl}
+                                alt={location.baslik}
                                 className="w-full h-full object-cover"
                             />
                         </div>
                         <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-2 rounded-lg text-sm md:text-base font-medium max-w-[90%]">
-                            {location.name}
+                            {location.baslik}
                         </div>
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
                             <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity flex space-x-6 duration-300">
-                                <a href={location.tourUrl} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" title="Sanal Tur">
+                                <a href={location.url} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" title="Sanal Tur">
                                     <VrGogglesIcon />
                                 </a>
-                                <a href={location.mapUrl} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" title="Haritada Gör">
+                                <a href={location.konum} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform" title="Haritada Gör">
                                     <MapPin size={36} className="text-white hover:text-green-400 transition-colors" />
                                 </a>
                             </div>

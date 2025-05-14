@@ -206,18 +206,6 @@
 .ml-auto {
   margin-left: auto;
 }
-.line-clamp-2 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-.line-clamp-3 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
 .\!grid {
   display: grid !important;
 }
@@ -284,6 +272,9 @@
 .aspect-\[3\/4\] {
   aspect-ratio: 3/4;
 }
+.aspect-\[4\/3\] {
+  aspect-ratio: 4/3;
+}
 .aspect-\[16\/9\] {
   aspect-ratio: 16/9;
 }
@@ -335,14 +326,14 @@
 .max-h-\[500px\] {
   max-height: 500px;
 }
+.max-h-\[610px\] {
+  max-height: 610px;
+}
 .max-h-full {
   max-height: 100%;
 }
 .max-h-screen {
   max-height: 100vh;
-}
-.min-h-\[24rem\] {
-  min-height: 24rem;
 }
 .min-h-\[300px\] {
   min-height: 300px;
@@ -389,6 +380,9 @@
 .w-px {
   width: 1px;
 }
+.max-w-\[80vw\] {
+  max-width: 80vw;
+}
 .max-w-\[90\%\] {
   max-width: 90%;
 }
@@ -412,6 +406,9 @@
 }
 .max-w-\[850px\] {
   max-width: 850px;
+}
+.max-w-\[860px\] {
+  max-width: 860px;
 }
 .max-w-\[950px\] {
   max-width: 950px;
@@ -509,6 +506,9 @@
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -569,9 +569,6 @@
     border-bottom-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
   }
 }
-.self-start {
-  align-self: flex-start;
-}
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -622,6 +619,10 @@
 .border-t-2 {
   border-top-style: var(--tw-border-style);
   border-top-width: 2px;
+}
+.border-r {
+  border-right-style: var(--tw-border-style);
+  border-right-width: 1px;
 }
 .border-b {
   border-bottom-style: var(--tw-border-style);
@@ -785,6 +786,9 @@
 .opacity-50 {
   opacity: 50%;
 }
+.opacity-70 {
+  opacity: 70%;
+}
 .opacity-100 {
   opacity: 100%;
 }
@@ -920,6 +924,12 @@
     @media (hover: hover) {
       opacity: 100%;
     }
+  }
+}
+.last\:border-r-0 {
+  &:last-child {
+    border-right-style: var(--tw-border-style);
+    border-right-width: 0px;
   }
 }
 .hover\:scale-105 {
