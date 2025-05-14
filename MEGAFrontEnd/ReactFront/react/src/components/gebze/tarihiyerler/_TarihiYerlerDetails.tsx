@@ -164,8 +164,8 @@ const TarihiYerDetay: React.FC = () => {
                                         </h2>
                                         <ul className="space-y-3">
                                             {tarihiYerDetay.aktiviteler.map((aktivite, index) => (
-                                                <li key={index} className="bg-red-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                                                    <h3 className="text-lg font-semibold text-red-700">
+                                                <li key={index} className="bg-blue-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                                                    <h3 className="text-lg font-semibold text-blue-700">
                                                         {aktivite.baslik}
                                                     </h3>
                                                     <p>{aktivite.aciklama}</p>
@@ -178,8 +178,8 @@ const TarihiYerDetay: React.FC = () => {
 
                             {/* Sağ Taraf - Nasıl Gidilir ve Galeri */}
                             <div className="lg:w-1/3 md:w-1/3">
-                                <div className="bg-red-50 p-5 rounded-lg shadow-md mb-6 sticky top-6">
-                                    <h3 className="text-xl font-bold text-red-800 mb-3">
+                                <div className="bg-blue-50 p-5 rounded-lg shadow-md mb-6 sticky top-6">
+                                    <h3 className="text-xl font-bold text-blue-800 mb-3">
                                         <MapPin className="inline-block w-6 h-6 mr-2 -mt-1" />
                                         Nasıl Gidilir?
                                     </h3>
@@ -231,7 +231,7 @@ const TarihiYerDetay: React.FC = () => {
                                             <div className="text-center mt-4">
                                                 <button
                                                     onClick={() => openLightbox(0)}
-                                                    className="text-red-700 hover:text-red-900 text-sm font-semibold"
+                                                    className="text-blue-700 hover:text-blue-900 text-sm font-semibold"
                                                 >
                                                     Tüm resimleri görüntüle ({galleryImagesForDisplay.length})
                                                 </button>
