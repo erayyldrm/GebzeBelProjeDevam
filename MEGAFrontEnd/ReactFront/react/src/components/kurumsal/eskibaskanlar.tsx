@@ -78,19 +78,30 @@ const FormerMayors: React.FC = () => {
         );
     }
 
-    // Hata durumu ve veri yoksa
+    // Hata durumu - Baskan sayfasıyla aynı tasarım
     if (error && formerMayors.length === 0) {
         return (
-            <div className="min-h-screen bg-white p-4 flex justify-center items-center">
-                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-md">
-                    <strong className="font-bold">Hata!</strong>
-                    <span className="block sm:inline"> {error}</span>
-                    <button 
-                        className="mt-3 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={() => window.location.reload()}
-                    >
-                        Yenile
-                    </button>
+            <div className="flex justify-content-center align-items-center min-h-screen p-4 bg-light">
+                <div className="w-full max-w-2xl bg-white border-left border-danger rounded shadow-lg overflow-hidden">
+                    <div className="p-4">
+                        <div className="d-flex align-items-center">
+                            <div className="flex-shrink-0">
+                                <svg className="h-8 w-8 text-danger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                </svg>
+                            </div>
+                            <div className="ml-4">
+                                <h2 className="text-lg font-weight-bold text-dark">Hata</h2>
+                                <p className="text-secondary">{error}</p>
+                                <button
+                                    className="mt-3 px-4 py-2 bg-danger text-white rounded hover:bg-danger"
+                                    onClick={() => window.location.reload()}
+                                >
+                                    Yeniden Dene
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -142,3 +153,4 @@ const FormerMayors: React.FC = () => {
 };
 
 export default FormerMayors;
+

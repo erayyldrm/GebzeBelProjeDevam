@@ -25,6 +25,10 @@ public interface YonetimSemasiRepository extends JpaRepository<YonetimSemasiEnti
     @Query(value = "SELECT y FROM YonetimSemasiEntity y WHERE y.pozisyon = 'Başkan Yardımcısı' ORDER BY y.siraNo ASC")
     List<YonetimSemasiEntity> findBaskanYardimcilari();
     
+    // Başkan Danışmanı pozisyonu sorgusu
+    @Query(value = "SELECT y FROM YonetimSemasiEntity y WHERE y.pozisyon = 'Başkan Danışmanı' ORDER BY y.siraNo ASC")
+    List<YonetimSemasiEntity> findBaskanDanismanlari();
+    
     // ID ile sorgu
     @Override
     Optional<YonetimSemasiEntity> findById(Long id);

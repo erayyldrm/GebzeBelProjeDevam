@@ -19,13 +19,17 @@ public class YonetimSemasiService {
     public List<YonetimSemasiEntity> getAllYonetimSemasi() {
         return yonetimSemasiRepository.findAllOrderByPositionAndOrder();
     }
-    
+
     public List<YonetimSemasiEntity> getBaskan() {
         return yonetimSemasiRepository.findBaskan();
     }
-    
+
     public List<YonetimSemasiEntity> getBaskanYardimcilari() {
         return yonetimSemasiRepository.findBaskanYardimcilari();
+    }
+
+    public List<YonetimSemasiEntity> getBaskanDanismanlari() {
+        return yonetimSemasiRepository.findBaskanDanismanlari();
     }
 
     public List<YonetimSemasiEntity> getByPozisyon(String pozisyon) {

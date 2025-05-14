@@ -38,15 +38,64 @@ const BaskanYardimcilari: React.FC = () => {
 
     const getImageUrl = (resimUrl: string): string => {
         if (!resimUrl) return "/api/placeholder/250/230";
-        
+
         // Veri tabanından gelen URL'lerden backend kısmını kaldır
         const imagePath = resimUrl.startsWith('/') ? resimUrl : `/${resimUrl}`;
-        
+
         // Public klasöründeki resmi kullan
         return imagePath;
     };
 
-    // ... existing code ...
+    // Hata durumu - Baskan sayfasıyla aynı tasarım
+    if (error) {
+        return (
+            <div className="flex justify-content-center align-items-center min-h-screen p-4 bg-light">
+                <div className="w-full max-w-2xl bg-white border-left border-danger rounded shadow-lg overflow-hidden">
+                    <div className="p-4">
+                        <div className="d-flex align-items-center">
+                            <div className="flex-shrink-0">
+                                <svg className="h-8 w-8 text-danger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                </svg>
+                            </div>
+                            <div className="ml-4">
+                                <h2 className="text-lg font-weight-bold text-dark">Hata</h2>
+                                <p className="text-secondary">{error}</p>
+                                <button
+                                    className="mt-3 px-4 py-2 bg-danger text-white rounded hover:bg-danger"
+                                    onClick={() => window.location.reload()}
+                                >
+                                    Yeniden Dene
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // Yükleme durumu
+    if (loading) {
+        return (
+            <div className="w-full max-w-4xl mx-auto my-4 px-4">
+                <div className="bg-white rounded shadow-lg overflow-hidden">
+                    <div className="animate-pulse">
+                        <div className="h-48 bg-secondary w-full"></div>
+                        <div className="p-4">
+                            <div className="h-6 bg-secondary rounded w-50 mx-auto mb-4"></div>
+                            <div className="space-y-3">
+                                <div className="h-4 bg-secondary rounded"></div>
+                                <div className="h-4 bg-secondary rounded"></div>
+                                <div className="h-4 bg-secondary rounded"></div>
+                                <div className="h-4 bg-secondary rounded w-75"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-gray-100 min-h-screen p-10">

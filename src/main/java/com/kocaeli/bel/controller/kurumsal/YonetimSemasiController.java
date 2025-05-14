@@ -27,4 +27,9 @@ public class YonetimSemasiController {
         response.put("baskanYardimcilari", yonetimSemasiService.getBaskanYardimcilari());
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/baskandanismanlari")
+    public ResponseEntity<List<YonetimSemasiEntity>> getBaskanDanismanlari() {
+        return ResponseEntity.ok(yonetimSemasiService.getBaskanDanismanlari());
+    }
 }
