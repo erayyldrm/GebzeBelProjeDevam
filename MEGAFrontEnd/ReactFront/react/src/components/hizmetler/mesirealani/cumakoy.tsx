@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 
 const Yumrukaya = () => {
@@ -33,7 +33,7 @@ const Yumrukaya = () => {
                     />
 
                     {/* Overlay Content */}
-                    <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center px-4 bg-black/30">
+                    <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center px-4 ">
                         <h1 className="text-4xl md:text-5xl bg-[#022842]/60 font-bold text-white mb-4 rounded-xl px-4 py-3 inline-block">
                             CUMAKÖY MESİRE ALANI
                         </h1>
@@ -81,10 +81,7 @@ const Yumrukaya = () => {
                     </div>
                 </div>
 
-                {/* Image counter */}
-                <div className="text-center mt-2 text-sm text-gray-600">
-                    {currentIndex + 1} / {sliderImages.length}
-                </div>
+
             </div>
         </div>
     );
