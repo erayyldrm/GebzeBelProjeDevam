@@ -1,54 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
-interface CouncilMember {
-    name: string;
-    imageUrl: string;
-    role: string;
+interface FormerMayor {
+    id: number;
+    isimSoyisim: string;
+    resimUrl: string;
+    gorev: string;
+    siraNo: number;
 }
 
 const FormerMayors: React.FC = () => {
-    // Council members data
-    const formerMayors: CouncilMember[] = [
-        { name: "Adnan KÖŞKER", imageUrl: "/images/kurumsal/eskibaskanlar/Adnan-KOSKER.jpg", role: "2009 - 2019" },
-        { name: "İbrahim Pehlivan", imageUrl: "/images/kurumsal/eskibaskanlar/Ibrahim-PEHLIVAN.jpg", role: "2004-2009" },
-        { name: "Ahmet PENBEGÜLLÜ", imageUrl: "/images/kurumsal/eskibaskanlar/Ahmet-PENBEGULLU.jpg", role: "1994 - 2004" },
-        { name: "Mehmet EMİN AKIN", imageUrl: "/images/kurumsal/eskibaskanlar/Mehmet-Emin-AKIN.jpg", role: "1989 - 1994" },
-        { name: "Bülent ATASAYAN", imageUrl: "/images/kurumsal/eskibaskanlar/Bulent-ATASAYAN.jpg", role: "1984 - 1987" },
-        { name: "Bnb.Erol SANVER", imageUrl: "/images/kurumsal/eskibaskanlar/Bnb.Erol-SANVER.jpg", role: "1980 - 4 ay" },
-        { name: "Kubilay İlgün", imageUrl: "/images/kurumsal/eskibaskanlar/Kubilay-ILGUN.jpg", role: "1980 - 1983" },
-        { name: "Sedat Tüze", imageUrl: "/images/kurumsal/eskibaskanlar/Sedat-TUZE.jpg", role: "1977 - 1980" },
-        { name: "Ziya FIRAT", imageUrl: "/images/kurumsal/eskibaskanlar/Ziya-FIRAT.jpg", role: "1973 - 1977" },
-        { name: "Mehmet ÜSTÜNDAĞ", imageUrl: "/images/kurumsal/eskibaskanlar/Mehmet-USTUNDAG.jpg", role: "1963 - 1973" },
-        { name: "Selahattin Altaş", imageUrl:"/images/kurumsal/eskibaskanlar/Selahattin-ALTAS.jpg", role: "1960 - 1963" },
-        { name: "Hüseyin ÖZGEN", imageUrl: "/images/kurumsal/eskibaskanlar/Huseyin-OZGEN.jpg", role: "1950 - 1960" },
-        { name: "Hayri GÖKÇEN", imageUrl: "/images/kurumsal/eskibaskanlar/Hayri.GOKCEN.jpg", role: "1945 - 1950" },
-        { name: "Esat SAYDUK", imageUrl: "/images/kurumsal/eskibaskanlar/Esat-SAYDUK.jpg", role: "1939 - 1945" },
-        { name: "Ahmet ELDEM", imageUrl: "/images/kurumsal/eskibaskanlar/Ahmet-ELDEM.jpg", role: "1935 - 1939" },
-        { name: "Lütfü BEY", imageUrl: "/images/kurumsal/eskibaskanlar/Lutfu-BEY.jpg", role: "1933 - 1935" },
-        { name: "Bekir KANDİLCİ", imageUrl: "/images/kurumsal/eskibaskanlar/Bekir-KANDILCI.jpg", role:"1932 - 1933" },
-        { name: "İsmail ARTAR", imageUrl:"/images/kurumsal/eskibaskanlar/Ismail-ARTAR.jpg", role: "1930 - 1932" },
-        { name: "Mustafa Zeki TOROS", imageUrl: "/images/kurumsal/eskibaskanlar/Mustafa-Zeki-TOROS.jpg", role: "1928 - 1930" },
-        { name: "Arif Çavuş SÖĞÜTLÜ", imageUrl: "/images/kurumsal/eskibaskanlar/Arif-CAVUS-SOGUTLU.jpg", role: "1926 - 1928" },
-        { name: "İzzet BEY", imageUrl: "/images/kurumsal/eskibaskanlar/Izzet-BEY.jpg", role: "1923 - 1924" },
-        { name: "Hacı Mehmet BEY", imageUrl: "/images/kurumsal/eskibaskanlar/Hacı-Mehmet-BEY.jpg", role: "1922 - 1923" },
-        { name: "Sandıkçı Hüzeyin Efe", imageUrl: "/images/kurumsal/eskibaskanlar/Sandikci-Huzeyin-EFE.jpg", role: "1921 - 1922" },
-        { name: "Nazmi Çavuş", imageUrl:"/images/kurumsal/eskibaskanlar/Nazmi-CAVUS.jpg", role: "1920 - 1921" },
-        { name: "Cerrah Apdullah EFENDİ", imageUrl: "/images/kurumsal/eskibaskanlar/Cerrah-Abdullah-EFENDİ.jpg", role: "1919 - 1920" },
-        { name: "Halil AKİFOĞlU", imageUrl: "/images/kurumsal/eskibaskanlar/Halil-AKIFOGLU.jpg", role: "1918 - 1919" },
-        { name: "Nalbant Kadir USTA", imageUrl: "/images/kurumsal/eskibaskanlar/Nalbat-Kadir-USTA.jpg", role: "1916 - 1918" },
-        { name: "Vodinalı Hafız BEY", imageUrl: "/images/kurumsal/eskibaskanlar/Vodinalı-Hafiz-BEY.jpg", role: "1915 - 1916" },
-        { name: "Hafız Ali DÖNMEZ", imageUrl: "/images/kurumsal/eskibaskanlar/Hafiz-Ali-DONMEZ.jpg", role: "1914 - 1915" },
-        { name: "Sapçı Mehmet Çavuş", imageUrl: "/images/kurumsal/eskibaskanlar/Sapci-Mehmet-CAVUS.jpg", role: "1911 - 1914" }];
+    const [formerMayors, setFormerMayors] = useState<FormerMayor[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        setIsLoading(true);
+        fetch("http://localhost:8080/api/kurumsal/eskibaskanlar")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // API artık sadece eski başkanları döndürecektir
+                setFormerMayors(data);
+                setIsLoading(false);
+                
+                console.log("Eski Başkanlar Verileri:", data);
+            })
+            .catch(err => {
+                console.error("Eski başkanlar verileri yüklenirken hata oluştu:", err);
+                setError("Veriler yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
+                setIsLoading(false);
+            });
+    }, []);
 
     // Person card component
-    const PersonCard: React.FC<{ person: CouncilMember }> = ({ person }) => {
+    const PersonCard: React.FC<{ person: FormerMayor }> = ({ person }) => {
         return (
             <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-xs mb-5">
                 <div className="text-center">
                     <div className="relative">
                         <img
-                            src={person.imageUrl}
-                            alt={person.name}
+                            src={person.resimUrl}
+                            alt={person.isimSoyisim}
                             className="w-full h-36 object-cover"
                             onError={(e) => {
                                 const target = e.target as HTMLImageElement;
@@ -57,15 +54,47 @@ const FormerMayors: React.FC = () => {
                         />
                     </div>
                     <div className="p-4">
-                        <h4 className="text-lg font-medium text-gray-800">{person.name}</h4>
-                        <div className="mt-2">
-                            <span className="text-gray-600 font-medium">{person.role}</span>
-                        </div>
+                        <h4 className="text-lg font-medium text-gray-800">{person.isimSoyisim}</h4>
+                        {/* Görev bilgisi kaldırıldı */}
                     </div>
                 </div>
             </div>
         );
     };
+
+    // Yükleme durumu
+    if (isLoading) {
+        return (
+            <div className="min-h-screen bg-white p-4 flex justify-center items-center">
+                <div className="animate-pulse text-center">
+                    <div className="h-8 bg-gray-300 rounded w-64 mx-auto mb-4"></div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
+                        {Array(12).fill(0).map((_, index) => (
+                            <div key={index} className="bg-gray-300 h-48 rounded-lg"></div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // Hata durumu ve veri yoksa
+    if (error && formerMayors.length === 0) {
+        return (
+            <div className="min-h-screen bg-white p-4 flex justify-center items-center">
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-md">
+                    <strong className="font-bold">Hata!</strong>
+                    <span className="block sm:inline"> {error}</span>
+                    <button 
+                        className="mt-3 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => window.location.reload()}
+                    >
+                        Yenile
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div id="pcoded" className="pcoded">
@@ -79,15 +108,23 @@ const FormerMayors: React.FC = () => {
                                         <div className="flex flex-col gap-4 p-4">
 
                                             {/* Header */}
-                                            <div className="mb-8 text-center">
-                                                <h1 className="text-4xl text-white font-bold bg-red-900 border-2 border-gray-300 inline-block px-5 py-3 mt-1 rounded-2xl">ESKİ BELEDİYE BAŞKANLARI</h1> <br/> <br/>
-                                            </div>
+                                            <motion.div
+                                                initial={{ opacity: 0, y: -20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.6 }}
+                                                className="mb-8 text-center"
+                                            >
+                                                <div className="text-4xl text-white font-bold px-5 py-3 rounded-2xl" style={{ background: 'linear-gradient(180deg, #003366 0%, #00264d 100%)' }}>
+                                                    ESKİ BELEDİYE BAŞKANLARI
+                                                </div>
+                                                <br/> <br/>
+                                            </motion.div>
 
                                             {/* Content in box with shadow */}
                                             <div className="bg-white p-6 rounded-lg shadow-lg">
                                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                                                    {formerMayors.map((mayor, index) => (
-                                                        <PersonCard key={index} person={mayor} />
+                                                    {formerMayors.map((mayor) => (
+                                                        <PersonCard key={mayor.id} person={mayor} />
                                                     ))}
                                                 </div>
                                             </div>
