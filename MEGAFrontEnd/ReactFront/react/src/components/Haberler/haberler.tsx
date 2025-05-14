@@ -1,104 +1,212 @@
-import { useState, useEffect } from 'react';
-import { Clock } from 'lucide-react';
+import { useRef, useEffect } from "react";
+import { Clock } from "lucide-react";
 
-const sliderData = [
-    { id: 2, image: "/images/Haberler/habergörselleri/basınaciklamalarivebaskandanmesaj/mesaj1.jpg", category: "TRAVEL", title: "Need some fresh air", date: "April 20, 2022" },
-    { id: 3, image: "/images/Haberler/habergörselleri/basınaciklamalarivebaskandanmesaj/mesaj1.jpg", category: "TECHNOLOGY", title: "Art is creative minds", date: "May 20, 2022" },
-    { id: 4, image: "/images/Haberler/habergörselleri/basınaciklamalarivebaskandanmesaj/mesaj1.jpg", category: "LIFESTYLE", title: "Beautiful lady hookup", date: "March 22, 2022" },
-    { id: 5, image: "/images/Haberler/habergörselleri/basınaciklamalarivebaskandanmesaj/mesaj1.jpg", category: "FOOD", title: "Best street food in town", date: "June 5, 2022" },
-    { id: 6, image: "/images/Haberler/habergörselleri/basınaciklamalarivebaskandanmesaj/mesaj1.jpg", category: "SPORTS", title: "Championship highlights", date: "July 15, 2022" }
-];
-
-export default function HeroSlider() {
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    // Create a circular array for infinite scrolling effect
-    const getCircularSlides = () => {
-        const items = [...sliderData];
-        // For seamless looping, we need to duplicate some items
-        return [...items, ...items, ...items];
+export default function BlogLayout() {
+    const heroPost = {
+        id: 1,
+        image: "/images/Haberler/habergörselleri/cevretemizligeridönüsüm/cevre1.jpg",
+        category: "GERİ DÖNÜŞÜM",
+        categoryClass: "bg-pink-500",
+        title: "Bosmogenic an designed for narita iourism in moon",
+        date: "March 29, 2022",
     };
 
-    const circularSlides = getCircularSlides();
+    const featuredArticles = [
+        {
+            id: 1,
+            image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1.jpg",
+            category: "EĞİTİM",
+            categoryClass: "bg-green-600",
+            title: "Dui fames tempora maiores dicta anim? Vel curae eaque ab eaque pharetra blandit",
+            date: "March 29, 2022",
+        },
+        {
+            id: 2,
+            image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar.jpg",
+            category: "PROJELER",
+            categoryClass: "bg-yellow-500",
+            title: "Virtual reality is here!",
+            date: "March 27, 2022",
+        },
+        {
+            id: 3,
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "SOSYAL YARDIM",
+            categoryClass: "bg-blue-600",
+            title: "Running on the field.",
+            author: "Unknown Author",
+            authorImage: "/images/default-author.png",
+            date: "N/A",
+        }
+    ];
 
-    const nextSlide = () => {
-        setCurrentIndex((prev) => {
-            const next = prev + 1;
-            // Reset to beginning of middle set when reaching end of visible middle set
-            if (next >= sliderData.length * 2) {
-                return sliderData.length;
-            }
-            return next;
-        });
-    };
+    const slides = [
+        {
+            id: 1,
+            image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar1-1.webp",
+            category: "Güncel",
+            title: "Belediyemiz Yeni Projeleri Tanıttı",
+            date: "14 Mayıs 2025",
+        },
+        {
+            id: 2,
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal2.jpg",
+            category: "Duyuru",
+            title: "Yaz Şenliği Etkinlikleri Başlıyor",
+            date: "10 Mayıs 2025",
+        },
+        {
+            id: 3,
+            image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1-2.jpg",
+            category: "Etkinlik",
+            title: "Başkanımızdan Gençlere Özel Mesaj",
+            date: "8 Mayıs 2025",
+        },
+        {
+            id: 4,
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg",
+            category: "Haber",
+            title: "Başkanımızdan Sosyal Yardım Destekleri",
+            date: "5 Mayıs 2025",
+        },
+    ];
 
-    const prevSlide = () => {
-        setCurrentIndex((prev) => {
-            const next = prev - 1;
-            // Reset to end of middle set when reaching beginning of visible middle set
-            if (next < sliderData.length) {
-                return sliderData.length * 2 - 1;
-            }
-            return next;
-        });
-    };
+    const sliderRef = useRef<HTMLDivElement>(null);
+    const slideWidth = 500 + 16; // Kart genişliği + spacing
 
     useEffect(() => {
-        const interval = setInterval(nextSlide, 5000);
-        return () => clearInterval(interval);
+        const slider = sliderRef.current;
+        if (!slider) return;
+
+        const initialScroll = slides.length * slideWidth;
+        slider.scrollLeft = initialScroll;
+
+        const handleScroll = () => {
+            if (!slider) return;
+            if (slider.scrollLeft <= 0) {
+                slider.scrollLeft = slides.length * slideWidth;
+            } else if (slider.scrollLeft >= slideWidth * slides.length * 2) {
+                slider.scrollLeft = slides.length * slideWidth;
+            }
+        };
+
+        slider.addEventListener("scroll", handleScroll);
+        return () => slider.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Ensure we always show exactly 3 slides
-    const visibleSlides = circularSlides.slice(currentIndex, currentIndex + 3);
+    const scrollByAmount = (amount: number) => {
+        if (!sliderRef.current) return;
+
+        const slider = sliderRef.current;
+        const newScrollLeft = slider.scrollLeft + amount;
+
+        if (newScrollLeft < 0) {
+            slider.scrollLeft = slideWidth * slides.length * 2;
+            setTimeout(() => {
+                slider.scrollBy({ left: amount, behavior: "smooth" });
+            }, 50);
+        } else if (newScrollLeft > slideWidth * slides.length * 3) {
+            slider.scrollLeft = slideWidth * slides.length;
+            setTimeout(() => {
+                slider.scrollBy({ left: amount, behavior: "smooth" });
+            }, 50);
+        } else {
+            slider.scrollBy({ left: amount, behavior: "smooth" });
+        }
+    };
+
+    const renderHeroCard = (article: typeof heroPost) => (
+        <div className="relative overflow-hidden rounded h-full w-full">
+            <img src={article.image} alt={article.title} className="w-full h-full object-cover rounded-lg" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
+                <div className={`inline-block px-4 py-1 text-sm font-bold text-white rounded mb-3 ${article.categoryClass}`}>
+                    {article.category}
+                </div>
+                <h2 className="text-3xl font-bold text-white mb-2">
+                    <a href="#" className="hover:underline">{article.title}</a>
+                </h2>
+                <div className="flex items-center text-white text-sm">
+                    <Clock size={14} className="mr-1" />
+                    <span>{article.date}</span>
+                </div>
+            </div>
+        </div>
+    );
+
+    const renderMainArticle = renderHeroCard;
+    const renderSmallArticle = renderHeroCard;
 
     return (
-        <div className="w-full max-w-screen-xl mx-auto px-4 py-2">
-            <div className="flex items-center justify-between">
-                {/* Left arrow */}
-                <button className="bg-gray-100 w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
-                        onClick={prevSlide} aria-label="Previous slide">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                        <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                </button>
+        <div className="max-w-6xl mx-auto px-4 py-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+                <div className="h-100 flex gap-6">{renderHeroCard(heroPost)}</div>
 
-                {/* Main content - Three items side by side with no gaps */}
-                <div className="flex flex-grow justify-center mx-2 overflow-hidden">
-                    <div className="grid grid-cols-3 gap-0 w-full max-w-5xl bg-white shadow-sm rounded-lg overflow-hidden">
-                        {visibleSlides.map((slide, index) => (
-                            <div key={`${slide.id}-${index}`} className="flex items-center bg-gray-50 border-r last:border-r-0 border-gray-100">
-                                {/* Image (Smaller and Horizontal Format) */}
-                                <div className="w-1/3">
-                                    <img
-                                        src={slide.image}
-                                        alt={slide.title}
-                                        className="w-full h-16 object-cover"
-                                    />
-                                </div>
-
-                                {/* Content on Right */}
-                                <div className="w-2/3 px-2 py-1 flex flex-col justify-center">
-                                    <div className="text-gray-600 text-xs font-semibold">{slide.category}</div>
-                                    <h2 className="text-sm font-bold truncate">{slide.title}</h2>
-                                    <div className="flex items-center text-gray-500 mt-1">
-                                        <Clock size={12} className="mr-1" />
-                                        <span className="text-xs">{slide.date}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                <div className="grid grid-rows-[1fr_auto] gap-6">
+                    <div className="aspect-w-1 aspect-h-11">{renderMainArticle(featuredArticles[0])}</div>
+                    <div className="grid grid-cols-2 gap-6 h-45">
+                        {renderSmallArticle(featuredArticles[1])}
+                        {renderSmallArticle(featuredArticles[2])}
                     </div>
                 </div>
+            </div>
 
-                {/* Right arrow */}
-                <button className="bg-gray-100 w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
-                        onClick={nextSlide} aria-label="Next slide">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                        <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                </button>
+            <div className="my-12">
+                <h2 className="text-2xl font-bold mb-6">Son Haberler</h2>
+                <div className="w-full max-w-screen-xl mx-auto py-4">
+                    <div className="flex items-center justify-between">
+                        <button
+                            onClick={() => scrollByAmount(-slideWidth)}
+                            className="size-12 bg-white ring-2 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+                        >
+                            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                                <path d="M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
+                        </button>
+
+                        <div className="flex flex-grow mx-4 overflow-hidden">
+                            <div
+                                ref={sliderRef}
+                                className="flex space-x-4 w-full overflow-x-auto scroll-smooth"
+                                style={{ scrollbarWidth: "none" }}
+                            >
+                                {[...slides, ...slides, ...slides].map((slide, index) => (
+                                    <div
+                                        key={`${slide.id}-${index}`}
+                                        className="min-w-[500px] max-w-[500px] h-36 bg-white rounded-xl shadow-xl flex-none flex border border-gray-900"
+                                    >
+                                        <div className="w-1/2 p-2">
+                                            <img
+                                                src={slide.image}
+                                                alt={slide.title}
+                                                className="w-full h-32 object-cover rounded-md"
+                                                draggable={false}
+                                            />
+                                        </div>
+                                        <div className="w-1/2 px-3 py-3 flex flex-col justify-center">
+                                            <div className="text-gray-600 text-sm font-semibold mb-1">{slide.category}</div>
+                                            <h3 className="text-base font-bold mb-2 line-clamp-2">{slide.title}</h3>
+                                            <div className="flex items-center text-gray-500 mt-1">
+                                                <Clock size={14} className="mr-1" />
+                                                <span className="text-xs">{slide.date}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <button
+                            onClick={() => scrollByAmount(slideWidth)}
+                            className="size-12 bg-white ring-2 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+                        >
+                            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );
