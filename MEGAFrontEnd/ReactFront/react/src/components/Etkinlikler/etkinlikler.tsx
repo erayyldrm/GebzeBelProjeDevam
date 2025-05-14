@@ -22,7 +22,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
     return (
         <li className="mb-6 last:mb-0">
             <div className="flex items-start">
-                <div className="relative w-1/5 mr-3">
+                <div className="relative w-1/3 mr-4 md:w-1/4"> {/* Further increased width */}
                     <div className="overflow-hidden rounded-lg">
                         <a href="#" className="block">
                             <img
@@ -34,7 +34,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
                     </div>
                 </div>
 
-                <div className="w-4/5">
+                <div className="w-2/3 md:w-3/4"> {/* Further adjusted width */}
                     <div className="mb-1">
                         <a href="#" className="text-green-600 text-xs uppercase font-medium tracking-wider hover:text-green-800">
                             {category}
@@ -69,14 +69,14 @@ const NewsCard: React.FC<NewsCardProps> = ({
 
 const CompactNewsGrid: React.FC = () => {
     const sideCards = [
-        { image: "/assets/images/post/2.jpg", category: "NEWS", title: "Central bank customers need about currency" },
-        { image: "/assets/images/post/3.jpg", category: "HEALTH", title: "Pandemic impact mental health global view" },
-        { image: "/assets/images/post/4.jpg", category: "POLITICS", title: "Drunk driving law by on country and arrest" },
-        { image: "/assets/images/post/5.jpg", category: "TRAVEL", title: "A step back in time and holidays for the ages" },
-        { image: "/assets/images/post/6.jpg", category: "SPORTS", title: "World ni beat kamaica to first men's world cup" },
-        { image: "/assets/images/post/7.jpg", category: "NEWS", title: "Thabna girls stage of protest demand" },
-        { image: "/assets/images/post/8.jpg", category: "SPORTS", title: "World swimming changes rules in wake" },
-        { image: "/assets/images/post/9.jpg", category: "FOOD", title: "A step back in time and holidays for" },
+        { image: "/images/etkinlikler/etkinlik1.jpg", category: "NEWS", title: "Central bank customers need about currency" },
+        { image: "/images/etkinlikler/etkinlik2.jpg", category: "HEALTH", title: "Pandemic impact mental health global view" },
+        { image: "/images/etkinlikler/etkinlik3.jpg", category: "POLITICS", title: "Drunk driving law by on country and arrest" },
+        { image: "/images/etkinlikler/etkinlik3.jpg", category: "TRAVEL", title: "A step back in time and holidays for the ages" },
+        { image: "/images/etkinlikler/etkinlik4.jpg", category: "SPORTS", title: "World ni beat kamaica to first men's world cup" },
+        { image: "/images/etkinlikler/etkinlik5.jpg", category: "NEWS", title: "Thabna girls stage of protest demand" },
+        { image: "/images/etkinlikler/etkinlik6.jpg", category: "SPORTS", title: "World swimming changes rules in wake" },
+        { image: "/images/etkinlikler/etkinlik7.jpg", category: "FOOD", title: "A step back in time and holidays for" },
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -111,7 +111,7 @@ const CompactNewsGrid: React.FC = () => {
                                         <img
                                             src={featured.image}
                                             alt={featured.title}
-                                            className="w-full h-full object-cover transition-all duration-500"
+                                            className="w-full h-full object-cover transition-all duration-900"
                                         />
                                     </a>
                                     <a
@@ -199,7 +199,7 @@ const EventsSection: React.FC = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-4 gap-6">
                 {events.map((event) => (
                     <div key={event.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
                         <div className="aspect-video w-full relative">

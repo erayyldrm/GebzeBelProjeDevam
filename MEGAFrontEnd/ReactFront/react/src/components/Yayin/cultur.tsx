@@ -129,7 +129,7 @@ export default function CombinedCard() {
                                             href={doc.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-white bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded text-xs sm:text-sm whitespace-nowrap transition text-center"
+                                            className="text-black bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded text-xs sm:text-sm whitespace-nowrap transition text-center"
                                         >
                                             Görüntüle
                                         </a>
