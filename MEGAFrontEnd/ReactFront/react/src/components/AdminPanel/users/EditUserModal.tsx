@@ -30,8 +30,8 @@ export default function EditUserModal({ isOpen, onClose, user, onSave }: EditUse
                 id: user.id,
                 tcno: user.tcno,
                 isim: user.isim || '',
-                role: user.role,
-                status: user.status,
+                role: user.role ?? assignableRoleOptions[0],
+                status: user.status ?? assignableStatusOptions[0],
             });
             // Reset error message when user changes
             setErrorMessage(null);
@@ -55,11 +55,10 @@ export default function EditUserModal({ isOpen, onClose, user, onSave }: EditUse
         try {
             if (formData.id && formData.role && formData.status && formData.tcno) {
                 const updatedUserData = {
-                    id: formData.id,
                     tcno: formData.tcno,
                     isim: formData.isim || user.isim,
-                    role: formData.role,
-                    status: formData.status
+                    role: formData.role || user.role,
+                    status: formData.status ||user.status,
                 };
 
                 // API isteği gönderme - Spring Boot backend'e

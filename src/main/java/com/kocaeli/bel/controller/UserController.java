@@ -7,6 +7,7 @@ import com.kocaeli.bel.exception.UserAlreadyExistsException; // Bu exception'ı 
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UsernameNotFoundException; // Bu exception'ı yakalamak için
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -55,6 +56,7 @@ public class UserController {
      * @return Kullanıcı DTO listesi ve HTTP 200 OK durumu.
      */
     @GetMapping
+    @PreAuthorize("hasRole('Admin')")
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         // UserService.getAllUsers() zaten List<UserDTO> döndürüyor.
         // Bu DTO'nun içeriği (id, tcNo, role) servisiniz tarafından belirleniyor.
@@ -122,20 +124,12 @@ public class UserController {
         }
 
         User existingUser = userOptional.get();
-        // Sadece belirli alanları güncelle (TCNo ve şifre hariç)
-        if (userDetailsDTO.getIsim() != null) {
-            existingUser.setIsim(userDetailsDTO.getIsim());
-        }
-        if (userDetailsDTO.getRole() != null) {
-            existingUser.setRole(userDetailsDTO.getRole());
-        }
-        if (userDetailsDTO.getStatus() != null) {
-            existingUser.setStatus(userDetailsDTO.getStatus());
-        }
-        // Şifre güncellemesi için ayrı bir endpoint veya daha karmaşık bir DTO gerekebilir.
-        // TCNo değişikliği genellikle önerilmez, eğer gerekliyse özel kontrol mekanizmalarıyla yapılmalıdır.
+        // Update fields regardless of null (but handle empty strings)
+        existingUser.setIsim(userDetailsDTO.getIsim() != null ? userDetailsDTO.getIsim() : existingUser.getIsim());
+        existingUser.setRole(userDetailsDTO.getRole() != null ? userDetailsDTO.getRole() : existingUser.getRole());
+        existingUser.setStatus(userDetailsDTO.getStatus() != null ? userDetailsDTO.getStatus() : existingUser.getStatus());
 
-        User updatedUser = userService.saveUser(existingUser); // saveUser metodu User entity'sini kaydeder/günceller
+        User updatedUser = userService.saveUser(existingUser);
         return ResponseEntity.ok(convertToDTO(updatedUser));
     }
 
