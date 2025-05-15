@@ -190,7 +190,7 @@ const TarihiYerDetay: React.FC = () => {
                                         href={tarihiYerDetay.konum}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center justify-center w-full bg-red-700 text-white px-4 py-2.5 rounded-md hover:bg-red-800 transition-colors font-semibold"
+                                        className="inline-flex items-center justify-center w-full bg-blue-700 text-white px-4 py-2.5 rounded-md hover:bg-blue-800 transition-colors font-semibold"
                                     >
                                         <MapPin className="w-5 h-5 mr-2" />
                                         Haritada Görüntüle

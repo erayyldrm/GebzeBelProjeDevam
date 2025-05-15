@@ -158,29 +158,25 @@ const BallikayalarPage = () => {
                                         <div className="bg-blue-50 p-4 rounded-lg">
                                             <h3 className="text-lg font-semibold text-blue-700 mb-2">🧗‍♂️ Kaya Tırmanışı</h3>
                                             <p className="text-gray-700 text-justify">
-                                                Türkiye'nin en önemli kaya tırmanış merkezlerinden biridir. 100+ rotalı
-                                                kayalıklarda her seviyeye uygun parkurlar bulunur.
+                                                Türkiye'nin en önemli kaya tırmanış merkezlerinden biridir. 100+ rotalı kayalıklarda her seviyeye uygun parkurlar bulunur.
                                             </p>
                                         </div>
                                         <div className="bg-blue-50 p-4 rounded-lg">
                                             <h3 className="text-lg font-semibold text-blue-700 mb-2">🌿 Doğa Yürüyüşü</h3>
                                             <p className="text-gray-700 text-justify">
-                                                Vadi boyunca uzanan patikalarda doğa ile başbaşa yürüyüş yapabilirsiniz.
-                                                İşaretli rotalar güvenli bir deneyim sunar.
+                                                Vadi boyunca uzanan patikalarda doğa ile başbaşa yürüyüş yapabilirsiniz. İşaretli rotalar güvenli bir deneyim sunar.
                                             </p>
                                         </div>
                                         <div className="bg-blue-50 p-4 rounded-lg">
                                             <h3 className="text-lg font-semibold text-blue-700 mb-2">🧺 Kamp ve Piknik</h3>
                                             <p className="text-gray-700 text-justify">
-                                                Belirlenen alanlarda kamp ve piknik yapabilirsiniz. Temiz hava ve doğal
-                                                ortamda dinlenme imkanı bulunur.
+                                                Belirlenen alanlarda kamp ve piknik yapabilirsiniz. Temiz hava ve doğal ortamda dinlenme imkanı bulunur.
                                             </p>
                                         </div>
                                         <div className="bg-blue-50 p-4 rounded-lg">
                                             <h3 className="text-lg font-semibold text-blue-700 mb-2">📸 Fotoğrafçılık</h3>
                                             <p className="text-gray-700 text-justify">
-                                                Eşsiz manzaralar ve doğal güzellikler fotoğraf tutkunları için mükemmel
-                                                kareler sunmaktadır.
+                                                Eşsiz manzaralar ve doğal güzellikler fotoğraf tutkunları için mükemmel kareler sunmaktadır.
                                             </p>
                                         </div>
                                     </div>
