@@ -1,15 +1,29 @@
 import axios from 'axios';
 
-// Tarihi yer nesnesi için TypeScript arayüzü
-interface TarihiYerler {
+// Updated TarihiYerler interface with all required properties
+export interface TarihiYerler {
     id: number;
     resimUrl: string;
     yerIsmi: string;
     genelBilgi: string;
     konum: string;
-    aktiviteler: string;
+    konumEtiketi?: string;
     nasilGidilir: string;
-    galeri: string;
+    galeri: GaleriResmi[]; // Changed from GaleriResmi to GaleriResmi[]
+    aktiviteler: Aktivite[]; // Added this missing property
+}
+
+export interface Aktivite {
+    emoji: string;
+    baslik: string;
+    aciklama: string;
+}
+
+// Gallery image interface
+export interface GaleriResmi {
+    id: number;
+    path: string;
+    alt: string;
 }
 
 // Spring Boot backend için temel API URL'i
@@ -42,6 +56,26 @@ export const _TarihiYerlerService = {
             return response.data;
         } catch (error) {
             console.error(`Error fetching tarihi yer with id ${id}:`, error);
+            throw error;
+        }
+    },
+
+    getAktivitelerByYerId: async(id: number): Promise<Aktivite[]> => {
+        try {
+            const response = await axios.get<Aktivite[]>(`${API_BASE_URL}/aktiviteler/${id}`);
+            return response.data;
+        } catch(error) {
+            console.error(`Error fetching Aktiviteler with id ${id}:`, error);
+            throw error;
+        }
+    },
+
+    getGaleriByYerId: async (id: number): Promise<GaleriResmi[]> => {
+        try {
+            const response = await axios.get<GaleriResmi[]>(`${API_BASE_URL}/galeri/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error(`Error fetching Galeri with id ${id}:`, error);
             throw error;
         }
     },
@@ -83,7 +117,6 @@ export const _TarihiYerlerService = {
      */
     deleteTarihiYer: async (id: number): Promise<void> => {
         try {
-            // ❗ Hata: endpoint yanlış yazılmıştı, düzeltilmeli
             await axios.delete(`${API_BASE_URL}/tarihi-yerler/${id}`);
         } catch (error) {
             console.error(`Error deleting tarihi yer with id ${id}:`, error);

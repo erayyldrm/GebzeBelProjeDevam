@@ -26,7 +26,6 @@ export default function BlogLayout() {
             category: "PROJELER",
             categoryClass: "bg-yellow-500",
             title: "Virtual reality is here!",
-            date: "March 27, 2022",
         },
         {
             id: 3,
@@ -40,6 +39,7 @@ export default function BlogLayout() {
         }
     ];
 
+    // Slider data
     const slides = [
         {
             id: 1,
@@ -71,18 +71,22 @@ export default function BlogLayout() {
         },
     ];
 
+    // Slider refs and logic
     const sliderRef = useRef<HTMLDivElement>(null);
-    const slideWidth = 500 + 16; // Kart genişliği + spacing
+    const slideWidth = 300 + 16; // Kart genişliği + margin (tailwind'de space-x-4 = 1rem = 16px)
 
+    // Scroll kontrolü
     useEffect(() => {
         const slider = sliderRef.current;
         if (!slider) return;
 
+        // Ortaya git
         const initialScroll = slides.length * slideWidth;
         slider.scrollLeft = initialScroll;
 
         const handleScroll = () => {
             if (!slider) return;
+
             if (slider.scrollLeft <= 0) {
                 slider.scrollLeft = slides.length * slideWidth;
             } else if (slider.scrollLeft >= slideWidth * slides.length * 2) {
@@ -97,27 +101,38 @@ export default function BlogLayout() {
     const scrollByAmount = (amount: number) => {
         if (!sliderRef.current) return;
 
+        // Calculate new scroll position
         const slider = sliderRef.current;
         const newScrollLeft = slider.scrollLeft + amount;
 
+        // Check if we need to loop
         if (newScrollLeft < 0) {
+            // If scrolling left beyond the beginning, jump to the end
             slider.scrollLeft = slideWidth * slides.length * 2;
+            // Then smoothly scroll to show the transition
             setTimeout(() => {
                 slider.scrollBy({ left: amount, behavior: "smooth" });
             }, 50);
         } else if (newScrollLeft > slideWidth * slides.length * 3) {
+            // If scrolling right beyond the end, jump to the beginning
             slider.scrollLeft = slideWidth * slides.length;
+            // Then smoothly scroll to show the transition
             setTimeout(() => {
                 slider.scrollBy({ left: amount, behavior: "smooth" });
             }, 50);
         } else {
+            // Normal scroll within bounds
             slider.scrollBy({ left: amount, behavior: "smooth" });
         }
     };
 
-    const renderHeroCard = (article: typeof heroPost) => (
+    const renderHeroCard = (article: { id: number; image: string; category: string; categoryClass: string; title: string; author?: string; authorImage?: string; date?: string;  }) => (
         <div className="relative overflow-hidden rounded h-full w-full">
-            <img src={article.image} alt={article.title} className="w-full h-full object-cover rounded-lg" />
+            <img
+                src={article.image}
+                alt={article.title}
+                className="w-full h-full object-cover rounded-lg"
+            />
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
                 <div className={`inline-block px-4 py-1 text-sm font-bold text-white rounded mb-3 ${article.categoryClass}`}>
                     {article.category}
@@ -126,34 +141,91 @@ export default function BlogLayout() {
                     <a href="#" className="hover:underline">{article.title}</a>
                 </h2>
                 <div className="flex items-center text-white text-sm">
-                    <Clock size={14} className="mr-1" />
-                    <span>{article.date}</span>
+                    <div className="flex items-center mr-4">
+                        <svg className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        <span>{article.date}</span>
+                    </div>
                 </div>
             </div>
         </div>
     );
 
-    const renderMainArticle = renderHeroCard;
-    const renderSmallArticle = renderHeroCard;
+    const renderMainArticle = (article: { id: number; image: string; category: string; categoryClass: string; title: string; author?: string; authorImage?: string; date?: string;  }) => (
+        <div className="relative overflow-hidden rounded h-full w-full">
+            <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
+                <div className={`inline-block px-4 py-1 text-sm font-bold text-white rounded mb-3 ${article.categoryClass}`}>
+                    {article.category}
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">
+                    <a href="#" className="hover:underline">{article.title}</a>
+                </h3>
+                <div className="flex items-center text-white text-sm">
+                    <div className="flex items-center mr-4">
+                        <svg className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        <span>{article.date}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+
+    const renderSmallArticle = (article: { id: number; image: string; category: string; categoryClass: string; title: string; author?: string; authorImage?: string; date?: string;  }, colorClass: string) => (
+        <div className="relative overflow-hidden rounded h-full w-full">
+            <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
+                <h3 className="text-xl font-bold text-white mb-2">
+                    <a href="#" className="hover:underline">{article.title}</a>
+                </h3>
+                <div className="flex items-center justify-between">
+                    <div className={`inline-block px-4 py-1 text-sm font-bold text-white rounded ${colorClass}`}>
+                        {article.category}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-6">
+            {/* Main Blog Grid Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-                <div className="h-100 flex gap-6">{renderHeroCard(heroPost)}</div>
+                {/* Sol büyük hero post */}
+                <div className="h-100 flex gap-6">
+                    {renderHeroCard(heroPost)}
+                </div>
 
+                {/* Sağ taraf */}
                 <div className="grid grid-rows-[1fr_auto] gap-6">
-                    <div className="aspect-w-1 aspect-h-11">{renderMainArticle(featuredArticles[0])}</div>
+                    {/* Sağ üstte kare */}
+                    <div className="aspect-w-1 aspect-h-11">
+                        {renderMainArticle(featuredArticles[0])}
+                    </div>
+
+                    {/* Sağ altta iki küçük kutu */}
                     <div className="grid grid-cols-2 gap-6 h-45">
-                        {renderSmallArticle(featuredArticles[1])}
-                        {renderSmallArticle(featuredArticles[2])}
+                        <div>
+                            {renderSmallArticle(featuredArticles[1], "bg-yellow-500")}
+                        </div>
+                        <div>
+                            {renderSmallArticle(featuredArticles[2], "bg-blue-600")}
+                        </div>
                     </div>
                 </div>
             </div>
 
+            {/* News Slider Section - EXPANDED HEIGHT */}
             <div className="my-12">
                 <h2 className="text-2xl font-bold mb-6">Son Haberler</h2>
                 <div className="w-full max-w-screen-xl mx-auto py-4">
                     <div className="flex items-center justify-between">
+                        {/* Sol Ok */}
                         <button
                             onClick={() => scrollByAmount(-slideWidth)}
                             className="size-12 bg-white ring-2 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
@@ -164,6 +236,7 @@ export default function BlogLayout() {
                             </svg>
                         </button>
 
+                        {/* Slider */}
                         <div className="flex flex-grow mx-4 overflow-hidden">
                             <div
                                 ref={sliderRef}
@@ -173,21 +246,26 @@ export default function BlogLayout() {
                                 {[...slides, ...slides, ...slides].map((slide, index) => (
                                     <div
                                         key={`${slide.id}-${index}`}
-                                        className="min-w-[500px] max-w-[500px] h-36 bg-white rounded-xl shadow-xl flex-none flex border border-gray-900"
+                                        className="w-[550px] h-49 bg-white rounded-xl shadow-xl flex-none flex border border-gray-200"
                                     >
-                                        <div className="w-1/2 p-2">
+                                        {/* RESİM ALANI - GENİŞLETİLDİ */}
+                                        <div className="w-3/5 p-2">
                                             <img
                                                 src={slide.image}
                                                 alt={slide.title}
-                                                className="w-full h-32 object-cover rounded-md"
+                                                className="w-full h-[180px] object-cover rounded-md"
                                                 draggable={false}
                                             />
                                         </div>
-                                        <div className="w-1/2 px-3 py-3 flex flex-col justify-center">
-                                            <div className="text-gray-600 text-sm font-semibold mb-1">{slide.category}</div>
-                                            <h3 className="text-base font-bold mb-2 line-clamp-2">{slide.title}</h3>
-                                            <div className="flex items-center text-gray-500 mt-1">
-                                                <Clock size={14} className="mr-1" />
+
+                                        {/* YAZI ALANI - DARALTILDI */}
+                                        <div className="w-2/5 px-2 py-2 flex flex-col justify-between">
+                                            <div>
+                                                <div className="text-gray-600 text-xs font-semibold mb-1">{slide.category}</div>
+                                                <h3 className="text-xs font-bold line-clamp-3 leading-snug">{slide.title}</h3>
+                                            </div>
+                                            <div className="flex items-center text-gray-500">
+                                                <Clock size={12} className="mr-1" />
                                                 <span className="text-xs">{slide.date}</span>
                                             </div>
                                         </div>
@@ -196,6 +274,7 @@ export default function BlogLayout() {
                             </div>
                         </div>
 
+                        {/* Sağ Ok */}
                         <button
                             onClick={() => scrollByAmount(slideWidth)}
                             className="size-12 bg-white ring-2 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
@@ -208,6 +287,8 @@ export default function BlogLayout() {
                     </div>
                 </div>
             </div>
+
+            <style>{`::-webkit-scrollbar { display: none; }`}</style>
         </div>
     );
 }
