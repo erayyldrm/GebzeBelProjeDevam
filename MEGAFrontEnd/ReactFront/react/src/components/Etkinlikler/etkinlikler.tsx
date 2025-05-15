@@ -175,7 +175,7 @@ const CombinedComponent: React.FC = () => {
                 </div>
 
                 {/* EventsSection */}
-                <div className="px-4 py-6 sm:py-8 md:py-10">
+                <div className="px-30 py-6 sm:py-8 md:py-10">
                     <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">Etkinlikler</h2>
 
                     <div className="w-full mx-auto mb-8 sm:mb-12">
