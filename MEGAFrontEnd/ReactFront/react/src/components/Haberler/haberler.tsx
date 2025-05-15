@@ -73,15 +73,17 @@ export default function BlogLayout() {
 
     // Slider refs and logic
     const sliderRef = useRef<HTMLDivElement>(null);
-    const slideWidth = 300 + 16; // Kart genişliği + margin (tailwind'de space-x-4 = 1rem = 16px)
+    const slideWidth = 300 + 24; // Card width (w-72) + margin (space-x-6)
+    const visibleSlides = 3; // Number of visible slides
+    const scrollAmount = slideWidth; // Scroll by one card at a time
 
     // Scroll kontrolü
     useEffect(() => {
         const slider = sliderRef.current;
         if (!slider) return;
 
-        // Ortaya git
-        const initialScroll = slides.length * slideWidth;
+        // Ortaya git (görünür kartlar tam görünsün diye ayarlandı)
+        const initialScroll = Math.floor(slides.length / visibleSlides) * scrollAmount;
         slider.scrollLeft = initialScroll;
 
         const handleScroll = () => {
@@ -220,75 +222,81 @@ export default function BlogLayout() {
                 </div>
             </div>
 
-            {/* News Slider Section - EXPANDED HEIGHT */}
-            <div className="my-12">
-                <h2 className="text-2xl font-bold mb-6">Son Haberler</h2>
-                <div className="w-full max-w-screen-xl mx-auto py-4">
-                    <div className="flex items-center justify-between">
+            {/* News Slider Section - Reduced vertical space */}
+            <div className="my-8">
+                <div className="flex items-center mb-3">
+                    <h2 className="text-xl font-bold mr-4">Son Haberler</h2>
+                    {/* Navigation Buttons - Left side, horizontally aligned with heading */}
+                    <div className="flex items-center gap-2">
                         {/* Sol Ok */}
                         <button
-                            onClick={() => scrollByAmount(-slideWidth)}
-                            className="size-12 bg-white ring-2 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+                            onClick={() => scrollByAmount(-scrollAmount)}
+                            className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
                         >
-                            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
                                 <path d="M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                 <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             </svg>
                         </button>
 
-                        {/* Slider */}
-                        <div className="flex flex-grow mx-4 overflow-hidden">
-                            <div
-                                ref={sliderRef}
-                                className="flex space-x-4 w-full overflow-x-auto scroll-smooth"
-                                style={{ scrollbarWidth: "none" }}
-                            >
-                                {[...slides, ...slides, ...slides].map((slide, index) => (
-                                    <div
-                                        key={`${slide.id}-${index}`}
-                                        className="w-[550px] h-49 bg-white rounded-xl shadow-xl flex-none flex border border-gray-200"
-                                    >
-                                        {/* RESİM ALANI - GENİŞLETİLDİ */}
-                                        <div className="w-3/5 p-2">
-                                            <img
-                                                src={slide.image}
-                                                alt={slide.title}
-                                                className="w-full h-[180px] object-cover rounded-md"
-                                                draggable={false}
-                                            />
-                                        </div>
-
-                                        {/* YAZI ALANI - DARALTILDI */}
-                                        <div className="w-2/5 px-2 py-2 flex flex-col justify-between">
-                                            <div>
-                                                <div className="text-gray-600 text-xs font-semibold mb-1">{slide.category}</div>
-                                                <h3 className="text-xs font-bold line-clamp-3 leading-snug">{slide.title}</h3>
-                                            </div>
-                                            <div className="flex items-center text-gray-500">
-                                                <Clock size={12} className="mr-1" />
-                                                <span className="text-xs">{slide.date}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
                         {/* Sağ Ok */}
                         <button
-                            onClick={() => scrollByAmount(slideWidth)}
-                            className="size-12 bg-white ring-2 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+                            onClick={() => scrollByAmount(scrollAmount)}
+                            className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
                         >
-                            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
                                 <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                 <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             </svg>
                         </button>
                     </div>
                 </div>
-            </div>
 
-            <style>{`::-webkit-scrollbar { display: none; }`}</style>
+                <div className="w-full max-w-screen-xl mx-auto">
+                    {/* Slider */}
+                    <div className="w-full overflow-hidden">
+                        <div
+                            ref={sliderRef}
+                            className="flex space-x-4 w-full overflow-x-auto scroll-smooth"
+                            style={{
+                                scrollbarWidth: "none",
+                                width: `${slideWidth * visibleSlides}px`
+                            }}
+                        >
+                            {/* Sonsuz döngü için 3 grup kart */}
+                            {[...slides, ...slides, ...slides].map((slide, index) => (
+                                <div
+                                    key={`${slide.id}-${index}`}
+                                    className="flex-none w-[550px] h-40 bg-white rounded-xl shadow-md flex border border-gray-200"
+                                >
+                                    {/* RESİM ALANI */}
+                                    <div className="w-3/5 p-1.5">
+                                        <img
+                                            src={slide.image}
+                                            alt={slide.title}
+                                            className="w-full h-[150px] object-cover rounded-md"
+                                            draggable={false}
+                                        />
+                                    </div>
+
+                                    {/* YAZI ALANI */}
+                                    <div className="w-2/5 px-2 py-1.5 flex flex-col justify-between">
+                                        <div>
+                                            <div className="text-gray-600 text-xs font-semibold mb-0.5">{slide.category}</div>
+                                            <h3 className="text-xs font-bold line-clamp-2 leading-snug">{slide.title}</h3>
+                                        </div>
+                                        <div className="flex items-center text-gray-500">
+                                            <Clock size={10} className="mr-1" />
+                                            <span className="text-xs">{slide.date}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <style>{`::-webkit-scrollbar { display: none; }`}</style>
+            </div>
         </div>
     );
 }
