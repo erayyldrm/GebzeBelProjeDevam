@@ -30,15 +30,15 @@ const CityCard: React.FC<{ city: City }> = ({ city }) => (
         className="bg-white shadow-lg rounded-2xl overflow-hidden transition-all"
     >
         <div className="p-4">
-            <div className="flex items-center gap-2">
+            <div className="block">
                 {city.flag && (
                     <img
                         src={city.flag}
                         alt={city.country}
-                        className="w-6 h-4 rounded-sm"
+                        className="w-6 h-4 rounded-sm inline-block align-middle mr-2"
                     />
                 )}
-                <h2 className="text-xl font-semibold">{city.name}</h2>
+                <h2 className="text-xl font-semibold inline-block align-middle">{city.name}</h2>
             </div>
             <p className="text-gray-600 mt-2">{city.city}, {city.country}</p>
         </div>
@@ -174,8 +174,8 @@ const SisterCities: React.FC = () => {
     // Loading state
     if (loading) {
         return (
-            <div className="flex justify-center items-center h-screen">
-                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-900"></div>
+            <div className="min-h-[60vh] lg:ml-72 text-center pt-20">
+                <div className="inline-block animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-900"></div>
             </div>
         );
     }
@@ -185,7 +185,7 @@ const SisterCities: React.FC = () => {
     const internationalCities = cities.filter(city => city.location === "Yurt Disi");
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <main className="lg:ml-72 pt-16 px-4 pb-10 w-full max-w-full overflow-x-hidden">
             <div className="bg-red-900 shadow-lg rounded-2xl p-3 mb-8 text-center">
                 <h1 className="text-3xl sm:text-3xl md:text-4xl font-bold text-white">
                     KARDEŞ ŞEHİRLER
@@ -194,11 +194,11 @@ const SisterCities: React.FC = () => {
 
             {error && (
                 <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
-                    <div className="flex">
-                        <div className="flex-shrink-0">
+                    <div className="block">
+                        <div className="inline-block mr-3">
                             ⚠️
                         </div>
-                        <div className="ml-3">
+                        <div className="inline-block">
                             <p className="text-sm text-yellow-700">{error}</p>
                         </div>
                     </div>
@@ -207,10 +207,10 @@ const SisterCities: React.FC = () => {
 
             {/* Domestic Cities Section */}
             <section className="mb-12">
-                <h2 className="text-2xl font-semibold mb-6 flex items-center">
+                <h2 className="text-2xl font-semibold mb-6">
                     <span className="mr-2">🏠</span> Yurt İçi Kardeş Şehirler
                 </h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {domesticCities.length > 0 ? (
                         domesticCities.map((city, index) => (
                             <CityCard
@@ -228,10 +228,10 @@ const SisterCities: React.FC = () => {
 
             {/* International Cities Section */}
             <section>
-                <h2 className="text-2xl font-semibold mb-6 flex items-center">
+                <h2 className="text-2xl font-semibold mb-6">
                     <span className="mr-2">🌍</span> Yurt Dışı Kardeş Şehirler
                 </h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {internationalCities.length > 0 ? (
                         internationalCities.map((city, index) => (
                             <CityCard
@@ -246,8 +246,9 @@ const SisterCities: React.FC = () => {
                     )}
                 </div>
             </section>
-        </div>
+        </main>
     );
 };
 
 export default SisterCities;
+
