@@ -1,28 +1,28 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone, Info, X } from 'lucide-react';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import axios from 'axios';
 
-const bebekbakimmerkezi = [
-    {
-        id: 3,
-        name: "Güzide 7/24 Bebek ve Çocuk Bakım Evi",
-        phone: " 0262 642 82 00 - 0530 557 42 59",
-        address: "Osman Yılmaz Mah. 608/2 Sk. No:7 Gebze / Kocaeli",
-        image: "/images/hizmetler/bebekbakim/bebekbakım.jpg",
-        mapLink: "https://www.google.com/maps/place/Mahallesi,+Osman+Y%C4%B1lmaz,+608%2F2.+Sk.+No:10,+41400+Gebze%2FKocaeli/@40.7898281,29.4190002,17z/data=!3m1!4b1!4m6!3m5!1s0x14cb2078114a1a51:0xa7e7d93f12a55158!8m2!3d40.7898281!4d29.4190002!16s%2Fg%2F11q4k1nlkp?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D",
-        details: "Sanat, kültür ve bilim alanlarında çeşitli atölyeler ve aktiviteler sunuyoruz.",
-        detailPage: "/hizmetler/bebekbakım/bebekbakim"
-    },
-];
+interface BakimEvi {
+    id: number;
+    baslik: string;
+    imgUrl: string;
+    telefon: string;
+    konum: string;
+    buttonDetay: string;
+    buttonKonum: string;
+    mail: string | null;
+    detaylar?: string;
+}
 
-const WorkshopCenterCard = ({ center }: { center: typeof bebekbakimmerkezi[0] }) => {
+const WorkshopCenterCard = ({ center }: { center: BakimEvi }) => {
     const [showDetails, setShowDetails] = useState(false);
     const navigate = useNavigate();
 
     const handleDetailsClick = () => {
-        if (center.detailPage) {
-            navigate(center.detailPage);
+        if (center.buttonDetay) {
+            navigate(center.buttonDetay);
         } else {
             setShowDetails(!showDetails);
         }
@@ -35,41 +35,39 @@ const WorkshopCenterCard = ({ center }: { center: typeof bebekbakimmerkezi[0] })
         >
             {/* Sol: Resim */}
             <div className="w-full md:w-1/3 h-[200px] md:h-auto">
-
                 <img
-                    src={center.image}
-                    alt={center.name}
+                    src={center.imgUrl}
+                    alt={center.baslik}
                     className="object-cover w-full h-full max-h-[270px] rounded-lg"
                 />
-
             </div>
 
             {/* Sağ: İçerik */}
             <div className="w-full md:w-2/3 p-4 flex flex-col justify-between">
                 <div>
-                       <Link
-                            to={center.detailPage}
-                           className="text-lg font-bold text-blue-600 hover:text-blue-700 border-b border-blue-400 pb-1 block"
-                          >
-                           {center.name}
-                        </Link>
+                    <Link
+                        to={center.buttonDetay}
+                        className="text-lg font-bold text-blue-600 hover:text-blue-700 border-b border-blue-400 pb-1 block"
+                    >
+                        {center.baslik}
+                    </Link>
                     <br/>
                     <div className="space-y-2 text-sm">
                         <div className="flex items-start">
                             <MapPin className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
-                            <p>{center.address}</p>
+                            <p>{center.konum}</p>
                         </div>
 
                         <div className="flex items-center">
                             <Phone className="w-5 h-5 text-blue-600 mr-2" />
-                            <p>{center.phone}</p>
+                            <p>{center.telefon}</p>
                         </div>
                     </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3 mt-4">
                     <a
-                        href={center.mapLink}
+                        href={center.buttonKonum}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center px-3 py-2 bg-gradient-to-r from-sky-500 to-sky-700 text-blue-800 rounded-md hover:from-sky-600 hover:to-sky-800 transition-all shadow-md text-xs flex-1"
@@ -105,14 +103,69 @@ const WorkshopCenterCard = ({ center }: { center: typeof bebekbakimmerkezi[0] })
 };
 
 export default function Bebekbakimsayfasi() {
+    const [bakimEvleri, setBakimEvleri] = useState<BakimEvi[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchBakimEvleri = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get('http://localhost:8080/api/hizmetler/kategori/BAKIMEVI');
+
+                if (Array.isArray(response.data)) {
+                    const formattedData = response.data.map((item: any) => ({
+                        id: item.id,
+                        baslik: item.baslik,
+                        imgUrl: item.imgUrl,
+                        telefon: item.telefon || "Belirtilmemiş",
+                        konum: item.konum,
+                        buttonDetay: item.buttonDetay,
+                        buttonKonum: item.buttonKonum,
+                        mail: item.mail,
+                        detaylar: item.detaylar || "Detay bilgisi bulunmamaktadır."
+                    }));
+
+                    setBakimEvleri(formattedData);
+                } else {
+                    throw new Error('Geçersiz veri formatı');
+                }
+            } catch (err) {
+                console.error("API Hatası:", err);
+                setError('Bakım evleri yüklenirken bir hata oluştu');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchBakimEvleri();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col min-h-screen">
+                <div className="flex flex-1 justify-center items-center">
+                    <div className="text-lg">Yükleniyor...</div>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex flex-col min-h-screen">
+                <div className="flex flex-1 justify-center items-center">
+                    <div className="text-red-500 text-lg">{error}</div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="flex flex-col min-h-screen">
             <div className="flex flex-1">
                 <br />
-                {/* Ana İçerik Alanı */}
                 <div className="flex-1 px-6 pt-0 mt-[0px] pb-20 "> <br/>
-
-                    {/* Atölye Merkezleri */}
                     <section className="mb-40">
                         <div className="max-w-6xl mx-auto px-4">
                             <motion.div
@@ -126,16 +179,19 @@ export default function Bebekbakimsayfasi() {
                                 </div>
                             </motion.div>
 
-
-                            {/* Kartlar */}
-                            <div className="flex flex-wrap justify-center gap-6">
-                                {bebekbakimmerkezi.map((center) => (
-                                    <WorkshopCenterCard key={center.id} center={center} />
-                                ))}
-                            </div>
+                            {bakimEvleri.length === 0 ? (
+                                <div className="text-center text-gray-500 p-10">
+                                    Herhangi bir bakım evi bulunamadı.
+                                </div>
+                            ) : (
+                                <div className="flex flex-wrap justify-center gap-6">
+                                    {bakimEvleri.map((center) => (
+                                        <WorkshopCenterCard key={center.id} center={center} />
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </section>
-
                 </div>
             </div>
         </div>

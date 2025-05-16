@@ -1,29 +1,28 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone, Info, X, Mail } from 'lucide-react';
-import  { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import axios from 'axios';
 
-const güresmerkezi= [
-    {
-        id: 3,
-        mail:"genclik.spor@gebze.bel.tr",
-        name: "Geleneksel Hünkar Çayırı Yağlı Güreşleri",
-        phone: "0262 641 24 92",
-        address: "Cumhuriyet Mah. 2257 Sk. Gebze / Kocaeli",
-        image: "/images/hizmetler/güres/güreş.jpg",
-        mapLink: "https://www.google.com/maps/place/H%C3%BCnkar+%C3%87ay%C4%B1r%C4%B1/@40.813967,29.3409963,17z/data=!3m1!4b1!4m5!3m4!1s0x14cade66bb4b566f:0x563611efabd51aa!8m2!3d40.813967!4d29.343185?shorturl=1",
-        details: "Sanat, kültür ve bilim alanlarında çeşitli atölyeler ve aktiviteler sunuyoruz.",
-        detailPage: "/hizmetler/güres/güress"
-    },
-];
+interface Gures {
+    id: number;
+    baslik: string;
+    imgUrl: string;
+    telefon: string;
+    konum: string;
+    buttonDetay: string;
+    buttonKonum: string;
+    mail: string | null;
+    detaylar?: string;
+}
 
-const WorkshopCenterCard = ({ center }: { center: typeof güresmerkezi[0] }) => {
+const WorkshopCenterCard = ({ center }: { center: Gures }) => {
     const [showDetails, setShowDetails] = useState(false);
     const navigate = useNavigate();
 
     const handleDetailsClick = () => {
-        if (center.detailPage) {
-            navigate(center.detailPage);
+        if (center.buttonDetay) {
+            navigate(center.buttonDetay);
         } else {
             setShowDetails(!showDetails);
         }
@@ -36,45 +35,46 @@ const WorkshopCenterCard = ({ center }: { center: typeof güresmerkezi[0] }) => 
         >
             {/* Sol: Resim */}
             <div className="w-full md:w-1/3 h-[200px] md:h-auto">
-
                 <img
-                    src={center.image}
-                    alt={center.name}
+                    src={center.imgUrl}
+                    alt={center.baslik}
                     className="object-cover w-full h-full max-h-[270px] rounded-lg"
                 />
-
             </div>
 
             {/* Sağ: İçerik */}
             <div className="w-full md:w-2/3 p-4 flex flex-col justify-between">
                 <div>
                     <Link
-                        to={center.detailPage}
+                        to={center.buttonDetay}
                         className="text-lg font-bold text-blue-500 border-b-2 border-blue-400 pb-1 block"
                     >
-                        {center.name}
+                        {center.baslik}
                     </Link>
                     <br/>
                     <div className="space-y-2 text-sm">
                         <div className="flex items-start">
                             <MapPin className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
-                            <p>{center.address}</p>
+                            <p>{center.konum}</p>
                         </div>
 
                         <div className="flex items-center">
                             <Phone className="w-5 h-5 text-blue-600 mr-2" />
-                            <p>{center.phone}</p>
+                            <p>{center.telefon}</p>
                         </div>
-                        <div className="flex items-center">
-                            <Mail className="w-5 h-5 text-blue-600 mr-2" />
-                            <p>{center.mail}</p>
-                        </div>
+
+                        {center.mail && (
+                            <div className="flex items-center">
+                                <Mail className="w-5 h-5 text-blue-600 mr-2" />
+                                <p>{center.mail}</p>
+                            </div>
+                        )}
                     </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3 mt-4">
                     <a
-                        href={center.mapLink}
+                        href={center.buttonKonum}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center px-3 py-2 bg-gradient-to-r from-sky-500 to-sky-700 text-blue-800 rounded-md hover:from-sky-600 hover:to-sky-800 transition-all shadow-md text-xs flex-1"
@@ -109,14 +109,70 @@ const WorkshopCenterCard = ({ center }: { center: typeof güresmerkezi[0] }) => 
     );
 };
 
-export default function evlendirmesayfasi() {
+export default function GuresPage() {
+    const [guresler, setGuresler] = useState<Gures[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchGuresler = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get('http://localhost:8080/api/hizmetler/kategori/GURES');
+
+                if (Array.isArray(response.data)) {
+                    const formattedData = response.data.map((item: any) => ({
+                        id: item.id,
+                        baslik: item.baslik,
+                        imgUrl: item.imgUrl,
+                        telefon: item.telefon || "Belirtilmemiş",
+                        konum: item.konum,
+                        buttonDetay: item.buttonDetay,
+                        buttonKonum: item.buttonKonum,
+                        mail: item.mail,
+                        detaylar: item.detaylar || "Detay bilgisi bulunmamaktadır."
+                    }));
+
+                    setGuresler(formattedData);
+                } else {
+                    throw new Error('Geçersiz veri formatı');
+                }
+            } catch (err) {
+                console.error("API Hatası:", err);
+                setError('Güreş hizmetleri yüklenirken bir hata oluştu');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchGuresler();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col min-h-screen">
+                <div className="flex flex-1 justify-center items-center">
+                    <div className="text-lg">Yükleniyor...</div>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex flex-col min-h-screen">
+                <div className="flex flex-1 justify-center items-center">
+                    <div className="text-red-500 text-lg">{error}</div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="flex flex-col min-h-screen">
             <div className="flex flex-1">
                 <br />
-                {/* Ana İçerik Alanı */}
-                <div className="flex-1 px-6 pt-0 mt-[0px] pb-5"><br/>
-                    {/* Atölye Merkezleri */}
+                <div className="flex-1 px-6 pt-0 mt-[0px] pb-20"> <br/>
                     <section className="mb-40">
                         <div className="max-w-6xl mx-auto px-4">
                             <motion.div
@@ -126,19 +182,23 @@ export default function evlendirmesayfasi() {
                                 className="bg-blue-500 p-4 rounded-xl shadow-xl mb-5"
                             >
                                 <div className="text-2xl font-semibold text-white text-center">
-                                   GELENEKSEL HÜNKAR ÇAYIRI YAĞLI GÜREŞLERİ
+                                    GELENEKSEL HÜNKAR ÇAYIRI YAĞLI GÜREŞLERİ
                                 </div>
                             </motion.div>
 
-                            {/* Kartlar */}
-                            <div className="flex flex-wrap justify-center gap-6">
-                                {güresmerkezi.map((center) => (
-                                    <WorkshopCenterCard key={center.id} center={center} />
-                                ))}
-                            </div>
+                            {guresler.length === 0 ? (
+                                <div className="text-center text-gray-500 p-10">
+                                    Herhangi bir güreş hizmeti bulunamadı.
+                                </div>
+                            ) : (
+                                <div className="flex flex-wrap justify-center gap-6">
+                                    {guresler.map((center) => (
+                                        <WorkshopCenterCard key={center.id} center={center} />
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </section>
-
                 </div>
             </div>
         </div>
