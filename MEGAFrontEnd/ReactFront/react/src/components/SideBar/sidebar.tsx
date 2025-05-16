@@ -20,7 +20,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title }) => {
 
     return (
         <div
-            className={`hidden lg:block ${collapsed ? 'w-16' : 'w-72'} shadow-lg rounded-2xl relative top-10 h-75 left-13 z-10 overflow-hidden transition-all duration-300`}
+            className={`lg:block ${collapsed ? 'w-16' : 'w-72'} shadow-lg rounded-2xl relative top-10 h-75 left-13 z-10 overflow-hidden transition-all duration-300`}
             style={{
                 background: 'linear-gradient(180deg, #003366 0%, #00264d 100%)',
                 borderTopLeftRadius: '1rem',

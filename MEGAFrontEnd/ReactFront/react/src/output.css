@@ -50,6 +50,12 @@
 .left-1\/2 {
   left: calc(1/2 * 100%);
 }
+.left-1\/4 {
+  left: calc(1/4 * 100%);
+}
+.left-full {
+  left: 100%;
+}
 .isolate {
   isolation: isolate;
 }
@@ -657,6 +663,12 @@
 }
 .border-t-transparent {
   border-top-color: transparent;
+}
+.border-r-transparent {
+  border-right-color: transparent;
+}
+.border-b-transparent {
+  border-bottom-color: transparent;
 }
 .bg-\[\#022842\] {
   background-color: #022842;
