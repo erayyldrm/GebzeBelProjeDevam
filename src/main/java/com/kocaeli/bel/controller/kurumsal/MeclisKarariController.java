@@ -61,18 +61,23 @@ public class MeclisKarariController {
     }
 
     @GetMapping("/kurumsal-raporlar")
-    public ResponseEntity<List<MeclisKarariEntity>> getKurumsalRaporlar() {
+    public ResponseEntity<List<MeclisKarariEntity>> getKurumsalRaporlar(@RequestParam(value = "kategori", required = false) String kategori) {
         try {
-            System.out.println("Kurumsal raporlar getiriliyor...");
-            List<MeclisKarariEntity> raporlar = meclisKarariService.getByKategori("kurumsal_rapor");
-            
-            if (raporlar.isEmpty()) {
-                System.out.println("Kurumsal rapor bulunamadı.");
+            if (kategori != null && !kategori.isEmpty()) {
+                System.out.println("Kurumsal raporlar getiriliyor, kategori: " + kategori);
+                List<MeclisKarariEntity> raporlar = meclisKarariService.getByKategori(kategori);
+                if (raporlar.isEmpty()) {
+                    System.out.println("Kurumsal rapor bulunamadı.");
+                } else {
+                    System.out.println("Toplam " + raporlar.size() + " kurumsal rapor getirildi");
+                }
+                return ResponseEntity.ok(raporlar);
             } else {
-                System.out.println("Toplam " + raporlar.size() + " kurumsal rapor getirildi");
+                // Tüm kategori verilerini getir
+                System.out.println("Kurumsal raporlar getiriliyor (tüm kategoriler)");
+                List<MeclisKarariEntity> raporlar = meclisKarariService.getAllKurumsalRaporlar();
+                return ResponseEntity.ok(raporlar);
             }
-            
-            return ResponseEntity.ok(raporlar);
         } catch (Exception e) {
             System.out.println("Kurumsal raporlar getirilirken hata: " + e.getMessage());
             e.printStackTrace();

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "MECLIS_KARARLARI_KURUMSAL_KIMLIK")
+@Table(name = "MECLIS_KARARLARI_KURUMSAL_KIMLIK_KURUMSAL_RAPORLAR_KURUMSAL_DÖKÜMANLAR")
 public class MeclisKarariEntity {
 
     @Id

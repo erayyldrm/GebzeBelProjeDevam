@@ -5,6 +5,7 @@ import com.kocaeli.bel.repository.kurumsal.MeclisKarariRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,18 @@ public class MeclisKarariService {
 
     public List<MeclisKarariEntity> getByKategori(String kategori) {
         return meclisKarariRepository.findByKategoriAndAktifOrderByTarihDesc(kategori, 1);
+    }
+
+    // Yeni: Tüm kurumsal rapor kategorilerini getir
+    public List<MeclisKarariEntity> getAllKurumsalRaporlar() {
+        List<String> kategoriler = Arrays.asList(
+            "strateji_plan",
+            "faaliyet_raporu",
+            "performans_programi",
+            "ic_kontrol_eylem_plani",
+            "mali_durum_beklentiler"
+        );
+        return meclisKarariRepository.findByKategoriInAndAktifOrderByTarihDesc(kategoriler, 1);
     }
 
     public Optional<MeclisKarariEntity> getById(Long id) {
