@@ -1,30 +1,18 @@
-import React, { useState, useEffect } from "react"; // React import'u başa alalım
-import { useParams } from "react-router-dom"; // URL'den ID almak için
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { MapPin, ChevronRight, ChevronLeft, X, Loader, AlertTriangle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { getTarihiYerById } from "./_TarihiYerlerService"; // Servis import'u
-
-// TarihiYerler arayüzünü burada veya _TarihiYerlerService.tsx içinde tanımlayıp export edebilirsiniz.
-interface TarihiYerler {
-    id: number;
-    resimUrl: string; // Ana resim için kullanılabilir
-    yerIsmi: string;
-    genelBilgi: string;
-    konum: string; // Google Maps URL'si
-    konumEtiketi?: string; // Örn: "Gebze, Kocaeli" gibi bir etiket
-    aktiviteler: string[]; // Aktivitelerin metinleri
-    nasilGidilir: string;
-    galeri: string[];     // Galeri için resim URL'leri dizisi
-}
+import _TarihiYerlerService, { TarihiYerler, GaleriResmi } from "./_TarihiYerlerService";
 
 const TarihiYerDetay: React.FC = () => {
-    const { id } = useParams<{ id: string }>(); // URL'den ID'yi string olarak alırız
+    const { id } = useParams<{ id: string }>();
     const [tarihiYerDetay, setTarihiYerDetay] = useState<TarihiYerler | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
-    const [lightboxImageIndex, setLightboxImageIndex] = useState<number>(0); // Değişken adını daha anlaşılır yapalım
+    const [lightboxImageIndex, setLightboxImageIndex] = useState<number>(0);
+    console.log("ID from useParams:", id);
 
     useEffect(() => {
         if (id) {
@@ -32,14 +20,23 @@ const TarihiYerDetay: React.FC = () => {
                 setLoading(true);
                 setError(null);
                 try {
-                    const yerId = parseInt(id, 10); // ID'yi sayıya çevir
+                    const yerId = parseInt(id, 10);
                     if (isNaN(yerId)) {
                         setError("Geçersiz ID formatı.");
                         setLoading(false);
                         return;
                     }
-                    const data = await getTarihiYerById(yerId); // API'den veriyi çek
-                    setTarihiYerDetay(data);
+                    const [yerDetay, aktiviteler, galeri] = await Promise.all([
+                        _TarihiYerlerService.getTarihiYerById(yerId),
+                        _TarihiYerlerService.getAktivitelerByYerId(yerId),
+                        _TarihiYerlerService.getGaleriByYerId(yerId),
+                    ]);
+                    setTarihiYerDetay({
+                        ...yerDetay,
+                        aktiviteler,
+                        galeri
+                    });
+
                 } catch (err) {
                     console.error("Detaylar yüklenirken hata:", err);
                     setError("Tarihi yer detayları yüklenirken bir sorun oluştu. Lütfen daha sonra tekrar deneyin.");
@@ -52,12 +49,12 @@ const TarihiYerDetay: React.FC = () => {
             setError("Tarihi yer ID'si bulunamadı.");
             setLoading(false);
         }
-    }, [id]); // id değiştiğinde useEffect tekrar çalışır
+    }, [id]);
 
     // Klavye olaylarını dinle (lightbox için)
     useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => { // Event tipini belirtelim
-            if (!lightboxOpen || !tarihiYerDetay || tarihiYerDetay.galeri.length === 0) return;
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (!lightboxOpen || !tarihiYerDetay || !tarihiYerDetay.galeri || tarihiYerDetay.galeri.length === 0) return;
 
             if (e.key === "Escape") {
                 closeLightbox();
@@ -70,10 +67,13 @@ const TarihiYerDetay: React.FC = () => {
 
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [lightboxOpen, lightboxImageIndex, tarihiYerDetay]); // Bağımlılıklara tarihiYerDetay eklendi
+    }, [lightboxOpen, lightboxImageIndex, tarihiYerDetay]);
+
+    // Get gallery images for display
+    const galleryImagesForDisplay = tarihiYerDetay?.galeri || [];
 
     // Lightbox kontrolü
-    const openLightbox = (index: number) => { // Parametre tipi number olmalı
+    const openLightbox = (index: number) => {
         setLightboxImageIndex(index);
         setLightboxOpen(true);
         document.body.style.overflow = 'hidden';
@@ -85,12 +85,12 @@ const TarihiYerDetay: React.FC = () => {
     };
 
     const nextLightboxImage = () => {
-        if (!tarihiYerDetay || tarihiYerDetay.galeri.length === 0) return;
+        if (!tarihiYerDetay || !tarihiYerDetay.galeri || tarihiYerDetay.galeri.length === 0) return;
         setLightboxImageIndex((prev) => (prev + 1) % tarihiYerDetay.galeri.length);
     };
 
     const prevLightboxImage = () => {
-        if (!tarihiYerDetay || tarihiYerDetay.galeri.length === 0) return;
+        if (!tarihiYerDetay || !tarihiYerDetay.galeri || tarihiYerDetay.galeri.length === 0) return;
         setLightboxImageIndex((prev) => (prev - 1 + tarihiYerDetay.galeri.length) % tarihiYerDetay.galeri.length);
     };
 
@@ -120,16 +120,13 @@ const TarihiYerDetay: React.FC = () => {
         );
     }
 
-    // Dinamik galeri resimleri (tarihiYerDetay.galeri API'den gelen string URL dizisi olmalı)
-    const galleryImagesForDisplay = tarihiYerDetay.galeri.map((url, index) => ({ id: index + 1, path: url }));
-
     return (
-        <div className="max-w-[95%] w-full mx-auto min-h-screen bg-gray-50 pb-12">
+        <div className="max-w-[75%] md:max-w-[%95] w-full mx-auto min-h-screen bg-gray-50 pb-12">
             {/* Hero Section */}
             <div className="container mx-auto relative h-[400px] md:h-[500px] mt-6">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 rounded-lg" />
                 <img
-                    src={tarihiYerDetay.resimUrl || (galleryImagesForDisplay.length > 0 ? galleryImagesForDisplay[0].path : 'https://via.placeholder.com/1200x500?text=Resim+Bulunamadı')}
+                    src={tarihiYerDetay.resimUrl}
                     alt={tarihiYerDetay.yerIsmi}
                     className="h-full w-full object-cover rounded-lg shadow-lg"
                 />
@@ -150,15 +147,13 @@ const TarihiYerDetay: React.FC = () => {
             <div className="container mx-auto px-3 py-9">
                 <div className="bg-white rounded-lg shadow-xl overflow-hidden">
                     <div className="p-6 md:p-8">
-                        <div className="flex flex-col lg:flex-row gap-8">
+                        <div className="flex flex-col lg:flex-row md:flex-row  gap-8">
                             {/* Sol Taraf - Bilgiler ve Aktiviteler */}
-                            <div className="lg:w-2/3">
+                            <div className="lg:w-2/3 md:w-2/3">
                                 <h2 className="text-2xl md:text-3xl font-bold text-red-800 mb-3 border-b-2 border-red-200 pb-2">
                                     Tarihçe ve Genel Bilgi
                                 </h2>
                                 <div className="prose prose-lg max-w-none text-gray-700 text-justify leading-relaxed">
-                                    {/* HTML olarak geliyorsa dangerouslySetInnerHTML kullanılabilir ama güvenlik riski taşır.
-                                        Eğer düz metin ise <p> veya markdown ise bir parser ile render edilebilir. */}
                                     <p>{tarihiYerDetay.genelBilgi}</p>
                                 </div>
 
@@ -169,12 +164,11 @@ const TarihiYerDetay: React.FC = () => {
                                         </h2>
                                         <ul className="space-y-3">
                                             {tarihiYerDetay.aktiviteler.map((aktivite, index) => (
-                                                <li key={index} className="bg-red-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                                                    <h3 className="text-lg font-semibold text-red-700">
-                                                        {/* Aktivite başlığı için emoji veya ikon eklenebilir */}
-                                                        {aktivite}
+                                                <li key={index} className="bg-blue-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                                                    <h3 className="text-lg font-semibold text-blue-700">
+                                                        {aktivite.baslik}
                                                     </h3>
-                                                    {/* Aktiviteye ait ek açıklama varsa buraya eklenebilir */}
+                                                    <p>{aktivite.aciklama}</p>
                                                 </li>
                                             ))}
                                         </ul>
@@ -183,9 +177,9 @@ const TarihiYerDetay: React.FC = () => {
                             </div>
 
                             {/* Sağ Taraf - Nasıl Gidilir ve Galeri */}
-                            <div className="lg:w-1/3">
-                                <div className="bg-red-50 p-5 rounded-lg shadow-md mb-6 sticky top-6">
-                                    <h3 className="text-xl font-bold text-red-800 mb-3">
+                            <div className="lg:w-1/3 md:w-1/3">
+                                <div className="bg-blue-50 p-5 rounded-lg shadow-md mb-6 sticky top-6">
+                                    <h3 className="text-xl font-bold text-blue-800 mb-3">
                                         <MapPin className="inline-block w-6 h-6 mr-2 -mt-1" />
                                         Nasıl Gidilir?
                                     </h3>
@@ -193,10 +187,10 @@ const TarihiYerDetay: React.FC = () => {
                                         {tarihiYerDetay.nasilGidilir}
                                     </p>
                                     <a
-                                        href={tarihiYerDetay.konum} // API'den gelen Google Maps URL'si
+                                        href={tarihiYerDetay.konum}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center justify-center w-full bg-red-700 text-white px-4 py-2.5 rounded-md hover:bg-red-800 transition-colors font-semibold"
+                                        className="inline-flex items-center justify-center w-full bg-blue-700 text-white px-4 py-2.5 rounded-md hover:bg-blue-800 transition-colors font-semibold"
                                     >
                                         <MapPin className="w-5 h-5 mr-2" />
                                         Haritada Görüntüle
@@ -204,13 +198,13 @@ const TarihiYerDetay: React.FC = () => {
                                 </div>
 
                                 {galleryImagesForDisplay.length > 0 && (
-                                    <div className="bg-gray-100 p-5 rounded-lg shadow-md sticky top-[calc(6rem+180px)]"> {/* Adjust sticky top value as needed */}
+                                    <div className="bg-gray-100 p-5 rounded-lg shadow-md sticky top-[calc(6rem+180px)]">
                                         <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
                                             <span className="mr-2 text-red-700">🖼️</span>
                                             Fotoğraf Galerisi
                                         </h3>
                                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2.5">
-                                            {galleryImagesForDisplay.slice(0, 6).map((item, index) => ( // İlk 6 resmi göster
+                                            {galleryImagesForDisplay.slice(0, 6).map((item, index) => (
                                                 <div
                                                     key={item.id}
                                                     className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg cursor-pointer relative group shadow hover:shadow-xl transition-shadow"
@@ -237,14 +231,11 @@ const TarihiYerDetay: React.FC = () => {
                                             <div className="text-center mt-4">
                                                 <button
                                                     onClick={() => openLightbox(0)}
-                                                    className="text-red-700 hover:text-red-900 text-sm font-semibold"
+                                                    className="text-blue-700 hover:text-blue-900 text-sm font-semibold"
                                                 >
                                                     Tüm resimleri görüntüle ({galleryImagesForDisplay.length})
                                                 </button>
                                             </div>
-                                        )}
-                                        {galleryImagesForDisplay.length === 0 && (
-                                            <p className="text-sm text-gray-500">Bu yer için henüz fotoğraf eklenmemiş.</p>
                                         )}
                                     </div>
                                 )}

@@ -3,6 +3,8 @@ package com.kocaeli.bel.model.gebze;
 import jakarta.persistence.*;
 import lombok.*;
 
+
+
 @Entity // Bu sınıfın bir JPA entity (veritabanı tablosu ile ilişkili) olduğunu belirtir
 @Table(name = "GEBZE_TARİHİ_YERLER") // Entity'nin veritabanındaki karşılık geldiği tablo adı
 @Data // Lombok anotasyonu: Getter, Setter, toString, equals, hashCode metotlarını otomatik oluşturur
@@ -26,12 +28,8 @@ public class TarihiYerler {
     @Column(name = "KONUM") // Yerleşim bilgisi veya adres, max 500 karakter
     private String konum;
 
-    @Column(name = "AKTIVITELER") // Alanda yapılabilecek aktiviteler
-    private String aktiviteler;
-
     @Column(name = "NASIL_GIDILIR") // Ulaşım bilgileri (otobüs, araba vs.)
     private String nasilGidilir;
 
-    @Column(name = "GALERI") // Galeri görselleri (JSON formatında veya virgülle ayrılmış URL dizisi)
-    private String galeri;
+
 }

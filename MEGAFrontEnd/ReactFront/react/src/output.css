@@ -392,6 +392,9 @@
 .w-px {
   width: 1px;
 }
+.max-w-\[75\%\] {
+  max-width: 75%;
+}
 .max-w-\[80vw\] {
   max-width: 80vw;
 }

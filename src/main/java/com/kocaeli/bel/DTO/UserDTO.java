@@ -41,4 +41,21 @@ public class UserDTO {
     public UserDTO() {
 
     }
+
+    public UserDTO(Long id, String tcno, String isim, String password, String role, String status) {
+        this.id = id;
+        this.tcno = tcno;
+        this.isim = isim;
+        this.password = password;
+        this.role = role;
+        this.status = status;
+    }
+
+    public UserDTO(Long id, String tcno, String isim, String role, String status) {
+        this.id = id;
+        this.tcno = tcno;
+        this.isim = isim;
+        this.role = role;
+        this.status = status;
+    }
 }

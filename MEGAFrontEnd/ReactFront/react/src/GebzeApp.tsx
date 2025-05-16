@@ -7,6 +7,7 @@ import BugunkuGebze from "./components/gebze/bugunkugebze.tsx";
 import React from "react";
 import Gallarytest from "./components/gebze/tarihiyerler.tsx";
 import TarihiYerlerListe from "./components/gebze/tarihiyerler/_TarihiYerlerList.tsx";
+import TarihiYerDetay from "./components/gebze/tarihiyerler/_TarihiYerlerDetails.tsx";
 
 import UyeOldugumuzBirlikler from "./components/gebze/uyeoldugumuzbirlikler.tsx";
 import SanalTur from "./components/gebze/360sanaltur.tsx";
@@ -35,7 +36,7 @@ const GebzeApp: React.FC = () => {
             <Route path="/bugunkugebze" element={<BugunkuGebze/>}/>
             <Route path="/tarihiyerlereski" element={<Gallarytest/>}/>
             <Route path="/tarihiyerler" element={<TarihiYerlerListe/>}/>
-
+                <Route path="/tarihiyerler/:id" element={<TarihiYerDetay />} />
 
             <Route path="/uyeoldugumuzbirlikler" element={<UyeOldugumuzBirlikler/>}/>
             <Route path="/360sanaltur" element={<SanalTur/>}/>
