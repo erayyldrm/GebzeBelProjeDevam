@@ -73,9 +73,9 @@ export default function BlogLayout() {
 
     // Slider refs and logic
     const sliderRef = useRef<HTMLDivElement>(null);
-    const slideWidth = 300 + 24; // Card width (w-72) + margin (space-x-6)
-    const visibleSlides = 3; // Number of visible slides
-    const scrollAmount = slideWidth; // Scroll by one card at a time
+    const slideWidth = 380 + 16; // Card width + gap (daha dar kartlar)
+    const visibleSlides = 3; // Her seferde 3 kart göster
+    const scrollAmount = slideWidth * visibleSlides; // visibleSlides değerini kullan
 
     // Scroll kontrolü
     useEffect(() => {
@@ -83,7 +83,7 @@ export default function BlogLayout() {
         if (!slider) return;
 
         // Ortaya git (görünür kartlar tam görünsün diye ayarlandı)
-        const initialScroll = Math.floor(slides.length / visibleSlides) * scrollAmount;
+        const initialScroll = Math.floor(slides.length / 2) * slideWidth; // 2 kart gösterimi için ayarlandı
         slider.scrollLeft = initialScroll;
 
         const handleScroll = () => {
@@ -221,14 +221,13 @@ export default function BlogLayout() {
                     </div>
                 </div>
             </div>
-
-            {/* News Slider Section - Reduced vertical space */}
+            {/* News Slider Section - Tam genişlik */}
             <div className="my-8">
                 <div className="flex items-center mb-3">
                     <h2 className="text-xl font-bold mr-4">Son Haberler</h2>
                     {/* Navigation Buttons - Left side, horizontally aligned with heading */}
                     <div className="flex items-center gap-2">
-                        {/* Sol Ok */}
+                        {/* Sol Ok - 2 kart kaydır */}
                         <button
                             onClick={() => scrollByAmount(-scrollAmount)}
                             className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
@@ -239,7 +238,7 @@ export default function BlogLayout() {
                             </svg>
                         </button>
 
-                        {/* Sağ Ok */}
+                        {/* Sağ Ok - 2 kart kaydır */}
                         <button
                             onClick={() => scrollByAmount(scrollAmount)}
                             className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
@@ -251,39 +250,36 @@ export default function BlogLayout() {
                         </button>
                     </div>
                 </div>
-
-                <div className="w-full max-w-screen-xl mx-auto">
+                {/* Slider container - full width */}
+                <div className="w-full">
                     {/* Slider */}
                     <div className="w-full overflow-hidden">
                         <div
                             ref={sliderRef}
                             className="flex space-x-4 w-full overflow-x-auto scroll-smooth"
-                            style={{
-                                scrollbarWidth: "none",
-                                width: `${slideWidth * visibleSlides}px`
-                            }}
+                            style={{ scrollbarWidth: "none" }}
                         >
                             {/* Sonsuz döngü için 3 grup kart */}
                             {[...slides, ...slides, ...slides].map((slide, index) => (
                                 <div
                                     key={`${slide.id}-${index}`}
-                                    className="flex-none w-[550px] h-40 bg-white rounded-xl shadow-md flex border border-gray-200"
+                                    className="flex-none w-[380px] h-32 bg-white rounded-xl shadow-md flex border border-gray-200"
                                 >
-                                    {/* RESİM ALANI */}
-                                    <div className="w-3/5 p-1.5">
+                                    {/* RESİM ALANI - Daraltılmış görünüm */}
+                                    <div className="w-2/5 p-1.5">
                                         <img
                                             src={slide.image}
                                             alt={slide.title}
-                                            className="w-full h-[150px] object-cover rounded-md"
+                                            className="w-full h-full object-cover rounded-md"
                                             draggable={false}
                                         />
                                     </div>
 
-                                    {/* YAZI ALANI */}
-                                    <div className="w-2/5 px-2 py-1.5 flex flex-col justify-between">
+                                    {/* YAZI ALANI - Daraltılmış */}
+                                    <div className="w-3/5 px-2 py-1.5 flex flex-col justify-between">
                                         <div>
                                             <div className="text-gray-600 text-xs font-semibold mb-0.5">{slide.category}</div>
-                                            <h3 className="text-xs font-bold line-clamp-2 leading-snug">{slide.title}</h3>
+                                            <h3 className="text-xs font-bold line-clamp-2 leading-tight">{slide.title}</h3>
                                         </div>
                                         <div className="flex items-center text-gray-500">
                                             <Clock size={10} className="mr-1" />
