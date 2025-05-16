@@ -50,12 +50,6 @@
 .left-1\/2 {
   left: calc(1/2 * 100%);
 }
-.left-1\/4 {
-  left: calc(1/4 * 100%);
-}
-.left-full {
-  left: 100%;
-}
 .isolate {
   isolation: isolate;
 }
@@ -215,11 +209,11 @@
 .ml-auto {
   margin-left: auto;
 }
-.line-clamp-2 {
+.line-clamp-3 {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
 }
 .\!grid {
   display: grid !important;
@@ -295,6 +289,9 @@
 }
 .aspect-square {
   aspect-ratio: 1 / 1;
+}
+.h-\[180px\] {
+  height: 180px;
 }
 .h-\[200px\] {
   height: 200px;
@@ -389,8 +386,8 @@
 .w-\[300px\] {
   width: 300px;
 }
-.w-\[380px\] {
-  width: 380px;
+.w-\[550px\] {
+  width: 550px;
 }
 .w-auto {
   width: auto;
@@ -400,9 +397,6 @@
 }
 .w-px {
   width: 1px;
-}
-.max-w-\[75\%\] {
-  max-width: 75%;
 }
 .max-w-\[80vw\] {
   max-width: 80vw;
@@ -528,9 +522,6 @@
 }
 .list-disc {
   list-style-type: disc;
-}
-.list-none {
-  list-style-type: none;
 }
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -676,12 +667,6 @@
 .border-t-transparent {
   border-top-color: transparent;
 }
-.border-r-transparent {
-  border-right-color: transparent;
-}
-.border-b-transparent {
-  border-bottom-color: transparent;
-}
 .bg-\[\#022842\] {
   background-color: #022842;
 }
@@ -693,9 +678,6 @@
 }
 .bg-\[\#022842\]\/85 {
   background-color: color-mix(in oklab, #022842 85%, transparent);
-}
-.bg-\[\#033152\] {
-  background-color: #033152;
 }
 .bg-transparent {
   background-color: transparent;
@@ -836,8 +818,8 @@
   --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 }
-.ring-1 {
-  --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+.ring-2 {
+  --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 }
 .outline {
@@ -1002,13 +984,6 @@
   &:hover {
     @media (hover: hover) {
       background-color: #033b60;
-    }
-  }
-}
-.hover\:bg-\[\#044370\] {
-  &:hover {
-    @media (hover: hover) {
-      background-color: #044370;
     }
   }
 }
