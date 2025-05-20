@@ -440,7 +440,7 @@ export default function BlogLayout() {
                                         ${
                                         activeCategory === category
                                             ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-blue-600 border-transparent shadow-md"
-                                            : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
+                                            : "bg-gray-500 text-gray-800 border-gray-300 hover:bg-gray-100"
                                     }
                                     `}
                                 >
@@ -480,7 +480,7 @@ export default function BlogLayout() {
                                 exit={{ opacity: 0, y: -30 }}
                                 transition={{ duration: 0.4, ease: "easeInOut" }}
                                 layout
-                                className="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
+                                className="bg-gray-100 rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
                             >
                                 {isMobile ? (
                                     <div className="w-full relative pt-[56.25%]">
