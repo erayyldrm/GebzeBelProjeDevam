@@ -454,7 +454,8 @@ const Navbar = () => {
 
                         {/* Diğer linkler */}
                         <Link
-                            to="/etkinlikler"
+
+                            to={"/etkinlikler"}
                             className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
                             onClick={() => {
                                 setMobileMenuOpen(false);
@@ -464,7 +465,7 @@ const Navbar = () => {
                             Etkinlikler
                         </Link>
                         <Link
-                            to="/haberler"
+                            to={"/haberler"}
                             className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
                             onClick={() => {
                                 setMobileMenuOpen(false);
@@ -474,7 +475,7 @@ const Navbar = () => {
                             Haberler
                         </Link>
                         <Link
-                            to="/iletisim"
+                            to={"/iletisim"}
                             className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
                             onClick={() => {
                                 setMobileMenuOpen(false);
