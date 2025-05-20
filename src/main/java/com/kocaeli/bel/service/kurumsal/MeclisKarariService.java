@@ -31,6 +31,10 @@ public class MeclisKarariService {
         return meclisKarariRepository.findByKategoriAndAktifOrderByTarihDesc(kategori, 1);
     }
 
+    public List<MeclisKarariEntity> getByKategoriAndAktif(String kategori, int aktif) {
+        return meclisKarariRepository.findByKategoriAndAktifOrderByTarihDesc(kategori, aktif);
+    }
+
     // Yeni: Tüm kurumsal rapor kategorilerini getir
     public List<MeclisKarariEntity> getAllKurumsalRaporlar() {
         List<String> kategoriler = Arrays.asList(
