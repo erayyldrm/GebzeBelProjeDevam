@@ -2,7 +2,7 @@ import React from 'react';
 
 const Loader: React.FC = () => {
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
             <div className="relative w-12 h-12">
                 {/* Blue spinner */}
                 <div className="absolute w-full h-full">
