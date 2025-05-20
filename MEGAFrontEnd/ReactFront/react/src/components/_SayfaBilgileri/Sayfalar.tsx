@@ -330,7 +330,7 @@ export const eBelediye: DropdownItem[] = [
     },
 ];
 
-export const yayınlarımız: DropdownItem[] = [
+export const yayinlarimiz: DropdownItem[] = [
     {
         icon: <FiDollarSign />,
         title: 'GEBZE BELEDİYESİ PROJELERİ',

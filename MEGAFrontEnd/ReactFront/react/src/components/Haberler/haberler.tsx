@@ -1,5 +1,6 @@
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback, useState } from "react";
 import { Clock } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Custom useInterval hook
 function useInterval(callback: () => void, delay: number | null) {
@@ -16,6 +17,58 @@ function useInterval(callback: () => void, delay: number | null) {
         }
     }, [delay]);
 }
+
+// NewsItem interface for NewsPage component
+interface NewsItem {
+    id: number;
+    title: string;
+    image: string;
+    category: string;
+    description: string;
+}
+
+// NewsPage component content
+const newsData: NewsItem[] = [
+    {
+        id: 1,
+        title: "Gebze'de Yeni Park Açılışı Yapıldı",
+        image: "/images/Haberler/habergörselleri/cevretemizligeridönüsüm/cevre1.jpg",
+        category: "Belediye",
+        description: "Yeni park hizmete açıldı, vatandaşlardan yoğun ilgi gördü.",
+    },
+    {
+        id: 2,
+        title: "Çevre Temizlik Kampanyası Başladı",
+        image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1.jpg  ",
+        category: "Çevre",
+        description: "Temizlik kampanyası geniş katılımla başladı.",
+    },
+    {
+        id: 3,
+        title: "Yeni İmar Planları Onaylandı",
+        image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar.jpg",
+        category: "Belediye",
+        description: "Belediye meclisinde yeni imar planları oy birliğiyle kabul edildi.",
+    },
+    {
+        id: 4,
+        title: "Geri Dönüşüm Eğitimi Verildi",
+        image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+        category: "Çevre",
+        description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+    },
+];
+
+const categories = [
+    "Tümü",
+    "Belediye",
+    "Çevre",
+    "Eğitim & Gençlik",
+    "Sosyal Hizmetler",
+    "Projeler & Altyapı",
+    "Spor Faaliyetleri",
+    "Başkan'dan Mesajlar",
+];
 
 export default function BlogLayout() {
     const heroPost = {
@@ -97,6 +150,26 @@ export default function BlogLayout() {
     const visibleSlides = 3; // Show 3 cards at once
     const scrollAmount = slideWidth * visibleSlides;
 
+    // NewsPage component state
+    const [activeCategory, setActiveCategory] = useState<string>("Tümü");
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+
+    // Responsive ekran kontrolü için useEffect kullanımı
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        // İlk yükleme kontrolü
+        checkScreenSize();
+
+        // Ekran boyutu değiştiğinde kontrol
+        window.addEventListener("resize", checkScreenSize);
+
+        // Component unmount olduğunda event listener'ı temizle
+        return () => window.removeEventListener("resize", checkScreenSize);
+    }, []);
+
     // Scroll control
     useEffect(() => {
         const slider = sliderRef.current;
@@ -177,6 +250,12 @@ export default function BlogLayout() {
         scrollByAmount(scrollAmount);
     }, 5000); // Scroll every 5 seconds
 
+    // Filter news by category
+    const filteredNews =
+        activeCategory === "Tümü"
+            ? newsData
+            : newsData.filter((news) => news.category === activeCategory);
+
     const renderHeroCard = (article: { image: string; title: string; category: string; categoryClass: string; date: string; }) => (
         <div className="relative overflow-hidden rounded h-full w-full">
             <img
@@ -244,7 +323,7 @@ export default function BlogLayout() {
     );
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-6">
+        <div className="max-w-7xl mx-auto px-6 py-6">
             {/* Main Blog Grid Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
                 {/* Left hero post */}
@@ -343,6 +422,95 @@ export default function BlogLayout() {
                     </div>
                 </div>
                 <style>{`::-webkit-scrollbar { display: none; }`}</style>
+            </div>
+
+            {/* NewsPage Component - Added below the slider */}
+            <div className={`${isMobile ? 'w-full px-4 py-6' : 'max-w-full mx-auto px-6 py-10'}`}>
+                <h1 className={`${isMobile ? 'text-2xl mb-4' : 'text-3xl mb-6'} font-bold text-gray-800`}>Haberler</h1>
+
+                {/* Kategori Başlıkları */}
+                {isMobile ? (
+                    <div className="mb-6 overflow-x-auto pb-2">
+                        <div className="flex w-max gap-2 pl-4">
+                            {categories.map((category) => (
+                                <button
+                                    key={category}
+                                    onClick={() => setActiveCategory(category)}
+                                    className={`relative px-3 py-1.5 text-xs font-semibold rounded-full border whitespace-nowrap transition-all duration-300
+                                        ${
+                                        activeCategory === category
+                                            ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-blue-600 border-transparent shadow-md"
+                                            : "bg-gray-500 text-gray-800 border-gray-300 hover:bg-gray-100"
+                                    }
+                                    `}
+                                >
+                                    <span className="z-10 relative">{category}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <div className="flex flex-wrap gap-3 mb-8 justify-start ml-4">
+                        {categories.map((category) => (
+                            <button
+                                key={category}
+                                onClick={() => setActiveCategory(category)}
+                                className={`relative px-4 py-2 text-sm font-semibold rounded-full border transition-all duration-300
+                                    ${
+                                    activeCategory === category
+                                        ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-black border-transparent shadow-md scale-105"
+                                        : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100 hover:shadow-sm"
+                                }
+                                `}
+                            >
+                                <span className="z-10 relative">{category}</span>
+                            </button>
+                        ))}
+                    </div>
+                )}
+
+                {/* Haber Kartları */}
+                <div className={`grid ${isMobile ? 'grid-cols-1 gap-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'}`}>
+                    <AnimatePresence mode="wait">
+                        {filteredNews.map((news) => (
+                            <motion.div
+                                key={news.id}
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -30 }}
+                                transition={{ duration: 0.4, ease: "easeInOut" }}
+                                layout
+                                className="bg-gray-100 rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
+                            >
+                                {isMobile ? (
+                                    <div className="w-full relative pt-[56.25%]">
+                                        <img
+                                            src={news.image}
+                                            alt={news.title}
+                                            className="absolute top-0 left-0 w-full h-full object-cover"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="w-full h-48 overflow-hidden">
+                                        <img
+                                            src={news.image}
+                                            alt={news.title}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                )}
+                                <div className={`${isMobile ? 'p-3' : 'p-4'} flex flex-col justify-between flex-grow`}>
+                                    <h2 className={`${isMobile ? 'text-base' : 'text-lg'} font-semibold text-gray-800 ${isMobile ? 'line-clamp-2' : ''}`}>
+                                        {news.title}
+                                    </h2>
+                                    <p className={`text-gray-600 mt-2 ${isMobile ? 'text-xs line-clamp-3' : 'text-sm'} flex-grow`}>
+                                        {news.description}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </div>
             </div>
         </div>
     );

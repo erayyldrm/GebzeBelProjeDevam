@@ -46,7 +46,7 @@ const FormerMayors: React.FC = () => {
                         <img
                             src={person.resimUrl}
                             alt={person.isimSoyisim}
-                            className="w-full h-36 object-cover"
+                            className="w-full h-64 lg:h-[20vw] object-cover"
                             onError={(e) => {
                                 const target = e.target as HTMLImageElement;
                                 target.src = "/api/placeholder/250/230";

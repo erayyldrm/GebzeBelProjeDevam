@@ -185,7 +185,7 @@ const SisterCities: React.FC = () => {
     const internationalCities = cities.filter(city => city.location === "Yurt Disi");
 
     return (
-        <main className="lg:ml-72 pt-16 px-4 pb-10 w-full max-w-full overflow-x-hidden">
+        <main className="pt-16 px-4 pb-10 w-full max-w-full overflow-x-hidden">
             <div className="bg-red-900 shadow-lg rounded-2xl p-3 mb-8 text-center">
                 <h1 className="text-3xl sm:text-3xl md:text-4xl font-bold text-white">
                     KARDEŞ ŞEHİRLER

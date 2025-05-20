@@ -29,3 +29,4 @@ public interface MeclisKarariRepository extends JpaRepository<MeclisKarariEntity
     @Query("SELECT m FROM MeclisKarariEntity m WHERE m.id = :id")
     Optional<MeclisKarariEntity> findById(Long id);
 }
+
