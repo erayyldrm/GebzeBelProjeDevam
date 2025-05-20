@@ -94,9 +94,9 @@ export default function CombinedCard() {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-gradient-to-r from-blue-800 to-blue-600 rounded-2xl p-4 md:p-6 text-blue-800">
-                        <h3 className="text-lg font-bold mb-2 text-blue-800">Kültür Yayınlarımız</h3>
-                        <p className="text-black text-sm md:text-base">
+                    <div className="bg-gradient-to-r from-blue-800 to-blue-600 rounded-2xl p-4 md:p-6 text-white">
+                        <h3 className="text-lg font-bold mb-2">Kültür Yayınlarımız</h3>
+                        <p className=" text-sm md:text-base">
                             Çoban Mustafa Paşa, aslen Bosnalıdır. Genç bir çoban iken Sultan Yavuz Selim ile Mısır Seferi'ne katılır, sonraları Piri Mehmet Paşa'nın koruyuculuğuna alınır. Zaman içerisinde çeşitli mevkilere yükselir. Sırası ile Kapıcıbaşı ve Rumeli Beylerbeyi olur. Sonraları Yavuz Sultan Selim'in kızı ile evlenip Hakan'ın damadı olur.
                             <br /><br />
                             Kanuni Sultan Süleyman zamanında Vezirlik görevini yürütür. İstanbul'da 1529 yılında vefat eden Çoban Mustafa Paşa, kendi adına yaptırmış olduğu Gebze'deki külliyede caminin kıble tarafında yer alan türbesine gömülür.

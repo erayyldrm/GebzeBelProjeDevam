@@ -50,6 +50,12 @@
 .left-1\/2 {
   left: calc(1/2 * 100%);
 }
+.left-1\/4 {
+  left: calc(1/4 * 100%);
+}
+.left-full {
+  left: 100%;
+}
 .isolate {
   isolation: isolate;
 }
@@ -199,6 +205,9 @@
 }
 .mt-auto {
   margin-top: auto;
+}
+.mr-\[4vw\] {
+  margin-right: 4vw;
 }
 .mr-auto {
   margin-right: auto;
@@ -547,6 +556,9 @@
 .list-disc {
   list-style-type: disc;
 }
+.list-none {
+  list-style-type: none;
+}
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -697,6 +709,12 @@
 .border-t-transparent {
   border-top-color: transparent;
 }
+.border-r-transparent {
+  border-right-color: transparent;
+}
+.border-b-transparent {
+  border-bottom-color: transparent;
+}
 .bg-\[\#002850\] {
   background-color: #002850;
 }
@@ -711,6 +729,9 @@
 }
 .bg-\[\#022842\]\/85 {
   background-color: color-mix(in oklab, #022842 85%, transparent);
+}
+.bg-\[\#033152\] {
+  background-color: #033152;
 }
 .bg-transparent {
   background-color: transparent;
@@ -1023,6 +1044,13 @@
   &:hover {
     @media (hover: hover) {
       background-color: #033b60;
+    }
+  }
+}
+.hover\:bg-\[\#044370\] {
+  &:hover {
+    @media (hover: hover) {
+      background-color: #044370;
     }
   }
 }

@@ -50,8 +50,11 @@ const BaskanPage: React.FC = () => {
                 <div className="p-4">
                     <div className="d-flex align-items-center">
                         <div className="flex-shrink-0">
-                            <svg className="h-8 w-8 text-danger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                            <svg className="h-8 w-8 text-danger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                 fill="currentColor">
+                                <path fillRule="evenodd"
+                                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                      clipRule="evenodd"/>
                             </svg>
                         </div>
                         <div className="ml-4">
@@ -94,7 +97,8 @@ const BaskanPage: React.FC = () => {
     // Empty data state
     if (!baskan) {
         return (
-            <div className="bg-warning border-left-4 border-warning text-dark p-4 rounded shadow-md max-w-4xl mx-auto my-4">
+            <div
+                className="bg-warning border-left-4 border-warning text-dark p-4 rounded shadow-md max-w-4xl mx-auto my-4">
                 <p className="font-weight-bold">Uyarı</p>
                 <p>Aktif başkan bilgisi bulunamadı.</p>
             </div>
@@ -102,59 +106,44 @@ const BaskanPage: React.FC = () => {
     }
 
     return (
-        <div id="pcoded" className="pcoded">
-            <div className="pcoded-container navbar-wrapper bg-transparent">
-                <div className="pcoded-main-container">
-                    <div className="pcoded-wrapper">
-                        <div className="pcoded-content">
-                            <div className="pcoded-inner-content">
-                                <div className="main-body">
-                                    <div className="page-wrapper">
-                                        <div className="flex justify-center">
-                                            {/* Reduced max width and added more padding */}
-                                            <div className="w-full max-w-4xl px-4 md:px-8 mt-0">
-                                                {/* Content */}
-                                                <div className="my-4">
-                                                    <div className="card bg-white shadow-lg rounded-lg">
-                                                        <div className="p-4 md:p-6">
-                                                            {/* Image */}
-                                                            <div className="mb-2">
-                                                                <img
-                                                                    src={baskan.resimUrl1}
-                                                                    alt="Belediye Başkanı"
-                                                                    className="img-fluid rounded w-full h-auto object-cover"
-                                                                    onError={(e) => {
-                                                                        const target = e.target as HTMLImageElement;
-                                                                        target.src = "/api/placeholder/800/400";
-                                                                    }}
-                                                                />
-                                                            </div>
-                                                            <h3 className="mt-2 mb-3 text-center"><b>Zinnur BÜYÜKGÖZ</b></h3>
+        <div className="min-h-screen bg-gray-50">
+            <div className="container mx-auto px-4 py-8">
+                <div className="max-w-4xl mx-auto">
+                    {/* Content Card */}
+                    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                        {/* Mayor Image */}
+                        <div className="w-full">
+                            <img
+                                src={baskan.resimUrl1}
+                                alt="Belediye Başkanı"
+                                className="w-full h-auto object-cover"
+                                onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    target.src = "/api/placeholder/800/400";
+                                }}
+                            />
+                        </div>
 
-                                                            {/* Text */}
-                                                            <div className="text mb-10 md:mb-20 lg:mb-40 text-justify">
-                                                                <div dangerouslySetInnerHTML={{ __html: `<div style="font-weight: bold;">${baskan.icerik}</div>` }} />
-                                                            </div>
+                        {/* Content */}
+                        <div className="p-6">
+                            <h3 className="text-2xl font-bold text-center mb-4">Zinnur BÜYÜKGÖZ</h3>
 
-                                                            {/* Signature */}
-                                                            <div className="mt-4 flex justify-end">
-                                                                <img
-                                                                    src={baskan.imageUrl2}
-                                                                    alt="imza"
-                                                                    className="max-w-[180px] h-auto"
-                                                                    onError={(e) => {
-                                                                        const target = e.target as HTMLImageElement;
-                                                                        target.src = "/api/placeholder/200/100";
-                                                                    }}
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> {/* End of Row */}
-                                    </div>
-                                </div>
+                            <div
+                                className="prose max-w-none text-justify mb-8"
+                                dangerouslySetInnerHTML={{__html: baskan.icerik}}
+                            />
+
+                            {/* Signature */}
+                            <div className="flex justify-end mt-6">
+                                <img
+                                    src={baskan.imageUrl2}
+                                    alt="imza"
+                                    className="w-48 h-auto"
+                                    onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.src = "/api/placeholder/200/100";
+                                    }}
+                                />
                             </div>
                         </div>
                     </div>
