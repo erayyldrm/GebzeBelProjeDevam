@@ -206,11 +206,23 @@
 .mt-auto {
   margin-top: auto;
 }
+.mr-\[4vw\] {
+  margin-right: 4vw;
+}
+.mr-\[10vw\] {
+  margin-right: 10vw;
+}
 .mr-auto {
   margin-right: auto;
 }
 .mb-auto {
   margin-bottom: auto;
+}
+.ml-\[10vw\] {
+  margin-left: 10vw;
+}
+.ml-\[100vw\] {
+  margin-left: 100vw;
 }
 .ml-auto {
   margin-left: auto;
