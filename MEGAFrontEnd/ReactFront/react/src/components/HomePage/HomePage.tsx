@@ -5,19 +5,19 @@ export default function HomePage() {
         {
             id: 1,
             title: "Başkan Büyükgöz Koltuğu Sultana Devretti",
-            image: "/api/placeholder/400/220",
+            image: "/images/Haberler/habergörselleri/cevretemizligeridönüsüm/cevre1.jpg",
             date: "23 Nisan 2025"
         },
         {
             id: 2,
             title: "41 Genç`i başarılı öğrencileri Başkan Büyükgöz`e konuk oldu",
-            image: "/api/placeholder/400/220",
+            image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1.jpg",
             date: "10 Nisan 2025"
         },
         {
             id: 1,
             title: "Başkan Büyükgöz Koltuğu Sultana Devretti",
-            image: "/api/placeholder/400/220",
+            image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar.jpg",
             date: "23 Nisan 2025"
         }
     ];
@@ -105,7 +105,7 @@ export default function HomePage() {
         {
             id: 1,
             title: "Otobüs satın alınacaktır",
-            date: "15 Nisan 2025"
+            date: "15 Nisan 2025",
         },
         {
             id: 2,
@@ -131,7 +131,7 @@ export default function HomePage() {
             title: "Orta Asya'dan Anadolu'ya Ortakmiras",
             date: "29 Nisan",
             location: "Kültür Merkezi",
-            image: "/api/placeholder/300/180",
+            image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar1-1.webp",
             time: "18:00"
         },
         {
@@ -139,7 +139,7 @@ export default function HomePage() {
             title: "Bahar Konseri",
             date: "30 Nisan",
             location: "Kent Meydanı",
-            image: "/api/placeholder/300/180",
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal2.jpg",
             time: "19:30"
         }
     ];
@@ -148,27 +148,27 @@ export default function HomePage() {
         {
             id: 1,
             title: "GEBZE'Yİ KEŞFET",
-            image: "/api/placeholder/400/250"
+            image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1-2.jpg"
         },
         {
             id: 2,
             title: "GEZECEK",
-            image: "/api/placeholder/200/140"
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
         },
         {
             id: 3,
             title: "MÜZELER",
-            image: "/api/placeholder/200/140"
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
         },
         {
             id: 4,
             title: "ROTALAR",
-            image: "/api/placeholder/200/140"
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
         },
         {
             id: 5,
             title: "ORMANLAR",
-            image: "/api/placeholder/200/140"
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
         }
     ];
 
@@ -176,22 +176,22 @@ export default function HomePage() {
         {
             id: 1,
             title: "Kandıra Sahil Çevresi Düzenleme Projesi",
-            image: "/api/placeholder/280/160"
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
         },
         {
             id: 2,
             title: "Akçakoca İspinoz Köprüsü Yenileme Çalışması",
-            image: "/api/placeholder/280/160"
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
         },
         {
             id: 3,
             title: "Derince Mahallesi Kreş ve Spor Merkezi",
-            image: "/api/placeholder/280/160"
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
         },
         {
             id: 4,
             title: "Körfez Yol Genişletme Çalışması",
-            image: "/api/placeholder/280/160"
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
         }
     ];
 

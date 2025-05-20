@@ -30,7 +30,7 @@ public class UserService {
     public List<UserDTO> getAllUsers() {
         return userRepository.findAll()
                 .stream()
-                .map(user -> new UserDTO(user.getId(), user.getTCNo(), user.getRole()))
+                .map(user -> new UserDTO(user.getId(), user.getTCNo(),user.getIsim(), user.getRole(),user.getStatus() ))
                 .toList();
     }
 
@@ -79,20 +79,6 @@ public class UserService {
     public User authenticateUser(String username, String rawPassword) {
         return userRepository.findByTCNo(username)
                 .filter(user -> passwordEncoder.matches(rawPassword, user.getPassword()))
-                .orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
-    }
-
-    // Giriş işlemi yapar, başarılıysa LoginResponse döner (örnek amaçlı dummy token üretilmiş)
-    public LoginResponse login(String username, String rawPassword) {
-        User user = authenticateUserRaw(username, rawPassword);
-        String token = "dummyToken123"; // Gerçek uygulamada JWT vb. kullanılmalı
-        return new LoginResponse(token, user.getTCNo());
-    }
-
-    // Şifreyi hash'lemeden doğrudan karşılaştırır (sadece test veya geçici kullanım için uygundur)
-    public User authenticateUserRaw(String username, String rawPassword) {
-        return userRepository.findByTCNo(username)
-                .filter(user -> rawPassword.equals(user.getPassword()))
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
     }
 }

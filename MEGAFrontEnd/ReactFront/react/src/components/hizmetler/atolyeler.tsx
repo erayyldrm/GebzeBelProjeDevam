@@ -1,62 +1,29 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone, Info, X } from 'lucide-react';
 import { useNavigate, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
-const atolyelermerkezi = [
-    {
-        id: 1,
-        mail: "",
-        name: "Enderun Çocuk Atölyeleri",
-        phone: "0262 643 03 30",
-        address: "Mustafapaşa Mah. 712/2 Sok. No:2 Gebze / Kocaeli",
-        image: "/images/hizmetler/atölyeler/enderun.jpg",
-        mapLink: "https://www.google.com/maps/place/Mustafapa%C5%9Fa,+712%2F2.+Sk.+No:2,+41400+Gebze%2FKocaeli/@40.802388,29.427409,18z/data=!4m6...",
-        details: "Çocukların yaratıcı ve eğitsel gelişimini destekleyen çeşitli aktiviteler sunuyoruz.",
-        detailPage: "/hizmetler/atolyeler/enderun"
-    },
-    {
-        id: 3,
-        name: "Güzide Gençlik Merkezi Atölyeleri",
-        mail: "",
-        phone: "0262 646 95 86",
-        address: "Hacıhalil Mah. Adliye Cad. No: 38 41400 Gebze / KOCAELİ",
-        image: "/images/hizmetler/atölyeler/güzide.jpg",
-        mapLink: "https://www.google.com.tr/maps/search/40.796793,+29.436732?entry=tts",
-        details: "Sanat, kültür ve bilim alanlarında çeşitli atölyeler ve aktiviteler sunuyoruz.",
-        detailPage: "/hizmetler/atolyeler/guzide"
-    },
-    {
-        id: 2,
-        name: "Gençlik Atölyesi",
-        mail: "kultur.gesmek@gebze.bel.tr",
-        phone: "0262 644 33 78",
-        address: "Hacı Halil Mah. Zübeyde Hanım Cad. Eyüp Güvenç İş Merkezi Gebze",
-        image: "/images/hizmetler/atölyeler/gençlik.jpg",
-        mapLink: "https://www.google.com/maps/place/GESMEK+-+Gebze+Belediyesi...",
-        details: "Gençlerin yetenek ve becerilerini geliştirmek için özel programlar ve etkinlikler düzenliyoruz.",
-        detailPage: "/hizmetler/atolyeler/genclik"
-    },
-    {
-        id: 4,
-        name: "Sportif Çocuk Atölyesi",
-        mail: "genclik.spor@gebze.bel.tr",
-        phone: "0262 641 24 92",
-        address: "Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze Kocaeli",
-        image: "/images/hizmetler/atölyeler/sportif.jpg",
-        mapLink: "https://www.google.com/maps/place/Cumhuriyet,...",
-        details: "Çocukların fiziksel ve zihinsel gelişimini destekleyen çeşitli spor aktiviteleri düzenliyoruz.",
-        detailPage: "/hizmetler/atolyeler/sportif"
-    }
-];
+// API'den alınacak veri tipi
+interface Atolye {
+    id: number;
+    baslik: string;
+    imgUrl: string;
+    telefon: string;
+    konum: string;
+    buttonDetay: string;
+    buttonKonum: string;
+    mail: string | null;
+    detaylar?: string;
+}
 
-const WorkshopCenterCard = ({ center }: { center: typeof atolyelermerkezi[0] }) => {
+const WorkshopCenterCard = ({ center }: { center: Atolye }) => {
     const [showDetails, setShowDetails] = useState(false);
     const navigate = useNavigate();
 
     const handleDetailsClick = () => {
-        if (center.detailPage) {
-            navigate(center.detailPage);
+        if (center.buttonDetay) {
+            navigate(center.buttonDetay);
         } else {
             setShowDetails(!showDetails);
         }
@@ -69,41 +36,39 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyelermerkezi[0] }) 
         >
             {/* Sol: Resim */}
             <div className="w-full md:w-1/3 h-[200px] md:h-auto">
-
                 <img
-                    src={center.image}
-                    alt={center.name}
+                    src={center.imgUrl}
+                    alt={center.baslik}
                     className="object-cover w-full h-full max-h-[270px] rounded-lg"
                 />
-
             </div>
 
             {/* Sağ: İçerik */}
             <div className="w-full md:w-2/3 p-4 flex flex-col justify-between">
                 <div>
                     <Link
-                        to={center.detailPage}
+                        to={center.buttonDetay}
                         className="text-lg font-bold text-blue-500 border-b-2 border-blue-400 pb-1 block"
                     >
-                        {center.name}
+                        {center.baslik}
                     </Link>
                     <br/>
                     <div className="space-y-2 text-sm">
                         <div className="flex items-start">
                             <MapPin className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
-                            <p>{center.address}</p>
+                            <p>{center.konum}</p>
                         </div>
 
                         <div className="flex items-center">
                             <Phone className="w-5 h-5 text-blue-600 mr-2" />
-                            <p>{center.phone}</p>
+                            <p>{center.telefon}</p>
                         </div>
                     </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3 mt-4">
                     <a
-                        href={center.mapLink}
+                        href={center.buttonKonum}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center px-3 py-2 bg-gradient-to-r from-sky-500 to-sky-700 text-blue-800 rounded-md hover:from-sky-600 hover:to-sky-800 transition-all shadow-md text-xs flex-1"
@@ -139,6 +104,65 @@ const WorkshopCenterCard = ({ center }: { center: typeof atolyelermerkezi[0] }) 
 };
 
 export default function Atolyelersayfasi() {
+    const [atolyeler, setAtolyeler] = useState<Atolye[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchAtolyeler = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get('http://localhost:8080/api/hizmetler/kategori/ATOLYELER');
+
+                if (Array.isArray(response.data)) {
+                    // Veri yapısını şekillendirmek için mapping
+                    const formattedData = response.data.map((item: any) => ({
+                        id: item.id,
+                        baslik: item.baslik,
+                        imgUrl: item.imgUrl,
+                        telefon: item.telefon || "Belirtilmemiş",
+                        konum: item.konum,
+                        buttonDetay: item.buttonDetay,
+                        buttonKonum: item.buttonKonum,
+                        mail: item.mail,
+                        detaylar: item.detaylar || "Detay bilgisi bulunmamaktadır."
+                    }));
+
+                    setAtolyeler(formattedData);
+                } else {
+                    throw new Error('Geçersiz veri formatı');
+                }
+            } catch (err) {
+                console.error("API Hatası:", err);
+                setError('Atölyeler yüklenirken bir hata oluştu');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchAtolyeler();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col min-h-screen">
+                <div className="flex flex-1 justify-center items-center">
+                    <div className="text-lg">Yükleniyor...</div>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex flex-col min-h-screen">
+                <div className="flex flex-1 justify-center items-center">
+                    <div className="text-red-500 text-lg">{error}</div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="flex flex-col min-h-screen">
             <div className="flex flex-1">
@@ -156,20 +180,24 @@ export default function Atolyelersayfasi() {
                                 className="bg-blue-500 p-4 rounded-xl shadow-xl mb-5"
                             >
                                 <div className="text-2xl font-semibold text-white text-center">
-                               ATÖLYELER
+                                    ATÖLYELER
                                 </div>
                             </motion.div>
 
-
-                            {/* Kartlar */}
-                            <div className="flex flex-wrap justify-center gap-6">
-                                {atolyelermerkezi.map((center) => (
-                                    <WorkshopCenterCard key={center.id} center={center} />
-                                ))}
-                            </div>
+                            {atolyeler.length === 0 ? (
+                                <div className="text-center text-gray-500 p-10">
+                                    Herhangi bir atölye bulunamadı.
+                                </div>
+                            ) : (
+                                /* Kartlar */
+                                <div className="flex flex-wrap justify-center gap-6">
+                                    {atolyeler.map((center) => (
+                                        <WorkshopCenterCard key={center.id} center={center} />
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </section>
-
                 </div>
             </div>
         </div>

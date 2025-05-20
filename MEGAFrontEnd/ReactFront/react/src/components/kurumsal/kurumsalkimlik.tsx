@@ -1,20 +1,35 @@
-// @ts-ignore
 import { useState, useEffect } from "react";
 import { FileText } from "lucide-react";
 import { motion } from "framer-motion";
 
-const documents = [
-    { name: "Kurumsal Logo Vektörel", url: "https://www.gebze.bel.tr/dosya/20191119061531.pdf" },
-    { name: "Gebze Belediyesi Dikey Logo", url: "https://www.gebze.bel.tr/dosya/20191119061557.png" },
-    { name: "Gebze Belediyesi Yatay Logo", url: "https://www.gebze.bel.tr/dosya/20191119061614.png" },
-    { name: "Başkan Logo", url: "https://www.gebze.bel.tr/dosya/20191119061653.png" },
-];
+// API'den gelecek veri tipi
+interface KurumsalKimlikDosya {
+    id: number;
+    baslik: string;
+    dosyaUrl: string;
+    tarih: string;
+    aktif: number;
+    kategori: string;
+}
 
 const Kimlik = () => {
     const [loaded, setLoaded] = useState<boolean>(false);
+    const [documents, setDocuments] = useState<KurumsalKimlikDosya[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         setLoaded(true);
+        setIsLoading(true);
+        fetch("http://localhost:8080/api/kurumsal/kurumsal-kimlik")
+            .then((response) => response.json())
+            .then((data) => {
+                setDocuments(data);
+                setIsLoading(false);
+            })
+            .catch(() => {
+                setDocuments([]);
+                setIsLoading(false);
+            });
     }, []);
 
     const containerVariants = {
@@ -66,37 +81,45 @@ const Kimlik = () => {
                                                 </div>
 
                                                 {/* Liste Görünümünde Doküman Kartları */}
-                                                <motion.div
-                                                    variants={containerVariants}
-                                                    initial="hidden"
-                                                    animate={loaded ? "visible" : "hidden"}
-                                                    className="flex flex-col gap-4"
-                                                >
-                                                    {documents.map((doc, index) => (
-                                                        <motion.div
-                                                            key={index}
-                                                            variants={itemVariants}
-                                                            whileHover={{
-                                                                scale: 1.02,
-                                                                boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
-                                                            }}
-                                                            className="bg-blue-50 p-4 rounded-lg hover:bg-blue-100 transition flex items-center justify-between shadow-md"
-                                                        >
-                                                            <div className="flex items-center gap-3">
-                                                                <FileText className="text-red-500" size={32} />
-                                                                <span className="text-sm font-medium text-blue-700">{doc.name}</span>
-                                                            </div>
-                                                            <a
-                                                                href={doc.url}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="text-blue-600 hover:underline text-sm"
-                                                            >
-                                                                Görüntüle
-                                                            </a>
-                                                        </motion.div>
-                                                    ))}
-                                                </motion.div>
+                                                {isLoading ? (
+                                                    <div className="text-center text-gray-500 py-8">Yükleniyor...</div>
+                                                ) : (
+                                                    <motion.div
+                                                        variants={containerVariants}
+                                                        initial="hidden"
+                                                        animate={loaded ? "visible" : "hidden"}
+                                                        className="flex flex-col gap-4"
+                                                    >
+                                                        {documents.length === 0 ? (
+                                                            <div className="text-center text-gray-500 py-8">Kayıt bulunamadı.</div>
+                                                        ) : (
+                                                            documents.map((doc, index) => (
+                                                                <motion.div
+                                                                    key={doc.id}
+                                                                    variants={itemVariants}
+                                                                    whileHover={{
+                                                                        scale: 1.02,
+                                                                        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+                                                                    }}
+                                                                    className="bg-blue-50 p-4 rounded-lg hover:bg-blue-100 transition flex items-center justify-between shadow-md"
+                                                                >
+                                                                    <div className="flex items-center gap-3">
+                                                                        <FileText className="text-red-500" size={32} />
+                                                                        <span className="text-sm font-medium text-blue-700">{doc.baslik}</span>
+                                                                    </div>
+                                                                    <a
+                                                                        href={doc.dosyaUrl}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        className="text-blue-600 hover:underline text-sm"
+                                                                    >
+                                                                        Görüntüle
+                                                                    </a>
+                                                                </motion.div>
+                                                            ))
+                                                        )}
+                                                    </motion.div>
+                                                )}
                                             </motion.div>
                                         </div>
                                     </div>

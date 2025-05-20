@@ -2,26 +2,68 @@ import { useState, useEffect } from "react";
 import { FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface Document {
-    name: string;
-    url: string;
+// Meclis Kararı verileri için interface
+interface MeclisKarari {
+    id: number;
+    baslik: string;
+    dosyaUrl: string;
+    tarih: string;
+    aktif: number;
+    kategori: string;
 }
 
-const meclisDocuments: Document[] = [
-    { name: "3 Nisan 2025 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20250410150120.pdf" },
-    { name: "4 Mart 2025 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20250311163949.rar" },
-    { name: "4 Şubat 2025 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20250210111051.pdf" },
-    { name: "2 Ocak 2025 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20250108162430.pdf" },
-    { name: "24 Aralık 2024 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20241227170844.pdf" },
-    { name: "3 Aralık 2024 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20241227170753.pdf" },
-    { name: "5 Kasım 2024 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20241111141116.pdf" },
-    { name: "1 Ekim 2024 Meclis Kararları", url: "https://www.gebze.bel.tr/dosya/20241017094509.pdf" },
+// Mock data - API'de veri olmadığı durumda kullanılacak
+const mockMeclisKararlari: MeclisKarari[] = [
+    {
+        id: 1,
+        baslik: "3 Nisan 2023 Meclis Kararları",
+        dosyaUrl: "https://www.kocaeli.bel.tr/dosyalar/kararlar/20230410150120.pdf",
+        tarih: "2023-04-03",
+        aktif: 1,
+        kategori: "meclis"
+    },
+    {
+        id: 2,
+        baslik: "4 Mart 2023 Meclis Kararları",
+        dosyaUrl: "https://www.kocaeli.bel.tr/dosyalar/kararlar/20230311163949.pdf",
+        tarih: "2023-03-04",
+        aktif: 1,
+        kategori: "meclis"
+    },
+    {
+        id: 3,
+        baslik: "4 Şubat 2023 Meclis Kararları",
+        dosyaUrl: "https://www.kocaeli.bel.tr/dosyalar/kararlar/20230210111051.pdf",
+        tarih: "2023-02-04",
+        aktif: 1,
+        kategori: "meclis"
+    },
+    {
+        id: 4,
+        baslik: "2 Ocak 2023 Meclis Kararları",
+        dosyaUrl: "https://www.kocaeli.bel.tr/dosyalar/kararlar/20230108162430.pdf",
+        tarih: "2023-01-02",
+        aktif: 1,
+        kategori: "meclis"
+    },
+    {
+        id: 5,
+        baslik: "5 Aralık 2022 Meclis Kararları",
+        dosyaUrl: "https://www.kocaeli.bel.tr/dosyalar/kararlar/20221227170753.pdf",
+        tarih: "2022-12-05",
+        aktif: 1,
+        kategori: "meclis"
+    }
 ];
 
 const Kararlar = () => {
     const [activeTab, setActiveTab] = useState<string>("meclis");
     const [isChanging, setIsChanging] = useState<boolean>(false);
     const [loaded, setLoaded] = useState<boolean>(false);
+    const [meclisKararlari, setMeclisKararlari] = useState<MeclisKarari[]>([]);
+    const [error] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [useMockData, setUseMockData] = useState<boolean>(false);
 
     // Container animation variants for staggered animations
     const containerVariants = {
@@ -45,6 +87,43 @@ const Kararlar = () => {
         }
     };
 
+    useEffect(() => {
+        // Veritabanından meclis kararlarını çek
+        setIsLoading(true);
+        console.log("Meclis kararları yükleniyor...");
+        
+        fetch("http://localhost:8080/api/kurumsal/meclis-kararlari")
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log("API'den gelen veriler:", data);
+                
+                // API'den gelen veri boş ise veya veri dizisi değilse mock data kullan
+                if (!Array.isArray(data) || data.length === 0) {
+                    console.log("API'de veri bulunamadı, mock data kullanılıyor.");
+                    setMeclisKararlari(mockMeclisKararlari);
+                    setUseMockData(true);
+                } else {
+                    setMeclisKararlari(data);
+                    setUseMockData(false);
+                }
+                setIsLoading(false);
+                setLoaded(true);
+            })
+            .catch((error) => {
+                console.error("Meclis kararları yüklenirken hata:", error);
+                console.log("Hata nedeniyle mock data kullanılıyor");
+                setMeclisKararlari(mockMeclisKararlari);
+                setUseMockData(true);
+                setIsLoading(false);
+                setLoaded(true);
+            });
+    }, []);
+
     const handleTabChange = (tab: string) => {
         if (tab !== activeTab && !isChanging) {
             setIsChanging(true);
@@ -59,12 +138,61 @@ const Kararlar = () => {
         }
     };
 
-    useEffect(() => {
-        // Trigger initial animation after component mounts
-        setTimeout(() => {
-            setLoaded(true);
-        }, 100);
-    }, []);
+    // Tarih formatını düzenlemek için yardımcı fonksiyon
+    const formatTarih = (tarihStr: string) => {
+        const tarih = new Date(tarihStr);
+        return new Intl.DateTimeFormat('tr-TR', { 
+            day: 'numeric', 
+            month: 'long', 
+            year: 'numeric' 
+        }).format(tarih);
+    };
+
+    // Error state
+    if (error) return (
+        <div className="flex justify-content-center align-items-center min-h-screen p-4 bg-light">
+            <div className="w-full max-w-2xl bg-white border-left border-danger rounded shadow-lg overflow-hidden">
+                <div className="p-4">
+                    <div className="d-flex align-items-center">
+                        <div className="flex-shrink-0">
+                            <svg className="h-8 w-8 text-danger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                            </svg>
+                        </div>
+                        <div className="ml-4">
+                            <h2 className="text-lg font-weight-bold text-dark">Hata</h2>
+                            <p className="text-secondary">{error}</p>
+                            <button
+                                className="mt-3 px-4 py-2 bg-danger text-white rounded hover:bg-danger"
+                                onClick={() => window.location.reload()}
+                            >
+                                Yeniden Dene
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+
+    // Loading state with shimmering effect
+    if (isLoading) return (
+        <div className="w-full max-w-4xl mx-auto my-4 px-4">
+            <div className="bg-white rounded shadow-lg overflow-hidden p-4">
+                <div className="animate-pulse">
+                    <div className="h-8 bg-secondary rounded w-1/4 mb-6"></div>
+                    <div className="space-y-4">
+                        {[1, 2, 3, 4, 5, 6].map((item) => (
+                            <div key={item} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div className="h-20 bg-secondary rounded"></div>
+                                <div className="h-20 bg-secondary rounded"></div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 
     return (
         <motion.div
@@ -102,8 +230,15 @@ const Kararlar = () => {
                                                     transition={{ duration: 0.5 }}
                                                     className="bg-white shadow rounded-2xl p-5"
                                                 >
-                                                    {/* Başlık */}
-
+                                                    {/* Mock data uyarısı */}
+                                                    {useMockData && (
+                                                        <div className="bg-yellow-100 p-3 mb-4 rounded-lg border-l-4 border-yellow-500">
+                                                            <p className="text-yellow-700 text-sm">
+                                                                <strong>Not:</strong> Veritabanı bağlantısında veriler bulunamadığı için örnek veriler gösteriliyor.
+                                                            </p>
+                                                        </div>
+                                                    )}
+                                                    
                                                     {/* Sekmeler */}
                                                     <div className="flex border-b mb-4 overflow-x-auto">
                                                         <motion.button
@@ -156,38 +291,52 @@ const Kararlar = () => {
                                                                 animate={loaded ? "visible" : "hidden"}
                                                                 exit={{ opacity: 0, y: -20 }}
                                                                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                                                                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6"
+                                                                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6"
                                                             >
-                                                                {meclisDocuments.map((doc, index) => (
-                                                                    <motion.div
-                                                                        key={index}
-                                                                        variants={itemVariants}
-                                                                        whileHover={{
-                                                                            scale: 1.05,
-                                                                            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-                                                                            backgroundColor: "rgba(219, 234, 254, 0.8)"
-                                                                        }}
-                                                                        className="bg-blue-50 p-4 rounded-xl transition-all duration-300
-                                                                            flex flex-col items-center shadow-md border border-blue-100 h-full"
-                                                                    >
+                                                                {meclisKararlari.length > 0 ? (
+                                                                    meclisKararlari.map((karar, index) => (
                                                                         <motion.div
-                                                                            whileHover={{ rotate: [0, -10, 10, -5, 0], scale: 1.1 }}
-                                                                            transition={{ duration: 0.5 }}
-                                                                            className="flex items-center justify-center mb-3"
+                                                                            key={karar.id}
+                                                                            variants={itemVariants}
+                                                                            whileHover={{
+                                                                                scale: 1.05,
+                                                                                boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+                                                                                backgroundColor: "rgba(219, 234, 254, 0.8)"
+                                                                            }}
+                                                                            className="bg-blue-50 p-4 rounded-xl transition-all duration-300
+                                                                                flex flex-col items-center shadow-md border border-blue-100 h-full"
                                                                         >
-                                                                            <FileText className="text-red-500 w-16 h-16" />
-                                                                        </motion.div>
+                                                                            <motion.div
+                                                                                whileHover={{ rotate: [0, -10, 10, -5, 0], scale: 1.1 }}
+                                                                                transition={{ duration: 0.5 }}
+                                                                                className="flex items-center justify-center mb-3"
+                                                                            >
+                                                                                <FileText className="text-red-500 w-16 h-16" />
+                                                                            </motion.div>
 
-                                                                        <a
-                                                                            href={doc.url}
-                                                                            target="_blank"
-                                                                            rel="noopener noreferrer"
-                                                                            className="text-blue-700 font-semibold text-center text-sm md:text-base break-words hover:underline mt-2"
-                                                                        >
-                                                                            {doc.name}
-                                                                        </a>
+                                                                            <a
+                                                                                href={karar.dosyaUrl}
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer"
+                                                                                className="text-blue-700 font-semibold text-center text-sm md:text-base break-words hover:underline mt-2"
+                                                                            >
+                                                                                {karar.baslik}
+                                                                            </a>
+                                                                            <div className="text-gray-600 text-sm mt-2">
+                                                                                {formatTarih(karar.tarih)}
+                                                                            </div>
+                                                                        </motion.div>
+                                                                    ))
+                                                                ) : (
+                                                                    <motion.div
+                                                                        initial={{ opacity: 0 }}
+                                                                        animate={{ opacity: 1 }}
+                                                                        transition={{ delay: 0.2, duration: 0.5 }}
+                                                                        className="col-span-full text-center p-8 bg-blue-50 rounded-xl shadow-sm"
+                                                                    >
+                                                                        <p className="text-blue-700 font-semibold">Henüz meclis kararı yüklenmemiştir.</p>
                                                                     </motion.div>
-                                                                ))}
+                                                                )}
                                                             </motion.div>
                                                         ) : (
                                                             <motion.div
@@ -225,3 +374,4 @@ const Kararlar = () => {
 };
 
 export default Kararlar;
+
