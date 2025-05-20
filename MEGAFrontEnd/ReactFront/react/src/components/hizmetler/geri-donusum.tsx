@@ -1,84 +1,55 @@
-import  { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const wasteTypes = [
-    {
-        icon: "🧃",
-        title: "Ambalaj Atıkları",
-        description: "Cam, plastik, metal ve kâğıt ambalaj atıkları.",
-        image: "/images/hizmetler/donusum/ambalaj.jpg",
-        detailPage: "hizmetler/geridonusum/ambalaj",
-        mapLink: "https://google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8115684!4d29.4190946!16s%2Fg%2F11gnprgbd1?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        icon: "🔋",
-        title: "Atık Piller Ve Akümülülatörler",
-        description: "Kullanılmış pillerin çevreye zarar vermeden toplanması.",
-        image: "/images/hizmetler/donusum/pil.jpg",
-        detailPage: "hizmetler/geridonusum/piller",
-        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8115684!4d29.4190946!16s%2Fg%2F11gnprgbd1?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        icon: "️️🛢️",
-        title: "Bitkisel Ve Atık Yağlar",
-        description: "Kullanılmış yağların uygun şekilde bertaraf edilmesi.",
-        image: "/images/hizmetler/donusum/bitkisel.jpg",
-        detailPage: "hizmetler/geridonusum/bitkisel",
-        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8120141!4d29.4188972!16s%2Fg%2F11gnprgbd1?entry=tts&shorturl=1"
-    },
-    {
-        icon: "📱",
-        title: "Elektronik Atıklar",
-        description: "Kullanılmış elektronik cihazların uygun şekilde bertaraf edilmesi.",
-        image: "/images/hizmetler/donusum/elektronik.jpg",
-        detailPage: "hizmetler/geridonusum/elektronik",
-        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8115684!4d29.4190946!16s%2Fg%2F11gnprgbd1?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        icon: "🍂",
-        title: "Evsel Atıklar",
-        description: "Evsel Çöpler ve Organik Atıklar.",
-        image: "/images/hizmetler/donusum/evsel.jpeg",
-        detailPage: "hizmetler/geridonusum/evsel",
-        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8120141!4d29.4188972!16s%2Fg%2F11gnprgbd1?entry=tts&shorturl=1"
-    },
-    {
-        icon: "🪑",
-        title: "İri Hacimli Atıklar",
-        description: "Kullanılmayacak durumda olan büyük hacimli eşyaların toplanması.",
-        image: "/images/hizmetler/donusum/irihacimli.jpeg",
-        detailPage: "hizmetler/geridonusum/hacimli",
-        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8120141!4d29.4188972!16s%2Fg%2F11gnprgbd1?entry=tts&shorturl=1"
-    },
-    {
-        icon: "🏗️",
-        title: "Moloz Atıkları",
-        description: "İnşaat ve yıkım sonucu oluşan atıkların bertarafı.",
-        image: "/images/hizmetler/donusum/moloz.jpg",
-        detailPage: "hizmetler/geridonusum/moloz",
-        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8115684!4d29.4190946!16s%2Fg%2F11gnprgbd1?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        icon: "♻️",
-        title: "Sıfır Atık Nedir?",
-        description: "Atıkların geri dönüşümle bertaraf edilmesi.",
-        image: "/images/hizmetler/donusum/sifiratik.jpg",
-        detailPage: "hizmetler/geridonusum/sifiratik",
-        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8115684!4d29.4190946!16s%2Fg%2F11gnprgbd1?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoASAFQAw%3D%3D"
-    },
-    {
-        icon: "👕",
-        title: "Tekstil Atıkları",
-        description: "Giysi, ayakkabı ve tekstil ürünlerinin geri dönüşümü.",
-        image: "/images/hizmetler/donusum/tekstil.jpg",
-        detailPage: "hizmetler/geridonusum/tekstil",
-        mapLink: "https://www.google.com/maps/place/Mevlana+Kapal%C4%B1+Pazar+Yeri/@40.8113533,29.4191744,18z/data=!4m6!3m5!1s0x14cb214b36d25719:0x23db983d4dff738b!8m2!3d40.8120141!4d29.4188972!16s%2Fg%2F11gnprgbd1?entry=tts&shorturl=1"
-    }
-];
+interface GeriDonusum {
+    id: number;
+    baslik: string;
+    imgUrl: string;
+    metin: string;
+    telefon: string;
+    mail: string;
+    buttonDetay: string;
+    buttonKonum: string;
+    icon: string;
+}
 
 const GeriDonusumPage = () => {
     const [activeButtons, setActiveButtons] = useState<Record<number, string>>({});
+    const [geriDonusumler, setGeriDonusumler] = useState<GeriDonusum[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
+
+    // geri-donusum.tsx içinde
+    useEffect(() => {
+        const fetchGeriDonusum = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get('http://localhost:8080/api/geri-donusum', {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                console.log('API Yanıtı:', response.data); // Yanıtı kontrol et
+
+                if (Array.isArray(response.data)) {
+                    setGeriDonusumler(response.data);
+                } else {
+                    throw new Error('API yanıtı geçersiz format');
+                }
+            } catch (err: any) {
+                console.error("API Hatası:", err.message);
+                setError(`Veri yüklenirken hata: ${err.message}`);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchGeriDonusum();
+    }, []);
 
     const handleActionClick = (cardIndex: number, buttonType: string, detailPage: string, mapLink: string) => {
         setActiveButtons({ [cardIndex]: buttonType });
@@ -89,6 +60,22 @@ const GeriDonusumPage = () => {
             window.open(mapLink, "_blank");
         }
     };
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-green-50 flex items-center justify-center">
+                <div className="text-2xl text-green-800">Yükleniyor...</div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="min-h-screen bg-green-50 flex items-center justify-center">
+                <div className="text-2xl text-red-600">{error}</div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-green-50 text-gray-800 font-sans mt-3" style={{
@@ -113,22 +100,37 @@ const GeriDonusumPage = () => {
 
             <div className="py-10 max-w-7xl mx-auto">
                 <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                    {wasteTypes.map((item, index) => (
-                        <div key={index} className="bg-white rounded-2xl shadow p-4 hover:shadow-lg transition flex flex-col justify-between h-full">
+                    {geriDonusumler.map((item, index) => (
+                        <div
+                            key={item.id}
+                            className="bg-white rounded-2xl shadow p-4 hover:shadow-lg transition flex flex-col justify-between h-full"
+                            style={{
+                                minHeight: '450px',
+                                width: '100%',        // Tam genişlik
+                                maxWidth: '400px',    // Maksimum genişlik
+                                margin: '0 auto'      // Yatayda ortalama
+                            }}
+                        >
+
                             <img
-                                src={item.image}
-                                alt={item.title}
-                                className="w-full h-32 object-cover object-center rounded-xl mb-4"
+                                src={item.imgUrl}
+                                alt={item.baslik}
+                                className="w-full h-48  object-center rounded-xl mb-4" // h-32'yi h-48 olarak değiştirdik
+                                style={{
+                                    aspectRatio: '16/9',  // En boy oranını sabitle
+                                    minHeight: '200px',   // Minimum yükseklik
+                                    maxHeight: '200px'    // Maximum yükseklik
+                                }}
                             />
                             <div className="flex-1">
                                 <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">
-                                    {item.icon} {item.title}
+                                    {item.icon} {item.baslik}
                                 </h2>
-                                <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-4">{item.description}</p>
+                                <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-4">{item.metin}</p>
                             </div>
                             <div className="grid grid-cols-2 gap-2">
                                 <button
-                                    onClick={() => handleActionClick(index, "detayli", item.detailPage, item.mapLink)}
+                                    onClick={() => handleActionClick(index, "detayli", item.buttonDetay, item.buttonKonum)}
                                     style={
                                         activeButtons[index] === "detayli"
                                             ? { backgroundColor: "#022842", color: "#FFFFFF" }
@@ -139,7 +141,7 @@ const GeriDonusumPage = () => {
                                     <span>ℹ️ Hakkında</span>
                                 </button>
                                 <button
-                                    onClick={() => handleActionClick(index, "konum", item.detailPage, item.mapLink)}
+                                    onClick={() => handleActionClick(index, "konum", item.buttonDetay, item.buttonKonum)}
                                     style={
                                         activeButtons[index] === "konum"
                                             ? { backgroundColor: "#022842", color: "#FFFFFF" }
@@ -151,7 +153,7 @@ const GeriDonusumPage = () => {
                                 </button>
                             </div>
                             <div className="text-xs text-gray-500 border-t pt-2 text-center mt-4">
-                                📞  0262 642 10 10&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;📩 sifiratik@gebze.bel.tr
+                                📞 {item.telefon}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;📩 {item.mail}
                             </div>
                         </div>
                     ))}
