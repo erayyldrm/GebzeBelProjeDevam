@@ -25,7 +25,7 @@ export default function CombinedCard() {
                     <div className="px-4 md:px-6 pb-4 md:pb-6 flex justify-center">
                         <div className="bg-white rounded-xl shadow-md overflow-hidden w-full max-w-[800px] aspect-[4/3] p-3 sm:p-4">
                             <div className="relative w-full h-full rounded-lg overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-900/60 to-blue-700/40 z-10 rounded-lg"></div>
+                                <div className="absolute inset-0 z-10 rounded-lg"></div>
                                 <img
                                     src="/images/yayınlar/manşet.png"
                                     className="w-full h-full object-cover rounded-lg"
@@ -51,7 +51,7 @@ export default function CombinedCard() {
                                     >
                                         <div className="flex items-center gap-3">
                                             <FileText className="text-orange-500 flex-shrink-0" size={20} />
-                                            <span className="text-blue-700 font-medium text-sm sm:text-base">
+                                            <span className="text-blue-900 font-medium text-sm sm:text-base">
                                                 {doc.name}
                                             </span>
                                         </div>

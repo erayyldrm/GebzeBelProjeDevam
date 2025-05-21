@@ -84,7 +84,7 @@ export default function Dashboard() {
 
     return (
         <AdminLayout>
-            <h2 className="text-2xl font-bold mb-6">Dashboard</h2>
+            <h2 className="text-2xl font-bold mb-6">Panel</h2>
 
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -118,72 +118,7 @@ export default function Dashboard() {
                 />
             </div>
 
-            {/* Users Table */}
-            <div className="bg-white rounded-lg shadow">
-                <div className="p-6 border-b">
-                    <h3 className="text-lg font-medium">Users List</h3>
-                    <p className="text-gray-500 text-sm">Manage your users and their permissions</p>
-                </div>
 
-                <div className="overflow-x-auto">
-                    <table className="w-full">
-                        <thead className="bg-gray-50">
-                        <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Active</th>
-                        </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200">
-                        {filteredData.map((user) => (
-                            <tr key={user.id} className="hover:bg-gray-50">
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="flex items-center">
-                                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-800 font-bold">
-                                            {user.name.charAt(0)}
-                                        </div>
-                                        <div className="ml-3">
-                                            <div className="text-sm font-medium text-gray-900">{user.name}</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-900">{user.email}</div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-900">{user.role}</div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <StatusBadge status={user.status} />
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {user.lastActive}
-                                </td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                </div>
-
-                {filteredData.length === 0 && (
-                    <div className="text-center py-6">
-                        <p className="text-gray-500">No users found matching your search.</p>
-                    </div>
-                )}
-
-                <div className="px-6 py-4 flex items-center justify-between border-t">
-                    <div className="text-sm text-gray-500">
-                        Showing <span className="font-medium">{filteredData.length}</span> of <span className="font-medium">{mockData.length}</span> users
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <button className="px-3 py-1 border rounded text-sm disabled:opacity-50">Previous</button>
-                        <button className="px-3 py-1 bg-blue-500 text-white rounded text-sm">1</button>
-                        <button className="px-3 py-1 border rounded text-sm">Next</button>
-                    </div>
-                </div>
-            </div>
         </AdminLayout>
     );
 }

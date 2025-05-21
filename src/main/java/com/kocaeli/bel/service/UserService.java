@@ -66,6 +66,8 @@ public class UserService {
 
     // Yeni kullanıcıyı kayıt eder (TCNo benzersiz olmalı ve şifre hashlenir)
     public User registerUser(User user) {
+        System.out.println("Registering user with TCNO: " + user.getTCNo());
+        System.out.println("Password before encoding: " + user.getPassword());
         if (userRepository.findByTCNo(user.getTCNo()).isPresent()) {
             throw new UserAlreadyExistsException("TCNO is already in use");
         }
