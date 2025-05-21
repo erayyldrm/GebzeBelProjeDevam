@@ -51,8 +51,9 @@ export default function CombinedCard() {
                         </div>
                     </div>
 
-                    {/* Slider Bölümü - Ayrı Kart İçinde */}
+                    {/* İçerik Container - Resim ve Metin için ortak padding */}
                     <div className="px-4 md:px-6 pb-4 md:pb-6">
+                        {/* Slider Bölümü - Padding Yok */}
                         <div
                             className="w-full bg-white rounded-xl shadow-md overflow-hidden"
                             onMouseEnter={handleMouseEnter}
@@ -64,7 +65,7 @@ export default function CombinedCard() {
                                         key={index}
                                         className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"}`}
                                     >
-                                        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/60 to-blue-700/40 z-10"></div>
+                                        <div className="absolute inset-0 z-10"></div>
                                         <img src={image.image} className="w-full h-full object-cover" alt="Kültür Yayını" />
                                     </div>
                                 ))}
@@ -93,20 +94,22 @@ export default function CombinedCard() {
                                 </div>
                             </div>
                         </div>
+                        
+                        {/* Mavi arka plan metin bölümü - Aynı genişlikte olacak */}
+                        <div className="bg-blue-900 rounded-2xl p-4 md:p-6 text-white mt-4">
+                            <h3 className="text-lg font-bold mb-2">Kültür Yayınlarımız</h3>
+                            <p className="text-sm md:text-base">
+                                Çoban Mustafa Paşa, aslen Bosnalıdır. Genç bir çoban iken Sultan Yavuz Selim ile Mısır Seferi'ne katılır, sonraları Piri Mehmet Paşa'nın koruyuculuğuna alınır. Zaman içerisinde çeşitli mevkilere yükselir. Sırası ile Kapıcıbaşı ve Rumeli Beylerbeyi olur. Sonraları Yavuz Sultan Selim'in kızı ile evlenip Hakan'ın damadı olur.
+                                <br /><br />
+                                Kanuni Sultan Süleyman zamanında Vezirlik görevini yürütür. İstanbul'da 1529 yılında vefat eden Çoban Mustafa Paşa, kendi adına yaptırmış olduğu Gebze'deki külliyede caminin kıble tarafında yer alan türbesine gömülür.
+                                <br /><br />
+                                Çoban Mustafa Paşa Külliyesi Kapısının üzerindeki Arapça kitabeye göre 1523/4 (H. 930) yılında yaptırılmıştır. Külliye cami, türbe, medrese, kütüphane, kervansaray, darüşşifa, imarethaneden meydana gelen bir yapı topluluğudur. Külliyede çok dengeli bir geometrik düzen göze çarpar. Cami avlusundan başka arkada geniş bir türbe avlusu vardır.
+                            </p>
+                        </div>
                     </div>
-                    <div className="bg-gradient-to-r from-blue-800 to-blue-600 rounded-2xl p-4 md:p-6 text-white">
-                        <h3 className="text-lg font-bold mb-2">Kültür Yayınlarımız</h3>
-                        <p className=" text-sm md:text-base">
-                            Çoban Mustafa Paşa, aslen Bosnalıdır. Genç bir çoban iken Sultan Yavuz Selim ile Mısır Seferi'ne katılır, sonraları Piri Mehmet Paşa'nın koruyuculuğuna alınır. Zaman içerisinde çeşitli mevkilere yükselir. Sırası ile Kapıcıbaşı ve Rumeli Beylerbeyi olur. Sonraları Yavuz Sultan Selim'in kızı ile evlenip Hakan'ın damadı olur.
-                            <br /><br />
-                            Kanuni Sultan Süleyman zamanında Vezirlik görevini yürütür. İstanbul'da 1529 yılında vefat eden Çoban Mustafa Paşa, kendi adına yaptırmış olduğu Gebze'deki külliyede caminin kıble tarafında yer alan türbesine gömülür.
-                            <br /><br />
-                            Çoban Mustafa Paşa Külliyesi Kapısının üzerindeki Arapça kitabeye göre 1523/4 (H. 930) yılında yaptırılmıştır. Külliye cami, türbe, medrese, kütüphane, kervansaray, darüşşifa, imarethaneden meydana gelen bir yapı topluluğudur. Külliyede çok dengeli bir geometrik düzen göze çarpar. Cami avlusundan başka arkada geniş bir türbe avlusu vardır.
-                        </p>
-                    </div>
-                    {/* İçerik Bölümü */}
-                    <div className="p-4 md:p-6">
-                        {/* Yayınlarımız Bölümü */}
+                    
+                    {/* Yayınlarımız Bölümü */}
+                    <div className="px-4 md:px-6 pb-4 md:pb-6">
                         <div className="mb-6">
                             <div className="flex items-center gap-3 mb-4 border-b pb-3 border-blue-100">
                                 <Book className="text-orange-500" size={28} />
@@ -121,7 +124,7 @@ export default function CombinedCard() {
                                     >
                                         <div className="flex items-center gap-3">
                                             <FileText className="text-orange-500 flex-shrink-0" size={20} />
-                                            <span className="text-blue-700 font-medium text-sm sm:text-base">
+                                            <span className="text-blue-900 font-medium text-sm sm:text-base">
                                                 {doc.name}
                                             </span>
                                         </div>
@@ -129,7 +132,7 @@ export default function CombinedCard() {
                                             href={doc.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-black bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded text-xs sm:text-sm whitespace-nowrap transition text-center"
+                                            className="text-white bg-blue-600 hover:bg-blue-900 px-4 py-1.5 rounded text-xs sm:text-sm whitespace-nowrap transition text-center"
                                         >
                                             Görüntüle
                                         </a>
