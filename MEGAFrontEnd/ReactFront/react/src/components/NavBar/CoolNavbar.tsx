@@ -144,16 +144,35 @@ const Navbar = () => {
                 zIndex: 100
             }}
             className={`
-                bg-[#022842] border-b border-gray-200 z-[100]
+                ${window.location.pathname === "/" 
+                    ? "fixed"
+                    : "relative"}
+                ${
+                    window.location.pathname === "/" // sadece ana sayfada opacity ve z-index
+                        ? (scrollPosition > 100
+                            ? 'bg-[#022842]/90 z-[20]'
+                            : 'bg-[#022842]/60 z-[20]')
+                        : 'bg-[#022842]'
+                }
+                border-b border-gray-200
                 ${scrollPosition > 100 ? 'shadow-md' : ''}
             `}
+            style={{ pointerEvents: "auto" }}
         >
-            <div className="max-w-full mx-auto px-4">
+            <div className={`mx-auto px-4 ${window.location.pathname === "/" ? "pr-5" : ""}`}>
                 <div className="flex justify-between h-35">
-                    {/* Logo and mobile menu button */}
-                    <div className="flex justify-between w-full md:w-auto">
+                    {/* Desktop menu items - hidden on mobile, 1165px ve üstü */}
+                    <div
+                        ref={desktopDropdownRef}
+                        className="hidden [@media(min-width:1165px)]:flex items-center justify-center w-full"
+                    >
                         {/* Logo */}
-                        <div className="flex-shrink-2 flex items-center md:invisible lg:visible">
+                        <div className="flex-shrink-0 flex items-center"
+                             style={{
+                                 marginRight: "2vw",
+                                 transition: "margin 0.2s"
+                             }}
+                        >
                             <Link to={"/"}>
                                 <motion.img
                                     initial={{opacity: 1}}
@@ -165,38 +184,31 @@ const Navbar = () => {
                                     src={"/2logoyatay.png"}
                                     id={"logo"}
                                     alt="Gebze Belediyesi"
-                                    className="cursor-pointer h-10"
+                                    className="cursor-pointer h-7 md:h-8 lg:h-9"
+                                    style={{
+                                        maxHeight: "2.2rem",
+                                        width: "auto"
+                                    }}
                                 />
                             </Link>
                         </div>
-
-                        {/* Mobile menu button */}
-                        <button
-                            type="button"
-                            aria-controls="mobile-menu"
-                            className="md:hidden items-center justify-center"
-                            aria-expanded="false"
-                            onClick={toggleMobileMenu}
-                        >
-                            {mobileMenuOpen ? <FiX className="h-6 w-6 text-white"/> :
-                                <FiMenu className="h-6 w-6 text-white"/>}
-                        </button>
-                    </div>
-
-                    {/* Desktop menu items - hidden on mobile */}
-                    <div ref={desktopDropdownRef} className="hidden md:flex md:items-center md:justify-between">
-                        {/* Desktop menu items */}
                         {/* Main navbar items */}
-                        <div className="flex gap-8 ">
+                        <div
+                            className="flex gap-2 md:gap-3 lg:gap-4 flex-1 flex-wrap items-center justify-center"
+                            style={{
+                                marginLeft: "0.5vw",
+                                transition: "margin 0.2s"
+                            }}
+                        >
                             {/* Kurumsal Dropdown */}
                             <div className="relative flex justify-center">
                                 <motion.button
                                     whileHover={{scale: 1.05}}
                                     whileTap={{scale: 0.95}}
-                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
+                                    className="inline-flex items-center px-1 pt-1 text-sm md:text-base lg:text-lg font-medium text-white justify-center uppercase"
                                     onClick={() => toggleDropdown('kurumsal')}
                                 >
-                                    Kurumsal
+                                    KURUMSAL
                                     {openDropdown === 'kurumsal' ? <FiChevronUp className="ml-1"/> :
                                         <FiChevronDown className="ml-1"/>}
                                 </motion.button>
@@ -204,16 +216,15 @@ const Navbar = () => {
                                     {openDropdown === 'kurumsal' && renderDropdownItems(kurumsal)}
                                 </AnimatePresence>
                             </div>
-
                             {/* Gebze link */}
                             <div className="relative flex justify-center">
                                 <motion.button
                                     whileHover={{scale: 1.05}}
                                     whileTap={{scale: 0.95}}
-                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
+                                    className="inline-flex items-center px-1 pt-1 text-sm md:text-base lg:text-lg font-medium text-white justify-center uppercase"
                                     onClick={() => toggleDropdown('gebze')}
                                 >
-                                    Gebze
+                                    GEBZE
                                     {openDropdown === 'gebze' ? <FiChevronUp className="ml-1"/> :
                                         <FiChevronDown className="ml-1"/>}
                                 </motion.button>
@@ -221,16 +232,15 @@ const Navbar = () => {
                                     {openDropdown === 'gebze' && renderDropdownItems(gebze)}
                                 </AnimatePresence>
                             </div>
-
                             {/* Hizmetler Dropdown */}
                             <div className="relative flex justify-center">
                                 <motion.button
                                     whileHover={{scale: 1.05}}
                                     whileTap={{scale: 0.95}}
-                                    className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white"
+                                    className="inline-flex items-center px-1 pt-1 text-sm md:text-base lg:text-lg font-medium text-white justify-center uppercase"
                                     onClick={() => toggleDropdown('hizmetler')}
                                 >
-                                    Hizmetler
+                                    HİZMETLER
                                     {openDropdown === 'hizmetler' ? <FiChevronUp className="ml-1"/> :
                                         <FiChevronDown className="ml-1"/>}
                                 </motion.button>
@@ -238,16 +248,15 @@ const Navbar = () => {
                                     {openDropdown === 'hizmetler' && renderDropdownItems(hizmetler)}
                                 </AnimatePresence>
                             </div>
-
-                            {/* YAYINLARIMIZ link */}
+                            {/* YAYINLAR Dropdown */}
                             <div className="relative flex justify-center">
                                 <motion.button
                                     whileHover={{scale: 1.05}}
                                     whileTap={{scale: 0.95}}
-                                    className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white"
+                                    className="inline-flex items-center px-1 pt-1 text-sm md:text-base lg:text-lg font-medium text-white justify-center uppercase"
                                     onClick={() => toggleDropdown('Yayınlarımız')}
                                 >
-                                    Yayınlarımız
+                                    YAYINLAR
                                     {openDropdown === 'Yayınlarımız' ? <FiChevronUp className="ml-1"/> :
                                         <FiChevronDown className="ml-1"/>}
                                 </motion.button>
@@ -255,56 +264,83 @@ const Navbar = () => {
                                     {openDropdown === 'Yayınlarımız' && renderDropdownItems(yayinlarimiz)}
                                 </AnimatePresence>
                             </div>
-
-                            <div className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white">
+                            <div className="inline-flex items-center px-1 pt-1 text-sm md:text-base lg:text-lg font-medium text-white justify-center uppercase">
                                 <Link to={"/e-belediye"}>
-                                    eBelediye
+                                    EBELEDİYE
                                 </Link>
                             </div>
-
                             {/* Other links */}
-                            <div className="inline-flex items-center px-1 pt-1 text-lg text-m font-medium text-white">
-                                <Link to={"/etkinlikler"}>Etkinlikler
+                            <div className="inline-flex items-center px-1 pt-1 text-sm md:text-base lg:text-lg font-medium text-white justify-center uppercase">
+                                <Link to={"/etkinlikler"}>ETKİNLİKLER
                                 </Link>
                             </div>
-                            <div className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white">
-                                <Link to={"/haberler"}>Haberler
+                            <div className="inline-flex items-center px-1 pt-1 text-sm md:text-base lg:text-lg font-medium text-white justify-center uppercase">
+                                <Link to={"/haberler"}>HABERLER
                                 </Link>
                             </div>
-                            <div className="inline-flex items-center px-1 pt-1 text-lg font-medium text-white">
+                            <div className="inline-flex items-center px-1 pt-1 text-sm md:text-base lg:text-lg font-medium text-white justify-center uppercase">
                                 <Link to={"/iletisim"}>
-                                    İletişim
+                                    İLETİŞİM
                                 </Link>
                             </div>
                         </div>
+                    </div>
+                    {/* Mobile menu button and logo, 1165px altı */}
+                    <div className="flex [@media(min-width:1165px)]:hidden items-center w-full justify-between">
+                        {/* Logo */}
+                        <Link to={"/"}>
+                            <motion.img
+                                initial={{opacity: 1}}
+                                animate={{
+                                    y: isNavbarFixed ? -15 : 0,
+                                    opacity: isNavbarFixed ? 0.8 : 1
+                                }}
+                                transition={{duration: 0.3}}
+                                src={"/2logoyatay.png"}
+                                id={"logo"}
+                                alt="Gebze Belediyesi"
+                                className="cursor-pointer h-7"
+                            />
+                        </Link>
+                        {/* Menü butonu sadece mobilde gösterilecek */}
+                        <button
+                            type="button"
+                            aria-controls="mobile-menu"
+                            className="[@media(min-width:1165px)]:hidden items-center justify-center"
+                            aria-expanded={mobileMenuOpen}
+                            onClick={toggleMobileMenu}
+                        >
+                            {mobileMenuOpen ? <FiX className="h-7 w-7 text-white"/> :
+                                <FiMenu className="h-7 w-7 text-white"/>}
+                        </button>
                     </div>
                 </div>
             </div>
 
             {/* Mobile menu, show/hide based on menu state */}
-            {mobileMenuOpen && (
+            {(mobileMenuOpen) && (
                 <div
                     ref={mobileDropdownRef}
-                    className="md:hidden bg-[#022842] border-t border-gray-200 z-[100] rounded-b-lg"
+                    className="bg-[#022842] border-t border-gray-200 z-[100] rounded-b-lg"
                     id="mobile-menu"
                 >
-                    <div className="pt-2 pb-4 space-y-1">
+                    <div className="pt-2 pb-4 space-y-1 flex flex-col items-center">
                         {/* Kurumsal Dropdown */}
-                        <div className="w-full">
+                        <div className="w-full flex flex-col items-center">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
+                                className="w-full flex justify-center items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white uppercase"
                                 onClick={() => toggleDropdown('kurumsal-mobile')}
                             >
-                                Kurumsal
+                                KURUMSAL
                                 {openDropdown === 'kurumsal-mobile' ? <FiChevronUp className="ml-1"/> :
                                     <FiChevronDown className="ml-1"/>}
                             </button>
                             {openDropdown === 'kurumsal-mobile' && (
-                                <div className="pl-6 pr-4 py-2 space-y-2 bg-[#033152]">
+                                <div className="pl-6 pr-4 py-2 space-y-2 bg-[#033152] flex flex-col items-center">
                                     {kurumsal.map((item, index) => (
                                         <div
                                             key={index}
-                                            className="p-2 flex items-center hover:bg-[#044370] rounded-md cursor-pointer"
+                                            className="p-2 flex items-center justify-center hover:bg-[#044370] rounded-md cursor-pointer"
                                             onClick={(e) => {
                                                 e.preventDefault();
                                                 e.stopPropagation();
@@ -312,8 +348,8 @@ const Navbar = () => {
                                             }}
                                         >
                                             <div className="p-2 bg-[#022842] text-white rounded-md mr-3">{item.icon}</div>
-                                            <div>
-                                                <div className="font-medium text-sm text-white">
+                                            <div className="text-center">
+                                                <div className="font-medium text-base text-white uppercase">
                                                     {item.title}
                                                     {item.isEN && <span className="text-gray-300 text-xs ml-1">(EN)</span>}
                                                 </div>
@@ -324,28 +360,27 @@ const Navbar = () => {
                                 </div>
                             )}
                         </div>
-
                         {/* Gebze Dropdown */}
-                        <div className="w-full">
+                        <div className="w-full flex flex-col items-center">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
+                                className="w-full flex justify-center items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white uppercase"
                                 onClick={() => toggleDropdown('gebze-mobile')}
                             >
-                                Gebze
+                                GEBZE
                                 {openDropdown === 'gebze-mobile' ? <FiChevronUp className="ml-1"/> :
                                     <FiChevronDown className="ml-1"/>}
                             </button>
                             {openDropdown === 'gebze-mobile' && (
-                                <div className="pl-6 pr-4 py-2 space-y-2 bg-[#033152]">
+                                <div className="pl-6 pr-4 py-2 space-y-2 bg-[#033152] flex flex-col items-center">
                                     {gebze.map((item, index) => (
                                         <div
                                             key={index}
-                                            className="p-2 flex items-center hover:bg-[#044370] rounded-md cursor-pointer"
+                                            className="p-2 flex items-center justify-center hover:bg-[#044370] rounded-md cursor-pointer"
                                             onClick={() => handleMobileItemClick(item.path || '/')}
                                         >
                                             <div className="p-2 bg-[#022842] text-white rounded-md mr-3">{item.icon}</div>
-                                            <div>
-                                                <div className="font-medium text-sm text-white">
+                                            <div className="text-center">
+                                                <div className="font-medium text-base text-white uppercase">
                                                     {item.title}
                                                     {item.isEN && <span className="text-gray-300 text-xs ml-1">(EN)</span>}
                                                 </div>
@@ -356,28 +391,27 @@ const Navbar = () => {
                                 </div>
                             )}
                         </div>
-
                         {/* Hizmetler Dropdown */}
-                        <div className="w-full">
+                        <div className="w-full flex flex-col items-center">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
+                                className="w-full flex justify-center items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white uppercase"
                                 onClick={() => toggleDropdown('hizmetler-mobile')}
                             >
-                                Hizmetler
+                                HİZMETLER
                                 {openDropdown === 'hizmetler-mobile' ? <FiChevronUp className="ml-1"/> :
                                     <FiChevronDown className="ml-1"/>}
                             </button>
                             {openDropdown === 'hizmetler-mobile' && (
-                                <div className="pl-6 pr-4 py-2 space-y-2 bg-[#033152]">
+                                <div className="pl-6 pr-4 py-2 space-y-2 bg-[#033152] flex flex-col items-center">
                                     {hizmetler.map((item, index) => (
                                         <div
                                             key={index}
-                                            className="p-2 flex items-center hover:bg-[#044370] rounded-md cursor-pointer"
+                                            className="p-2 flex items-center justify-center hover:bg-[#044370] rounded-md cursor-pointer"
                                             onClick={() => handleMobileItemClick(item.path || '/')}
                                         >
                                             <div className="p-2 bg-[#022842] text-white rounded-md mr-3">{item.icon}</div>
-                                            <div>
-                                                <div className="font-medium text-sm text-white">
+                                            <div className="text-center">
+                                                <div className="font-medium text-base text-white uppercase">
                                                     {item.title}
                                                     {item.isEN && <span className="text-gray-300 text-xs ml-1">(EN)</span>}
                                                 </div>
@@ -388,28 +422,27 @@ const Navbar = () => {
                                 </div>
                             )}
                         </div>
-
                         {/* eBelediye Dropdown */}
-                        <div className="w-full">
+                        <div className="w-full flex flex-col items-center">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
+                                className="w-full flex justify-center items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white uppercase"
                                 onClick={() => toggleDropdown('eBelediye-mobile')}
                             >
-                                eBelediye
+                                EBELEDİYE
                                 {openDropdown === 'eBelediye-mobile' ? <FiChevronUp className="ml-1"/> :
                                     <FiChevronDown className="ml-1"/>}
                             </button>
                             {openDropdown === 'eBelediye-mobile' && (
-                                <div className="pl-6 pr-4 py-2 space-y-2 bg-[#033152]">
+                                <div className="pl-6 pr-4 py-2 space-y-2 bg-[#033152] flex flex-col items-center">
                                     {eBelediye.map((item, index) => (
                                         <div
                                             key={index}
-                                            className="p-2 flex items-center hover:bg-[#044370] rounded-md cursor-pointer"
+                                            className="p-2 flex items-center justify-center hover:bg-[#044370] rounded-md cursor-pointer"
                                             onClick={() => handleMobileItemClick(item.path || '/')}
                                         >
                                             <div className="p-2 bg-[#022842] text-white rounded-md mr-3">{item.icon}</div>
-                                            <div>
-                                                <div className="font-medium text-sm text-white">
+                                            <div className="text-center">
+                                                <div className="font-medium text-base text-white uppercase">
                                                     {item.title}
                                                     {item.isEN && <span className="text-gray-300 text-xs ml-1">(EN)</span>}
                                                 </div>
@@ -420,27 +453,26 @@ const Navbar = () => {
                                 </div>
                             )}
                         </div>
-
                         {/* Yayınlarımız Dropdown */}
-                        <div className="w-full">
+                        <div className="w-full flex flex-col items-center">
                             <button
-                                className="w-full flex justify-between items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
+                                className="w-full flex justify-center items-center py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white uppercase"
                                 onClick={() => toggleDropdown('yayinlarimiz-mobile')}
                             >
-                                Yayınlarımız
+                                YAYINLAR
                                 {openDropdown === 'yayinlarimiz-mobile' ? <FiChevronUp className="ml-1" /> : <FiChevronDown className="ml-1" />}
                             </button>
                             {openDropdown === 'yayinlarimiz-mobile' && (
-                                <div className="pl-6 pr-4 py-2 space-y-2 bg-[#033152]">
+                                <div className="pl-6 pr-4 py-2 space-y-2 bg-[#033152] flex flex-col items-center">
                                     {yayinlarimiz.map((item, index) => (
                                         <div
                                             key={index}
-                                            className="p-2 flex items-center hover:bg-[#044370] rounded-md cursor-pointer"
+                                            className="p-2 flex items-center justify-center hover:bg-[#044370] rounded-md cursor-pointer"
                                             onClick={() => handleMobileItemClick(item.path || '/')}
                                         >
                                             <div className="p-2 bg-[#022842] text-white rounded-md mr-3">{item.icon}</div>
-                                            <div>
-                                                <div className="font-medium text-sm text-white">
+                                            <div className="text-center">
+                                                <div className="font-medium text-base text-white uppercase">
                                                     {item.title}
                                                     {item.isEN && <span className="text-gray-300 text-xs ml-1">(EN)</span>}
                                                 </div>
@@ -451,38 +483,36 @@ const Navbar = () => {
                                 </div>
                             )}
                         </div>
-
                         {/* Diğer linkler */}
                         <Link
-
                             to={"/etkinlikler"}
-                            className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
+                            className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white uppercase text-center"
                             onClick={() => {
                                 setMobileMenuOpen(false);
                                 setOpenDropdown(null);
                             }}
                         >
-                            Etkinlikler
+                            ETKİNLİKLER
                         </Link>
                         <Link
                             to={"/haberler"}
-                            className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
+                            className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white uppercase text-center"
                             onClick={() => {
                                 setMobileMenuOpen(false);
                                 setOpenDropdown(null);
                             }}
                         >
-                            Haberler
+                            HABERLER
                         </Link>
                         <Link
                             to={"/iletisim"}
-                            className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
+                            className="block py-2 px-4 text-base font-medium text-white hover:bg-gray-700 hover:text-white uppercase text-center"
                             onClick={() => {
                                 setMobileMenuOpen(false);
                                 setOpenDropdown(null);
                             }}
                         >
-                            İletişim
+                            İLETİŞİM
                         </Link>
                     </div>
                 </div>
