@@ -52,6 +52,16 @@ const EventCalendar: React.FC<{
     const today = new Date();
     const [selectedDate, setSelectedDate] = useState<string | null>(null);
     const [currentEventIndex, setCurrentEventIndex] = useState(0);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
 
@@ -77,18 +87,17 @@ const EventCalendar: React.FC<{
         );
     };
 
+    const flexDirection = windowWidth >= 1024 ? "flex-row" : "flex-col";
+
     return (
         <div className="w-full flex justify-center items-center px-2 sm:px-4">
-            {/* Dış Kart (lacivert) */}
             <div className="relative rounded-xl shadow-lg overflow-hidden w-full max-w-5xl bg-[#002850]">
-                <div className="relative flex flex-row justify-center items-start p-3 sm:p-4 md:p-6 gap-4 transition-all duration-500">
-
-                    {/* Takvim Kartı */}
+                <div className={`relative flex ${flexDirection} justify-center items-start p-3 sm:p-4 md:p-6 gap-4 transition-all duration-500`}>
                     <div
                         className={`bg-white p-4 rounded-xl shadow-xl flex flex-col transition-all duration-500
-          ${selectedEvent ? "w-[60%] min-w-[300px]" : "w-full"} 
-          max-w-[900px]"
-        `}
+                          ${selectedEvent && windowWidth >= 1024 ? "w-[60%] min-w-[300px]" : "w-full"} 
+                          max-w-[900px]"
+                        `}
                     >
                         <div className="text-lg sm:text-xl font-semibold mb-3 text-white py-2 rounded-md bg-[#002850] text-center">
                             📅 Etkinlik Takvimi
@@ -105,10 +114,10 @@ const EventCalendar: React.FC<{
                                         key={date}
                                         onClick={() => hasEvent && setSelectedDate(date)}
                                         className={`w-full h-[55px] sm:h-[60px] md:h-[55px] flex items-center justify-center rounded-md transition-all duration-300 ring-1 ring-inset
-                  ${hasEvent
+                                          ${hasEvent
                                             ? "bg-orange-100 hover:bg-orange-200 text-orange-800 font-semibold border-b-2 border-orange-500 ring-orange-300"
                                             : "bg-gray-100 text-gray-400 cursor-default ring-gray-200"
-                                        }`}
+                                          }`}
                                     >
                                         {day}
                                     </button>
@@ -117,9 +126,12 @@ const EventCalendar: React.FC<{
                         </div>
                     </div>
 
-                    {/* Detay Kartı */}
                     {selectedEvent && (
-                        <div className="bg-white p-4 rounded-xl shadow-xl flex flex-col justify-between w-[40%] min-w-[280px] max-w-[400px] transition-all duration-500">
+                        <div className={`bg-white p-4 rounded-xl shadow-xl flex flex-col justify-between transition-all duration-500
+                          ${windowWidth >= 1024 
+                            ? "w-[40%] min-w-[280px] max-w-[400px]" 
+                            : "w-full mt-4"}`
+                        }>
                             <div className="rounded-lg overflow-hidden mb-3 h-60 sm:h-55 md:h-55 shadow-sm">
                                 <img
                                     src={selectedEvent.imageUrl}
@@ -156,11 +168,9 @@ const EventCalendar: React.FC<{
                             </button>
                         </div>
                     )}
-
                 </div>
             </div>
         </div>
-
     );
 };
 
@@ -210,15 +220,11 @@ const CombinedComponent: React.FC = () => {
     ];
 
     return (
-        <div className="bg-gray-50 py-8 md:py-12 lg:py-16">
+        <div className="bg-gray-50 py-8 md:py-12 lg:py-2">
             <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-                {/* Increased padding for the white card container */}
-
                 <div className="px-4 sm:px-6 md:px-10 lg:px-16 py-6 sm:py-8 md:py-10 lg:py-14">
-                    {/* Increased max width and added more padding */}
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-screen-2xl mx-auto p-4 sm:p-6 md:p-8 lg:p-10">
                         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-8 items-start">
-                            {/* Left Image Cards */}
                             <div className="col-span-1 grid grid-cols-1 gap-4">
                                 {sideCards.slice(0, 4).map((card, index) => (
                                     <div key={`left-${index}`} className="flex items-center">
@@ -232,7 +238,6 @@ const CombinedComponent: React.FC = () => {
                                 ))}
                             </div>
 
-                            {/* Center Big Image */}
                             <div className="col-span-3 relative overflow-hidden rounded-lg flex justify-center">
                                 <a href="#" className="block h-full">
                                     <img
@@ -243,7 +248,6 @@ const CombinedComponent: React.FC = () => {
                                 </a>
                             </div>
 
-                            {/* Right Image Cards */}
                             <div className="col-span-1 grid grid-cols-1 gap-4">
                                 {sideCards.slice(4, 8).map((card, index) => (
                                     <div key={`right-${index}`} className="flex justify-between items-center">
@@ -260,10 +264,8 @@ const CombinedComponent: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Calendar */}
                 <EventCalendar events={events} />
 
-                {/* Events Section */}
                 <div className="px-2 sm:px-4 md:px-8 lg:px-16 xl:px-30 py-4 sm:py-6 md:py-8 lg:py-10">
                     <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">Etkinlikler</h2>
 
@@ -307,7 +309,6 @@ const CombinedComponent: React.FC = () => {
                         ))}
                     </div>
                 </div>
-
             </div>
         </div>
     );
