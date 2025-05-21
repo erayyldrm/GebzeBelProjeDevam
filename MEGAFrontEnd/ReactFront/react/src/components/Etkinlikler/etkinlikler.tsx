@@ -210,60 +210,56 @@ const CombinedComponent: React.FC = () => {
     ];
 
     return (
-        <div className="bg-gray-50">
-            <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
+        <div className="bg-gray-50 py-8 md:py-12 lg:py-16">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+                {/* Increased padding for the white card container */}
 
-                <div className="px-2 sm:px-4 md:px-8 lg:px-12 py-4 sm:py-6 md:py-8 lg:py-10">
-                    <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full">
-                        <div className="p-2 sm:p-3 md:p-4 lg:p-6">
-
-                            {/* Grid layout - Central big image and side cards */}
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 items-start">
-
-                                {/* Left Image Cards - stacked vertically */}
-                                <div className="grid grid-cols-1 gap-3">
-                                    {sideCards.slice(0, 4).map((card, index) => (
-                                        <div key={`left-${index}`} className="flex items-center">
-                                            <img
-                                                src={card.image}
-                                                alt={card.title}
-                                                className="w-40 h-40 object-cover rounded-md mr-4" // Resme sağdan boşluk verdik
-                                            />
-                                            <p className="text-xs text-gray-600">{card.title}</p>
-                                        </div>
-                                    ))}
-                                </div>
-
-
-                                {/* Center Big Image */}
-                                <div className="relative overflow-hidden rounded-lg flex justify-center">
-                                    <a href="#" className="block h-full">
+                <div className="px-4 sm:px-6 md:px-10 lg:px-16 py-6 sm:py-8 md:py-10 lg:py-14">
+                    {/* Increased max width and added more padding */}
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-screen-2xl mx-auto p-4 sm:p-6 md:p-8 lg:p-10">
+                        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-8 items-start">
+                            {/* Left Image Cards */}
+                            <div className="col-span-1 grid grid-cols-1 gap-4">
+                                {sideCards.slice(0, 4).map((card, index) => (
+                                    <div key={`left-${index}`} className="flex items-center">
                                         <img
-                                            src={featured.image}
-                                            alt={featured.title}
-                                            style={{ width: "900px", height: "400px" }}
-                                            className="object-cover transition-all duration-900 rounded-md"
+                                            src={card.image}
+                                            alt={card.title}
+                                            className="w-32 h-20 object-cover rounded-md mr-4"
                                         />
-                                    </a>
-                                </div>
+                                        <p className="text-xs text-gray-600">{card.title}</p>
+                                    </div>
+                                ))}
+                            </div>
 
-                                {/* Right Image Cards - modified to right align images with text on left */}
-                                <div className="grid grid-cols-1 gap-3">
-                                    {sideCards.slice(4, 8).map((card, index) => (
-                                        <div key={`right-${index}`} className="flex justify-between items-center">
-                                            <p className="text-xs text-gray-600 pr-2">{card.title}</p>
-                                            <img
-                                                src={card.image}
-                                                alt={card.title}
-                                                className="w-40 h-40 object-cover rounded-md"
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
+                            {/* Center Big Image */}
+                            <div className="col-span-3 relative overflow-hidden rounded-lg flex justify-center">
+                                <a href="#" className="block h-full">
+                                    <img
+                                        src={featured.image}
+                                        alt={featured.title}
+                                        className="object-cover w-full h-[350px] transition-all duration-500 rounded-md"
+                                    />
+                                </a>
+                            </div>
+
+                            {/* Right Image Cards */}
+                            <div className="col-span-1 grid grid-cols-1 gap-4">
+                                {sideCards.slice(4, 8).map((card, index) => (
+                                    <div key={`right-${index}`} className="flex justify-between items-center">
+                                        <p className="text-xs text-gray-600 pr-2">{card.title}</p>
+                                        <img
+                                            src={card.image}
+                                            alt={card.title}
+                                            className="w-32 h-20 object-cover rounded-md"
+                                        />
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
                 </div>
+
                 {/* Calendar */}
                 <EventCalendar events={events} />
 
