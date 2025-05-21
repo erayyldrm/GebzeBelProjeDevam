@@ -21,7 +21,6 @@ const GeriDonusumPage = () => {
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
-    // geri-donusum.tsx içinde
     useEffect(() => {
         const fetchGeriDonusum = async () => {
             try {
@@ -33,7 +32,7 @@ const GeriDonusumPage = () => {
                     }
                 });
 
-                console.log('API Yanıtı:', response.data); // Yanıtı kontrol et
+                console.log('API Yanıtı:', response.data);
 
                 if (Array.isArray(response.data)) {
                     setGeriDonusumler(response.data);
@@ -78,82 +77,82 @@ const GeriDonusumPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-green-50 text-gray-800 font-sans mt-3" style={{
-            margin: '0 auto',
-            maxWidth: 'calc(100% - 120px)',
-            paddingLeft: '40px',
-            paddingRight: '20px',
-        }}>
-            <header className="bg-green-100 px-6 py-10 rounded-b-2xl shadow-inner">
-                <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                    <div className="text-6xl sm:text-7xl">♻️</div>
-                    <div>
-                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-900 mb-2">
-                            Geri Dönüşüm Noktaları
-                        </h1>
-                        <div className="bg-white border-l-4 border-green-600 p-4 rounded shadow text-sm sm:text-base md:text-lg text-gray-700 max-w-2xl">
-                            Atıkların doğru yere atılması, temiz bir gelecek için atılmış büyük bir adımdır. Buradan hangi atığı nereye bırakabileceğinizi öğrenebilirsiniz.
+        <div className="min-h-screen bg-green-50 text-gray-800 font-sans py-6">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                <header className="bg-green-100 rounded-2xl shadow-md mb-8">
+                    <div className="px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                        <div className="text-5xl sm:text-6xl">♻️</div>
+                        <div>
+                            <h1 className="text-2xl sm:text-3xl font-bold text-green-800 mb-3">
+                                Geri Dönüşüm Noktaları
+                            </h1>
+                            <div className="bg-white border-l-4 border-green-600 p-3 rounded shadow text-sm sm:text-base text-gray-700 max-w-2xl">
+                                Atıkların doğru yere atılması, temiz bir gelecek için atılmış büyük bir adımdır. Buradan hangi atığı nereye bırakabileceğinizi öğrenebilirsiniz.
+                            </div>
                         </div>
                     </div>
-                </div>
-            </header>
+                </header>
 
-            <div className="py-10 max-w-7xl mx-auto">
-                <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                     {geriDonusumler.map((item, index) => (
                         <div
                             key={item.id}
-                            className="bg-white rounded-2xl shadow p-4 hover:shadow-lg transition flex flex-col justify-between h-full"
-                            style={{
-                                minHeight: '450px',
-                                width: '100%',        // Tam genişlik
-                                maxWidth: '400px',    // Maksimum genişlik
-                                margin: '0 auto'      // Yatayda ortalama
-                            }}
+                            className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col h-full transform hover:-translate-y-1 hover:scale-[1.01] transition-transform"
                         >
+                            <div className="relative">
+                                <img
+                                    src={item.imgUrl}
+                                    alt={item.baslik}
+                                    className="w-full h-52 "
+                                />
+                                <div className="absolute top-0 right-0 bg-green-100 text-green-800 p-2 rounded-bl-lg text-xl">
+                                    {item.icon}
+                                </div>
+                            </div>
 
-                            <img
-                                src={item.imgUrl}
-                                alt={item.baslik}
-                                className="w-full h-48  object-center rounded-xl mb-4" // h-32'yi h-48 olarak değiştirdik
-                                style={{
-                                    aspectRatio: '16/9',  // En boy oranını sabitle
-                                    minHeight: '200px',   // Minimum yükseklik
-                                    maxHeight: '200px'    // Maximum yükseklik
-                                }}
-                            />
-                            <div className="flex-1">
-                                <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">
-                                    {item.icon} {item.baslik}
+                            <div className="p-5 flex-grow flex flex-col">
+                                <h2 className="text-xl font-semibold text-green-900 mb-3 line-clamp-2">
+                                    {item.baslik}
                                 </h2>
-                                <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-4">{item.metin}</p>
-                            </div>
-                            <div className="grid grid-cols-2 gap-2">
-                                <button
-                                    onClick={() => handleActionClick(index, "detayli", item.buttonDetay, item.buttonKonum)}
-                                    style={
-                                        activeButtons[index] === "detayli"
-                                            ? { backgroundColor: "#022842", color: "#FFFFFF" }
-                                            : { backgroundColor: "#FFFFFF", color: "#000000" }
-                                    }
-                                    className="px-4 py-2 border border-green-600 rounded hover:bg-gray-200 transition text-xs sm:text-sm flex items-center justify-center"
-                                >
-                                    <span>ℹ️ Hakkında</span>
-                                </button>
-                                <button
-                                    onClick={() => handleActionClick(index, "konum", item.buttonDetay, item.buttonKonum)}
-                                    style={
-                                        activeButtons[index] === "konum"
-                                            ? { backgroundColor: "#022842", color: "#FFFFFF" }
-                                            : { backgroundColor: "#FFFFFF", color: "#000000" }
-                                    }
-                                    className="px-4 py-2 border border-green-600 rounded hover:bg-gray-200 transition text-xs sm:text-sm flex items-center justify-center"
-                                >
-                                    <span>🚩 Konum</span>
-                                </button>
-                            </div>
-                            <div className="text-xs text-gray-500 border-t pt-2 text-center mt-4">
-                                📞 {item.telefon}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;📩 {item.mail}
+                                <p className="text-gray-700 mb-4 text-sm flex-grow">
+                                    {item.metin}
+                                </p>
+
+                                <div className="mt-auto">
+                                    <div className="grid grid-cols-2 gap-3 mb-3">
+                                        <button
+                                            onClick={() => handleActionClick(index, "detayli", item.buttonDetay, item.buttonKonum)}
+                                            className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center ${
+                                                activeButtons[index] === "detayli"
+                                                    ? "bg-green-700 text-white"
+                                                    : "bg-green-50 text-green-800 border border-green-300 hover:bg-green-100"
+                                            }`}
+                                        >
+                                            <span>ℹ️ Hakkında</span>
+                                        </button>
+                                        <button
+                                            onClick={() => handleActionClick(index, "konum", item.buttonDetay, item.buttonKonum)}
+                                            className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center ${
+                                                activeButtons[index] === "konum"
+                                                    ? "bg-green-700 text-white"
+                                                    : "bg-green-50 text-green-800 border border-green-300 hover:bg-green-100"
+                                            }`}
+                                        >
+                                            <span>🚩 Konum</span>
+                                        </button>
+                                    </div>
+
+                                    <div className="flex justify-between items-center border-t border-gray-100 pt-3 text-xs text-gray-500">
+                                        <div className="flex items-center">
+                                            <span className="mr-1">📞</span>
+                                            <span>{item.telefon}</span>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <span className="mr-1">📩</span>
+                                            <span>{item.mail}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     ))}
