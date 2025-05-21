@@ -125,7 +125,7 @@ const LoginPage: React.FC = () => {
     return (
         <section className="h-screen bg-cover bg-center flex items-center justify-center">
             <div className="w-full max-w-md px-4 mx-auto">
-                <div className="rounded-lg bg-white shadow-lg dark:bg-neutral-800">
+                <div className="rounded-lg bg-white shadow-lg">
                     <div className="p-4 sm:p-6 flex flex-col justify-center">
                         <div className="text-center mb-4">
                             <img
@@ -190,7 +190,7 @@ const LoginPage: React.FC = () => {
                                 </a>
                             </div>
                             <div className="flex flex-col items-center justify-center mt-4">
-                                <p className="mb-2 text-sm text-gray-700 dark:text-gray-300">
+                                <p className="mb-2 text-sm text-gray-700 ">
                                     Hesabınız yok mu?
                                 </p>
                                 <Link to="/signup">
