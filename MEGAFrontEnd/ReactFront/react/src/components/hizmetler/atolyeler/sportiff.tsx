@@ -1,99 +1,103 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail } from "lucide-react";
 
-interface ServiceDetailProps {
-    title: string;
-    description: string;
-    imageUrl: string;
-    address: string;
-    phone: string;
-    workingHours: string;
-    announcements: string[];
+interface GeriDonusumDetayDTO {
+    id: number;
+    resim1: string;
+    baslik: string;
+    detay: string;
+    konum: string;
+    telefon: string;
+    mail: string;
+    buttonIcerik: string;
+    kategori: string;
 }
 
-const Sportif: React.FC<ServiceDetailProps> = ({
-                                                   title = "SPORTİF ÇOCUK ATÖLYESİ",
-                                                   address = "",
-                                                   phone = "",
-                                               }) => {
+const Sportif: React.FC = () => {
+    const [data, setData] = useState<GeriDonusumDetayDTO | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch("http://localhost:8080/api/hizmetler/geridonusum/4");
+                if (!response.ok) {
+                    throw new Error('Veri getirilemedi');
+                }
+                const result = await response.json();
+                setData(result);
+            } catch (error) {
+                console.error("Veri yükleme hatası:", error);
+                setError("Veri yüklenirken bir hata oluştu");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    if (loading) return <div>Yükleniyor...</div>;
+    if (error) return <div>Hata: {error}</div>;
+    if (!data) return <div>Veri bulunamadı</div>;
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen flex flex-col items-center px-2 sm:px-4 py-6 sm:py-10 space-y-4 sm:space-y-8 mt-2 sm:mt-0"
+            className="min-h-screen flex flex-col items-center px-4 py-6 space-y-4"
         >
-            {/* Ana Kart */}
-            <div className="relative bg-white rounded-lg sm:rounded-xl shadow-md sm:shadow-lg w-full max-w-[950px] p-3 sm:p-6 space-y-4 sm:space-y-6">
-                {/* Başlık */}
-                <div className="bg-blue-500 rounded-lg sm:rounded-xl shadow-md sm:shadow-lg w-full py-4 sm:py-6 px-4 sm:px-8 mb-2 sm:mb-4 overflow-x-auto">
-                    <div className="text-xl sm:text-2xl md:text-3xl font-semibold text-white text-center break-words">
-                        {title}
+            <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[950px] p-4 space-y-4">
+                <div className="bg-blue-500 rounded-xl shadow-lg w-full py-4 px-6 mb-2">
+                    <div className="text-2xl md:text-3xl font-semibold text-white text-center">
+                        {data.baslik}
                     </div>
                 </div>
-
-                {/* Resim Kartı */}
-                <div className="relative flex justify-center w-full mb-1 sm:mb-2">
-                    <div className="w-full max-w-[850px] rounded-lg sm:rounded-xl overflow-hidden">
+                <br/>
+                <div className="relative flex justify-center w-full mb-2">
+                    <div className="w-full max-w-[850px] rounded-xl overflow-hidden">
                         <img
-                            src="/images/hizmetler/atölyeler/sportif.jpg"
-                            alt={title}
-                            className="w-full h-auto max-h-[300px] sm:max-h-[440px] object-cover"
+                            src={data.resim1}
+                            alt={data.baslik}
+                            className="w-full h-auto max-h-[440px] object-cover"
                         />
                     </div>
                 </div>
-
-                {/* İçerik */}
-                <div className="flex flex-col gap-4 sm:gap-6">
-                    {/* Verilen Hizmetler */}
-                    <section className="text-justify space-y-2 sm:space-y-4 w-full">
-                        <h3 className="text-base sm:text-lg font-semibold text-blue-700">Verilen Hizmetler</h3>
-                        <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">
-                            5-8 yaş arası çocuklarımızın spor branşları ile tanışıp, temel eğitimlerinin ardından uygulanan testler sonrasında branşlara yönlendirilmesi ve sporcu kimliklerinin oluşturulması amaçlanmıştır.
-                            <br />
-                            <strong>Branşlar:</strong>
-                            <br />
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
-                                <div>Okçuluk</div>
-                                <div>Basketbol</div>
-                                <div>Masa Tenisi</div>
-                                <div>Kort Tenisi</div>
-                                <div>Futsal</div>
-                                <div>Cimnastik</div>
-                                <div>Badminton</div>
-                                <div>Voleybol</div>
-                                <div>Eğlenceli Atletizm</div>
-                                <div className="col-span-2 sm:col-span-1">Beceri ve Koordinasyon Parkurları</div>
-                                <div className="col-span-2 sm:col-span-1">Yetenek Taraması</div>
-                            </div>
+                <br/>
+                <div className="flex flex-col gap-4">
+                    <section className="text-justify space-y-4">
+                        <h3 className="text-lg font-semibold text-blue-700">{data.buttonIcerik}</h3>
+                        <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-line">
+                            {data.detay}
                         </p>
                     </section>
 
-                    {/* Yatay Çizgi */}
-                    <div className="w-full h-px bg-gray-300" />
-
-                    {/* İletişim Bilgileri */}
                     <div className="w-full">
-                        <div className="bg-blue-50 rounded-lg p-3 sm:p-6 shadow-sm">
-                            <h3 className="text-lg sm:text-xl font-semibold text-blue-800 mb-2 sm:mb-4">İletişim Bilgileri</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div className="flex items-start">
-                                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
-                                    <p className="text-xs sm:text-sm text-gray-700">
-                                        Cumhuriyet Mah. Necip Fazıl Cad. No:102 Gebze Kocaeli {address}
-                                    </p>
-                                </div>
-
-                                <div className="flex items-center">
-                                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mr-2 sm:mr-3 flex-shrink-0" />
-                                    <p className="text-xs sm:text-sm text-gray-700">0262 641 24 92 {phone}</p>
-                                </div>
-
-                                <div className="flex items-center">
-                                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mr-2 sm:mr-3 flex-shrink-0" />
-                                    <p className="text-xs sm:text-sm text-gray-700">genclik.spor@gebze.bel.tr</p>
-                                </div>
+                        <div className="bg-blue-50 rounded-lg p-4 shadow-sm">
+                            <h3 className="text-xl font-semibold text-blue-800 mb-4">İletişim Bilgileri</h3>
+                            <div className="space-y-3">
+                                {data.konum && (
+                                    <div className="flex items-start">
+                                        <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                                        <p className="text-gray-700 text-sm">{data.konum}</p>
+                                    </div>
+                                )}
+                                {data.telefon && (
+                                    <div className="flex items-center">
+                                        <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                                        <p className="text-gray-700 text-sm">{data.telefon}</p>
+                                    </div>
+                                )}
+                                {data.mail && (
+                                    <div className="flex items-center">
+                                        <Mail className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                                        <p className="text-gray-700 text-sm">{data.mail}</p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

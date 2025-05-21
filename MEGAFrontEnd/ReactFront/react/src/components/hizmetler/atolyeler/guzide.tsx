@@ -1,330 +1,103 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {MapPin, Phone} from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 
-interface ServiceDetailProps {
-    title: string;
-    description: string;
-    imageUrl: string;
-    address: string;
-    phone: string;
-    workingHours: string;
-    announcements: string[];
+interface GeriDonusumDetayDTO {
+    id: number;
+    resim1: string;
+    baslik: string;
+    detay: string;
+    konum: string;
+    telefon: string;
+    mail: string;
+    buttonIcerik: string;
+    kategori: string;
 }
 
-const Sportif: React.FC<ServiceDetailProps> = ({
-                                                   title = "GÜZİDE GENÇLİK MERKEZİ ATÖLYELERİ",
-                                                   address = "",
-                                                   phone = "",
-                                               }) => {
+const Guzide: React.FC = () => {
+    const [data, setData] = useState<GeriDonusumDetayDTO | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch("http://localhost:8080/api/hizmetler/geridonusum/2");
+                if (!response.ok) {
+                    throw new Error('Veri getirilemedi');
+                }
+                const result = await response.json();
+                setData(result);
+            } catch (error) {
+                console.error("Veri yükleme hatası:", error);
+                setError("Veri yüklenirken bir hata oluştu");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    if (loading) return <div>Yükleniyor...</div>;
+    if (error) return <div>Hata: {error}</div>;
+    if (!data) return <div>Veri bulunamadı</div>;
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen flex flex-col items-center px-4 py-10 space-y-8 mt-[-30px]"  // mt-[-20px] ekledim
+            className="min-h-screen flex flex-col items-center px-4 py-6 space-y-4"
         >
-            {/* Ana Kart */}
-            <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[950px] p-6 space-y-6">
-                {/* Başlık Kartı */}
-                <div className="bg-blue-500 rounded-xl shadow-lg w-full py-6 px-8 mb-4">
-                    <div className="text-2xl md:text-3xl font-semibold text-white text-center">{title}</div>
+            <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[950px] p-4 space-y-4">
+                <div className="bg-blue-500 rounded-xl shadow-lg w-full py-4 px-6 mb-2">
+                    <div className="text-2xl md:text-3xl font-semibold text-white text-center">
+                        {data.baslik}
+                    </div>
                 </div>
-
-                {/* Başlık + Resim Kartı */}
+                <br/>
                 <div className="relative flex justify-center w-full mb-2">
                     <div className="w-full max-w-[850px] rounded-xl overflow-hidden">
                         <img
-                            src="/images/hizmetler/atölyeler/güzide.jpg"
-                            alt={title}
+                            src={data.resim1}
+                            alt={data.baslik}
                             className="w-full h-auto max-h-[440px] object-cover"
                         />
                     </div>
                 </div>
                 <br/>
-
-                {/* Verilen Hizmetler ve İletişim Bilgileri Kartı */}
                 <div className="flex flex-col gap-4">
-                    {/* Verilen Hizmetler */}
                     <section className="text-justify space-y-4">
-                        <h3 className="text-lg font-semibold text-blue-700">Verilen Hizmetler</h3>
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                            Güzide Gençlik Merkezinde atölye faaliyetleri lise öğrencilerini hem akademiye hem de hayata hazırlayacak şekilde organize edilmektedir.
-
-                            Akademik atölyeler başlığında Türk Dili ve Edebiyatı, Matematik ve Geometri derslerinin haricinde; XR Laboratuvarında yapılan faaliyetler, sosyal bilimlere dair atölyeler ve sınavlara ilişkin çalışmalar şeklinde üçlü bir yapılanma mevcuttur.
-
-                            Hayata hazırlama amacı güden ve çeşitli yaşam becerilerini de kapsama alan atölye çalışmalarında ise Merkez içi yahut dışında yapılan bazı aktiviteler, genel kültüre katkı sunacak çalışmalar ve tekno-eğitim/tekno-eğlence faaliyetleri şeklinde yine üçlü bir yapılanma üzerinden gidilmektedir.
-
-                            <br/>
-                            <br/>
-                            ATÖLYELER:
-                            <br/>
-
-                            <br/>
-                            Akademik Atölyeler,
-
-                            Güzide Yarıyıl Kampı,
-
-                            Güzide Yaz Okulu,
-
-                            Fizik Dersleri,
-
-                            Arapça Dersleri,
-
-                            Osmanlıca Dersleri,
-                            Kur’an-ı Kerim Dersleri,
-
-                            Tarih Seminerleri,
-
-                            Sosyoloji Okumaları,
-
-                            Din Kültürü ve Ahlak Bilgisi Dersleri,
-
-                            Felsefe Okumaları,
-
-                            Psikoloji Okumaları,
-
-                            Güzide Edebiyat Kartları (GEK),
-
-                            Klasik Şiir Atölyesi
-                            <br/>
-                            <br/>
-                            Tekno-Akademik Atölyeler
-
-                            XR Tanıtım Atölyesi,
-
-                            XR Fizik,
-
-                            XR Kimya,
-
-                            XR Biyoloji,
-
-                            XR Matematik,
-                            XR Geometri
-                            <br/>
-                            <br/>
-
-                            Sınav Atölyeleri
-
-                            YKS (TYT-AYT) Denemeleri,
-
-                            Soru Çözüm Kampları,
-
-                            Konu Tekrar Kampları,
-
-                            Sınav Analizleri
-                            <br/>
-                            <br/>
-                            Genel Kültür Atölyeleri
-
-                            Güzide Doğa Okulu,
-
-                            (Güz, Kış ve Yaz Doğa Kampları, Geziler, İstikamet Programları),
-
-                            Yazarlık Okulu,
-
-                            Kitap Tahlilleri,
-
-                            Sesli Kitap Atölyesi,
-
-                            Etimoloji Atölyesi,
-
-                            Bilgi Yarışmaları,
-
-                            Diksiyon ve Hitabet Dersleri,
-
-                            Edebiyat Söyleşileri,
-
-                            Dergicilik Okulu,
-
-                            Film Okumaları,
-
-                            Münazara
-                            <br/>
-                            <br/>
-
-                            Sanat Atölyeleri
-
-                            Geleneksel Sanat Atölyeleri,
-
-                            ( Hat, Tezhip, Kaligrafi, Ebru, Minyatür, Kat’ı ),
-
-                            Modern Sanat Atölyeleri,
-
-                            ( Resim / Kara Kalem, Yağlı Boya, Kuru Boya, Toz Pastel, Akrilik ),
-
-                            Tiyatro,
-
-                            Drama,
-
-                            El Sanatları Atölyesi,
-
-                            ( Kanaviçe, Örgü, Biçki, Dikiş),
-
-                            Savunma Sanatı,
-
-                            ( Kick-Box ),
-
-                            Mutfak Sanatları Atölyesi,
-
-                            Ahşap,
-
-                            Cam Takı,
-
-                            Mimarlık Atölyesi,
-
-                            Müzik Atölyesi,
-
-                            (Bendir, Kalimba),
-
-                            Sergiler
-
-                            <br/>
-                            <br/>
-                            Tekno-Eğitim Atölyeleri
-
-                            Yazılım Atölyeleri,
-
-                            (C#, Java, Python, Web [HTML-CSS], Web Tasarım, GeoGebra),
-
-                            Robotik Atölyeleri,
-
-                            (Arduino, Esp 32, Rex, Mblock 5, Pinoo),
-
-                            Güzide Garaj,
-
-                            Dijital Eğitim Sınıfları,
-
-                            3 D Yazıcı Atölyesi,
-
-                            Greenbox Stüdyosu,
-
-                            Podcast Stüdyosu
-                            <br/>
-                            <br/>
-
-                            Tekno-Eğlence Atölyeleri
-
-                            Laser-Tag,
-
-                            VR ( Sanal Gerçeklik Gözlüğü ),
-
-                            Uçuş Simülatörü,
-
-                            Araç Simülatörü,
-
-                            PS 5,
-
-                            Klasik Atari
-                            <br/>
-                            <br/>
-
-                            Spor Atölyeleri
-
-                            Fitness,
-
-                            Pilates,
-
-                            Masa Tenisi,
-
-                            Bilardo,
-
-                            Langırt,
-
-                            Shuffleboard,
-
-                            Satranç,
-
-                            Okçuluk,
-
-                            Voleybol,
-
-                            Futsal,
-
-                            Cornhole
-                            <br/>
-                            <br/>
-
-                            Rehberlik-Psikolojik Danışmanlık Atölyeleri
-
-                            Manevi Danışmanlık,
-
-                            (Değerler Eğitimi),
-
-                            Psikolog,
-
-                            (Psikoloji Kulübü, Grup Etkinlikleri),
-
-                            Psikolojik Danışman,
-
-                            (Kariyer Okulu, Sınav Kaygısı, Sınav Stratejileri Seminerleri),
-
-                            Aile Danışmanı,
-
-                            (Ebeveyn Psikoloji Atölyeleri, Ergenlik, Akademik Başarı Seminerleri),
-
-                            Eğitim Danışmanı,
-
-                            (Tercih Danışmanlığı, Sınav Bilgilendirme Seminerleri),
-
-                            Sağlık Danışmanlığı (Hemşire),
-
-                            (Beslenme ve Diyetetik, Geleneksel Tıp, Kadın Sağlığı, Spor ve Sağlık Seminerleri),
-
-                            Öğrenci Seminerleri,
-
-                            Veli Seminerleri,
-
-                            Zarafet Atölyesi
-
-                            <br/>
-                            <br/>
-                            Diğer Atölyeler
-
-                            Mangala,
-
-                            Lego,
-
-                            Resfebe,
-
-                            Zekâ Oyunları,
-
-                            Materyal Tasarım,
-
-                            Kriptoloji,
-
-                            Tabu,
-
-                            MaTabu,
-
-
-                            Mukabele  </p>
+                        <h3 className="text-lg font-semibold text-blue-700">{data.buttonIcerik}</h3>
+                        <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-line">
+                            {data.detay}
+                        </p>
                     </section>
 
-                    {/* Dikey Çizgi */}
-                    <div className="hidden md:flex w-px bg-gray-300" />
-
-                    {/* İletişim Bilgileri */}
                     <div className="w-full">
-                        <div className="bg-blue-50 rounded-lg p-6 shadow-sm">
-                            <h3 className="text-xl font-semibold text-blue-800 mb-4">
-                                İletişim Bilgileri
-                            </h3>
-                            <div className="space-y-4">
-                                <div className="flex items-start">
-                                    <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                                    <p className="text-gray-700">
-                                        Hacıhalil Mah. Adliye Cad. No: 38 41400 Gebze / KOCAELİ {" "}
-                                        {address}
-                                    </p>
-                                </div>
-                                <br />
-                                <div className="flex items-center">
-                                    <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                    <p className="text-gray-700"> 0262 646 95 86
-                                        {phone}</p>
-                                </div>
-                                <br />
+                        <div className="bg-blue-50 rounded-lg p-4 shadow-sm">
+                            <h3 className="text-xl font-semibold text-blue-800 mb-4">İletişim Bilgileri</h3>
+                            <div className="space-y-3">
+                                {data.konum && (
+                                    <div className="flex items-start">
+                                        <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                                        <p className="text-gray-700 text-sm">{data.konum}</p>
+                                    </div>
+                                )}
+                                {data.telefon && (
+                                    <div className="flex items-center">
+                                        <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                                        <p className="text-gray-700 text-sm">{data.telefon}</p>
+                                    </div>
+                                )}
+                                {data.mail && (
+                                    <div className="flex items-center">
+                                        <Mail className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                                        <p className="text-gray-700 text-sm">{data.mail}</p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -334,4 +107,4 @@ const Sportif: React.FC<ServiceDetailProps> = ({
     );
 };
 
-export default Sportif;
+export default Guzide;

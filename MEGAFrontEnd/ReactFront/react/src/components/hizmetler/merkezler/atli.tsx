@@ -1,136 +1,102 @@
-
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {MapPin, Phone,  Mail} from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 
-interface ServiceDetailProps {
-    title: string;
-    description: string;
-    imageUrl: string;
-    address: string;
-    phone: string;
-    workingHours: string;
-    announcements: string[];
+interface GeriDonusumDetayDTO {
+    id: number;
+    resim1: string;
+    baslik: string;
+    detay: string;
+    konum: string;
+    telefon: string;
+    mail: string;
+    buttonIcerik: string;
+    kategori: string;
 }
 
+const Atli: React.FC = () => {
+    const [data, setData] = useState<GeriDonusumDetayDTO | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-const Atli: React.FC<ServiceDetailProps> = ({
-                                                      title = "ATLI EĞİTİM MERKEZİ",
-                                                      address = "",
-                                                      phone = "",
-                                                  }) => {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/hizmetler/geridonusum/20`);
+                if (!response.ok) {
+                    throw new Error('Veri çekilemedi');
+                }
+                const jsonData = await response.json();
+                setData(jsonData);
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Bir hata oluştu');
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
 
+    if (loading) return <div>Yükleniyor...</div>;
+    if (error) return <div>Hata: {error}</div>;
+    if (!data) return <div>Veri bulunamadı</div>;
 
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="min-h-screen flex flex-col items-center px-4 py-10 space-y-8 mt-[-30px]"  // mt-[-20px] ekledim
+            className="min-h-screen flex flex-col items-center px-4 py-10 space-y-8 mt-[-30px]"
         >
-            {/* Ana Kart */}
             <div className="relative bg-white rounded-xl shadow-lg w-full max-w-[950px] p-6 space-y-6">
-                {/* Başlık Kartı */}
-                {/* Başlık Kartı */}
                 <div className="bg-blue-500 rounded-xl shadow-lg w-full py-6 px-8 mb-4">
-                    <div className="text-2xl md:text-3xl font-semibold text-white text-center">{title}</div>
+                    <div className="text-2xl md:text-3xl font-semibold text-white text-center">{data.baslik}</div>
                 </div>
 
-                {/* Başlık + Resim Kartı */}
                 <div className="relative flex justify-center w-full mb-2">
-                    <div className="w-full max-w-[850px]  rounded-xl overflow-hidden">
+                    <div className="w-full max-w-[850px] rounded-xl overflow-hidden">
                         <img
-                            src="/images/hizmetler/merkezler/atlı.jpg"
-                            alt={title}
+                            src={data.resim1}
+                            alt={data.baslik}
                             className="w-full h-auto max-h-[440px] object-cover"
                         />
                     </div>
                 </div>
-                <br/>
-                {/* Verilen Hizmetler ve İletişim Bilgileri Kartı */}
+
                 <div className="flex flex-col gap-4">
-                    {/* Verilen Hizmetler */}
                     <section className="text-justify space-y-4">
                         <h3 className="text-lg font-semibold text-blue-700">Verilen Hizmetler</h3>
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                            Gebze ve çevresindeki il ve ilçelerde yaşayan vatandaşlarımıza binicilik branşın’da binicilik eğitimleri vermek, gezintiler, çeşitli projeler ve sosyal etkinliklerle bireyleri binicilik sporu ile tanıştırmaktayız.
-                            <br/>
-                            Online randevu alan vatandaşlarımıza tesisimizde gezinti ve biniş eğitimleri verilmektedir. Eğitimler başlangıç seviyesinden başlatılıp 10 haftalık eğitim programına göre verilmektedir. 8 yaş ve üzeri çocuklarımıza, yetişkinlere 20 dakika süren temel binicilik eğitimi sonunda eğitimini tamamlayan binicilere katılım sertifikası verilmektedir.
-                            <br/>
-                            Bu program içerisinde çocuklarımız ile yetişkinlerimize atı tanıma, ata yaklaşma ve ata biniş eğitimleri vermekteyiz. 4 yaş ve üzeri bireyler için düzenlenen biniş alanımızda 5 tur şeklinde gezinti faaliyeti gerçekleştirilmektedir.
-                            <br/>
-                            Özel gereksinimli çocuk ve bireylere Atlı hippoterapi eğitimi uygulayarak bireylerin fiziksel ve psikolojik yönden kendilerini daha iyi hissetmelerini sağlamak ve tedavi süreçlerine katkı sağlamaktayız.
+                        <p className="text-gray-700 text-sm leading-relaxed"
+                           dangerouslySetInnerHTML={{ __html: data.detay }}
+                        />
+                        {data.buttonIcerik && (
+                            <a href="https://hizmet.gebze.bel.tr/"
+                               className="font-semibold inline-block mt-2 text-blue bg-blue-600 hover:bg-blue-700 transitionflex items-center justify-center px-4 py-3 rounded-md transition-all shadow-md text-xs flex-2">
+                                {data.buttonIcerik}
+                            </a>
+                        )}
+                    </section>
 
-                            <br/>
-                            <br/>
-                            HİZMET ALANLARIMIZ
-                            <br/>
-                            Anaokulları,
-                            <br/>
-                            İlkokullar,
-                            <br/>
-                            Ortaokullar,
-                            <br/>
-                            Liseler,
-                            <br/>
-                            Üniversite öğrencileri,
-                            <br/>
-                            Dezavantajlı(engelli) bireyler,
-                            <br/>
-                            KYK,
-                            <br/>
-                            Sevgi Evleri,
-                            <br/>
-                            Gençlik Merkezi,
-                            <br/>
-                            Yaz Okulları ve online randevu sisteminde kayıt olan bireyler.
-
-                            <br/>
-                            <br/>
-                            ENGELLİ BİREYLER ATLI LİDERLİK (15-25 Yaş)
-                            <br/>
-                            Atlı Eğitim Merkezi’mizde, özel gereksinimli bireylere hayvan sevgisi kazandırmak, fiziksel ve psikolojik tedavi süreçlerine katkı sağlamak amacıyla atlı terapi tekniği uygulanmaktadır.
-                            <br/>
-                            Bireylerde görülen davranış bozukluklarının at eşliğinde terapi ile fonksiyonel açıdan iyileşme ve gelişme gösterdiği gözlenmektedir.
-
-
-                        </p> <a
-                        href="https://hizmet.gebze.bel.tr/"
-                        className=" font-semibold inline-block mt-2 text-blue bg-blue-600 hover:bg-blue-700 transitionflex items-center justify-center px-4 py-3 rounded-md transition-all shadow-md text-xs flex-2"
-                    >
-                        Online Randevu İçin Tıklayınız
-                    </a>  </section>
-                    <br/>
-
-
-
-
-                    {/* Dikey Çizgi */}
                     <div className="hidden md:flex w-px bg-gray-300" />
 
                     <div className="w-full">
                         <div className="bg-blue-50 rounded-lg p-6 shadow-sm">
-                            <h3 className="text-xl font-semibold text-blue-800 mb-4">
-                                İletişim Bilgileri
-                            </h3>
+                            <h3 className="text-xl font-semibold text-blue-800 mb-4">İletişim Bilgileri</h3>
                             <div className="space-y-4">
                                 <div className="flex items-start">
                                     <MapPin className="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                                    <p className="text-gray-700">
-                                        GAZİLER MAH.1793 SOK. NO: 58 KOCAELİ/GEBZE {address}
-                                    </p>
+                                    <p className="text-gray-700">{data.konum}</p>
                                 </div>
-
                                 <div className="flex items-center">
                                     <Phone className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                    <p className="text-gray-700">0262 642 66 90
-                                        {phone}</p>
+                                    <p className="text-gray-700">{data.telefon}</p>
                                 </div>
-                                <div className="flex items-center">
-                                    <Mail className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                                    <p className="text-gray-700">genclik.spor@gebze.bel.tr</p>
-                                </div>
-                                <br />
-
+                                {data.mail && (
+                                    <div className="flex items-center">
+                                        <Mail className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                                        <p className="text-gray-700">{data.mail}</p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

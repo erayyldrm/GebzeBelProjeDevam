@@ -161,8 +161,11 @@
 .col-auto {
   grid-column: auto;
 }
-.col-span-2 {
-  grid-column: span 2 / span 2;
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+.col-span-3 {
+  grid-column: span 3 / span 3;
 }
 .col-span-full {
   grid-column: 1 / -1;
@@ -202,9 +205,6 @@
 }
 .mt-\[-60px\] {
   margin-top: -60px;
-}
-.mt-\[0px\] {
-  margin-top: 0px;
 }
 .mt-auto {
   margin-top: auto;
@@ -308,8 +308,8 @@
 .aspect-square {
   aspect-ratio: 1 / 1;
 }
-.h-\[35px\] {
-  height: 35px;
+.h-\[55px\] {
+  height: 55px;
 }
 .h-\[200px\] {
   height: 200px;
@@ -317,11 +317,11 @@
 .h-\[300px\] {
   height: 300px;
 }
+.h-\[350px\] {
+  height: 350px;
+}
 .h-\[400px\] {
   height: 400px;
-}
-.h-\[440px\] {
-  height: 440px;
 }
 .h-\[500px\] {
   height: 500px;
@@ -347,12 +347,6 @@
 .max-h-\[90vh\] {
   max-height: 90vh;
 }
-.max-h-\[270px\] {
-  max-height: 270px;
-}
-.max-h-\[300px\] {
-  max-height: 300px;
-}
 .max-h-\[440px\] {
   max-height: 440px;
 }
@@ -370,9 +364,6 @@
 }
 .min-h-\[60vh\] {
   min-height: 60vh;
-}
-.min-h-\[300px\] {
-  min-height: 300px;
 }
 .min-h-\[350px\] {
   min-height: 350px;
@@ -403,6 +394,12 @@
 }
 .w-5\/6 {
   width: calc(5/6 * 100%);
+}
+.w-\[40\%\] {
+  width: 40%;
+}
+.w-\[60\%\] {
+  width: 60%;
 }
 .w-\[200px\] {
   width: 200px;
@@ -461,6 +458,9 @@
 .max-w-\[850px\] {
   max-width: 850px;
 }
+.max-w-\[900px\] {
+  max-width: 900px;
+}
 .max-w-\[950px\] {
   max-width: 950px;
 }
@@ -475,6 +475,12 @@
 }
 .max-w-none {
   max-width: none;
+}
+.min-w-\[280px\] {
+  min-width: 280px;
+}
+.min-w-\[300px\] {
+  min-width: 300px;
 }
 .min-w-full {
   min-width: 100%;
@@ -777,9 +783,6 @@
 .object-cover {
   object-fit: cover;
 }
-.object-center {
-  object-position: center;
-}
 .object-top {
   object-position: top;
 }
@@ -833,6 +836,9 @@
 }
 .whitespace-nowrap {
   white-space: nowrap;
+}
+.whitespace-pre-line {
+  white-space: pre-line;
 }
 .text-\[\#faa61a\] {
   color: #faa61a;
@@ -963,10 +969,6 @@
 .duration-500 {
   --tw-duration: 500ms;
   transition-duration: 500ms;
-}
-.duration-900 {
-  --tw-duration: 900ms;
-  transition-duration: 900ms;
 }
 .duration-1000 {
   --tw-duration: 1000ms;
