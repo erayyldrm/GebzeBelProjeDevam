@@ -61,13 +61,12 @@ const newsData: NewsItem[] = [
 
 const categories = [
     "Tümü",
-    "Belediye",
-    "Çevre",
+    "Başkan'dan Mesajlar",
+    "Sıfır Atık",
     "Eğitim & Gençlik",
     "Sosyal Hizmetler",
     "Projeler & Altyapı",
     "Spor Faaliyetleri",
-    "Başkan'dan Mesajlar",
 ];
 
 export default function BlogLayout() {
@@ -256,6 +255,14 @@ export default function BlogLayout() {
             ? newsData
             : newsData.filter((news) => news.category === activeCategory);
 
+    // Handler for navigating to Duyurular page
+    const navigateToDuyurular = () => {
+        // You would implement proper navigation here, like router.push('/duyurular')
+        console.log("Navigating to Duyurular page");
+        alert("Duyurular sayfasına yönlendiriliyorsunuz");
+        // In a real app with routing: window.location.href = '/duyurular';
+    };
+
     const renderHeroCard = (article: { image: string; title: string; category: string; categoryClass: string; date: string; }) => (
         <div className="relative overflow-hidden rounded h-full w-full">
             <img
@@ -327,7 +334,7 @@ export default function BlogLayout() {
             {/* Main Blog Grid Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
                 {/* Left hero post */}
-                <div className="h-100 flex gap-6">
+                <div className="h-140 flex gap-6">
                     {renderHeroCard(heroPost)}
                 </div>
 
@@ -350,32 +357,47 @@ export default function BlogLayout() {
                 </div>
             </div>
 
-            {/* News Slider Section - Full width */}
+            {/* News Slider Section with Duyurular Button - Full width */}
             <div className="my-8">
-                <div className="flex items-center mb-3">
-                    <h2 className="text-xl font-bold mr-4">Son Haberler</h2>
-                    {/* Navigation Buttons */}
-                    <div className="flex items-center gap-2">
-                        <button
-                            onClick={() => scrollByAmount(-scrollAmount)}
-                            className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
-                        >
-                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                                <path d="M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
-                        </button>
+                <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center">
+                        <h2 className="text-xl font-bold mr-4">Son Haberler</h2>
+                        {/* Navigation Buttons */}
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={() => scrollByAmount(-scrollAmount)}
+                                className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+                            >
+                                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                                    <path d="M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                </svg>
+                            </button>
 
-                        <button
-                            onClick={() => scrollByAmount(scrollAmount)}
-                            className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
-                        >
-                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                                <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
-                        </button>
+                            <button
+                                onClick={() => scrollByAmount(scrollAmount)}
+                                className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+                            >
+                                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
+
+                    {/* Duyurular Button */}
+                    <button
+                        onClick={navigateToDuyurular}
+                        className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-5 py-2 rounded-lg shadow-md transition-all duration-300 flex items-center gap-2 font-medium"
+                    >
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                        Tüm Duyurular
+                    </button>
                 </div>
 
                 {/* Slider container */}
@@ -426,7 +448,17 @@ export default function BlogLayout() {
 
             {/* NewsPage Component - Added below the slider */}
             <div className={`${isMobile ? 'w-full px-4 py-6' : 'max-w-full mx-auto px-6 py-10'}`}>
-                <h1 className={`${isMobile ? 'text-2xl mb-4' : 'text-3xl mb-6'} font-bold text-gray-800`}>Haberler</h1>
+                <div className="flex justify-between items-center mb-6">
+                    {/* Mobile-friendly Duyurular Button */}
+                    {isMobile && (
+                        <button
+                            onClick={navigateToDuyurular}
+                            className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-1.5 text-sm rounded-lg shadow-sm"
+                        >
+                            Duyurular
+                        </button>
+                    )}
+                </div>
 
                 {/* Kategori Başlıkları */}
                 {isMobile ? (
@@ -458,7 +490,7 @@ export default function BlogLayout() {
                                 className={`relative px-4 py-2 text-sm font-semibold rounded-full border transition-all duration-300
                                     ${
                                     activeCategory === category
-                                        ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-black border-transparent shadow-md scale-105"
+                                        ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white border-transparent shadow-md scale-105"
                                         : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100 hover:shadow-sm"
                                 }
                                 `}
