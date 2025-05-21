@@ -85,6 +85,16 @@ public class MeclisKarariController {
         }
     }
 
+    @GetMapping("/kurumsal-doc")
+    public ResponseEntity<List<MeclisKarariEntity>> getKurumsalDocDosyalari() {
+        try {
+            List<MeclisKarariEntity> docDosyalari = meclisKarariService.getByKategoriAndAktif("kurumsal_doc", 1);
+            return ResponseEntity.ok(docDosyalari);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
     // ... (diğer methodlar değişmedi)
 }
 

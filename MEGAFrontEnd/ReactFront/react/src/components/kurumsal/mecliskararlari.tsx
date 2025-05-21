@@ -12,58 +12,13 @@ interface MeclisKarari {
     kategori: string;
 }
 
-// Mock data - API'de veri olmadığı durumda kullanılacak
-const mockMeclisKararlari: MeclisKarari[] = [
-    {
-        id: 1,
-        baslik: "3 Nisan 2023 Meclis Kararları",
-        dosyaUrl: "https://www.kocaeli.bel.tr/dosyalar/kararlar/20230410150120.pdf",
-        tarih: "2023-04-03",
-        aktif: 1,
-        kategori: "meclis"
-    },
-    {
-        id: 2,
-        baslik: "4 Mart 2023 Meclis Kararları",
-        dosyaUrl: "https://www.kocaeli.bel.tr/dosyalar/kararlar/20230311163949.pdf",
-        tarih: "2023-03-04",
-        aktif: 1,
-        kategori: "meclis"
-    },
-    {
-        id: 3,
-        baslik: "4 Şubat 2023 Meclis Kararları",
-        dosyaUrl: "https://www.kocaeli.bel.tr/dosyalar/kararlar/20230210111051.pdf",
-        tarih: "2023-02-04",
-        aktif: 1,
-        kategori: "meclis"
-    },
-    {
-        id: 4,
-        baslik: "2 Ocak 2023 Meclis Kararları",
-        dosyaUrl: "https://www.kocaeli.bel.tr/dosyalar/kararlar/20230108162430.pdf",
-        tarih: "2023-01-02",
-        aktif: 1,
-        kategori: "meclis"
-    },
-    {
-        id: 5,
-        baslik: "5 Aralık 2022 Meclis Kararları",
-        dosyaUrl: "https://www.kocaeli.bel.tr/dosyalar/kararlar/20221227170753.pdf",
-        tarih: "2022-12-05",
-        aktif: 1,
-        kategori: "meclis"
-    }
-];
-
 const Kararlar = () => {
     const [activeTab, setActiveTab] = useState<string>("meclis");
     const [isChanging, setIsChanging] = useState<boolean>(false);
     const [loaded, setLoaded] = useState<boolean>(false);
     const [meclisKararlari, setMeclisKararlari] = useState<MeclisKarari[]>([]);
-    const [error] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [useMockData, setUseMockData] = useState<boolean>(false);
 
     // Container animation variants for staggered animations
     const containerVariants = {
@@ -88,10 +43,8 @@ const Kararlar = () => {
     };
 
     useEffect(() => {
-        // Veritabanından meclis kararlarını çek
         setIsLoading(true);
-        console.log("Meclis kararları yükleniyor...");
-        
+        setError(null);
         fetch("http://localhost:8080/api/kurumsal/meclis-kararlari")
             .then((response) => {
                 if (!response.ok) {
@@ -100,25 +53,12 @@ const Kararlar = () => {
                 return response.json();
             })
             .then((data) => {
-                console.log("API'den gelen veriler:", data);
-                
-                // API'den gelen veri boş ise veya veri dizisi değilse mock data kullan
-                if (!Array.isArray(data) || data.length === 0) {
-                    console.log("API'de veri bulunamadı, mock data kullanılıyor.");
-                    setMeclisKararlari(mockMeclisKararlari);
-                    setUseMockData(true);
-                } else {
-                    setMeclisKararlari(data);
-                    setUseMockData(false);
-                }
+                setMeclisKararlari(data);
                 setIsLoading(false);
                 setLoaded(true);
             })
             .catch((error) => {
-                console.error("Meclis kararları yüklenirken hata:", error);
-                console.log("Hata nedeniyle mock data kullanılıyor");
-                setMeclisKararlari(mockMeclisKararlari);
-                setUseMockData(true);
+                setError("Meclis kararları yüklenirken hata oluştu.");
                 setIsLoading(false);
                 setLoaded(true);
             });
@@ -148,7 +88,6 @@ const Kararlar = () => {
         }).format(tarih);
     };
 
-    // Error state
     if (error) return (
         <div className="flex justify-content-center align-items-center min-h-screen p-4 bg-light">
             <div className="w-full max-w-2xl bg-white border-left border-danger rounded shadow-lg overflow-hidden">
@@ -175,7 +114,6 @@ const Kararlar = () => {
         </div>
     );
 
-    // Loading state with shimmering effect
     if (isLoading) return (
         <div className="w-full max-w-4xl mx-auto my-4 px-4">
             <div className="bg-white rounded shadow-lg overflow-hidden p-4">
@@ -230,14 +168,6 @@ const Kararlar = () => {
                                                     transition={{ duration: 0.5 }}
                                                     className="bg-white shadow rounded-2xl p-5"
                                                 >
-                                                    {/* Mock data uyarısı */}
-                                                    {useMockData && (
-                                                        <div className="bg-yellow-100 p-3 mb-4 rounded-lg border-l-4 border-yellow-500">
-                                                            <p className="text-yellow-700 text-sm">
-                                                                <strong>Not:</strong> Veritabanı bağlantısında veriler bulunamadığı için örnek veriler gösteriliyor.
-                                                            </p>
-                                                        </div>
-                                                    )}
                                                     
                                                     {/* Sekmeler */}
                                                     <div className="flex border-b mb-4 overflow-x-auto">
@@ -334,7 +264,7 @@ const Kararlar = () => {
                                                                         transition={{ delay: 0.2, duration: 0.5 }}
                                                                         className="col-span-full text-center p-8 bg-blue-50 rounded-xl shadow-sm"
                                                                     >
-                                                                        <p className="text-blue-700 font-semibold">Henüz meclis kararı yüklenmemiştir.</p>
+                                                                        <p className="text-blue-700 font-semibold">Veri bulunamadı.</p>
                                                                     </motion.div>
                                                                 )}
                                                             </motion.div>
@@ -374,4 +304,3 @@ const Kararlar = () => {
 };
 
 export default Kararlar;
-

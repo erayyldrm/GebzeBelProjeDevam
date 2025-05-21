@@ -80,19 +80,17 @@ const EventCalendar: React.FC<{
     return (
         <div className="w-full flex justify-center items-center px-2 sm:px-4">
             {/* Dış Kart (lacivert) */}
-            <div
-                className="relative rounded-xl shadow-lg overflow-hidden w-full max-w-5xl bg-[#002850]"
-            >
-                {/* İçerik: Takvim ve Detay yan yana, mobilde de yan yana */}
-                <div
-                    className={`flex flex-col lg:flex-row justify-center items-center p-3 sm:p-4 md:p-6 gap-4 transition-all duration-500`}
-                >
+            <div className="relative rounded-xl shadow-lg overflow-hidden w-full max-w-5xl bg-[#002850]">
+                <div className="relative flex flex-row justify-center items-start p-3 sm:p-4 md:p-6 gap-4 transition-all duration-500">
+
                     {/* Takvim Kartı */}
                     <div
-                        className={`bg-white p-3 sm:p-4 rounded-xl shadow-xl text-center h-auto sm:h-[350px] md:h-[400px] flex flex-col justify-between transition-all duration-500
-                            ${selectedEvent ? "w-full lg:w-[320px] sm:w-[280px]" : "w-full lg:w-[800px]"}`}
+                        className={`bg-white p-4 rounded-xl shadow-xl flex flex-col transition-all duration-500
+          ${selectedEvent ? "w-[60%] min-w-[300px]" : "w-full"} 
+          max-w-[900px]"
+        `}
                     >
-                        <div className="text-lg sm:text-xl font-semibold mb-3 text-white py-2 rounded-md bg-[#002850]">
+                        <div className="text-lg sm:text-xl font-semibold mb-3 text-white py-2 rounded-md bg-[#002850] text-center">
                             📅 Etkinlik Takvimi
                         </div>
                         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-1 text-xs sm:text-sm text-center">
@@ -106,8 +104,8 @@ const EventCalendar: React.FC<{
                                     <button
                                         key={date}
                                         onClick={() => hasEvent && setSelectedDate(date)}
-                                        className={`w-full h-[35px] sm:h-[40px] md:h-[45px] flex items-center justify-center rounded-md transition-all duration-300 ring-1 ring-inset
-                                            ${hasEvent
+                                        className={`w-full h-[55px] sm:h-[60px] md:h-[55px] flex items-center justify-center rounded-md transition-all duration-300 ring-1 ring-inset
+                  ${hasEvent
                                             ? "bg-orange-100 hover:bg-orange-200 text-orange-800 font-semibold border-b-2 border-orange-500 ring-orange-300"
                                             : "bg-gray-100 text-gray-400 cursor-default ring-gray-200"
                                         }`}
@@ -119,13 +117,10 @@ const EventCalendar: React.FC<{
                         </div>
                     </div>
 
-                    {/* Detay Kartı - seçili etkinlik varsa göster */}
+                    {/* Detay Kartı */}
                     {selectedEvent && (
-                        <div
-                            className="bg-white p-4 rounded-xl shadow-xl max-w-md w-full flex flex-col"
-                            style={{ minWidth: "280px" }}
-                        >
-                            <div className="rounded-lg overflow-hidden mb-3 h-32 sm:h-36 md:h-40 shadow-sm">
+                        <div className="bg-white p-4 rounded-xl shadow-xl flex flex-col justify-between w-[40%] min-w-[280px] max-w-[400px] transition-all duration-500">
+                            <div className="rounded-lg overflow-hidden mb-3 h-60 sm:h-55 md:h-55 shadow-sm">
                                 <img
                                     src={selectedEvent.imageUrl}
                                     alt={selectedEvent.title}
@@ -161,22 +156,24 @@ const EventCalendar: React.FC<{
                             </button>
                         </div>
                     )}
+
                 </div>
             </div>
         </div>
+
     );
 };
 
 const CombinedComponent: React.FC = () => {
     const sideCards = [
-        { image: "/images/etkinlikler/etkinlik1.jpg", category: "NEWS", title: "Central bank customers need about currency" },
-        { image: "/images/etkinlikler/etkinlik2.jpg", category: "HEALTH", title: "Pandemic impact mental health global view" },
-        { image: "/images/etkinlikler/etkinlik3.jpg", category: "POLITICS", title: "Drunk driving law by on country and arrest" },
-        { image: "/images/etkinlikler/etkinlik3.jpg", category: "TRAVEL", title: "A step back in time and holidays for the ages" },
-        { image: "/images/etkinlikler/etkinlik4.jpg", category: "SPORTS", title: "World ni beat kamaica to first men's world cup" },
-        { image: "/images/etkinlikler/etkinlik5.jpg", category: "NEWS", title: "Thabna girls stage of protest demand" },
-        { image: "/images/etkinlikler/etkinlik6.jpg", category: "SPORTS", title: "World swimming changes rules in wake" },
-        { image: "/images/etkinlikler/etkinlik7.jpg", category: "FOOD", title: "A step back in time and holidays for" },
+        { image: "/images/etkinlikler/etkinlik1.jpg", category: "NEWS", title: "Şen Davulcu" },
+        { image: "/images/etkinlikler/etkinlik2.jpg", category: "HEALTH", title: "Karagöz ile Havicat" },
+        { image: "/images/etkinlikler/etkinlik3.jpg", category: "POLITICS", title: "Çitlembiğin Ramazan Macerası" },
+        { image: "/images/etkinlikler/etkinlik3.jpg", category: "TRAVEL", title: "Çitlembiğin Ramazan Macerası" },
+        { image: "/images/etkinlikler/etkinlik4.jpg", category: "SPORTS", title: "Tekno Sabri Macera Yolcusu" },
+        { image: "/images/etkinlikler/etkinlik5.jpg", category: "NEWS", title: "Karagöz'ün Karnesi" },
+        { image: "/images/etkinlikler/etkinlik6.jpg", category: "SPORTS", title: "Gazi Dede İle Çanakkale Hatıraları" },
+        { image: "/images/etkinlikler/etkinlik7.jpg", category: "FOOD", title: "Kur-anı Kerim Tilaveti ve Teravih Namazı" },
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -213,58 +210,51 @@ const CombinedComponent: React.FC = () => {
     ];
 
     return (
-        <div className="bg-gray-50">
-            <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
+        <div className="bg-gray-50 py-8 md:py-12 lg:py-16">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+                {/* Increased padding for the white card container */}
 
-                {/* News Grid */}
-                <div className="px-2 sm:px-4 md:px-8 lg:px-12 py-4 sm:py-6 md:py-8 lg:py-10">
-                    <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full">
-                        <div className="p-2 sm:p-3 md:p-4 lg:p-6">
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-                                <div className="md:col-span-1">
-                                    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2 sm:gap-3">
-                                        {sideCards.slice(0, 4).map((card, index) => (
-                                            <li key={index} className="w-full">
-                                                <NewsCard {...card} />
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-
-                                <div className="md:col-span-1 mt-1 transition-all duration-500">
-                                    <div className="mb-4 sm:mb-6">
-                                        <div className="relative h-40 sm:h-48 md:h-52 lg:h-64 overflow-hidden rounded-lg">
-                                            <a href="#" className="block h-full">
-                                                <img
-                                                    src={featured.image}
-                                                    alt={featured.title}
-                                                    className="w-full h-full object-cover transition-all duration-900"
-                                                />
-                                            </a>
-                                            <a
-                                                href="#"
-                                                className="absolute bottom-3 left-3 px-3 py-1 text-xs font-medium text-white rounded-md bg-orange-500"
-                                            >
-                                                {featured.category}
-                                            </a>
-                                        </div>
-                                        <div className="mt-3">
-                                            <h2 className="text-sm md:text-base font-bold leading-tight mb-2">
-                                                {featured.title}
-                                            </h2>
-                                        </div>
+                <div className="px-4 sm:px-6 md:px-10 lg:px-16 py-6 sm:py-8 md:py-10 lg:py-14">
+                    {/* Increased max width and added more padding */}
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-screen-2xl mx-auto p-4 sm:p-6 md:p-8 lg:p-10">
+                        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-8 items-start">
+                            {/* Left Image Cards */}
+                            <div className="col-span-1 grid grid-cols-1 gap-4">
+                                {sideCards.slice(0, 4).map((card, index) => (
+                                    <div key={`left-${index}`} className="flex items-center">
+                                        <img
+                                            src={card.image}
+                                            alt={card.title}
+                                            className="w-32 h-20 object-cover rounded-md mr-4"
+                                        />
+                                        <p className="text-xs text-gray-600">{card.title}</p>
                                     </div>
-                                </div>
+                                ))}
+                            </div>
 
-                                <div className="md:col-span-1 block">
-                                    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2 sm:gap-3">
-                                        {sideCards.slice(4, 8).map((card, index) => (
-                                            <li key={index + 4} className="w-full">
-                                                <NewsCard {...card} />
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                            {/* Center Big Image */}
+                            <div className="col-span-3 relative overflow-hidden rounded-lg flex justify-center">
+                                <a href="#" className="block h-full">
+                                    <img
+                                        src={featured.image}
+                                        alt={featured.title}
+                                        className="object-cover w-full h-[350px] transition-all duration-500 rounded-md"
+                                    />
+                                </a>
+                            </div>
+
+                            {/* Right Image Cards */}
+                            <div className="col-span-1 grid grid-cols-1 gap-4">
+                                {sideCards.slice(4, 8).map((card, index) => (
+                                    <div key={`right-${index}`} className="flex justify-between items-center">
+                                        <p className="text-xs text-gray-600 pr-2">{card.title}</p>
+                                        <img
+                                            src={card.image}
+                                            alt={card.title}
+                                            className="w-32 h-20 object-cover rounded-md"
+                                        />
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>

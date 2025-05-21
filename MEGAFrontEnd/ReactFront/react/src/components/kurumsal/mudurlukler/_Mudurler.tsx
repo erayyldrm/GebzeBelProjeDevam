@@ -43,13 +43,13 @@ const Layout: React.FC = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 mx-4">
             {/* Page Title */}
             <div className="bg-white rounded-xl shadow-md text-center py-4 mb-4">
                 <h1 className="text-2xl font-bold text-blue-900">MÜDÜRLÜKLER</h1>
             </div>
 
-            <div className="container mx-auto px-4 pb-12">
+            <div className="container mx-auto px-4 pb-12 max-w-6xl">
                 {/* Main Content - Full Width */}
                 <div className="w-full">
                     {loading ? (
