@@ -173,15 +173,15 @@ export default function UsersPage() {
             <main className="flex-1 overflow-y-auto p-6">
                 <div className="flex justify-between items-center mb-6">
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-800">Users Management</h2>
-                        <p className="text-gray-500">Manage and monitor user accounts</p>
+                        <h2 className="text-2xl font-bold text-gray-800">Kullanıcılar</h2>
+                        <p className="text-gray-500">Kullanıcıları Listele ve yönet</p>
                     </div>
                     <button
                         onClick={handleOpenAddModal}
                         className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center"
                     >
                         <Plus size={20} className="mr-2" />
-                        Add User
+                        Kullanıcı Ekle
                     </button>
                 </div>
 
@@ -264,7 +264,7 @@ export default function UsersPage() {
 
                         {(selectedRole !== 'All Roles' || selectedStatus !== 'All Status' || searchQuery) && (
                             <button onClick={handleClearFilters} className="text-blue-600 hover:text-blue-800 text-sm">
-                                Clear filters
+                                Filtreleri temizle
                             </button>
                         )}
 
@@ -272,7 +272,7 @@ export default function UsersPage() {
                             <div className="ml-auto flex items-center">
                                 <span className="text-gray-700">{selectedUsers.length} selected</span>
                                 <button onClick={() => setSelectedUsers([])} className="ml-2 text-red-600 hover:text-red-800 text-sm">
-                                    Clear selection
+                                    Seçimi temizle
                                 </button>
                             </div>
                         )}
@@ -462,15 +462,15 @@ export default function UsersPage() {
                     {filteredAndSortedUsers.length === 0 && (
                         <div className="text-center py-8">
                             <Users size={64} className="mx-auto text-gray-300 mb-4" />
-                            <h3 className="text-lg font-medium text-gray-500 mb-1">No users found</h3>
-                            <p className="text-gray-400">Try adjusting your search or filter criteria</p>
+                            <h3 className="text-lg font-medium text-gray-500 mb-1">Kullanıcı bulunamadı</h3>
+                            <p className="text-gray-400">Arama veya filtre kriterlerinizi ayarlamayı deneyin</p>
                         </div>
                     )}
 
                     <div className="px-6 py-4 flex items-center justify-between border-t">
                         <div className="text-sm text-gray-500">
                             Showing <span className="font-medium">{filteredAndSortedUsers.length}</span> of{' '}
-                            <span className="font-medium">{users.length}</span> users
+                            <span className="font-medium">{users.length}</span> Kullanıcılar
                         </div>
                         <div className="flex items-center space-x-2">
                             <button className="px-3 py-1 border rounded text-sm disabled:opacity-50">Previous</button>
