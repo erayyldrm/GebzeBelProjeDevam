@@ -39,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, title, autoCollapseWidth = 102
 
     return (
         <div
-            className={`lg:block ${collapsed ? 'w-16' : 'w-72'} mr-[4vw] hidden shadow-lg rounded-2xl md:h-150 md:relative md:top-10 md:left-13 md:z-10 md:overflow-hidden md:transition-all duration-300`}
+            className={`lg:block ${collapsed ? 'w-16' : 'w-72'} mr-[4vw] hidden shadow-lg rounded-2xl md:h-fit md:relative md:top-10 md:left-13 md:z-10 md:overflow-hidden md:transition-all duration-300`}
             style={{
                 background: 'linear-gradient(180deg, #003366 0%, #00264d 100%)',
                 borderTopLeftRadius: '1rem',
