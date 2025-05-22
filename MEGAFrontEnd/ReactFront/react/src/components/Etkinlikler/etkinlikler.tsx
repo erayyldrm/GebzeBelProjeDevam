@@ -284,6 +284,11 @@ const CombinedComponent: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    // Güncel ayı almak için
+    const currentDate = new Date();
+    const currentMonth = monthNamesTR[currentDate.getMonth()];
+    const currentYear = currentDate.getFullYear();
+
     useEffect(() => {
         setLoading(true);
         fetch("http://localhost:8080/api/etkinlikler")
@@ -396,7 +401,9 @@ const CombinedComponent: React.FC = () => {
                 />
 
                 <div className="px-2 sm:px-4 md:px-8 lg:px-16 xl:px-30 py-4 sm:py-6 md:py-8 lg:py-10">
-                    <div className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center text-blue-950">Etkinlikler</div>
+                    <div className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center text-blue-950">
+                        {currentMonth} {currentYear} Etkinlikleri
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
                         {events.map((event) => (
                             <div key={event.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
