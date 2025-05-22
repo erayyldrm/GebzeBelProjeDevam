@@ -92,7 +92,7 @@ function AnnouncementsSlider() {
         // router.push('/duyuru');
 
         // Vanilla JS ile yönlendirme:
-         window.location.href = '/Haberler/duyuru';
+         window.location.href = '/duyuru';
 
         // Eğer dosya yapısı farklıysa:
         // window.location.href = './duyuru.tsx';
