@@ -29,7 +29,7 @@ const TekstilAtiklariPage = () => {
                     <img
                         src="/images/hizmetler/donusum/tekstil.jpg"
                         alt="Tekstil Atıkları"
-                        className="w-full h-48 object-cover rounded-xl mb-4"
+                        className="w-full h-48  rounded-xl mb-4"
                     />
                 </div>
 

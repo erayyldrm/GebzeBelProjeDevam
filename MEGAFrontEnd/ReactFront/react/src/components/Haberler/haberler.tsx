@@ -85,9 +85,17 @@ function AnnouncementsSlider() {
 
     // Tüm Duyurular butonuna tıklandığında çalışacak fonksiyon
     const handleViewAllAnnouncements = () => {
-        console.log("Tüm Duyurular sayfasına yönlendiriliyorsunuz");
-        alert("Tüm Duyurular sayfasına yönlendiriliyorsunuz");
-        // In a real app with routing: window.location.href = '/duyurular';
+        // React Router kullanıyorsanız:
+        // navigate('/duyuru');
+
+        // Next.js kullanıyorsanız:
+        // router.push('/duyuru');
+
+        // Vanilla JS ile yönlendirme:
+         window.location.href = '/Haberler/duyuru';
+
+        // Eğer dosya yapısı farklıysa:
+        // window.location.href = './duyuru.tsx';
     };
 
     return (
@@ -438,13 +446,6 @@ export default function BlogLayout() {
             : newsData.filter((news) => news.category === activeCategory);
 
     // Handler for navigating to Duyurular page
-    const navigateToDuyurular = () => {
-        // You would implement proper navigation here, like router.push('/duyurular')
-        console.log("Navigating to Duyurular page");
-        alert("Duyurular sayfasına yönlendiriliyorsunuz");
-        // In a real app with routing: window.location.href = '/duyurular';
-    };
-
     interface Article {
         image: string;
         title: string;
