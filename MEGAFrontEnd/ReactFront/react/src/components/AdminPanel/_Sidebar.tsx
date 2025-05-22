@@ -1,4 +1,4 @@
-import {Menu,File, X, Home, Users, Package, Calendar, Settings, LogOut, ChevronDown, ChevronRight} from 'lucide-react';
+import {Menu,File, X, Home, Users, LogOut, ChevronDown, ChevronRight} from 'lucide-react';
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {logout} from "./services/authService.tsx";
 import { useState } from 'react';
@@ -128,11 +128,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                                 category.pages.map(page => (
                                     <SidebarLink
                                         key={page.key}
-                                        to={`/admin/pages/${page.path}`}
+                                        to={`/admin/sayfalar/${page.path}`}
                                         icon={<File size={18} />}
                                         text={page.name}
                                         sidebarOpen={sidebarOpen}
-                                        active={location.pathname === `/admin/pages/${page.path}`}
+                                        active={location.pathname === `/admin/sayfalar/${page.path}`}
                                     />
                                 ))}
                         </div>

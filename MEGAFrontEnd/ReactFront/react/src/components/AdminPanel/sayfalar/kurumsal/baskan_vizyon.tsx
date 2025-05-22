@@ -1,96 +1,153 @@
-// src/pages/UsersPage.tsx
+// src/sayfala.tsx
 import { useEffect, useRef, useState, useMemo } from 'react';
-import { Users, Filter, ChevronDown, ChevronUp, MoreHorizontal, Plus, Trash, Edit, Eye } from 'lucide-react';
-import AdminLayout from '../_LayoutAdminPanel.tsx';
-import { useSearch } from '../context/SearchContext.tsx';
-import { fetchUsers, User, updateUser, deleteUser } from '../services/userService.tsx';
-import { useClickOutside } from '../../useClickOutside.tsx';
-import Loader from '../../loader.tsx';
-import EditUserModal from './EditUserModal.tsx';
-import AddUserModal from './AddUserModal.tsx';
+import { FileText, Filter, ChevronDown, ChevronUp, MoreHorizontal, Plus, Trash, Edit, Eye } from 'lucide-react';
+import AdminLayout from '../../_LayoutAdminPanel.tsx';
+import { useSearch } from '../../context/SearchContext.tsx';
+import { useClickOutside } from '../../../useClickOutside.tsx';
+import Loader from '../../../loader.tsx';
 
-// Role options for filtering
-const roleOptions = ['Tüm Roller', 'Admin', 'Editor', 'User'];
-const statusOptions = ['Tüm Durumlar', 'Active', 'Inactive', 'Pending'];
+// Page interface
+interface Page {
+    id: number;
+    title: string;
+    slug: string;
+    category: string;
+    status: 'Published' | 'Draft' | 'Archived';
+    createdAt: string;
+    updatedAt: string;
+    author: string;
+}
 
-// Main Users Page component
-export default function UsersPage() {
-    const [users, setUsers] = useState<User[]>([]);
+// Mock data for pages
+const mockPages: Page[] = [
+    {
+        id: 1,
+        title: "Başkan ve Vizyon",
+        slug: "kurumsal-baskan-vizyon",
+        category: "Kurumsal",
+        status: "Published",
+        createdAt: "2024-01-15",
+        updatedAt: "2024-03-20",
+        author: "Admin"
+    },
+    {
+        id: 2,
+        title: "Etik ve Arabuluculuk",
+        slug: "kurumsal-etik",
+        category: "Kurumsal",
+        status: "Published",
+        createdAt: "2024-01-20",
+        updatedAt: "2024-03-18",
+        author: "Editor"
+    },
+    {
+        id: 3,
+        title: "Tarihi Yerler",
+        slug: "tarihi-yerler",
+        category: "Tarihi Yerler",
+        status: "Draft",
+        createdAt: "2024-02-01",
+        updatedAt: "2024-03-15",
+        author: "Editor"
+    },
+    {
+        id: 4,
+        title: "Hizmet Detayı",
+        slug: "hizmet-detay",
+        category: "Hizmetler",
+        status: "Published",
+        createdAt: "2024-02-10",
+        updatedAt: "2024-03-10",
+        author: "Admin"
+    },
+    {
+        id: 5,
+        title: "Sanal Tur",
+        slug: "foto-tur",
+        category: "Fotoğraf ve Tur",
+        status: "Archived",
+        createdAt: "2024-01-05",
+        updatedAt: "2024-02-28",
+        author: "Editor"
+    },
+    {
+        id: 6,
+        title: "Meclis Kararları",
+        slug: "meclis-belgeler",
+        category: "Meclis ve Belgeler",
+        status: "Published",
+        createdAt: "2024-03-01",
+        updatedAt: "2024-03-22",
+        author: "Admin"
+    }
+];
+
+// Filter options
+const categoryOptions = ['All Categories', 'Kurumsal', 'Tarihi Yerler', 'Hizmetler', 'Fotoğraf ve Tur', 'Meclis ve Belgeler', 'Diğer'];
+const statusOptions = ['All Status', 'Published', 'Draft', 'Archived'];
+
+// Main Pages component
+export default function PagesPage() {
+    const [pages, setPages] = useState<Page[]>([]);
     const [loading, setLoading] = useState(true);
-    const [selectedRole, setSelectedRole] = useState('Tüm Roller');
-    const [selectedStatus, setSelectedStatus] = useState('Tüm Durumlar');
-    const [isRoleDropdownOpen, setIsRoleDropdownOpen] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState('All Categories');
+    const [selectedStatus, setSelectedStatus] = useState('All Status');
+    const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
     const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
-    const [sortField, setSortField] = useState<keyof User>('tcno');
+    const [sortField, setSortField] = useState<keyof Page>('title');
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
-    const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
+    const [selectedPages, setSelectedPages] = useState<number[]>([]);
     const [actionDropdownId, setActionDropdownId] = useState<number | null>(null);
     const { searchQuery, setSearchQuery } = useSearch();
     const actionDropdownRef = useRef<HTMLDivElement>(null);
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [currentUserToEdit, setCurrentUserToEdit] = useState<User | null>(null);
-    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
-    const handleAddUser = (newUser: User) => {
-        setUsers((prev) => [...prev, newUser]);
-        setIsAddModalOpen(false); // Close modal after adding
-    };
 
     useEffect(() => {
         setLoading(true);
-        fetchUsers()
-            .then(setUsers)
-            .catch(console.error)
-            .finally(() => setLoading(false));
+        // Simulate API call
+        setTimeout(() => {
+            setPages(mockPages);
+            setLoading(false);
+        }, 1000);
     }, []);
 
     useClickOutside(actionDropdownRef, () => {
         setActionDropdownId(null);
     });
-    const handleDeleteUser = async (userId: number) => {
-        if (!window.confirm('Are you sure you want to delete this user?')) {
+
+    const handleDeletePage = async (pageId: number) => {
+        if (!window.confirm('Bu sayfayı silmek istediğinizden emin misiniz?')) {
             return;
         }
         try {
-            await deleteUser(userId);
-            setUsers(users.filter(user => user.id !== userId));
-            setActionDropdownId(null); // Close the dropdown after deletion
+            setPages(pages.filter(page => page.id !== pageId));
+            setActionDropdownId(null);
         } catch (error) {
-            console.error('Failed to delete user:', error);
-            // You might want to show an error message to the user here
+            console.error('Failed to delete page:', error);
         }
     };
-    // Filter and sort users
-    const filteredAndSortedUsers = useMemo(() => {
-        return users
-            .filter((user) => {
-                const role = user?.role ?? '';
-                const status = user?.status ?? '';
-                const tcno = user?.tcno?.toString() ?? '';
-                const isim = user?.isim?.toLowerCase() ?? '';
+
+    // Filter and sort pages
+    const filteredAndSortedPages = useMemo(() => {
+        return pages
+            .filter((page) => {
+                const title = page?.title?.toLowerCase() ?? '';
+                const category = page?.category ?? '';
+                const status = page?.status ?? '';
+                const slug = page?.slug?.toLowerCase() ?? '';
                 const searchLower = searchQuery.toLowerCase();
 
                 const matchesSearch =
-                    tcno.includes(searchLower) || isim.includes(searchLower) || role.toLowerCase().includes(searchLower);
-                const matchesRole = selectedRole === 'Tüm Roller' || role === selectedRole;
-                const matchesStatus = selectedStatus === 'Tüm Durumlar' || status === selectedStatus;
+                    title.includes(searchLower) ||
+                    slug.includes(searchLower) ||
+                    category.toLowerCase().includes(searchLower);
+                const matchesCategory = selectedCategory === 'All Categories' || category === selectedCategory;
+                const matchesStatus = selectedStatus === 'All Status' || status === selectedStatus;
 
-                return matchesSearch && matchesRole && matchesStatus;
+                return matchesSearch && matchesCategory && matchesStatus;
             })
             .sort((a, b) => {
                 const fieldA = a[sortField] || '';
                 const fieldB = b[sortField] || '';
-
-                // Sayısal sıralama için tcno kontrolü
-                if (sortField === 'tcno') {
-                    const valA = Number(fieldA);
-                    const valB = Number(fieldB);
-                    if (sortDirection === 'asc') {
-                        return valA < valB ? -1 : valA > valB ? 1 : 0;
-                    } else {
-                        return valA > valB ? -1 : valA < valB ? 1 : 0;
-                    }
-                }
 
                 if (sortDirection === 'asc') {
                     return fieldA < fieldB ? -1 : fieldA > fieldB ? 1 : 0;
@@ -98,9 +155,9 @@ export default function UsersPage() {
                     return fieldA > fieldB ? -1 : fieldA < fieldB ? 1 : 0;
                 }
             });
-    }, [users, searchQuery, selectedRole, selectedStatus, sortField, sortDirection]);
+    }, [pages, searchQuery, selectedCategory, selectedStatus, sortField, sortDirection]);
 
-    const handleSort = (field: keyof User) => {
+    const handleSort = (field: keyof Page) => {
         if (sortField === field) {
             setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
         } else {
@@ -110,58 +167,31 @@ export default function UsersPage() {
     };
 
     const toggleSelectAll = () => {
-        if (selectedUsers.length === filteredAndSortedUsers.length && filteredAndSortedUsers.length > 0) {
-            setSelectedUsers([]);
+        if (selectedPages.length === filteredAndSortedPages.length && filteredAndSortedPages.length > 0) {
+            setSelectedPages([]);
         } else {
-            setSelectedUsers(filteredAndSortedUsers.map((user) => user.id));
+            setSelectedPages(filteredAndSortedPages.map((page) => page.id));
         }
     };
 
-    const toggleSelectUser = (userId: number) => {
-        if (selectedUsers.includes(userId)) {
-            setSelectedUsers(selectedUsers.filter((id) => id !== userId));
+    const toggleSelectPage = (pageId: number) => {
+        if (selectedPages.includes(pageId)) {
+            setSelectedPages(selectedPages.filter((id) => id !== pageId));
         } else {
-            setSelectedUsers([...selectedUsers, userId]);
-        }
-    };
-
-    const handleOpenEditModal = (user: User) => {
-        setCurrentUserToEdit(user);
-        setIsEditModalOpen(true);
-        setActionDropdownId(null);
-    };
-
-    const handleCloseEditModal = () => {
-        setIsEditModalOpen(false);
-        setCurrentUserToEdit(null);
-    };
-
-    const handleSaveUser = async (userid: number, updatedUser: User) => {
-        try {
-            const savedUser = await updateUser(userid, updatedUser);
-            setUsers((prevUsers) => prevUsers.map((u) => (u.id === savedUser.id ? savedUser : u)));
-            handleCloseEditModal();
-        } catch (error) {
-            console.error('Failed to update user:', error);
+            setSelectedPages([...selectedPages, pageId]);
         }
     };
 
     const handleClearFilters = () => {
-        setSelectedRole('Tüm Roller');
-        setSelectedStatus('Tüm Durumlar');
+        setSelectedCategory('All Categories');
+        setSelectedStatus('All Status');
         if (setSearchQuery) {
             setSearchQuery('');
         }
     };
 
-    const handleOpenAddModal = () => {
-        console.log('Opening AddUserModal'); // Debugging
-        setIsAddModalOpen(true);
-    };
-
-    const handleCloseAddModal = () => {
-        console.log('Closing AddUserModal'); // Debugging
-        setIsAddModalOpen(false);
+    const formatDate = (dateString: string) => {
+        return new Date(dateString).toLocaleDateString('tr-TR');
     };
 
     if (loading) {
@@ -173,15 +203,12 @@ export default function UsersPage() {
             <main className="flex-1 overflow-y-auto p-6">
                 <div className="flex justify-between items-center mb-6">
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-800">Kullanıcılar</h2>
-                        <p className="text-gray-500">Kullanıcıları Listele ve yönet</p>
+                        <h2 className="text-2xl font-bold text-gray-800">Sayfalar</h2>
+                        <p className="text-gray-500">Sayfaları Listele ve yönet</p>
                     </div>
-                    <button
-                        onClick={handleOpenAddModal}
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center"
-                    >
+                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
                         <Plus size={20} className="mr-2" />
-                        Kullanıcı Ekle
+                        Sayfa Ekle
                     </button>
                 </div>
 
@@ -190,34 +217,34 @@ export default function UsersPage() {
                     <div className="flex flex-wrap items-center gap-4">
                         <div className="text-gray-700 font-medium">Filters:</div>
 
-                        {/* Role Filter */}
+                        {/* Category Filter */}
                         <div className="relative">
                             <button
                                 onClick={() => {
-                                    setIsRoleDropdownOpen(!isRoleDropdownOpen);
+                                    setIsCategoryDropdownOpen(!isCategoryDropdownOpen);
                                     setIsStatusDropdownOpen(false);
                                 }}
                                 className="flex items-center px-3 py-2 bg-gray-100 rounded-lg text-gray-700 hover:bg-gray-200"
                             >
                                 <Filter size={16} className="mr-2" />
-                                {selectedRole}
-                                {isRoleDropdownOpen ? <ChevronUp size={16} className="ml-2" /> : <ChevronDown size={16} className="ml-2" />}
+                                {selectedCategory}
+                                {isCategoryDropdownOpen ? <ChevronUp size={16} className="ml-2" /> : <ChevronDown size={16} className="ml-2" />}
                             </button>
-                            {isRoleDropdownOpen && (
+                            {isCategoryDropdownOpen && (
                                 <div className="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg">
                                     <ul className="py-1">
-                                        {roleOptions.map((role) => (
-                                            <li key={role}>
+                                        {categoryOptions.map((category) => (
+                                            <li key={category}>
                                                 <button
                                                     onClick={() => {
-                                                        setSelectedRole(role);
-                                                        setIsRoleDropdownOpen(false);
+                                                        setSelectedCategory(category);
+                                                        setIsCategoryDropdownOpen(false);
                                                     }}
                                                     className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${
-                                                        selectedRole === role ? 'bg-blue-50 text-blue-700' : ''
+                                                        selectedCategory === category ? 'bg-blue-50 text-blue-700' : ''
                                                     }`}
                                                 >
-                                                    {role}
+                                                    {category}
                                                 </button>
                                             </li>
                                         ))}
@@ -231,7 +258,7 @@ export default function UsersPage() {
                             <button
                                 onClick={() => {
                                     setIsStatusDropdownOpen(!isStatusDropdownOpen);
-                                    setIsRoleDropdownOpen(false);
+                                    setIsCategoryDropdownOpen(false);
                                 }}
                                 className="flex items-center px-3 py-2 bg-gray-100 rounded-lg text-gray-700 hover:bg-gray-200"
                             >
@@ -262,16 +289,16 @@ export default function UsersPage() {
                             )}
                         </div>
 
-                        {(selectedRole !== 'Tüm Roller' || selectedStatus !== 'Tüm Durumlar' || searchQuery) && (
+                        {(selectedCategory !== 'All Categories' || selectedStatus !== 'All Status' || searchQuery) && (
                             <button onClick={handleClearFilters} className="text-blue-600 hover:text-blue-800 text-sm">
                                 Filtreleri temizle
                             </button>
                         )}
 
-                        {selectedUsers.length > 0 && (
+                        {selectedPages.length > 0 && (
                             <div className="ml-auto flex items-center">
-                                <span className="text-gray-700">{selectedUsers.length} selected</span>
-                                <button onClick={() => setSelectedUsers([])} className="ml-2 text-red-600 hover:text-red-800 text-sm">
+                                <span className="text-gray-700">{selectedPages.length} selected</span>
+                                <button onClick={() => setSelectedPages([])} className="ml-2 text-red-600 hover:text-red-800 text-sm">
                                     Seçimi temizle
                                 </button>
                             </div>
@@ -279,7 +306,7 @@ export default function UsersPage() {
                     </div>
                 </div>
 
-                {/* Users Table */}
+                {/* Pages Table */}
                 <div className="bg-white rounded-lg shadow">
                     <div className="overflow-x-auto">
                         <table className="w-full">
@@ -290,19 +317,19 @@ export default function UsersPage() {
                                         <input
                                             type="checkbox"
                                             className="rounded border-gray-300 text-blue-500 focus:ring-blue-500"
-                                            checked={filteredAndSortedUsers.length > 0 && selectedUsers.length === filteredAndSortedUsers.length}
+                                            checked={filteredAndSortedPages.length > 0 && selectedPages.length === filteredAndSortedPages.length}
                                             onChange={toggleSelectAll}
-                                            disabled={filteredAndSortedUsers.length === 0}
+                                            disabled={filteredAndSortedPages.length === 0}
                                         />
                                     </div>
                                 </th>
                                 <th className="px-4 py-3 text-left">
                                     <button
-                                        onClick={() => handleSort('tcno')}
+                                        onClick={() => handleSort('title')}
                                         className="flex items-center text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        Tc numarası
-                                        {sortField === 'tcno' && (
+                                        Sayfa Başlığı
+                                        {sortField === 'title' && (
                                             sortDirection === 'asc' ? (
                                                 <ChevronUp size={14} className="ml-1" />
                                             ) : (
@@ -313,26 +340,11 @@ export default function UsersPage() {
                                 </th>
                                 <th className="px-4 py-3 text-left">
                                     <button
-                                        onClick={() => handleSort('isim')}
+                                        onClick={() => handleSort('category')}
                                         className="flex items-center text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        İsim Soyisim
-                                        {sortField === 'isim' && (
-                                            sortDirection === 'asc' ? (
-                                                <ChevronUp size={14} className="ml-1" />
-                                            ) : (
-                                                <ChevronDown size={14} className="ml-1" />
-                                            )
-                                        )}
-                                    </button>
-                                </th>
-                                <th className="px-4 py-3 text-left">
-                                    <button
-                                        onClick={() => handleSort('role')}
-                                        className="flex items-center text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                    >
-                                        Role
-                                        {sortField === 'role' && (
+                                        Kategori
+                                        {sortField === 'category' && (
                                             sortDirection === 'asc' ? (
                                                 <ChevronUp size={14} className="ml-1" />
                                             ) : (
@@ -346,7 +358,7 @@ export default function UsersPage() {
                                         onClick={() => handleSort('status')}
                                         className="flex items-center text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        Statü
+                                        Durum
                                         {sortField === 'status' && (
                                             sortDirection === 'asc' ? (
                                                 <ChevronUp size={14} className="ml-1" />
@@ -356,70 +368,82 @@ export default function UsersPage() {
                                         )}
                                     </button>
                                 </th>
+                                <th className="px-4 py-3 text-left">
+                                    <button
+                                        onClick={() => handleSort('updatedAt')}
+                                        className="flex items-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                    >
+                                        Son Güncelleme
+                                        {sortField === 'updatedAt' && (
+                                            sortDirection === 'asc' ? (
+                                                <ChevronUp size={14} className="ml-1" />
+                                            ) : (
+                                                <ChevronDown size={14} className="ml-1" />
+                                            )
+                                        )}
+                                    </button>
+                                </th>
+                                <th className="px-4 py-3 text-left">
+                                    <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Yazar</span>
+                                </th>
                                 <th className="px-4 py-3 text-right">Actions</th>
                             </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200">
-                            {filteredAndSortedUsers.map((user) => (
-                                <tr key={user.id} className="hover:bg-gray-50">
+                            {filteredAndSortedPages.map((page) => (
+                                <tr key={page.id} className="hover:bg-gray-50">
                                     <td className="px-4 py-4 whitespace-nowrap">
                                         <input
                                             type="checkbox"
                                             className="rounded border-gray-300 text-blue-500 focus:ring-blue-500"
-                                            checked={selectedUsers.includes(user.id)}
-                                            onChange={() => toggleSelectUser(user.id)}
+                                            checked={selectedPages.includes(page.id)}
+                                            onChange={() => toggleSelectPage(page.id)}
                                         />
                                     </td>
                                     <td className="px-4 py-4 whitespace-nowrap">
                                         <div className="flex items-center">
                                             <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-sm">
-                                                {user.isim ? user.isim.charAt(0).toUpperCase() : user.tcno.toString().charAt(0)}
+                                                <FileText size={16} />
                                             </div>
                                             <div className="ml-3">
-                                                <div className="text-sm font-medium text-gray-900">{user.tcno}</div>
+                                                <div className="text-sm font-medium text-gray-900">{page.title}</div>
+                                                <div className="text-sm text-gray-500">/{page.slug}</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="px-4 py-4 whitespace-nowrap">
-                                        <div className="text-sm text-gray-900">{user.isim || '-'}</div>
+                                        <div className="text-sm text-gray-900">{page.category}</div>
                                     </td>
                                     <td className="px-4 py-4 whitespace-nowrap">
-                      <span
-                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                              user.role === 'Admin'
-                                  ? 'bg-red-100 text-red-800'
-                                  : user.role === 'Editor'
-                                      ? 'bg-yellow-100 text-yellow-800'
-                                      : 'bg-green-100 text-green-800'
-                          }`}
-                      >
-                        {user.role}
-                      </span>
+                                        <span
+                                            className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                                                page.status === 'Published'
+                                                    ? 'bg-green-100 text-green-800'
+                                                    : page.status === 'Draft'
+                                                        ? 'bg-yellow-100 text-yellow-800'
+                                                        : 'bg-gray-100 text-gray-800'
+                                            }`}
+                                        >
+                                            {page.status}
+                                        </span>
                                     </td>
                                     <td className="px-4 py-4 whitespace-nowrap">
-                      <span
-                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                              user.status === 'Active'
-                                  ? 'bg-green-100 text-green-800'
-                                  : user.status === 'Inactive'
-                                      ? 'bg-red-100 text-red-800'
-                                      : 'bg-yellow-100 text-yellow-800'
-                          }`}
-                      >
-                        {user.status}
-                      </span>
+                                        <div className="text-sm text-gray-900">{formatDate(page.updatedAt)}</div>
+                                    </td>
+                                    <td className="px-4 py-4 whitespace-nowrap">
+                                        <div className="text-sm text-gray-900">{page.author}</div>
                                     </td>
                                     <td className="px-4 py-4 whitespace-nowrap text-right text-sm font-medium relative">
                                         <button
                                             onClick={(e) => {
                                                 e.stopPropagation();
-                                                setActionDropdownId(actionDropdownId === user.id ? null : user.id);
+                                                setActionDropdownId(actionDropdownId === page.id ? null : page.id);
                                             }}
                                             className="text-gray-500 hover:text-gray-700"
                                         >
                                             <MoreHorizontal size={16} />
                                         </button>
-                                        {actionDropdownId === user.id && (
+                                        {actionDropdownId === page.id && (
                                             <div
                                                 ref={actionDropdownRef}
                                                 className="absolute right-4 mt-2 w-48 bg-white rounded-md shadow-lg z-20"
@@ -428,25 +452,22 @@ export default function UsersPage() {
                                                     <li>
                                                         <button className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left">
                                                             <Eye size={16} className="mr-2" />
-                                                            View Details
+                                                            Sayfayı Görüntüle
                                                         </button>
                                                     </li>
                                                     <li>
-                                                        <button
-                                                            onClick={() => handleOpenEditModal(user)}
-                                                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                                                        >
+                                                        <button className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left">
                                                             <Edit size={16} className="mr-2" />
-                                                            Edit User
+                                                            Sayfayı Düzenle
                                                         </button>
                                                     </li>
                                                     <li>
                                                         <button
-                                                            onClick={() => handleDeleteUser(user.id)}
+                                                            onClick={() => handleDeletePage(page.id)}
                                                             className="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 w-full text-left"
                                                         >
                                                             <Trash size={16} className="mr-2" />
-                                                            Kullanıcıyı Sil
+                                                            Sayfayı Sil
                                                         </button>
                                                     </li>
                                                 </ul>
@@ -459,18 +480,18 @@ export default function UsersPage() {
                         </table>
                     </div>
 
-                    {filteredAndSortedUsers.length === 0 && (
+                    {filteredAndSortedPages.length === 0 && (
                         <div className="text-center py-8">
-                            <Users size={64} className="mx-auto text-gray-300 mb-4" />
-                            <h3 className="text-lg font-medium text-gray-500 mb-1">Kullanıcı bulunamadı</h3>
+                            <FileText size={64} className="mx-auto text-gray-300 mb-4" />
+                            <h3 className="text-lg font-medium text-gray-500 mb-1">Sayfa bulunamadı</h3>
                             <p className="text-gray-400">Arama veya filtre kriterlerinizi ayarlamayı deneyin</p>
                         </div>
                     )}
 
                     <div className="px-6 py-4 flex items-center justify-between border-t">
                         <div className="text-sm text-gray-500">
-                            Showing <span className="font-medium">{filteredAndSortedUsers.length}</span> of{' '}
-                            <span className="font-medium">{users.length}</span> Kullanıcılar
+                            Showing <span className="font-medium">{filteredAndSortedPages.length}</span> of{' '}
+                            <span className="font-medium">{pages.length}</span> Sayfalar
                         </div>
                         <div className="flex items-center space-x-2">
                             <button className="px-3 py-1 border rounded text-sm disabled:opacity-50">Previous</button>
@@ -479,21 +500,6 @@ export default function UsersPage() {
                         </div>
                     </div>
                 </div>
-
-                {/* Edit User Modal */}
-                <EditUserModal
-                    isOpen={isEditModalOpen}
-                    onClose={handleCloseEditModal}
-                    user={currentUserToEdit}
-                    onSave={handleSaveUser}
-                />
-
-                {/* Add User Modal */}
-                <AddUserModal
-                    isOpen={isAddModalOpen}
-                    onClose={handleCloseAddModal}
-                    onAdd={handleAddUser}
-                />
             </main>
         </AdminLayout>
     );
