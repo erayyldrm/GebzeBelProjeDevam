@@ -200,7 +200,7 @@ export default function HomePage() {
             {/* Hero Section ile video sadece üstte */}
             <section className="flex justify-center items-center w-full py-6 px-4">
                 <div
-                    className="relative w-full max-w-7xl rounded-2xl overflow-hidden shadow-lg mx-auto"
+                    className="relative w-full max-w-6xl rounded-2xl overflow-hidden shadow-lg mx-auto px-4"
                     style={{ minHeight: 250, height: '60vh' }}
                 >
                     <video
