@@ -1,6 +1,162 @@
 import { useRef, useEffect, useCallback, useState } from "react";
 import { Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+import {
+    Megaphone,
+    CalendarDays,
+    Info,
+    ChevronLeft,
+    ChevronRight,
+} from "lucide-react";
+
+type Announcement = {
+    id: number;
+    title: string;
+    date: string;
+    description: string;
+    link?: string;
+};
+
+const announcements: Announcement[] = [
+    {
+        id: 1,
+        title: "Su Kesintisi Duyurusu",
+        date: "21 Mayıs 2025",
+        description: "Bakım çalışmaları nedeniyle bazı mahallelerde su kesintisi yaşanacaktır.",
+        link: "#",
+    },
+    {
+        id: 2,
+        title: "Halk Günü Etkinliği",
+        date: "23 Mayıs 2025",
+        description: "Belediye Başkanı vatandaşlarla bir araya geliyor.",
+        link: "#",
+
+    },
+    {
+        id: 3,
+        title: "Atık Toplama Günleri Değişti",
+        date: "25 Mayıs 2025",
+        description: "Yeni düzenleme ile mahallelere özel atık toplama günleri belirlendi.",
+        link: "#",
+    },
+    {
+        id: 4,
+        title: "Park Yenileme Projesi",
+        date: "26 Mayıs 2025",
+        description: "Şehir merkezindeki parkların bakım ve yenileme çalışmaları başladı.",
+        link: "#",
+    },
+    {
+        id: 5,
+        title: "İmar Planı Askıya Çıktı",
+        date: "28 Mayıs 2025",
+        description: "Yeni imar planı vatandaşların incelemesine sunulmuştur.",
+        link: "#",
+    },
+];
+
+function AnnouncementsSlider() {
+    const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
+        loop: true,
+        slides: {
+            perView: 3,
+            spacing: 16,
+        },
+        breakpoints: {
+            "(max-width: 1024px)": {
+                slides: { perView: 2, spacing: 12 },
+            },
+            "(max-width: 640px)": {
+                slides: { perView: 1, spacing: 8 },
+            },
+        },
+    });
+
+    // Otomatik döndürme
+    useEffect(() => {
+        const interval = setInterval(() => {
+            slider.current?.next();
+        }, 4000);
+        return () => clearInterval(interval);
+    }, [slider]);
+
+    // Tüm Duyurular butonuna tıklandığında çalışacak fonksiyon
+    const handleViewAllAnnouncements = () => {
+        console.log("Tüm Duyurular sayfasına yönlendiriliyorsunuz");
+        alert("Tüm Duyurular sayfasına yönlendiriliyorsunuz");
+        // In a real app with routing: window.location.href = '/duyurular';
+    };
+
+    return (
+        <section className="py-12 px-4 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+                {/* Başlık, Tüm Duyurular Butonu ve Oklar Yan Yana */}
+                <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                        <h2 className="text-3xl font-bold text-gray-800">Duyurular</h2>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => slider.current?.prev()}
+                                className="p-2 rounded-full bg-white shadow hover:bg-gray-100 transition"
+                            >
+                                <ChevronLeft className="w-5 h-5 text-gray-600" />
+                            </button>
+                            <button
+                                onClick={() => slider.current?.next()}
+                                className="p-2 rounded-full bg-white shadow hover:bg-gray-100 transition"
+                            >
+                                <ChevronRight className="w-5 h-5 text-gray-600" />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Tüm Duyurular butonu eklendi - büyütüldü ve rengi kurumsal yapıldı */}
+                    <button
+                        onClick={handleViewAllAnnouncements}
+                        className="px-5 py-2.5 bg-indigo-700 text-white rounded-lg hover:bg-indigo-800 transition shadow-md flex items-center gap-2 text-base font-medium"
+                    >
+                        <span>Tüm Duyurular</span>
+                        <ChevronRight className="w-5 h-5" />
+                    </button>
+                </div>
+
+                {/* Slider */}
+                <div ref={sliderRef} className="keen-slider">
+                    {announcements.map((item) => (
+                        <div
+                            key={item.id}
+                            className="keen-slider__slide bg-white border border-gray-200 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow"
+                        >
+                            <div className="flex items-center gap-2 mb-2">
+                                <Megaphone className="text-blue-600 w-5 h-5" />
+                                <h3 className="text-lg font-semibold text-gray-800">
+                                    {item.title}
+                                </h3>
+                            </div>
+                            <div className="flex items-center text-sm text-gray-500 mb-3">
+                                <CalendarDays className="w-4 h-4 mr-1" />
+                                <span>{item.date}</span>
+                            </div>
+                            <p className="text-gray-700 mb-4 text-sm">{item.description}</p>
+                            {item.link && (
+                                <a
+                                    href={item.link}
+                                    className="flex items-center text-blue-600 hover:underline text-sm font-medium"
+                                >
+                                    <Info className="w-4 h-4 mr-1" />
+                                    Detaylı bilgi
+                                </a>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
 
 // Custom useInterval hook
 function useInterval(callback: () => void, delay: number | null) {
@@ -24,8 +180,8 @@ export default function BlogLayout() {
         image: "/images/Haberler/habergörselleri/cevretemizligeridönüsüm/cevre1.jpg",
         category: "GERİ DÖNÜŞÜM",
         categoryClass: "bg-pink-500",
-        title: "Bosmogenic an designed for narita iourism in moon",
-        date: "March 29, 2022",
+        title: "Gebze Belediyesi olarak doğal kaynakları koruyor, atıkları yeniden değerlendiriyoruz.",
+        date: "Mayıs 29, 2022"
     };
 
     const featuredArticles = [
@@ -34,25 +190,24 @@ export default function BlogLayout() {
             image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1.jpg",
             category: "EĞİTİM",
             categoryClass: "bg-green-600",
-            title: "Dui fames tempora maiores dicta anim? Vel curae eaque ab eaque pharetra blandit",
-            date: "March 29, 2022",
+            title: "Gebze Belediyesi olarak her yaştan bireyin nitelikli eğitime erişimini önemsiyoruz. Bilgiyle güçlenen bir toplum için eğitim yatırımlarımıza kararlılıkla devam ediyoruz.",
+            date: "Mayıs 29, 2022",
         },
         {
             id: 2,
             image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar.jpg",
             category: "PROJELER",
             categoryClass: "bg-yellow-500",
-            title: "Virtual reality is here!",
+            title: "Daha İyi Bir Kent !",
+            date: "Mayıs 29, 2022"
         },
         {
             id: 3,
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
             category: "SOSYAL YARDIM",
             categoryClass: "bg-blue-600",
-            title: "Running on the field.",
-            author: "Unknown Author",
-            authorImage: "/api/placeholder/50/50",
-            date: "N/A",
+            title: "Gebze'de Kimse Yalnız Değil",
+            date: "Mayıs 29, 2022"
         }
     ];
 
@@ -117,6 +272,41 @@ export default function BlogLayout() {
         },
         {
             id: 4,
+            title: "Geri Dönüşüm Eğitimi Verildi",
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "Çevre",
+            description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+        },
+        {
+            id: 5,
+            title: "Geri Dönüşüm Eğitimi Verildi",
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "Çevre",
+            description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+        },
+        {
+            id: 6,
+            title: "Geri Dönüşüm Eğitimi Verildi",
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "Çevre",
+            description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+        },
+        {
+            id: 7,
+            title: "Geri Dönüşüm Eğitimi Verildi",
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "Çevre",
+            description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+        },
+        {
+            id: 8,
+            title: "Geri Dönüşüm Eğitimi Verildi",
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "Çevre",
+            description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+        },
+        {
+            id: 9,
             title: "Geri Dönüşüm Eğitimi Verildi",
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
             category: "Çevre",
@@ -342,6 +532,9 @@ export default function BlogLayout() {
 
     return (
         <div className="min-h-screen bg-gray-100 py-8">
+            {/* AnnouncementsSlider bileşeni eklendi */}
+            <AnnouncementsSlider />
+
             {/* Main Card Container with shadow */}
             <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden relative">
                 {/* Page content with padding */}
@@ -400,19 +593,6 @@ export default function BlogLayout() {
                                     </button>
                                 </div>
                             </div>
-
-                            {/* Duyurular Button */}
-                            <button
-                                onClick={navigateToDuyurular}
-                                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-5 py-2 rounded-lg shadow-md transition-all duration-300 flex items-center gap-2 font-medium"
-                            >
-                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                                    <line x1="12" y1="9" x2="12" y2="13"></line>
-                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                                </svg>
-                                Tüm Duyurular
-                            </button>
                         </div>
 
                         {/* Slider container */}
@@ -461,7 +641,6 @@ export default function BlogLayout() {
                         <style>{`::-webkit-scrollbar { display: none; }`}</style>
                     </div>
                     <br/>
-
                     {/* NewsPage Component - Added below the slider with MINIMAL SPACING */}
                     <div className={`${isMobile ? 'w-full px-4 pt-0 pb-4' : 'max-w-full mx-auto pt-0 pb-8'}`}>
                         {/* Kategori Başlıkları - REDUCED TOP MARGIN */}
@@ -504,6 +683,7 @@ export default function BlogLayout() {
                                 ))}
                             </div>
                         )}
+                        <br/>
 
                         {/* Haber Kartları */}
                         <div className={`grid ${isMobile ? 'grid-cols-1 gap-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'}`}>
