@@ -23,6 +23,7 @@ import Iletisim from "./components/İletişim/iletisim.tsx";
 import AdminPanelApp from "./components/AdminPanel/_AdminApp.tsx";
 import HizmetNoktalari from "./components/İletişim/hizmet-noktalarimiz.tsx";
 import Jarvis from "./components/jarvis.tsx";
+import Duyuru from './components/Haberler/duyuru.tsx';
 
 
 
@@ -77,6 +78,8 @@ const App: React.FC = () => {
                     <Route path="/test" element={<TEST/>}></Route>
 
                     <Route path="/etkinlikler" element={<EventsSection/>}/>
+                    <Route path={"/duyuru"} element={<Duyuru/>}/>
+
                     <Route path="/haberler" element={<Haberler/>}/>
                     <Route path="/e-belediye" element={<EBelediye/>}/>
                     <Route path="/iletisim" element={<Iletisim/>}/>
