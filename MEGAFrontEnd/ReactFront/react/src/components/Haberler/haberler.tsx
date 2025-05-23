@@ -1,7 +1,7 @@
 import { useRef, useEffect, useCallback, useState } from "react";
 import { Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useKeenSlider } from "keen-slider/react";
+import { useKeenSlider } from 'keen-slider/react';
 import "keen-slider/keen-slider.min.css";
 import {
     Megaphone,
