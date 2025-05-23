@@ -194,7 +194,7 @@ const DuyurularSayfasi: React.FC = () => {
                     <div className="mb-8">
                         <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
                             <span className="w-1 h-8 bg-red-500 mr-3"></span>
-                            Önemli Duyurular
+                            Güncel Duyurular
                         </h2>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {filtrelenmisDuyurular.filter(d => d.onemli).map(duyuru => {
