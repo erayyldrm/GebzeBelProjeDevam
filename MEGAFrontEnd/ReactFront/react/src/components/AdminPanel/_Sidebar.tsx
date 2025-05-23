@@ -1,4 +1,4 @@
-import {Menu,File, X, Home, Users, Package, Calendar, Settings, LogOut, ChevronDown, ChevronRight} from 'lucide-react';
+import {Menu,File, X, Home, Users, LogOut, ChevronDown, ChevronRight} from 'lucide-react';
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {logout} from "./services/authService.tsx";
 import { useState } from 'react';
@@ -17,55 +17,17 @@ interface SidebarLinkProps {
 }
 const categorizedPages = [
     {
-        title: "Kurumsal",
+        title: "Sayfalar",
         pages: [
-            { key: "KURUMSAL_BASKAN_MISYON_VIZYON_ILKELERIMIZ", name: "Başkan ve Vizyon", path: "kurumsal-baskan-vizyon" },
-            { key: "KURUMSAL_ETIK_ARABULUCULUK", name: "Etik ve Arabuluculuk", path: "kurumsal-etik" },
-            { key: "KURUMSAL_MECLIS", name: "Meclis", path: "kurumsal-meclis" },
-            { key: "KURUMSAL_MECLIS_ESKIBASKANLAR", name: "Eski Başkanlar", path: "kurumsal-eskibaskanlar" },
-            { key: "KURUMSAL_YONETIM_SEMASI", name: "Yönetim Şeması", path: "kurumsal-yonetim" },
-        ]
-    },
-    {
-        title: "Tarihi Yerler",
-        pages: [
-            { key: "GEBZE_TARİHİ_YERLER", name: "Tarihi Yerler", path: "tarihi-yerler" },
-            { key: "TARİHİ_YERLER", name: "Tarihi Yerler (Alt)", path: "tarihi-yerler-alt" },
-            { key: "GEBZE_TARIHIYERLER_GALERI", name: "Galeri", path: "tarihi-yerler-galeri" },
-            { key: "GEBZE_TARIHIYERLER_AKTIVITELER", name: "Aktiviteler", path: "tarihi-yerler-aktiviteler" },
-        ]
-    },
-    {
-        title: "Hizmetler",
-        pages: [
-            { key: "HIZMETLER_DETAY", name: "Hizmet Detayı", path: "hizmet-detay" },
-            { key: "HIZMETLER_DETAYLI_BILGI", name: "Detaylı Bilgi", path: "hizmet-bilgi" },
-            { key: "HİZMETLER_GERİ_DONUSUM", name: "Geri Dönüşüm", path: "geri-donusum" },
-            { key: "HIZMETLER_TUMU", name: "Tüm Hizmetler", path: "tum-hizmetler" },
-        ]
-    },
-    {
-        title: "Fotoğraf ve Tur",
-        pages: [
-            { key: "GEBZE_FOTOĞRAF_SANAL_TUR", name: "Sanal Tur", path: "foto-tur" },
-            { key: "GEBZE_MAHALLEMUHTARLARI", name: "Mahalle Muhtarları", path: "muhtarlar" },
-        ]
-    },
-    {
-        title: "Meclis ve Belgeler",
-        pages: [
-            { key: "MECLIS_KARARLARI_KURUMSAL_KIMLIK_KURUMSAL_RAPORLAR_KURUMSAL_DÖKÜMANLAR", name: "Meclis Kararları ve Belgeler", path: "meclis-belgeler" },
-        ]
-    },
-    {
-        title: "Diğer",
-        pages: [
-            { key: "GEBZE_KARDESSEHIRLER", name: "Kardeş Şehirler", path: "kardes-sehirler" },
-            { key: "GEBZE_TARIHCE_BUGUNKUGEBZE", name: "Tarihçe", path: "tarihce" },
-            { key: "GEBZE_UYE_OLDUGUMUZ_BIRLIKLER", name: "Üye Birlikler", path: "uye-birlikler" },
-            { key: "HTE_GEBZE_UYE_OLDUGUMUZ_BIRLIKLER", name: "Üye Birlikler (HTE)", path: "uye-birlikler-hte" },
-            { key: "KULLANICILAR", name: "Kullanıcılar", path: "kullanicilar" },
-            { key: "MUDURLUKLER", name: "Müdürlükler", path: "mudurlukler" },
+            { key: "KURUMSAL", name: "KURUMSAL", path: "kurumsal" },
+            { key: "GEBZE", name: "GEBZE", path: "gebze" },
+            { key: "HİZMETLER", name: "HİZMETLER", path: "hizmetler" },
+            { key: "YAYINLAR", name: "YAYINLAR", path: "yayinlar" },
+            { key: "ETKİNLİKLER", name: "ETKİNLİKLER", path: "etkinlikler" },
+            { key: "HABERLER", name: "HABERLER", path: "haberler" },
+            { key: "DUYURULAR", name: "DUYURULAR", path: "duyurular" },
+
+
         ]
     }
 ];
@@ -104,8 +66,8 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
             {/* Navigation items */}
             <div className="flex-1 py-3 overflow-y-auto">
                 <div className="flex flex-col space-y-0.5 px-2">
-                    <SidebarLink to={"/admin/dashboard"} icon={<Home size={20} />} text="Panel" sidebarOpen={sidebarOpen} active={location.pathname === "/admin/dashboard"}  />
-                    <SidebarLink to={"/admin/users"} icon={<Users size={20} />} text="Kullanıcılar" sidebarOpen={sidebarOpen} active={location.pathname === "/admin/users"} />
+                    <SidebarLink to={"/panel/dashboard"} icon={<Home size={20} />} text="Panel" sidebarOpen={sidebarOpen} active={location.pathname === "/panel/dashboard"}  />
+                    <SidebarLink to={"/panel/users"} icon={<Users size={20} />} text="Kullanıcılar" sidebarOpen={sidebarOpen} active={location.pathname === "/panel/users"} />
                     {categorizedPages.map((category, index) => (
                         <div key={index} className="pb-1">
                             <button
@@ -128,11 +90,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                                 category.pages.map(page => (
                                     <SidebarLink
                                         key={page.key}
-                                        to={`/admin/pages/${page.path}`}
+                                        to={`/panel/sayfalar/${page.path}`}
                                         icon={<File size={18} />}
                                         text={page.name}
                                         sidebarOpen={sidebarOpen}
-                                        active={location.pathname === `/admin/pages/${page.path}`}
+                                        active={location.pathname === `/panel/sayfalar/${page.path}`}
                                     />
                                 ))}
                         </div>

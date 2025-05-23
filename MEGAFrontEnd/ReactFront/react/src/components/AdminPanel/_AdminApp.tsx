@@ -2,9 +2,10 @@ import React, {useEffect} from "react";
 import {Route, Routes, Navigate, Outlet, useNavigate} from "react-router-dom";
 import Users from "./users/User2.tsx";
 import Dashboard from './HomePanel.tsx';
+import Sayfalar from './sayfalar/template_sayfalar.tsx'
 import {SearchProvider} from './context/SearchContext.tsx';
 import {isAuthenticated, isAdmin, setupAuthListener} from './services/authService.tsx';
-
+import KurumsalSayfa from './sayfalar/sayfaKurumsal.tsx';
 
 const AdminRoute = () => {
     // Check these return the expected values
@@ -40,6 +41,9 @@ const _AdminApp: React.FC = () => {
 
                     {/* /admin/users */}
                     <Route path="users" element={<Users />} />
+
+                    <Route path="sayfalar" element={<Sayfalar />} />
+                    <Route path="sayfalar/kurumsal" element={<KurumsalSayfa />} />
 
                     {/* Redirect /admin to /admin/dashboard */}
                     <Route index element={<Navigate to="dashboard" replace />} />
