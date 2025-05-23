@@ -1,114 +1,141 @@
-// src/sayfala.tsx
+// src/pages/PagesPage.tsx
 import { useEffect, useRef, useState, useMemo } from 'react';
-import { FileText, Filter, ChevronDown, ChevronUp, MoreHorizontal, Plus, Trash, Edit, Eye } from 'lucide-react';
-import AdminLayout from '../../_LayoutAdminPanel.tsx';
-import { useSearch } from '../../context/SearchContext.tsx';
-import { useClickOutside } from '../../../useClickOutside.tsx';
-import Loader from '../../../loader.tsx';
-
-// Page interface
-interface Page {
-    id: number;
-    title: string;
-    slug: string;
-    category: string;
-    status: 'Published' | 'Draft' | 'Archived';
-    createdAt: string;
-    updatedAt: string;
-    author: string;
-}
-
-// Mock data for pages
-const mockPages: Page[] = [
-    {
-        id: 1,
-        title: "Başkan ve Vizyon",
-        slug: "kurumsal-baskan-vizyon",
-        category: "Kurumsal",
-        status: "Published",
-        createdAt: "2024-01-15",
-        updatedAt: "2024-03-20",
-        author: "Admin"
-    },
-    {
-        id: 2,
-        title: "Etik ve Arabuluculuk",
-        slug: "kurumsal-etik",
-        category: "Kurumsal",
-        status: "Published",
-        createdAt: "2024-01-20",
-        updatedAt: "2024-03-18",
-        author: "Editor"
-    },
-    {
-        id: 3,
-        title: "Tarihi Yerler",
-        slug: "tarihi-yerler",
-        category: "Tarihi Yerler",
-        status: "Draft",
-        createdAt: "2024-02-01",
-        updatedAt: "2024-03-15",
-        author: "Editor"
-    },
-    {
-        id: 4,
-        title: "Hizmet Detayı",
-        slug: "hizmet-detay",
-        category: "Hizmetler",
-        status: "Published",
-        createdAt: "2024-02-10",
-        updatedAt: "2024-03-10",
-        author: "Admin"
-    },
-    {
-        id: 5,
-        title: "Sanal Tur",
-        slug: "foto-tur",
-        category: "Fotoğraf ve Tur",
-        status: "Archived",
-        createdAt: "2024-01-05",
-        updatedAt: "2024-02-28",
-        author: "Editor"
-    },
-    {
-        id: 6,
-        title: "Meclis Kararları",
-        slug: "meclis-belgeler",
-        category: "Meclis ve Belgeler",
-        status: "Published",
-        createdAt: "2024-03-01",
-        updatedAt: "2024-03-22",
-        author: "Admin"
-    }
-];
+import { FileText, Filter, ChevronDown, ChevronUp, MoreHorizontal, Plus, Trash, Edit, Eye, AlertCircle } from 'lucide-react';
+import AdminLayout from '../_LayoutAdminPanel.tsx';
+import { useSearch } from '../context/SearchContext.tsx';
+import { useClickOutside } from '../../useClickOutside.tsx';
+import Loader from '../../loader.tsx';
+import {
+    CombinedPageService,
+    BaskanAPI,
+    YonetimSemasiAPI,
+    PageEntity,
+    handleApiError
+} from '../services/pageService.tsx';
 
 // Filter options
-const categoryOptions = ['All Categories', 'Kurumsal', 'Tarihi Yerler', 'Hizmetler', 'Fotoğraf ve Tur', 'Meclis ve Belgeler', 'Diğer'];
-const statusOptions = ['All Status', 'Published', 'Draft', 'Archived'];
+const categoryOptions = [
+    'All Categories',
+    'Kurumsal',
+    'Yönetim',
+    'Tarihi Yerler',
+    'Hizmetler',
+    'Fotoğraf ve Tur',
+    'Meclis ve Belgeler',
+    'Diğer'
+];
+const statusOptions = ['Tüm Durumlar', 'Yayınlandı', 'Taslak', 'Arşivlendi'];
 
 // Main Pages component
 export default function PagesPage() {
-    const [pages, setPages] = useState<Page[]>([]);
+    const [pages, setPages] = useState<PageEntity[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [selectedCategory, setSelectedCategory] = useState('All Categories');
-    const [selectedStatus, setSelectedStatus] = useState('All Status');
+    const [selectedStatus, setSelectedStatus] = useState('Tüm Durumlar');
     const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
     const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
-    const [sortField, setSortField] = useState<keyof Page>('title');
+    const [sortField, setSortField] = useState<keyof PageEntity>('title');
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
     const [selectedPages, setSelectedPages] = useState<number[]>([]);
     const [actionDropdownId, setActionDropdownId] = useState<number | null>(null);
     const { searchQuery, setSearchQuery } = useSearch();
     const actionDropdownRef = useRef<HTMLDivElement>(null);
 
+    // Fetch data from multiple controllers
     useEffect(() => {
-        setLoading(true);
-        // Simulate API call
-        setTimeout(() => {
-            setPages(mockPages);
-            setLoading(false);
-        }, 1000);
+        const fetchPages = async () => {
+            setLoading(true);
+            setError(null);
+
+            try {
+                // Method 1: Fetch all data from combined service
+                const allData = await CombinedPageService.getAllPageData();
+
+                // Convert different entity types to unified page format
+                const allKurumsalData = [
+                    ...allData.kurumsal.baskan,
+                    ...allData.kurumsal.misyon,
+                    ...allData.kurumsal.vizyon,
+                    ...allData.kurumsal.ilkelerimiz,
+                ];
+
+                const allYonetimData = [
+                    ...allData.yonetimSemasi.baskan,
+                    ...allData.yonetimSemasi.baskanYardimcilari,
+                    ...allData.yonetimSemasi.danismanlar,
+                ];
+
+                const convertedPages = CombinedPageService.convertToPageFormat(
+                    allKurumsalData,
+                    allYonetimData
+                );
+
+                // Add any existing pages from PageAPI
+                const allPages = [...convertedPages, ...allData.pages];
+
+                setPages(allPages);
+
+            } catch (err) {
+                const errorInfo = handleApiError(err);
+                setError(errorInfo.message);
+                console.error('Failed to fetch pages:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPages();
     }, []);
+
+    // Alternative method: Fetch data individually
+    const fetchPagesIndividually = async () => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            // Fetch from different controllers individually
+            const [
+                baskanData,
+                misyonData,
+                vizyonData,
+                ilkelerimizData,
+                yonetimSemasiData,
+                danismanlarData,
+            ] = await Promise.all([
+                BaskanAPI.getActiveBaskan().catch(() => []),
+                BaskanAPI.getActiveMisyon().catch(() => []),
+                BaskanAPI.getActiveVizyon().catch(() => []),
+                BaskanAPI.getActiveIlkelerimiz().catch(() => []),
+                YonetimSemasiAPI.getYonetimSemasi().catch(() => ({ baskan: [], baskanYardimcilari: [] })),
+                YonetimSemasiAPI.getBaskanDanismanlari().catch(() => []),
+            ]);
+
+            // Convert to page format
+            const kurumsalPages = [
+                ...baskanData,
+                ...misyonData,
+                ...vizyonData,
+                ...ilkelerimizData,
+            ];
+
+            const yonetimPages = [
+                ...yonetimSemasiData.baskan,
+                ...yonetimSemasiData.baskanYardimcilari,
+                ...danismanlarData,
+            ];
+
+            const allPages = CombinedPageService.convertToPageFormat(kurumsalPages, yonetimPages);
+            setPages(allPages);
+
+        } catch (err) {
+            const errorInfo = handleApiError(err);
+            setError(errorInfo.message);
+            console.error('Failed to fetch pages individually:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useClickOutside(actionDropdownRef, () => {
         setActionDropdownId(null);
@@ -118,11 +145,55 @@ export default function PagesPage() {
         if (!window.confirm('Bu sayfayı silmek istediğinizden emin misiniz?')) {
             return;
         }
+
         try {
+            // Try to delete from appropriate API based on page ID
+            if (pageId > 10000) {
+                // This is a converted YonetimSemasi entity
+                console.log('Cannot delete YonetimSemasi entity from pages interface');
+                alert('Bu sayfa yönetim şeması sayfasından silinmelidir.');
+                return;
+            }
+
+            // For now, just remove from local state
+            // TODO: Implement actual delete API calls based on page type
             setPages(pages.filter(page => page.id !== pageId));
             setActionDropdownId(null);
+
         } catch (error) {
+            const errorInfo = handleApiError(error);
+            alert(`Silme işlemi başarısız: ${errorInfo.message}`);
             console.error('Failed to delete page:', error);
+        }
+    };
+
+    const handleBulkDelete = async () => {
+        if (selectedPages.length === 0) return;
+
+        if (!window.confirm(`${selectedPages.length} sayfayı silmek istediğinizden emin misiniz?`)) {
+            return;
+        }
+
+        try {
+            // Filter out YonetimSemasi entities (ID > 10000)
+            const deletableIds = selectedPages.filter(id => id <= 10000);
+            const nonDeletableIds = selectedPages.filter(id => id > 10000);
+
+            if (nonDeletableIds.length > 0) {
+                alert(`${nonDeletableIds.length} sayfa yönetim şeması sayfasından silinmelidir.`);
+            }
+
+            if (deletableIds.length > 0) {
+                // TODO: Implement bulk delete API call
+                setPages(pages.filter(page => !deletableIds.includes(page.id)));
+            }
+
+            setSelectedPages([]);
+
+        } catch (error) {
+            const errorInfo = handleApiError(error);
+            alert(`Toplu silme işlemi başarısız: ${errorInfo.message}`);
+            console.error('Failed to bulk delete pages:', error);
         }
     };
 
@@ -141,7 +212,7 @@ export default function PagesPage() {
                     slug.includes(searchLower) ||
                     category.toLowerCase().includes(searchLower);
                 const matchesCategory = selectedCategory === 'All Categories' || category === selectedCategory;
-                const matchesStatus = selectedStatus === 'All Status' || status === selectedStatus;
+                const matchesStatus = selectedStatus === 'Tüm Durumlar' || status === selectedStatus;
 
                 return matchesSearch && matchesCategory && matchesStatus;
             })
@@ -157,7 +228,7 @@ export default function PagesPage() {
             });
     }, [pages, searchQuery, selectedCategory, selectedStatus, sortField, sortDirection]);
 
-    const handleSort = (field: keyof Page) => {
+    const handleSort = (field: keyof PageEntity) => {
         if (sortField === field) {
             setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
         } else {
@@ -184,7 +255,7 @@ export default function PagesPage() {
 
     const handleClearFilters = () => {
         setSelectedCategory('All Categories');
-        setSelectedStatus('All Status');
+        setSelectedStatus('Tüm Durumlar');
         if (setSearchQuery) {
             setSearchQuery('');
         }
@@ -192,6 +263,11 @@ export default function PagesPage() {
 
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('tr-TR');
+    };
+
+    const retryFetch = () => {
+        // Use the alternative fetch method on retry
+        fetchPagesIndividually();
     };
 
     if (loading) {
@@ -211,6 +287,25 @@ export default function PagesPage() {
                         Sayfa Ekle
                     </button>
                 </div>
+
+                {/* Error Message */}
+                {error && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                        <div className="flex items-center">
+                            <AlertCircle size={20} className="text-red-600 mr-2" />
+                            <div>
+                                <h3 className="text-red-800 font-medium">Veri yüklenirken hata oluştu</h3>
+                                <p className="text-red-600 text-sm">{error}</p>
+                                <button
+                                    onClick={retryFetch}
+                                    className="text-red-700 underline text-sm mt-1"
+                                >
+                                    Tekrar dene
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Filters */}
                 <div className="bg-white p-4 rounded-lg shadow mb-6">
@@ -289,7 +384,7 @@ export default function PagesPage() {
                             )}
                         </div>
 
-                        {(selectedCategory !== 'All Categories' || selectedStatus !== 'All Status' || searchQuery) && (
+                        {(selectedCategory !== 'All Categories' || selectedStatus !== 'Tüm Durumlar' || searchQuery) && (
                             <button onClick={handleClearFilters} className="text-blue-600 hover:text-blue-800 text-sm">
                                 Filtreleri temizle
                             </button>
@@ -298,7 +393,16 @@ export default function PagesPage() {
                         {selectedPages.length > 0 && (
                             <div className="ml-auto flex items-center">
                                 <span className="text-gray-700">{selectedPages.length} selected</span>
-                                <button onClick={() => setSelectedPages([])} className="ml-2 text-red-600 hover:text-red-800 text-sm">
+                                <button
+                                    onClick={handleBulkDelete}
+                                    className="ml-2 text-red-600 hover:text-red-800 text-sm"
+                                >
+                                    Seçilenleri Sil
+                                </button>
+                                <button
+                                    onClick={() => setSelectedPages([])}
+                                    className="ml-2 text-gray-600 hover:text-gray-800 text-sm"
+                                >
                                     Seçimi temizle
                                 </button>
                             </div>
@@ -417,9 +521,9 @@ export default function PagesPage() {
                                     <td className="px-4 py-4 whitespace-nowrap">
                                         <span
                                             className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                                                page.status === 'Published'
+                                                page.status === 'Yayınlandı'
                                                     ? 'bg-green-100 text-green-800'
-                                                    : page.status === 'Draft'
+                                                    : page.status === 'Taslak'
                                                         ? 'bg-yellow-100 text-yellow-800'
                                                         : 'bg-gray-100 text-gray-800'
                                             }`}
@@ -450,13 +554,27 @@ export default function PagesPage() {
                                             >
                                                 <ul className="py-1">
                                                     <li>
-                                                        <button className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left">
+                                                        <button
+                                                            onClick={() => {
+                                                                // TODO: Implement view page functionality
+                                                                console.log('View page:', page.id);
+                                                                setActionDropdownId(null);
+                                                            }}
+                                                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                                        >
                                                             <Eye size={16} className="mr-2" />
                                                             Sayfayı Görüntüle
                                                         </button>
                                                     </li>
                                                     <li>
-                                                        <button className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left">
+                                                        <button
+                                                            onClick={() => {
+                                                                // TODO: Implement edit page functionality
+                                                                console.log('Edit page:', page.id);
+                                                                setActionDropdownId(null);
+                                                            }}
+                                                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                                        >
                                                             <Edit size={16} className="mr-2" />
                                                             Sayfayı Düzenle
                                                         </button>

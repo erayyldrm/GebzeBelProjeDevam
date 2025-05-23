@@ -113,7 +113,7 @@ const App: React.FC = () => {
                 <Route path="/login" element={<LoginForm/>}/>
                 <Route path="/signup" element={<SignUp/>}/>
                 {/* Admin routes */}
-                <Route path="/admin/*" element={<AdminPanelApp />} />
+                <Route path="/panel/*" element={<AdminPanelApp />} />
 
             </Routes>
         </QueryClientProvider>

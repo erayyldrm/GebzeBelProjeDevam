@@ -117,7 +117,7 @@ const LoginPage: React.FC = () => {
             });
 
             setTimeout(() => {
-                navigate('/admin');
+                navigate('/panel');
             }, 100);
         }
     };
