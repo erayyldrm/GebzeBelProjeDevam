@@ -10,8 +10,11 @@ import {
     BaskanAPI,
     YonetimSemasiAPI,
     PageEntity,
-    handleApiError
+    handleApiError,
+    PageAPI,
+    convertDeltaToStatus
 } from '../services/pageService.tsx';
+import {Link} from "react-router-dom";
 
 // Filter options
 const categoryOptions = [
@@ -49,10 +52,10 @@ export default function PagesPage() {
             setError(null);
 
             try {
-                // Method 1: Fetch all data from combined service
+                // 1. Fetch all data from combined service
                 const allData = await CombinedPageService.getAllPageData();
 
-                // Convert different entity types to unified page format
+                // 2. Convert different entity types to unified page format
                 const allKurumsalData = [
                     ...allData.kurumsal.baskan,
                     ...allData.kurumsal.misyon,
@@ -71,9 +74,20 @@ export default function PagesPage() {
                     allYonetimData
                 );
 
-                // Add any existing pages from PageAPI
-                const allPages = [...convertedPages, ...allData.pages];
+                // 3. Get raw pages from PageAPI (if endpoint exists)
+                let rawPages: PageEntity[] = [];
+                try {
+                    const pagesResponse = await PageAPI.getAllPages();
+                    rawPages = pagesResponse.content.map(normalizePage);
+                } catch (pageError) {
+                    console.warn('PageAPI endpoint not available:', pageError);
+                    // Continue without raw pages
+                }
 
+                // 4. Merge all pages
+                const allPages = [...convertedPages, ...rawPages];
+
+                // 5. Set state
                 setPages(allPages);
 
             } catch (err) {
@@ -87,6 +101,12 @@ export default function PagesPage() {
 
         fetchPages();
     }, []);
+
+    // Normalize page function (delta -> status conversion)
+    const normalizePage = (page: PageEntity): PageEntity => ({
+        ...page,
+        status: convertDeltaToStatus(page.delta),
+    });
 
     // Alternative method: Fetch data individually
     const fetchPagesIndividually = async () => {
@@ -125,7 +145,18 @@ export default function PagesPage() {
                 ...danismanlarData,
             ];
 
-            const allPages = CombinedPageService.convertToPageFormat(kurumsalPages, yonetimPages);
+            const convertedPages = CombinedPageService.convertToPageFormat(kurumsalPages, yonetimPages);
+
+            // Try to get additional pages from PageAPI
+            let rawPages: PageEntity[] = [];
+            try {
+                const pagesResponse = await PageAPI.getAllPages();
+                rawPages = pagesResponse.content.map(normalizePage);
+            } catch (pageError) {
+                console.warn('PageAPI endpoint not available:', pageError);
+            }
+
+            const allPages = [...convertedPages, ...rawPages];
             setPages(allPages);
 
         } catch (err) {
@@ -147,17 +178,30 @@ export default function PagesPage() {
         }
 
         try {
-            // Try to delete from appropriate API based on page ID
+            // Check if this is a converted entity (ID > 10000 means YonetimSemasi)
             if (pageId > 10000) {
-                // This is a converted YonetimSemasi entity
                 console.log('Cannot delete YonetimSemasi entity from pages interface');
                 alert('Bu sayfa yönetim şeması sayfasından silinmelidir.');
                 return;
             }
 
-            // For now, just remove from local state
-            // TODO: Implement actual delete API calls based on page type
-            setPages(pages.filter(page => page.id !== pageId));
+            // Check if this is a Kurumsal entity (needs special handling)
+            const pageToDelete = pages.find(p => p.id === pageId);
+            if (pageToDelete?.category === 'Kurumsal') {
+                alert('Kurumsal sayfalar kurumsal yönetim panelinden silinmelidir.');
+                return;
+            }
+
+            // Try to delete via PageAPI
+            try {
+                await PageAPI.deletePage(pageId);
+                setPages(pages.filter(page => page.id !== pageId));
+                alert('Sayfa başarıyla silindi.');
+            } catch (deleteError) {
+                console.warn('PageAPI delete not available, removing from local state only');
+                setPages(pages.filter(page => page.id !== pageId));
+            }
+
             setActionDropdownId(null);
 
         } catch (error) {
@@ -175,17 +219,47 @@ export default function PagesPage() {
         }
 
         try {
-            // Filter out YonetimSemasi entities (ID > 10000)
-            const deletableIds = selectedPages.filter(id => id <= 10000);
-            const nonDeletableIds = selectedPages.filter(id => id > 10000);
+            // Separate different types of pages
+            const yonetimSemasiIds = selectedPages.filter(id => id > 10000);
+            const kurumsalIds: number[] = [];
+            const regularPageIds: number[] = [];
 
-            if (nonDeletableIds.length > 0) {
-                alert(`${nonDeletableIds.length} sayfa yönetim şeması sayfasından silinmelidir.`);
+            selectedPages.forEach(id => {
+                const page = pages.find(p => p.id === id);
+                if (page) {
+                    if (id > 10000) {
+                        // Already handled above
+                    } else if (page.category === 'Kurumsal') {
+                        kurumsalIds.push(id);
+                    } else {
+                        regularPageIds.push(id);
+                    }
+                }
+            });
+
+            let warningMessages: string[] = [];
+
+            if (yonetimSemasiIds.length > 0) {
+                warningMessages.push(`${yonetimSemasiIds.length} yönetim şeması sayfası yönetim panelinden silinmelidir.`);
             }
 
-            if (deletableIds.length > 0) {
-                // TODO: Implement bulk delete API call
-                setPages(pages.filter(page => !deletableIds.includes(page.id)));
+            if (kurumsalIds.length > 0) {
+                warningMessages.push(`${kurumsalIds.length} kurumsal sayfa kurumsal panelinden silinmelidir.`);
+            }
+
+            if (warningMessages.length > 0) {
+                alert(warningMessages.join('\n'));
+            }
+
+            // Delete regular pages
+            if (regularPageIds.length > 0) {
+                try {
+                    await PageAPI.deletePages(regularPageIds);
+                    setPages(pages.filter(page => !regularPageIds.includes(page.id)));
+                } catch (deleteError) {
+                    console.warn('PageAPI bulk delete not available, removing from local state only');
+                    setPages(pages.filter(page => !regularPageIds.includes(page.id)));
+                }
             }
 
             setSelectedPages([]);
@@ -273,7 +347,6 @@ export default function PagesPage() {
     if (loading) {
         return <Loader />;
     }
-
     return (
         <AdminLayout>
             <main className="flex-1 overflow-y-auto p-6">
@@ -567,17 +640,14 @@ export default function PagesPage() {
                                                         </button>
                                                     </li>
                                                     <li>
-                                                        <button
-                                                            onClick={() => {
-                                                                // TODO: Implement edit page functionality
-                                                                console.log('Edit page:', page.id);
-                                                                setActionDropdownId(null);
-                                                            }}
+                                                        <Link
+                                                            to={`/panel/sayfalar/edit/${page.id}`} // <-- Gideceğiniz yol (URL yapınıza göre ayarlayın)
+                                                            onClick={() => setActionDropdownId(null)} // Dropdown'ı kapatmak için onClick'i burada da kullanabilirsiniz.
                                                             className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                                         >
                                                             <Edit size={16} className="mr-2" />
                                                             Sayfayı Düzenle
-                                                        </button>
+                                                        </Link>
                                                     </li>
                                                     <li>
                                                         <button
