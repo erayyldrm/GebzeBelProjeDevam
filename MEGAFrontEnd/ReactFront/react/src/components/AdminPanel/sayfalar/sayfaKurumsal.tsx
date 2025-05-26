@@ -14,6 +14,7 @@ import {
     PageAPI,
     convertDeltaToStatus
 } from '../services/pageService.tsx';
+import {Link} from "react-router-dom";
 
 // Filter options
 const categoryOptions = [
@@ -639,17 +640,14 @@ export default function PagesPage() {
                                                         </button>
                                                     </li>
                                                     <li>
-                                                        <button
-                                                            onClick={() => {
-                                                                // TODO: Implement edit page functionality
-                                                                console.log('Edit page:', page.id);
-                                                                setActionDropdownId(null);
-                                                            }}
+                                                        <Link
+                                                            to={`/panel/sayfalar/edit/${page.id}`} // <-- Gideceğiniz yol (URL yapınıza göre ayarlayın)
+                                                            onClick={() => setActionDropdownId(null)} // Dropdown'ı kapatmak için onClick'i burada da kullanabilirsiniz.
                                                             className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                                         >
                                                             <Edit size={16} className="mr-2" />
                                                             Sayfayı Düzenle
-                                                        </button>
+                                                        </Link>
                                                     </li>
                                                     <li>
                                                         <button

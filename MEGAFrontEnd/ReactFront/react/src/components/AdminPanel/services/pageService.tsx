@@ -55,7 +55,7 @@ export interface BaskanEntity {
 
 export interface YonetimSemasiEntity {
     id: number;
-    ad: string;
+    isimSoyisim: string;
     soyad: string;
     unvan: string;
     pozisyon: string;
@@ -327,7 +327,7 @@ export const CombinedPageService = {
 
             pages.push({
                 id: item.id + 10000, // ID çakışmasını önlemek için offset
-                title: `${item.ad} ${item.soyad} - ${item.unvan}`,
+                title: `${item.isimSoyisim} - ${item.pozisyon}`,
                 slug: `yonetim-${item.pozisyon}-${item.id}`,
                 category: 'Yönetim',
                 delta: delta,

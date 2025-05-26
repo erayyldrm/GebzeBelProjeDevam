@@ -6,6 +6,7 @@ import Sayfalar from './sayfalar/template_sayfalar.tsx'
 import {SearchProvider} from './context/SearchContext.tsx';
 import {isAuthenticated, isAdmin, setupAuthListener} from './services/authService.tsx';
 import KurumsalSayfa from './sayfalar/sayfaKurumsal.tsx';
+import EditSayfa from './sayfalar/editpage.tsx';
 
 const AdminRoute = () => {
     // Check these return the expected values
@@ -44,6 +45,7 @@ const _AdminApp: React.FC = () => {
 
                     <Route path="sayfalar" element={<Sayfalar />} />
                     <Route path="sayfalar/kurumsal" element={<KurumsalSayfa />} />
+                    <Route path="sayfalar/edit/:id" element={<EditSayfa />} />
 
                     {/* Redirect /admin to /admin/dashboard */}
                     <Route index element={<Navigate to="dashboard" replace />} />
