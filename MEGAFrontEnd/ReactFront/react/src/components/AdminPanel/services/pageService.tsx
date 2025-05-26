@@ -68,12 +68,43 @@ export interface PageEntity {
     title: string;
     slug: string;
     category: string;
-    status: 'Yayınlandı' | 'Taslak' | 'Arşivlendi';
+    delta?: number | null; // Backend'den gelen raw değer (0, 1, 2 veya null)
+    status?: 'Yayınlandı' | 'Taslak' | 'Arşivlendi'; // Frontend'de türetilen değer
     createdAt: string;
     updatedAt: string;
     author: string;
     content?: string;
 }
+
+// Delta -> Status dönüştürme fonksiyonu
+export const convertDeltaToStatus = (delta?: number | null): PageEntity['status'] => {
+    if (delta === null || delta === undefined) {
+        return 'Taslak'; // Default değer
+    }
+
+    switch (delta) {
+        case 1:
+            return 'Yayınlandı';
+        case 2:
+            return 'Taslak';
+        case 0:
+        default:
+            return 'Arşivlendi';
+    }
+};
+
+// Status -> Delta dönüştürme fonksiyonu (backend'e gönderirken)
+export const convertStatusToDelta = (status: PageEntity['status']): number => {
+    switch (status) {
+        case 'Yayınlandı':
+            return 1;
+        case 'Taslak':
+            return 2;
+        case 'Arşivlendi':
+        default:
+            return 0;
+    }
+};
 
 // Kurumsal/Baskan API calls
 export const BaskanAPI = {
@@ -138,7 +169,7 @@ export const YonetimSemasiAPI = {
     },
 };
 
-// Generic Page API calls (you'll need to create these endpoints in your backend)
+// Generic Page API calls
 export const PageAPI = {
     // Get all pages with optional filters
     getAllPages: async (params?: {
@@ -165,13 +196,27 @@ export const PageAPI = {
 
     // Create new page
     createPage: async (page: Omit<PageEntity, 'id' | 'createdAt' | 'updatedAt'>): Promise<PageEntity> => {
-        const response = await apiClient.post('/api/pages', page);
+        // Status'u delta'ya çevir
+        const pageWithDelta = {
+            ...page,
+            delta: page.status ? convertStatusToDelta(page.status) : 2, // Default: Taslak
+        };
+        delete pageWithDelta.status; // Backend'e status gönderme
+
+        const response = await apiClient.post('/api/pages', pageWithDelta);
         return response.data;
     },
 
     // Update page
     updatePage: async (id: number, page: Partial<PageEntity>): Promise<PageEntity> => {
-        const response = await apiClient.put(`/api/pages/${id}`, page);
+        // Status'u delta'ya çevir
+        const pageWithDelta = { ...page };
+        if (page.status) {
+            pageWithDelta.delta = convertStatusToDelta(page.status);
+            delete pageWithDelta.status; // Backend'e status gönderme
+        }
+
+        const response = await apiClient.put(`/api/pages/${id}`, pageWithDelta);
         return response.data;
     },
 
@@ -256,14 +301,18 @@ export const CombinedPageService = {
     ): PageEntity[] => {
         const pages: PageEntity[] = [];
 
-        // Convert Baskan entities to Page format
+        // Kurumsal entity'leri dönüştür
         kurumsal.forEach((item) => {
+            // aktif boolean'ını delta'ya çevir
+            const delta = item.aktif ? 1 : 0;
+
             pages.push({
                 id: item.id,
                 title: item.baslik,
                 slug: `kurumsal-${item.kategori}-${item.id}`,
                 category: 'Kurumsal',
-                status: item.aktif ? 'Yayınlandı' : 'Arşivlendi',
+                delta: delta,
+                status: convertDeltaToStatus(delta),
                 createdAt: item.olusturmaTarihi,
                 updatedAt: item.guncellemeTarihi,
                 author: item.olusturanKullanici,
@@ -271,14 +320,18 @@ export const CombinedPageService = {
             });
         });
 
-        // Convert YonetimSemasi entities to Page format
+        // Yönetim şeması entity'leri dönüştür
         yonetimSemasi.forEach((item) => {
+            // aktif boolean'ını delta'ya çevir
+            const delta = item.aktif ? 1 : 0;
+
             pages.push({
-                id: item.id + 10000, // Offset to avoid ID conflicts
+                id: item.id + 10000, // ID çakışmasını önlemek için offset
                 title: `${item.ad} ${item.soyad} - ${item.unvan}`,
                 slug: `yonetim-${item.pozisyon}-${item.id}`,
                 category: 'Yönetim',
-                status: item.aktif ? 'Yayınlandı' : 'Arşivlendi',
+                delta: delta,
+                status: convertDeltaToStatus(delta),
                 createdAt: item.olusturmaTarihi,
                 updatedAt: item.olusturmaTarihi,
                 author: 'System',
@@ -287,6 +340,12 @@ export const CombinedPageService = {
 
         return pages;
     },
+
+    // Normalize a page entity (convert delta to status)
+    normalizePage: (page: PageEntity): PageEntity => ({
+        ...page,
+        status: convertDeltaToStatus(page.delta),
+    }),
 };
 
 // Error handling utility
@@ -314,4 +373,6 @@ export default {
     PageAPI,
     CombinedPageService,
     handleApiError,
+    convertDeltaToStatus,
+    convertStatusToDelta,
 };
