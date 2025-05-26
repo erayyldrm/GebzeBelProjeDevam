@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Calendar, ChevronRight, Bell, Filter, Eye, TreePine, Users, Heart, Music, Car, Leaf } from 'lucide-react';
+// framer-motion ekle
+import { AnimatePresence, motion } from 'framer-motion';
 
 interface Duyuru {
     id: number;
@@ -14,6 +16,16 @@ interface Duyuru {
 const DuyurularSayfasi: React.FC = () => {
     const [aramaMetni, setAramaMetni] = useState('');
     const [secilenKategori, setSecilenKategori] = useState('Tümü');
+
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const duyuruPerPage = 6;
+    const maxPages = 5;
+
+    // Kategori değişince sayfa başa dönsün
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [secilenKategori, aramaMetni]);
 
     const duyurular: Duyuru[] = [
         {
@@ -69,7 +81,125 @@ const DuyurularSayfasi: React.FC = () => {
             kategori: "Çevre",
             okunmaSayisi: 1456,
             onemli: true
-        }
+        },
+        {
+            id: 7,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+        {
+            id: 8,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+        {
+            id: 9,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+        {
+            id: 10,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+        {
+            id: 11,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+        {
+            id: 11,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+        {
+            id: 11,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+        {
+            id: 11,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+        {
+            id: 11,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+        {
+            id: 11,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+        {
+            id: 11,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+        {
+            id: 11,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+        {
+            id: 11,
+            baslik: "Yol Bakım ve Onarım Çalışmaları",
+            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
+            tarih: "2024-05-10",
+            kategori: "Ulaşım",
+            okunmaSayisi: 1890,
+            onemli: false
+        },
+
     ];
 
     const kategoriler = ['Tümü', 'Çevre', 'Toplantı', 'Sosyal Hizmetler', 'Kültür', 'Ulaşım'];
@@ -115,6 +245,17 @@ const DuyurularSayfasi: React.FC = () => {
         const kategoriUygun = secilenKategori === 'Tümü' || duyuru.kategori === secilenKategori;
         return aramaUygun && kategoriUygun;
     });
+
+    // Pagination hesaplamaları (önemli olmayanlar için)
+    const tumDuyurular = filtrelenmisDuyurular.filter(d => !d.onemli);
+    const totalPages = Math.min(
+        Math.ceil(tumDuyurular.length / duyuruPerPage),
+        maxPages
+    );
+    const paginatedDuyurular = tumDuyurular.slice(
+        (currentPage - 1) * duyuruPerPage,
+        currentPage * duyuruPerPage
+    );
 
     const formatTarih = (tarih: string) => {
         return new Date(tarih).toLocaleDateString('tr-TR', {
@@ -190,55 +331,57 @@ const DuyurularSayfasi: React.FC = () => {
             {/* Main Content */}
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="grid gap-6">
-                    {/* Important Announcements */}
-                    <div className="mb-8">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                            <span className="w-1 h-8 bg-red-500 mr-3"></span>
-                            Güncel Duyurular
-                        </h2>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {filtrelenmisDuyurular.filter(d => d.onemli).map(duyuru => {
-                                const IconComponent = getDuyuruIcon(duyuru.baslik, duyuru.kategori);
-                                return (
-                                    <div key={duyuru.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border-l-4 border-red-500">
-                                        <div className="p-4">
-                                            <div className="flex items-center justify-between mb-2">
-                                                <span className="bg-red-100 text-red-800 text-xs font-medium px-2 py-0.5 rounded">
-                                                    {duyuru.kategori}
-                                                </span>
-                                                <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-                                                    ÖNEMLİ
-                                                </span>
-                                            </div>
-                                            <div className="flex items-start space-x-3 mb-2">
-                                                <IconComponent className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
-                                                <h3 className="text-base font-semibold text-gray-900 line-clamp-2">
-                                                    {duyuru.baslik}
-                                                </h3>
-                                            </div>
-                                            <p className="text-gray-600 text-sm mb-3 line-clamp-3">
-                                                {duyuru.ozet}
-                                            </p>
-                                            <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
-                                                <div className="flex items-center">
-                                                    <Calendar className="w-4 h-4 mr-1" />
-                                                    {formatTarih(duyuru.tarih)}
+                    {/* Important Announcements - sadece ilk sayfada göster */}
+                    {currentPage === 1 && (
+                        <div className="mb-8">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                                <span className="w-1 h-8 bg-red-500 mr-3"></span>
+                                Güncel Duyurular
+                            </h2>
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {filtrelenmisDuyurular.filter(d => d.onemli).map(duyuru => {
+                                    const IconComponent = getDuyuruIcon(duyuru.baslik, duyuru.kategori);
+                                    return (
+                                        <div key={duyuru.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border-l-4 border-red-500">
+                                            <div className="p-4">
+                                                <div className="flex items-center justify-between mb-2">
+                                                    <span className="bg-red-100 text-red-800 text-xs font-medium px-2 py-0.5 rounded">
+                                                        {duyuru.kategori}
+                                                    </span>
+                                                    <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                                                        ÖNEMLİ
+                                                    </span>
                                                 </div>
-                                                <div className="flex items-center">
-                                                    <Eye className="w-4 h-4 mr-1" />
-                                                    {duyuru.okunmaSayisi}
+                                                <div className="flex items-start space-x-3 mb-2">
+                                                    <IconComponent className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
+                                                    <h3 className="text-base font-semibold text-gray-900 line-clamp-2">
+                                                        {duyuru.baslik}
+                                                    </h3>
                                                 </div>
+                                                <p className="text-gray-600 text-sm mb-3 line-clamp-3">
+                                                    {duyuru.ozet}
+                                                </p>
+                                                <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
+                                                    <div className="flex items-center">
+                                                        <Calendar className="w-4 h-4 mr-1" />
+                                                        {formatTarih(duyuru.tarih)}
+                                                    </div>
+                                                    <div className="flex items-center">
+                                                        <Eye className="w-4 h-4 mr-1" />
+                                                        {duyuru.okunmaSayisi}
+                                                    </div>
+                                                </div>
+                                                <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center text-sm">
+                                                    Devamını Oku
+                                                    <ChevronRight className="w-4 h-4 ml-1" />
+                                                </button>
                                             </div>
-                                            <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center text-sm">
-                                                Devamını Oku
-                                                <ChevronRight className="w-4 h-4 ml-1" />
-                                            </button>
                                         </div>
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })}
+                            </div>
                         </div>
-                    </div>
+                    )}
 
                     {/* All Announcements */}
                     <div>
@@ -246,60 +389,99 @@ const DuyurularSayfasi: React.FC = () => {
                             <span className="w-1 h-8 bg-blue-500 mr-3"></span>
                             Tüm Duyurular
                         </h2>
-                        <div className="space-y-6">
-                            {filtrelenmisDuyurular.map(duyuru => {
-                                const IconComponent = getDuyuruIcon(duyuru.baslik, duyuru.kategori);
-                                return (
-                                    <div key={duyuru.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                                        <div className="md:flex">
-                                            <div className="p-6 flex-1">
-                                                <div className="flex items-center justify-between mb-3">
-                                                    <div className="flex items-center space-x-2">
-                                                        <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                                                            {duyuru.kategori}
-                                                        </span>
-                                                        {duyuru.onemli && (
-                                                            <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-                                                                ÖNEMLİ
+                        {/* Animasyonlu kartlar */}
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={currentPage}
+                                initial={{ opacity: 0, x: 40 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -40 }}
+                                transition={{ duration: 0.35, ease: "easeInOut" }}
+                                className="space-y-6"
+                            >
+                                {paginatedDuyurular.map(duyuru => {
+                                    const IconComponent = getDuyuruIcon(duyuru.baslik, duyuru.kategori);
+                                    return (
+                                        <div key={duyuru.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                                            <div className="md:flex">
+                                                <div className="p-6 flex-1">
+                                                    <div className="flex items-center justify-between mb-3">
+                                                        <div className="flex items-center space-x-2">
+                                                            <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
+                                                                {duyuru.kategori}
                                                             </span>
-                                                        )}
+                                                            {duyuru.onemli && (
+                                                                <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                                                                    ÖNEMLİ
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                        <div className="flex items-center text-sm text-gray-500">
+                                                            <Calendar className="w-4 h-4 mr-1" />
+                                                            {formatTarih(duyuru.tarih)}
+                                                        </div>
                                                     </div>
-                                                    <div className="flex items-center text-sm text-gray-500">
-                                                        <Calendar className="w-4 h-4 mr-1" />
-                                                        {formatTarih(duyuru.tarih)}
+                                                    <div className="flex items-start space-x-3 mb-3">
+                                                        <IconComponent className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
+                                                        <h3 className="text-xl font-semibold text-gray-900">
+                                                            {duyuru.baslik}
+                                                        </h3>
                                                     </div>
-                                                </div>
-                                                <div className="flex items-start space-x-3 mb-3">
-                                                    <IconComponent className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
-                                                    <h3 className="text-xl font-semibold text-gray-900">
-                                                        {duyuru.baslik}
-                                                    </h3>
-                                                </div>
-                                                <p className="text-gray-600 mb-4">
-                                                    {duyuru.ozet}
-                                                </p>
-                                                <div className="flex items-center justify-between">
-                                                    <div className="flex items-center text-sm text-gray-500">
-                                                        <Eye className="w-4 h-4 mr-1" />
-                                                        {duyuru.okunmaSayisi} görüntülenme
+                                                    <p className="text-gray-600 mb-4">
+                                                        {duyuru.ozet}
+                                                    </p>
+                                                    <div className="flex items-center justify-between">
+                                                        <div className="flex items-center text-sm text-gray-500">
+                                                            <Eye className="w-4 h-4 mr-1" />
+                                                            {duyuru.okunmaSayisi} görüntülenme
+                                                        </div>
+                                                        <button className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors flex items-center">
+                                                            Devamını Oku
+                                                            <ChevronRight className="w-4 h-4 ml-1" />
+                                                        </button>
                                                     </div>
-                                                    <button className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors flex items-center">
-                                                        Devamını Oku
-                                                        <ChevronRight className="w-4 h-4 ml-1" />
-                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
+                                    );
+                                })}
+                            </motion.div>
+                        </AnimatePresence>
 
-                        {filtrelenmisDuyurular.length === 0 && (
+                        {tumDuyurular.length === 0 && (
                             <div className="text-center py-12">
                                 <Bell className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                                 <h3 className="text-lg font-medium text-gray-900 mb-2">Duyuru bulunamadı</h3>
                                 <p className="text-gray-500">Arama kriterlerinize uygun duyuru bulunmamaktadır.</p>
+                            </div>
+                        )}
+
+                        {/* Pagination */}
+                        {totalPages > 1 && (
+                            <div className="flex justify-center mt-8 gap-2">
+                                <button
+                                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                                    disabled={currentPage === 1}
+                                    className={`px-3 py-1 rounded ${currentPage === 1 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white border hover:bg-gray-100'}`}
+                                >
+                                    &lt;
+                                </button>
+                                {Array.from({ length: totalPages }, (_, i) => (
+                                    <button
+                                        key={i + 1}
+                                        onClick={() => setCurrentPage(i + 1)}
+                                        className={`px-3 py-1 rounded font-semibold ${currentPage === i + 1 ? 'bg-blue-600 text-white' : 'bg-white border hover:bg-gray-100'}`}
+                                    >
+                                        {i + 1}
+                                    </button>
+                                ))}
+                                <button
+                                    onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                                    disabled={currentPage === totalPages}
+                                    className={`px-3 py-1 rounded ${currentPage === totalPages ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white border hover:bg-gray-100'}`}
+                                >
+                                    &gt;
+                                </button>
                             </div>
                         )}
                     </div>

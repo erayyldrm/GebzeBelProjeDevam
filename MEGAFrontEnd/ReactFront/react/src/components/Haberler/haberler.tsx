@@ -25,14 +25,14 @@ const announcements: Announcement[] = [
         title: "Su Kesintisi Duyurusu",
         date: "21 Mayıs 2025",
         description: "Bakım çalışmaları nedeniyle bazı mahallelerde su kesintisi yaşanacaktır.",
-        link: "#",
+        link: "haberlerdetay", // Linki güncelledik
     },
     {
         id: 2,
         title: "Halk Günü Etkinliği",
         date: "23 Mayıs 2025",
         description: "Belediye Başkanı vatandaşlarla bir araya geliyor.",
-        link: "#",
+        link: "haberlerdetay",
 
     },
     {
@@ -40,21 +40,21 @@ const announcements: Announcement[] = [
         title: "Atık Toplama Günleri Değişti",
         date: "25 Mayıs 2025",
         description: "Yeni düzenleme ile mahallelere özel atık toplama günleri belirlendi.",
-        link: "#",
+        link: "haberlerdetay",
     },
     {
         id: 4,
         title: "Park Yenileme Projesi",
         date: "26 Mayıs 2025",
         description: "Şehir merkezindeki parkların bakım ve yenileme çalışmaları başladı.",
-        link: "#",
+        link: "haberlerdetay",
     },
     {
         id: 5,
         title: "İmar Planı Askıya Çıktı",
         date: "28 Mayıs 2025",
         description: "Yeni imar planı vatandaşların incelemesine sunulmuştur.",
-        link: "#",
+        link: "haberlerdetay",
     },
 ];
 
@@ -189,7 +189,8 @@ export default function BlogLayout() {
         category: "GERİ DÖNÜŞÜM",
         categoryClass: "bg-pink-500",
         title: "Gebze Belediyesi olarak doğal kaynakları koruyor, atıkları yeniden değerlendiriyoruz.",
-        date: "Mayıs 29, 2022"
+        date: "Mayıs 29, 2022",
+        link : "haberlerdetay"
     };
 
     const featuredArticles = [
@@ -200,6 +201,7 @@ export default function BlogLayout() {
             categoryClass: "bg-green-600",
             title: "Gebze Belediyesi olarak her yaştan bireyin nitelikli eğitime erişimini önemsiyoruz. Bilgiyle güçlenen bir toplum için eğitim yatırımlarımıza kararlılıkla devam ediyoruz.",
             date: "Mayıs 29, 2022",
+            link : "haberlerdetay"
         },
         {
             id: 2,
@@ -207,7 +209,8 @@ export default function BlogLayout() {
             category: "PROJELER",
             categoryClass: "bg-yellow-500",
             title: "Daha İyi Bir Kent !",
-            date: "Mayıs 29, 2022"
+            date: "Mayıs 29, 2022",
+            link : "haberlerdetay"
         },
         {
             id: 3,
@@ -215,7 +218,8 @@ export default function BlogLayout() {
             category: "SOSYAL YARDIM",
             categoryClass: "bg-blue-600",
             title: "Gebze'de Kimse Yalnız Değil",
-            date: "Mayıs 29, 2022"
+            date: "Mayıs 29, 2022",
+            link : "haberlerdetay"
         }
     ];
 
@@ -228,6 +232,7 @@ export default function BlogLayout() {
             categoryClass: "bg-indigo-500", // Added color class
             title: "Belediyemiz Yeni Projeleri Tanıttı",
             date: "14 Mayıs 2025",
+            link : "haberlerdetay"
         },
         {
             id: 2,
@@ -236,6 +241,7 @@ export default function BlogLayout() {
             categoryClass: "bg-amber-500", // Added color class
             title: "Yaz Şenliği Etkinlikleri Başlıyor",
             date: "10 Mayıs 2025",
+            link : "haberlerdetay"
         },
         {
             id: 3,
@@ -244,6 +250,7 @@ export default function BlogLayout() {
             categoryClass: "bg-green-600", // Same as EĞİTİM
             title: "Başkanımızdan Gençlere Özel Mesaj",
             date: "8 Mayıs 2025",
+            link : "haberlerdetay"
         },
         {
             id: 4,
@@ -252,6 +259,7 @@ export default function BlogLayout() {
             categoryClass: "bg-blue-600", // Same as SOSYAL YARDIM
             title: "Başkanımızdan Sosyal Yardım Destekleri",
             date: "5 Mayıs 2025",
+            link : "haberlerdetay"
         },
     ];
 
@@ -263,6 +271,7 @@ export default function BlogLayout() {
             image: "/images/Haberler/habergörselleri/cevretemizligeridönüsüm/cevre1.jpg",
             category: "Belediye",
             description: "Yeni park hizmete açıldı, vatandaşlardan yoğun ilgi gördü.",
+            link : "haberlerdetay"
         },
         {
             id: 2,
@@ -270,6 +279,7 @@ export default function BlogLayout() {
             image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1.jpg",
             category: "Çevre",
             description: "Temizlik kampanyası geniş katılımla başladı.",
+            link : "haberlerdetay"
         },
         {
             id: 3,
@@ -277,6 +287,7 @@ export default function BlogLayout() {
             image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar.jpg",
             category: "Belediye",
             description: "Belediye meclisinde yeni imar planları oy birliğiyle kabul edildi.",
+            link : "haberlerdetay"
         },
         {
             id: 4,
@@ -284,6 +295,7 @@ export default function BlogLayout() {
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
             category: "Çevre",
             description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+            link : "haberlerdetay"
         },
         {
             id: 5,
@@ -291,6 +303,7 @@ export default function BlogLayout() {
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
             category: "Çevre",
             description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+            link : "haberlerdetay"
         },
         {
             id: 6,
@@ -298,6 +311,7 @@ export default function BlogLayout() {
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
             category: "Çevre",
             description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+            link : "haberlerdetay"
         },
         {
             id: 7,
@@ -305,6 +319,7 @@ export default function BlogLayout() {
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
             category: "Çevre",
             description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+            link : "haberlerdetay"
         },
         {
             id: 8,
@@ -312,6 +327,7 @@ export default function BlogLayout() {
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
             category: "Çevre",
             description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+            link : "haberlerdetay"
         },
         {
             id: 9,
@@ -319,6 +335,7 @@ export default function BlogLayout() {
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
             category: "Çevre",
             description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+            link : "haberlerdetay"
         },
     ];
 
@@ -342,6 +359,16 @@ export default function BlogLayout() {
     // NewsPage component state
     const [activeCategory, setActiveCategory] = useState("Tümü");
     const [isMobile, setIsMobile] = useState(false);
+
+    // Pagination için state
+    const [currentPage, setCurrentPage] = useState(1);
+    const newsPerPage = 6;
+    const maxPages = 5;
+
+    // Kategori değişince sayfa başa dönsün
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [activeCategory]);
 
     // Responsive ekran kontrolü için useEffect kullanımı
     useEffect(() => {
@@ -436,14 +463,26 @@ export default function BlogLayout() {
 
     // Auto-scroll interval
     useInterval(() => {
-        scrollByAmount(scrollAmount);
-    }, 5000); // Scroll every 5 seconds
+        if (sliderRef.current && !isMouseOver.current) {
+            scrollByAmount(scrollAmount);
+        }
+    }, 4000); // 5000ms'den 4000ms'ye değiştirildi
 
     // Filter news by category
     const filteredNews =
         activeCategory === "Tümü"
             ? newsData
             : newsData.filter((news) => news.category === activeCategory);
+
+    // Pagination hesaplamaları
+    const totalPages = Math.min(
+        Math.ceil(filteredNews.length / newsPerPage),
+        maxPages
+    );
+    const paginatedNews = filteredNews.slice(
+        (currentPage - 1) * newsPerPage,
+        currentPage * newsPerPage
+    );
 
     // Handler for navigating to Duyurular page
     interface Article {
@@ -533,15 +572,12 @@ export default function BlogLayout() {
 
     return (
         <div className="min-h-screen bg-gray-100 py-8">
-            {/* AnnouncementsSlider bileşeni eklendi */}
-            <AnnouncementsSlider />
-
             {/* Main Card Container with shadow */}
             <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden relative">
                 {/* Page content with padding */}
                 <div className="px-6 py-6">
                     {/* Main Blog Grid Layout */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6"> {/* mb-12'den mb-6'ya düşürüldü */}
                         {/* Left hero post */}
                         <div className="h-140 flex gap-6">
                             {renderHeroCard(heroPost)}
@@ -567,10 +603,10 @@ export default function BlogLayout() {
                     </div>
 
                     {/* News Slider Section with Duyurular Button - Full width */}
-                    <div className="mb-4">
+                    <div className="mb-1"> {/* mb-2'den mb-1'e düşürüldü */}
                         <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center">
-                                <h2 className="text-xl font-bold mr-4">Son Haberler</h2>
+                                <h2 className="text-3xl font-bold mr-4">Son Haberler</h2>
                                 {/* Navigation Buttons */}
                                 <div className="flex items-center gap-2">
                                     <button
@@ -604,8 +640,8 @@ export default function BlogLayout() {
                                     className="flex space-x-4 w-full overflow-x-auto scroll-smooth"
                                     style={{ scrollbarWidth: "none" }}
                                 >
-                                    {/* Infinite loop with 3 groups of cards */}
-                                    {[...slides, ...slides, ...slides].map((slide, index) => (
+                                    {/* Sonsuz döngü için slide'ları 3 kez tekrarla */}
+                                    {Array(3).fill(slides).flat().map((slide, index) => (
                                         <div
                                             key={`${slide.id}-${index}`}
                                             className="flex-none w-[380px] h-32 bg-white rounded-xl shadow-md flex border border-gray-200"
@@ -620,11 +656,10 @@ export default function BlogLayout() {
                                                 />
                                             </div>
 
-                                            {/* TEXT AREA - Modified to include colored category label */}
+                                            {/* TEXT AREA */}
                                             <div className="w-3/5 px-2 py-1.5 flex flex-col justify-between">
                                                 <div>
                                                     <h3 className="text-xs font-bold line-clamp-2 leading-tight mb-1">{slide.title}</h3>
-                                                    {/* Colored category label BELOW the text as requested */}
                                                     <div className={`text-xs font-semibold text-white px-2 py-0.5 rounded inline-block ${slide.categoryClass}`}>
                                                         {slide.category}
                                                     </div>
@@ -632,6 +667,21 @@ export default function BlogLayout() {
                                                 <div className="flex items-center text-gray-500">
                                                     <Clock size={10} className="mr-1" />
                                                     <span className="text-xs">{slide.date}</span>
+                                                </div>
+                                                <div className="mt-2">
+                                                    <a
+                                                        href="/haberlerdetay"
+                                                        className="flex items-center text-blue-600 hover:underline text-xs font-medium transition"
+                                                        onClick={e => e.stopPropagation()}
+                                                    >
+                                                        {/* "i" ikonunun noktası olan versiyonu */}
+                                                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                                            <circle cx="12" cy="12" r="10" />
+                                                            <line x1="12" y1="16" x2="12" y2="12" />
+                                                            <circle cx="12" cy="8" r="1.2" />
+                                                        </svg>
+                                                        Detaylı Bilgi
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -641,8 +691,13 @@ export default function BlogLayout() {
                         </div>
                         <style>{`::-webkit-scrollbar { display: none; }`}</style>
                     </div>
-                    <br/>
-                    {/* NewsPage Component - Added below the slider with MINIMAL SPACING */}
+
+                    {/* AnnouncementsSlider bileşeni */}
+                    <div className="mt-2 mb-8"> {/* mt-4'ten mt-2'ye düşürüldü */}
+                        <AnnouncementsSlider />
+                    </div>
+
+                    {/* NewsPage Component */}
                     <div className={`${isMobile ? 'w-full px-4 pt-0 pb-4' : 'max-w-full mx-auto pt-0 pb-8'}`}>
                         {/* Kategori Başlıkları - REDUCED TOP MARGIN */}
                         {isMobile ? (
@@ -689,7 +744,7 @@ export default function BlogLayout() {
                         {/* Haber Kartları */}
                         <div className={`grid ${isMobile ? 'grid-cols-1 gap-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'}`}>
                             <AnimatePresence mode="wait">
-                                {filteredNews.map((news) => (
+                                {paginatedNews.map((news) => (
                                     <motion.div
                                         key={news.id}
                                         initial={{ opacity: 0, y: 30 }}
@@ -697,7 +752,7 @@ export default function BlogLayout() {
                                         exit={{ opacity: 0, y: -30 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
                                         layout
-                                        className="bg-gray-50 rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
+                                        className="bg-gray-50 rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full cursor-pointer"
                                     >
                                         {isMobile ? (
                                             <div className="w-full relative pt-[56.25%]">
@@ -723,11 +778,49 @@ export default function BlogLayout() {
                                             <p className={`text-gray-600 mt-2 ${isMobile ? 'text-xs line-clamp-3' : 'text-sm'} flex-grow`}>
                                                 {news.description}
                                             </p>
+                                            <div className="mt-4">
+                                                <a
+                                                    href="/haberlerdetay"
+                                                    className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-medium transition"
+                                                    onClick={e => e.stopPropagation()}
+                                                >
+                                                    Detaylı Bilgi
+                                                </a>
+                                            </div>
                                         </div>
                                     </motion.div>
                                 ))}
                             </AnimatePresence>
                         </div>
+
+                        {/* Pagination */}
+                        {totalPages > 1 && (
+                            <div className="flex justify-center mt-6 gap-2">
+                                <button
+                                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                                    disabled={currentPage === 1}
+                                    className={`px-3 py-1 rounded ${currentPage === 1 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white border hover:bg-gray-100'}`}
+                                >
+                                    &lt;
+                                </button>
+                                {Array.from({ length: totalPages }, (_, i) => (
+                                    <button
+                                        key={i + 1}
+                                        onClick={() => setCurrentPage(i + 1)}
+                                        className={`px-3 py-1 rounded font-semibold ${currentPage === i + 1 ? 'bg-blue-600 text-white' : 'bg-white border hover:bg-gray-100'}`}
+                                    >
+                                        {i + 1}
+                                    </button>
+                                ))}
+                                <button
+                                    onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                                    disabled={currentPage === totalPages}
+                                    className={`px-3 py-1 rounded ${currentPage === totalPages ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white border hover:bg-gray-100'}`}
+                                >
+                                    &gt;
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
