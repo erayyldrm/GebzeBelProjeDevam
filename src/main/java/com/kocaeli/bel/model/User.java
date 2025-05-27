@@ -1,9 +1,11 @@
 package com.kocaeli.bel.model;
-
 import jakarta.persistence.*;
-
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 // User Entity (Updated)
 import lombok.Data;
+
+import java.util.Map;
 
 
 @Data
@@ -26,6 +28,10 @@ public class User {
     private String role;
     @Column(name="STATUS")
     private String status;
+
+    @Column(columnDefinition = "json")
+    private String yetkilerJson;
+
 
     public User(String role, String TCNo, String password) {
         this.role = role;

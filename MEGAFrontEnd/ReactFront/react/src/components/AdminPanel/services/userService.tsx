@@ -8,8 +8,8 @@ export interface User {
     id: number;
     tcno: string;
     isim: string;
-    role: string;
     status: string;
+    yetkilerJson: string;
     password?: string; // Sadece backend'e gönderirken (oluşturma/şifre güncelleme)
 }
 
@@ -44,7 +44,7 @@ export type CreateUserPayload = {
     tcno: string;
     isim?: string;
     password: string;
-    role: string;
+    yetkilerJson: string;
     status?: string;
 };
 
