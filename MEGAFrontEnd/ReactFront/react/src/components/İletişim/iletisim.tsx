@@ -98,7 +98,7 @@ const Contact = () => {
                             {
                                 platform: "Twitter",
                                 icon: "https://images.freeimages.com/image/large-previews/f35/x-twitter-logo-on-black-circle-5694247.png?fmt=webp&h=350",
-                                url: "https://x.com/gebze_belediyesi",
+                                url: "https://x.com/gebze_belediye",
                                 color: "bg-blue-50",
                                 borderColor: "border-blue-300"
                             },
