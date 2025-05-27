@@ -25,14 +25,14 @@ const announcements: Announcement[] = [
         title: "Su Kesintisi Duyurusu",
         date: "21 Mayıs 2025",
         description: "Bakım çalışmaları nedeniyle bazı mahallelerde su kesintisi yaşanacaktır.",
-        link: "haberlerdetay", // Linki güncelledik
+        link: "duyurudetay", // Linki güncelledik
     },
     {
         id: 2,
         title: "Halk Günü Etkinliği",
         date: "23 Mayıs 2025",
         description: "Belediye Başkanı vatandaşlarla bir araya geliyor.",
-        link: "haberlerdetay",
+        link: "duyurudetay",
 
     },
     {
@@ -40,21 +40,21 @@ const announcements: Announcement[] = [
         title: "Atık Toplama Günleri Değişti",
         date: "25 Mayıs 2025",
         description: "Yeni düzenleme ile mahallelere özel atık toplama günleri belirlendi.",
-        link: "haberlerdetay",
+        link: "duyurudetay",
     },
     {
         id: 4,
         title: "Park Yenileme Projesi",
         date: "26 Mayıs 2025",
         description: "Şehir merkezindeki parkların bakım ve yenileme çalışmaları başladı.",
-        link: "haberlerdetay",
+        link: "duyurudetay",
     },
     {
         id: 5,
         title: "İmar Planı Askıya Çıktı",
         date: "28 Mayıs 2025",
         description: "Yeni imar planı vatandaşların incelemesine sunulmuştur.",
-        link: "haberlerdetay",
+        link: "duyurudetay",
     },
 ];
 
