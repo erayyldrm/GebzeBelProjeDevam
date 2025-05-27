@@ -11,6 +11,7 @@ interface Duyuru {
     kategori: string;
     okunmaSayisi: number;
     onemli: boolean;
+    link?: string;
 }
 
 const DuyurularSayfasi: React.FC = () => {
@@ -35,7 +36,8 @@ const DuyurularSayfasi: React.FC = () => {
             tarih: "2024-05-20",
             kategori: "Çevre",
             okunmaSayisi: 1250,
-            onemli: true
+            onemli: true,
+
         },
         {
             id: 2,
@@ -111,15 +113,6 @@ const DuyurularSayfasi: React.FC = () => {
         },
         {
             id: 10,
-            baslik: "Yol Bakım ve Onarım Çalışmaları",
-            ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
-            tarih: "2024-05-10",
-            kategori: "Ulaşım",
-            okunmaSayisi: 1890,
-            onemli: false
-        },
-        {
-            id: 11,
             baslik: "Yol Bakım ve Onarım Çalışmaları",
             ozet: "Şehrin ana arterlerinde başlayacak asfalt ve bakım çalışmaları hakkında bilgilendirme.",
             tarih: "2024-05-10",
@@ -371,7 +364,10 @@ const DuyurularSayfasi: React.FC = () => {
                                                         {duyuru.okunmaSayisi}
                                                     </div>
                                                 </div>
-                                                <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center text-sm">
+                                                <button
+                                                    className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center text-sm"
+                                                    onClick={() => window.location.href = "/duyurudetay"}
+                                                >
                                                     Devamını Oku
                                                     <ChevronRight className="w-4 h-4 ml-1" />
                                                 </button>
@@ -435,7 +431,10 @@ const DuyurularSayfasi: React.FC = () => {
                                                             <Eye className="w-4 h-4 mr-1" />
                                                             {duyuru.okunmaSayisi} görüntülenme
                                                         </div>
-                                                        <button className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors flex items-center">
+                                                        <button
+                                                            className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+                                                            onClick={() => window.location.href = "/duyurudetay"}
+                                                        >
                                                             Devamını Oku
                                                             <ChevronRight className="w-4 h-4 ml-1" />
                                                         </button>

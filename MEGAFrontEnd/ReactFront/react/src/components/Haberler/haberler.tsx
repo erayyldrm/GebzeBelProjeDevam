@@ -699,10 +699,10 @@ export default function BlogLayout() {
 
                     {/* NewsPage Component */}
                     <div className={`${isMobile ? 'w-full px-4 pt-0 pb-4' : 'max-w-full mx-auto pt-0 pb-8'}`}>
-                        {/* Kategori Başlıkları - REDUCED TOP MARGIN */}
+                        {/* Kategori Başlıkları - sağa yaslı */}
                         {isMobile ? (
                             <div className="mb-4 overflow-x-auto pb-2">
-                                <div className="flex w-max gap-2 pl-4">
+                                <div className="flex w-max gap-2 pl-4 justify-end">
                                     {categories.map((category) => (
                                         <button
                                             key={category}
@@ -721,7 +721,7 @@ export default function BlogLayout() {
                                 </div>
                             </div>
                         ) : (
-                            <div className="flex flex-wrap gap-3 mb-6 justify-start ml-4">
+                            <div className="flex flex-wrap gap-3 mb-6 justify-end mr-4">
                                 {categories.map((category) => (
                                     <button
                                         key={category}

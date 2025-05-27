@@ -1,39 +1,64 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+// İkonlar
+import { TreePine, Users, Heart, Music, Car, Leaf, Bell, BookOpen, GraduationCap, Dumbbell, Building2, Stethoscope } from "lucide-react";
 
 // Son Haberler için örnek veri (API'den çekilebilir)
 const mockSonHaberler = [
     {
         id: 1,
         baslik: "Gebze'de Yeni Park Alanı Hizmete Açıldı",
+        kategori: "Çevre",
         gorsel: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1.jpg",
     },
     {
         id: 2,
         baslik: "Spor Kompleksi Açılışı",
+        kategori: "Sosyal Hizmetler",
         gorsel: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1-2.jpg",
     },
     {
         id: 3,
         baslik: "Çevre Temizlik Kampanyası",
+        kategori: "Çevre",
         gorsel: "/images/Haberler/habergörselleri/cevretemizligeridönüsüm/cevre1.jpg",
     },
     {
         id: 4,
         baslik: "Gençlik Festivali Başladı",
+        kategori: "Kültür",
         gorsel: "/images/Haberler/habergörselleri/egitimvegenclik/egitim2.jpg",
     },
     {
         id: 5,
         baslik: "Yeni Kütüphane Açıldı",
+        kategori: "Kültür",
         gorsel: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
     },
     {
         id: 6,
         baslik: "Gebze'de Sağlık Semineri Düzenlendi",
+        kategori: "Toplantı",
         gorsel: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
     },
 ];
+
+// Başlığa uygun ve farklı ikon seçici
+const getHaberIcon = (baslik: string, kategori: string) => {
+    const b = baslik.toLowerCase();
+    if (b.includes('park') || b.includes('yeşil')) return TreePine;
+    if (b.includes('temizlik') || b.includes('çevre')) return Leaf;
+    if (b.includes('meclis') || b.includes('toplantı') || kategori === "Toplantı") return Users;
+    if (b.includes('sosyal') || b.includes('yardım')) return Heart;
+    if (b.includes('kültür') || b.includes('etkinlik') || b.includes('konser')) return Music;
+    if (b.includes('yol') || b.includes('ulaşım') || b.includes('asfalt')) return Car;
+    if (b.includes('kütüphane') || b.includes('kitap')) return BookOpen;
+    if (b.includes('gençlik') || b.includes('festival')) return GraduationCap;
+    if (b.includes('spor') || b.includes('turnuva') || b.includes('kompleks')) return Dumbbell;
+    if (b.includes('sağlık') || b.includes('hastane') || b.includes('semineri')) return Stethoscope;
+    if (b.includes('belediye') || b.includes('bina')) return Building2;
+    return Bell;
+};
 
 // SonHaberlerSlider: Alt alta 6 haber ve geçiş süresi uzatıldı (4000ms)
 const SonHaberlerSlider = ({ haberler, navigate }: { haberler: typeof mockSonHaberler, navigate: any }) => {
@@ -61,39 +86,39 @@ const SonHaberlerSlider = ({ haberler, navigate }: { haberler: typeof mockSonHab
 
     return (
         <div className="relative w-full flex flex-col items-center min-h-[520px]">
-            <h2 className="text-xl font-bold text-gray-800 mb-4 mt-2">Son Haberler</h2>
-            <div className="flex-1 flex flex-col gap-1 w-full transition-all duration-500 ease-in-out">
-                {visibleHaberler.map((haber, idx) => (
-                    <div
-                        key={haber.id + "-" + current}
-                        className="flex items-center w-full bg-transparent rounded-lg p-2 transition-all duration-500 ease-in-out"
-                        style={{
-                            opacity: 1,
-                            transform: `translateY(0px)`,
-                            marginTop: idx === 0 ? "0.25rem" : "0",
-                        }}
-                    >
-                        <img
-                            src={haber.gorsel}
-                            alt={haber.baslik}
-                            className="w-16 h-16 object-cover rounded-lg mr-3 shadow"
-                        />
-                        <div className="flex flex-col flex-1">
-                            <span className="text-gray-700 font-medium text-sm line-clamp-2">{haber.baslik}</span>
-                            <button
-                                onClick={() => navigate(`/haberdetay/${haber.id}`)}
-                                className="flex items-center text-blue-600 hover:underline text-xs mt-1 self-start"
-                            >
-                                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <line x1="12" y1="8" x2="12" y2="12" />
-                                    <circle cx="12" cy="16" r="1" />
-                                </svg>
-                                Detaylı Bilgi
-                            </button>
+            <h2 className="text-xl font-bold text-gray-800 mb-4 mt-2">Son Duyurular</h2>
+            <div className="flex-1 flex flex-col gap-2 w-full transition-all duration-500 ease-in-out">
+                {visibleHaberler.map((haber, idx) => {
+                    const IconComponent = getHaberIcon(haber.baslik, haber.kategori);
+                    return (
+                        <div
+                            key={haber.id + "-" + current}
+                            className="flex items-center w-full bg-white border border-gray-200 rounded-lg p-2 shadow-sm transition-all duration-500 ease-in-out"
+                            style={{
+                                opacity: 1,
+                                transform: `translateY(0px)`,
+                                marginTop: idx === 0 ? "0.25rem" : "0",
+                            }}
+                        >
+                            {/* Resim yerine ikon, biraz küçültüldü */}
+                            <IconComponent className="w-10 h-10 text-blue-600 mr-3 flex-shrink-0" />
+                            <div className="flex flex-col flex-1">
+                                <span className="text-gray-700 font-medium text-sm line-clamp-2">{haber.baslik}</span>
+                                <button
+                                    onClick={() => navigate(`/haberdetay/${haber.id}`)}
+                                    className="flex items-center text-blue-600 hover:underline text-xs mt-1 self-start"
+                                >
+                                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <line x1="12" y1="8" x2="12" y2="12" />
+                                        <circle cx="12" cy="16" r="1" />
+                                    </svg>
+                                    Detaylı Bilgi
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         </div>
     );
@@ -165,12 +190,22 @@ const HaberDetay = () => {
                         {/* Görsel slider */}
                         <div className="w-full flex flex-col items-center mb-6">
                             <div className="relative w-full flex items-center justify-center">
+                                <button onClick={goPrev} className="absolute left-0 p-2 bg-white/80 rounded-full shadow hover:bg-white transition-colors">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
                                 <img
                                     src={detayGorseller[selectedIndex]}
                                     alt="Haber görseli"
                                     className="w-full max-h-[500px] object-cover rounded-lg shadow-md"
                                     style={{ maxWidth: 900, aspectRatio: "3/2" }}
                                 />
+                                <button onClick={goNext} className="absolute right-0 p-2 bg-white/80 rounded-full shadow hover:bg-white transition-colors">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
                             </div>
                             {/* Alt galeri: küçük resimler, genişlik üstteki resimle aynı ve karta sığıyor */}
                             <div className="flex justify-center mt-4 w-full">
