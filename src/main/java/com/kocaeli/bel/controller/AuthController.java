@@ -68,7 +68,7 @@ public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
                     .body(Map.of(
                             "status", "success",
                             "data", loginResponse,
-                            "role", user.getRole()
+                            "YetkilerJson", user.getYetkilerJson()
                     ));
         } catch (Exception e) {
             System.out.println("Authentication error: " + e.getMessage());
