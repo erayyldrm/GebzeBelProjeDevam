@@ -91,6 +91,8 @@ public class UserService {
             // Şifreyi hashle
             user.setPassword(passwordEncoder.encode(user.getPassword()));
 
+            objectMapper.readTree(defaultYetkilerJson); // JSON geçerli mi?
+
             // Default yetkileri ata
             if (user.getYetkilerJson() == null || user.getYetkilerJson().isEmpty()) {
                 user.setYetkilerJson(defaultYetkilerJson);
@@ -98,6 +100,7 @@ public class UserService {
 
             return userRepository.save(user);
         } catch (Exception e) {
+            e.printStackTrace(); // Hata detayını gör
             throw new RuntimeException("Kullanıcı kaydı sırasında bir hata oluştu", e);
         }
 
