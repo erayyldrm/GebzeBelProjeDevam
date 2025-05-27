@@ -8,7 +8,6 @@ import com.kocaeli.bel.exception.UserAlreadyExistsException; // Bu exception'ı 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UsernameNotFoundException; // Bu exception'ı yakalamak için
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +39,7 @@ public class UserController {
         dto.setId(user.getId());
         dto.setTcno(user.getTCNo()); // User modelinizde getTCNo() olmalı
         dto.setIsim(user.getIsim()); // User modelinizde getIsim() olmalı
-        dto.setRole(user.getRole());
+        dto.setYetkilerJson(user.getYetkilerJson());
         dto.setStatus(user.getStatus()); // User modelinizde getStatus() olmalı
         return dto;
     }
@@ -93,7 +92,7 @@ public class UserController {
             // UserDTO'dan gelen bilgileri User entity'sine aktar
             user.setTCNo(userDTO.getTcno()); // UserDTO'da getTcNo() olmalı
             user.setIsim(userDTO.getIsim()); // UserDTO'da getIsim(), User'da setIsim() olmalı
-            user.setRole(userDTO.getRole());   // UserDTO'da getRole(), User'da setRole() olmalı
+            user.setYetkilerJson(userDTO.getYetkilerJson());   // UserDTO'da getRole(), User'da setRole() olmalı
             user.setStatus(userDTO.getStatus());// UserDTO'da getStatus(), User'da setStatus() olmalı
             user.setPassword(userDTO.getPassword()); // UserDTO'da getPassword(), User'da setPassword() olmalı
 
@@ -126,7 +125,7 @@ public class UserController {
         User existingUser = userOptional.get();
         // Update fields regardless of null (but handle empty strings)
         existingUser.setIsim(userDetailsDTO.getIsim() != null ? userDetailsDTO.getIsim() : existingUser.getIsim());
-        existingUser.setRole(userDetailsDTO.getRole() != null ? userDetailsDTO.getRole() : existingUser.getRole());
+        existingUser.setYetkilerJson(userDetailsDTO.getYetkilerJson() != null ? userDetailsDTO.getYetkilerJson() : existingUser.getYetkilerJson());
         existingUser.setStatus(userDetailsDTO.getStatus() != null ? userDetailsDTO.getStatus() : existingUser.getStatus());
 
         User updatedUser = userService.saveUser(existingUser);
@@ -153,5 +152,10 @@ public class UserController {
             // Şimdilik genel bir 500 varsayalım.
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @PutMapping("/{id}/yetkileri-sifirla")
+    public User yetkileriSifirla(@PathVariable Long id) {
+        return userService.yetkileriSifirla(id);
     }
 }

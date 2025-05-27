@@ -1,6 +1,7 @@
 package com.kocaeli.bel.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -48,5 +49,12 @@ public class HibernateConfig {
         properties.setProperty("hibernate.format_sql", "true");
 
         return properties;
+    }
+    @Bean
+    public HibernatePropertiesCustomizer hibernatePropertiesCustomizer() {
+        return properties -> {
+            properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle12cDialect");
+            properties.put("hibernate.jdbc.lob.non_contextual_creation", "true");
+        };
     }
 }

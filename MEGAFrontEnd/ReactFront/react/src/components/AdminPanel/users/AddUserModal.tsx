@@ -4,8 +4,7 @@ import { User } from '../services/userService.tsx';
 import { X } from 'lucide-react';
 import {createUser} from '../services/userService.tsx';
 
-// Düzenlenebilir roller (Filtrelerdeki "All Roles" hariç)
-const assignableRoleOptions = ['Admin', 'Editor', 'User'];
+
 // Düzenlenebilir statüler (Filtrelerdeki "All Status" hariç)
 const assignableStatusOptions = ['Active', 'Inactive', 'Pending'];
 
@@ -16,14 +15,21 @@ interface AddUserModalProps {
     onClose: () => void;
     onAdd: (newUser: User) => void;
 }
+const defaultYetkiler = {
+    "kurumsal": {"goruntuleme": true, "duzenleme": false, "ekleme": false},
+    "gebze": {"goruntuleme": true, "duzenleme": false},
+    "hizmetler": {"goruntuleme": true, "duzenleme": false, "silme": false}
+};
+
 
 export default function AddUserModal({ isOpen, onClose, onAdd }: AddUserModalProps) {
     const [formData, setFormData] = useState<Partial<User>>({
         tcno: '',
         isim: '',
         password: '',
-        role: assignableRoleOptions[0],
         status: assignableStatusOptions[0],
+        yetkilerJson: JSON.stringify(defaultYetkiler),
+
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -44,12 +50,12 @@ export default function AddUserModal({ isOpen, onClose, onAdd }: AddUserModalPro
         setErrorMessage(null);
 
         try {
-            if (formData.tcno && formData.isim && formData.password && formData.role && formData.status) {
+            if (formData.tcno && formData.isim && formData.password && formData.yetkilerJson && formData.status) {
                 const newUserData = {
                     tcno: formData.tcno,
                     isim: formData.isim,
                     password: formData.password,
-                    role: formData.role,
+                    yetkilerJson: formData.yetkilerJson,
                     status: formData.status,
                 };
 
@@ -77,7 +83,6 @@ export default function AddUserModal({ isOpen, onClose, onAdd }: AddUserModalPro
             tcno: '',
             isim: '',
             password: '',
-            role: assignableRoleOptions[0],
             status: assignableStatusOptions[0],
         });
         setErrorMessage(null);
@@ -149,41 +154,31 @@ export default function AddUserModal({ isOpen, onClose, onAdd }: AddUserModalPro
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
-                            Rol
-                        </label>
-                        <select
-                            id="role"
-                            name="role"
-                            value={formData.role || ''}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
-                        >
-                            {assignableRoleOptions.map((option) => (
-                                <option key={option} value={option}>
-                                    {option}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="mb-6">
                         <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">
-                            Statü
+                            Status
                         </label>
                         <select
                             id="status"
                             name="status"
-                            value={formData.status || ''}
+                            value={formData.status}
                             onChange={handleChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         >
-                            {assignableStatusOptions.map((option) => (
-                                <option key={option} value={option}>
-                                    {option}
+                            {assignableStatusOptions.map((status) => (
+                                <option key={status} value={status}>
+                                    {status}
                                 </option>
                             ))}
                         </select>
                     </div>
+
+                    {/* Yetkiler alanını gizli input olarak ekleyelim */}
+                    <input
+                        type="hidden"
+                        name="yetkilerJson"
+                        value={formData.yetkilerJson}
+                    />
+
                     <div className="flex justify-end gap-3">
                         <button
                             type="button"
