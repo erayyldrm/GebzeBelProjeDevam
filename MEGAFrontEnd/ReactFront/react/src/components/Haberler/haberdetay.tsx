@@ -130,6 +130,50 @@ const HaberDetay = () => {
     // Galeri slider state
     const [selectedIndex, setSelectedIndex] = useState(0);
 
+    // Sürekli sağa doğru kayan slider için
+    const thumbCount = 6;
+    const thumbWidth = 150 + 8; // 150px + 8px gap
+    const hasGorsel = Array.isArray(detayGorseller) && detayGorseller.length > 0;
+
+    // Sonsuz döngü için başa ve sona thumbCount kadar ekle (en az thumbCount kadar görsel varsa)
+    const extendedThumbs = hasGorsel && detayGorseller.length > thumbCount
+        ? [
+            ...detayGorseller.slice(-thumbCount),
+            ...detayGorseller,
+            ...detayGorseller.slice(0, thumbCount)
+        ]
+        : detayGorseller;
+
+    const initialOffset = hasGorsel && detayGorseller.length > thumbCount ? thumbCount * thumbWidth : 0;
+    const sliderWidth = extendedThumbs.length * thumbWidth;
+
+    // Sürekli kayan slider için scrollX state'i
+    const [scrollX, setScrollX] = useState(initialOffset);
+
+    useEffect(() => {
+        if (!hasGorsel || detayGorseller.length <= thumbCount) return;
+        setScrollX(initialOffset);
+        let raf: number;
+        let lastTime = performance.now();
+
+        const animate = (now: number) => {
+            const delta = now - lastTime;
+            lastTime = now;
+            setScrollX(prev => {
+                let next = prev - delta * 0.04; // Hızı burada ayarlayabilirsin (daha küçük daha yavaş)
+                // Sonsuz loop için, başa sar
+                const minX = -((detayGorseller.length) * thumbWidth) + initialOffset;
+                if (next <= minX) {
+                    return initialOffset;
+                }
+                return next;
+            });
+            raf = requestAnimationFrame(animate);
+        };
+        raf = requestAnimationFrame(animate);
+        return () => cancelAnimationFrame(raf);
+    }, [detayGorseller.length, hasGorsel, initialOffset, thumbCount, thumbWidth]);
+
     // Seçilen resmi ortaya kaydırmak için
     const handleThumbClick = (idx: number) => {
         setSelectedIndex(idx);
@@ -165,48 +209,74 @@ const HaberDetay = () => {
                         {/* Görsel slider */}
                         <div className="w-full flex flex-col items-center mb-6">
                             <div className="relative w-full flex items-center justify-center">
-                                <img
-                                    src={detayGorseller[selectedIndex]}
-                                    alt="Haber görseli"
-                                    className="w-full max-h-[500px] object-cover rounded-lg shadow-md"
-                                    style={{ maxWidth: 900, aspectRatio: "3/2" }}
-                                />
+                                {hasGorsel && (
+                                    <img
+                                        src={detayGorseller[selectedIndex]}
+                                        alt="Haber görseli"
+                                        className="w-full max-h-[500px] object-cover rounded-lg shadow-md"
+                                        style={{ maxWidth: 900, aspectRatio: "3/2" }}
+                                    />
+                                )}
                             </div>
-                            {/* Alt galeri: küçük resimler, genişlik üstteki resimle aynı ve karta sığıyor */}
-                            <div className="flex justify-center mt-4 w-full">
-                                <div
-                                    className="flex gap-2 w-full"
-                                    style={{
-                                        maxWidth: 900,
-                                    }}
-                                >
-                                    {detayGorseller.map((gorsel, idx) => (
-                                        <button
-                                            key={gorsel}
-                                            onClick={() => handleThumbClick(idx)}
-                                            className={`border-2 rounded-lg transition-all duration-200 flex-1`}
+                            {/* Alt galeri: 6'lı sürekli sağa kayan, loop'lu, blur'suz slider */}
+                            {hasGorsel && detayGorseller.length > 1 && (
+                                <div className="flex justify-center items-center mt-4 w-full overflow-hidden">
+                                    <div
+                                        className="flex items-center gap-2 w-full"
+                                        style={{
+                                            maxWidth: 900,
+                                            width: "900px",
+                                            overflow: "hidden",
+                                            position: "relative"
+                                        }}
+                                    >
+                                        <div
+                                            className="flex items-center gap-2"
                                             style={{
-                                                background: "none",
-                                                border: selectedIndex === idx ? "2px solid #2563eb" : "2px solid transparent",
-                                                boxShadow: selectedIndex === idx ? "0 0 0 2px #2563eb" : undefined,
-                                                padding: 0,
+                                                transform: `translateX(${scrollX}px)`,
+                                                transition: "none",
+                                                width: `${sliderWidth}px`
                                             }}
                                         >
-                                            <img
-                                                src={gorsel}
-                                                alt={`Galeri ${idx + 1}`}
-                                                className={`object-cover rounded-lg ${selectedIndex === idx ? "opacity-100" : "opacity-70"}`}
-                                                style={{
-                                                    width: "100%",
-                                                    height: 80,
-                                                    aspectRatio: "3/2",
-                                                    maxWidth: "100%",
-                                                }}
-                                            />
-                                        </button>
-                                    ))}
+                                            {extendedThumbs.map((gorsel, idx) => {
+                                                let actualIndex = (idx - thumbCount + detayGorseller.length) % detayGorseller.length;
+                                                if (actualIndex < 0) actualIndex += detayGorseller.length;
+                                                return (
+                                                    <button
+                                                        key={`${gorsel}-${idx}`}
+                                                        onClick={() => setSelectedIndex(actualIndex)}
+                                                        className="border-2 rounded-lg transition-all duration-200 flex-shrink-0"
+                                                        style={{
+                                                            background: "none",
+                                                            border: selectedIndex === actualIndex ? "3px solid #2563eb" : "3px solid transparent",
+                                                            padding: 0,
+                                                            width: "150px",
+                                                            minWidth: 0,
+                                                            maxWidth: "100%",
+                                                            transition: "border 0.3s",
+                                                            cursor: "pointer",
+                                                            opacity: 1 // BLUR YOK
+                                                        }}
+                                                        tabIndex={0}
+                                                    >
+                                                        <img
+                                                            src={gorsel}
+                                                            alt={`Galeri ${actualIndex + 1}`}
+                                                            className="object-cover rounded-lg transition-all duration-200"
+                                                            style={{
+                                                                width: "100%",
+                                                                height: "80px",
+                                                                aspectRatio: "3/2",
+                                                                transition: "opacity 0.3s"
+                                                            }}
+                                                        />
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                         <div className="text-gray-700 leading-relaxed text-justify">
                             {haber.icerik.map((paragraf, index) => (
