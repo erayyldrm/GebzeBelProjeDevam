@@ -216,6 +216,12 @@ export const PageAPI = {
             delete pageWithDelta.status; // Backend'e status gönderme
         }
 
+        // İçeriği boş string olarak göndermek yerine undefined gönderilirse backend güncellemeyebilir,
+        // bu yüzden content alanı her zaman string olmalı
+        if (typeof pageWithDelta.content !== 'string') {
+            pageWithDelta.content = '';
+        }
+
         const response = await apiClient.put(`/api/pages/${id}`, pageWithDelta);
         return response.data;
     },
