@@ -1,7 +1,9 @@
 package com.kocaeli.bel.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kocaeli.bel.DTO.UserDTO; // UserDTO'nuzun bu pakette olduğunu varsayalım
 import com.kocaeli.bel.model.User;   // User modelinizin bu pakette olduğunu varsayalım
+import com.kocaeli.bel.service.PermissionService;
 import com.kocaeli.bel.service.UserService;
 import com.kocaeli.bel.exception.UserAlreadyExistsException; // Bu exception'ı yakalamak için
 
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -27,6 +30,7 @@ import java.util.Optional;
 public class UserController {
 
     private final UserService userService;
+    private final PermissionService permissionService;
 
     // UserDTO'nun isim ve status alanlarını da içerecek şekilde constructor'ı veya setter'ları olmalı.
     // Bu yardımcı metod User entity'sini UserDTO'ya dönüştürür (yanıtlar için).
@@ -45,8 +49,9 @@ public class UserController {
     }
 
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PermissionService permissionService) {
         this.userService = userService;
+        this.permissionService = permissionService;
     }
 
     /**
@@ -55,7 +60,6 @@ public class UserController {
      * @return Kullanıcı DTO listesi ve HTTP 200 OK durumu.
      */
     @GetMapping
-    @PreAuthorize("hasRole('Admin')")
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         // UserService.getAllUsers() zaten List<UserDTO> döndürüyor.
         // Bu DTO'nun içeriği (id, tcNo, role) servisiniz tarafından belirleniyor.
@@ -92,7 +96,10 @@ public class UserController {
             // UserDTO'dan gelen bilgileri User entity'sine aktar
             user.setTCNo(userDTO.getTcno()); // UserDTO'da getTcNo() olmalı
             user.setIsim(userDTO.getIsim()); // UserDTO'da getIsim(), User'da setIsim() olmalı
-            user.setYetkilerJson(userDTO.getYetkilerJson());   // UserDTO'da getRole(), User'da setRole() olmalı
+            // Default yetkileri atayalım
+            Map<String, Map<String, Boolean>> defaultPermissions = permissionService.getDefaultPermissions();
+            user.setYetkilerJson(convertPermissionsToJson(defaultPermissions));
+
             user.setStatus(userDTO.getStatus());// UserDTO'da getStatus(), User'da setStatus() olmalı
             user.setPassword(userDTO.getPassword()); // UserDTO'da getPassword(), User'da setPassword() olmalı
 
@@ -131,7 +138,16 @@ public class UserController {
         User updatedUser = userService.saveUser(existingUser);
         return ResponseEntity.ok(convertToDTO(updatedUser));
     }
-
+    // Yardımcı metod: Permissions Map'i JSON string'e çevirir
+    private String convertPermissionsToJson(Map<String, Map<String, Boolean>> permissions) {
+        try {
+            // Gerçek uygulamada ObjectMapper kullanın
+             ObjectMapper mapper = new ObjectMapper();
+             return mapper.writeValueAsString(permissions);
+        } catch (Exception e) {
+            return "{}";
+        }
+    }
     /**
      * Belirli bir ID'ye sahip kullanıcıyı siler.
      * @param id Silinecek kullanıcının ID'si.
@@ -154,8 +170,20 @@ public class UserController {
         }
     }
 
+    // Yetkileri sıfırlama endpoint'ini güncelleyelim
     @PutMapping("/{id}/yetkileri-sifirla")
-    public User yetkileriSifirla(@PathVariable Long id) {
-        return userService.yetkileriSifirla(id);
+    public ResponseEntity<UserDTO> yetkileriSifirla(@PathVariable Long id) {
+        Optional<User> userOptional = userService.getUserById(id);
+        if (userOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        User user = userOptional.get();
+        // Default yetkileri atayalım
+        Map<String, Map<String, Boolean>> defaultPermissions = permissionService.getDefaultPermissions();
+        user.setYetkilerJson(convertPermissionsToJson(defaultPermissions));
+
+        User updatedUser = userService.saveUser(user);
+        return ResponseEntity.ok(convertToDTO(updatedUser));
     }
 }

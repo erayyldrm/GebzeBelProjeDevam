@@ -4,7 +4,7 @@ import Users from "./users/User2.tsx";
 import Dashboard from './HomePanel.tsx';
 import Sayfalar from './sayfalar/template_sayfalar.tsx'
 import {SearchProvider} from './context/SearchContext.tsx';
-import {isAuthenticated, isAdmin, setupAuthListener} from './services/authService.tsx';
+import {isAuthenticated, setupAuthListener} from './services/authService.tsx';
 import KurumsalSayfa from './sayfalar/sayfaKurumsal.tsx';
 import EditSayfa from './sayfalar/editpage.tsx';
 
@@ -16,10 +16,6 @@ const AdminRoute = () => {
         return <Navigate to="/login"/>;
     }
 
-    if (!isAdmin()) {
-
-        return <Navigate to="/unauthorized" replace />;
-    }
 
     return <Outlet />; // This will render the child routes
 };

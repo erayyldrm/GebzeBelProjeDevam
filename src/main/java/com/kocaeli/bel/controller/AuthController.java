@@ -1,4 +1,3 @@
-// Put this in src/main/java/com/kocaeli/bel/controller/AuthController.java
 package com.kocaeli.bel.controller;
 
 import com.kocaeli.bel.DTO.LoginResponse;
@@ -25,7 +24,7 @@ import java.util.Map;
 public class AuthController {
 
     @Autowired
-    private UserService userService; // Inject UserService
+    private UserService userService;
 
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
@@ -39,39 +38,33 @@ public class AuthController {
     @Autowired
     private UserRepository userRepository;
 
-   @PostMapping("/login")
-public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-    try {
-        // Log login attempt
-        // System.out.println("Login attempt for username: " + loginRequest.getUsername());
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        try {
+            // Create authentication object
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequest.getUsername(),
+                            loginRequest.getPassword()
+                    )
+            );
 
-        // Create authentication object
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
-                )
-        );
+            // Generate JWT token
+            String token = jwtTokenProvider.generateToken(authentication);
 
-        // Generate JWT token using your provider
-        String token = jwtTokenProvider.generateToken(authentication);
-
-        // Now fetch your domain User object using the repository
-        User user = userService.authenticate(loginRequest.getUsername())
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            // Fetch user object
+            User user = userService.authenticate(loginRequest.getUsername())
+                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
             // Create login response
             LoginResponse loginResponse = new LoginResponse(token, user.getTCNo());
-            // System.out.println("Tokentest: " + token);
 
             return ResponseEntity.ok()
                     .body(Map.of(
                             "status", "success",
-                            "data", loginResponse,
-                            "YetkilerJson", user.getYetkilerJson()
+                            "data", loginResponse
                     ));
         } catch (Exception e) {
-            System.out.println("Authentication error: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Map.of("status", "error", "message", "Geçersiz kullanıcı adı veya şifre"));
         }
@@ -80,20 +73,17 @@ public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterHandler registerRequest) {
         try {
-            // Create new user object from request data
+            if (userRepository.findByTCNo(registerRequest.getTCNo()).isPresent()) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body(Map.of("status", "error", "message", "Bu TC No ile kayıtlı kullanıcı zaten var"));
+            }
+
             User user = new User();
             user.setTCNo(registerRequest.getTCNo());
-            user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+            user.setPassword(registerRequest.getPassword()); // Do NOT hash here
+            user.setStatus("ACTIVE");
 
-
-            //user.setPassword(registerRequest.getPassword());
-            // Create new user through service
-
-            // For debugging
-            System.out.println("TCNo: " + registerRequest.getTCNo());
-
-            User newUser = userService.registerUser(user);
-
+            User newUser = userService.registerUser(user); // Hash in service
 
             return ResponseEntity.ok()
                     .body(Map.of("status", "success", "data", newUser));

@@ -1,12 +1,7 @@
 package com.kocaeli.bel.model;
+
 import jakarta.persistence.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
-// User Entity (Updated)
 import lombok.Data;
-
-import java.util.Map;
-
 
 @Data
 @Entity
@@ -14,45 +9,51 @@ import java.util.Map;
 public class User {
 
     @Id
-    @Column(name ="ID")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name ="TCNO", unique = true)
+    @Column(name = "TCNO", unique = true)
     private String TCNo;
-    @Column(name="ISIM")
+
+    @Column(name = "ISIM")
     private String isim;
-    @Column(name ="PASSWORD")
+
+    @Column(name = "PASSWORD")
     private String password;
-    @Column(name ="ROLE")
-    private String role;
-    @Column(name="STATUS")
+
+    @Column(name = "STATUS")
     private String status;
 
     @Column(columnDefinition = "json")
     private String yetkilerJson;
 
+    // Default constructor
+    public User() {
+    }
 
-    public User(String role, String TCNo, String password) {
-        this.role = role;
+    // Constructor with basic fields
+    public User(String TCNo, String password) {
         this.TCNo = TCNo;
         this.password = password;
     }
 
+    // Constructor with ID
     public User(Long id, String TCNo, String password) {
         this.id = id;
         this.TCNo = TCNo;
         this.password = password;
     }
 
-    public User(String password, String TCNo) {
-        this.password = password;
-        this.TCNo = TCNo;
+    // Copy constructor - FIXED
+    public User(User user) {
+        if (user != null) {
+            this.id = user.id;
+            this.TCNo = user.TCNo;
+            this.isim = user.isim;
+            this.password = user.password;
+            this.status = user.status;
+            this.yetkilerJson = user.yetkilerJson;
+        }
     }
-
-    public User() {
-
-    }
-
-
 }

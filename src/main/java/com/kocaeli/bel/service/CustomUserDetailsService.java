@@ -2,48 +2,46 @@ package com.kocaeli.bel.service;
 
 import com.kocaeli.bel.model.User;
 import com.kocaeli.bel.repository.UserRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service // Spring tarafından otomatik olarak bileşen olarak tanınmasını sağlar
+import java.util.Collections;
+
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    /**
-     * Spring Security tarafından çağrılır. Verilen kullanıcı adı (bizim durumumuzda TCNo),
-     * veritabanında aranır ve eğer bulunursa UserDetails nesnesi döner.
-     * Bu nesne kimlik doğrulamada kullanılır.
-     *
-     * @param username TCNo bilgisini temsil eder
-     * @return UserDetails Spring Security'nin anlayacağı formatta kullanıcı bilgisi
-     * @throws UsernameNotFoundException kullanıcı bulunamazsa fırlatılır
-     */
+    public CustomUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Hata ayıklama amacıyla log
-        System.out.println("Attempting to load user: " + username);
+        System.out.println("UserDetailsService: Loading user by username: " + username);
 
-        // TCNo ile kullanıcıyı bul (username yerine TCNo kullanılıyor)
         User user = userRepository.findByTCNo(username)
                 .orElseThrow(() -> {
-                    System.out.println("User not found with TCNo: " + username);
+                    System.out.println("UserDetailsService: User not found: " + username);
                     return new UsernameNotFoundException("User not found with TCNo: " + username);
                 });
 
-        // Kullanıcı bulunduğunda log
-        System.out.println("User found: " + user.getTCNo() + ", role: " + user.getRole());
+        System.out.println("UserDetailsService: User found - TCNo: " + user.getTCNo());
+        System.out.println("UserDetailsService: User status: " + user.getStatus());
 
-        // Spring Security'nin anlayacağı UserDetails nesnesi döner
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getTCNo()) // kullanıcı adı olarak TCNo atanıyor
-                .password(user.getPassword()) // hashlenmiş şifre
-                .roles(user.getRole()) // rol bilgisi örn: "USER", "ADMIN"
+        // Create Spring Security UserDetails object
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getTCNo())
+                .password(user.getPassword())
+                .authorities(Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")))
+                .accountExpired(false)
+                .accountLocked(false)
+                .credentialsExpired(false)
+                .disabled(false)
                 .build();
     }
+    
 }

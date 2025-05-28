@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { User } from '../services/userService.tsx';
 import { X } from 'lucide-react';
 import axios from 'axios';
+import { PermissionService } from '../services/YetkiServis.tsx';
 
 // Düzenlenebilir roller (Filtrelerdeki "All Roles" hariç)
 // const assignableRoleOptions = ['Admin', 'Editor', 'User'];
@@ -34,14 +35,15 @@ export default function EditUserModal({ isOpen, onClose, user, onSave }: EditUse
                 status: user.status ?? assignableStatusOptions[0],
                 yetkilerJson: user.yetkilerJson,
             });
-            // Parse yetkilerJson
+
+            // Yetkileri parse et ve default yetkilerle birleştir
             try {
-                const parsedYetkiler = user.yetkilerJson ? JSON.parse(user.yetkilerJson) : {};
-                setYetkiler(parsedYetkiler);
-            }
-            catch (e) {
+                const userPermissions = user.yetkilerJson ? JSON.parse(user.yetkilerJson) : {};
+                const mergedPermissions = PermissionService.mergeWithDefaults(userPermissions);
+                setYetkiler(mergedPermissions);
+            } catch (e) {
                 console.error('Yetkiler parse edilemedi:', e);
-                setYetkiler({});
+                setYetkiler(PermissionService.getDefaultPermissions());
             }
         }
     }, [user]);

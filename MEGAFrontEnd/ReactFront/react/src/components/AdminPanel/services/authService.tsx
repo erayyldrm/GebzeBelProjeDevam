@@ -99,9 +99,3 @@ export const hasRole = (requiredRole: string) => {
     const role = getUserRole();
     return role === requiredRole;
 };
-
-export const isAdmin = () => {
-    const role = getUserRole();
-    return role && role.toLowerCase() === 'admin';
-
-};
