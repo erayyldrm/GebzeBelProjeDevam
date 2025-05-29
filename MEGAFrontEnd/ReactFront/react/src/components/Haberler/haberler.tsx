@@ -188,7 +188,7 @@ export default function BlogLayout() {
         image: "/images/Haberler/habergörselleri/cevretemizligeridönüsüm/cevre1.jpg",
         category: "GERİ DÖNÜŞÜM",
         categoryClass: "bg-pink-500",
-        title: "Gebze Belediyesi olarak doğal kaynakları koruyor, atıkları yeniden değerlendiriyoruz.",
+        title: "Atıkları dönüştürüyor, doğayı koruyoruz.",
         date: "Mayıs 29, 2022",
         link : "haberlerdetay"
     };
@@ -199,7 +199,7 @@ export default function BlogLayout() {
             image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1.jpg",
             category: "EĞİTİM",
             categoryClass: "bg-green-600",
-            title: "Gebze Belediyesi olarak her yaştan bireyin nitelikli eğitime erişimini önemsiyoruz. Bilgiyle güçlenen bir toplum için eğitim yatırımlarımıza kararlılıkla devam ediyoruz.",
+            title: "Eğitime erişimi önemsiyor, bilgiyle toplumu güçlendiriyoruz.",
             date: "Mayıs 29, 2022",
             link : "haberlerdetay"
         },
@@ -269,7 +269,7 @@ export default function BlogLayout() {
             id: 1,
             title: "Gebze'de Yeni Park Açılışı Yapıldı",
             image: "/images/Haberler/habergörselleri/cevretemizligeridönüsüm/cevre1.jpg",
-            category: "Belediye",
+            category: "Başkan'dan Mesajlar",
             description: "Yeni park hizmete açıldı, vatandaşlardan yoğun ilgi gördü.",
             link : "haberlerdetay"
         },
@@ -277,7 +277,7 @@ export default function BlogLayout() {
             id: 2,
             title: "Çevre Temizlik Kampanyası Başladı",
             image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1.jpg",
-            category: "Çevre",
+            category: "Sıfır Atık",
             description: "Temizlik kampanyası geniş katılımla başladı.",
             link : "haberlerdetay"
         },
@@ -285,7 +285,7 @@ export default function BlogLayout() {
             id: 3,
             title: "Yeni İmar Planları Onaylandı",
             image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar.jpg",
-            category: "Belediye",
+            category: "Eğitim & Gençlik",
             description: "Belediye meclisinde yeni imar planları oy birliğiyle kabul edildi.",
             link : "haberlerdetay"
         },
@@ -293,7 +293,7 @@ export default function BlogLayout() {
             id: 4,
             title: "Geri Dönüşüm Eğitimi Verildi",
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
-            category: "Çevre",
+            category: "Sosyal Hizmetler",
             description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
             link : "haberlerdetay"
         },
@@ -301,7 +301,7 @@ export default function BlogLayout() {
             id: 5,
             title: "Geri Dönüşüm Eğitimi Verildi",
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
-            category: "Çevre",
+            category: "Projeler & Altyapı",
             description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
             link : "haberlerdetay"
         },
@@ -309,7 +309,7 @@ export default function BlogLayout() {
             id: 6,
             title: "Geri Dönüşüm Eğitimi Verildi",
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
-            category: "Çevre",
+            category: "Spor Faaliyetleri",
             description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
             link : "haberlerdetay"
         },
@@ -317,7 +317,7 @@ export default function BlogLayout() {
             id: 7,
             title: "Geri Dönüşüm Eğitimi Verildi",
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
-            category: "Çevre",
+            category: "Ziyaretler",
             description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
             link : "haberlerdetay"
         },
@@ -325,7 +325,7 @@ export default function BlogLayout() {
             id: 8,
             title: "Geri Dönüşüm Eğitimi Verildi",
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
-            category: "Çevre",
+            category: "Ziyaretler",
             description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
             link : "haberlerdetay"
         },
@@ -333,7 +333,7 @@ export default function BlogLayout() {
             id: 9,
             title: "Geri Dönüşüm Eğitimi Verildi",
             image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
-            category: "Çevre",
+            category: "Ziyaretler",
             description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
             link : "haberlerdetay"
         },
