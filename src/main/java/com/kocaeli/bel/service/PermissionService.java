@@ -1,6 +1,7 @@
 package com.kocaeli.bel.service;
 
-// src/main/java/com/kocaeli/bel/service/PermissionService.java
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -14,11 +15,9 @@ public class PermissionService {
             "gebze", Map.of("goruntuleme", true, "duzenleme", false),
             "hizmetler", Map.of("goruntuleme", true, "duzenleme", false, "ekleme", false),
             "kullanıcılar", Map.of("goruntuleme", true, "duzenleme", false, "ekleme", false)
-
     );
 
     public Map<String, Map<String, Boolean>> getDefaultPermissions() {
-        // Deep copy oluşturuyoruz
         Map<String, Map<String, Boolean>> copy = new HashMap<>();
         DEFAULT_PERMISSIONS.forEach((key, value) ->
                 copy.put(key, new HashMap<>(value))
@@ -29,15 +28,8 @@ public class PermissionService {
     public Map<String, Map<String, Boolean>> mergeWithDefaults(String userPermissionsJson) {
         Map<String, Map<String, Boolean>> userPermissions = new HashMap<>();
 
-        try {
-            if (userPermissionsJson != null && !userPermissionsJson.isEmpty()) {
-                // JSON parse işlemi için bir kütüphane kullanabilirsiniz (Jackson, Gson vb.)
-                // Bu örnekte basit bir yaklaşım gösteriyorum
-                userPermissions = parseJsonPermissions(userPermissionsJson);
-            }
-        } catch (Exception e) {
-            // JSON parse hatası
-            e.printStackTrace();
+        if (userPermissionsJson != null && !userPermissionsJson.isEmpty()) {
+            userPermissions = parseJsonPermissions(userPermissionsJson);
         }
 
         return mergeWithDefaults(userPermissions);
@@ -61,14 +53,13 @@ public class PermissionService {
         return merged;
     }
 
-    // Basit bir JSON parse metodu (gerçek uygulamada Jackson/Gson kullanın)
     private Map<String, Map<String, Boolean>> parseJsonPermissions(String json) {
-        // Bu basit bir örnek, gerçek uygulamada Jackson ObjectMapper kullanmalısınız
-        // Örneğin:
-        // ObjectMapper mapper = new ObjectMapper();
-        // return mapper.readValue(json, new TypeReference<Map<String, Map<String, Boolean>>>() {});
-
-        // Basitçe boş bir map döndürüyoruz
-        return new HashMap<>();
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.readValue(json, new TypeReference<Map<String, Map<String, Boolean>>>() {});
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new HashMap<>();
+        }
     }
 }

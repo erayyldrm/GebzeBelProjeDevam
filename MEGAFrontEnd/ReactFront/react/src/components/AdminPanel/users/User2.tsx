@@ -8,6 +8,8 @@ import { useClickOutside } from '../../useClickOutside.tsx';
 import Loader from '../../loader.tsx';
 import EditUserModal from './EditUserModal.tsx';
 import AddUserModal from './AddUserModal.tsx';
+import { Link } from 'react-router-dom';
+import { useAuthStore } from '../store/authStore'; // Add this import
 
 // Role options for filtering
 const roleOptions = ['Tüm Roller', 'Admin', 'Editor', 'User'];
@@ -30,6 +32,51 @@ export default function UsersPage() {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [currentUserToEdit, setCurrentUserToEdit] = useState<User | null>(null);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    // Get permissions from Zustand store
+    const { hasPermission, user: currentUser, isAuthenticated } = useAuthStore();
+    const canView = hasPermission('kullanıcılar', 'goruntuleme');
+
+    // Check permissions
+    const canEdit = hasPermission('kullanıcılar', 'duzenleme');
+    const canDelete = hasPermission('kullanıcılar', 'silme'); // if you have delete permission
+    const canAdd = hasPermission('kullanıcılar', 'ekleme');
+
+    // Debug permissions
+    useEffect(() => {
+        console.log('Current user permissions:', {
+            canView,
+            canEdit,
+            canDelete,
+            canAdd,
+            currentUser: currentUser || 'No current user', // Add null check
+            isAuthenticated
+
+
+        });
+        if (!canView) {
+            return;
+        }
+
+        setLoading(true);
+        fetchUsers()
+            .then(setUsers)
+            .catch(console.error)
+            .finally(() => setLoading(false));
+
+    }, [canView, canEdit, canDelete, canAdd, currentUser, isAuthenticated]);
+
+    useEffect(() => {
+        if (canView) {
+            setLoading(true);
+            fetchUsers()
+                .then(setUsers)
+                .catch(console.error)
+                .finally(() => setLoading(false));
+        } else {
+            setLoading(false);
+        }
+    }, [canView]);
+
 
     const handleAddUser = (newUser: User) => {
         setUsers((prev) => [...prev, newUser]);
@@ -64,18 +111,17 @@ export default function UsersPage() {
     const filteredAndSortedUsers = useMemo(() => {
         return users
             .filter((user) => {
-                const role = user?.role ?? '';
                 const status = user?.status ?? '';
                 const tcno = user?.tcno?.toString() ?? '';
                 const isim = user?.isim?.toLowerCase() ?? '';
                 const searchLower = searchQuery.toLowerCase();
 
                 const matchesSearch =
-                    tcno.includes(searchLower) || isim.includes(searchLower) || role.toLowerCase().includes(searchLower);
-                const matchesRole = selectedRole === 'Tüm Roller' || role === selectedRole;
+                    tcno.includes(searchLower) || isim.includes(searchLower);
+
                 const matchesStatus = selectedStatus === 'Tüm Durumlar' || status === selectedStatus;
 
-                return matchesSearch && matchesRole && matchesStatus;
+                return matchesSearch  && matchesStatus;
             })
             .sort((a, b) => {
                 const fieldA = a[sortField] || '';
@@ -124,12 +170,7 @@ export default function UsersPage() {
             setSelectedUsers([...selectedUsers, userId]);
         }
     };
-
-    const handleOpenEditModal = (user: User) => {
-        setCurrentUserToEdit(user);
-        setIsEditModalOpen(true);
-        setActionDropdownId(null);
-    };
+    
 
     const handleCloseEditModal = () => {
         setIsEditModalOpen(false);
@@ -167,7 +208,19 @@ export default function UsersPage() {
     if (loading) {
         return <Loader />;
     }
-
+    // If user doesn't have view permission
+    if (!canView) {
+        return (
+            <AdminLayout>
+                <div className="flex items-center justify-center h-96">
+                    <div className="text-center">
+                        <h2 className="text-2xl font-bold text-gray-800 mb-4">Yetkisiz Erişim</h2>
+                        <p className="text-gray-600">Bu sayfayı görüntülemek için yetkiniz bulunmamaktadır.</p>
+                    </div>
+                </div>
+            </AdminLayout>
+        );
+    }
     return (
         <AdminLayout>
             <main className="flex-1 overflow-y-auto p-6">
@@ -328,21 +381,6 @@ export default function UsersPage() {
                                 </th>
                                 <th className="px-4 py-3 text-left">
                                     <button
-                                        onClick={() => handleSort('role')}
-                                        className="flex items-center text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                    >
-                                        Role
-                                        {sortField === 'role' && (
-                                            sortDirection === 'asc' ? (
-                                                <ChevronUp size={14} className="ml-1" />
-                                            ) : (
-                                                <ChevronDown size={14} className="ml-1" />
-                                            )
-                                        )}
-                                    </button>
-                                </th>
-                                <th className="px-4 py-3 text-left">
-                                    <button
                                         onClick={() => handleSort('status')}
                                         className="flex items-center text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
@@ -386,19 +424,6 @@ export default function UsersPage() {
                                     <td className="px-4 py-4 whitespace-nowrap">
                       <span
                           className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                              user.role === 'Admin'
-                                  ? 'bg-red-100 text-red-800'
-                                  : user.role === 'Editor'
-                                      ? 'bg-yellow-100 text-yellow-800'
-                                      : 'bg-green-100 text-green-800'
-                          }`}
-                      >
-                        {user.role}
-                      </span>
-                                    </td>
-                                    <td className="px-4 py-4 whitespace-nowrap">
-                      <span
-                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                               user.status === 'Active'
                                   ? 'bg-green-100 text-green-800'
                                   : user.status === 'Inactive'
@@ -432,15 +457,19 @@ export default function UsersPage() {
                                                         </button>
                                                     </li>
                                                     <li>
-                                                        <button
-                                                            onClick={() => handleOpenEditModal(user)}
+                                                        {canEdit && (
+
+                                                        <Link
+                                                            to={`/panel/users/${user.id}/edit`}
                                                             className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                                         >
                                                             <Edit size={16} className="mr-2" />
                                                             Edit User
-                                                        </button>
+                                                        </Link>
+                                                        )}
                                                     </li>
                                                     <li>
+                                                        {canEdit && (
                                                         <button
                                                             onClick={() => handleDeleteUser(user.id)}
                                                             className="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 w-full text-left"
@@ -448,6 +477,7 @@ export default function UsersPage() {
                                                             <Trash size={16} className="mr-2" />
                                                             Kullanıcıyı Sil
                                                         </button>
+                                                        )}
                                                     </li>
                                                 </ul>
                                             </div>

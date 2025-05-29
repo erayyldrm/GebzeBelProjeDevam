@@ -1,6 +1,8 @@
 // src/services/authService.ts
-const API_URL = 'http://localhost:8080/api/auth';
+import { useAuthStore } from '../store/authStore'; // <-- IMPORT THE STORE
 
+const API_URL = 'http://localhost:8080/api/auth';
+// authService.tsx
 export const login = async (username: string, password: string) => {
     try {
         const response = await fetch(`${API_URL}/login`, {
@@ -9,93 +11,102 @@ export const login = async (username: string, password: string) => {
             body: JSON.stringify({ username, password }),
         });
 
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
         const data = await response.json();
-        console.log('Full login response:', data); // Debug log
+        console.log('Full login response:', data);
 
-        if (data.status === 'success') {
-            // Store token
+        if (data.status === 'success' && data.data?.token) {
+            // Store token and user info
             localStorage.setItem('token', data.data.token);
+            localStorage.setItem('user', JSON.stringify({
+                username: data.data.username
+            }));
 
-            // Store complete user data including role from response
+            // Update auth store with all data including permissions
             const userData = {
-                ...data.data,      // Spread all data properties
-                role: data.role    // Include the role from top level
+                username: data.data.username,
+                permissions: data.data.permissions // Make sure this comes from backend
+
             };
 
-            localStorage.setItem('user', JSON.stringify(userData));
-            console.log('Stored user data:', userData); // Debug
+            // Call store login with user data and permissions
+            await useAuthStore.getState().login(userData, data.data.token);
+
+            console.log('Permissions after login:', userData.permissions);
+            console.log('Store state after login:', useAuthStore.getState());
 
             return true;
         }
+
         return false;
     } catch (error) {
         console.error('Login error:', error);
-        return false;
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        useAuthStore.getState().logout();
+        throw error;
     }
 };
 
-// authService.ts
-export const logout = () => {
-    // Clear all auth-related items
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-
-    // Optional: Clear any other application state
-    // localStorage.removeItem('other-app-data');
-
-    // For complete cleanup, consider:
-     sessionStorage.clear();
-
-    // Redirect will happen in the UI component
-    console.log('User logged out successfully');
+// logout now just needs to call the store's logout
+export const logout = (navigate?: (path: string) => void) => {
+    const storeLogout = useAuthStore.getState().logout;
+    storeLogout();
+    console.log('User logged out successfully via authService');
+    // Navigation can be handled here or preferably in the UI/listener
+    if (navigate) {
+        navigate('/login');
+    }
 };
 
-// Add to authService.ts
-export const setupAuthListener = (navigate: (path: string) => void) => {
-    // Listen for storage changes (logout from other tabs)
-    window.addEventListener('storage', (event) => {
-        if (event.key === 'token' && !event.newValue) {
-            navigate('/login');
-        }
-    });
+// isAuthenticated should now primarily use the store
+export const isAuthenticated = () => {
+    // Check the store first, as it reflects if full user details (inc. perms) loaded
+    const isAuthInStore = useAuthStore.getState().isAuthenticated;
+    // As a fallback (e.g., before store rehydration), check token.
+    // But ideally, rely on the store's 'isAuthenticated'.
+    return isAuthInStore || localStorage.getItem('token') !== null;
+};
 
-    // Check auth periodically
-    setInterval(() => {
-        if (!isAuthenticated()) {
-            navigate('/login');
+// setupAuthListener can remain similar, but ensure it calls the service's logout
+export const setupAuthListener = (navigate: (path: string) => void) => {
+    const handleStorage = (event: StorageEvent) => {
+        if (event.key === 'token' && !event.newValue) {
+            console.log("Storage listener detected logout.");
+            logout(navigate); // Call our service logout
+        }
+    };
+
+    window.addEventListener('storage', handleStorage);
+
+    // Consider if you really need setInterval. If so, make sure it uses
+    // the store-aware isAuthenticated.
+    const intervalId = setInterval(() => {
+        if (!isAuthenticated()) { // Use our updated isAuthenticated
+            console.log("Interval check detected logout.");
+            logout(navigate);
         }
     }, 300000); // 5 minutes
+
+    // Return cleanup function
+    return () => {
+        window.removeEventListener('storage', handleStorage);
+        clearInterval(intervalId);
+    };
 };
 
+// getAuthHeader remains the same (uses localStorage)
 export const getAuthHeader = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token'); // Or use useAuthStore.getState().token;
     return token ? { 'Authorization': `Bearer ${token}` } : {};
 };
 
-export const isAuthenticated = () => {
 
-    return localStorage.getItem('token') !== null;
-};
-
-export const getUserRole = () => {
-    try {
-        const userStr = localStorage.getItem('user');
-        if (!userStr) {
-            console.warn('No user data in localStorage');
-            return null;
-        }
-
-        const user = JSON.parse(userStr);
-        console.log('Current localStorage user:', user);
-
-        // Check role in multiple possible locations
-        return user?.role || null;
-    } catch (error) {
-        console.error('Error parsing user data:', error);
-        return null;
-    }
-};
-export const hasRole = (requiredRole: string) => {
-    const role = getUserRole();
-    return role === requiredRole;
-};
+// You can now also use the store's hasPermission directly in components
+// OR create a wrapper here if needed, but it's often cleaner via the hook.
+export const hasPermission = (area: string, action: string) => {
+    return useAuthStore.getState().hasPermission(area, action);
+}

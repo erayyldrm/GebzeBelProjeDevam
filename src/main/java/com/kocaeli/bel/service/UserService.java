@@ -44,7 +44,10 @@ public class UserService {
                         user.getYetkilerJson()))
                 .toList();
     }
-
+    public User findByTCNo(String tcno) {
+        return userRepository.findByTCNo(tcno)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with TCNo: " + tcno));
+    }
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id)
                 .map(this::mergeUserPermissionsWithDefaults);

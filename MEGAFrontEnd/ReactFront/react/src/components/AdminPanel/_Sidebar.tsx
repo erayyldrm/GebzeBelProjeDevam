@@ -37,9 +37,13 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
     const navigate = useNavigate();
     const [pagesOpenIndex, setPagesOpenIndex] = useState<number | null>(null);
 
-    const handleLogout = () => {
-        logout(); // Calls authService logout
-        navigate('/login');
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate("/login");
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
     };
 
     return (

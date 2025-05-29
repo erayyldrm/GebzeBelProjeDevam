@@ -36,15 +36,21 @@ export default function EditUserModal({ isOpen, onClose, user, onSave }: EditUse
                 yetkilerJson: user.yetkilerJson,
             });
 
-            // Yetkileri parse et ve default yetkilerle birleştir
-            try {
-                const userPermissions = user.yetkilerJson ? JSON.parse(user.yetkilerJson) : {};
-                const mergedPermissions = PermissionService.mergeWithDefaults(userPermissions);
-                setYetkiler(mergedPermissions);
-            } catch (e) {
-                console.error('Yetkiler parse edilemedi:', e);
-                setYetkiler(PermissionService.getDefaultPermissions());
-            }
+
+            // Async function to handle permissions
+            const fetchPermissions = async () => {
+                try {
+                    const userPermissions = user.yetkilerJson ? JSON.parse(user.yetkilerJson) : {};
+                    const mergedPermissions = await PermissionService.mergeWithDefaults(userPermissions);
+                    setYetkiler(mergedPermissions);
+                } catch (e) {
+                    console.error('Yetkiler parse edilemedi:', e);
+                    const defaults = await PermissionService.getDefaultPermissions();
+                    setYetkiler(defaults);
+                }
+            };
+
+            fetchPermissions();
         }
     }, [user]);
 

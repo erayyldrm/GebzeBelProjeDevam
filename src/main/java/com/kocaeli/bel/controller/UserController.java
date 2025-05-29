@@ -10,6 +10,8 @@ import com.kocaeli.bel.exception.UserAlreadyExistsException; // Bu exception'ı 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +49,10 @@ public class UserController {
         dto.setStatus(user.getStatus()); // User modelinizde getStatus() olmalı
         return dto;
     }
-
+    private boolean hasPermission(User user, String area, String permission) {
+        Map<String, Map<String, Boolean>> perms = permissionService.mergeWithDefaults(user.getYetkilerJson());
+        return perms.getOrDefault(area, Map.of()).getOrDefault(permission, false);
+    }
 
     public UserController(UserService userService, PermissionService permissionService) {
         this.userService = userService;
@@ -127,6 +132,14 @@ public class UserController {
         Optional<User> userOptional = userService.getUserById(id);
         if (userOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
+        }
+        // Get current authenticated user
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentTCNo = authentication.getName(); // Assuming TCNo is used as principal
+        User currentUser = userService.findByTCNo(currentTCNo);
+
+        if (!hasPermission(currentUser, "kullanıcılar", "duzenleme")) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
         User existingUser = userOptional.get();

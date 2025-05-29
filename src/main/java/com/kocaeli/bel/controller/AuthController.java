@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.kocaeli.bel.security.JwtTokenProvider;
-
+import com.kocaeli.bel.service.PermissionService;
 import java.util.Map;
 
 @RestController
@@ -38,10 +38,12 @@ public class AuthController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PermissionService permissionService;
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         try {
-            // Create authentication object
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             loginRequest.getUsername(),
@@ -49,15 +51,23 @@ public class AuthController {
                     )
             );
 
-            // Generate JWT token
             String token = jwtTokenProvider.generateToken(authentication);
 
-            // Fetch user object
             User user = userService.authenticate(loginRequest.getUsername())
                     .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-            // Create login response
-            LoginResponse loginResponse = new LoginResponse(token, user.getTCNo());
+            // Parse permissions from JSON string
+            Map<String, Map<String, Boolean>> permissions =
+                    permissionService.mergeWithDefaults(user.getYetkilerJson());
+
+            // Create response with permissions
+            LoginResponse loginResponse = new LoginResponse(
+                    token,
+                    user.getTCNo(),
+                    user.getTCNo(),
+                    user.getIsim(),
+                    permissions
+            );
 
             return ResponseEntity.ok()
                     .body(Map.of(

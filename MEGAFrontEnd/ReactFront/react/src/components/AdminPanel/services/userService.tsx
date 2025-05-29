@@ -66,7 +66,6 @@ export async function createUser(userData: CreateUserPayload): Promise<User> {
 // 4. Kullanıcı güncelleme
 export type UpdateUserPayload = {
     isim?: string;
-    role?: string;
     status?: string;
 };
 

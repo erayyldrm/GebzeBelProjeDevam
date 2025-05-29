@@ -1,9 +1,9 @@
+// LoginForm2.tsx
 import React, { useState, useRef } from 'react';
-import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import ParticleBackground from "../backgroundAnim/particle.tsx";
 import { login } from "../AdminPanel/services/authService.tsx";
+import { useAuthStore } from "../AdminPanel/store/authStore";
 
 // Custom Ripple Effect Hook
 const useRippleEffect = () => {
@@ -31,94 +31,53 @@ const useRippleEffect = () => {
     return { buttonRef, createRipple };
 };
 
-// Add this CSS to your global styles
-/*
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.7);
-  transform: scale(0);
-  animation: ripple 600ms linear;
-  pointer-events: none;
-}
-
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-*/
-
-// Login Credentials Interface
-interface LoginCredentials {
-    username: string;
-    password: string;
-}
-
-// Authentication Service
-const authService = {
-    login: async (credentials: LoginCredentials) => {
-        const { data } = await axios.post('http://localhost:8080/api/auth/login', credentials, {
-            withCredentials: true
-        });
-        return data;
-    }
-};
-
 const LoginPage: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [message, setMessage] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const { isAuthenticated, user } = useAuthStore();
 
-    // For the login button ripple
     const { buttonRef: loginButtonRef, createRipple: createLoginRipple } = useRippleEffect();
-    // For the signup button ripple
     const { buttonRef: signupButtonRef, createRipple: createSignupRipple } = useRippleEffect();
 
-    // Login Mutation
-    const loginMutation = useMutation({
-        mutationFn: authService.login,
-        onSuccess: (data) => {
-            console.log('Login successful', data);
-            setMessage(data.response?.data?.message || 'Giriş Başarılı');
-
-            // Store the token and user data in localStorage
-            localStorage.setItem('token', data.data.token);
-            localStorage.setItem('user', JSON.stringify({
-                tcNo: data.data.tcNo,
-                role: data.data.role
-            }));
-
-            navigate('/admin/dashboard');
-        },
-        onError: (error: any) => {
-            console.error('Login error:', error);
-            setError(
-                error.response?.data?.message ||
-                error.message ||
-                'Giriş başarısız. Lütfen tekrar deneyin.'
-            );
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
+    React.useEffect(() => {
+        if (isAuthenticated && user) {
+            navigate('/panel/dashboard');
         }
-    });
+    }, [isAuthenticated, user, navigate]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const success = await login(username, password);
+        setError(null);
+        setMessage(null);
+        setIsLoading(true);
 
-        if (success) {
-            console.log('Post-login storage verification:', {
-                token: localStorage.getItem('token'),
-                user: JSON.parse(localStorage.getItem('user') || 'null')
+        try {
+            const success = await login(username, password);
+            console.log('Login success:', success);
+
+            // Debug store state
+            const storeState = useAuthStore.getState();
+            console.log('Store state after login:', {
+                isAuthenticated: storeState.isAuthenticated,
+                user: storeState.user,
+                permissions: storeState.permissions
             });
 
-            setTimeout(() => {
-                navigate('/panel');
-            }, 100);
+            if (success) {
+                setMessage('Giriş başarılı! Yönlendiriliyorsunuz...');
+                navigate('/panel/dashboard');
+            } else {
+                setError('Giriş başarısız. Kullanıcı adı veya şifre hatalı.');
+            }
+        } catch (error: any) {
+            console.error('Login error:', error);
+            setError(error.message || 'Giriş sırasında bir hata oluştu.');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -175,22 +134,22 @@ const LoginPage: React.FC = () => {
                                     ref={loginButtonRef}
                                     onClick={createLoginRipple}
                                     type="submit"
-                                    disabled={loginMutation.isPending}
+                                    disabled={isLoading}
                                     className={`inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out relative overflow-hidden ${
-                                        loginMutation.isPending ? 'opacity-50 cursor-not-allowed' : ''
+                                        isLoading ? 'opacity-50 cursor-not-allowed' : ''
                                     }`}
                                     style={{
                                         background: "linear-gradient(to right, #022842, #222222)",
                                     }}
                                 >
-                                    {loginMutation.isPending ? 'Giriş Yapılıyor...' : 'GİRİŞ YAP'}
+                                    {isLoading ? 'Giriş Yapılıyor...' : 'GİRİŞ YAP'}
                                 </button>
                                 <a href="#" className="block mt-2 text-sm">
                                     Parolanızı Mı Unuttunuz?
                                 </a>
                             </div>
                             <div className="flex flex-col items-center justify-center mt-4">
-                                <p className="mb-2 text-sm text-gray-700 ">
+                                <p className="mb-2 text-sm text-gray-700">
                                     Hesabınız yok mu?
                                 </p>
                                 <Link to="/signup">
