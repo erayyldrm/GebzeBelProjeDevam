@@ -365,6 +365,9 @@
 .min-h-\[520px\] {
   min-height: 520px;
 }
+.min-h-\[600px\] {
+  min-height: 600px;
+}
 .min-h-\[900px\] {
   min-height: 900px;
 }
@@ -838,6 +841,9 @@
 .align-top {
   vertical-align: top;
 }
+.text-\[10px\] {
+  font-size: 10px;
+}
 .text-nowrap {
   text-wrap: nowrap;
 }
@@ -901,9 +907,6 @@
 }
 .opacity-50 {
   opacity: 50%;
-}
-.opacity-70 {
-  opacity: 70%;
 }
 .opacity-100 {
   opacity: 100%;
@@ -1061,6 +1064,16 @@
       --tw-scale-x: 110%;
       --tw-scale-y: 110%;
       --tw-scale-z: 110%;
+      scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+  }
+}
+.group-hover\:scale-125 {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      --tw-scale-x: 125%;
+      --tw-scale-y: 125%;
+      --tw-scale-z: 125%;
       scale: var(--tw-scale-x) var(--tw-scale-y);
     }
   }
