@@ -164,7 +164,7 @@ const Navbar = () => {
                     {/* Desktop menu items - hidden on mobile, 1165px ve üstü */}
                     <div
                         ref={desktopDropdownRef}
-                        className="hidden [@media(min-width:1165px)]:flex items-center justify-center w-full"
+                        className="hidden [@media(min-width:1280px)]:flex items-center justify-center w-full"
                     >
                         {/* Logo */}
                         <div className="flex-shrink-0 flex items-center"
@@ -286,7 +286,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     {/* Mobile menu button and logo, 1165px altı */}
-                    <div className="flex [@media(min-width:1165px)]:hidden items-center w-full justify-between">
+                    <div className="flex [@media(min-width:1280px)]:hidden items-center w-full justify-between">
                         {/* Logo */}
                         <Link to={"/"}>
                             <motion.img
@@ -306,7 +306,7 @@ const Navbar = () => {
                         <button
                             type="button"
                             aria-controls="mobile-menu"
-                            className="[@media(min-width:1165px)]:hidden items-center justify-center"
+                            className="[@media(min-width:1280px)]:hidden items-center justify-center"
                             aria-expanded={mobileMenuOpen}
                             onClick={toggleMobileMenu}
                         >
