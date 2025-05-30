@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, ChevronRight,ArrowLeft, Megaphone } from 'lucide-react';
+import { Search, ChevronRight, Megaphone } from 'lucide-react';
 // framer-motion ekle
 import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigate } from "react-router-dom";
@@ -188,16 +188,7 @@ const DuyurularSayfasi: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Geri Dön Butonu */}
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 flex">
-                <span
-                    onClick={() => navigate(-1)}
-                    className="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium cursor-pointer"
-                >
-                    <ArrowLeft className="w-5 h-5" />
-                    Geri Dön
-                </span>
-            </div>
+            {/* Geri Dön Butonu kaldırıldı */}
             {/* Header Section */}
             <div className="bg-white border-b border-gray-200">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
