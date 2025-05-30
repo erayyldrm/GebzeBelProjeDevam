@@ -207,10 +207,10 @@ export default function HomePage() {
 
     return (
         <div className="min-h-screen">
-            {/* Video Background - Fixed position to stay in background */}
-            <div className="fixed inset-0 w-full h-full z-0 overflow-hidden">
+            {/* Video Container - Normal position at the top of the page */}
+            <div className="relative w-full h-[600px] overflow-hidden">
                 <video
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="w-full h-full object-cover"
                     src="/gebze.mp4"
                     autoPlay
                     muted
@@ -218,11 +218,6 @@ export default function HomePage() {
                     playsInline
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/80"></div>
-            </div>
-
-            {/* Hero Content with transparent background - Yüksekliği değişken */}
-            <div className={`relative z-10 h-[300px] flex items-center justify-center`}>
-                {/* Hero içeriği buraya eklenebilir */}
             </div>
 
             {/* Content Sections - Single Card Container */}
