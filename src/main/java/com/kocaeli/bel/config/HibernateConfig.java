@@ -44,7 +44,8 @@ public class HibernateConfig {
     private Properties additionalHibernateProperties() {
         Properties properties = new Properties();
 
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.OracleDialect");        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.format_sql", "true");
 
