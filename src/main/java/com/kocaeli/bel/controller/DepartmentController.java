@@ -1,6 +1,6 @@
 package com.kocaeli.bel.controller;
 
-import com.kocaeli.bel.model.Department;
+import com.kocaeli.bel.model.Mudurlukler;
 import com.kocaeli.bel.repository.DepartmentRepository;
 import com.kocaeli.bel.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +26,15 @@ public class DepartmentController {
     }
 
     @GetMapping
-    public List<Department> getAllDepartments() {
+    public List<Mudurlukler> getAllDepartments() {
         return departmentService.getAllDepartments();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Department> getMudurById(@PathVariable Long id) {
+    public ResponseEntity<Mudurlukler> getMudurById(@PathVariable Long id) {
 
 
-        Optional<Department> mudur = mudurRepository.findById(id);
+        Optional<Mudurlukler> mudur = mudurRepository.findById(id);
         return mudur.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }

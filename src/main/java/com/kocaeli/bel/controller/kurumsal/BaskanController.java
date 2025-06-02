@@ -54,4 +54,16 @@ public class BaskanController {
     public ResponseEntity<List<BaskanEntity>> getAllInactiveBaskan() {
         return ResponseEntity.ok(baskanService.getAllInactiveBaskan());
     }
+
+    // In BaskanController.java
+
+    @PutMapping("/baskan/{id}")
+    public ResponseEntity<BaskanEntity> updateBaskan(
+            @PathVariable Long id,
+            @RequestBody BaskanEntity updatedBaskan) {
+        // Optionally, set the id from the path variable to the entity
+        updatedBaskan.setId(id);
+        BaskanEntity saved = baskanService.saveAndActivateBaskan(updatedBaskan);
+        return ResponseEntity.ok(saved);
+    }
 }

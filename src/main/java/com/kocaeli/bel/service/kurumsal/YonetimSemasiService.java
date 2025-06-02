@@ -3,6 +3,8 @@ package com.kocaeli.bel.service.kurumsal;
 import com.kocaeli.bel.model.kurumsal.YonetimSemasiEntity;
 import com.kocaeli.bel.repository.kurumsal.YonetimSemasiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -14,10 +16,6 @@ public class YonetimSemasiService {
     @Autowired
     public YonetimSemasiService(YonetimSemasiRepository yonetimSemasiRepository) {
         this.yonetimSemasiRepository = yonetimSemasiRepository;
-    }
-
-    public List<YonetimSemasiEntity> getAllYonetimSemasi() {
-        return yonetimSemasiRepository.findAllOrderByPositionAndOrder();
     }
 
     public List<YonetimSemasiEntity> getBaskan() {
@@ -32,19 +30,29 @@ public class YonetimSemasiService {
         return yonetimSemasiRepository.findBaskanDanismanlari();
     }
 
-    public List<YonetimSemasiEntity> getByPozisyon(String pozisyon) {
-        return yonetimSemasiRepository.findByPozisyon(pozisyon);
+    public Page<YonetimSemasiEntity> getAllBaskanYardimcilari(Pageable pageable, Boolean aktif, String search) {
+        Integer delta = (aktif == null) ? null : (aktif ? 1 : 0);
+        return yonetimSemasiRepository.findBaskanYardimcilariWithFilters(delta, search, pageable);
     }
 
-    public Optional<YonetimSemasiEntity> getById(Long id) {
-        return yonetimSemasiRepository.findById(id);
+    public Optional<YonetimSemasiEntity> getBaskanYardimcisiById(Long id) {
+        return yonetimSemasiRepository.findById(id)
+                .filter(entity -> "Başkan Yardımcısı".equals(entity.getPozisyon()));
     }
 
-    public YonetimSemasiEntity saveYonetimSemasi(YonetimSemasiEntity yonetimSemasi) {
-        return yonetimSemasiRepository.save(yonetimSemasi);
+    public YonetimSemasiEntity saveBaskanYardimcisi(YonetimSemasiEntity baskanYardimcisi) {
+        baskanYardimcisi.setPozisyon("Başkan Yardımcısı");
+        if (baskanYardimcisi.getDelta() == null) {
+            baskanYardimcisi.setDelta(1);
+        }
+        return yonetimSemasiRepository.save(baskanYardimcisi);
     }
 
-    public void deleteYonetimSemasi(Long id) {
+    public void deleteBaskanYardimcisi(Long id) {
         yonetimSemasiRepository.deleteById(id);
+    }
+
+    public void deleteBaskanYardimcilari(List<Long> ids) {
+        yonetimSemasiRepository.deleteAllById(ids);
     }
 }

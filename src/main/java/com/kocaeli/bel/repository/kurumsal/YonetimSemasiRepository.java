@@ -4,32 +4,40 @@ import com.kocaeli.bel.model.kurumsal.YonetimSemasiEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface YonetimSemasiRepository extends JpaRepository<YonetimSemasiEntity, Long> {
-    
-    // Oracle için sıralama sorguları
-    @Query(value = "SELECT y FROM YonetimSemasiEntity y ORDER BY y.pozisyon, y.siraNo ASC")
-    List<YonetimSemasiEntity> findAllOrderByPositionAndOrder();
-    
-    @Query(value = "SELECT y FROM YonetimSemasiEntity y WHERE y.pozisyon = :pozisyon ORDER BY y.siraNo ASC")
-    List<YonetimSemasiEntity> findByPozisyon(String pozisyon);
-    
-    // Oracle için Başkan pozisyonu sorgusu
-    @Query(value = "SELECT y FROM YonetimSemasiEntity y WHERE y.pozisyon = 'Başkan' ORDER BY y.siraNo ASC")
+    @Query("SELECT y FROM YonetimSemasiEntity y WHERE y.pozisyon = 'Başkan' AND y.delta = 1 ORDER BY y.siraNo")
     List<YonetimSemasiEntity> findBaskan();
-    
-    // Oracle için Başkan Yardımcısı pozisyonu sorgusu
-    @Query(value = "SELECT y FROM YonetimSemasiEntity y WHERE y.pozisyon = 'Başkan Yardımcısı' ORDER BY y.siraNo ASC")
+
+    @Query("SELECT y FROM YonetimSemasiEntity y WHERE y.pozisyon = 'Başkan Yardımcısı' AND y.delta = 1 ORDER BY y.siraNo")
     List<YonetimSemasiEntity> findBaskanYardimcilari();
-    
-    // Başkan Danışmanı pozisyonu sorgusu
-    @Query(value = "SELECT y FROM YonetimSemasiEntity y WHERE y.pozisyon = 'Başkan Danışmanı' ORDER BY y.siraNo ASC")
+
+    @Query("SELECT y FROM YonetimSemasiEntity y WHERE y.pozisyon = 'Başkan Danışmanı' AND y.delta = 1 ORDER BY y.siraNo")
     List<YonetimSemasiEntity> findBaskanDanismanlari();
-    
-    // ID ile sorgu
-    @Override
-    Optional<YonetimSemasiEntity> findById(Long id);
+
+    @Query("SELECT y FROM YonetimSemasiEntity y WHERE y.delta = 1 ORDER BY " +
+            "CASE y.pozisyon " +
+            "WHEN 'Başkan' THEN 1 " +
+            "WHEN 'Başkan Yardımcısı' THEN 2 " +
+            "WHEN 'Başkan Danışmanı' THEN 3 " +
+            "ELSE 4 END, y.siraNo")
+    List<YonetimSemasiEntity> findAllOrderByPositionAndOrder();
+
+    @Query("SELECT y FROM YonetimSemasiEntity y WHERE y.pozisyon = :pozisyon AND y.delta = 1")
+    List<YonetimSemasiEntity> findByPozisyon(@Param("pozisyon") String pozisyon);
+
+    @Query("SELECT y FROM YonetimSemasiEntity y WHERE y.pozisyon = 'Başkan Yardımcısı' " +
+            "AND (:delta is null OR y.delta = :delta) " +
+            "AND (:search is null OR LOWER(y.isimSoyisim) LIKE LOWER(CONCAT('%', :search, '%'))) " +
+            "ORDER BY y.siraNo")
+    Page<YonetimSemasiEntity> findBaskanYardimcilariWithFilters(
+            @Param("delta") Integer delta,
+            @Param("search") String search,
+            Pageable pageable
+    );
 }

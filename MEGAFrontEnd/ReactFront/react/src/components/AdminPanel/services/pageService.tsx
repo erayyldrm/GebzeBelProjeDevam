@@ -1,6 +1,6 @@
 // src/services/PageService.tsx
 import axios from 'axios';
-
+import { ArrowLeft, Save, X, AlertCircle, Eye } from 'lucide-react';
 // Base API configuration
 const API_BASE_URL =  'http://localhost:8080';
 
@@ -143,7 +143,10 @@ export const BaskanAPI = {
         const response = await apiClient.get(`/api/kurumsal/kategori/${kategori}/${id}`);
         return response.data;
     },
-
+    updateBaskan: async (id: number, data: Partial<BaskanEntity>): Promise<BaskanEntity> => {
+        const response = await apiClient.put(`/api/kurumsal/baskan/${id}`, data);
+        return response.data;
+    },
     // Get all inactive
     getAllInactiveBaskan: async (): Promise<BaskanEntity[]> => {
         const response = await apiClient.get('/api/kurumsal/inactive');
@@ -161,7 +164,13 @@ export const YonetimSemasiAPI = {
         const response = await apiClient.get('/api/kurumsal/yonetimsemasi');
         return response.data;
     },
-
+// Inside YonetimSemasiAPI
+    makeInactive: async (id: number): Promise<void> => {
+        const response = await apiClient.put(`/api/kurumsal/baskanyardimcilari/${id}`, {
+            delta: 0  // Set delta to 0 for inactive
+        });
+        return response.data;
+    },
     // Get baskan danışmanları
     getBaskanDanismanlari: async (): Promise<YonetimSemasiEntity[]> => {
         const response = await apiClient.get('/api/kurumsal/baskandanismanlari');

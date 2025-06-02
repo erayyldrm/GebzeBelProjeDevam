@@ -7,6 +7,8 @@ import {SearchProvider} from './context/SearchContext.tsx';
 import {isAuthenticated, setupAuthListener} from './services/authService.tsx';
 import KurumsalSayfa from './sayfalar/sayfaKurumsal.tsx';
 import EditSayfa from './sayfalar/editpage.tsx';
+import EditSayfaTest from './sayfalar/EditPageTesting.tsx';
+
 import EditUserPage from './users/EditUserPage.tsx';
 const AdminRoute = () => {
     // Check these return the expected values
@@ -41,7 +43,7 @@ const _AdminApp: React.FC = () => {
 
                     <Route path="sayfalar" element={<Sayfalar />} />
                     <Route path="sayfalar/kurumsal" element={<KurumsalSayfa />} />
-                    <Route path="sayfalar/edit/:id" element={<EditSayfa />} />
+                    <Route path="sayfalar/edit/:id" element={<EditSayfaTest />} />
                     <Route path="users/:id/edit" element={<EditUserPage />} />
                     {/* Redirect /admin to /admin/dashboard */}
                     <Route index element={<Navigate to="dashboard" replace />} />

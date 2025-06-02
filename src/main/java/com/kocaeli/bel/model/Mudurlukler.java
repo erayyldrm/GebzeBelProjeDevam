@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name="MUDURLUKLER")
-public class Department {
+public class Mudurlukler {
 
     @Getter
     @jakarta.persistence.Id
@@ -34,14 +34,17 @@ public class Department {
     private String imageUrl;
 
     @Getter
+    @Lob
     @Column(name="MUDURLUK_ACIKLAMASI")
     private String mudAciklamasi;
 
     @Getter
+    @Lob
     @Column(name="REGULATIONS")
     private String regulations;
 
     @Getter
+    @Lob
     @Column(name="BIOGRAPHY")
     private String biography;
 
