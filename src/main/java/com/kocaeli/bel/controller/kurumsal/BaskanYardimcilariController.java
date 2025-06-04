@@ -24,22 +24,9 @@ public class BaskanYardimcilariController {
 
 
     @GetMapping("/baskanyardimcilari")
-    public ResponseEntity<Map<String, Object>> getAllBaskanYardimcilari(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(required = false) Boolean aktif,
-            @RequestParam(required = false) String search) {
-
-        Page<YonetimSemasiEntity> pageResult = yonetimSemasiService
-                .getAllBaskanYardimcilari(PageRequest.of(page, size), aktif, search);
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("content", pageResult.getContent());
-        response.put("totalElements", pageResult.getTotalElements());
-        response.put("totalPages", pageResult.getTotalPages());
-        response.put("currentPage", pageResult.getNumber());
-
-        return ResponseEntity.ok(response);
+    public ResponseEntity<List<YonetimSemasiEntity>> getBaskanYardimcilari() {
+        // YonetimSemasiService'den yalnızca başkan yardımcılarını alıyoruz
+        return ResponseEntity.ok(yonetimSemasiService.getBaskanYardimcilari());
     }
 
     @GetMapping("/baskanyardimcilari/{id}")

@@ -32,12 +32,8 @@ public interface YonetimSemasiRepository extends JpaRepository<YonetimSemasiEnti
     List<YonetimSemasiEntity> findByPozisyon(@Param("pozisyon") String pozisyon);
 
     @Query("SELECT y FROM YonetimSemasiEntity y WHERE y.pozisyon = 'Başkan Yardımcısı' " +
-            "AND (:delta is null OR y.delta = :delta) " +
-            "AND (:search is null OR LOWER(y.isimSoyisim) LIKE LOWER(CONCAT('%', :search, '%'))) " +
-            "ORDER BY y.siraNo")
-    Page<YonetimSemasiEntity> findBaskanYardimcilariWithFilters(
-            @Param("delta") Integer delta,
-            @Param("search") String search,
-            Pageable pageable
+            "AND (:delta is null OR y.delta = :delta) " )
+    List<YonetimSemasiEntity> findBaskanYardimcilariWithFilters(
+            @Param("delta") Integer delta
     );
 }

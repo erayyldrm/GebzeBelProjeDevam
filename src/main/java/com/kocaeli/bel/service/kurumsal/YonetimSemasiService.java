@@ -23,16 +23,12 @@ public class YonetimSemasiService {
     }
 
     public List<YonetimSemasiEntity> getBaskanYardimcilari() {
-        return yonetimSemasiRepository.findBaskanYardimcilari();
+        Integer delta = 1; // Aktif başkan yardımcılarını almak için delta değerini 1 olarak ayarlıyoruz
+        return yonetimSemasiRepository.findBaskanYardimcilariWithFilters(delta);
     }
 
     public List<YonetimSemasiEntity> getBaskanDanismanlari() {
         return yonetimSemasiRepository.findBaskanDanismanlari();
-    }
-
-    public Page<YonetimSemasiEntity> getAllBaskanYardimcilari(Pageable pageable, Boolean aktif, String search) {
-        Integer delta = (aktif == null) ? null : (aktif ? 1 : 0);
-        return yonetimSemasiRepository.findBaskanYardimcilariWithFilters(delta, search, pageable);
     }
 
     public Optional<YonetimSemasiEntity> getBaskanYardimcisiById(Long id) {
