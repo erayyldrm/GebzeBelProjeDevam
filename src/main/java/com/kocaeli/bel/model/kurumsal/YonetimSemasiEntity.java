@@ -38,7 +38,8 @@ public class YonetimSemasiEntity {
     
     @Column(name = "telefon", nullable = true)
     private String telefon;
-    
+
+    @Lob
     @Column(name = "biyografi", nullable = true)
     private String biyografi;
     

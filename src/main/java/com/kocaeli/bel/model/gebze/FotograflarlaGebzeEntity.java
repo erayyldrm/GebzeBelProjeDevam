@@ -23,6 +23,7 @@ public class FotograflarlaGebzeEntity {
     @Column(name = "URL")
     private String url;
 
+    @Lob
     @Column(name = "KONUM")
     private String konum;
 

@@ -2,9 +2,11 @@ package com.kocaeli.bel.model.kurumsal;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.time.LocalDate;
 
+@Data
 @Entity
 @Table(name = "MECLIS_KARARLARI_KURUMSAL_KIMLIK_KURUMSAL_RAPORLAR_KURUMSAL_DÖKÜMANLAR")
 public class MeclisKarariEntity {
@@ -26,25 +28,7 @@ public class MeclisKarariEntity {
     @Column(columnDefinition = "integer default 1")
     private int aktif;
 
-    @Column(length = 20)
+    @Column(length = 200)
     private String kategori;
 
-    // Getter ve Setter'lar
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getBaslik() { return baslik; }
-    public void setBaslik(String baslik) { this.baslik = baslik; }
-
-    public String getDosyaUrl() { return dosyaUrl; }
-    public void setDosyaUrl(String dosyaUrl) { this.dosyaUrl = dosyaUrl; }
-
-    public LocalDate getTarih() { return tarih; }
-    public void setTarih(LocalDate tarih) { this.tarih = tarih; }
-
-    public int getAktif() { return aktif; }
-    public void setAktif(int aktif) { this.aktif = aktif; }
-
-    public String getKategori() { return kategori; }
-    public void setKategori(String kategori) { this.kategori = kategori; }
 }
