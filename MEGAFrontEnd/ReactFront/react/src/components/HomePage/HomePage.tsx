@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 export default function HomePage() {
+    const navigate = useNavigate();
 
     // Sample data for the different sections
     const news = [
@@ -15,7 +18,7 @@ export default function HomePage() {
             date: "10 Nisan 2025"
         },
         {
-            id: 1,
+            id: 3,
             title: "Başkan Büyükgöz Koltuğu Sultana Devretti",
             image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar.jpg",
             date: "23 Nisan 2025"
@@ -101,6 +104,15 @@ export default function HomePage() {
         }
     ];
 
+    const serviceRoutes: { [key: number]: string } = {
+        1: "/online-islem",
+        2: "/ebasvuru",
+        3: "/ulasim",
+        4: "/saglik",
+        5: "/kultur-sanat",
+        6: "/yardim-merkezi"
+    };
+
     const announcements = [
         {
             id: 1,
@@ -118,7 +130,7 @@ export default function HomePage() {
             date: "10 Nisan 2025"
         },
         {
-            id: 1,
+            id: 4,
             title: "Otobüs satın alınacaktır",
             date: "15 Nisan 2025"
         },
@@ -225,7 +237,13 @@ export default function HomePage() {
                 <section className="max-w-6xl mx-auto px-2 sm:px-4 py-8 sm:py-12">
                     <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
                         <h2 className="text-lg sm:text-xl font-bold text-blue-800">GÜNCEL HABERLER</h2>
-                        <a href="#" className="text-xs sm:text-sm text-blue-500 hover:underline">Tüm Haberler</a>
+                        <a
+                            href="#"
+                            className="text-xs sm:text-sm text-blue-500 hover:underline"
+                            onClick={e => { e.preventDefault(); navigate("/haberler"); }}
+                        >
+                            Tüm Haberler
+                        </a>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -250,13 +268,18 @@ export default function HomePage() {
 
                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-4">
                             {services.map(service => (
-                                <div key={service.id} className="bg-white rounded-lg p-3 sm:p-4 text-center shadow hover:shadow-md transition">
+                                <button
+                                    key={service.id}
+                                    className="bg-white rounded-lg p-3 sm:p-4 text-center shadow hover:shadow-md transition focus:outline-none"
+                                    onClick={() => navigate(serviceRoutes[service.id])}
+                                    type="button"
+                                >
                                     <div className="mb-2 sm:mb-3 w-10 h-10 sm:w-12 sm:h-12 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
                                         {service.icon}
                                     </div>
                                     <h3 className="font-bold text-xs sm:text-sm mb-1">{service.title}</h3>
                                     <p className="text-[10px] sm:text-xs text-gray-500">{service.description}</p>
-                                </div>
+                                </button>
                             ))}
                         </div>
                     </div>
@@ -268,7 +291,13 @@ export default function HomePage() {
                     <div>
                         <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
                             <h2 className="text-lg sm:text-xl font-bold text-blue-800"> DUYURULAR</h2>
-                            <a href="#" className="text-xs sm:text-sm text-blue-500 hover:underline">Tüm Duyurular</a>
+                            <a
+                                href="#"
+                                className="text-xs sm:text-sm text-blue-500 hover:underline"
+                                onClick={e => { e.preventDefault(); navigate("/duyuru"); }}
+                            >
+                                Tüm Duyurular
+                            </a>
                         </div>
 
                         <div className="space-y-3 sm:space-y-4">
@@ -289,14 +318,26 @@ export default function HomePage() {
                             ))}
                         </div>
 
-                        <a href="#" className="mt-3 sm:mt-4 inline-block text-xs sm:text-sm text-blue-500 hover:underline">Daha Fazlası</a>
+                        <a
+                            href="#"
+                            className="mt-3 sm:mt-4 inline-block text-xs sm:text-sm text-blue-500 hover:underline"
+                            onClick={e => { e.preventDefault(); navigate("/duyuru"); }}
+                        >
+                            Daha Fazlası
+                        </a>
                     </div>
 
                     {/* Events */}
                     <div>
                         <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
                             <h2 className="text-lg sm:text-xl font-bold text-blue-800">KOCAELİ'DE ETKİNLİKLER</h2>
-                            <a href="#" className="text-xs sm:text-sm text-blue-500 hover:underline">Tüm Etkinlikler</a>
+                            <a
+                                href="#"
+                                className="text-xs sm:text-sm text-blue-500 hover:underline"
+                                onClick={e => { e.preventDefault(); navigate("/etkinlikler"); }}
+                            >
+                                Tüm Etkinlikler
+                            </a>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -351,30 +392,36 @@ export default function HomePage() {
                         <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
                             <h2 className="text-lg sm:text-xl font-bold text-blue-800">KOCAELİ'Yİ KEŞFET</h2>
                             <div className="flex flex-wrap gap-2">
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm">Turistik</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm">Kültür-Sanat</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm">Spor</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm">Engelsiz ve Yaşlılar</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm">Sağlık ve Temizlik</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/turistik")}>Turistik</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/kultur-sanat")}>Kültür-Sanat</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/spor")}>Spor</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/engelsiz-yaslilar")}>Engelsiz ve Yaşlılar</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/saglik-temizlik")}>Sağlık ve Temizlik</button>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-                            <div className="relative rounded-lg overflow-hidden h-40 sm:h-64 md:col-span-1 md:row-span-2">
-                                <img src={discoverCategories[0].image} alt={discoverCategories[0].title} className="w-full h-full object-cover" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 sm:p-6">
-                                    <h3 className="text-white font-bold text-lg sm:text-xl">{discoverCategories[0].title}</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 h-fit">
+                            {/* Sol taraf - büyük resim */}
+                            <div className="relative md:col-span-1 md:row-span-2">
+                                <div className="relative rounded-lg overflow-hidden h-86 sm:h-86 md:h-86">
+                                    <img src={discoverCategories[0].image} alt={discoverCategories[0].title} className="w-full h-full object-cover" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 sm:p-6">
+                                        <h3 className="text-white font-bold text-lg sm:text-xl">{discoverCategories[0].title}</h3>
+                                    </div>
                                 </div>
                             </div>
 
-                            {discoverCategories.slice(1).map(category => (
-                                <div key={category.id} className="relative rounded-lg overflow-hidden h-20 sm:h-32">
-                                    <img src={category.image} alt={category.title} className="w-full h-full object-cover" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-2 sm:p-4">
-                                        <h3 className="text-white font-bold text-xs sm:text-base">{category.title}</h3>
+                            {/* Sağ taraf - küçük resimler */}
+                            <div className="md:col-span-2 grid grid-cols-2 gap-4 sm:gap-6">
+                                {discoverCategories.slice(1).map(category => (
+                                    <div key={category.id} className="relative rounded-lg overflow-hidden h-50 sm:h-40 md:h-40 lg:h-40">
+                                        <img src={category.image} alt={category.title} className="w-full h-full object-cover" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-2 sm:p-4">
+                                            <h3 className="text-white font-bold text-xs sm:text-base">{category.title}</h3>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -385,10 +432,10 @@ export default function HomePage() {
                         <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
                             <h2 className="text-lg sm:text-xl font-bold text-blue-800">DEVAM EDEN PROJELER</h2>
                             <div className="flex flex-wrap gap-2 text-xs sm:text-sm">
-                                <button className="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded">Tamamlananlar</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border">Devam Eden</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border">İhale</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border">Planlama ve Tasarı</button>
+                                <button className="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded" onClick={() => navigate("/projeler/tamamlananlar")}>Tamamlananlar</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border" onClick={() => navigate("/projeler/devam-eden")}>Devam Eden</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border" onClick={() => navigate("/projeler/ihale")}>İhale</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border" onClick={() => navigate("/projeler/planlama-tasari")}>Planlama ve Tasarı</button>
                             </div>
                         </div>
 

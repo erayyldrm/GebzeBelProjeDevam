@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Search, ChevronRight, Megaphone } from 'lucide-react';
+import { Search, ChevronRight, Megaphone, CalendarDays, Eye, ChevronLeft } from 'lucide-react';
 // framer-motion ekle
 import { AnimatePresence, motion } from 'framer-motion';
-import { useNavigate } from "react-router-dom";
+
 
 interface Duyuru {
     id: number;
@@ -22,6 +22,10 @@ const DuyurularSayfasi: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const duyuruPerPage = 6;
     const maxPages = 5;
+
+    // Slider state for güncel duyurular
+    const [sliderCurrentIndex, setSliderCurrentIndex] = useState(0);
+    const cardsPerView = 3; // Her seferinde gösterilecek kart sayısı
 
     // useEffect içindeki kategori bağımlılığı kaldırıldı
     useEffect(() => {
@@ -176,6 +180,35 @@ const DuyurularSayfasi: React.FC = () => {
         currentPage * duyuruPerPage
     );
 
+    // Güncel duyurular slider fonksiyonları
+    const guncelDuyurular = filtrelenmisDuyurular.filter(d => d.onemli);
+
+    const nextSlide = () => {
+        setSliderCurrentIndex((prevIndex) => {
+            const nextIndex = prevIndex + 1;
+            // Sonsuz döngü: son karttan sonra başa dön
+            return nextIndex >= guncelDuyurular.length ? 0 : nextIndex;
+        });
+    };
+
+    const prevSlide = () => {
+        setSliderCurrentIndex((prevIndex) => {
+            const prevIdx = prevIndex - 1;
+            // Sonsuz döngü: ilk karttan önce sona git
+            return prevIdx < 0 ? guncelDuyurular.length - 1 : prevIdx;
+        });
+    };
+
+    // Görünür kartları hesapla
+    const getVisibleCards = () => {
+        const cards = [];
+        for (let i = 0; i < cardsPerView; i++) {
+            const index = (sliderCurrentIndex + i) % guncelDuyurular.length;
+            cards.push(guncelDuyurular[index]);
+        }
+        return cards;
+    };
+
     const formatTarih = (tarih: string) => {
         return new Date(tarih).toLocaleDateString('tr-TR', {
             year: 'numeric',
@@ -184,7 +217,7 @@ const DuyurularSayfasi: React.FC = () => {
         });
     };
 
-    const navigate = useNavigate();
+
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -225,49 +258,102 @@ const DuyurularSayfasi: React.FC = () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="grid gap-6">
                     {/* Important Announcements - sadece ilk sayfada göster */}
-                    {currentPage === 1 && (
+                    {currentPage === 1 && guncelDuyurular.length > 0 && (
                         <div className="mb-8">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                                <span className="w-1 h-8 bg-red-500 mr-3"></span>
-                                Güncel Duyurular
-                            </h2>
-                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {filtrelenmisDuyurular.filter(d => d.onemli).map(duyuru => (
-                                    <div key={duyuru.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border-l-4 border-red-500">
-                                        <div className="p-4">
-                                            <div className="flex items-center justify-between mb-2">
-                                                <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-                                                    ÖNEMLİ
-                                                </span>
-                                            </div>
-                                            <div className="flex items-start space-x-3 mb-2">
-                                                <Megaphone className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
-                                                <h3 className="text-base font-semibold text-gray-900 line-clamp-2">
-                                                    {duyuru.baslik}
-                                                </h3>
-                                            </div>
-                                            <p className="text-gray-600 text-sm mb-3 line-clamp-3">
-                                                {duyuru.ozet}
-                                            </p>
-                                            <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
-                                                <div className="flex items-center">
-                                                    <Megaphone className="w-4 h-4 mr-1" />
-                                                    {formatTarih(duyuru.tarih)}
-                                                </div>
-                                                <div className="flex items-center">
-                                                    <Megaphone className="w-4 h-4 mr-1" />
-                                                    {duyuru.okunmaSayisi}
-                                                </div>
-                                            </div>
-                                            <button
-                                                className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center text-sm"
-                                                onClick={() => window.location.href = "/duyurudetay"}
+                            <div className="flex items-center justify-between mb-6">
+                                <h2 className="text-2xl font-bold text-gray-900 flex items-center">
+                                    <span className="w-1 h-8 bg-red-500 mr-3"></span>
+                                    Güncel Duyurular
+                                </h2>
+
+                                {/* Slider Navigation Buttons */}
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        onClick={prevSlide}
+                                        className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-50 hover:border-red-400 transition-all duration-200 shadow-sm hover:shadow-md"
+                                        aria-label="Önceki"
+                                    >
+                                        <ChevronLeft className="w-5 h-5 text-gray-600 hover:text-red-500" />
+                                    </button>
+                                    <button
+                                        onClick={nextSlide}
+                                        className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-50 hover:border-red-400 transition-all duration-200 shadow-sm hover:shadow-md"
+                                        aria-label="Sonraki"
+                                    >
+                                        <ChevronRight className="w-5 h-5 text-gray-600 hover:text-red-500" />
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Slider Container */}
+                            <div className="overflow-hidden">
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={sliderCurrentIndex}
+                                        initial={{ opacity: 0, x: 100 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -100 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                                        className="grid md:grid-cols-2 lg:grid-cols-3 gap-4"
+                                    >
+                                        {getVisibleCards().map((duyuru, index) => (
+                                            <motion.div
+                                                key={`${duyuru.id}-${sliderCurrentIndex}-${index}`}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.3, delay: index * 0.1 }}
+                                                className="bg-white rounded-lg shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300 border-l-4 border-red-500"
                                             >
-                                                Devamını Oku
-                                                <ChevronRight className="w-4 h-4 ml-1" />
-                                            </button>
-                                        </div>
-                                    </div>
+                                                <div className="p-4">
+                                                    <div className="flex items-center justify-between mb-2">
+                                                        <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded animate-pulse">
+                                                            GÜNCEL
+                                                        </span>
+                                                    </div>
+                                                    <div className="flex items-start space-x-3 mb-2">
+                                                        <Megaphone className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
+                                                        <h3 className="text-base font-semibold text-gray-900 line-clamp-2">
+                                                            {duyuru.baslik}
+                                                        </h3>
+                                                    </div>
+                                                    <p className="text-gray-600 text-sm mb-3 line-clamp-3">
+                                                        {duyuru.ozet}
+                                                    </p>
+                                                    <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
+                                                        <div className="flex items-center">
+                                                            <CalendarDays className="w-4 h-4 mr-1" />
+                                                            {formatTarih(duyuru.tarih)}
+                                                        </div>
+                                                        <div className="flex items-center">
+                                                            <Eye className="w-4 h-4 mr-1" />
+                                                            {duyuru.okunmaSayisi}
+                                                        </div>
+                                                    </div>
+                                                    <button
+                                                        className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center text-sm"
+                                                        onClick={() => window.location.href = "/duyurudetay"}
+                                                    >
+                                                        Devamını Oku
+                                                        <ChevronRight className="w-4 h-4 ml-1" />
+                                                    </button>
+                                                </div>
+                                            </motion.div>
+                                        ))}
+                                    </motion.div>
+                                </AnimatePresence>
+                            </div>
+
+                            {/* Slider Indicators */}
+                            <div className="flex justify-center mt-4 gap-2">
+                                {guncelDuyurular.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setSliderCurrentIndex(index)}
+                                        className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                                            index === sliderCurrentIndex ? 'bg-red-500 w-6' : 'bg-gray-300 hover:bg-gray-400'
+                                        }`}
+                                        aria-label={`Slide ${index + 1}`}
+                                    />
                                 ))}
                             </div>
                         </div>
@@ -290,7 +376,7 @@ const DuyurularSayfasi: React.FC = () => {
                                 className="space-y-6"
                             >
                                 {paginatedDuyurular.map(duyuru => (
-                                    <div key={duyuru.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                                    <div key={duyuru.id} className="bg-white rounded-lg shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow">
                                         <div className="md:flex">
                                             <div className="p-6 flex-1">
                                                 <div className="flex items-center justify-between mb-3">
@@ -300,7 +386,7 @@ const DuyurularSayfasi: React.FC = () => {
                                                         </span>
                                                     )}
                                                     <div className="flex items-center text-sm text-gray-500">
-                                                        <Megaphone className="w-4 h-4 mr-1" />
+                                                        <CalendarDays className="w-4 h-4 mr-1" />
                                                         {formatTarih(duyuru.tarih)}
                                                     </div>
                                                 </div>
@@ -315,7 +401,7 @@ const DuyurularSayfasi: React.FC = () => {
                                                 </p>
                                                 <div className="flex items-center justify-between">
                                                     <div className="flex items-center text-sm text-gray-500">
-                                                        <Megaphone className="w-4 h-4 mr-1" />
+                                                        <Eye className="w-4 h-4 mr-1" />
                                                         {duyuru.okunmaSayisi} görüntülenme
                                                     </div>
                                                     <button
@@ -375,5 +461,4 @@ const DuyurularSayfasi: React.FC = () => {
         </div>
     );
 };
-
 export default DuyurularSayfasi;
