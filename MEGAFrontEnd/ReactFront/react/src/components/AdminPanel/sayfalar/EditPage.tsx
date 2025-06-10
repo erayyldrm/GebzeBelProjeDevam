@@ -49,8 +49,8 @@ const TABLE_CONFIGS: Record<string, TableConfig> = {
         apiEndpoint: '/api/kurumsal/baskan-misyon-vizyon',
         fields: [
             { name: 'ID', label: 'ID', type: 'number', required: false },
-            { name: 'RESIM_URL1', label: 'Resim URL 1', type: 'text', required: false },
-            { name: 'IMAGE_URL2', label: 'Resim URL 2', type: 'text', required: false },
+            { name: 'resimUrl1', label: 'Resim URL 1', type: 'text', required: false },
+            { name: 'imageUrl2', label: 'Resim URL 2', type: 'text', required: false },
             { name: 'BASLIK', label: 'Başlık', type: 'text', required: true },
             { name: 'ICERIK', label: 'İçerik', type: 'textarea', required: true },
             { name: 'DELTA', label: 'Delta', type: 'text', required: false },
@@ -155,6 +155,8 @@ const DynamicEditPageForm: React.FC = () => {
             if (currentTableName === 'KURUMSAL_BASKAN_MISYON_VIZYON_ILKELERIMIZ') {
                 const updateData = {
                     baslik: formData.BASLIK || '',
+                    resimUrl1: formData.resimUrl1 || '',
+                    imageUrl2: formData.imageUrl2 || '',
                     icerik: formData.ICERIK,
                     kategori: formData.KATEGORI,
                     aktif: true,

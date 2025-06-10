@@ -44,6 +44,8 @@ apiClient.interceptors.response.use(
 // Types for different entities
 export interface BaskanEntity {
     id: number;
+    resimUrl1: string;
+    imageUrl2: string;
     baslik: string;
     icerik: string;
     kategori: string;
@@ -56,6 +58,7 @@ export interface BaskanEntity {
 export interface YonetimSemasiEntity {
     id: number;
     isimSoyisim: string;
+    resimUrl: string;
     soyad: string;
     unvan: string;
     pozisyon: string;
@@ -66,6 +69,9 @@ export interface YonetimSemasiEntity {
 export interface PageEntity {
     id: number;
     title: string;
+    resimUrl?: string;
+    resimUrl1?: string;
+    imageUrl2?: string;
     slug: string;
     category: string;
     delta?: number | null; // Backend'den gelen raw değer (0, 1, 2 veya null)
@@ -324,6 +330,8 @@ export const CombinedPageService = {
             pages.push({
                 id: item.id,
                 title: item.baslik,
+                resimUrl1: item.resimUrl1,
+                imageUrl2: item.imageUrl2,
                 slug: `kurumsal-${item.kategori}-${item.id}`,
                 category: 'Kurumsal',
                 delta: delta,
@@ -344,6 +352,7 @@ export const CombinedPageService = {
                 id: item.id + 10000, // ID çakışmasını önlemek için offset
                 title: `${item.isimSoyisim} - ${item.pozisyon}`,
                 slug: `yonetim-${item.pozisyon}-${item.id}`,
+                resimUrl: item.resimUrl,
                 category: 'Yönetim',
                 delta: delta,
                 status: convertDeltaToStatus(delta),

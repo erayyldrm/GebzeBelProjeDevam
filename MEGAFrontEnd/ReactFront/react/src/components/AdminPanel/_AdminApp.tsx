@@ -5,9 +5,8 @@ import Dashboard from './HomePanel.tsx';
 import Sayfalar from './sayfalar/template_sayfalar.tsx'
 import {SearchProvider} from './context/SearchContext.tsx';
 import {isAuthenticated, setupAuthListener} from './services/authService.tsx';
-import KurumsalSayfa from './sayfalar/sayfaKurumsal.tsx';
-import EditSayfa from './sayfalar/editpage.tsx';
-import EditSayfaTest from './sayfalar/EditPageTesting.tsx';
+import KurumsalSayfa from './sayfalar/eski_sayfaKurumsal.tsx';
+import EditSayfaTest from './sayfalar/EditPage.tsx';
 
 import EditUserPage from './users/EditUserPage.tsx';
 const AdminRoute = () => {
