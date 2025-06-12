@@ -114,30 +114,32 @@ const MuhtarCard: React.FC<{ muhtar: Muhtar }> = ({ muhtar }) => {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-xs mb-5 text-center">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden w-full max-w-xs mx-auto text-center">
             <div
                 className="relative"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={openModal}
             >
-                <img
-                    src={muhtar.resimUrl}
-                    alt={muhtar.tamIsim}
-                    className="h-36 w-full object-cover"
-                    onError={(e) => (e.currentTarget.src = "/api/placeholder/250/230")}
-                />
+                <div className="w-full h-64 overflow-hidden">
+                    <img
+                        src={muhtar.resimUrl}
+                        alt={muhtar.tamIsim}
+                        className="w-full h-full object-cover object-center"
+                        onError={(e) => (e.currentTarget.src = "/api/placeholder/300/200")}
+                    />
+                </div>
                 <div
-                    className={`absolute inset-0 flex items-center justify-center ${isHovered ? 'bg-opacity-40' : 'bg-opacity-0'} transition-all duration-300 cursor-pointer`}
+                    className={`absolute inset-0 flex items-center justify-center ${isHovered ? 'bg-black bg-opacity-40' : 'bg-opacity-0'} transition-all duration-300 cursor-pointer`}
                 >
-                    <div className={`bg-white text-black py-1 px-3 rounded ${isHovered ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
+                    <div className={`bg-white text-black py-2 px-4 rounded-lg shadow-lg ${isHovered ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
                         Detaylı Bilgi
                     </div>
                 </div>
             </div>
             <div className="p-4">
-                <h4 className="text-lg font-medium text-gray-800">{muhtar.tamIsim}</h4>
-                <span className="text-gray-600 font-medium">{muhtar.mahalleGorev}</span>
+                <h4 className="text-lg font-medium text-gray-800 mb-1">{muhtar.tamIsim}</h4>
+                <span className="text-gray-600 font-medium text-sm">{muhtar.mahalleGorev}</span>
             </div>
             <Modal isOpen={showModal} onClose={closeModal} muhtar={muhtar} />
         </div>
@@ -192,67 +194,68 @@ const MuhtarlarPage: React.FC = () => {
     };
 
     return (
-        <div id="pcoded" className="pcoded">
-            <div className="pcoded-container navbar-wrapper">
-                <div className="pcoded-main-container">
-                    <div className="pcoded-wrapper">
-                        <div className="pcoded-contentcontainer mx-auto px-3 bg-white bg-opacity-60 rounded-xl shadow-lg">
-                            <div className="pcoded-inner-content">
-                                <div className="main-body">
-                                    <div className="bg-red-900 shadow-lg rounded-2xl p-3 mb-6 my-3 mx-auto w-full max-w-xl text-center">
-                                        <h1 className="text-3xl sm:text-3xl md:text-4xl font-bold text-white">
-                                            MAHALLE MUHTARLARI
-                                        </h1>
-                                    </div>
+        <div className="min-h-screen bg-gray-50 py-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Başlık */}
+                <div className="text-center mb-8">
+                    <div className="bg-red-900 shadow-lg rounded-2xl p-6 mx-auto max-w-2xl">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+                            MAHALLE MUHTARLARI
+                        </h1>
+                    </div>
+                </div>
 
-                                    {/* Arama kutusu */}
-                                    <div className="max-w-md mx-auto mb-6">
-                                        <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden border border-gray-300">
-                                            <div className="grid place-items-center h-full w-12 text-gray-300">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                                </svg>
-                                            </div>
-                                            <input
-                                                className="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
-                                                type="text"
-                                                id="search"
-                                                placeholder="Muhtar veya mahalle ara..."
-                                                value={searchTerm}
-                                                onChange={handleSearch}
-                                            />
-                                        </div>
-                                    </div>
+                {/* Arama kutusu */}
+                <div className="max-w-md mx-auto mb-8">
+                    <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden border border-gray-300 shadow-sm">
+                        <div className="grid place-items-center h-full w-12 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                        <input
+                            className="peer h-full w-full outline-none text-sm text-gray-700 pr-4"
+                            type="text"
+                            id="search"
+                            placeholder="Muhtar veya mahalle ara..."
+                            value={searchTerm}
+                            onChange={handleSearch}
+                        />
+                    </div>
+                </div>
 
-                                    <div className="page-wrapper">
-                                        {loading ? (
-                                            <div className="flex justify-center items-center h-64">
-                                                <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-red-900"></div>
-                                            </div>
-                                        ) : error ? (
-                                            <div className="text-center text-red-600 p-4 bg-red-100 rounded-lg">
-                                                <p>{error}</p>
-                                            </div>
-                                        ) : (
-                                            <div className="flex flex-row gap-4 mt-1">
-                                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-                                                    {filteredMuhtarlar.length > 0 ? (
-                                                        filteredMuhtarlar.map((muhtar) => (
-                                                            <MuhtarCard key={muhtar.id} muhtar={muhtar} />
-                                                        ))
-                                                    ) : (
-                                                        <div className="col-span-full text-center py-10">
-                                                            <p className="text-gray-600 text-lg">Arama kriterlerine uygun muhtar bulunamadı.</p>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
+                {/* İçerik */}
+                <div className="w-full">
+                    {loading ? (
+                        <div className="flex justify-center items-center h-64">
+                            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-red-900"></div>
+                        </div>
+                    ) : error ? (
+                        <div className="text-center">
+                            <div className="inline-block bg-red-100 text-red-600 p-6 rounded-lg shadow-sm">
+                                <p className="text-lg">{error}</p>
                             </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="w-full">
+                            {filteredMuhtarlar.length > 0 ? (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
+                                    {filteredMuhtarlar.map((muhtar) => (
+                                        <MuhtarCard key={muhtar.id} muhtar={muhtar} />
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="text-center py-16">
+                                    <div className="bg-white rounded-lg shadow-sm p-8 max-w-md mx-auto">
+                                        <svg className="mx-auto h-16 w-16 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                        <p className="text-gray-600 text-lg">Arama kriterlerine uygun muhtar bulunamadı.</p>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
@@ -260,4 +263,3 @@ const MuhtarlarPage: React.FC = () => {
 };
 
 export default MuhtarlarPage;
-
