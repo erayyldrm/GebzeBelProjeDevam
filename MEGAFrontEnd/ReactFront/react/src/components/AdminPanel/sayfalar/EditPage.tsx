@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Save, X, AlertCircle, Eye, Upload, Trash2 } from 'lucide-react';
+import { ArrowLeft, Save, X, AlertCircle, Eye} from 'lucide-react';
 import {BaskanAPI} from "../services/pageService.tsx";
 
 // --- HELPER COMPONENTS (MOVED OUTSIDE) ---
@@ -63,6 +63,26 @@ const TABLE_CONFIGS: Record<string, TableConfig> = {
             }
         ]
     },
+    'kurumsal_yonetim_semasi':{
+        tableName: 'KURUMSAL_YONETIM_SEMASI',
+        displayName: 'Yönetim Şeması',
+        apiEndpoint: '/api/kurumsal/yonetim-semasi',
+        fields: [
+            { name: 'ID', label: 'ID', type: 'number', required: false },
+            { name: 'isimSoyisim', label: 'Isim Soyisim', type: 'text', required: false },
+            { name: 'resimUrl', label: 'resimUrl', type: 'text', required: false },
+            { name: 'pozisyon', label: 'pozisyon', type: 'text', required: false },
+            { name: 'siraNo', label: 'siraNo', type: 'text', required: false },
+            { name: 'mudurlukler', label: 'mudurlukler', type: 'textarea', required: false },
+            { name: 'siraNo', label: 'siraNo', type: 'text', required: false },
+            { name: 'delta', label: 'delta', type: 'text', required: true },
+            { name: 'email', label: 'email', type: 'text', required: true },
+            { name: 'telefon', label: 'telefon', type: 'text', required: true },
+            { name: 'biyografi', label: 'biyografi', type: 'textarea', required: true },
+
+        ]
+    },
+
     // ... other configs
 };
 
@@ -74,7 +94,7 @@ const CATEGORY_TO_TABLE: Record<string, string> = {
     'etik': 'KURUMSAL_ETIK_ARABULUCULUK',
     'arabuluculuk': 'KURUMSAL_ETIK_ARABULUCULUK',
     'eskibaskan': 'KURUMSAL_MECLIS_ESKIBASKANLAR',
-    'yonetim': 'KURUMSAL_YONETIM_SEMASI',
+    'yonetim': 'kurumsal_yonetim_semasi',
 };
 
 
@@ -104,10 +124,12 @@ const DynamicEditPageForm: React.FC = () => {
             const categories = ['baskan', 'misyon', 'vizyon', 'ilkelerimiz'];
             for (const kategori of categories) {
                 try {
+
                     const data = await BaskanAPI.getActiveByIdAndKategori(kategori, numericId);
                     if (data) {
                         foundData = data;
                         category = kategori;
+
                         break;
                     }
                 } catch (err) { continue; }
@@ -115,6 +137,7 @@ const DynamicEditPageForm: React.FC = () => {
             if (foundData) {
                 const tableKey = CATEGORY_TO_TABLE[foundData.kategori || category];
                 const config = TABLE_CONFIGS[tableKey];
+
                 const initialFormData: Record<string, any> = {};
                 config.fields.forEach(field => {
                     const lowerKey = field.name.toLowerCase();
@@ -296,7 +319,7 @@ const DynamicEditPageForm: React.FC = () => {
                         Available tables: {Object.keys(TABLE_CONFIGS).join(', ')}
                     </div>
                     <button
-                        onClick={() => console.log('Back button clicked')}
+                        onClick={() => navigate('/panel/sayfalar/kurumsal')}
                         className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
                     >
                         Tablolara Geri Dön

@@ -1,6 +1,6 @@
 // src/services/userService.tsx
 
-import axios from 'axios';
+import api from "../../axiosConfig.ts"; // Import the configured Axios instance
 
 const API_BASE_URL = "http://localhost:8080/api/users";
 
@@ -16,7 +16,7 @@ export interface User {
 // 1. Tüm kullanıcıları getirme
 export async function fetchUsers(): Promise<User[]> {
     try {
-        const response = await axios.get<User[]>(API_BASE_URL, {
+        const response = await api.get<User[]>(API_BASE_URL, {
             withCredentials: true // Eğer backend session/cookie tabanlı auth kullanıyorsa
         });
         return response.data;
@@ -29,7 +29,7 @@ export async function fetchUsers(): Promise<User[]> {
 // 2. ID ile tek kullanıcı getirme
 export async function fetchUserById(id: number): Promise<User> {
     try {
-        const response = await axios.get<User>(`${API_BASE_URL}/${id}`, {
+        const response = await api.get<User>(`${API_BASE_URL}/${id}`, {
             withCredentials: true
         });
         return response.data;
@@ -50,7 +50,7 @@ export type CreateUserPayload = {
 
 export async function createUser(userData: CreateUserPayload): Promise<User> {
     try {
-        const response = await axios.post<User>(API_BASE_URL, userData, {
+        const response = await api.post<User>(API_BASE_URL, userData, {
             withCredentials: true
         });
         return response.data;
@@ -71,7 +71,7 @@ export type UpdateUserPayload = {
 
 export async function updateUser(id: number, userData: UpdateUserPayload): Promise<User> {
     try {
-        const response = await axios.put<User>(`${API_BASE_URL}/${id}`, userData, {
+        const response = await api.put<User>(`${API_BASE_URL}/${id}`, userData, {
             withCredentials: true
         });
         return response.data;
@@ -84,7 +84,7 @@ export async function updateUser(id: number, userData: UpdateUserPayload): Promi
 // 5. Kullanıcı silme
 export async function deleteUser(id: number): Promise<void> {
     try {
-        await axios.delete(`${API_BASE_URL}/${id}`, {
+        await api.delete(`${API_BASE_URL}/${id}`, {
             withCredentials: true
         });
     } catch (error: any) {

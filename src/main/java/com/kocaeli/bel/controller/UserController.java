@@ -12,15 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -133,17 +125,34 @@ public class UserController {
         if (userOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        // Get current authenticated user
+
+        // Get current authenticated user with debugging
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentTCNo = authentication.getName(); // Assuming TCNo is used as principal
+        System.out.println("Authentication: " + authentication);
+        System.out.println("Principal: " + authentication.getPrincipal());
+        System.out.println("Name: " + authentication.getName());
+
+        String currentTCNo = authentication.getName();
         User currentUser = userService.findByTCNo(currentTCNo);
 
-        if (!hasPermission(currentUser, "kullanıcılar", "duzenleme")) {
+        System.out.println("Current TCNo: " + currentTCNo);
+        System.out.println("Current User: " + currentUser);
+
+        if (currentUser == null) {
+            System.out.println("Current user is null!");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        boolean hasEditPermission = hasPermission(currentUser, "kullanıcılar", "duzenleme");
+        System.out.println("Has edit permission: " + hasEditPermission);
+        System.out.println("User permissions JSON: " + currentUser.getYetkilerJson());
+
+        if (!hasEditPermission) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
         User existingUser = userOptional.get();
-        // Update fields regardless of null (but handle empty strings)
+        // Update fields
         existingUser.setIsim(userDetailsDTO.getIsim() != null ? userDetailsDTO.getIsim() : existingUser.getIsim());
         existingUser.setYetkilerJson(userDetailsDTO.getYetkilerJson() != null ? userDetailsDTO.getYetkilerJson() : existingUser.getYetkilerJson());
         existingUser.setStatus(userDetailsDTO.getStatus() != null ? userDetailsDTO.getStatus() : existingUser.getStatus());
@@ -199,4 +208,11 @@ public class UserController {
         User updatedUser = userService.saveUser(user);
         return ResponseEntity.ok(convertToDTO(updatedUser));
     }
+    @RequestMapping("/api/debug")
+    public ResponseEntity<Map<String, String>> debugHeaders(@RequestHeader Map<String, String> headers) {
+        headers.forEach((key, value) -> System.out.println(key + ": " + value));
+        return ResponseEntity.ok(headers);
+    }
+
+
 }

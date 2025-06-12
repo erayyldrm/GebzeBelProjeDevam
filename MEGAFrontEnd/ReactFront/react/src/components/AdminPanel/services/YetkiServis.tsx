@@ -1,5 +1,5 @@
 // src/services/permissionService.ts
-import axios from "axios";
+import api from '../../axiosConfig.ts';
 
 const API_URL = 'http://localhost:8080/api/permissions';
 
@@ -7,7 +7,7 @@ const API_URL = 'http://localhost:8080/api/permissions';
 export const PermissionService = {
     getDefaultPermissions: async (): Promise<any> => {
         try {
-            const response = await axios.get(`${API_URL}/default`);
+            const response = await api.get(`${API_URL}/default`);
             return response.data;
         } catch (error) {
             console.error('Default yetkiler çekilemedi:', error);

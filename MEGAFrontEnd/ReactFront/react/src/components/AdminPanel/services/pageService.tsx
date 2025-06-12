@@ -1,6 +1,5 @@
 // src/services/PageService.tsx
 import axios from 'axios';
-import { ArrowLeft, Save, X, AlertCircle, Eye } from 'lucide-react';
 // Base API configuration
 const API_BASE_URL =  'http://localhost:8080';
 
@@ -10,6 +9,7 @@ const apiClient = axios.create({
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
+        withCredentials: true, // If your backend uses sessions/cookies
     },
 });
 

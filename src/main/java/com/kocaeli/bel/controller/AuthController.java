@@ -91,7 +91,7 @@ public class AuthController {
             User user = new User();
             user.setTCNo(registerRequest.getTCNo());
             user.setPassword(registerRequest.getPassword()); // Do NOT hash here
-            user.setStatus("ACTIVE");
+            user.setStatus("Aktif");
 
             User newUser = userService.registerUser(user); // Hash in service
 

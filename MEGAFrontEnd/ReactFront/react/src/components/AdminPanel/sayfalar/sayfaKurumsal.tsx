@@ -15,6 +15,7 @@ import {
     convertDeltaToStatus
 } from '../services/pageService.tsx';
 import {Link} from "react-router-dom";
+import {useAuthStore} from "../store/authStore.ts";
 
 // Filter options
 const categoryOptions = [
@@ -44,6 +45,14 @@ export default function PagesPage() {
     const [actionDropdownId, setActionDropdownId] = useState<number | null>(null);
     const { searchQuery, setSearchQuery } = useSearch();
     const actionDropdownRef = useRef<HTMLDivElement>(null);
+
+    // Get permissions from Zustand store
+    const { hasPermission} = useAuthStore();
+    // Check permissions
+    const canView = hasPermission('kurumsal', 'goruntuleme');
+    const canEdit = hasPermission('kurumsal', 'duzenleme');
+    const canDelete = hasPermission('kurumsal', 'silme');
+    const canAdd = hasPermission('kurumsal', 'ekleme');
 
     // Fetch data from multiple controllers
     useEffect(() => {
@@ -347,6 +356,19 @@ export default function PagesPage() {
     if (loading) {
         return <Loader />;
     }
+    // If user doesn't have view permission
+    if (!canView) {
+        return (
+            <AdminLayout>
+                <div className="flex items-center justify-center h-96">
+                    <div className="text-center">
+                        <h2 className="text-2xl font-bold text-gray-800 mb-4">Yetkisiz Erişim</h2>
+                        <p className="text-gray-600">Bu sayfayı görüntülemek için yetkiniz bulunmamaktadır.</p>
+                    </div>
+                </div>
+            </AdminLayout>
+        );
+    }
     return (
         <AdminLayout>
             <main className="flex-1 overflow-y-auto p-6">
@@ -640,23 +662,29 @@ export default function PagesPage() {
                                                         </button>
                                                     </li>
                                                     <li>
-                                                        <Link
-                                                            to={`/panel/sayfalar/edit/${page.id}`} // <-- Gideceğiniz yol (URL yapınıza göre ayarlayın)
-                                                            onClick={() => setActionDropdownId(null)} // Dropdown'ı kapatmak için onClick'i burada da kullanabilirsiniz.
-                                                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                                                        >
-                                                            <Edit size={16} className="mr-2" />
-                                                            Sayfayı Düzenle
-                                                        </Link>
+                                                        {canEdit && (
+                                                            <Link
+                                                                to={`/panel/sayfalar/edit/${page.id}`} // <-- Gideceğiniz yol (URL yapınıza göre ayarlayın)
+                                                                onClick={() => setActionDropdownId(null)} // Dropdown'ı kapatmak için onClick'i burada da kullanabilirsiniz.
+                                                                className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                                            >
+                                                                <Edit size={16} className="mr-2" />
+                                                                Sayfayı Düzenle
+                                                            </Link>
+                                                        )}
+
                                                     </li>
                                                     <li>
-                                                        <button
-                                                            onClick={() => handleDeletePage(page.id)}
-                                                            className="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 w-full text-left"
-                                                        >
-                                                            <Trash size={16} className="mr-2" />
-                                                            Sayfayı Sil
-                                                        </button>
+                                                        {canDelete && (
+                                                            <button
+                                           target/                     onClick={() => handleDeletePage(page.id)}
+                                                                className="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 w-full text-left"
+                                                            >
+                                                                <Trash size={16} className="mr-2" />
+                                                                Sayfayı Sil
+                                                            </button>
+                                                        )}
+
                                                     </li>
                                                 </ul>
                                             </div>

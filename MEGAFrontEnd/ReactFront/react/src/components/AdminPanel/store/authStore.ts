@@ -44,12 +44,12 @@ export const useAuthStore = create<AuthState>()(
                         }
                     }
                 });
-                console.log('Store state after set:', get());
+                //console.log('Store state after set:', get());
             },
 
             hasPermission: (area: string, action: string): boolean => {
                 const { permissions } = get();
-                console.log('Checking permission:', { area, action, permissions });
+                //console.log('Checking permission:', { area, action, permissions });
                 return permissions?.[area]?.[action] === true;
             },
 

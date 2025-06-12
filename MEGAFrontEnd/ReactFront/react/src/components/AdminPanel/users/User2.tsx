@@ -13,7 +13,7 @@ import { useAuthStore } from '../store/authStore'; // Add this import
 
 // Role options for filtering
 const roleOptions = ['Tüm Roller', 'Admin', 'Editor', 'User'];
-const statusOptions = ['Tüm Durumlar', 'Active', 'Inactive', 'Pending'];
+const statusOptions = ['Tüm Durumlar', 'Aktif', 'Pasif', 'Beklemede'];
 
 // Main Users Page component
 export default function UsersPage() {
@@ -229,13 +229,16 @@ export default function UsersPage() {
                         <h2 className="text-2xl font-bold text-gray-800">Kullanıcılar</h2>
                         <p className="text-gray-500">Kullanıcıları Listele ve yönet</p>
                     </div>
-                    <button
-                        onClick={handleOpenAddModal}
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center"
-                    >
-                        <Plus size={20} className="mr-2" />
-                        Kullanıcı Ekle
-                    </button>
+                    {canAdd && (
+                        <button
+                            onClick={handleOpenAddModal}
+                            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center"
+                        >
+                            <Plus size={20} className="mr-2" />
+                            Kullanıcı Ekle
+                        </button>
+                    )}
+
                 </div>
 
                 {/* Filters */}
@@ -424,9 +427,9 @@ export default function UsersPage() {
                                     <td className="px-4 py-4 whitespace-nowrap">
                       <span
                           className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                              user.status === 'Active'
+                              user.status === 'Aktif'
                                   ? 'bg-green-100 text-green-800'
-                                  : user.status === 'Inactive'
+                                  : user.status === 'Pasif'
                                       ? 'bg-red-100 text-red-800'
                                       : 'bg-yellow-100 text-yellow-800'
                           }`}
@@ -469,7 +472,7 @@ export default function UsersPage() {
                                                         )}
                                                     </li>
                                                     <li>
-                                                        {canEdit && (
+                                                        {canDelete && (
                                                         <button
                                                             onClick={() => handleDeleteUser(user.id)}
                                                             className="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 w-full text-left"

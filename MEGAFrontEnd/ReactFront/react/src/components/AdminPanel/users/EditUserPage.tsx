@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../axiosConfig.ts';
 import { ArrowLeft, Save, X, AlertCircle } from 'lucide-react';
 import { PermissionService } from '../services/YetkiServis.tsx';
 import { User } from '../services/userService.tsx';
 import AdminLayout from '../_LayoutAdminPanel.tsx';
 import Loader from '../../loader.tsx';
 
-const assignableStatusOptions = ['Active', 'Inactive', 'Pending'];
+const assignableStatusOptions = ['Aktif', 'Pasif', 'Beklemede'];
 const API_URL = 'http://localhost:8080/api/users';
 
 export default function EditUserPage() {
@@ -21,7 +21,7 @@ export default function EditUserPage() {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get(`${API_URL}/${id}`);
+                const response = await api.get(`${API_URL}/${id}`);
                 const user = response.data;
                 setFormData({
                     id: user.id,
@@ -73,7 +73,7 @@ export default function EditUserPage() {
                     status: formData.status,
                     yetkilerJson: JSON.stringify(yetkiler),
                 };
-                const response = await axios.put(`${API_URL}/${formData.id}`, updatedUserData, {
+                const response = await api.put(`${API_URL}/${formData.id}`, updatedUserData, {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
                 });
