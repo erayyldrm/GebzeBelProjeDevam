@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 export default function HomePage() {
+    const navigate = useNavigate();
 
     // Sample data for the different sections
     const news = [
@@ -18,7 +21,7 @@ export default function HomePage() {
             id: 3,
             title: "Başkan Büyükgöz Koltuğu Sultana Devretti",
             image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar.jpg",
-            date: "23 Nisan 2025"
+            date: "23 Nisan 2024"
         }
     ];
 
@@ -27,8 +30,7 @@ export default function HomePage() {
             id: 1,
             title: "Online İşlem",
             icon: (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                     strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
                     <line x1="8" y1="21" x2="16" y2="21"></line>
                     <line x1="12" y1="17" x2="12" y2="21"></line>
@@ -40,10 +42,8 @@ export default function HomePage() {
             id: 2,
             title: "E-Başvuru",
             icon: (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                     strokeLinecap="round" strokeLinejoin="round">
-                    <path
-                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
                     <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
                     <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
                     <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
@@ -57,8 +57,7 @@ export default function HomePage() {
             id: 3,
             title: "Kent İçi Ulaşım",
             icon: (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                     strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="8" width="20" height="12" rx="2" ry="2"></rect>
                     <circle cx="7" cy="20" r="1"></circle>
                     <circle cx="17" cy="20" r="1"></circle>
@@ -74,8 +73,7 @@ export default function HomePage() {
             id: 4,
             title: "Sağlık Hizmetleri",
             icon: (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                     strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                 </svg>
             ),
@@ -85,8 +83,7 @@ export default function HomePage() {
             id: 5,
             title: "Kültür-Sanat",
             icon: (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                     strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
                     <polygon points="10 8 16 12 10 16 10 8"></polygon>
                 </svg>
@@ -97,8 +94,7 @@ export default function HomePage() {
             id: 6,
             title: "Yardım Merkezi",
             icon: (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                     strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                     <line x1="12" y1="17" x2="12.01" y2="17"></line>
@@ -107,6 +103,15 @@ export default function HomePage() {
             description: "Destek ve danışma"
         }
     ];
+
+    const serviceRoutes: { [key: number]: string } = {
+        1: "/online-islem",
+        2: "/ebasvuru",
+        3: "/ulasim",
+        4: "/saglik",
+        5: "/kultur-sanat",
+        6: "/yardim-merkezi"
+    };
 
     const announcements = [
         {
@@ -202,240 +207,250 @@ export default function HomePage() {
         }
     ];
 
-    // Hero alanının yüksekliği için değişken - buradan kolayca değiştirebilirsiniz
-    const heroHeight = "70vh"; // İstenilen değer: "50vh", "80vh", "600px" gibi değerler verilebilir
-
     return (
-        <div className="min-h-screen">
-            {/* Video Container - Normal position at the top of the page */}
-            <div className="relative w-full h-[600px] overflow-hidden">
-                <video
-                    className="w-full h-full object-cover"
-                    src="/gebze.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/80"></div>
+        <div className="bg-gray-50 px-2 sm:px-4">
+            {/* Hero Section ile video sadece üstte */}
+            <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] flex justify-center items-center py-0 sm:py-0" style={{ position: 'relative', left: '50%', right: '50%', marginLeft: '-50vw', marginRight: '-50vw', width: '100vw' }}>
+                <div
+                    className="relative w-full rounded-none overflow-hidden shadow-lg"
+                    style={{ minHeight: 340, height: '60vh', maxHeight: 700 }}
+                >
+                    <video
+                        className="absolute inset-0 w-full h-full object-cover"
+                        src="/gebze.mp4"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent"></div>
+                    <div className="relative z-20">
+                        {/* ...hero içerik... */}
+                    </div>
+                </div>
             </div>
 
-            {/* Content Sections - Single Card Container */}
-            <div className="relative z-10 px-4 pb-10">
-                <div className="max-w-7xl mx-auto bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden">
-                    {/* News Section */}
-                    <section className="p-8 border-b border-gray-200">
-                        <div className="flex flex-col sm:flex-row items-center justify-between mb-8 gap-2">
-                            <h2 className="text-lg sm:text-xl font-bold text-blue-800">GÜNCEL HABERLER</h2>
-                            <a href="#" className="text-xs sm:text-sm text-blue-500 hover:underline">Tüm Haberler</a>
-                        </div>
+            {/* Sayfa İçeriği */}
+            <div className="relative z-10">
+                {/* News Section */}
+                <section className="max-w-6xl mx-auto px-2 sm:px-4 py-8 sm:py-12">
+                    <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
+                        <h2 className="text-lg sm:text-xl font-bold text-blue-800">GÜNCEL HABERLER</h2>
+                        <a
+                            href="#"
+                            className="text-xs sm:text-sm text-blue-500 hover:underline"
+                            onClick={e => { e.preventDefault(); navigate("/haberler"); }}
+                        >
+                            Tüm Haberler
+                        </a>
+                    </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                            {news.map(item => (
-                                <div key={item.id} className="bg-white rounded-lg shadow overflow-hidden">
-                                    <img src={item.image} alt={item.title}
-                                         className="w-full h-40 sm:h-48 object-cover"/>
-                                    <div className="p-4 sm:p-5">
-                                        <h3 className="font-bold text-base sm:text-lg mb-2">{item.title}</h3>
-                                        <p className="text-xs sm:text-sm text-gray-500">{item.date}</p>
-                                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                        {news.map(item => (
+                            <div key={item.id} className="bg-white rounded-lg shadow overflow-hidden">
+                                <img src={item.image} alt={item.title} className="w-full h-40 sm:h-48 object-cover" />
+                                <div className="p-3 sm:p-4">
+                                    <h3 className="font-bold text-base sm:text-lg mb-2">{item.title}</h3>
+                                    <p className="text-xs sm:text-sm text-gray-500">{item.date}</p>
                                 </div>
-                            ))}
-                        </div>
-                    </section>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
-                    {/* Services Section */}
-                    <section className="p-8 bg-blue-50/95 border-b border-gray-200">
-                        <div className="flex flex-col sm:flex-row items-center justify-between mb-8 gap-2">
+                {/* Services Section */}
+                <section className="bg-blue-50 py-8 sm:py-12">
+                    <div className="max-w-6xl mx-auto px-2 sm:px-4">
+                        <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
                             <h2 className="text-lg sm:text-xl font-bold text-blue-800">KOLAY ERİŞİM</h2>
                         </div>
 
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-4">
                             {services.map(service => (
-                                <div key={service.id}
-                                     className="bg-white rounded-lg p-4 sm:p-5 text-center shadow hover:shadow-md transition">
-                                    <div
-                                        className="mb-3 sm:mb-4 w-10 h-10 sm:w-12 sm:h-12 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                                <button
+                                    key={service.id}
+                                    className="bg-white rounded-lg p-3 sm:p-4 text-center shadow hover:shadow-md transition focus:outline-none"
+                                    onClick={() => navigate(serviceRoutes[service.id])}
+                                    type="button"
+                                >
+                                    <div className="mb-2 sm:mb-3 w-10 h-10 sm:w-12 sm:h-12 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
                                         {service.icon}
                                     </div>
                                     <h3 className="font-bold text-xs sm:text-sm mb-1">{service.title}</h3>
                                     <p className="text-[10px] sm:text-xs text-gray-500">{service.description}</p>
-                                </div>
+                                </button>
                             ))}
                         </div>
-                    </section>
+                    </div>
+                </section>
 
-                    {/* Announcements & Events Section */}
-                    <section className="p-8 border-b border-gray-200">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
-                            {/* Announcements */}
-                            <div>
-                                <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
-                                    <h2 className="text-lg sm:text-xl font-bold text-blue-800"> DUYURULAR</h2>
-                                    <a href="#" className="text-xs sm:text-sm text-blue-500 hover:underline">Tüm Duyurular</a>
-                                </div>
-
-                                <div className="space-y-4 sm:space-y-5">
-                                    {announcements.map(item => (
-                                        <div key={item.id} className="flex items-start border-b pb-4 sm:pb-5">
-                                            <div className="text-blue-500 mr-3 sm:mr-4 mt-1">
-                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                                     stroke="currentColor" strokeWidth="2">
-                                                    <circle cx="12" cy="12" r="10"></circle>
-                                                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <p className="font-medium text-xs sm:text-sm">{item.title}</p>
-                                                <p className="text-[10px] sm:text-xs text-gray-500 mt-1">{item.date}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <a href="#"
-                                   className="mt-4 sm:mt-5 inline-block text-xs sm:text-sm text-blue-500 hover:underline">Daha
-                                    Fazlası</a>
-                            </div>
-
-                            {/* Events */}
-                            <div>
-                                <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
-                                    <h2 className="text-lg sm:text-xl font-bold text-blue-800">KOCAELİ'DE ETKİNLİKLER</h2>
-                                    <a href="#" className="text-xs sm:text-sm text-blue-500 hover:underline">Tüm Etkinlikler</a>
-                                </div>
-
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                                    {events.map(event => (
-                                        <div key={event.id} className="bg-white rounded-lg shadow overflow-hidden">
-                                            <img src={event.image} alt={event.title}
-                                                 className="w-full h-32 sm:h-40 object-cover"/>
-                                            <div className="p-4 sm:p-5">
-                                                <div className="flex justify-between items-start mb-2">
-                                                    <div
-                                                        className="bg-blue-100 text-blue-800 text-center py-1 px-3 sm:px-4 rounded-lg">
-                                                        <div
-                                                            className="font-bold text-base sm:text-lg">{event.date.split(" ")[0]}</div>
-                                                        <div className="text-xs">{event.date.split(" ")[1] || ""}</div>
-                                                    </div>
-                                                    <span className="text-xs sm:text-sm text-blue-500">{event.time}</span>
-                                                </div>
-                                                <h3 className="font-bold mb-1 text-sm sm:text-base">{event.title}</h3>
-                                                <p className="text-[10px] sm:text-xs text-gray-500">{event.location}</p>
-
-                                                <div
-                                                    className="mt-4 sm:mt-5 flex justify-between text-[10px] sm:text-xs text-gray-500">
-                                                    <button className="flex items-center">
-                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                                             stroke="currentColor" strokeWidth="2">
-                                                            <path
-                                                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                                        </svg>
-                                                        <span className="ml-1">Beğen</span>
-                                                    </button>
-                                                    <button className="flex items-center">
-                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                                             stroke="currentColor" strokeWidth="2">
-                                                            <path
-                                                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1-3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                                                        </svg>
-                                                        <span className="ml-1">Yorum</span>
-                                                    </button>
-                                                    <button className="flex items-center">
-                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                                             stroke="currentColor" strokeWidth="2">
-                                                            <circle cx="18" cy="5" r="3"></circle>
-                                                            <circle cx="6" cy="12" r="3"></circle>
-                                                            <circle cx="18" cy="19" r="3"></circle>
-                                                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                                        </svg>
-                                                        <span className="ml-1">Paylaş</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Discover Section */}
-                    <section className="p-8 bg-gray-100/95 border-b border-gray-200">
-                        <div className="flex flex-col sm:flex-row items-center justify-between mb-8 gap-2">
-                            <h2 className="text-lg sm:text-xl font-bold text-blue-800">KOCAELİ'Yİ KEŞFET</h2>
-                            <div className="flex flex-wrap gap-2">
-                                <button
-                                    className="bg-white px-3 sm:px-4 py-1 rounded border text-xs sm:text-sm">Turistik
-                                </button>
-                                <button
-                                    className="bg-white px-3 sm:px-4 py-1 rounded border text-xs sm:text-sm">Kültür-Sanat
-                                </button>
-                                <button className="bg-white px-3 sm:px-4 py-1 rounded border text-xs sm:text-sm">Spor
-                                </button>
-                                <button
-                                    className="bg-white px-3 sm:px-4 py-1 rounded border text-xs sm:text-sm">Engelsiz ve
-                                    Yaşlılar
-                                </button>
-                                <button className="bg-white px-3 sm:px-4 py-1 rounded border text-xs sm:text-sm">Sağlık
-                                    ve Temizlik
-                                </button>
-                            </div>
+                {/* Announcements & Events Section */}
+                <section className="max-w-6xl mx-auto px-2 sm:px-4 py-8 sm:py-12 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+                    {/* Announcements */}
+                    <div>
+                        <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
+                            <h2 className="text-lg sm:text-xl font-bold text-blue-800"> DUYURULAR</h2>
+                            <a
+                                href="#"
+                                className="text-xs sm:text-sm text-blue-500 hover:underline"
+                                onClick={e => { e.preventDefault(); navigate("/duyuru"); }}
+                            >
+                                Tüm Duyurular
+                            </a>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-7">
-                            <div
-                                className="relative rounded-lg overflow-hidden h-40 sm:h-64 md:col-span-1 md:row-span-2">
-                                <img src={discoverCategories[0].image} alt={discoverCategories[0].title}
-                                     className="w-full h-full object-cover"/>
-                                <div
-                                    className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 sm:p-6">
-                                    <h3 className="text-white font-bold text-lg sm:text-xl">{discoverCategories[0].title}</h3>
-                                </div>
-                            </div>
-
-                            {discoverCategories.slice(1).map(category => (
-                                <div key={category.id} className="relative rounded-lg overflow-hidden h-24 sm:h-36">
-                                    <img src={category.image} alt={category.title}
-                                         className="w-full h-full object-cover"/>
-                                    <div
-                                        className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-3 sm:p-5">
-                                        <h3 className="text-white font-bold text-xs sm:text-base">{category.title}</h3>
+                        <div className="space-y-3 sm:space-y-4">
+                            {announcements.map(item => (
+                                <div key={item.id} className="flex items-start border-b pb-3 sm:pb-4">
+                                    <div className="text-blue-500 mr-2 sm:mr-3 mt-1">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p className="font-medium text-xs sm:text-sm">{item.title}</p>
+                                        <p className="text-[10px] sm:text-xs text-gray-500 mt-1">{item.date}</p>
                                     </div>
                                 </div>
                             ))}
                         </div>
-                    </section>
 
-                    {/* Projects Section */}
-                    <section className="p-8 bg-gray-50/95">
-                        <div className="flex flex-col sm:flex-row items-center justify-between mb-8 gap-2">
-                            <h2 className="text-lg sm:text-xl font-bold text-blue-800">DEVAM EDEN PROJELER</h2>
-                            <div className="flex flex-wrap gap-2 text-xs sm:text-sm">
-                                <button className="bg-blue-500 text-white px-3 sm:px-4 py-1 rounded">Tamamlananlar
-                                </button>
-                                <button className="bg-white px-3 sm:px-4 py-1 rounded border">Devam Eden</button>
-                                <button className="bg-white px-3 sm:px-4 py-1 rounded border">İhale</button>
-                                <button className="bg-white px-3 sm:px-4 py-1 rounded border">Planlama ve Tasarı
-                                </button>
+                        <a
+                            href="#"
+                            className="mt-3 sm:mt-4 inline-block text-xs sm:text-sm text-blue-500 hover:underline"
+                            onClick={e => { e.preventDefault(); navigate("/duyuru"); }}
+                        >
+                            Daha Fazlası
+                        </a>
+                    </div>
+
+                    {/* Events */}
+                    <div>
+                        <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
+                            <h2 className="text-lg sm:text-xl font-bold text-blue-800">KOCAELİ'DE ETKİNLİKLER</h2>
+                            <a
+                                href="#"
+                                className="text-xs sm:text-sm text-blue-500 hover:underline"
+                                onClick={e => { e.preventDefault(); navigate("/etkinlikler"); }}
+                            >
+                                Tüm Etkinlikler
+                            </a>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                            {events.map(event => (
+                                <div key={event.id} className="bg-white rounded-lg shadow overflow-hidden">
+                                    <img src={event.image} alt={event.title} className="w-full h-32 sm:h-40 object-cover" />
+                                    <div className="p-3 sm:p-4">
+                                        <div className="flex justify-between items-start mb-2">
+                                            <div className="bg-blue-100 text-blue-800 text-center py-1 px-2 sm:px-3 rounded-lg">
+                                                <div className="font-bold text-base sm:text-lg">{event.date.split(" ")[0]}</div>
+                                                <div className="text-xs">{event.date.split(" ")[1] || ""}</div>
+                                            </div>
+                                            <span className="text-xs sm:text-sm text-blue-500">{event.time}</span>
+                                        </div>
+                                        <h3 className="font-bold mb-1 text-sm sm:text-base">{event.title}</h3>
+                                        <p className="text-[10px] sm:text-xs text-gray-500">{event.location}</p>
+
+                                        <div className="mt-3 sm:mt-4 flex justify-between text-[10px] sm:text-xs text-gray-500">
+                                            <button className="flex items-center">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                                </svg>
+                                                <span className="ml-1">Beğen</span>
+                                            </button>
+                                            <button className="flex items-center">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1-3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                                </svg>
+                                                <span className="ml-1">Yorum</span>
+                                            </button>
+                                            <button className="flex items-center">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                    <circle cx="18" cy="5" r="3"></circle>
+                                                    <circle cx="6" cy="12" r="3"></circle>
+                                                    <circle cx="18" cy="19" r="3"></circle>
+                                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                                </svg>
+                                                <span className="ml-1">Paylaş</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Discover Section */}
+                <section className="bg-gray-100 py-8 sm:py-12">
+                    <div className="max-w-6xl mx-auto px-2 sm:px-4">
+                        <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
+                            <h2 className="text-lg sm:text-xl font-bold text-blue-800">KOCAELİ'Yİ KEŞFET</h2>
+                            <div className="flex flex-wrap gap-2">
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/turistik")}>Turistik</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/kultur-sanat")}>Kültür-Sanat</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/spor")}>Spor</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/engelsiz-yaslilar")}>Engelsiz ve Yaşlılar</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/saglik-temizlik")}>Sağlık ve Temizlik</button>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 h-fit">
+                            {/* Sol taraf - büyük resim */}
+                            <div className="relative md:col-span-1 md:row-span-2">
+                                <div className="relative rounded-lg overflow-hidden h-86 sm:h-86 md:h-86">
+                                    <img src={discoverCategories[0].image} alt={discoverCategories[0].title} className="w-full h-full object-cover" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 sm:p-6">
+                                        <h3 className="text-white font-bold text-lg sm:text-xl">{discoverCategories[0].title}</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Sağ taraf - küçük resimler */}
+                            <div className="md:col-span-2 grid grid-cols-2 gap-4 sm:gap-6">
+                                {discoverCategories.slice(1).map(category => (
+                                    <div key={category.id} className="relative rounded-lg overflow-hidden h-50 sm:h-40 md:h-40 lg:h-40">
+                                        <img src={category.image} alt={category.title} className="w-full h-full object-cover" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-2 sm:p-4">
+                                            <h3 className="text-white font-bold text-xs sm:text-base">{category.title}</h3>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Projects Section */}
+                <section className="bg-gray-50 py-8 sm:py-12">
+                    <div className="max-w-6xl mx-auto px-2 sm:px-4">
+                        <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
+                            <h2 className="text-lg sm:text-xl font-bold text-blue-800">DEVAM EDEN PROJELER</h2>
+                            <div className="flex flex-wrap gap-2 text-xs sm:text-sm">
+                                <button className="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded" onClick={() => navigate("/projeler/tamamlananlar")}>Tamamlananlar</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border" onClick={() => navigate("/projeler/devam-eden")}>Devam Eden</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border" onClick={() => navigate("/projeler/ihale")}>İhale</button>
+                                <button className="bg-white px-2 sm:px-3 py-1 rounded border" onClick={() => navigate("/projeler/planlama-tasari")}>Planlama ve Tasarı</button>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                             {projects.map(project => (
                                 <div key={project.id} className="bg-white rounded-lg shadow overflow-hidden">
-                                    <img src={project.image} alt={project.title}
-                                         className="w-full h-32 sm:h-40 object-cover"/>
-                                    <div className="p-3 sm:p-4">
+                                    <img src={project.image} alt={project.title} className="w-full h-28 sm:h-36 object-cover" />
+                                    <div className="p-2 sm:p-3">
                                         <h3 className="font-bold text-xs sm:text-sm">{project.title}</h3>
                                     </div>
                                 </div>
                             ))}
                         </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
             </div>
         </div>
     );
