@@ -21,7 +21,7 @@ export default function HomePage() {
             id: 3,
             title: "Başkan Büyükgöz Koltuğu Sultana Devretti",
             image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar.jpg",
-            date: "23 Nisan 2025"
+            date: "23 Nisan 2024"
         }
     ];
 

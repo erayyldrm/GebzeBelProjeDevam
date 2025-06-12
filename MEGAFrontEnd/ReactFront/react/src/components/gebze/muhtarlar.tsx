@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; // Axios import edildi
 
 interface Muhtar {
     id: number;
@@ -121,7 +120,7 @@ const MuhtarCard: React.FC<{ muhtar: Muhtar }> = ({ muhtar }) => {
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={openModal}
             >
-                <div className="w-full h-64 overflow-hidden">
+                <div className="w-full h-48 overflow-hidden">
                     <img
                         src={muhtar.resimUrl}
                         alt={muhtar.tamIsim}
@@ -158,10 +157,14 @@ const MuhtarlarPage: React.FC = () => {
             try {
                 setLoading(true);
                 // API endpoint'i düzeltildi
-                const response = await axios.get("http://localhost:8080/api/muhtarlar");
-                console.log("API Response:", response.data); // Response kontrolü için log eklendi
-                setMuhtarlar(response.data);
-                setFilteredMuhtarlar(response.data);
+                const response = await fetch("http://localhost:8080/api/muhtarlar");
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                console.log("API Response:", data); // Response kontrolü için log eklendi
+                setMuhtarlar(data);
+                setFilteredMuhtarlar(data);
                 setLoading(false);
             } catch (err) {
                 console.error("API Error:", err); // Hata detayı için log eklendi
