@@ -1,1 +1,4 @@
 /target/classes/com/kocaeli/bel/security/JwtAuthenticationFilter.class
+/target
+/target/**
+/target/*
