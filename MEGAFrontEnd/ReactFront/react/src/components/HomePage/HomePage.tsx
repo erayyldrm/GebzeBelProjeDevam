@@ -213,7 +213,7 @@ export default function HomePage() {
             <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] flex justify-center items-center py-0 sm:py-0" style={{ position: 'relative', left: '50%', right: '50%', marginLeft: '-50vw', marginRight: '-50vw', width: '100vw' }}>
                 <div
                     className="relative w-full rounded-none overflow-hidden shadow-lg"
-                    style={{ minHeight: 340, height: '60vh', maxHeight: 700 }}
+                    style={{ minHeight: 340, height: '72vh', maxHeight: 700 }}
                 >
                     <video
                         className="absolute inset-0 w-full h-full object-cover"
