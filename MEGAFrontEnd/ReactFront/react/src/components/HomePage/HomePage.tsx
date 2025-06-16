@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { getAllHaberlerTariheGore } from "../Haberler/haberlerService";
 import { getAllDuyurular } from "../Haberler/duyuruService";
 import {getAllKategoriler} from "../Haberler/kategoriService.ts";
-
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 export default function HomePage() {
     const navigate = useNavigate();
@@ -16,6 +18,7 @@ export default function HomePage() {
     const newsPerPage = 3;
     const totalPages = Math.ceil(news.length / newsPerPage);
     const paginatedNews = news.slice((currentPage - 1) * newsPerPage, currentPage * newsPerPage);
+    const [currentSlide, setCurrentSlide] = useState(0);
 
     // ETKINLIKLER
     const [events, setEvents] = useState<any[]>([]);
@@ -49,7 +52,7 @@ export default function HomePage() {
         getAllHaberlerTariheGore().then(data => {
             // Map API data to match your card structure
             setNews(
-                data.slice(0, 6).map((item: any) => ({
+                data.slice(0, 24).map((item: any) => ({
                     id: item.id,
                     title: item.baslik,
                     image: item.resim1 || "/images/default-news.jpg",
@@ -77,6 +80,43 @@ export default function HomePage() {
 
 
     }, []);
+
+
+    // Slider news
+    const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
+        loop: true,
+        slides: {
+            perView: 3,
+            spacing: 16,
+        },
+        breakpoints: {
+            "(max-width: 1024px)": {
+                slides: { perView: 2, spacing: 12 },
+            },
+            "(max-width: 640px)": {
+                slides: { perView: 1, spacing: 8 },
+            },
+        },
+
+    });
+
+// After fetching news, update the slider
+    useEffect(() => {
+        if (slider.current) {
+            setTimeout(() => slider.current?.update(), 100);
+        }
+    }, [news, slider]);
+
+    const newsToShow = news.slice(0, 24);
+    // 3. Auto-slide effect
+    useEffect(() => {
+        if (!slider.current) return;
+        const interval = setInterval(() => {
+            slider.current?.next();
+        }, 4000); // 4 seconds
+        return () => clearInterval(interval);
+    }, [slider]);
+    const slidesCount = newsToShow.length;
 
     /*
     const news = [
@@ -312,8 +352,9 @@ export default function HomePage() {
 
             {/* Sayfa İçeriği */}
             <div className="relative z-10">
-                {/* News Section */}
+
                 <section className="max-w-6xl mx-auto px-2 sm:px-4 py-8 sm:py-12">
+
                     <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
                         <h2 className="text-lg sm:text-xl font-bold text-blue-800">GÜNCEL HABERLER</h2>
                         <a
@@ -324,9 +365,9 @@ export default function HomePage() {
                             Tüm Haberler
                         </a>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                        {paginatedNews.map(item => (
-                            <div key={item.id} className="bg-white rounded-lg shadow overflow-hidden">
+                    <div ref={sliderRef} className="keen-slider">
+                        {newsToShow.map(item => (
+                            <div key={item.id} className="keen-slider__slide bg-white rounded-lg shadow overflow-hidden">
                                 <img src={item.image} alt={item.title} className="w-full h-40 sm:h-48 object-cover" />
                                 <div className="p-3 sm:p-4">
                                     <h3 className="font-bold text-base sm:text-lg mb-2">{item.title}</h3>
@@ -335,31 +376,22 @@ export default function HomePage() {
                             </div>
                         ))}
                     </div>
-                    {/* Pagination Controls */}
-                    <div className="flex justify-center mt-6 gap-2">
+                    <div className="flex justify-center mt-4 gap-2">
                         <button
-                            className="px-3 py-1 rounded border text-xs"
-                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                            disabled={currentPage === 1}
+                            className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+                            onClick={() => slider.current?.prev()}
+                            aria-label="Previous"
                         >
-                            Previous
+                            <FiChevronLeft className="w-5 h-5" />
                         </button>
-                        {[...Array(totalPages)].map((_, idx) => (
-                            <button
-                                key={idx}
-                                className={`px-3 py-1 rounded border text-xs ${currentPage === idx + 1 ? 'bg-blue-500 text-white' : ''}`}
-                                onClick={() => setCurrentPage(idx + 1)}
-                            >
-                                {idx + 1}
-                            </button>
-                        ))}
                         <button
-                            className="px-3 py-1 rounded border text-xs"
-                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                            disabled={currentPage === totalPages}
+                            className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+                            onClick={() => slider.current?.next()}
+                            aria-label="Next"
                         >
-                            Next
+                            <FiChevronRight className="w-5 h-5" />
                         </button>
+
                     </div>
                 </section>
 
