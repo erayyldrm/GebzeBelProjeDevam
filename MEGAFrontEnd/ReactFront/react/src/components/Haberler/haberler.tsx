@@ -1,12 +1,12 @@
-import { useRef, useEffect, useCallback, useState } from "react";
+import {useRef, useEffect, useCallback, useState} from "react";
 import {Clock, Edit} from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useKeenSlider } from 'keen-slider/react';
+import {motion, AnimatePresence} from "framer-motion";
+import {useKeenSlider} from 'keen-slider/react';
 import "keen-slider/keen-slider.min.css";
-import { useNavigate } from "react-router-dom";
-import { getAllDuyurular } from "./duyuruService.ts"
-import { getAllHaberler } from "./haberlerService.ts"; // adjust the path as needed
-import { getAllKategoriler } from "./kategoriService.ts";
+import {useNavigate} from "react-router-dom";
+import {getAllDuyurular} from "./duyuruService.ts"
+import { getAllHaberlerTariheGore} from "./haberlerService.ts"; // adjust the path as needed
+import {getAllKategoriler} from "./kategoriService.ts";
 import {
     Megaphone,
     CalendarDays,
@@ -15,15 +15,19 @@ import {
     ChevronRight,
 } from "lucide-react";
 import {Link} from "react-router-dom";
+
 // Define the Haberler interface
 interface Haberler {
     id: number;
     baslik: string;
     tarih: string;
     aciklama: string;
-    resim1: string;
-    resim2: string;
-    kategori:string;
+    resim1?: string;
+    resim2?: string | null;
+    kategori: {
+        id: number;
+        ad: string;
+    } | null;
 }
 
 function AnnouncementsSlider() {
@@ -36,10 +40,10 @@ function AnnouncementsSlider() {
         },
         breakpoints: {
             "(max-width: 1024px)": {
-                slides: { perView: 1, spacing: 12 },
+                slides: {perView: 1, spacing: 12},
             },
             "(max-width: 640px)": {
-                slides: { perView: 1, spacing: 8 },
+                slides: {perView: 1, spacing: 8},
             },
         },
     });
@@ -80,16 +84,14 @@ function AnnouncementsSlider() {
     const handleViewAllAnnouncements = () => {
         navigate('/duyuru');
     };
-
-    interface Duyurular{
+    interface Duyurular {
         id: number;
         baslik: string;
-        ozet:  string;
+        ozet: string;
         tarih: string;
-        kategori: string;
+        kategori: { id: number; ad: string } | null;
         onemli: number;
     }
-
     return (
         <section className="py-12 px-4 bg-gray-50">
             <div className="max-w-7xl mx-auto">
@@ -102,13 +104,13 @@ function AnnouncementsSlider() {
                                 onClick={() => slider.current?.prev()}
                                 className="p-2 rounded-full bg-white shadow hover:bg-gray-100 transition"
                             >
-                                <ChevronLeft className="w-5 h-5 text-gray-600" />
+                                <ChevronLeft className="w-5 h-5 text-gray-600"/>
                             </button>
                             <button
                                 onClick={() => slider.current?.next()}
                                 className="p-2 rounded-full bg-white shadow hover:bg-gray-100 transition"
                             >
-                                <ChevronRight className="w-5 h-5 text-gray-600" />
+                                <ChevronRight className="w-5 h-5 text-gray-600"/>
                             </button>
                         </div>
                     </div>
@@ -117,7 +119,7 @@ function AnnouncementsSlider() {
                         className="px-5 py-2.5 bg-indigo-700 text-white rounded-lg hover:bg-indigo-800 transition shadow-md flex items-center gap-2 text-base font-medium"
                     >
                         <span>Tüm Duyurular</span>
-                        <ChevronRight className="w-5 h-5" />
+                        <ChevronRight className="w-5 h-5"/>
                     </button>
                 </div>
                 {/* Slider */}
@@ -128,19 +130,18 @@ function AnnouncementsSlider() {
                             className="keen-slider__slide bg-white border border-gray-200 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow"
                         >
                             <div className="flex items-center gap-2 mb-2">
-                                <Megaphone className="text-blue-600 w-5 h-5" />
+                                <Megaphone className="text-blue-600 w-5 h-5"/>
                                 <h3 className="text-lg font-semibold text-gray-800">
                                     {item.baslik}
                                 </h3>
                             </div>
                             <div className="flex items-center text-sm text-gray-500 mb-3">
-                                <CalendarDays className="w-4 h-4 mr-1" />
+                                <CalendarDays className="w-4 h-4 mr-1"/>
                                 <span>{item.tarih}</span>
                             </div>
                             <p className="text-gray-700 mb-4 text-sm">{item.ozet}</p>
                             <div className="flex items-center text-sm text-gray-500 mb-3">
-                                <span className="font-medium">{item.kategori}</span>
-                                {item.onemli > 0 && (
+                                <span className="font-medium">{item.kategori ? item.kategori.ad : 'Kategorisiz'}</span>                                {item.onemli > 0 && (
                                     <span className="ml-2 text-red-600 font-semibold">Önemli!</span>
                                 )}
                             </div>
@@ -148,7 +149,7 @@ function AnnouncementsSlider() {
                                 to={`/haberdetay/${item.id}`}
                                 className="flex items-center text-blue-600 hover:underline text-sm font-medium"
                             >
-                                 <Info className="w-4 h-4 mr-1" />
+                                <Info className="w-4 h-4 mr-1"/>
                                 Ayrıntılı Bilgi
                             </Link>
                         </div>
@@ -197,9 +198,9 @@ export default function BlogLayout() {
 
     // Fetch haberler from backend
     useEffect(() => {
-        getAllHaberler()
+        getAllHaberlerTariheGore()
             .then((data) => {
-                console.log('getAllHaberler response:', data);
+                console.log('getAllHaberler By Tarih response:', data);
                 setHaberlerList(Array.isArray(data) ? data : []);
             })
             .catch((err) => {
@@ -214,7 +215,7 @@ export default function BlogLayout() {
             .then((data) => {
                 console.log('getAllKategoriler response:', data);
                 if (Array.isArray(data)) {
-                    const kategoriNames = data.map((k: any) => k.baslik || k.name || k.title).filter(Boolean);
+                    const kategoriNames = data.map((k: any) => k.ad).filter(Boolean);
                     setCategories(["Tümü", ...kategoriNames]);
                 }
             })
@@ -328,14 +329,14 @@ export default function BlogLayout() {
     const filteredNews =
         activeCategory === "Tümü"
             ? haberlerList
-            : haberlerList.filter((haber) => haber.kategori === activeCategory);
+            : haberlerList.filter((haber) => haber.kategori?.ad === activeCategory);
 
     // Prepare heroPost and featuredArticles from filteredNews (not all news)
     const heroPost = filteredNews[0]
         ? {
             id: filteredNews[0].id,
-            image: filteredNews[0].resim1 || filteredNews[0].resim2,
-            category: filteredNews[0].kategori,
+            image: filteredNews[0].resim1 || filteredNews[0].resim2 || '',
+            category: filteredNews[0].kategori?.ad || 'Kategorisiz',  // Extract just the category name
             categoryClass: "bg-blue-600",
             title: filteredNews[0].baslik,
             date: filteredNews[0].tarih,
@@ -344,8 +345,8 @@ export default function BlogLayout() {
 
     const featuredArticles = filteredNews.slice(1, 4).map((haber, idx) => ({
         id: haber.id,
-        image: haber.resim1 || haber.resim2,
-        category: haber.kategori,
+        image: haber.resim1 || haber.resim2 || '',
+        category: haber.kategori?.ad || 'Kategorisiz',  // Extract just the category name
         categoryClass: idx === 0 ? "bg-yellow-500" : "bg-blue-600",
         title: haber.baslik,
         date: haber.tarih,
@@ -379,8 +380,10 @@ export default function BlogLayout() {
                 alt={article.title}
                 className="w-full h-full object-cover rounded-lg"
             />
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
-                <div className={`inline-block px-4 py-1 text-sm font-bold text-white rounded mb-3 ${article.categoryClass}`}>
+            <div
+                className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
+                <div
+                    className={`inline-block px-4 py-1 text-sm font-bold text-white rounded mb-3 ${article.categoryClass}`}>
                     {article.category}
                 </div>
                 <h2 className="text-3xl font-bold text-white mb-2">
@@ -388,9 +391,10 @@ export default function BlogLayout() {
                 </h2>
                 <div className="flex items-center text-white text-sm">
                     <div className="flex items-center mr-4">
-                        <svg className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <circle cx="12" cy="12" r="10" />
-                            <polyline points="12 6 12 12 16 14" />
+                        <svg className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             strokeWidth="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
                         </svg>
                         <span>{article.date}</span>
                     </div>
@@ -401,9 +405,11 @@ export default function BlogLayout() {
 
     const renderMainArticle = (article: Article) => (
         <div className="relative overflow-hidden rounded h-full w-full">
-            <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
-                <div className={`inline-block px-4 py-1 text-sm font-bold text-white rounded mb-3 ${article.categoryClass}`}>
+            <img src={article.image} alt={article.title} className="w-full h-full object-cover"/>
+            <div
+                className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
+                <div
+                    className={`inline-block px-4 py-1 text-sm font-bold text-white rounded mb-3 ${article.categoryClass}`}>
                     {article.category}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">
@@ -411,9 +417,10 @@ export default function BlogLayout() {
                 </h3>
                 <div className="flex items-center text-white text-sm">
                     <div className="flex items-center mr-4">
-                        <svg className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <circle cx="12" cy="12" r="10" />
-                            <polyline points="12 6 12 12 16 14" />
+                        <svg className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             strokeWidth="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
                         </svg>
                         <span>{article.date}</span>
                     </div>
@@ -425,7 +432,7 @@ export default function BlogLayout() {
     interface Article {
         id: number;
         image: string;
-        category: string;
+        category: string;  // Keep this as string since we'll format it before passing
         categoryClass: string;
         title: string;
         date: string;
@@ -435,8 +442,9 @@ export default function BlogLayout() {
 
     const renderSmallArticle = (article: Partial<Article> & Required<Pick<Article, 'id' | 'image' | 'category' | 'categoryClass' | 'title'>>, categoryClass: string) => (
         <div className="relative overflow-hidden rounded h-full w-full">
-            <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
+            <img src={article.image} alt={article.title} className="w-full h-full object-cover"/>
+            <div
+                className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
                 <h3 className="text-xl font-bold text-white mb-2">
                     <a href="#" className="hover:underline">{article.title}</a>
                 </h3>
@@ -458,10 +466,10 @@ export default function BlogLayout() {
         },
         breakpoints: {
             "(max-width: 1024px)": {
-                slides: { perView: 2, spacing: 12 },
+                slides: {perView: 2, spacing: 12},
             },
             "(max-width: 640px)": {
-                slides: { perView: 1, spacing: 8 },
+                slides: {perView: 1, spacing: 8},
             },
         },
     });
@@ -516,8 +524,10 @@ export default function BlogLayout() {
                                         className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
                                     >
                                         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                                            <path d="M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                            <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                            <path d="M19 12H5" stroke="currentColor" strokeWidth="2"
+                                                  strokeLinecap="round"/>
+                                            <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2"
+                                                  strokeLinecap="round"/>
                                         </svg>
                                     </button>
                                     <button
@@ -525,8 +535,10 @@ export default function BlogLayout() {
                                         className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
                                     >
                                         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                                            <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                            <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                            <path d="M5 12H19" stroke="currentColor" strokeWidth="2"
+                                                  strokeLinecap="round"/>
+                                            <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2"
+                                                  strokeLinecap="round"/>
                                         </svg>
                                     </button>
                                 </div>
@@ -553,12 +565,17 @@ export default function BlogLayout() {
                                         <div className="w-3/5 px-2 py-1.5 flex flex-col justify-between">
                                             <div>
                                                 <h3 className="text-xs font-bold line-clamp-2 leading-tight mb-1">{slide.title}</h3>
-                                                <div className={`text-xs font-semibold text-white px-2 py-0.5 rounded inline-block ${slide.categoryClass}`}>
-                                                    {slide.category}
+                                                <div
+                                                    className={`text-xs font-semibold text-white px-2 py-0.5 rounded inline-block ${slide.categoryClass}`}>
+                                                    {typeof slide.category === 'object' && slide.category !== null
+                                                        ? slide.category.ad
+                                                        : typeof slide.category === 'string'
+                                                            ? slide.category
+                                                            : 'Kategorisiz'}
                                                 </div>
                                             </div>
                                             <div className="flex items-center text-gray-500">
-                                                <Clock size={10} className="mr-1" />
+                                                <Clock size={10} className="mr-1"/>
                                                 <span className="text-xs">{slide.date}</span>
                                             </div>
                                             <div className="mt-2">
@@ -579,7 +596,7 @@ export default function BlogLayout() {
 
                     {/* AnnouncementsSlider bileşeni */}
                     <div className="mt-2 mb-8"> {/* mt-4'ten mt-2'ye düşürüldü */}
-                        <AnnouncementsSlider />
+                        <AnnouncementsSlider/>
                     </div>
 
                     {/* NewsPage Component */}
@@ -627,15 +644,16 @@ export default function BlogLayout() {
                         <br/>
 
                         {/* Haber Kartları */}
-                        <div className={`grid ${isMobile ? 'grid-cols-1 gap-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'}`}>
+                        <div
+                            className={`grid ${isMobile ? 'grid-cols-1 gap-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'}`}>
                             <AnimatePresence mode="wait">
                                 {paginatedNews.map((news) => (
                                     <motion.div
                                         key={news.id}
-                                        initial={{ opacity: 0, y: 30 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -30 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                                        initial={{opacity: 0, y: 30}}
+                                        animate={{opacity: 1, y: 0}}
+                                        exit={{opacity: 0, y: -30}}
+                                        transition={{duration: 0.4, ease: "easeInOut"}}
                                         layout
                                         className="bg-gray-50 rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full cursor-pointer"
                                     >
@@ -656,10 +674,16 @@ export default function BlogLayout() {
                                                 />
                                             </div>
                                         )}
-                                        <div className={`${isMobile ? 'p-3' : 'p-4'} flex flex-col justify-between flex-grow`}>
+                                        <div
+                                            className={`${isMobile ? 'p-3' : 'p-4'} flex flex-col justify-between flex-grow`}>
                                             <div className="flex items-center gap-2 mb-2">
-                                                <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded">{news.kategori}</span>
-                                            </div>
+                                            <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded">
+                                                {typeof news.kategori === 'object' && news.kategori !== null
+                                                    ? news.kategori.ad
+                                                    : typeof news.kategori === 'string'
+                                                        ? news.kategori
+                                                        : 'Kategorisiz'}
+                                            </span></div>
                                             <h2 className={`${isMobile ? 'text-base' : 'text-lg'} font-semibold text-gray-800 ${isMobile ? 'line-clamp-2' : ''}`}>{news.baslik}</h2>
                                             <p className={`text-gray-600 mt-2 ${isMobile ? 'text-xs line-clamp-3' : 'text-sm'} flex-grow`}>
                                                 {news.aciklama}
@@ -689,7 +713,7 @@ export default function BlogLayout() {
                                 >
                                     &lt;
                                 </button>
-                                {Array.from({ length: totalPages }, (_, i) => (
+                                {Array.from({length: totalPages}, (_, i) => (
                                     <button
                                         key={i + 1}
                                         onClick={() => setCurrentPage(i + 1)}

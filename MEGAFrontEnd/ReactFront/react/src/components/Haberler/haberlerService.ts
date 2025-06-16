@@ -6,6 +6,10 @@ export const getAllHaberler = async () => {
   const response = await axios.get(API_URL);
   return response.data;
 };
+export const getAllHaberlerTariheGore = async () => {
+  const response = await axios.get(`${API_URL}/tarihe-gore`);
+  return response.data;
+};
 
 export const getHaberlerById = async (id: number) => {
   const response = await axios.get(`${API_URL}/${id}`);

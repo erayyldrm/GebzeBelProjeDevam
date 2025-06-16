@@ -1,6 +1,6 @@
 package com.kocaeli.bel.service;
 
-import com.kocaeli.bel.model.haberler;
+import com.kocaeli.bel.model.Haberler;
 import com.kocaeli.bel.repository.HaberlerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,20 +14,37 @@ public class HaberlerService {
     @Autowired
     private HaberlerRepository haberlerRepository;
 
-    public List<haberler> getAllHaberler() {
-        return haberlerRepository.findAll();
+    public List<Haberler> getAllHaberler() {
+        List<Haberler> haberler = haberlerRepository.findAllWithKategori();
+        System.out.println("Found " + haberler.size() + " haberler");
+
+        // Debug each haber's kategori
+        haberler.forEach(haber -> {
+            System.out.println("Haber ID: " + haber.getId());
+            if (haber.getKategori() != null) {
+                System.out.println("  Kategori ID: " + haber.getKategori().getId());
+                System.out.println("  Kategori Ad: " + haber.getKategori().getAd());
+            } else {
+                System.out.println("  No kategori found!");
+            }
+        });
+
+        return haberler;
+    }
+    public List<Haberler> getAllHaberlerByTarihDesc() {
+        return haberlerRepository.findAllWithKategoriOrderByTarihDesc();
     }
 
-    public Optional<haberler> getHaberlerById(Long id) {
+    public Optional<Haberler> getHaberlerById(Long id) {
         return haberlerRepository.findById(id);
     }
 
-    public haberler createHaberler(haberler haberler) {
+    public Haberler createHaberler(Haberler haberler) {
         return haberlerRepository.save(haberler);
     }
 
-    public haberler updateHaberler(Long id, haberler haberlerDetails) {
-        Optional<haberler> haberler = haberlerRepository.findById(id);
+    public Haberler updateHaberler(Long id, Haberler haberlerDetails) {
+        Optional<Haberler> haberler = haberlerRepository.findById(id);
         if (haberler.isPresent()) {
             haberler.get().setBaslik(haberlerDetails.getBaslik());
             haberler.get().setTarih(haberlerDetails.getTarih());

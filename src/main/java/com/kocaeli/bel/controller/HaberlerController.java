@@ -1,6 +1,6 @@
 package com.kocaeli.bel.controller;
 
-import com.kocaeli.bel.model.haberler;
+import com.kocaeli.bel.model.Haberler;
 import com.kocaeli.bel.service.HaberlerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,24 +18,31 @@ public class HaberlerController {
     private HaberlerService haberlerService;
 
     @GetMapping
-    public List<haberler> getAllHaberler() {
-        return haberlerService.getAllHaberler();
+    public List<Haberler> getAllHaberler() {
+        List<Haberler> haberler = haberlerService.getAllHaberler();
+        System.out.println("Returning " + haberler.size() + " haberler");
+        return haberler;
+    }
+
+    @GetMapping("/tarihe-gore")
+    public List<Haberler> getAllHaberlerByTarihDesc() {
+        return haberlerService.getAllHaberlerByTarihDesc();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<haberler> getHaberlerById(@PathVariable Long id) {
-        Optional<haberler> haberler = haberlerService.getHaberlerById(id);
+    public ResponseEntity<Haberler> getHaberlerById(@PathVariable Long id) {
+        Optional<Haberler> haberler = haberlerService.getHaberlerById(id);
         return haberler.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public haberler createHaberler(@RequestBody haberler haberler) {
+    public Haberler createHaberler(@RequestBody Haberler haberler) {
         return haberlerService.createHaberler(haberler);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<haberler> updateHaberler(@PathVariable Long id, @RequestBody haberler haberlerDetails) {
-        haberler updatedHaberler = haberlerService.updateHaberler(id, haberlerDetails);
+    public ResponseEntity<Haberler> updateHaberler(@PathVariable Long id, @RequestBody Haberler haberlerDetails) {
+        Haberler updatedHaberler = haberlerService.updateHaberler(id, haberlerDetails);
         if (updatedHaberler != null) {
             return ResponseEntity.ok(updatedHaberler);
         } else {

@@ -32,7 +32,7 @@ public class KategoriServiceImpl implements KategoriService {
     @Override
     public Kategori updateKategori(Long id, Kategori kategoriDetails) {
         return kategoriRepository.findById(id).map(kategori -> {
-            kategori.setBaslik(kategoriDetails.getBaslik());
+            kategori.setAd(kategoriDetails.getAd());
             return kategoriRepository.save(kategori);
         }).orElse(null);
     }

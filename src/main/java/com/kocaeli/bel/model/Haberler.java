@@ -1,5 +1,6 @@
 package com.kocaeli.bel.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import lombok.Data;
 import jakarta.persistence.*;
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "HABERLER")
-public class haberler {
+public class Haberler {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +33,9 @@ public class haberler {
     @Column(name = "RESIM2")
     private String resim2;
 
-    @Column(name ="KATEGORI_ID")
-    private long kategori_id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "KATEGORI_ID")
+    private Kategori kategori;
 
 }
