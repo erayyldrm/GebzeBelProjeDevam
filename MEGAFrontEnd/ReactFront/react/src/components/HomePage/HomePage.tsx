@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAllHaberlerTariheGore } from "../Haberler/haberlerService";
 import { getAllDuyurular } from "../Haberler/duyuruService";
-import {getAllKategoriler} from "../Haberler/kategoriService.ts";
+import { getAllKategoriler } from "../Haberler/kategoriService.ts";
+import { ProjeService, Proje } from "../Haberler/ProjeService";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
@@ -19,6 +20,9 @@ export default function HomePage() {
     const totalPages = Math.ceil(news.length / newsPerPage);
     const paginatedNews = news.slice((currentPage - 1) * newsPerPage, currentPage * newsPerPage);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [selectedCategory, setSelectedCategory] = useState("Tümü");
+
+
 
     // ETKINLIKLER
     const [events, setEvents] = useState<any[]>([]);
@@ -270,59 +274,70 @@ export default function HomePage() {
                 id: 1,
                 title: "GEBZE'Yİ KEŞFET",
                 image: "/images/gebze/fotoğraflarlagebze/2.JPG",
-                slug: "gebze/bugunkugebze"
+                slug: "gebze/bugunkugebze",
+                category: "Kültür-Sanat"
             },
             {
                 id: 2,
                 title: "GEZECEK",
                 image: "/images/gebze/fotoğraflarlagebze/IMG_8201.JPG",
-                slug: "gebze/tarihiyerler"
+                slug: "gebze/tarihiyerler",
+                category: "Tarih"
 
             },
             {
                 id: 3,
                 title: "MÜZELER",
                 image: "/images/gebze/360sanaltur/9.jpg",
-                slug: "gebze/tarihiyerler"
+                slug: "gebze/tarihiyerler",
+                category: "Tarih"
             },
             {
                 id: 4,
                 title: "ROTALAR",
                 image: "/images/gebze/360sanaltur/1.jpg",
-                slug: "gebze/360sanaltur"
+                slug: "gebze/360sanaltur",
+                category: "Kültür-Sanat"
             },
             {
                 id: 5,
                 title: "ORMANLAR",
                 image: "/images/gebze/360sanaltur/6.jpg",
-                slug: "gebze/tarihiyerler"
+                slug: "gebze/tarihiyerler",
+                category: "Doğa"
             }
         ];
-
-            const projects = [
-                {
-                    id: 1,
-                    title: "Kandıra Sahil Çevresi Düzenleme Projesi",
-                    image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
-                },
-                {
-                    id: 2,
-                    title: "Akçakoca İspinoz Köprüsü Yenileme Çalışması",
-                    image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
-                },
-                {
-                    id: 3,
-                    title: "Derince Mahallesi Kreş ve Spor Merkezi",
-                    image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
-                },
-                {
-                    id: 4,
-                    title: "Körfez Yol Genişletme Çalışması",
-                    image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
-                }
-            ];
+    // Filtered categories for display
+    const filteredCategories = selectedCategory === "Tümü"
+        ? discoverCategories
+        : discoverCategories.filter(cat => cat.category === selectedCategory);
 
 
+
+    const [projects, setProjects] = useState<Proje[]>([]);
+    const [projectCategories, setProjectCategories] = useState<string[]>([]);
+    const [selectedProjectCategory, setSelectedProjectCategory] = useState<string>("Tümü");
+
+    useEffect(() => {
+        ProjeService.getAllProjeler()
+            .then(data => {
+                setProjects(data);
+                // Extract unique categories from 'durumu' field
+                const uniqueCats = Array.from(new Set(data.map((p: Proje) => p.durumu)));
+                setProjectCategories(["Tümü", ...uniqueCats]);
+            })
+            .catch(error => {
+                console.error("Error fetching projects:", error);
+            });
+    }, []);
+
+    const filteredProjects = selectedProjectCategory === "Tümü"
+        ? projects
+        : projects.filter(p => p.durumu === selectedProjectCategory);
+
+    const uniqueCategories = Array.from(
+        new Set(discoverCategories.map(cat => cat.category))
+    );
 
     return (
         <div className="bg-gray-50 px-2 sm:px-4">
@@ -527,44 +542,46 @@ export default function HomePage() {
                         <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
                             <h2 className="text-lg sm:text-xl font-bold text-blue-800">GEBZE'Yİ KEŞFET</h2>
                             <div className="flex flex-wrap gap-2">
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/turistik")}>Turistik</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/kultur-sanat")}>Kültür-Sanat</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/spor")}>Spor</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/engelsiz-yaslilar")}>Engelsiz ve Yaşlılar</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/saglik-temizlik")}>Sağlık ve Temizlik</button>
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 h-fit">
-                            <div className="relative md:col-span-1 md:row-span-2">
-                                <button
-                                    type="button"
-                                    className="relative rounded-lg overflow-hidden h-86 sm:h-86 md:h-86 w-full focus:outline-none"
-                                    onClick={() => navigate(`/${discoverCategories[0].slug}`)}
-                                >
-                                    <img src={discoverCategories[0].image} alt={discoverCategories[0].title} className="w-full h-full object-cover" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 sm:p-6">
-                                        <h3 className="text-white font-bold text-lg sm:text-xl">{discoverCategories[0].title}</h3>
-                                    </div>
-                                </button>
-                            </div>
-
-                            {/* Sağ taraf - küçük resimler */}
-                            <div className="md:col-span-2 grid grid-cols-2 gap-4 sm:gap-6">
-                                {discoverCategories.slice(1).map(category => (
+                                {["Tümü", ...uniqueCategories].map(category => (
                                     <button
-                                        key={category.id}
-                                        className="relative rounded-lg overflow-hidden h-50 sm:h-40 md:h-40 lg:h-40 focus:outline-none"
-                                        onClick={() => navigate(`/${category.slug}`)}
-                                        type="button"
+                                        key={category}
+                                        className={`px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm transition
+        ${selectedCategory === category
+                                            ? "bg-blue-500 text-white border-blue-500"
+                                            : "bg-white text-blue-800 border-blue-500 hover:bg-blue-50"}
+      `}
+                                        onClick={() => setSelectedCategory(category)}
                                     >
-                                        <img src={category.image} alt={category.title} className="w-full h-full object-cover" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-2 sm:p-4">
-                                            <h3 className="text-white font-bold text-xs sm:text-base">{category.title}</h3>
-                                        </div>
+                                        {category}
                                     </button>
                                 ))}
                             </div>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 h-fit">
+                            {filteredCategories.length > 0 && (
+                                <>
+                                    {/* Large left image */}
+                                    <div className="relative md:col-span-1 md:row-span-2">
+                                        <div className="relative rounded-lg overflow-hidden h-50 sm:h-86 md:h-86">
+                                            <img src={filteredCategories[0].image} alt={filteredCategories[0].title} className="w-full h-full object-cover" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 sm:p-6">
+                                                <h3 className="text-white font-bold text-lg sm:text-xl">{filteredCategories[0].title}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* Right grid for the rest */}
+                                    <div className="md:col-span-2 grid grid-cols-2 gap-4 sm:gap-6">
+                                        {filteredCategories.slice(1).map(category => (
+                                            <div key={category.id} className="relative rounded-lg overflow-hidden h-50 sm:h-40 md:h-40 lg:h-40">
+                                                <img src={category.image} alt={category.title} className="w-full h-full object-cover" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-2 sm:p-4">
+                                                    <h3 className="text-white font-bold text-xs sm:text-base">{category.title}</h3>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 </section>
@@ -575,19 +592,26 @@ export default function HomePage() {
                         <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
                             <h2 className="text-lg sm:text-xl font-bold text-blue-800">DEVAM EDEN PROJELER</h2>
                             <div className="flex flex-wrap gap-2 text-xs sm:text-sm">
-                                <button className="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded" onClick={() => navigate("/projeler/tamamlananlar")}>Tamamlananlar</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border" onClick={() => navigate("/projeler/devam-eden")}>Devam Eden</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border" onClick={() => navigate("/projeler/ihale")}>İhale</button>
-                                <button className="bg-white px-2 sm:px-3 py-1 rounded border" onClick={() => navigate("/projeler/planlama-tasari")}>Planlama ve Tasarı</button>
+                                {projectCategories.map((category) => (
+                                    <button
+                                        key={category}
+                                        className={`px-2 sm:px-3 py-1 rounded border transition ${
+                                            selectedProjectCategory === category
+                                                ? 'bg-blue-500 text-white border-blue-500' : 'bg-white text-blue-800 border-blue-500 hover:bg-blue-50'
+                                        }`}
+                                        onClick={() => setSelectedProjectCategory(category)}
+                                    >
+                                        {category}
+                                    </button>
+                                ))}
                             </div>
                         </div>
-
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-                            {projects.map(project => (
+                            {filteredProjects.map(project => (
                                 <div key={project.id} className="bg-white rounded-lg shadow overflow-hidden">
-                                    <img src={project.image} alt={project.title} className="w-full h-28 sm:h-36 object-cover" />
+                                    <img src={project.resimUrl} alt={project.baslik} className="w-full h-28 sm:h-36 object-cover" />
                                     <div className="p-2 sm:p-3">
-                                        <h3 className="font-bold text-xs sm:text-sm">{project.title}</h3>
+                                        <h3 className="font-bold text-xs sm:text-sm">{project.baslik}</h3>
                                     </div>
                                 </div>
                             ))}
