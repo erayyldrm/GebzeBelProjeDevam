@@ -219,14 +219,6 @@ export default function HomePage() {
         }
     ];
 
-    const serviceRoutes: { [key: number]: string } = {
-        1: "/online-islem",
-        2: "/ebasvuru",
-        3: "/ulasim",
-        4: "/saglik",
-        5: "/kultur-sanat",
-        6: "/yardim-merkezi"
-    };
     /*
         const announcements = [
             {
@@ -277,27 +269,33 @@ export default function HomePage() {
             {
                 id: 1,
                 title: "GEBZE'Yİ KEŞFET",
-                image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1-2.jpg"
+                image: "/images/gebze/fotoğraflarlagebze/2.JPG",
+                slug: "gebze/bugunkugebze"
             },
             {
                 id: 2,
                 title: "GEZECEK",
-                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
+                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg",
+                slug: "gebze/bugunkugebze"
+
             },
             {
                 id: 3,
                 title: "MÜZELER",
-                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
+                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg",
+                slug: "gebze/bugunkugebze"
             },
             {
                 id: 4,
                 title: "ROTALAR",
-                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
+                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg",
+                slug: "gebze/bugunkugebze"
             },
             {
                 id: 5,
                 title: "ORMANLAR",
-                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
+                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg",
+                slug: "gebze/bugunkugebze"
             }
         ];
 
@@ -407,7 +405,6 @@ export default function HomePage() {
                                 <button
                                     key={service.id}
                                     className="bg-white rounded-lg p-3 sm:p-4 text-center shadow hover:shadow-md transition focus:outline-none"
-                                    onClick={() => navigate(serviceRoutes[service.id])}
                                     type="button"
                                 >
                                     <div className="mb-2 sm:mb-3 w-10 h-10 sm:w-12 sm:h-12 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
@@ -466,7 +463,7 @@ export default function HomePage() {
                     {/* Events */}
                     <div>
                         <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
-                            <h2 className="text-lg sm:text-xl font-bold text-blue-800">KOCAELİ'DE ETKİNLİKLER</h2>
+                            <h2 className="text-lg sm:text-xl font-bold text-blue-800">GEBZE'DE ETKİNLİKLER</h2>
                             <a
                                 href="#"
                                 className="text-xs sm:text-sm text-blue-500 hover:underline"
@@ -528,7 +525,7 @@ export default function HomePage() {
                 <section className="bg-gray-100 py-8 sm:py-12">
                     <div className="max-w-6xl mx-auto px-2 sm:px-4">
                         <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
-                            <h2 className="text-lg sm:text-xl font-bold text-blue-800">KOCAELİ'Yİ KEŞFET</h2>
+                            <h2 className="text-lg sm:text-xl font-bold text-blue-800">GEBZE'Yİ KEŞFET</h2>
                             <div className="flex flex-wrap gap-2">
                                 <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/turistik")}>Turistik</button>
                                 <button className="bg-white px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm" onClick={() => navigate("/kesfet/kultur-sanat")}>Kültür-Sanat</button>
@@ -539,25 +536,33 @@ export default function HomePage() {
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 h-fit">
-                            {/* Sol taraf - büyük resim */}
                             <div className="relative md:col-span-1 md:row-span-2">
-                                <div className="relative rounded-lg overflow-hidden h-86 sm:h-86 md:h-86">
+                                <button
+                                    type="button"
+                                    className="relative rounded-lg overflow-hidden h-86 sm:h-86 md:h-86 w-full focus:outline-none"
+                                    onClick={() => navigate(`/${discoverCategories[0].slug}`)}
+                                >
                                     <img src={discoverCategories[0].image} alt={discoverCategories[0].title} className="w-full h-full object-cover" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 sm:p-6">
                                         <h3 className="text-white font-bold text-lg sm:text-xl">{discoverCategories[0].title}</h3>
                                     </div>
-                                </div>
+                                </button>
                             </div>
 
                             {/* Sağ taraf - küçük resimler */}
                             <div className="md:col-span-2 grid grid-cols-2 gap-4 sm:gap-6">
                                 {discoverCategories.slice(1).map(category => (
-                                    <div key={category.id} className="relative rounded-lg overflow-hidden h-50 sm:h-40 md:h-40 lg:h-40">
+                                    <button
+                                        key={category.id}
+                                        className="relative rounded-lg overflow-hidden h-50 sm:h-40 md:h-40 lg:h-40 focus:outline-none"
+                                        onClick={() => navigate(`/${category.slug}`)}
+                                        type="button"
+                                    >
                                         <img src={category.image} alt={category.title} className="w-full h-full object-cover" />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-2 sm:p-4">
                                             <h3 className="text-white font-bold text-xs sm:text-base">{category.title}</h3>
                                         </div>
-                                    </div>
+                                    </button>
                                 ))}
                             </div>
                         </div>

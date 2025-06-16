@@ -19,7 +19,9 @@ public class DuyuruServiceImpl implements DuyuruService {
 
     @Override
     public List<Duyuru> getAllDuyurular() {
-        return duyuruRepository.findAll();
+
+        return duyuruRepository.findAllByOrderByTarihDesc();
+
     }
 
     @Override
