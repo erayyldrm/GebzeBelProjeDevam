@@ -275,27 +275,27 @@ export default function HomePage() {
             {
                 id: 2,
                 title: "GEZECEK",
-                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg",
-                slug: "gebze/bugunkugebze"
+                image: "/images/gebze/fotoğraflarlagebze/IMG_8201.JPG",
+                slug: "gebze/tarihiyerler"
 
             },
             {
                 id: 3,
                 title: "MÜZELER",
-                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg",
-                slug: "gebze/bugunkugebze"
+                image: "/images/gebze/360sanaltur/9.jpg",
+                slug: "gebze/tarihiyerler"
             },
             {
                 id: 4,
                 title: "ROTALAR",
-                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg",
-                slug: "gebze/bugunkugebze"
+                image: "/images/gebze/360sanaltur/1.jpg",
+                slug: "gebze/360sanaltur"
             },
             {
                 id: 5,
                 title: "ORMANLAR",
-                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg",
-                slug: "gebze/bugunkugebze"
+                image: "/images/gebze/360sanaltur/6.jpg",
+                slug: "gebze/tarihiyerler"
             }
         ];
 
