@@ -677,7 +677,7 @@ export default function PagesPage() {
                                                     <li>
                                                         {canDelete && (
                                                             <button
-                                           target/                     onClick={() => handleDeletePage(page.id)}
+                                                            onClick={() => handleDeletePage(page.id)}
                                                                 className="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 w-full text-left"
                                                             >
                                                                 <Trash size={16} className="mr-2" />

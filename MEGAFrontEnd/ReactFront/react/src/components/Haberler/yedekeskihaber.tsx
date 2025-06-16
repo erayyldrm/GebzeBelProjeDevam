@@ -1,12 +1,8 @@
 import { useRef, useEffect, useCallback, useState } from "react";
-import {Clock, Edit} from "lucide-react";
+import { Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useKeenSlider } from 'keen-slider/react';
 import "keen-slider/keen-slider.min.css";
-import { useNavigate } from "react-router-dom";
-import { getAllDuyurular } from "./duyuruService.ts"
-import { getAllHaberler } from "./haberlerService.ts"; // adjust the path as needed
-import { getAllKategoriler } from "./kategoriService.ts";
 import {
     Megaphone,
     CalendarDays,
@@ -14,20 +10,55 @@ import {
     ChevronLeft,
     ChevronRight,
 } from "lucide-react";
-import {Link} from "react-router-dom";
-// Define the Haberler interface
-interface Haberler {
+
+type Announcement = {
     id: number;
-    baslik: string;
-    tarih: string;
-    aciklama: string;
-    resim1: string;
-    resim2: string;
-    kategori:string;
-}
+    title: string;
+    date: string;
+    description: string;
+    link?: string;
+};
+
+const announcements: Announcement[] = [
+    {
+        id: 1,
+        title: "Su Kesintisi Duyurusu",
+        date: "21 Mayıs 2025",
+        description: "Bakım çalışmaları nedeniyle bazı mahallelerde su kesintisi yaşanacaktır.",
+        link: "duyurudetay", // Linki güncelledik
+    },
+    {
+        id: 2,
+        title: "Halk Günü Etkinliği",
+        date: "23 Mayıs 2025",
+        description: "Belediye Başkanı vatandaşlarla bir araya geliyor.",
+        link: "duyurudetay",
+
+    },
+    {
+        id: 3,
+        title: "Atık Toplama Günleri Değişti",
+        date: "25 Mayıs 2025",
+        description: "Yeni düzenleme ile mahallelere özel atık toplama günleri belirlendi.",
+        link: "duyurudetay",
+    },
+    {
+        id: 4,
+        title: "Park Yenileme Projesi",
+        date: "26 Mayıs 2025",
+        description: "Şehir merkezindeki parkların bakım ve yenileme çalışmaları başladı.",
+        link: "duyurudetay",
+    },
+    {
+        id: 5,
+        title: "İmar Planı Askıya Çıktı",
+        date: "28 Mayıs 2025",
+        description: "Yeni imar planı vatandaşların incelemesine sunulmuştur.",
+        link: "duyurudetay",
+    },
+];
 
 function AnnouncementsSlider() {
-    const [duyurular, setDuyurular] = useState<Duyurular[]>([]);
     const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
         loop: true,
         slides: {
@@ -36,59 +67,36 @@ function AnnouncementsSlider() {
         },
         breakpoints: {
             "(max-width: 1024px)": {
-                slides: { perView: 1, spacing: 12 },
+                slides: { perView: 2, spacing: 12 },
             },
             "(max-width: 640px)": {
                 slides: { perView: 1, spacing: 8 },
             },
         },
     });
-    // Fetch duyurular from backend
-    useEffect(() => {
-        const fetchDuyurular = async () => {
-            try {
-                const data = await getAllDuyurular();
-                setDuyurular(Array.isArray(data) ? data : []);
-                setTimeout(() => slider.current?.update(), 100); // Force keen-slider to recalc after data loads
-            } catch (error) {
-                console.error("Error fetching duyurular:", error);
-            }
-        };
-        fetchDuyurular();
-    }, []);
-    // Fix keen-slider width bug on resize/tab switch
-    useEffect(() => {
-        const handleResize = () => slider.current?.update();
-        window.addEventListener('resize', handleResize);
-        window.addEventListener('visibilitychange', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-            window.removeEventListener('visibilitychange', handleResize);
-        };
-    }, [slider]);
+
     // Otomatik döndürme
     useEffect(() => {
-        if (!duyurular || duyurular.length === 0) return;
         const interval = setInterval(() => {
-            if (slider.current && slider.current.track && slider.current.track.details) {
-                slider.current.next();
-            }
+            slider.current?.next();
         }, 4000);
         return () => clearInterval(interval);
-    }, [slider, duyurular]);
-    const navigate = useNavigate();
-    const handleViewAllAnnouncements = () => {
-        navigate('/duyuru');
-    };
+    }, [slider]);
 
-    interface Duyurular{
-        id: number;
-        baslik: string;
-        ozet:  string;
-        tarih: string;
-        kategori: string;
-        onemli: number;
-    }
+    // Tüm Duyurular butonuna tıklandığında çalışacak fonksiyon
+    const handleViewAllAnnouncements = () => {
+        // React Router kullanıyorsanız:
+        // navigate('/duyuru');
+
+        // Next.js kullanıyorsanız:
+        // router.push('/duyuru');
+
+        // Vanilla JS ile yönlendirme:
+        window.location.href = '/duyuru';
+
+        // Eğer dosya yapısı farklıysa:
+        // window.location.href = './duyuru.tsx';
+    };
 
     return (
         <section className="py-12 px-4 bg-gray-50">
@@ -112,6 +120,8 @@ function AnnouncementsSlider() {
                             </button>
                         </div>
                     </div>
+
+                    {/* Tüm Duyurular butonu eklendi - büyütüldü ve rengi kurumsal yapıldı */}
                     <button
                         onClick={handleViewAllAnnouncements}
                         className="px-5 py-2.5 bg-indigo-700 text-white rounded-lg hover:bg-indigo-800 transition shadow-md flex items-center gap-2 text-base font-medium"
@@ -120,9 +130,10 @@ function AnnouncementsSlider() {
                         <ChevronRight className="w-5 h-5" />
                     </button>
                 </div>
+
                 {/* Slider */}
                 <div ref={sliderRef} className="keen-slider">
-                    {duyurular.map((item: Duyurular) => (
+                    {announcements.map((item) => (
                         <div
                             key={item.id}
                             className="keen-slider__slide bg-white border border-gray-200 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow"
@@ -130,27 +141,23 @@ function AnnouncementsSlider() {
                             <div className="flex items-center gap-2 mb-2">
                                 <Megaphone className="text-blue-600 w-5 h-5" />
                                 <h3 className="text-lg font-semibold text-gray-800">
-                                    {item.baslik}
+                                    {item.title}
                                 </h3>
                             </div>
                             <div className="flex items-center text-sm text-gray-500 mb-3">
                                 <CalendarDays className="w-4 h-4 mr-1" />
-                                <span>{item.tarih}</span>
+                                <span>{item.date}</span>
                             </div>
-                            <p className="text-gray-700 mb-4 text-sm">{item.ozet}</p>
-                            <div className="flex items-center text-sm text-gray-500 mb-3">
-                                <span className="font-medium">{item.kategori}</span>
-                                {item.onemli > 0 && (
-                                    <span className="ml-2 text-red-600 font-semibold">Önemli!</span>
-                                )}
-                            </div>
-                            <Link
-                                to={`/haberdetay/${item.id}`}
-                                className="flex items-center text-blue-600 hover:underline text-sm font-medium"
-                            >
-                                 <Info className="w-4 h-4 mr-1" />
-                                Ayrıntılı Bilgi
-                            </Link>
+                            <p className="text-gray-700 mb-4 text-sm">{item.description}</p>
+                            {item.link && (
+                                <a
+                                    href={item.link}
+                                    className="flex items-center text-blue-600 hover:underline text-sm font-medium"
+                                >
+                                    <Info className="w-4 h-4 mr-1" />
+                                    Detaylı bilgi
+                                </a>
+                            )}
                         </div>
                     ))}
                 </div>
@@ -176,6 +183,172 @@ function useInterval(callback: () => void, delay: number | null) {
 }
 
 export default function BlogLayout() {
+    const heroPost = {
+        id: 1,
+        image: "/images/Haberler/habergörselleri/cevretemizligeridönüsüm/cevre1.jpg",
+        category: "GERİ DÖNÜŞÜM",
+        categoryClass: "bg-pink-500",
+        title: "Atıkları dönüştürüyor, doğayı koruyoruz.",
+        date: "Mayıs 29, 2022",
+        link : "haberlerdetay"
+    };
+
+    const featuredArticles = [
+        {
+            id: 1,
+            image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1.jpg",
+            category: "EĞİTİM",
+            categoryClass: "bg-green-600",
+            title: "Eğitime erişimi önemsiyor, bilgiyle toplumu güçlendiriyoruz.",
+            date: "Mayıs 29, 2022",
+            link : "haberlerdetay"
+        },
+        {
+            id: 2,
+            image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar.jpg",
+            category: "PROJELER",
+            categoryClass: "bg-yellow-500",
+            title: "Daha İyi Bir Kent !",
+            date: "Mayıs 29, 2022",
+            link : "haberlerdetay"
+        },
+        {
+            id: 3,
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "SOSYAL YARDIM",
+            categoryClass: "bg-blue-600",
+            title: "Gebze'de Kimse Yalnız Değil",
+            date: "Mayıs 29, 2022",
+            link : "haberlerdetay"
+        }
+    ];
+
+    // Slider data with added categoryClass property to match the main cards
+    const slides = [
+        {
+            id: 1,
+            image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar1-1.webp",
+            category: "Güncel",
+            categoryClass: "bg-indigo-500", // Added color class
+            title: "Belediyemiz Yeni Projeleri Tanıttı",
+            date: "14 Mayıs 2025",
+            link : "haberlerdetay"
+        },
+        {
+            id: 2,
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal2.jpg",
+            category: "Duyuru",
+            categoryClass: "bg-amber-500", // Added color class
+            title: "Yaz Şenliği Etkinlikleri Başlıyor",
+            date: "10 Mayıs 2025",
+            link : "haberlerdetay"
+        },
+        {
+            id: 3,
+            image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1-2.jpg",
+            category: "Etkinlik",
+            categoryClass: "bg-green-600", // Same as EĞİTİM
+            title: "Başkanımızdan Gençlere Özel Mesaj",
+            date: "8 Mayıs 2025",
+            link : "haberlerdetay"
+        },
+        {
+            id: 4,
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg",
+            category: "Haber",
+            categoryClass: "bg-blue-600", // Same as SOSYAL YARDIM
+            title: "Başkanımızdan Sosyal Yardım Destekleri",
+            date: "5 Mayıs 2025",
+            link : "haberlerdetay"
+        },
+    ];
+
+    // NewsItem interface and data
+    const newsData = [
+        {
+            id: 1,
+            title: "Gebze'de Yeni Park Açılışı Yapıldı",
+            image: "/images/Haberler/habergörselleri/cevretemizligeridönüsüm/cevre1.jpg",
+            category: "Başkan'dan Mesajlar",
+            description: "Yeni park hizmete açıldı, vatandaşlardan yoğun ilgi gördü.",
+            link : "haberlerdetay"
+        },
+        {
+            id: 2,
+            title: "Çevre Temizlik Kampanyası Başladı",
+            image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1.jpg",
+            category: "Sıfır Atık",
+            description: "Temizlik kampanyası geniş katılımla başladı.",
+            link : "haberlerdetay"
+        },
+        {
+            id: 3,
+            title: "Yeni İmar Planları Onaylandı",
+            image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar.jpg",
+            category: "Eğitim & Gençlik",
+            description: "Belediye meclisinde yeni imar planları oy birliğiyle kabul edildi.",
+            link : "haberlerdetay"
+        },
+        {
+            id: 4,
+            title: "Geri Dönüşüm Eğitimi Verildi",
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "Sosyal Hizmetler",
+            description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+            link : "haberlerdetay"
+        },
+        {
+            id: 5,
+            title: "Geri Dönüşüm Eğitimi Verildi",
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "Projeler & Altyapı",
+            description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+            link : "haberlerdetay"
+        },
+        {
+            id: 6,
+            title: "Geri Dönüşüm Eğitimi Verildi",
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "Spor Faaliyetleri",
+            description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+            link : "haberlerdetay"
+        },
+        {
+            id: 7,
+            title: "Geri Dönüşüm Eğitimi Verildi",
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "Ziyaretler",
+            description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+            link : "haberlerdetay"
+        },
+        {
+            id: 8,
+            title: "Geri Dönüşüm Eğitimi Verildi",
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "Ziyaretler",
+            description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+            link : "haberlerdetay"
+        },
+        {
+            id: 9,
+            title: "Geri Dönüşüm Eğitimi Verildi",
+            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1.jpg",
+            category: "Ziyaretler",
+            description: "Okullarda öğrencilere geri dönüşüm bilinci kazandırıldı.",
+            link : "haberlerdetay"
+        },
+    ];
+
+    const categories = [
+        "Tümü",
+        "Başkan'dan Mesajlar",
+        "Sıfır Atık",
+        "Eğitim & Gençlik",
+        "Sosyal Hizmetler",
+        "Projeler & Altyapı",
+        "Spor Faaliyetleri",
+        "Ziyaretler",
+    ];
 
     // Slider refs and logic
     const sliderRef = useRef<HTMLDivElement | null>(null);
@@ -186,40 +359,11 @@ export default function BlogLayout() {
     // NewsPage component state
     const [activeCategory, setActiveCategory] = useState("Tümü");
     const [isMobile, setIsMobile] = useState(false);
-    const [haberlerList, setHaberlerList] = useState<Haberler[]>([]);
-    const [categories, setCategories] = useState<string[]>(["Tümü"]);
 
     // Pagination için state
     const [currentPage, setCurrentPage] = useState(1);
     const newsPerPage = 6;
     const maxPages = 5;
-
-
-    // Fetch haberler from backend
-    useEffect(() => {
-        getAllHaberler()
-            .then((data) => {
-                console.log('getAllHaberler response:', data);
-                setHaberlerList(Array.isArray(data) ? data : []);
-            })
-            .catch((err) => {
-                console.error("Failed to fetch haberler:", err);
-                setHaberlerList([]); // Ensure it's always an array on error
-            });
-    }, []);
-
-    // Fetch kategoriler from backend
-    useEffect(() => {
-        getAllKategoriler()
-            .then((data) => {
-                console.log('getAllKategoriler response:', data);
-                if (Array.isArray(data)) {
-                    const kategoriNames = data.map((k: any) => k.baslik || k.name || k.title).filter(Boolean);
-                    setCategories(["Tümü", ...kategoriNames]);
-                }
-            })
-            .catch((err) => console.error("Failed to fetch kategoriler:", err));
-    }, []);
 
     // Kategori değişince sayfa başa dönsün
     useEffect(() => {
@@ -248,16 +392,16 @@ export default function BlogLayout() {
         if (!slider) return;
 
         // Center the view
-        const initialScroll = Math.floor(haberlerList.length / 2) * slideWidth;
+        const initialScroll = Math.floor(slides.length / 2) * slideWidth;
         slider.scrollLeft = initialScroll;
 
         const handleScroll = () => {
             if (!slider) return;
 
             if (slider.scrollLeft <= 0) {
-                slider.scrollLeft = haberlerList.length * slideWidth;
-            } else if (slider.scrollLeft >= slideWidth * haberlerList.length * 2) {
-                slider.scrollLeft = haberlerList.length * slideWidth;
+                slider.scrollLeft = slides.length * slideWidth;
+            } else if (slider.scrollLeft >= slideWidth * slides.length * 2) {
+                slider.scrollLeft = slides.length * slideWidth;
             }
         };
 
@@ -294,16 +438,16 @@ export default function BlogLayout() {
         const slider = sliderRef.current;
         const newScrollLeft = slider.scrollLeft + amount;
 
-        if (newScrollLeft >= slideWidth * haberlerList.length * 3) {
+        if (newScrollLeft >= slideWidth * slides.length * 3) {
             // Reset to start invisibly
-            slider.scrollLeft = slideWidth * haberlerList.length;
+            slider.scrollLeft = slideWidth * slides.length;
             slider.scrollTo({
                 left: slider.scrollLeft + amount,
                 behavior: 'smooth'
             });
         } else if (newScrollLeft <= 0) {
             // Reset to end invisibly
-            slider.scrollLeft = slideWidth * haberlerList.length * 2;
+            slider.scrollLeft = slideWidth * slides.length * 2;
             slider.scrollTo({
                 left: slider.scrollLeft + amount,
                 behavior: 'smooth'
@@ -315,7 +459,7 @@ export default function BlogLayout() {
                 behavior: 'smooth'
             });
         }
-    }, [haberlerList.length, slideWidth]);
+    }, [slides.length, slideWidth]);
 
     // Auto-scroll interval
     useInterval(() => {
@@ -327,39 +471,8 @@ export default function BlogLayout() {
     // Filter news by category
     const filteredNews =
         activeCategory === "Tümü"
-            ? haberlerList
-            : haberlerList.filter((haber) => haber.kategori === activeCategory);
-
-    // Prepare heroPost and featuredArticles from filteredNews (not all news)
-    const heroPost = filteredNews[0]
-        ? {
-            id: filteredNews[0].id,
-            image: filteredNews[0].resim1 || filteredNews[0].resim2,
-            category: filteredNews[0].kategori,
-            categoryClass: "bg-blue-600",
-            title: filteredNews[0].baslik,
-            date: filteredNews[0].tarih,
-        }
-        : null;
-
-    const featuredArticles = filteredNews.slice(1, 4).map((haber, idx) => ({
-        id: haber.id,
-        image: haber.resim1 || haber.resim2,
-        category: haber.kategori,
-        categoryClass: idx === 0 ? "bg-yellow-500" : "bg-blue-600",
-        title: haber.baslik,
-        date: haber.tarih,
-    }));
-
-    // Prepare slides for the slider from filteredNews (or use a fallback if empty)
-    const slides = Array.isArray(filteredNews) ? filteredNews.slice(0, 10).map((haber) => ({
-        id: haber.id,
-        image: haber.resim1 || haber.resim2,
-        title: haber.baslik,
-        category: haber.kategori,
-        categoryClass: "bg-blue-600",
-        date: haber.tarih,
-    })) : [];
+            ? newsData
+            : newsData.filter((news) => news.category === activeCategory);
 
     // Pagination hesaplamaları
     const totalPages = Math.min(
@@ -371,6 +484,14 @@ export default function BlogLayout() {
         currentPage * newsPerPage
     );
 
+    // Handler for navigating to Duyurular page
+    interface Article {
+        image: string;
+        title: string;
+        category: string;
+        categoryClass: string;
+        date: string;
+    }
 
     const renderHeroCard = (article: Article) => (
         <div className="relative overflow-hidden rounded h-full w-full">
@@ -449,29 +570,6 @@ export default function BlogLayout() {
         </div>
     );
 
-    // News Slider Section with Duyurular Button - Full width
-    const [newsSliderRef, newsSlider] = useKeenSlider<HTMLDivElement>({
-        loop: true,
-        slides: {
-            perView: 3,
-            spacing: 16,
-        },
-        breakpoints: {
-            "(max-width: 1024px)": {
-                slides: { perView: 2, spacing: 12 },
-            },
-            "(max-width: 640px)": {
-                slides: { perView: 1, spacing: 8 },
-            },
-        },
-    });
-    useEffect(() => {
-        const interval = setInterval(() => {
-            newsSlider.current?.next();
-        }, 4000);
-        return () => clearInterval(interval);
-    }, [newsSlider]);
-
     return (
         <div className="min-h-screen bg-gray-100 py-8">
             {/* Main Card Container with shadow */}
@@ -482,14 +580,14 @@ export default function BlogLayout() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6"> {/* mb-12'den mb-6'ya düşürüldü */}
                         {/* Left hero post */}
                         <div className="h-140 flex gap-6">
-                            {heroPost && renderHeroCard(heroPost)}
+                            {renderHeroCard(heroPost)}
                         </div>
 
                         {/* Right side */}
                         <div className="grid grid-rows-[1fr_auto] gap-6">
                             {/* Top square */}
                             <div className="aspect-w-1 aspect-h-11">
-                                {featuredArticles[0] ? renderMainArticle(featuredArticles[0]) : null}
+                                {featuredArticles[0].date ? renderMainArticle(featuredArticles[0]) : null}
                             </div>
 
                             {/* Bottom two small boxes */}
@@ -505,14 +603,14 @@ export default function BlogLayout() {
                     </div>
 
                     {/* News Slider Section with Duyurular Button - Full width */}
-                    <div className="mb-1">
+                    <div className="mb-1"> {/* mb-2'den mb-1'e düşürüldü */}
                         <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center">
                                 <h2 className="text-3xl font-bold mr-4">Son Haberler</h2>
                                 {/* Navigation Buttons */}
                                 <div className="flex items-center gap-2">
                                     <button
-                                        onClick={() => newsSlider.current?.prev()}
+                                        onClick={() => scrollByAmount(-scrollAmount)}
                                         className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
                                     >
                                         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
@@ -520,8 +618,9 @@ export default function BlogLayout() {
                                             <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                         </svg>
                                     </button>
+
                                     <button
-                                        onClick={() => newsSlider.current?.next()}
+                                        onClick={() => scrollByAmount(scrollAmount)}
                                         className="size-10 bg-white ring-1 ring-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
                                     >
                                         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
@@ -532,49 +631,65 @@ export default function BlogLayout() {
                                 </div>
                             </div>
                         </div>
+
                         {/* Slider container */}
-                        {slides.length > 0 && (
-                            <div ref={newsSliderRef} className="keen-slider">
-                                {slides.map((slide, index) => (
-                                    <div
-                                        key={slide.id}
-                                        className="keen-slider__slide bg-white rounded-xl shadow-md flex border border-gray-200 h-32"
-                                    >
-                                        {/* IMAGE AREA */}
-                                        <div className="w-2/5 p-1.5">
-                                            <img
-                                                src={slide.image}
-                                                alt={slide.title}
-                                                className="w-full h-full object-cover rounded-md"
-                                                draggable={false}
-                                            />
-                                        </div>
-                                        {/* TEXT AREA */}
-                                        <div className="w-3/5 px-2 py-1.5 flex flex-col justify-between">
-                                            <div>
-                                                <h3 className="text-xs font-bold line-clamp-2 leading-tight mb-1">{slide.title}</h3>
-                                                <div className={`text-xs font-semibold text-white px-2 py-0.5 rounded inline-block ${slide.categoryClass}`}>
-                                                    {slide.category}
+                        <div className="w-full">
+                            <div className="w-full overflow-hidden">
+                                <div
+                                    ref={sliderRef}
+                                    className="flex space-x-4 w-full overflow-x-auto scroll-smooth"
+                                    style={{ scrollbarWidth: "none" }}
+                                >
+                                    {/* Sonsuz döngü için slide'ları 3 kez tekrarla */}
+                                    {Array(3).fill(slides).flat().map((slide, index) => (
+                                        <div
+                                            key={`${slide.id}-${index}`}
+                                            className="flex-none w-[380px] h-32 bg-white rounded-xl shadow-md flex border border-gray-200"
+                                        >
+                                            {/* IMAGE AREA */}
+                                            <div className="w-2/5 p-1.5">
+                                                <img
+                                                    src={slide.image}
+                                                    alt={slide.title}
+                                                    className="w-full h-full object-cover rounded-md"
+                                                    draggable={false}
+                                                />
+                                            </div>
+
+                                            {/* TEXT AREA */}
+                                            <div className="w-3/5 px-2 py-1.5 flex flex-col justify-between">
+                                                <div>
+                                                    <h3 className="text-xs font-bold line-clamp-2 leading-tight mb-1">{slide.title}</h3>
+                                                    <div className={`text-xs font-semibold text-white px-2 py-0.5 rounded inline-block ${slide.categoryClass}`}>
+                                                        {slide.category}
+                                                    </div>
+                                                </div>
+                                                <div className="flex items-center text-gray-500">
+                                                    <Clock size={10} className="mr-1" />
+                                                    <span className="text-xs">{slide.date}</span>
+                                                </div>
+                                                <div className="mt-2">
+                                                    <a
+                                                        href="/haberlerdetay"
+                                                        className="flex items-center text-blue-600 hover:underline text-xs font-medium transition"
+                                                        onClick={e => e.stopPropagation()}
+                                                    >
+                                                        {/* "i" ikonunun noktası olan versiyonu */}
+                                                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                                            <circle cx="12" cy="12" r="10" />
+                                                            <line x1="12" y1="16" x2="12" y2="12" />
+                                                            <circle cx="12" cy="8" r="1.2" />
+                                                        </svg>
+                                                        Detaylı Bilgi
+                                                    </a>
                                                 </div>
                                             </div>
-                                            <div className="flex items-center text-gray-500">
-                                                <Clock size={10} className="mr-1" />
-                                                <span className="text-xs">{slide.date}</span>
-                                            </div>
-                                            <div className="mt-2">
-                                                <Link
-                                                    to={`/haberlerdetay/${slide.id}`}
-                                                    className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-medium transition"
-                                                    onClick={(e) => e.stopPropagation()}
-                                                >
-                                                    Detaylı Bilgi
-                                                </Link>
-                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
-                        )}
+                        </div>
+                        <style>{`::-webkit-scrollbar { display: none; }`}</style>
                     </div>
 
                     {/* AnnouncementsSlider bileşeni */}
@@ -642,31 +757,30 @@ export default function BlogLayout() {
                                         {isMobile ? (
                                             <div className="w-full relative pt-[56.25%]">
                                                 <img
-                                                    src={news.resim1 || news.resim2}
-                                                    alt={news.baslik}
+                                                    src={news.image}
+                                                    alt={news.title}
                                                     className="absolute top-0 left-0 w-full h-full object-cover"
                                                 />
                                             </div>
                                         ) : (
                                             <div className="w-full h-48 overflow-hidden">
                                                 <img
-                                                    src={news.resim1 || news.resim2}
-                                                    alt={news.baslik}
+                                                    src={news.image}
+                                                    alt={news.title}
                                                     className="w-full h-full object-cover"
                                                 />
                                             </div>
                                         )}
                                         <div className={`${isMobile ? 'p-3' : 'p-4'} flex flex-col justify-between flex-grow`}>
-                                            <div className="flex items-center gap-2 mb-2">
-                                                <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded">{news.kategori}</span>
-                                            </div>
-                                            <h2 className={`${isMobile ? 'text-base' : 'text-lg'} font-semibold text-gray-800 ${isMobile ? 'line-clamp-2' : ''}`}>{news.baslik}</h2>
+                                            <h2 className={`${isMobile ? 'text-base' : 'text-lg'} font-semibold text-gray-800 ${isMobile ? 'line-clamp-2' : ''}`}>
+                                                {news.title}
+                                            </h2>
                                             <p className={`text-gray-600 mt-2 ${isMobile ? 'text-xs line-clamp-3' : 'text-sm'} flex-grow`}>
-                                                {news.aciklama}
+                                                {news.description}
                                             </p>
                                             <div className="mt-4">
                                                 <a
-                                                    href={`/haberlerdetay/${news.id}`}
+                                                    href="/haberlerdetay"
                                                     className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-medium transition"
                                                     onClick={e => e.stopPropagation()}
                                                 >
