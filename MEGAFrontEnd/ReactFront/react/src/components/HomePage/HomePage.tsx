@@ -1,9 +1,57 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getAllHaberlerTariheGore } from "../Haberler/haberlerService";
+import { getAllDuyurular } from "../Haberler/duyuruService";
+import {getAllKategoriler} from "../Haberler/kategoriService.ts";
+
 
 export default function HomePage() {
     const navigate = useNavigate();
+    // State for API data
+    const [news, setNews] = useState<any[]>([]);
+    const [announcements, setAnnouncements] = useState<any[]>([]);
+    const [categories, setCategories] = useState<string[]>(["Tümü"]);
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const newsPerPage = 3;
+    const totalPages = Math.ceil(news.length / newsPerPage);
+    const paginatedNews = news.slice((currentPage - 1) * newsPerPage, currentPage * newsPerPage);
 
-    // Sample data for the different sections
+
+    useEffect(() => {
+        getAllHaberlerTariheGore().then(data => {
+            // Map API data to match your card structure
+            setNews(
+                data.slice(0, 6).map((item: any) => ({
+                    id: item.id,
+                    title: item.baslik,
+                    image: item.resim1 || "/images/default-news.jpg",
+                    date: item.tarih // Format if needed
+                }))
+            );
+        });
+        getAllDuyurular().then(data => {
+            setAnnouncements(
+                data.slice(0, 6).map((item: any) => ({
+                    id: item.id,
+                    title: item.baslik,
+                    date: item.tarih // Format if needed
+                }))
+            );
+        });
+        getAllKategoriler()
+            .then((data) => {
+                console.log('getAllKategoriler response:', data);
+                if (Array.isArray(data)) {
+                    const kategoriNames = data.map((k: any) => k.ad).filter(Boolean);
+                    setCategories(["Tümü", ...kategoriNames]);
+                }
+            })
+
+
+    }, []);
+
+    /*
     const news = [
         {
             id: 1,
@@ -24,7 +72,7 @@ export default function HomePage() {
             date: "23 Nisan 2024"
         }
     ];
-
+*/
     const services = [
         {
             id: 1,
@@ -112,100 +160,103 @@ export default function HomePage() {
         5: "/kultur-sanat",
         6: "/yardim-merkezi"
     };
+    /*
+        const announcements = [
+            {
+                id: 1,
+                title: "Otobüs satın alınacaktır",
+                date: "15 Nisan 2025",
+            },
+            {
+                id: 2,
+                title: "Kocaeli'de Bahar Festivali hazırlıkları başladı",
+                date: "12 Nisan 2025"
+            },
+            {
+                id: 3,
+                title: "Emlak vergisi son ödeme tarihi uzatıldı",
+                date: "10 Nisan 2025"
+            },
+            {
+                id: 4,
+                title: "Otobüs satın alınacaktır",
+                date: "15 Nisan 2025"
+            },
 
-    const announcements = [
-        {
-            id: 1,
-            title: "Otobüs satın alınacaktır",
-            date: "15 Nisan 2025",
-        },
-        {
-            id: 2,
-            title: "Kocaeli'de Bahar Festivali hazırlıkları başladı",
-            date: "12 Nisan 2025"
-        },
-        {
-            id: 3,
-            title: "Emlak vergisi son ödeme tarihi uzatıldı",
-            date: "10 Nisan 2025"
-        },
-        {
-            id: 4,
-            title: "Otobüs satın alınacaktır",
-            date: "15 Nisan 2025"
-        },
+        ];
+*/
+        const events = [
+            {
+                id: 1,
+                title: "Orta Asya'dan Anadolu'ya Ortakmiras",
+                date: "29 Nisan",
+                location: "Kültür Merkezi",
+                image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar1-1.webp",
+                time: "18:00"
+            },
+            {
+                id: 2,
+                title: "Bahar Konseri",
+                date: "30 Nisan",
+                location: "Kent Meydanı",
+                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal2.jpg",
+                time: "19:30"
+            }
+        ];
 
-    ];
 
-    const events = [
-        {
-            id: 1,
-            title: "Orta Asya'dan Anadolu'ya Ortakmiras",
-            date: "29 Nisan",
-            location: "Kültür Merkezi",
-            image: "/images/Haberler/habergörselleri/projelervealtyapicalismalari/calismalar1-1.webp",
-            time: "18:00"
-        },
-        {
-            id: 2,
-            title: "Bahar Konseri",
-            date: "30 Nisan",
-            location: "Kent Meydanı",
-            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal2.jpg",
-            time: "19:30"
-        }
-    ];
+        const discoverCategories = [
+            {
+                id: 1,
+                title: "GEBZE'Yİ KEŞFET",
+                image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1-2.jpg"
+            },
+            {
+                id: 2,
+                title: "GEZECEK",
+                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
+            },
+            {
+                id: 3,
+                title: "MÜZELER",
+                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
+            },
+            {
+                id: 4,
+                title: "ROTALAR",
+                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
+            },
+            {
+                id: 5,
+                title: "ORMANLAR",
+                image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
+            }
+        ];
 
-    const discoverCategories = [
-        {
-            id: 1,
-            title: "GEBZE'Yİ KEŞFET",
-            image: "/images/Haberler/habergörselleri/egitimvegenclik/egitim1-2.jpg"
-        },
-        {
-            id: 2,
-            title: "GEZECEK",
-            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
-        },
-        {
-            id: 3,
-            title: "MÜZELER",
-            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
-        },
-        {
-            id: 4,
-            title: "ROTALAR",
-            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
-        },
-        {
-            id: 5,
-            title: "ORMANLAR",
-            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
-        }
-    ];
+            const projects = [
+                {
+                    id: 1,
+                    title: "Kandıra Sahil Çevresi Düzenleme Projesi",
+                    image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
+                },
+                {
+                    id: 2,
+                    title: "Akçakoca İspinoz Köprüsü Yenileme Çalışması",
+                    image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
+                },
+                {
+                    id: 3,
+                    title: "Derince Mahallesi Kreş ve Spor Merkezi",
+                    image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
+                },
+                {
+                    id: 4,
+                    title: "Körfez Yol Genişletme Çalışması",
+                    image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
+                }
+            ];
 
-    const projects = [
-        {
-            id: 1,
-            title: "Kandıra Sahil Çevresi Düzenleme Projesi",
-            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
-        },
-        {
-            id: 2,
-            title: "Akçakoca İspinoz Köprüsü Yenileme Çalışması",
-            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
-        },
-        {
-            id: 3,
-            title: "Derince Mahallesi Kreş ve Spor Merkezi",
-            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
-        },
-        {
-            id: 4,
-            title: "Körfez Yol Genişletme Çalışması",
-            image: "/images/Haberler/habergörselleri/sosyalyardımvehizmetler/sosyal1-2.jpeg"
-        }
-    ];
+
 
     return (
         <div className="bg-gray-50 px-2 sm:px-4">
@@ -245,9 +296,8 @@ export default function HomePage() {
                             Tüm Haberler
                         </a>
                     </div>
-
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                        {news.map(item => (
+                        {paginatedNews.map(item => (
                             <div key={item.id} className="bg-white rounded-lg shadow overflow-hidden">
                                 <img src={item.image} alt={item.title} className="w-full h-40 sm:h-48 object-cover" />
                                 <div className="p-3 sm:p-4">
@@ -256,6 +306,32 @@ export default function HomePage() {
                                 </div>
                             </div>
                         ))}
+                    </div>
+                    {/* Pagination Controls */}
+                    <div className="flex justify-center mt-6 gap-2">
+                        <button
+                            className="px-3 py-1 rounded border text-xs"
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                        >
+                            Previous
+                        </button>
+                        {[...Array(totalPages)].map((_, idx) => (
+                            <button
+                                key={idx}
+                                className={`px-3 py-1 rounded border text-xs ${currentPage === idx + 1 ? 'bg-blue-500 text-white' : ''}`}
+                                onClick={() => setCurrentPage(idx + 1)}
+                            >
+                                {idx + 1}
+                            </button>
+                        ))}
+                        <button
+                            className="px-3 py-1 rounded border text-xs"
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                        >
+                            Next
+                        </button>
                     </div>
                 </section>
 
