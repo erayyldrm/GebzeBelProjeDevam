@@ -17,6 +17,33 @@ export default function HomePage() {
     const totalPages = Math.ceil(news.length / newsPerPage);
     const paginatedNews = news.slice((currentPage - 1) * newsPerPage, currentPage * newsPerPage);
 
+    // ETKINLIKLER
+    const [events, setEvents] = useState<any[]>([]);
+    const [currentEventPage, setCurrentEventPage] = useState(1);
+    const eventsPerPage = 4;
+
+    useEffect(() => {
+        fetch("http://localhost:8080/api/etkinlikler")
+            .then(res => res.json())
+            .then(data => {
+                // Map backend fields to frontend fields
+                const mapped = (Array.isArray(data) ? data : []).map(event => ({
+                    id: event.id,
+                    image: event.resimUrl,
+                    title: event.baslik,
+                    time: event.tarih?.split("T")[1]?.substring(0,5) || "", // or format as needed
+                    location: event.aciklama,
+                    date: event.tarih?.split("T")[0] || "",
+                }));
+                setEvents(mapped);
+            });
+    }, []);
+
+    const totalEventPages = Math.ceil(events.length / eventsPerPage);
+    const paginatedEvents = events.slice(
+        (currentEventPage - 1) * eventsPerPage,
+        currentEventPage * eventsPerPage
+    );
 
     useEffect(() => {
         getAllHaberlerTariheGore().then(data => {
@@ -184,7 +211,8 @@ export default function HomePage() {
             },
 
         ];
-*/
+
+
         const events = [
             {
                 id: 1,
@@ -203,7 +231,7 @@ export default function HomePage() {
                 time: "19:30"
             }
         ];
-
+*/
 
         const discoverCategories = [
             {
@@ -417,48 +445,50 @@ export default function HomePage() {
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                            {events.map(event => (
+                            {paginatedEvents.map(event => (
                                 <div key={event.id} className="bg-white rounded-lg shadow overflow-hidden">
                                     <img src={event.image} alt={event.title} className="w-full h-32 sm:h-40 object-cover" />
                                     <div className="p-3 sm:p-4">
                                         <div className="flex justify-between items-start mb-2">
                                             <div className="bg-blue-100 text-blue-800 text-center py-1 px-2 sm:px-3 rounded-lg">
-                                                <div className="font-bold text-base sm:text-lg">{event.date.split(" ")[0]}</div>
-                                                <div className="text-xs">{event.date.split(" ")[1] || ""}</div>
+                                                <div className="font-bold text-base sm:text-lg">{event.date}</div>
                                             </div>
                                             <span className="text-xs sm:text-sm text-blue-500">{event.time}</span>
                                         </div>
                                         <h3 className="font-bold mb-1 text-sm sm:text-base">{event.title}</h3>
                                         <p className="text-[10px] sm:text-xs text-gray-500">{event.location}</p>
-
-                                        <div className="mt-3 sm:mt-4 flex justify-between text-[10px] sm:text-xs text-gray-500">
-                                            <button className="flex items-center">
-                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                                </svg>
-                                                <span className="ml-1">Beğen</span>
-                                            </button>
-                                            <button className="flex items-center">
-                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1-3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                                                </svg>
-                                                <span className="ml-1">Yorum</span>
-                                            </button>
-                                            <button className="flex items-center">
-                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                    <circle cx="18" cy="5" r="3"></circle>
-                                                    <circle cx="6" cy="12" r="3"></circle>
-                                                    <circle cx="18" cy="19" r="3"></circle>
-                                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                                </svg>
-                                                <span className="ml-1">Paylaş</span>
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
+
+                        {totalEventPages > 1 && (
+                            <div className="flex justify-center mt-6 gap-2">
+                                <button
+                                    onClick={() => setCurrentEventPage(p => Math.max(1, p - 1))}
+                                    disabled={currentEventPage === 1}
+                                    className={`px-3 py-1 rounded ${currentEventPage === 1 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white border hover:bg-gray-100'}`}
+                                >
+                                    &lt;
+                                </button>
+                                {Array.from({ length: totalEventPages }, (_, i) => (
+                                    <button
+                                        key={i + 1}
+                                        onClick={() => setCurrentEventPage(i + 1)}
+                                        className={`px-3 py-1 rounded font-semibold ${currentEventPage === i + 1 ? 'bg-blue-600 text-white' : 'bg-white border hover:bg-gray-100'}`}
+                                    >
+                                        {i + 1}
+                                    </button>
+                                ))}
+                                <button
+                                    onClick={() => setCurrentEventPage(p => Math.min(totalEventPages, p + 1))}
+                                    disabled={currentEventPage === totalEventPages}
+                                    className={`px-3 py-1 rounded ${currentEventPage === totalEventPages ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white border hover:bg-gray-100'}`}
+                                >
+                                    &gt;
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </section>
 
