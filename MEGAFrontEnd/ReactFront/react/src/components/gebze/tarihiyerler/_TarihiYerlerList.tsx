@@ -72,13 +72,11 @@ const TarihiYerlerList: React.FC = () => {
         { id:1123, resimUrl: "/images/gebze/tarihiyerler/sultanorhancami/12.jpg", yerIsmi: "SULTAN ORHAN CAMİİ", konum:"https://www.google.com/maps/place/Sultan+Orhan+Cami/@40.798083,29.4355794,17z/data=!3m1!4b1!4m5!3m4!1s0x14cb208c7bb7f3d5:0x805bf82146b0c733!8m2!3d40.798079!4d29.4377681?shorturl=1"}
     ];
 
-
-
     const displayData = error || tarihiYerler.length === 0 ? fallbackData : tarihiYerler;
 
     return (
         <div className="bg-gray-50 min-h-screen">
-            <div className="max-w-6xl mx-auto px-5">
+            <div className="max-w-6xl mx-auto px-5 pb-16">
                 <div className="bg-red-900 shadow-lg rounded-4xl p-3 mb-4 mt-2 text-center">
                     <h1 className="text-3xl sm:text-3xl md:text-4xl font-bold text-white">
                         GEBZE TARİHİ YERLER
@@ -91,11 +89,11 @@ const TarihiYerlerList: React.FC = () => {
                     </div>
                 ) : (
                     <>
-                    {error && (
-                        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
-                            <p>{error}</p>
-                        </div>
-                    )}
+                        {error && (
+                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+                                <p>{error}</p>
+                            </div>
+                        )}
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
                             {displayData.map((item) => (
