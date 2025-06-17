@@ -562,7 +562,7 @@ export default function HomePage() {
                                 <>
                                     {/* Large left image */}
                                     <div className="relative md:col-span-1 md:row-span-2">
-                                        <div className="relative rounded-lg overflow-hidden h-50 sm:h-86 md:h-86">
+                                        <div className="relative rounded-lg overflow-hidden h-50 sm:h-86 md:h-86" onClick={() => navigate(`/${filteredCategories[0].slug}`)}>
                                             <img src={filteredCategories[0].image} alt={filteredCategories[0].title} className="w-full h-full object-cover" />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 sm:p-6">
                                                 <h3 className="text-white font-bold text-lg sm:text-xl">{filteredCategories[0].title}</h3>
@@ -572,7 +572,7 @@ export default function HomePage() {
                                     {/* Right grid for the rest */}
                                     <div className="md:col-span-2 grid grid-cols-2 gap-4 sm:gap-6">
                                         {filteredCategories.slice(1).map(category => (
-                                            <div key={category.id} className="relative rounded-lg overflow-hidden h-50 sm:h-40 md:h-40 lg:h-40">
+                                            <div key={category.id} className="relative rounded-lg overflow-hidden h-50 sm:h-40 md:h-40 lg:h-40" onClick={() => navigate(`/${category.slug}`)}>
                                                 <img src={category.image} alt={category.title} className="w-full h-full object-cover" />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-2 sm:p-4">
                                                     <h3 className="text-white font-bold text-xs sm:text-base">{category.title}</h3>
