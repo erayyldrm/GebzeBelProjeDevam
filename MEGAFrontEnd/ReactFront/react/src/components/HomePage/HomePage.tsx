@@ -545,11 +545,17 @@ export default function HomePage() {
                                 {["Tümü", ...uniqueCategories].map(category => (
                                     <button
                                         key={category}
-                                        className={`px-2 sm:px-3 py-1 rounded border text-xs sm:text-sm transition
-        ${selectedCategory === category
-                                            ? "bg-blue-500 text-white border-blue-500"
-                                            : "bg-white text-blue-800 border-blue-500 hover:bg-blue-50"}
-      `}
+                                        className={`
+                                            px-3 sm:px-4 py-1.5 rounded-full border font-semibold shadow-sm transition-all duration-200
+                                            ${selectedCategory === category
+                                                ? 'bg-gradient-to-r from-blue-600 to-blue-400 text-white border-blue-600 scale-105 ring-2 ring-blue-200 shadow-md'
+                                                : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-50 hover:border-blue-400 hover:shadow'}
+                                            focus:outline-none focus:ring-2 focus:ring-blue-300
+                                        `}
+                                        style={{
+                                            letterSpacing: "0.02em",
+                                            minWidth: 80,
+                                        }}
                                         onClick={() => setSelectedCategory(category)}
                                     >
                                         {category}
@@ -595,10 +601,17 @@ export default function HomePage() {
                                 {projectCategories.map((category) => (
                                     <button
                                         key={category}
-                                        className={`px-2 sm:px-3 py-1 rounded border transition ${
-                                            selectedProjectCategory === category
-                                                ? 'bg-blue-500 text-white border-blue-500' : 'bg-white text-blue-800 border-blue-500 hover:bg-blue-50'
-                                        }`}
+                                        className={`
+                                            px-3 sm:px-4 py-1.5 rounded-full border font-semibold shadow-sm transition-all duration-200
+                                            ${selectedProjectCategory === category
+                                                ? 'bg-gradient-to-r from-blue-600 to-blue-400 text-white border-blue-600 scale-105 ring-2 ring-blue-200 shadow-md'
+                                                : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-50 hover:border-blue-400 hover:shadow'}
+                                            focus:outline-none focus:ring-2 focus:ring-blue-300
+                                        `}
+                                        style={{
+                                            letterSpacing: "0.02em",
+                                            minWidth: 80,
+                                        }}
                                         onClick={() => setSelectedProjectCategory(category)}
                                     >
                                         {category}
