@@ -126,8 +126,8 @@ const İlkelerimiz: React.FC = () => {
                                 <div className="main-body">
                                     <div className="page-wrapper">
                                         <div className="flex justify-center">
-                                            {/* Reduced max width and added more padding */}
-                                            <div className="w-full max-w-4xl px-6 md:px-10">
+
+                                            <div className="w-full max-w-6xl px-4 md:px-6">
                                                 {/* Header */}
                                                 <div className="shadow p-4 bg-white rounded-xl text-center mt-4">
                                                     <h1 className="text-xl md:text-3xl font-bold">İLKELERİMİZ</h1>

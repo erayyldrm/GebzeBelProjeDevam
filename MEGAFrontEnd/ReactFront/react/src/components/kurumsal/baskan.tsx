@@ -75,7 +75,7 @@ const BaskanPage: React.FC = () => {
 
     // Loading state with shimmering effect
     if (isLoading) return (
-        <div className="w-full max-w-4xl mx-auto my-4 px-4">
+        <div className="w-full max-w-6xl mx-auto my-4 px-4">
             <div className="bg-white rounded shadow-lg overflow-hidden">
                 <div className="animate-pulse">
                     <div className="h-48 bg-secondary w-full"></div>
@@ -98,7 +98,7 @@ const BaskanPage: React.FC = () => {
     if (!baskan) {
         return (
             <div
-                className="bg-warning border-left-4 border-warning text-dark p-4 rounded shadow-md max-w-4xl mx-auto my-4">
+                className="bg-warning border-left-4 border-warning text-dark p-4 rounded shadow-md max-w-6xl mx-auto my-4">
                 <p className="font-weight-bold">Uyarı</p>
                 <p>Aktif başkan bilgisi bulunamadı.</p>
             </div>
@@ -108,7 +108,7 @@ const BaskanPage: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-50">
             <div className="container mx-auto px-4 py-8">
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-5xl mx-auto">
                     {/* Content Card */}
                     <div className="bg-white rounded-lg shadow-md overflow-hidden">
                         {/* Mayor Image */}
