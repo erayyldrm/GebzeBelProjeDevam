@@ -13,8 +13,12 @@ public class PermissionService {
     private static final Map<String, Map<String, Boolean>> DEFAULT_PERMISSIONS = Map.of(
             "kurumsal", Map.of("goruntuleme", true, "duzenleme", false, "ekleme", false),
             "gebze", Map.of("goruntuleme", true, "duzenleme", false),
-            "hizmetler", Map.of("goruntuleme", true, "duzenleme", false, "ekleme", false),
-            "kullanıcılar", Map.of("goruntuleme", true, "duzenleme", false, "ekleme", false)
+            "hizmetler", Map.of("goruntuleme", true, "duzenleme", false, "silme", false),
+            "yayinlar", Map.of("goruntuleme", true, "duzenleme", false, "silme", false),
+            "etkinlikler", Map.of("goruntuleme", true, "duzenleme", false, "silme", false),
+            "haberler", Map.of("goruntuleme", true, "duzenleme", false, "silme", false),
+            "duyurular", Map.of("goruntuleme", true, "duzenleme", false, "silme", false),
+            "projeler", Map.of("goruntuleme", true, "duzenleme", false, "silme", false)
     );
 
     public Map<String, Map<String, Boolean>> getDefaultPermissions() {

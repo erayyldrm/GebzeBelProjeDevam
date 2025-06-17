@@ -15,7 +15,12 @@ export const PermissionService = {
             return {
                 "kurumsal": {"goruntuleme": true, "duzenleme": false, "ekleme": false},
                 "gebze": {"goruntuleme": true, "duzenleme": false},
-                "hizmetler": {"goruntuleme": true, "duzenleme": false, "silme": false}
+                "hizmetler": {"goruntuleme": true, "duzenleme": false, "silme": false},
+                "yayinlar": {"goruntuleme": true, "duzenleme": false, "silme": false},
+                "etkinlikler": {"goruntuleme": true, "duzenleme": false, "silme": false},
+                "haberler": {"goruntuleme": true, "duzenleme": false, "silme": false},
+                "duyurular": {"goruntuleme": true, "duzenleme": false, "silme": false},
+                "projeler": {"goruntuleme": true, "duzenleme": false, "silme": false}
             };
         }
     },

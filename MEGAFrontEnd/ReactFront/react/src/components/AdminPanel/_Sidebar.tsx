@@ -2,6 +2,7 @@ import {Menu,File, X, Home, Users, LogOut, ChevronDown, ChevronRight} from 'luci
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {logout} from "./services/authService.tsx";
 import { useState } from 'react';
+import {useAuthStore} from "./store/authStore.ts";
 
 interface SidebarProps {
     sidebarOpen: boolean;
@@ -19,13 +20,13 @@ const categorizedPages = [
     {
         title: "Sayfalar",
         pages: [
-            { key: "KURUMSAL", name: "KURUMSAL", path: "kurumsal" },
-            { key: "GEBZE", name: "GEBZE", path: "gebze" },
-            { key: "HİZMETLER", name: "HİZMETLER", path: "hizmetler" },
-            { key: "YAYINLAR", name: "YAYINLAR", path: "yayinlar" },
-            { key: "ETKİNLİKLER", name: "ETKİNLİKLER", path: "etkinlikler" },
-            { key: "HABERLER", name: "HABERLER", path: "haberler" },
-            { key: "DUYURULAR", name: "DUYURULAR", path: "duyurular" },
+            { key: "KURUMSAL", name: "KURUMSAL", path: "kurumsal", permission: "kurumsal" },
+            { key: "GEBZE", name: "GEBZE", path: "gebze", permission: "gebze" },
+            { key: "HİZMETLER", name: "HİZMETLER", path: "hizmetler", permission: "hizmetler" },
+            { key: "YAYINLAR", name: "YAYINLAR", path: "yayinlar", permission: "yayinlar" },
+            { key: "ETKİNLİKLER", name: "ETKİNLİKLER", path: "etkinlikler", permission: "etkinlikler" },
+            { key: "HABERLER", name: "HABERLER", path: "haberler", permission: "haberler" },
+            { key: "DUYURULAR", name: "DUYURULAR", path: "duyurular", permission: "duyurular" },
 
 
         ]
@@ -36,6 +37,14 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
     const location = useLocation();
     const navigate = useNavigate();
     const [pagesOpenIndex, setPagesOpenIndex] = useState<number | null>(null);
+
+    // Correct: use the hook inside the component
+    const { hasPermission, user: currentUser, isAuthenticated } = useAuthStore();
+    // If you need these, define them here:
+    const canView = hasPermission('kullanıcılar', 'goruntuleme');
+    const canEdit = hasPermission('kullanıcılar', 'duzenleme');
+    const canDelete = hasPermission('kullanıcılar', 'silme');
+    const canAdd = hasPermission('kullanıcılar', 'ekleme');
 
     const handleLogout = async () => {
         try {
@@ -71,7 +80,10 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
             <div className="flex-1 py-3 overflow-y-auto">
                 <div className="flex flex-col space-y-0.5 px-2">
                     <SidebarLink to={"/panel/dashboard"} icon={<Home size={20} />} text="Panel" sidebarOpen={sidebarOpen} active={location.pathname === "/panel/dashboard"}  />
-                    <SidebarLink to={"/panel/users"} icon={<Users size={20} />} text="Kullanıcılar" sidebarOpen={sidebarOpen} active={location.pathname === "/panel/users"} />
+                    {/* Only show Kullanıcılar if canView */}
+                    {canView && (
+                        <SidebarLink to={"/panel/users"} icon={<Users size={20} />} text="Kullanıcılar" sidebarOpen={sidebarOpen} active={location.pathname === "/panel/users"} />
+                    )}
                     {categorizedPages.map((category, index) => (
                         <div key={index} className="pb-1">
                             <button
@@ -91,16 +103,18 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                             </button>
 
                             {pagesOpenIndex === index &&
-                                category.pages.map(page => (
-                                    <SidebarLink
-                                        key={page.key}
-                                        to={`/panel/sayfalar/${page.path}`}
-                                        icon={<File size={18} />}
-                                        text={page.name}
-                                        sidebarOpen={sidebarOpen}
-                                        active={location.pathname === `/panel/sayfalar/${page.path}`}
-                                    />
-                                ))}
+                                category.pages
+                                    .filter(page => hasPermission(page.permission, 'goruntuleme'))
+                                    .map(page => (
+                                        <SidebarLink
+                                            key={page.key}
+                                            to={`/panel/sayfalar/${page.path}`}
+                                            icon={<File size={18} />}
+                                            text={page.name}
+                                            sidebarOpen={sidebarOpen}
+                                            active={location.pathname === `/panel/sayfalar/${page.path}`}
+                                        />
+                                    ))}
                         </div>
                     ))}
 

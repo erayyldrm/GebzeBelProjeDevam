@@ -109,7 +109,7 @@ impdp KULLANICI_ADI/SIFRE@localhost:1521/FREE schemas=KULLANICI_ADI directory=EX
 
 > **Not:** `directory=EXPORT_DIR` ifadesi, Oracle'da önceden tanımlanmış bir dizin nesnesi olmalıdır. Gerekirse DBA ile iletişime geçerek oluşturabilirsiniz.
 
-Daha fazla bilgi için Oracle dökümantasyonuna bakınız.
+> **Not:** Kullanıcı yetkileri [PermissionService.java](src/main/java/com/kocaeli/bel/service/PermissionService.java) dosyasının içinde default değer olarak ayarlanmıştır. Yeni kullanıcı yetkileri bu dosyada güncellenebilir.
 
 ## Eksik Kısımlar
 
@@ -117,4 +117,4 @@ Daha fazla bilgi için Oracle dökümantasyonuna bakınız.
 - Panel sayfalarının stilleri geliştirilebilir.
 - Kurumsal kategorisinde yalnızca Başkan, Misyon, Vizyon ve İlkeler sayfaları bulunmaktadır. Diğer sayfaların fonksiyonları henüz eklenmemiştir.
     - Eksik olan diğer kategoriler: **GEBZE**, **HİZMETLER**, **YAYINLAR**, **ETKİNLİKLER**, **HABERLER**, **DUYURULAR**, **İLETİŞİM** vb.
-- Sayfa URL'leri sabit olarak ayarlanmıştır, dinamik hale getirilmesi gerekmektedir.
+  - Sayfa URL'leri sabit olarak ayarlanmıştır, dinamik hale getirilmesi gerekmektedir.
