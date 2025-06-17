@@ -590,7 +590,7 @@ export default function HomePage() {
                 <section className="bg-gray-50 py-8 sm:py-12">
                     <div className="max-w-6xl mx-auto px-2 sm:px-4">
                         <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
-                            <h2 className="text-lg sm:text-xl font-bold text-blue-800">DEVAM EDEN PROJELER</h2>
+                            <h2 className="text-lg sm:text-xl font-bold text-blue-800">PROJELER</h2>
                             <div className="flex flex-wrap gap-2 text-xs sm:text-sm">
                                 {projectCategories.map((category) => (
                                     <button
