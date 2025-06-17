@@ -81,10 +81,10 @@ const Kararlar = () => {
     // Tarih formatını düzenlemek için yardımcı fonksiyon
     const formatTarih = (tarihStr: string) => {
         const tarih = new Date(tarihStr);
-        return new Intl.DateTimeFormat('tr-TR', { 
-            day: 'numeric', 
-            month: 'long', 
-            year: 'numeric' 
+        return new Intl.DateTimeFormat('tr-TR', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
         }).format(tarih);
     };
 
@@ -115,7 +115,7 @@ const Kararlar = () => {
     );
 
     if (isLoading) return (
-        <div className="w-full max-w-4xl mx-auto my-4 px-4">
+        <div className="w-full mx-auto my-4 px-4">
             <div className="bg-white rounded shadow-lg overflow-hidden p-4">
                 <div className="animate-pulse">
                     <div className="h-8 bg-secondary rounded w-1/4 mb-6"></div>
@@ -138,37 +138,37 @@ const Kararlar = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             id="pcoded"
-            className="pcoded"
+            className="pcoded w-full"
             style={{ minHeight: '100vh' }}
         >
             <div className="pcoded-overlay-box"></div>
-            <div className="pcoded-container navbar-wrapper">
-                <div className="pcoded-main-container-left">
-                    <div className="pcoded-wrapper">
-                        <div className="pcoded-content">
-                            <div className="pcoded-inner-content">
-                                <div className="main-body">
-                                    <div className="page-wrapper">
+            <div className="pcoded-container navbar-wrapper w-full">
+                <div className="pcoded-main-container-left w-full">
+                    <div className="pcoded-wrapper w-full">
+                        <div className="pcoded-content w-full">
+                            <div className="pcoded-inner-content w-full">
+                                <div className="main-body w-full">
+                                    <div className="page-wrapper w-full">
                                         <motion.div
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.6, ease: "easeOut" }}
-                                            className="flex flex-col lg:flex-row justify-center items-start mt-[-21px] p-2 md:p-4"
+                                            className="w-full mt-[-21px] p-2 md:p-6"
                                         >
-                                            {/* Ana İçerik Alanı */}
+                                            {/* Ana İçerik Alanı - Tam Genişlik */}
                                             <motion.div
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-                                                className="w-full lg:w-9/12"
+                                                className="w-full"
                                             >
                                                 <motion.div
                                                     initial={{ opacity: 0, scale: 0.98 }}
                                                     animate={{ opacity: 1, scale: 1 }}
                                                     transition={{ duration: 0.5 }}
-                                                    className="bg-white shadow rounded-2xl p-5"
+                                                    className="bg-white shadow rounded-2xl p-5 w-full"
                                                 >
-                                                    
+
                                                     {/* Sekmeler */}
                                                     <div className="flex border-b mb-4 overflow-x-auto">
                                                         <motion.button
@@ -221,10 +221,10 @@ const Kararlar = () => {
                                                                 animate={loaded ? "visible" : "hidden"}
                                                                 exit={{ opacity: 0, y: -20 }}
                                                                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                                                                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6"
+                                                                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mt-6"
                                                             >
                                                                 {meclisKararlari.length > 0 ? (
-                                                                    meclisKararlari.map((karar, index) => (
+                                                                    meclisKararlari.map((karar,) => (
                                                                         <motion.div
                                                                             key={karar.id}
                                                                             variants={itemVariants}
