@@ -126,7 +126,7 @@ const KurumsalRaporlar = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="max-w-7xl mx-auto p-5 mt-[-60px]"
+                className="max-w-7xl mx-auto p-5 mt-[-30px]"
             >
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

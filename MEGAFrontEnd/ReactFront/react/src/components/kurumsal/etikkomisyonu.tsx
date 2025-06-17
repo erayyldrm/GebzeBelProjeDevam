@@ -36,7 +36,7 @@ const EtikKomisyonu: React.FC = () => {
             })
             .then(resData => {
                 console.log("Etik Komisyonu API'den gelen veri:", JSON.stringify(resData).substring(0, 100) + "...");
-                
+
                 // ilkeler array'i objelerden oluşuyorsa ve ilke alanı varsa, dönüştür
                 if (resData && resData.ilkeler && Array.isArray(resData.ilkeler)) {
                     resData.ilkeler = resData.ilkeler
@@ -46,7 +46,7 @@ const EtikKomisyonu: React.FC = () => {
                             ilke: i.ilke || i.ad // veritabanında ilke alanı yoksa ad alanını kullan
                         }));
                 }
-                
+
                 // uyeler array'i kontrolü
                 if (resData && resData.uyeler && Array.isArray(resData.uyeler)) {
                     resData.uyeler = resData.uyeler
@@ -55,7 +55,7 @@ const EtikKomisyonu: React.FC = () => {
                     // Eğer uyeler array'i yoksa veya geçersizse, boş array atayalım
                     resData.uyeler = [];
                 }
-                
+
                 setData(resData);
                 setLoading(false);
             })
@@ -111,7 +111,7 @@ const EtikKomisyonu: React.FC = () => {
     );
 
     return (
-        <div className="min-h-screen mt-3 py-30 px-4 flex justify-center items-start">
+        <div className="pt-4 px-4 flex justify-center">
             <div className="w-full max-w-5xl bg-white shadow-lg rounded-xl p-6 sm:p-10">
                 <div className="relative w-full h-48 sm:h-60 mb-6 rounded-xl overflow-hidden flex items-center justify-center">
                     <img
@@ -133,34 +133,34 @@ const EtikKomisyonu: React.FC = () => {
                         </h2>
                         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-gray-700 text-sm sm:text-base">
                             {(data?.ilkeler && data.ilkeler.length > 0
-                                ? data.ilkeler.map((ilke) => (
-                                    <li key={ilke.id} className="flex items-start gap-2">
-                                        <span className="text-blue-600 mt-1">✓</span>
-                                        <span>{ilke.ilke}</span>
-                                    </li>
-                                ))
-                                : [
-                                    "Halka Hizmet Bilinci",
-                                    "Hizmet Standartlarına Uymak",
-                                    "Amaç ve Misyona Bağlılık",
-                                    "Dürüstlük ve Tarafsızlık",
-                                    "Saygınlık ve Güven",
-                                    "Nezaket ve Saygı",
-                                    "Ayrımcılık Yapmamak",
-                                    "Saydamlık ve Katılımcılık",
-                                    "Hediye Almamak",
-                                    "Kamu Mallarını Korumak",
-                                    "Savurganlıktan Kaçınmak",
-                                    "Çıkar Çatışmasından Kaçınmak",
-                                    "Hesap Verme Sorumluluğu",
-                                    "İmtiyazsız Kamu Hizmeti",
-                                    "Doğruluk"
-                                ].map((ilke, i) => (
-                                    <li key={i} className="flex items-start gap-2">
-                                        <span className="text-blue-600 mt-1">✓</span>
-                                        <span>{ilke}</span>
-                                    </li>
-                                ))
+                                    ? data.ilkeler.map((ilke) => (
+                                        <li key={ilke.id} className="flex items-start gap-2">
+                                            <span className="text-blue-600 mt-1">✓</span>
+                                            <span>{ilke.ilke}</span>
+                                        </li>
+                                    ))
+                                    : [
+                                        "Halka Hizmet Bilinci",
+                                        "Hizmet Standartlarına Uymak",
+                                        "Amaç ve Misyona Bağlılık",
+                                        "Dürüstlük ve Tarafsızlık",
+                                        "Saygınlık ve Güven",
+                                        "Nezaket ve Saygı",
+                                        "Ayrımcılık Yapmamak",
+                                        "Saydamlık ve Katılımcılık",
+                                        "Hediye Almamak",
+                                        "Kamu Mallarını Korumak",
+                                        "Savurganlıktan Kaçınmak",
+                                        "Çıkar Çatışmasından Kaçınmak",
+                                        "Hesap Verme Sorumluluğu",
+                                        "İmtiyazsız Kamu Hizmeti",
+                                        "Doğruluk"
+                                    ].map((ilke, i) => (
+                                        <li key={i} className="flex items-start gap-2">
+                                            <span className="text-blue-600 mt-1">✓</span>
+                                            <span>{ilke}</span>
+                                        </li>
+                                    ))
                             )}
                         </ul>
                     </div>
@@ -187,7 +187,7 @@ const EtikKomisyonu: React.FC = () => {
                         )}
                     </div>
                 </section>
-                
+
                 {/* API Debugger - Geliştirme sırasında */}
                 <div className="mt-4 p-2 bg-gray-100 rounded text-xs">
                     <p>İlke sayısı: {data?.ilkeler?.length || 0}</p>
@@ -199,4 +199,3 @@ const EtikKomisyonu: React.FC = () => {
 };
 
 export default EtikKomisyonu;
-

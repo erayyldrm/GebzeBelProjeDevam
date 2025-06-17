@@ -87,7 +87,7 @@ const VizyonPage: React.FC = () => {
 
     // Loading state with shimmering effect
     if (isLoading) return (
-        <div className="w-full max-w-4xl mx-auto my-4 px-4">
+        <div className="w-full max-w-6xl mx-auto my-4 px-4">
             <div className="bg-white rounded shadow-lg overflow-hidden">
                 <div className="animate-pulse">
                     <div className="h-48 bg-secondary w-full"></div>
@@ -109,7 +109,7 @@ const VizyonPage: React.FC = () => {
     // Empty data state
     if (!vizyon) {
         return (
-            <div className="bg-warning border-left-4 border-warning text-dark p-4 rounded shadow-md max-w-4xl mx-auto my-4">
+            <div className="bg-warning border-left-4 border-warning text-dark p-4 rounded shadow-md max-w-6xl mx-auto my-4">
                 <p className="font-weight-bold">Uyarı</p>
                 <p>Aktif vizyon bilgisi bulunamadı.</p>
             </div>
@@ -126,8 +126,8 @@ const VizyonPage: React.FC = () => {
                                 <div className="main-body">
                                     <div className="page-wrapper">
                                         <div className="flex justify-center">
-                                            {/* Reduced max width and added more padding */}
-                                            <div className="w-full max-w-4xl px-6 md:px-10">
+                                            {/* Increased max width and reduced padding */}
+                                            <div className="w-full max-w-6xl px-4 md:px-6">
                                                 {/* Header */}
                                                 <div className="shadow p-4 bg-white rounded-xl text-center mt-4">
                                                     <h1 className="text-xl md:text-3xl font-bold">VİZYONUMUZ</h1>
