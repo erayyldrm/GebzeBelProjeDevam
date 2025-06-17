@@ -32,4 +32,21 @@ public class YonetimSemasiController {
     public ResponseEntity<List<YonetimSemasiEntity>> getBaskanDanismanlari() {
         return ResponseEntity.ok(yonetimSemasiService.getBaskanDanismanlari());
     }
+
+    @GetMapping("/yonetim-semasi/{id}")
+    public ResponseEntity<YonetimSemasiEntity> getYonetimSemasiById(@PathVariable Long id) {
+        YonetimSemasiEntity entity = yonetimSemasiService.getById(id);
+        if (entity != null) {
+            return ResponseEntity.ok(entity);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/yonetim-semasi/{id}")
+    public ResponseEntity<YonetimSemasiEntity> updateYonetimSemasi(@PathVariable Long id, @RequestBody YonetimSemasiEntity updatedEntity) {
+        updatedEntity.setId(id);
+        YonetimSemasiEntity saved = yonetimSemasiService.save(updatedEntity);
+        return ResponseEntity.ok(saved);
+    }
 }

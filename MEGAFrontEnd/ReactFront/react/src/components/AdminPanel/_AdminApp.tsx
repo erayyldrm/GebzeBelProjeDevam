@@ -42,7 +42,7 @@ const _AdminApp: React.FC = () => {
 
                     <Route path="sayfalar" element={<Sayfalar />} />
                     <Route path="sayfalar/kurumsal" element={<KurumsalSayfa />} />
-                    <Route path="sayfalar/edit/:id" element={<EditSayfaTest />} />
+                    <Route path="sayfalar/edit/:tableName/:id" element={<EditSayfaTest />} />
                     <Route path="users/:id/edit" element={<EditUserPage />} />
                     {/* Redirect /admin to /admin/dashboard */}
                     <Route index element={<Navigate to="dashboard" replace />} />

@@ -42,4 +42,21 @@ public class KurumsalEtikArabuluculukController {
         
         return ResponseEntity.ok(filteredList);
     }
+
+    @GetMapping("/arabuluculuk/{id}")
+    public ResponseEntity<KurumsalEtikArabuluculukEntity> getArabuluculukById(@PathVariable Long id) {
+        KurumsalEtikArabuluculukEntity entity = service.getById(id);
+        if (entity != null) {
+            return ResponseEntity.ok(entity);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/arabuluculuk/{id}")
+    public ResponseEntity<KurumsalEtikArabuluculukEntity> updateArabuluculuk(@PathVariable Long id, @RequestBody KurumsalEtikArabuluculukEntity updatedEntity) {
+        updatedEntity.setId(id);
+        KurumsalEtikArabuluculukEntity saved = service.save(updatedEntity);
+        return ResponseEntity.ok(saved);
+    }
 }

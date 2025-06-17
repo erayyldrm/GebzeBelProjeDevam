@@ -51,4 +51,12 @@ public class YonetimSemasiService {
     public void deleteBaskanYardimcilari(List<Long> ids) {
         yonetimSemasiRepository.deleteAllById(ids);
     }
+
+    public YonetimSemasiEntity getById(Long id) {
+        return yonetimSemasiRepository.findById(id).orElse(null);
+    }
+
+    public YonetimSemasiEntity save(YonetimSemasiEntity entity) {
+        return yonetimSemasiRepository.save(entity);
+    }
 }

@@ -124,12 +124,10 @@ const DynamicEditPageForm: React.FC = () => {
             const categories = ['baskan', 'misyon', 'vizyon', 'ilkelerimiz'];
             for (const kategori of categories) {
                 try {
-
                     const data = await BaskanAPI.getActiveByIdAndKategori(kategori, numericId);
                     if (data) {
                         foundData = data;
                         category = kategori;
-
                         break;
                     }
                 } catch (err) { continue; }
@@ -137,7 +135,6 @@ const DynamicEditPageForm: React.FC = () => {
             if (foundData) {
                 const tableKey = CATEGORY_TO_TABLE[foundData.kategori || category];
                 const config = TABLE_CONFIGS[tableKey];
-
                 const initialFormData: Record<string, any> = {};
                 config.fields.forEach(field => {
                     const lowerKey = field.name.toLowerCase();
@@ -351,7 +348,7 @@ const DynamicEditPageForm: React.FC = () => {
                         <ArrowLeft size={20} />
                     </button>
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-800">Kayıt Düzenle</h2>
+                        <h2 className="text-2xl font-bold text-gray-800">Sayfayı Düzenle</h2>
                         <p className="text-gray-500">{tableConfig.displayName} - ID: {id}</p>
                     </div>
                 </div>

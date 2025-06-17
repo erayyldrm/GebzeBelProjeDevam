@@ -11,7 +11,6 @@ import {
     YonetimSemasiAPI,
     PageEntity,
     handleApiError,
-    PageAPI,
     convertDeltaToStatus
 } from '../services/pageService.tsx';
 import {Link} from "react-router-dom";
@@ -83,7 +82,7 @@ export default function PagesPage() {
                     allYonetimData
                 );
 
-                // 3. Get raw pages from PageAPI (if endpoint exists)
+                /*
                 let rawPages: PageEntity[] = [];
                 try {
                     const pagesResponse = await PageAPI.getAllPages();
@@ -92,9 +91,9 @@ export default function PagesPage() {
                     console.warn('PageAPI endpoint not available:', pageError);
                     // Continue without raw pages
                 }
-
+                    */
                 // 4. Merge all pages
-                const allPages = [...convertedPages, ...rawPages];
+                const allPages = [...convertedPages];
 
                 // 5. Set state
                 setPages(allPages);
@@ -157,6 +156,7 @@ export default function PagesPage() {
             const convertedPages = CombinedPageService.convertToPageFormat(kurumsalPages, yonetimPages);
 
             // Try to get additional pages from PageAPI
+            /*
             let rawPages: PageEntity[] = [];
             try {
                 const pagesResponse = await PageAPI.getAllPages();
@@ -164,8 +164,8 @@ export default function PagesPage() {
             } catch (pageError) {
                 console.warn('PageAPI endpoint not available:', pageError);
             }
-
-            const allPages = [...convertedPages, ...rawPages];
+            */
+            const allPages = [...convertedPages];
             setPages(allPages);
 
         } catch (err) {
@@ -201,6 +201,7 @@ export default function PagesPage() {
                 return;
             }
 
+            /*
             // Try to delete via PageAPI
             try {
                 await PageAPI.deletePage(pageId);
@@ -210,7 +211,7 @@ export default function PagesPage() {
                 console.warn('PageAPI delete not available, removing from local state only');
                 setPages(pages.filter(page => page.id !== pageId));
             }
-
+            */
             setActionDropdownId(null);
 
         } catch (error) {
@@ -261,6 +262,7 @@ export default function PagesPage() {
             }
 
             // Delete regular pages
+            /*
             if (regularPageIds.length > 0) {
                 try {
                     await PageAPI.deletePages(regularPageIds);
@@ -269,8 +271,7 @@ export default function PagesPage() {
                     console.warn('PageAPI bulk delete not available, removing from local state only');
                     setPages(pages.filter(page => !regularPageIds.includes(page.id)));
                 }
-            }
-
+ */
             setSelectedPages([]);
 
         } catch (error) {
@@ -664,7 +665,7 @@ export default function PagesPage() {
                                                     <li>
                                                         {canEdit && (
                                                             <Link
-                                                                to={`/panel/sayfalar/edit/${page.id}`} // <-- Gideceğiniz yol (URL yapınıza göre ayarlayın)
+                                                                to={`/panel/sayfalar/edit/${page.tableName}/${page.id}`}
                                                                 onClick={() => setActionDropdownId(null)} // Dropdown'ı kapatmak için onClick'i burada da kullanabilirsiniz.
                                                                 className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                                             >

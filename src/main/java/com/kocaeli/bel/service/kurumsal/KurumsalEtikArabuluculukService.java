@@ -73,4 +73,12 @@ public class KurumsalEtikArabuluculukService {
             throw e;
         }
     }
+
+    public KurumsalEtikArabuluculukEntity getById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    public KurumsalEtikArabuluculukEntity save(KurumsalEtikArabuluculukEntity entity) {
+        return repository.save(entity);
+    }
 }

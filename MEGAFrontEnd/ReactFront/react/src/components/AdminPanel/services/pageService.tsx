@@ -74,6 +74,7 @@ export interface PageEntity {
     imageUrl2?: string;
     slug: string;
     category: string;
+    tableName?: string; // Backend'de hangi tabloya ait olduğunu belirtmek için
     delta?: number | null; // Backend'den gelen raw değer (0, 1, 2 veya null)
     status?: 'Yayınlandı' | 'Taslak' | 'Arşivlendi'; // Frontend'de türetilen değer
     createdAt: string;
@@ -184,7 +185,9 @@ export const YonetimSemasiAPI = {
     },
 };
 
-// Generic Page API calls
+/*
+
+// Generic Page API calls ÖRNEK API ÇAĞRISI
 export const PageAPI = {
     // Get all pages with optional filters
     getAllPages: async (params?: {
@@ -257,6 +260,7 @@ export const PageAPI = {
         return response.data;
     },
 };
+*/
 
 // Combined API service for fetching multiple data sources
 export const CombinedPageService = {
@@ -334,6 +338,7 @@ export const CombinedPageService = {
                 imageUrl2: item.imageUrl2,
                 slug: `kurumsal-${item.kategori}-${item.id}`,
                 category: 'Kurumsal',
+                tableName: 'KURUMSAL_BASKAN_MISYON_VIZYON_ILKELERIMIZ', // Add this line
                 delta: delta,
                 status: convertDeltaToStatus(delta),
                 createdAt: item.olusturmaTarihi,
@@ -354,6 +359,7 @@ export const CombinedPageService = {
                 slug: `yonetim-${item.pozisyon}-${item.id}`,
                 resimUrl: item.resimUrl,
                 category: 'Yönetim',
+                tableName: 'KURUMSAL_YONETIM_SEMASI', // Add this line
                 delta: delta,
                 status: convertDeltaToStatus(delta),
                 createdAt: item.olusturmaTarihi,
@@ -394,7 +400,6 @@ export const handleApiError = (error: any) => {
 export default {
     BaskanAPI,
     YonetimSemasiAPI,
-    PageAPI,
     CombinedPageService,
     handleApiError,
     convertDeltaToStatus,
