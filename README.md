@@ -104,7 +104,10 @@ expdp KULLANICI_ADI/SIFRE@localhost:1521/FREE schemas=KULLANICI_ADI directory=EX
 Alınan dump dosyasını başka bir veritabanına yüklemek için:
 
 ```sh
-impdp KULLANICI_ADI/SIFRE@localhost:1521/FREE schemas=KULLANICI_ADI directory=EXPORT_DIR dumpfile=backup.dmp logfile=import.log
+impdp C##ERAY/123456@localhost:1521/FREE schemas=C##ERAY directory=EXPORT_DIR dumpfile=backup.dmp logfile=import.log
+
+
+
 ```
 
 > **Not:** `directory=EXPORT_DIR` ifadesi, Oracle'da önceden tanımlanmış bir dizin nesnesi olmalıdır. Gerekirse DBA ile iletişime geçerek oluşturabilirsiniz.
