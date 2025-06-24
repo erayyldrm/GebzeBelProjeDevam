@@ -19,9 +19,9 @@ public class HibernateConfig {
         // HikariCP for better performance
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
-        dataSource.setJdbcUrl("jdbc:oracle:thin:@//MUSAPC:1521/FREE");
-        dataSource.setUsername("C##Musa");
-        dataSource.setPassword("123456");
+        dataSource.setJdbcUrl("jdbc:oracle:thin:@//localhost:1521/FREE");
+        dataSource.setUsername("C##ENES");
+        dataSource.setPassword("123321");
         dataSource.setMaximumPoolSize(10); // Adjust as per requirements
         return dataSource;
     }

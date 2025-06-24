@@ -1,107 +1,127 @@
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\config\HibernateConfig.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\config\SecurityConfig\SecurityConfig.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\AuthController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\DebugController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\DepartmentController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\etkinlik\EtkinlikController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\gebze\AktiviteController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\gebze\FotograflarlaGebzeController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\gebze\GaleriController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\gebze\KardesSehirlerController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\gebze\MuhtarlarController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\gebze\TarihceController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\gebze\tarihiyerlerController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\gebze\UyeOldugumuzBirliklerController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\hizmetler\GeriDonusumController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\hizmetler\GeriDonusumDetayController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\hizmetler\GeriDonusumDetayliController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\hizmetler\HizmetlerController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\kurumsal\BaskanController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\kurumsal\BaskanYardimcilariController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\kurumsal\KurumsalEtikArabuluculukController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\kurumsal\MeclisKarariController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\kurumsal\MeclisUyesiController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\kurumsal\YonetimSemasiController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\PermissionController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\controller\UserController.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\gebze\AktiviteDTO.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\gebze\FotograflarlaGebzeDTO.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\gebze\GaleriDTO.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\gebze\KardesSehirlerDTO.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\gebze\MuhtarlarDTO.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\gebze\TarihceDTO.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\gebze\UyeOldugumuzBirliklerDTO.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\hizmetler\GeriDonusumDetayDTO.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\hizmetler\GeriDonusumDetayliDTO.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\hizmetler\GeriDonusumDTO.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\hizmetler\HizmetlerDTO.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\LoginRequest.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\LoginResponse.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\RegisterHandler.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\DTO\UserDTO.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\exception\GlobalExceptionHandler.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\exception\UserAlreadyExistsException.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\Department.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\etkinlik\EtkinlikEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\gebze\FotograflarlaGebzeEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\gebze\KardesSehirlerEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\gebze\MuhtarlarEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\gebze\TarihceEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\gebze\TarihiYerler.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\gebze\TarihiYerler_Aktivite.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\gebze\TarihiYerler_Galeri.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\gebze\UyeOldugumuzBirlikler.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\hizmetler\GeriDonusumDetayeEnitity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\hizmetler\GeriDonusumDetayliEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\hizmetler\GeriDonusumEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\hizmetler\HizmetlerEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\kurumsal\BaskanEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\kurumsal\KurumsalEtikArabuluculukEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\kurumsal\MeclisKarariEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\kurumsal\MeclisUyesiEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\kurumsal\YonetimSemasiEntity.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\model\User.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\MySpringBootApplication.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\DepartmentRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\etkinlik\EtkinlikRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\gebze\FotograflarlaGebzeRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\gebze\KardesSehirlerRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\gebze\MuhtarlarRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\gebze\TarihceRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\gebze\TarihiYerRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\gebze\TarihiYerRepositoryGaleri.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\gebze\TarihiYerRepositryAktivite.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\gebze\UyeOldugumuzBirliklerRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\hizmetler\GeriDonusumDetayliRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\hizmetler\GeriDonusumDetayRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\hizmetler\GeriDonusumRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\hizmetler\HizmetlerRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\kurumsal\BaskanRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\kurumsal\KurumsalEtikArabuluculukRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\kurumsal\MeclisKarariRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\kurumsal\MeclisUyesiRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\kurumsal\YonetimSemasiRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\repository\UserRepository.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\security\JwtTokenProvider.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\CustomUserDetailsService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\DepartmentService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\etkinlik\EtkinlikService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\gebze\AktiviteService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\gebze\FotograflarlaGebzeService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\gebze\GaleriService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\gebze\KardesSehirlerService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\gebze\MuhtarlarService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\gebze\TarihceService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\gebze\TarihiYerService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\gebze\UyeOldugumuzBirliklerService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\hizmetler\GeriDonusumDetayliService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\hizmetler\GeriDonusumDetayService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\hizmetler\GeriDonusumService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\hizmetler\HizmetlerService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\kurumsal\BaskanService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\kurumsal\KurumsalEtikArabuluculukService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\kurumsal\MeclisKarariService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\kurumsal\MeclisUyesiService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\kurumsal\YonetimSemasiService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\PermissionService.java
-D:\JavaKocaeli\KocaeliBelProje\src\main\java\com\kocaeli\bel\service\UserService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\config\HibernateConfig.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\config\SecurityConfig\SecurityConfig.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\AuthController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\DebugController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\DepartmentController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\DuyuruController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\etkinlik\EtkinlikController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\gebze\AktiviteController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\gebze\FotograflarlaGebzeController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\gebze\GaleriController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\gebze\KardesSehirlerController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\gebze\MuhtarlarController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\gebze\TarihceController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\gebze\tarihiyerlerController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\gebze\UyeOldugumuzBirliklerController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\HaberlerController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\hizmetler\GeriDonusumController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\hizmetler\GeriDonusumDetayController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\hizmetler\GeriDonusumDetayliController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\hizmetler\HizmetlerController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\KategoriController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\kurumsal\BaskanController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\kurumsal\BaskanYardimcilariController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\kurumsal\KurumsalEtikArabuluculukController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\kurumsal\MeclisKarariController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\kurumsal\MeclisUyesiController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\kurumsal\YonetimSemasiController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\PermissionController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\ProjelerController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\controller\UserController.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\gebze\AktiviteDTO.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\gebze\FotograflarlaGebzeDTO.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\gebze\GaleriDTO.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\gebze\KardesSehirlerDTO.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\gebze\MuhtarlarDTO.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\gebze\TarihceDTO.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\gebze\UyeOldugumuzBirliklerDTO.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\hizmetler\GeriDonusumDetayDTO.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\hizmetler\GeriDonusumDetayliDTO.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\hizmetler\GeriDonusumDTO.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\hizmetler\HizmetlerDTO.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\LoginRequest.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\LoginResponse.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\RegisterHandler.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\DTO\UserDTO.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\exception\GlobalExceptionHandler.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\exception\UserAlreadyExistsException.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\Duyuru.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\etkinlik\EtkinlikEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\gebze\FotograflarlaGebzeEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\gebze\KardesSehirlerEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\gebze\MuhtarlarEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\gebze\TarihceEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\gebze\TarihiYerler.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\gebze\TarihiYerler_Aktivite.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\gebze\TarihiYerler_Galeri.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\gebze\UyeOldugumuzBirlikler.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\Haberler.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\hizmetler\GeriDonusumDetayeEnitity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\hizmetler\GeriDonusumDetayliEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\hizmetler\GeriDonusumEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\hizmetler\HizmetlerEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\Kategori.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\kurumsal\BaskanEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\kurumsal\KurumsalEtikArabuluculukEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\kurumsal\MeclisKarariEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\kurumsal\MeclisUyesiEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\kurumsal\YonetimSemasiEntity.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\Mudurlukler.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\Projeler.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\model\User.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\MySpringBootApplication.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\DepartmentRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\DuyuruRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\etkinlik\EtkinlikRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\gebze\FotograflarlaGebzeRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\gebze\KardesSehirlerRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\gebze\MuhtarlarRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\gebze\TarihceRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\gebze\TarihiYerRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\gebze\TarihiYerRepositoryGaleri.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\gebze\TarihiYerRepositryAktivite.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\gebze\UyeOldugumuzBirliklerRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\HaberlerRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\hizmetler\GeriDonusumDetayliRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\hizmetler\GeriDonusumDetayRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\hizmetler\GeriDonusumRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\hizmetler\HizmetlerRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\KategoriRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\kurumsal\BaskanRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\kurumsal\KurumsalEtikArabuluculukRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\kurumsal\MeclisKarariRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\kurumsal\MeclisUyesiRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\kurumsal\YonetimSemasiRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\ProjelerRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\repository\UserRepository.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\security\JwtAuthenticationFilter.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\security\JwtTokenProvider.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\CustomUserDetailsService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\DepartmentService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\DuyuruService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\DuyuruServiceImpl.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\etkinlik\EtkinlikService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\gebze\AktiviteService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\gebze\FotograflarlaGebzeService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\gebze\GaleriService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\gebze\KardesSehirlerService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\gebze\MuhtarlarService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\gebze\TarihceService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\gebze\TarihiYerService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\gebze\UyeOldugumuzBirliklerService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\HaberlerService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\hizmetler\GeriDonusumDetayliService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\hizmetler\GeriDonusumDetayService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\hizmetler\GeriDonusumService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\hizmetler\HizmetlerService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\impl\ProjelerServiceImpl.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\KategoriService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\KategoriServiceImpl.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\kurumsal\BaskanService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\kurumsal\KurumsalEtikArabuluculukService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\kurumsal\MeclisKarariService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\kurumsal\MeclisUyesiService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\kurumsal\YonetimSemasiService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\PermissionService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\ProjelerService.java
+C:\Users\enesa\OneDrive\Masaüstü\İntellij Idea Dosyaları\ProjeBel\src\main\java\com\kocaeli\bel\service\UserService.java
