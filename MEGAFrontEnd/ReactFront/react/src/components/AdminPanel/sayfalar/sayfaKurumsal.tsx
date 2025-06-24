@@ -706,10 +706,10 @@ export default function PagesPage() {
                     )}
 
                     <div className="px-6 py-4 flex items-center justify-between border-t">
-                        <div className="text-sm text-gray-500">
-                            Showing <span className="font-medium">{filteredAndSortedPages.length}</span> of{' '}
-                            <span className="font-medium">{pages.length}</span> Sayfalar
-                        </div>
+                            <div className="text-sm text-gray-500">
+                                Showing <span className="font-medium">{filteredAndSortedPages.length}</span> of{' '}
+                                <span className="font-medium">{pages.length}</span> Sayfalar
+                            </div>
                         <div className="flex items-center space-x-2">
                             <button className="px-3 py-1 border rounded text-sm disabled:opacity-50">Previous</button>
                             <button className="px-3 py-1 bg-blue-500 text-white rounded text-sm">1</button>

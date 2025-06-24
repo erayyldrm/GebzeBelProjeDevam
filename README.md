@@ -96,7 +96,7 @@ Proje Oracle veritabanı kullandığı için, veritabanı yedeği almak veya ba�
 Aşağıdaki komut ile ilgili kullanıcıya ait tüm veritabanı nesneleri bir DMP dosyasına aktarılır:
 
 ```sh
-expdp C##MUSA/123456@MUSAPC:1521/FREE schemas=C##MUSA directory=EXPORT_DIR dumpfile=backup.dmp logfile=backup.log
+expdp KULLANICI_ADI/SIFRE@localhost:1521/FREE schemas=KULLANICI_ADI directory=EXPORT_DIR dumpfile=backup.dmp logfile=backup.log
 ```
 
 ### Import (Yedekten Geri Yükleme)
@@ -104,7 +104,10 @@ expdp C##MUSA/123456@MUSAPC:1521/FREE schemas=C##MUSA directory=EXPORT_DIR dumpf
 Alınan dump dosyasını başka bir veritabanına yüklemek için:
 
 ```sh
-impdp C##ENES/123321@localhost:1521/FREE schemas=C##MUSA remap_schema=C##MUSA:C##ENES directory=EXPORT_DIR dumpfile=EXPORT_FILE.dmp logfile=my_import.log
+impdp C##ERAY/123456@localhost:1521/FREE schemas=C##ERAY directory=EXPORT_DIR dumpfile=backup.dmp logfile=import.log
+
+
+
 ```
 
 > **Not:** `directory=EXPORT_DIR` ifadesi, Oracle'da önceden tanımlanmış bir dizin nesnesi olmalıdır. Gerekirse DBA ile iletişime geçerek oluşturabilirsiniz.

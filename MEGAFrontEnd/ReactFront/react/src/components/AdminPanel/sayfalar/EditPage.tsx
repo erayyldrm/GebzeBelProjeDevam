@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Save, X, AlertCircle, Eye} from 'lucide-react';
-import {BaskanAPI} from "../services/pageService.tsx";
+import {BaskanAPI, YonetimSemasiAPI} from "../services/pageService.tsx";
 
 // --- HELPER COMPONENTS (MOVED OUTSIDE) ---
 // By defining these here, they are stable and will not be recreated on every render.
@@ -48,12 +48,12 @@ const TABLE_CONFIGS: Record<string, TableConfig> = {
         displayName: 'Başkan, Misyon, Vizyon & İlkelerimiz',
         apiEndpoint: '/api/kurumsal/baskan-misyon-vizyon',
         fields: [
-            { name: 'ID', label: 'ID', type: 'number', required: false },
-            { name: 'resimUrl1', label: 'Resim URL 1', type: 'text', required: false },
-            { name: 'imageUrl2', label: 'Resim URL 2', type: 'text', required: false },
-            { name: 'BASLIK', label: 'Başlık', type: 'text', required: true },
-            { name: 'ICERIK', label: 'İçerik', type: 'textarea', required: true },
-            { name: 'DELTA', label: 'Delta', type: 'text', required: false },
+            {name: 'ID', label: 'ID', type: 'number', required: false},
+            {name: 'resimUrl1', label: 'Resim URL 1', type: 'text', required: false},
+            {name: 'imageUrl2', label: 'Resim URL 2', type: 'text', required: false},
+            {name: 'BASLIK', label: 'Başlık', type: 'text', required: true},
+            {name: 'ICERIK', label: 'İçerik', type: 'textarea', required: true},
+            {name: 'DELTA', label: 'Delta', type: 'text', required: false},
             {
                 name: 'KATEGORI',
                 label: 'Kategori',
@@ -63,29 +63,83 @@ const TABLE_CONFIGS: Record<string, TableConfig> = {
             }
         ]
     },
-    'kurumsal_yonetim_semasi':{
+    'kurumsal_yonetim_semasi': {
         tableName: 'KURUMSAL_YONETIM_SEMASI',
         displayName: 'Yönetim Şeması',
         apiEndpoint: '/api/kurumsal/yonetim-semasi',
         fields: [
-            { name: 'ID', label: 'ID', type: 'number', required: false },
-            { name: 'isimSoyisim', label: 'Isim Soyisim', type: 'text', required: false },
-            { name: 'resimUrl', label: 'resimUrl', type: 'text', required: false },
-            { name: 'pozisyon', label: 'pozisyon', type: 'text', required: false },
-            { name: 'siraNo', label: 'siraNo', type: 'text', required: false },
-            { name: 'mudurlukler', label: 'mudurlukler', type: 'textarea', required: false },
-            { name: 'siraNo', label: 'siraNo', type: 'text', required: false },
-            { name: 'delta', label: 'delta', type: 'text', required: true },
-            { name: 'email', label: 'email', type: 'text', required: true },
-            { name: 'telefon', label: 'telefon', type: 'text', required: true },
-            { name: 'biyografi', label: 'biyografi', type: 'textarea', required: true },
+            {name: 'ID', label: 'ID', type: 'number', required: false},
+            {name: 'isimSoyisim', label: 'Isim Soyisim', type: 'text', required: false},
+            {name: 'resimUrl', label: 'resimUrl', type: 'text', required: false},
+            {name: 'pozisyon', label: 'pozisyon', type: 'text', required: false},
+            {name: 'siraNo', label: 'siraNo', type: 'text', required: false},
+            {name: 'mudurlukler', label: 'mudurlukler', type: 'textarea', required: false},
+            {name: 'siraNo', label: 'siraNo', type: 'text', required: false},
+            {name: 'delta', label: 'delta', type: 'text', required: true},
+            {name: 'email', label: 'email', type: 'text', required: true},
+            {name: 'telefon', label: 'telefon', type: 'text', required: true},
+            {name: 'biyografi', label: 'biyografi', type: 'textarea', required: true},
 
         ]
     },
 
     // ... other configs
-};
+//-----------------------------------------------------------------------------------
+    'KURUMSAL_ETIK_ARABULUCULUK': {
+        tableName: 'KURUMSAL_ETIK_ARABULUCULUK',
+        displayName: 'Etik, Arabuluculuk',
+        apiEndpoint: '/api/kurumsal/etik-arabuluculuk',
+        fields: [
+            {name: 'ID', label: 'ID', type: 'number', required: false},
+            {name: 'Ad', label: 'AD', type: 'text', required: false},
+            {name: 'unvan', label: 'unvan', type: 'text', required: false},
+            {name: 'gorev', label: 'gorev', type: 'text', required: false},
+            {name: 'tip', label: 'tip', type: 'text', required: true},
+            {name: 'ilke', label: 'ilke', type: 'textarea', required: true},
+            {name: 'delta', label: 'delta', type: 'text', required: true},
+            {name: 'resimUrl', label: 'resim Url', type: 'text', required: false},
+        ]
+    },
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//--------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+};
 const CATEGORY_TO_TABLE: Record<string, string> = {
     'baskan': 'KURUMSAL_BASKAN_MISYON_VIZYON_ILKELERIMIZ',
     'misyon': 'KURUMSAL_BASKAN_MISYON_VIZYON_ILKELERIMIZ',
@@ -184,12 +238,126 @@ const DynamicEditPageForm: React.FC = () => {
                 await BaskanAPI.updateBaskan(formData.ID, updateData);
                 alert('Kayıt başarıyla güncellendi!');
             }
+        }
+        catch (err) {
+            setError(err instanceof Error ? err.message : 'Kaydetme sırasında hata oluştu');
+        } finally {
+            setSaving(false);
+        }
+    };
+//......................................................................................................................
+  /*  const fetchData = useCallback(async (recordId: string) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const numId = parseInt(recordId, 10);
+            let foundData = null;
+            let category = '';
+            const categories = ['baskan', 'baskanYardimcileri'];
+            for (const kategori of categories) {
+                try {
+                    const data = await YonetimSemasiAPI.getYonetimSemasi();
+                    if (data) {
+                        foundData = data;
+                        category = kategori;
+                        break;
+                    }
+                } catch (err) { continue; }
+            }
+            if (foundData) {
+                const tableKey = CATEGORY_TO_TABLE[foundData.kategori || category];
+                const config = TABLE_CONFIGS[tableKey];
+                const initialFormData: Record<string, any> = {};
+                config.fields.forEach(field => {
+                    const lowerKey = field.name.toLowerCase();
+                    initialFormData[field.name] = (foundData as any)[lowerKey] ?? (foundData as any)[field.name] ?? '';
+                });
+                setFormData(initialFormData);
+                setTableConfig(config);
+                setHasLoaded(true);
+            } else {
+                throw new Error('Record not found');
+            }
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to load data');
+            setTableConfig(null);
+        } finally {
+            setLoading(false);
+        }
+    }, []);
+
+
+    useEffect(() => {
+        setHasLoaded(false);
+    }, [id]);
+
+    useEffect(() => {
+        if (id && !hasLoaded) {
+            fetchData(id);
+        }
+    }, [id, hasLoaded, fetchData]);
+
+
+    const handleSave = async () => {
+        // ... (rest of the function is fine)
+        setSaving(true);
+        setError(null);
+        try {
+            const currentTableName = tableConfig?.tableName;
+            if (currentTableName === 'kurumsal_yonetim_semasi') {
+                const updateData = {
+                    isimSoyisim: formData.isimSoyisim || '',
+                    resimUrl: formData.resimUrl || '',
+                    pozisyon: formData.pozisyon || '',
+                    biyografi: formData.biyografi,
+                    mudurlukler: formData.mudurlukler,
+                    aktif: true,
+                };
+                await YonetimSemasi.updateYonetimSemasi(formData.ID, updateData);
+                alert('Kayıt başarıyla güncellendi!');
+            }
+        }
+        catch (err) {
+            setError(err instanceof Error ? err.message : 'Kaydetme sırasında hata oluştu');
+        } finally {
+            setSaving(false);
+        }
+    };
+
+
+    const handleSave = async () => {
+        setSaving(true);
+        setError(null);
+        try {
+            const updateData = {
+                resimUrl: formData.resimUrl || '',
+                isimSoyisim: formData.isimSoyisim || '',
+                pozisyon: formData.pozisyon || '',
+                siraNo: formData.siraNo || 0,
+                mudurlukler: formData.mudurlukler || '',
+                email: formData.email || '',
+                telefon: formData.telefon || '',
+                biyografi: formData.biyografi || '',
+                aktif: true
+            };
+
+            if (formData.ID) {
+                await YonetimSemasiAPI.updateYonetimSemasi(formData.ID, updateData);
+            } else {
+                await YonetimSemasiAPI.createYonetimSemasi(updateData);
+            }
+
+            navigate(-1); // Bir önceki sayfaya dön
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Kaydetme sırasında hata oluştu');
         } finally {
             setSaving(false);
         }
     };
+
+//---------------------------------------------------------------------------------------------------------------
+    */
+
 
     const handleInputChange = (fieldName: string, value: any) => {
         setFormData(prev => ({
