@@ -105,38 +105,7 @@ const TABLE_CONFIGS: Record<string, TableConfig> = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //--------------------------------------------------------------------------------------
-
-
-
-
-
-
 
 
 };
@@ -246,117 +215,8 @@ const DynamicEditPageForm: React.FC = () => {
         }
     };
 //......................................................................................................................
-  /*  const fetchData = useCallback(async (recordId: string) => {
-        setLoading(true);
-        setError(null);
-        try {
-            const numId = parseInt(recordId, 10);
-            let foundData = null;
-            let category = '';
-            const categories = ['baskan', 'baskanYardimcileri'];
-            for (const kategori of categories) {
-                try {
-                    const data = await YonetimSemasiAPI.getYonetimSemasi();
-                    if (data) {
-                        foundData = data;
-                        category = kategori;
-                        break;
-                    }
-                } catch (err) { continue; }
-            }
-            if (foundData) {
-                const tableKey = CATEGORY_TO_TABLE[foundData.kategori || category];
-                const config = TABLE_CONFIGS[tableKey];
-                const initialFormData: Record<string, any> = {};
-                config.fields.forEach(field => {
-                    const lowerKey = field.name.toLowerCase();
-                    initialFormData[field.name] = (foundData as any)[lowerKey] ?? (foundData as any)[field.name] ?? '';
-                });
-                setFormData(initialFormData);
-                setTableConfig(config);
-                setHasLoaded(true);
-            } else {
-                throw new Error('Record not found');
-            }
-        } catch (err) {
-            setError(err instanceof Error ? err.message : 'Failed to load data');
-            setTableConfig(null);
-        } finally {
-            setLoading(false);
-        }
-    }, []);
-
-
-    useEffect(() => {
-        setHasLoaded(false);
-    }, [id]);
-
-    useEffect(() => {
-        if (id && !hasLoaded) {
-            fetchData(id);
-        }
-    }, [id, hasLoaded, fetchData]);
-
-
-    const handleSave = async () => {
-        // ... (rest of the function is fine)
-        setSaving(true);
-        setError(null);
-        try {
-            const currentTableName = tableConfig?.tableName;
-            if (currentTableName === 'kurumsal_yonetim_semasi') {
-                const updateData = {
-                    isimSoyisim: formData.isimSoyisim || '',
-                    resimUrl: formData.resimUrl || '',
-                    pozisyon: formData.pozisyon || '',
-                    biyografi: formData.biyografi,
-                    mudurlukler: formData.mudurlukler,
-                    aktif: true,
-                };
-                await YonetimSemasi.updateYonetimSemasi(formData.ID, updateData);
-                alert('Kayıt başarıyla güncellendi!');
-            }
-        }
-        catch (err) {
-            setError(err instanceof Error ? err.message : 'Kaydetme sırasında hata oluştu');
-        } finally {
-            setSaving(false);
-        }
-    };
-
-
-    const handleSave = async () => {
-        setSaving(true);
-        setError(null);
-        try {
-            const updateData = {
-                resimUrl: formData.resimUrl || '',
-                isimSoyisim: formData.isimSoyisim || '',
-                pozisyon: formData.pozisyon || '',
-                siraNo: formData.siraNo || 0,
-                mudurlukler: formData.mudurlukler || '',
-                email: formData.email || '',
-                telefon: formData.telefon || '',
-                biyografi: formData.biyografi || '',
-                aktif: true
-            };
-
-            if (formData.ID) {
-                await YonetimSemasiAPI.updateYonetimSemasi(formData.ID, updateData);
-            } else {
-                await YonetimSemasiAPI.createYonetimSemasi(updateData);
-            }
-
-            navigate(-1); // Bir önceki sayfaya dön
-        } catch (err) {
-            setError(err instanceof Error ? err.message : 'Kaydetme sırasında hata oluştu');
-        } finally {
-            setSaving(false);
-        }
-    };
 
 //---------------------------------------------------------------------------------------------------------------
-    */
 
 
     const handleInputChange = (fieldName: string, value: any) => {
