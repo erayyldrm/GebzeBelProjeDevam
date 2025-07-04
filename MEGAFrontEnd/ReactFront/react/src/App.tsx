@@ -86,7 +86,7 @@ const App: React.FC = () => {
 
                     <Route path="/haberler" element={<Haberler/>}/>
                     <Route path="/yedekhaberler" element={<YedekHaberler/>}/>
-                    <Route path="/haberlerdetay" element={<HaberlerDetay/>}/>
+                    <Route path="/haberlerdetay/:id" element={<HaberlerDetay/>}/>
                     <Route path="/e-belediye" element={<EBelediye/>}/>
                     <Route path="/iletisim" element={<Iletisim/>}/>
                     <Route path="/hizmet-noktalari" element={<HizmetNoktalari/>}/>
